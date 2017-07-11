@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <parent>
+	   <groupId>com.focus3d.panorama</groupId>
+	   <artifactId>pano-bms</artifactId>
+	   <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.focus3d.panorama</groupId>
+  <artifactId>pano-bms-web</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>pano-bms-web</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+  
+  		<dependency>
+            <groupId>com.focus3d.panorama</groupId>
+            <artifactId>pano-bms-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+  </dependencies>
+  <build>
+		<plugins>
+				<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.6</source>
+					<target>1.6</target>
+					<compilerId>eclipse</compilerId>
+					<debug>true</debug>
+					<optimize>true</optimize>
+					<showDeprecations>true</showDeprecations>
+				</configuration>
+				<dependencies>
+					<dependency>
+					  	<groupId>org.codehaus.plexus</groupId>
+					  	<artifactId>plexus-compiler-eclipse</artifactId>
+					 	<version>1.9.1</version>
+					</dependency>
+				  </dependencies>
+			</plugin>
+
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<groupId>org.apache.maven.plugins</groupId>
+					<configuration>
+						<warSourceExcludes>WEB-INF/lib/*.jar</warSourceExcludes>
+                    </configuration>
+				</plugin>
+			</plugins>
+	</build>
+
+</project>

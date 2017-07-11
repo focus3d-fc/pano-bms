@@ -1,0 +1,17 @@
+.TextDropdown{background:#fff;overflow:hidden;padding:1px;font-size:12px;width:170px;min-width:150px;text-align:left;border-right:1px solid #C3C3C3;border-top:1px solid #ccc;border-left:1px solid #C3C3C3;border-bottom:2px solid #C3C3C3;margin-top:-1px}
+.TextDropdown .spanMatchText{color:#B92B05;font-weight:bold}
+.NormalElement,.HighElement{width:100%;overflow:hidden;cursor:pointer;line-height:15px;padding:3px}
+.spanWord{display:block;float:left;white-space:nowrap}
+.spanCount{display:block;color:#777;font-size:11px;float:right;padding-right:5px;text-align:right;white-space:nowrap}
+.NormalElement{background:#fff}
+.suggestionAD{padding:3px;width:99%;cursor:pointer;zoom:1}
+.suggestionAD a{display:block;height:40px}
+.suggestionAD table{width:100%}
+.suggestionAD td{vertical-align:top;text-align:left}
+.HighElement{background:#E4E4E4;}
+.HighElement a:link,.HighElement a:visited{color:#fff}
+.noMatchData{font-weight:bold;color:#00f}
+.TextDropdown .pp{text-align:center;background:url(/images/bg_pp.gif) repeat-x;color:#999;height:21px;line-height:21px}
+.TextDropdown .pp span{display:block;width:86px;margin:0 auto;background:#fff;font-size:smaller}
+.HighLight{background:#e4e4e4}
+.HighLight a:link,.HighLight a:visited,.HighLight a:hover{color:#fff;text-decoration:none}

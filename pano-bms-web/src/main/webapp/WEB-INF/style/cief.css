@@ -1,0 +1,136 @@
+body{color:#444;line-height:1.35;background-color:#fff;margin:0;padding:0}
+body,input,select,button,.en{font-size:12px;font-family: Tahoma, Geneva, sans-serif}
+button{ cursor:pointer}
+a img{border:none}
+a:link,a:visited{color:#333;text-decoration:none}
+a:hover{color:#C0030A}
+h1,h2,h3{padding:0;margin:0}
+th{vertical-align:text-top;font-weight:bold}
+ul{margin:0;padding:0}
+ul li{padding:0;margin:0;line-height:1.8;list-style-type:none}
+p,form{margin:0;padding:0}
+.c{ text-align:center}
+.l{ text-align:left !important}
+.fl{ float:left}
+.must {color:#FF0000;font-weight:normal;margin:0 2px}
+#top{ background:url(../images/top-bg.png) repeat-x top; height:45px; overflow:hidden;zoom:1}
+#tfl{ float:left; margin-left:20px;}
+.search{ margin-left:20px; margin-top:10px;float:left;}
+.search,.search input,.search button,#user .user_span img,#user .user_span:hover img{ background:url(../images/top-bg.png); height:26px}
+.search{background-position:left -93px;background-repeat:no-repeat; padding-left:5px}
+.search input{ margin-left:0;>margin-left:-20px; border:none; background-position:center -67px;background-repeat:repeat-x; height:24px; line-height:24px;vertical-align:top; width:220px;margin-top:0;*margin-top:-1px}
+.search button{ text-indent:-9999em; background-position:left -119px; width:30px; border:none; cursor:pointer; padding:0}
+#user{ float:left; margin-top:5px; margin-left:20px; }
+#user .user_span{height:40px; line-height:36px;display:inline-block; padding:0 10px;_padding-top:10px}
+#user .user_span:hover{ background-color:#3c4441; color:#c0d0ca}
+#user .user_span img{ width:11px; height:11px; background-position:left -45px}
+#user .user_span:hover img{ width:11px; height:11px;background-position:left -56px}
+#tfr{ float:right}
+#tfr a{ font-weight:bold; margin:0 15px; line-height:40px}
+#footer{ background-color:#000; line-height:50px; text-align:center; color:#b8b8b8}
+
+.wu,.map{ position:absolute; width:200px;background-color:#3b4441; color:#bed1cb; padding-bottom:5px; z-index:10}
+.wu{ margin-left:0;>margin-left:-85px;_margin-left:-83px;>margin-top:40px}
+.wu table{border-spacing:0; width:100%; border-bottom:solid 1px #273331}
+.wu td{ padding:3px 10px}
+.wu a,.map a{color:#bed1cb;}
+.wu a:hover,.map a:hover{ text-decoration:underline}
+.wu input{ background-color:#dee5dd; border:none;-moz-border-radius:4px; padding:2px; margin:0;vertical-align:middle;}
+.wp,.mb{ border-top:solid 1px #51605b; padding:5px 0}
+.wp a{ display:block; margin:5px 30px}
+#wu_v td{ padding-left:20px}
+.map{ margin-left:87px;>margin-left:-67px;_margin-left:-63px;>margin-top:40px}
+.mt{border-bottom:solid 1px #273331; padding:10px}
+.mt li{ background-image:url(../images/top-bg.png); background-repeat:no-repeat; padding-left:25px}
+.mt li#t1{ background-position:left -169px}
+.mt li#t2{ background-position:left -197px}
+.mt li#t3{ background-position:left -225px}
+.mb{ overflow:hidden;zoom:1; padding-left:35px}
+.mb li{ float:left; width:48%}
+/*NewPager*/
+#pager{font-family:Arial,Helvetica,sans-serif;>font-family: inherit;line-height:normal;clear:both;text-align:center;padding:20px 0}
+#pager .pageNum{text-align:center}
+.pageNum a:link,.pageNum a:visited,.pageNum strong{margin-right:3px;padding:1px 3px;background-color:#f1f5fe;border:1px solid #cbd7ef; color:#555}
+.pageNum a:visited{color:#0B4A9F}
+.pageNum a:hover,.pageNum b a:hover,.pageNum .now:link,.pageNum .now:visited,.pageNum .now:hover,.pageNum strong{background-color:#5378c6;border-color:#c9d8ef;color:#FFF !important}
+.pageNum img{border:none;margin:0}
+.pageMark{font-family:tahoma,Arial,Helvetica,sans-serif;padding:10px 0 5px 0;font-size:91.67%;text-align: center}
+.pageMark a{color:#5178c3}
+.pageMark a,.pageMark strong{padding:1px;margin-left:3px}
+
+.ok,.inf,.cue,.error{width:500px; padding:15px; margin-bottom:20px}
+.ok{background-color:#eeffcb; border:solid 1px #009901;color:#006c00}
+.inf{background-color:#ecf3fd; border:solid 1px #9dbde6;color:#295a95}
+.cue{background-color:#fef7dd; border:solid 1px #fdca3d;color:#a28326}
+.error{background-color:#ffeeee; border:solid 1px #ffa6a6;color:#981a1d}
+
+#main{ background-color:#f4f4f4; padding:10px 0; border-top:solid 1px #c8c8c8; overflow:hidden;zoom:1; width:100%}
+.tp,.tp span,.bt{ background:url(../images/tp.gif); background-repeat:no-repeat; display:block; font-size:0; height:4px; line-height:0}
+.tp{margin-bottom:-4px; position:relative}
+.bt{margin-top:-4px; position:relative}
+#sideleft .tp span{ background-position:right -4px; float:right; width:4px}
+#sideright .tp{background-position:left -8px;}
+#sideright .bt{background-position:left -12px;}
+
+#sideleft{ float:left; width:180px; margin:0 10px;_margin-left:5px}
+.treel{ background-color:#f1f1f1; border:solid 1px #e3e3e3; border-bottom:none}
+.treel .menu{ color:#667697; font-weight:bold; line-height:28px; border-bottom:solid 1px #e3e3e3; border-top:solid 1px #fff; background:url(../images/menu-li.gif) no-repeat 10px 12px; padding-left:25px; cursor:pointer}
+.treel .menu.tL{ border-top:none}
+.treel div.openmenu{ background:url(../images/menu-li.gif) no-repeat 10px -11px;}
+.childmenu{background-color:#fff;border:1px solid #CFDBE7;margin-left:-1px;margin-top:-1px;padding:5px;width:168px}
+.childmenu a{ display:block; padding-left:20px; height:26px; line-height:26px;color:#637895}
+.childmenu a:hover{ background-color:#e4edf4;color:#637895;-moz-border-radius:2px;}
+.childmenu .now,.childmenu .now:hover{ background-color:#507ac4;color:#fff;-moz-border-radius:2px;}
+
+#sideright{background-color:#fff;*margin-left:200px; overflow:auto; width:auto}
+#title{border:solid 1px #e3e3e3; background:#fff url(../images/title-bg.gif) repeat-x bottom; padding-bottom:10px; padding-left:20px}
+#title h1{ font-size:14px; color:#637895; padding:10px 0}
+.listBatch{overflow:hidden;zoom:1}
+.listBatch select{ height:22px; line-height:22px}
+.listSearch{ float:left; margin-right:40px}
+.listSearch #button{ background:url(../images/button.png) top; border:none; width:96px; height:22px;line-height:22px;cursor:pointer}
+.listBatch span{ margin-left:30px}
+
+.center{border:1px solid #E3E3E3;padding:10px 20px}
+.toolbar{ margin-bottom:10px}
+.center button{ border:none; padding:0; height:26px;width:96px}
+.common{ background:url(../images/button.png) no-repeat center -48px; color:#637895}
+.submit{ background:url(../images/button.png) no-repeat center -22px; color:#784f21}
+.edit{ background:url(../images/button.png) no-repeat center -74px; color:#784f21}
+
+#cards{ width:980px;overflow:hidden;zoom:1}
+#cards .item{ width:310px; float:left;margin-right:15px; margin-bottom:7px;text-align:center}
+.item .box{ border:solid 1px #d1d4d9;padding:8px 8px 8px 15px; text-align:left;overflow:hidden;zoom:1}
+.item .box td{ padding:2px 0}
+.item .box .back{ float:right; margin-top:-18px; color:#527ac2; font-weight:bold}
+.item .choice{ background:url(../images/shadow.jpg) no-repeat left top; padding:3px}
+.box strong{ line-height:1.8}
+.name{ font-size:14px; margin-right:7px}
+.cardsP{ border:solid 1px #d3d6db; float:right}
+
+.groupcards td{ padding:3px 10px 3px 0; vertical-align:top}
+.groupcards .toolbar{ padding:20px 0}
+
+.allCards,.mv{ float:left}
+.allCards{ width:300px; height:292px;overflow:scroll;background-color:#fff;border:1px solid #cecece; padding:1px}
+.allList{border-collapse:collapse;border-spacing:0; width:100%}
+.allList th{ color:#677798; background-color:#e7ecf2}
+.allList th,.allList td{ padding:4px 2px; border-bottom:solid 1px #fff}
+.bgB{ background-color:#f3f4f6}
+.bgG{ background-color:#99c450}
+
+.mv{ margin:90px 20px 0 20px; width:96px}
+.mv button{ margin-bottom:10px}
+
+.tabList {border-collapse:collapse; width:720px; margin-bottom:10px}
+.tabList th, .tabList td {border:1px solid #D5DCE6;padding:3px 8px;text-align:center;}
+.tabList th {background-color:#e7ecf2; height:22px; line-height:22px}
+
+.imgb60 {display:table-cell;height:60px;line-height:53px;width:70px;text-align:center;vertical-align:middle;>display:block;>font-size:48px;>font-family:Arial, Helvetica, sans-serif}
+.fat{ width: 60px; border-width: 0px; }
+.tall{ height: 60px; border-width: 0px; }
+
+.tabForm{border-collapse:collapse;border-spacing:0; width:720px}
+.tabForm th {padding:6px;vertical-align:top; text-align:right;font-weight:normal;}
+.tabForm td {padding:6px 10px 6px 0;vertical-align:top}
+td small { font-size:12px;clear:both;color:#767676;line-height:1.5;margin:2px 2px 1px 0}

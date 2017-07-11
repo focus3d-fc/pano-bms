@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <parent>
+	   <groupId>com.focus3d.panorama</groupId>
+	   <artifactId>pano-bms</artifactId>
+	   <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.focus3d.panorama</groupId>
+  <artifactId>pano-bms-core</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>pano-bms-core</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+		 <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+            <version>${spring.version}</version>
+            <type>jar</type>
+        </dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.6.11</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.6.11</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.1</version>
+		</dependency>
+
+			<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		<dependency>
+    		<groupId>com.focustech.cief.bundle.common</groupId>
+  			<artifactId>cief-bundle-common-utils</artifactId>
+  			<version>0.0.1</version>
+  			<exclusions>
+	  			<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-aspects</artifactId>
+				</exclusion>
+  			</exclusions>
+    	</dependency>
+		 <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.3.5</version>
+        </dependency>
+
+		<dependency>
+			<groupId>com.focustech.cief.bundle.common</groupId>
+		  	<artifactId>cief-bundle-common-ibatis</artifactId>
+		  	<version>0.0.1</version>
+			<exclusions>
+	  			<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-aspects</artifactId>
+				</exclusion>
+  			</exclusions>
+		</dependency>
+
+		<dependency>
+		    <groupId>javax.persistence</groupId>
+		    <artifactId>persistence-api</artifactId>
+		    <version>1.0</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi-scratchpad</artifactId>
+		    <version>3.15</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>3.15</version>
+		</dependency>
+		
+		<dependency>
+ 		 	<groupId>com.focustech.focus3d.bundle.sms.client</groupId>
+  			<artifactId>focus3d-sms-client</artifactId>
+  			<version>0.0.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.focustech.cief.bundle.common</groupId>
+	  		<artifactId>cief-bundle-common-cfsclient</artifactId>
+	  		<version>2.3.3</version>
+		</dependency>
+		
+		<dependency>
+ 		 	<groupId>com.focustech.focus3d.ibator</groupId>
+  			<artifactId>ibator-generator-simple</artifactId>
+  			<version>0.0.1</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>commons-dbcp</groupId>
+		    <artifactId>commons-dbcp</artifactId>
+		    <version>1.4</version>
+		</dependency>
+  </dependencies>
+ <build>
+
+			<plugins>
+
+				<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.6</source>
+					<target>1.6</target>
+					<compilerId>eclipse</compilerId>
+					<debug>true</debug>
+					<optimize>true</optimize>
+					<showDeprecations>true</showDeprecations>
+				</configuration>
+				<dependencies>
+					<dependency>
+					  	<groupId>org.codehaus.plexus</groupId>
+					  	<artifactId>plexus-compiler-eclipse</artifactId>
+					 	<version>1.9.1</version>
+					</dependency>
+				  </dependencies>
+			</plugin>
+
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<groupId>org.apache.maven.plugins</groupId>
+					<configuration>
+						<warSourceExcludes>WEB-INF/lib/*.jar</warSourceExcludes>
+                    </configuration>
+				</plugin>
+			</plugins>
+
+
+
+	</build>
+
+
+</project>

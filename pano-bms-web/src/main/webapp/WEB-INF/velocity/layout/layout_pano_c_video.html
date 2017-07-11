@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="no-js" lang="">
+    <head>
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="renderer" content="webkit">
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>$!pano.title</title>
+		<meta name="keywords" content="$!pano.keywords" />
+		<meta name="description" content="$!pano.description" />
+		<link rel="shortcut icon" type="image/x-icon" href="$!pano.favicon" />
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <script src="/script/jquery-1.11.1.min.js"></script>
+        <style>
+            @-ms-viewport { width:device-width;}
+            @media only screen and (min-device-width:800px) { html { overflow:hidden; } }
+            html { height:100%; }
+            body { height:100%; overflow:hidden; margin:0; padding:0; font-family:微软雅黑, Arial, Helvetica, sans-serif; font-size:16px; color:#FFFFFF; background-color:#000000; }
+        </style>
+        
+    </head>
+    <body>
+		<script src="/product/$!pano.id/pano.js"></script>
+        $screen_content
+        <input type="hidden" id="panoId" value="$!pano.id"/>
+        <input type="hidden" id="panoDomain" value="$!panoDomain"/>
+		<input type="hidden" id="skinId" value="$!pano.skinId"/>
+		<input type="hidden" id="summaryTitle" value="$!pano.summaryTitle"/>
+		<textarea id="summary" rows="" cols="" style="display: none;">$!pano.summary</textarea>
+		<input type="hidden" id="phone" value="$!pano.phone"/>
+		<input type="hidden" id="panoTitle" value="$!pano.title"/>
+		<!-- share -->
+		<input type="hidden" id="shareTitle" value="$!pano.shareTitle"/>
+		<input type="hidden" id="desc" value="$!pano.shareDesc"/>
+		<input type="hidden" id="imgUrl" value="$!pano.shareImgUrl"/>
+		<input type="hidden" id="isMobile" value="$!isMobile"/>
+		<input type="hidden" id="sceneId" value="$!pano_id"/>
+		
+		<script src="/script/pano/jweixin-1.0.0.js"></script>
+		<script src="/script/pano/share.js"></script>
+		
+		<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?60e7fa9b340b4e8a811b2c02b93dcf0d";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+		</script>
+    </body>
+</html>

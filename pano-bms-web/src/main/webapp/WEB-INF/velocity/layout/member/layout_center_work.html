@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content=""/>
+    	<meta name="description" content=""/>
+		<title></title>
+		<link href="/style/bootstrap.min-3.3.5.css" rel="stylesheet" type="text/css" />
+		<link href="/style/jquery.validate.css" rel="stylesheet" type="text/css" />
+		<link href="/style/member/center.css" rel="stylesheet" type="text/css" >
+		<script src="/script/jquery-1.11.1.min.js"></script>
+    </head>
+    <body>
+    	<!--nav begin--> 
+		<!-- Docs master nav -->
+	    #parse("layout/member/layout_top.html")
+		
+		<!--nav end-->
+		<link rel="stylesheet" href="/component/upload/css/style.css">
+		<link rel="stylesheet" href="/component/upload/css/jquery.fileupload.css">
+		
+		<div class="mem_body" >    
+			<ul class="nav nav-pills top_title">
+			  <li><a href="/work/release">发布</a></li>
+			  <li><a href="/work/list">全景作品</a></li>
+			  <li><a href="/media">素材库</a></li>
+			</ul>
+		</div>
+		<div class="clr"></div>
+		
+        $screen_content
+       
+		#parse("layout/member/layout_footer.html")
+		
+		<script src="/component/upload/vendor/jquery.ui.widget.js"></script>
+		<script src="/component/upload/js/load-image.all.min.js"></script>
+		<script src="/component/upload/js/canvas-to-blob.min.js"></script>
+		<script src="/component/upload/js/jquery.iframe-transport.js"></script>
+		<script src="/component/upload/js/jquery.fileupload.js"></script>
+		<script src="/component/upload/js/jquery.fileupload-process.js"></script>
+		<script src="/component/upload/js/jquery.fileupload-image.js"></script>
+		<script src="/component/upload/js/jquery.fileupload-validate.js"></script>
+    </body>
+</html>
