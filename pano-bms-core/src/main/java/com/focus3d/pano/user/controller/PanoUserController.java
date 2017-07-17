@@ -16,7 +16,7 @@ import com.focus3d.pano.common.controller.BaseController;
 @Controller
 @RequestMapping(value = "/user")
 public class PanoUserController extends BaseController{
-
+	
 	/**
 	 * 
 	 * *
