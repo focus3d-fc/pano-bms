@@ -67,12 +67,13 @@
         </tr>
         </thead>
         <tbody>
+        #foreach( $!prodt in $!productList)
         <tr>
             <td>1</td>
-            <td>${test}</td>
+            <td>$!prodt.id</td>
             <td>布艺</td>
             <td>中式</td>
-            <td>地毯</td>
+            <td>$!prodt.name</td>
             <td>
                 <div class="btn-group btn-group-sm" role="group">
                     <button class="btn btn-success">查看</button>
@@ -81,76 +82,8 @@
                 </div>
             </td>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>hyp3489022</td>
-            <td>布艺</td>
-            <td>中式</td>
-            <td>地毯</td>
-            <td>
-                <div class="btn-group btn-group-sm" role="group">
-                    <button class="btn btn-success">查看</button>
-                    <button class="btn btn-info" data-toggle="modal" data-target="#product-add">修改</button>
-                    <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>hyp3489022</td>
-            <td>布艺</td>
-            <td>中式</td>
-            <td>地毯</td>
-            <td>
-                <div class="btn-group btn-group-sm" role="group">
-                    <button class="btn btn-success">查看</button>
-                    <button class="btn btn-info" data-toggle="modal" data-target="#product-add">修改</button>
-                    <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>hyp3489022</td>
-            <td>布艺</td>
-            <td>中式</td>
-            <td>地毯</td>
-            <td>
-                <div class="btn-group btn-group-sm" role="group">
-                    <button class="btn btn-success">查看</button>
-                    <button class="btn btn-info" data-toggle="modal" data-target="#product-add">修改</button>
-                    <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>hyp3489022</td>
-            <td>布艺</td>
-            <td>中式</td>
-            <td>地毯</td>
-            <td>
-                <div class="btn-group btn-group-sm" role="group">
-                    <button class="btn btn-success">查看</button>
-                    <button class="btn btn-info" data-toggle="modal" data-target="#product-add">修改</button>
-                    <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>hyp3489022</td>
-            <td>布艺</td>
-            <td>中式</td>
-            <td>地毯</td>
-            <td>
-                <div class="btn-group btn-group-sm" role="group">
-                    <button class="btn btn-success">查看</button>
-                    <button class="btn btn-info" data-toggle="modal" data-target="#product-add">修改</button>
-                    <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                </div>
-            </td>
-        </tr>
+        #end 
+        
         </tbody>
     </table>
     <!--分页-->

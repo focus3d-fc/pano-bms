@@ -33,7 +33,7 @@ public class ProductAdmController extends BaseController{
 			   System.out.println("---------"+p.getId()+p.getName()+p.getBrand());
 		   }
 		   
-		   session.setAttribute("test", "哈哈");
+		   session.setAttribute("productList", productList);
 		return "/panoadm/productadm/product";
 	}
 	
