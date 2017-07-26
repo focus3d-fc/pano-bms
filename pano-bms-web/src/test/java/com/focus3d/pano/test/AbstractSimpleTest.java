@@ -6,7 +6,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 
 @RunWith(SpringJunit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:context/focus3d-context.xml"})
+@ContextConfiguration(locations = {"classpath:/context/focus3d-context.xml"})
 public class AbstractSimpleTest {
 
 }

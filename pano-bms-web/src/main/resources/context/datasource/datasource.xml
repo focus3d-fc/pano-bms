@@ -24,6 +24,11 @@
 		<property name="configLocation" value="classpath:context/datasource/sqlmap/sql-map-config.xml" />
 		<property name="dataSource" ref="focus3dDataSource" />
 	</bean>
+	
+	<bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate"> 
+       <property name="sqlMapClient" ref="ciefSqlMapClient"></property>
+   </bean>
+	
 	<!-- 
 	
 	<bean id="focus3dDataSource" class="org.apache.commons.dbcp.BasicDataSource"

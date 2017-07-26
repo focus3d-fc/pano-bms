@@ -8,6 +8,11 @@
     <link href="/style/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/style/admstatic/css/admin.css">
 </head>
+<script type="text/javascript">
+   function test(){
+	   alert("aaa");
+   }
+</script>
 <body>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -45,7 +50,7 @@
                     </form>
                 </div>
                 <div class="col-sm-2">
-                    <button class="btn btn-info" data-toggle="modal" data-target="#product-add">增加</button>
+                    <button class="btn btn-info" onclick="test()" data-toggle="modal" data-target="#product-add">增加</button>
                 </div>
             </div>
         </div>
@@ -64,7 +69,7 @@
         <tbody>
         <tr>
             <td>1</td>
-            <td>hyp3489022</td>
+            <td>${test}</td>
             <td>布艺</td>
             <td>中式</td>
             <td>地毯</td>

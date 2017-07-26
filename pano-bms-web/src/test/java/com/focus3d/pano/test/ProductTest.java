@@ -6,14 +6,14 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.focus3d.pano.admin.dao.ProductAdmDAO;
+
 import com.focus3d.pano.model.ProductModel;
 
 public class ProductTest extends AbstractSimpleTest {
    
 	
-	@Autowired
-	private ProductAdmDAO productAdmDAO;
+	/*@Autowired
+	private ProductAdmDAOImpl productAdmDAO;
 	
 	  @Test
 	  public void testlistproducts() throws SQLException{
@@ -23,7 +23,7 @@ public class ProductTest extends AbstractSimpleTest {
 		  for(ProductModel p:productList){
 			  System.out.println(p.getBrand()+p.getName());
 		  }
-	  }
+	  }*/
 	
 }
 

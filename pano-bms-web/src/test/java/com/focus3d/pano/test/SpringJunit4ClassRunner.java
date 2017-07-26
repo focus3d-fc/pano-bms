@@ -9,7 +9,7 @@ import org.springframework.util.Log4jConfigurer;
 public class SpringJunit4ClassRunner extends SpringJUnit4ClassRunner{
 	static {
 		try {
-			Log4jConfigurer.initLogging("classpath:context/log/log4j.xml");
+			Log4jConfigurer.initLogging("classpath:/context/log/log4j.xml");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
