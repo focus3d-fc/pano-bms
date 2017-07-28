@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<<<<<<< HEAD
 <sqlMap namespace="pano_product">
  <typeAlias alias="product" type="com.focus3d.pano.model.Product" />
 	
@@ -41,6 +42,11 @@
     <result column="UPDATER_NAME" jdbcType="VARCHAR" property="updaterName" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+=======
+<sqlMap namespace="pano_product">
+ <typeAlias alias="product" type="com.focus3d.pano.model.Product" />
+	
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 	<!-- 添加 -->
 	<insert id="insert" parameterClass="product">
 	
@@ -48,6 +54,7 @@
 	  
 	   id,
 	   name,
+<<<<<<< HEAD
 	   brand,price,status,summary,length,wide,height,workmanship,lr,lr_round,material_name,material_color,
 	   fabric_name,fabric_color,LEFT_IMG_SN, DOWN_IMG_SN,
       FULL_IMG_SN,TYPE_SN, FUNC_SN, SPACE_SN, STYLE_SN, ADDER_SN,UPDATER_SN,
@@ -127,4 +134,17 @@
     where SN = #sn:BIGINT#
   </update>
 	
+=======
+	   brand,price,LEFT_IMG_SN, DOWN_IMG_SN,
+      FULL_IMG_SN,TYPE_SN, FUNC_SN, SPACE_SN, STYLE_SN, ADDER_SN,UPDATER_SN) values(
+	   #id#,
+	   #name#,
+	   #brand#,#price#,0,0,0,0,0,0,0,0,0
+	   )
+	</insert>
+	<select id="getAllProducts" resultClass="product">
+	  select id,name,brand from pano_product
+	
+	</select>
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 </sqlMap>

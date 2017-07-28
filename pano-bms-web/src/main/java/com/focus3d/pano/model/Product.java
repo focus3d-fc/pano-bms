@@ -8,6 +8,7 @@ import com.focus3d.pano.common.model.CommonModel;
 
 
 public class Product implements CommonModel{
+<<<<<<< HEAD
 	   
 	
 	    private Long sn;
@@ -68,6 +69,28 @@ public class Product implements CommonModel{
 			super();
 		}
 
+=======
+	  private Long sn;
+
+	 
+	    private String id;
+
+	
+	    private String name;
+
+	  
+	    private String brand;
+
+	
+	    private BigDecimal price;
+
+	  
+	    private Integer status;
+
+	
+	    private String summary;
+
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 
 		public Long getSn() {
 			return sn;
@@ -138,6 +161,7 @@ public class Product implements CommonModel{
 			this.summary = summary;
 		}
 
+<<<<<<< HEAD
         
 		public Long getLeftImgSn() {
 			return leftImgSn;
@@ -433,88 +457,138 @@ public class Product implements CommonModel{
 			this.fabricImg = fabricImg;
 		}
 
+=======
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 
 		@Override
 		public Long getAdderSn() {
 			// TODO Auto-generated method stub
+<<<<<<< HEAD
 			return adderSn;
+=======
+			return null;
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 		}
 
 
 		@Override
 		public void setAdderSn(Long adderSn) {
 			// TODO Auto-generated method stub
+<<<<<<< HEAD
 			this.adderSn=adderSn;
+=======
+			
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 		}
 
 
 		@Override
 		public String getAdderName() {
 			// TODO Auto-generated method stub
+<<<<<<< HEAD
 			return adderName;
+=======
+			return null;
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 		}
 
 
 		@Override
 		public void setAdderName(String adderName) {
 			// TODO Auto-generated method stub
+<<<<<<< HEAD
 			this.adderName=adderName;
+=======
+			
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 		}
 
 
 		@Override
 		public Date getAddTime() {
 			// TODO Auto-generated method stub
+<<<<<<< HEAD
 			return addTime;
+=======
+			return null;
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 		}
 
 
 		@Override
 		public void setAddTime(Date addTime) {
 			// TODO Auto-generated method stub
+<<<<<<< HEAD
 			this.setAddTime(addTime);
+=======
+			
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 		}
 
 
 		@Override
 		public Long getUpdaterSn() {
 			// TODO Auto-generated method stub
+<<<<<<< HEAD
 			return updaterSn;
+=======
+			return null;
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 		}
 
 
 		@Override
 		public void setUpdaterSn(Long updaterSn) {
 			// TODO Auto-generated method stub
+<<<<<<< HEAD
 			this.updaterSn=updaterSn;
+=======
+			
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 		}
 
 
 		@Override
 		public String getUpdaterName() {
 			// TODO Auto-generated method stub
+<<<<<<< HEAD
 			return updaterName;
+=======
+			return null;
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 		}
 
 
 		@Override
 		public void setUpdaterName(String updaterName) {
 			// TODO Auto-generated method stub
+<<<<<<< HEAD
 			this.updaterName=updaterName;
+=======
+			
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 		}
 
 
 		@Override
 		public Date getUpdateTime() {
 			// TODO Auto-generated method stub
+<<<<<<< HEAD
 			return updateTime;
+=======
+			return null;
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 		}
 
 
 		@Override
 		public void setUpdateTime(Date updateTime) {
 			// TODO Auto-generated method stub
+<<<<<<< HEAD
 			this.updateTime=updateTime;
+=======
+			
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 		}
 
 

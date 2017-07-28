@@ -9,7 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import com.focus3d.pano.admin.dao.IProductAdmDAO;
 import com.focus3d.pano.common.dao.CommonDao;
+<<<<<<< HEAD
 import com.focus3d.pano.model.PanoProduct;
+=======
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.ProductModel;
 @Repository
@@ -31,7 +34,11 @@ public class ProductAdmDAOImpl extends BaseDao implements IProductAdmDAO{
 	    }
 		
 	
+<<<<<<< HEAD
 	public void addProduct(Product pro) {
+=======
+	public void insert(Product pro) {
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 		// TODO Auto-generated method stub
 		super.getSqlMapClientTemplate().insert("pano_product.insert",pro);
 	}
@@ -43,6 +50,7 @@ public class ProductAdmDAOImpl extends BaseDao implements IProductAdmDAO{
 		List<Product> productList=(List<Product>)getSqlMapClientTemplate().queryForList("pano_product.getAllProducts");
 		return productList;
 	}
+<<<<<<< HEAD
 
 
 	@Override
@@ -69,6 +77,8 @@ public class ProductAdmDAOImpl extends BaseDao implements IProductAdmDAO{
 		row=getSqlMapClientTemplate().update("pano_product.updateProduct", pro);
 		return row ;
 	}
+=======
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 	
 	
 }

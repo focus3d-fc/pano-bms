@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 (function (doc, win) {
     var docEl = doc.documentElement,
         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
@@ -16,4 +17,12 @@
     doc.addEventListener('DOMContentLoaded', recalc, false);
 })(document, window);
 
+=======
+
+function del() {
+    if (!confirm("确认要删除？")) {
+        window.event.returnValue = false;
+    }
+}
+>>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 
