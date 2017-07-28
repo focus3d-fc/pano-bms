@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>新增地址</title>
+    <link rel="stylesheet" href="/style/admstatic/lib/mui/css/mui.picker.min.css">
+    <link rel="stylesheet" href="/style/admstatic/css/bass.css">
+    <link rel="stylesheet" href="/style/admstatic/css/index.css">
+    <script src="/style/admstatic/lib/mui/js/mui.min.js"></script>
+    <script src="/style/admstatic/lib/mui/js/mui.picker.min.js"></script>
+    <script src="/style/admstatic/js/city.data-3.js"></script>
+    <script src="/style/admstatic/js/main.js"></script>
+</head>
+<body>
+<div class="container add">
+    <!--头-->
+    <header class="header">
+        <a href="#" class="back">
+            <i class="iconfont">&#xe6bc;</i>
+            返回
+        </a>
+        <p class="title">新增地址</p>
+        <a href="#" class="share">
+            <i class="iconfont">&#xe622;</i>
+        </a>
+    </header>
+    <!--图片-->
+    <section class="addr-section">
+        <div class="add-item">
+            <label class="label">收货人:</label>
+            <input type="text" placeholder="请输入姓名">
+        </div>
+        <div class="add-item">
+            <label class="label">联系电话:</label>
+            <input type="tel" placeholder="请输入手机号">
+        </div>
+        <div class="add-item " id='showCityPicker3'>
+            <label class="label">送货城市:</label>
+            <input type="text" placeholder="请选择" id="cityResult3">
+            <i class="iconfont" >&#xe6c7;</i>
+        </div>
+        <div class="add-item">
+            <label class="label">详细地址:</label>
+            <input type="tel" placeholder="请输入地址">
+        </div>
+    </section>
+
+    <div class="button">
+        保存地址
+    </div>
+
+
+</div>
+<script>
+    (function($, doc) {
+        $.init();
+        $.ready(function() {
+            /**
+             * 获取对象属性的值
+             * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
+             * @param {Object} obj 对象
+             * @param {String} param 属性名
+             */
+            var _getParam = function(obj, param) {
+                return obj[param] || '';
+            };
+
+            //					//级联示例
+            var cityPicker3 = new $.PopPicker({
+                layer: 3
+            });
+            cityPicker3.setData(cityData3);
+            var showCityPickerButton = doc.getElementById('showCityPicker3');
+            var cityResult3 = doc.getElementById('cityResult3');
+            showCityPickerButton.addEventListener('tap', function(event) {
+                cityPicker3.show(function(items) {
+                    cityResult3.value =  _getParam(items[0], 'text') + " " + _getParam(items[1], 'text') + " " + _getParam(items[2], 'text');
+                    //返回 false 可以阻止选择框的关闭
+                    //return false;
+                });
+            }, false);
+        });
+    })(mui, document);
+</script>
+</body>
+</body>
+</html>

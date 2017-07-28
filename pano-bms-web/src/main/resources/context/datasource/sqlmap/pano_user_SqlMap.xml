@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">  
+<sqlMap> 
+ <typeAlias alias="user" type="com.focus3d.pano.model.User" />
+ <!-- 根据身份证查询是否已注册 -->
+ <select id="selectUserByCert_no" parameterClass="string" resultClass="com.focus3d.pano.model.User">
+SELECT
+pano_bm_user.SN,
+pano_bm_user.NICK_NAME,
+pano_bm_user.`name`,
+pano_bm_user.CITY,
+pano_bm_user.MOBILE,
+pano_bm_user.EMAIL,
+pano_bm_user.cert_no,
+pano_bm_user.sex,
+pano_bm_user_role.ROLE_SN,
+pano_bm_role.ROLE_NAME
+FROM
+pano_bm_user
+JOIN pano_bm_user_role ON pano_bm_user.SN = pano_bm_user_role.USER_SN
+JOIN pano_bm_role ON pano_bm_user_role.ROLE_SN = pano_bm_role.SN
+where cert_no=#cert_no#
+ </select>
+ <!-- 插入到用户表 -->
+ <insert id="saveUser">
+insert into pano_bm_user (
+nick_name,name,city,mobile,email,cert_no,sex,IS_ALLOCATE_SPACE,adder_sn,UPDATER_SN
+)
+values(
+     #nick_name#,#name#,#city#,#mobile#,#email#,#cert_no#,#sex#,0,#adder_sn#,0)
+</insert>
+<!-- 插入login表 -->
+<insert id="saveLogin" parameterClass="com.focus3d.pano.model.Login">
+insert into pano_bm_login (
+login_name,password,status,user_sn,adder_sn,adder_name,add_time,cert_no,updater_sn
+)
+values(
+#login_name#,#password#,#status#,#user_sn#,#adder_sn#,#adder_name#,#add_time#,#cert_no#,-1     
+)
+</insert>
+<!-- 修改login表status -->
+<update id="updateStatus" parameterClass="com.focus3d.pano.model.Login">
+ update pano_bm_login set 
+ status=#status#
+ where cert_no=#cert_no#
+</update>
+
+<!-- 查询用户表的sn -->
+<select id="selectUserSnById" parameterClass="string" resultClass="long">
+select sn from pano_bm_user where cert_no=#cert_no#
+</select>
+<!-- 根据role_name查询角色表sn -->
+<select id="selectSnByRole_Name" parameterClass="string" resultClass="long">
+select sn from pano_bm_role where role_name=#role_name#
+</select>
+<!-- 把user_sn和role_sn插入到用户角色表 -->
+ <insert id="saveUSn_RSnToU_R" parameterClass="com.focus3d.pano.model.User_Role">
+insert into pano_bm_user_role (
+user_sn,role_sn,adder_sn,updater_sn
+)
+values(
+#user_sn#,#role_sn#,1,0   
+     )
+</insert>
+
+<!-- 查询用户集合有问题 -->
+<select id="getUserList" resultClass="user">
+SELECT
+pano_bm_user.SN,
+pano_bm_user.NICK_NAME,
+pano_bm_user.`name`,
+pano_bm_user.sex,
+pano_bm_user.MOBILE,
+pano_bm_login.`STATUS`,
+pano_bm_user.cert_no
+FROM
+pano_bm_login
+INNER JOIN pano_bm_user ON pano_bm_user.cert_no = pano_bm_login.CERT_NO ;
+ </select>
+ <!-- 修改用户表信息 -->
+ <update id="updateUserByCert_no" parameterClass="user">
+ update pano_bm_user set 
+ nick_name=#nick_name#,
+ city=#city#,
+ mobile=#mobile#,
+ email=#email#
+ where cert_no=#cert_no#
+ </update>
+ <!-- 根据user_sn修改用户角色表role_sn -->
+ <update id="updateRole_snByUser_sn" parameterClass="com.focus3d.pano.model.User_Role">
+ update pano_bm_user_role set 
+ role_sn=#role_sn#
+ where user_sn=#user_sn#
+ </update>
+ 
+ 
+ 
+ 
+ 
+ 
+</sqlMap>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>720</title>
+    <link rel="stylesheet" href="/style/admstatic/css/bass.css">
+    <link rel="stylesheet" href="/style/admstatic/css/index.css">
+    <link rel="stylesheet" href="/style/admstatic/lib/swiper/swiper.min.css">
+    <script src="/style/admstatic/js/main.js"></script>
+</head>
+<body>
+<div class="container se720">
+    <!--头-->
+    <header class="header">
+        <a href="#" class="back">
+            <i class="iconfont">&#xe6bc;</i>
+            返回
+        </a>
+        <p class="title">上海保利-铃兰公园</p>
+        <a href="#" class="share">
+            <i class="iconfont">&#xe622;</i></a>
+    </header>
+    <!--场景-->
+    <section class="hide">
+        <img src="/style/admstatic/image/image/720.png" alt="">
+        <nav class="nav">
+            <a href="#"  id="tcshow">
+               <i class="iconfont ">&#xe71f;</i>
+                <p>套餐</p>
+            </a>
+            <a href="#" id="fjshow">
+                <i class="iconfont">&#xe614;</i>
+                <p>房间</p>
+            </a>
+            <a href="#" id="hxshow">
+                <i class="iconfont">&#xe759;</i>
+                <p>户型</p>
+            </a>
+            <a href="/userside/tocar">
+                <i class="iconfont">&#xe664;</i>
+                <p>购物车</p>
+            </a>
+        </nav>
+    </section>
+    <!--套餐弹窗-->
+    <div id="tc">
+        <div class="swiper-container swiper1">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="/style/admstatic/image/img/house.png" alt="">
+                        <p>基础套餐</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="/style/admstatic/image/img/1.png" alt="">
+                        <p>灯具</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="/style/admstatic/image/img/2.png" alt="">
+                        <p>床</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="/style/admstatic/image/img/house.png" alt="">
+                        <p>其他</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="/style/admstatic/image/img/house.png" alt="">
+                        <p>其他</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--空间弹窗-->
+    <div id="fj">
+        <div class="swiper-container swiper2">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="/style/admstatic/image/image/room.png" alt="">
+                        <p>厨房</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="/style/admstatic/image/image/room.png" alt="">
+                        <p>厕所</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="/style/admstatic/image/image/room.png" alt="">
+                        <p>卫生间</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="/style/admstatic/image/image/room.png" alt="">
+                        <p>阳台</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="/style/admstatic/image/image/room.png" alt="">
+                        <p>其他</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--户型弹窗-->
+    <div id="hx">
+        <div class="swiper-container swiper3">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide bd-r">
+                    <a href="#">
+                        <img src="/style/admstatic/image/image/room.png" alt="">
+                        <p>两室一厅</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="/style/admstatic/image/image/room.png" alt="">
+                        <p>三室一厅</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="/style/admstatic/image/image/room.png" alt="">
+                        <p>小公寓</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="/style/admstatic/image/image/room.png" alt="">
+                        <p>其他</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="/style/admstatic/image/image/room.png" alt="">
+                        <p>其他</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
+<script src="/style/admstatic/lib/swiper/swiper.jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var Swiper1 = new Swiper('.swiper1',{
+            autoplayStopOnLast:true,
+            slidesPerView : 5,
+            slidesPerGroup : 1,
+        })
+        var Swiper2 = new Swiper('.swiper2',{
+            lazyLoading:true,
+            autoplayStopOnLast:true,
+            slidesPerView : 4,
+            slidesPerGroup : 1,
+            spaceBetween:10,
+        })
+        var Swiper3 = new Swiper('.swiper3',{
+            autoplayStopOnLast:true,
+            slidesPerView : 4,
+            slidesPerGroup : 1,
+            spaceBetween:10,
+        })
+  window.reload()
+    })
+
+
+    $(function(){
+        $('#tcshow').click(function () {
+
+            $('#tc').toggleClass('on');
+            $("#tcshow").toggleClass("on");
+
+        })
+        $('#fjshow').click(function () {
+
+            $('#fj').toggleClass('on');
+            $("#fjshow").toggleClass("on");
+
+        })
+        $('#hxshow').click(function () {
+
+            $('#hx').toggleClass('on');
+            $("#hxshow").toggleClass("on");
+
+        })
+    })
+</script>
+</body>
+</body>
+</html>

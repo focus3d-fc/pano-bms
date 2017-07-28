@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>基础信息管理</title>
+    <link href="/style/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style/admstatic/css/admin.css">
+</head>
+<body>
+	<div class="panel-heading">
+        <span class="glyphicon glyphicon-pencil"></span> 基础信息管理
+    </div>
+	<div class="panel-body">
+		<div class="container">
+		
+		</div>
+	</div>
+	 <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>名称</th>
+            <th width="20%">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        	#foreach($!prodt in $!sty)
+	        <tr>
+	            <td>${velocityCount}</td>
+	           <!--  <td>$!prodt.sn</td> -->
+	            <td>$!prodt.name</td>
+	            <td>
+	                <div class="btn-group btn-group-sm" role="group">
+	                    <button class="btn btn-success">查看</button>
+	                    <button class="btn btn-info" data-toggle="modal" data-target="#product-add">修改</button>
+	                    <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+	                </div>
+	            </td>
+	        </tr>
+	        #end
+        </tbody>
+       </table>
+       <script src="style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
+		<script src="style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
+		<script src="style/admstatic/lib/js/main.js"></script>
+</body>
+</html>

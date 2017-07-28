@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>套餐管理</title>
+    <link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="/style/admstatic/stylesheet" href="css/admin.css">
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-pencil"></span> 楼盘管理
+    </div>
+    <div class="panel-body">
+        <div class="form-horizontal">
+            <div class="form-group col-sm-4">
+                <label class="col-sm-4 control-label">楼盘名称</label>
+                <div class="col-sm-6">
+                    <p class="form-control-static">保利项目</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label">户型</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">A0002104</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <select class="form-control">
+                            <option>风格</option>
+                            <option>地中海</option>
+                            <option>地中海</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="submit" class="btn btn-primary">搜索</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-2">
+                <a class="btn btn-info" href="/houses/tocombo-add">增加</a>
+            </div>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>套餐ID</th>
+                <th>项目</th>
+                <th>户型</th>
+                <th>风格</th>
+                <th>套餐种类</th>
+                <th width="10%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>998877</td>
+                <td>保利兰楼盘</td>
+                <td>YA20001</td>
+                <td>中式</td>
+                <td>基础</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <a class="btn btn-info" href="/houses/tocombo-add">修改</a>
+                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>998877</td>
+                <td>保利兰楼盘</td>
+                <td>YA20001</td>
+                <td>中式</td>
+                <td>基础</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <a class="btn btn-info" href="/houses/tocombo-add">修改</a>
+                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>998877</td>
+                <td>保利兰楼盘</td>
+                <td>YA20001</td>
+                <td>中式</td>
+                <td>基础</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <a class="btn btn-info" href="/houses/tocombo-add">修改</a>
+                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>998877</td>
+                <td>保利兰楼盘</td>
+                <td>YA20001</td>
+                <td>中式</td>
+                <td>基础</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <a class="btn btn-info" href="/houses/tocombo-add">修改</a>
+                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>998877</td>
+                <td>保利兰楼盘</td>
+                <td>YA20001</td>
+                <td>中式</td>
+                <td>基础</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <a class="btn btn-info" href="/houses/tocombo-add">修改</a>
+                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation" class="nav-divider">
+            <ul class="pagination pull-right">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<script src="/style/admstatic/js/main.js"></script>
+</body>
+</html>

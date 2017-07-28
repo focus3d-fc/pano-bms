@@ -16,4 +16,11 @@
 		<sqlMap resource="context/datasource/sqlmap/pano_bm_resource_SqlMap.xml"/>
 		<sqlMap resource="context/datasource/sqlmap/pano_bm_role_resource_SqlMap.xml"/>
 		<sqlMap resource="context/datasource/sqlmap/pano_bm_user_role_SqlMap.xml"/>
+		<!-- <sqlMap resource="context/datasource/sqlmap/pano_product_SqlMap.xml"/> -->
+		<sqlMap resource="context/datasource/sqlmap/pano_product.xml"/>
+        <sqlMap resource="context/datasource/sqlmap/pano_user_SqlMap.xml"/>
+		<sqlMap resource="context/datasource/sqlmap/pano_product_func.xml"/>
+		<sqlMap resource="context/datasource/sqlmap/pano_product_type.xml"/>
+		<sqlMap resource="context/datasource/sqlmap/pano_project_package.xml"/>
+		
 </sqlMapConfig>
