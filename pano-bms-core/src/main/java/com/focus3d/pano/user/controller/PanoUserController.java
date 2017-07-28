@@ -16,7 +16,6 @@ import com.focus3d.pano.common.controller.BaseController;
 @Controller
 @RequestMapping(value = "/user")
 public class PanoUserController extends BaseController{
-	
 	/**
 	 * 
 	 * *
@@ -25,6 +24,10 @@ public class PanoUserController extends BaseController{
 	 */
 	@RequestMapping(value = "center", method = RequestMethod.GET)
 	public String index(ModelMap modelMap){
-		return "/member/user/center";
+		
+		//return "/member/user/center";
+		return "/panoadm/admfirst";
 	}
+
+		
 }

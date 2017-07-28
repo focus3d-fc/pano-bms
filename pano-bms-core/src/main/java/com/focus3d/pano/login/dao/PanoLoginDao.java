@@ -23,6 +23,7 @@ public class PanoLoginDao extends CommonDao<PanoLoginModel> {
 		PanoBmLoginCriteria criteria = new PanoBmLoginCriteria();
 		criteria.createCriteria().andLoginNameEqualTo(loginName);
 		return selectFirstByExample(criteria, PanoLoginModel.class);
+		
 	}
 
 }
