@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-3.0.xsd
+         http://www.springframework.org/schema/aspect
+         http://www.springframework.org/schema/context/spring-aspect-3.0.xsd
+         http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/context/spring-aop-3.0.xsd">
+
+	<!--加密，摘要算法的类-->
+	<bean class="com.focustech.common.codec.digester.HMacSha1StringDigester" />
+	<bean class="com.focustech.common.codec.DefaultEncryptService" />
+
+	<!-- multipart解释器  切勿修改id，因为此bean只用于filter，改名后可能会让spring也用上
+	<bean id="multipartBean" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760" />
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>
+	-->
+	<bean id="encryptComponent"
+		class="com.focustech.common.codec.encrypter.DefaultEncryptComponentImpl"
+		init-method="initialize">
+		<property name="encryptHandlerClass"
+			value="${encryptcomponent.encrypthandlerclass}" />
+		<property name="encryptPosMap"
+			value="${encryptcomponent.encryptposmap}" />
+		<property name="encryptWheelMap"
+			value="${encryptcomponent.encryptwheelmap}" />
+		<property name="encryptPosMap4Image"
+			value="${encryptcomponent.encryptposmap4image}" />
+		<property name="encryptWheelMap4Image"
+			value="${encryptcomponent.encryptwheelmap4image}" />
+		<property name="unEncryptMinLen" value="${encryptcomponent.unencryptminlen}" />
+		<property name="unEncryptMaxLen" value="${encryptcomponent.unencryptmaxlen}" />
+		<property name="encryptLen" value="${encryptcomponent.encryptlen}" />
+	</bean>
+
+</beans>

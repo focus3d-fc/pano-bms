@@ -1,6 +1,5 @@
 package com.focus3d.pano.index.controller;
 
-<<<<<<< HEAD
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,16 +10,10 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-=======
-import java.math.BigDecimal;
-import java.util.List;
-
->>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,13 +25,6 @@ import com.focus3d.pano.common.controller.BaseController;
 import com.focus3d.pano.model.PanoLoginModel;
 import com.focus3d.pano.model.Product;
 import com.focustech.common.utils.JsonUtils;
-=======
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.focus3d.pano.admin.service.IProductAdmService;
-import com.focus3d.pano.common.controller.BaseController;
-import com.focus3d.pano.model.Product;
->>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 
 @Controller
 @RequestMapping(value ="/productadm")
@@ -56,15 +42,9 @@ public class ProductAdmController extends BaseController{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
 		   /*for(Product p:productList){
 			   System.out.println("---------"+p.getId()+p.getName()+p.getBrand());
 		   }*/
-=======
-		   for(Product p:productList){
-			   System.out.println("---------"+p.getId()+p.getName()+p.getBrand());
-		   }
->>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 		   
 		   session.setAttribute("productList", productList);
 		return "/panoadm/productadm/product";
@@ -72,7 +52,6 @@ public class ProductAdmController extends BaseController{
 	
 	
 	@RequestMapping("/addproduct")
-<<<<<<< HEAD
 	public String addproduct(Product pro,HttpSession session,HttpServletRequest request,HttpServletResponse response
 			,@RequestParam("t1") MultipartFile uploadImg1,@RequestParam("t2") MultipartFile uploadImg2
 			,@RequestParam("t3") MultipartFile uploadImg3,@RequestParam("t4") MultipartFile uploadImg4
@@ -372,23 +351,6 @@ public class ProductAdmController extends BaseController{
 		
 		try {
 			productAdmService.updateProduct(pro);
-=======
-	public String addproduct(){
-		
-	/*	List<ProductModel> productList=productAdmService.listproducts();
-		for(ProductModel p:productList){
-			  System.out.println(p.getBrand()+p.getName());
-		  }*/
-		Product pro=new Product();
-		pro.setId("h38283");
-		pro.setName("欧式");
-		pro.setBrand("万达");
-		BigDecimal price=new BigDecimal("843.5");
-		pro.setPrice(price);
-		System.out.println("aaaaaaaaa");
-		try {
-			productAdmService.insert(pro);
->>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("-------------aaaaaaa");
@@ -396,7 +358,6 @@ public class ProductAdmController extends BaseController{
 		}
 		
 		
-<<<<<<< HEAD
 		 try {
 	    	
 	    	 ServletContext sc=request.getSession().getServletContext();
@@ -586,12 +547,4 @@ public class ProductAdmController extends BaseController{
 			e.printStackTrace();
 		}
 	}
-=======
-		
-		return "/panoadm/productadm/product";
-	}
-	
-	
-	
->>>>>>> 52bf08c4abab5c5ea0085a0d2f74e03c60009ab5
 }
