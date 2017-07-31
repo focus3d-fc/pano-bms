@@ -18,7 +18,4 @@ public interface UserDao{
 	public void updateRole_snByUser_sn(User_Role user_role);
 	public void saveLogin(Login login);
 	public void updateStatus(Login login);
-	public List<User> selectUserByMsg(User user);
-	
-	
 }

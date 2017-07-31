@@ -120,15 +120,6 @@ public class UserServiceImpl implements UserService{
 	}
 
 
-	@Override
-	public List<User> selectUserByMsg(String nick_name, String mobile) {
-		User user=new User();
-		user.setNick_name(nick_name);
-		user.setMobile(mobile);
-		return userDao.selectUserByMsg(user);
-	}
-
-
 
 	
 	
