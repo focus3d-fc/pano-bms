@@ -1,25 +1,19 @@
 package com.focus3d.pano.index.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.junit.Test;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.focus3d.pano.admin.service.UserService;
 import com.focus3d.pano.common.controller.BaseController;
 import com.focus3d.pano.model.PanoLoginModel;
 import com.focus3d.pano.model.User;
-//        /productadm/listproduct
 @Controller
 @RequestMapping("/useradm")
 public class UserController extends BaseController {
@@ -107,8 +101,10 @@ updater_sn(修改人id),updater_name(修改人姓名),update_time(修改时间)
 				userService.saveUser(nick_name,name,city,mobile,email,cert_no,sex,adder_sn);
 				//插入到角色表
 				   //通过cert_no查询用户表sn
+				System.out.println("104行---------------------------------------");
 				long user_sn=userService.selectUserSnById(cert_no);//通过cert_no查询用户表sn
-				   //根据前台传过来的角色名role_name，查询角色表sn
+				System.out.println("106行---------------------------------------");
+				//根据前台传过来的角色名role_name，查询角色表sn
 				long role_sn=userService.selectSnByRole_Name(role_name);
 				   //把用户表sn和角色表sn插入到用户角色表对应字段
 				userService.saveUSn_RSnToU_R(user_sn, role_sn);
@@ -174,6 +170,7 @@ updater_sn(修改人id),updater_name(修改人姓名),update_time(修改时间)
 		String cert_no=request.getParameter("cert_no");
 		//selectUserByCert_no
 		User user=userService.selectUserByCert_no(cert_no);
+		System.out.println("nick_name:"+user.getNick_name()+"-------------------------");
 		int sex_int=user.getSex();
 		if(sex_int==1){
 			user.setSex_str("女");
@@ -235,8 +232,50 @@ System.out.println("根据根据user_sn修改role_sn;用户角色表------------
 			
 			return this.redirect("/useradm/listUser");
 		}
-	
-	
+		@RequestMapping("/selectUser")
+	public String selectUser(HttpServletRequest request){
+			System.out.println("进入/selectUser方法");
+			String nick_name=request.getParameter("nick_name");
+			String mobile=request.getParameter("mobile");
+			System.out.println("nick_name:"+nick_name+",mobile:"+mobile+"-------------------------------");
+			List<User> userList=userService.selectUserByMsg(nick_name,mobile);
+			System.out.println("userList:"+userList+"-------------------------------------");
+			for(int i=0;i<userList.size();i++){
+				User user=userList.get(i);
+				System.out.println("name:"+user.getName()+",sn:"+user.getSn()+",cert_no:"+user.getCert_no());
+				int status_int=user.getStatus();
+				System.out.println("status:"+status_int);
+				if(status_int==1){
+					user.setStatus_str("正常");
+					
+				}else if(status_int==2){
+					user.setStatus_str("暂停使用");
+					
+				}
+				int sex_int=user.getSex();
+				if(sex_int==1){
+					user.setSex_str("女");
+				}else if(sex_int==2){
+					user.setSex_str("男");
+				}
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			request.setAttribute("userList",userList);
+			return "/panoadm/useradm/users2";
+		}
 	
 	
 	

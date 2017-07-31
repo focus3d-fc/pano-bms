@@ -21,4 +21,6 @@ public interface UserService {
 String login_name,String password,int status,
 long user_sn,long adder_sn,String adder_name,String add_time,String cert_no);
 	public void updateStatus(String cert_no,int status);
+	public List<User> selectUserByMsg(String nick_name,String mobile);
+	
 }

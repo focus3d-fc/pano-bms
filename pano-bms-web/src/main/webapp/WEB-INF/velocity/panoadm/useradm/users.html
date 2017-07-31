@@ -22,14 +22,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-6">
-                    <form class="form-inline">
+                    <form class="form-inline" action="/useradm/selectUser">
                         <div class="form-group">
                             <label class="sr-only"></label>
-                            <input type="text" class="form-control" placeholder="用户名">
+                            <input type="text" class="form-control" name="nick_name" placeholder="用户名">
                         </div>
                         <div class="form-group">
                             <label class="sr-only">手机号</label>
-                            <input type="tel" class="form-control" placeholder="手机号">
+                            <input type="tel" class="form-control" name="mobile" placeholder="手机号">
                         </div>
                         <button type="submit" class="btn btn-primary">搜索</button>
                     </form>
@@ -70,11 +70,11 @@
                             <!-- <button class="btn btn-danger">锁定</button> -->
                           
                             #if ($!{user.status}==1)
-                           		   <a href="/useradm/updateStatus?cert_no=$!{user.cert_no}&&status=$!{user.status}"class="btn btn-danger">
+                           	 <a href="/useradm/updateStatus?cert_no=$!{user.cert_no}&&status=$!{user.status}"class="btn btn-danger">
                            			 锁定
                              </a>
                              #else
-                               <a href="/useradm/updateStatus?cert_no=$!{user.cert_no}&&status=$!{user.status}"class="btn btn-danger">
+                             <a href="/useradm/updateStatus?cert_no=$!{user.cert_no}&&status=$!{user.status}"class="btn btn-danger">
                            			-解锁-
                              </a>
                                #end
@@ -105,6 +105,5 @@
         </ul> -->
     </nav>
 </div>
-
 </body>
 </html>

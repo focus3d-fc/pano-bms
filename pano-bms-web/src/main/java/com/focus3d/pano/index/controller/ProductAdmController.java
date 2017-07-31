@@ -5,7 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +25,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.focus3d.pano.admin.service.IProductAdmService;
 import com.focus3d.pano.common.controller.BaseController;
 import com.focus3d.pano.model.PanoLoginModel;
+import com.focus3d.pano.model.PanoProductFunc;
+import com.focus3d.pano.model.PanoProductType;
 import com.focus3d.pano.model.Product;
+import com.focus3d.pano.model.ProductInfo;
+import com.focus3d.pano.model.pano_project_style;
 import com.focustech.common.utils.JsonUtils;
 
 @Controller
@@ -34,19 +40,38 @@ public class ProductAdmController extends BaseController{
 	private IProductAdmService productAdmService;
 	
 	@RequestMapping("/listproduct")
-	public String listproduct(HttpSession session){
-		 List<Product> productList=null;
+	public String listproduct(HttpSession session,Model model,String proid,String styleSn,String funcSn){
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		System.out.println(proid);
+		 paramMap.put("id", proid);
+		 paramMap.put("styleSn", styleSn);
+		 paramMap.put("funcSn", funcSn);
+		 model.addAttribute("proid", proid);
+		 model.addAttribute("scStyleSn", styleSn);
+		 model.addAttribute("scFuncSn",funcSn);
+		 List<ProductInfo> productInfoList=null;
+		 List<pano_project_style> proStyleList=null;
+		 List<PanoProductFunc>  proFuncList=null;
+		 List<PanoProductType> proTypeList=null;
 		try {
-			productList = productAdmService.listProducts();
+			productInfoList = productAdmService.listProductInfo(paramMap);
+			proStyleList=productAdmService.listAllProStyle();
+			proFuncList=productAdmService.listAllProFunc();
+			proTypeList=productAdmService.listAllProType();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		   /*for(Product p:productList){
-			   System.out.println("---------"+p.getId()+p.getName()+p.getBrand());
+		  /* for(ProductInfo p:productInfoList){
+			   System.out.println("---------"+p.getId()+p.getName()+p.getBrand()+p.getUpdateTime1());
 		   }*/
 		   
-		   session.setAttribute("productList", productList);
+		   //产品详情显示首个
+		   session.setAttribute("prodtInfo1", productInfoList.get(0));
+		   session.setAttribute("productInfoList", productInfoList);
+		   session.setAttribute("proStyleList", proStyleList);
+		   session.setAttribute("proFuncList", proFuncList);
+		   session.setAttribute("proTypeList", proTypeList);
 		return "/panoadm/productadm/product";
 	}
 	
@@ -57,6 +82,13 @@ public class ProductAdmController extends BaseController{
 			,@RequestParam("t3") MultipartFile uploadImg3,@RequestParam("t4") MultipartFile uploadImg4
 			,@RequestParam("t5") MultipartFile uploadImg5
 			){
+		
+		PanoLoginModel login=(PanoLoginModel)session.getAttribute("login");
+		long usn=login.getSn();
+		pro.setStatus(1);
+		pro.setAdderSn(usn);
+		pro.setUpdaterSn(usn);
+		System.out.println("******"+pro.getDimension()+pro.getTypeSn());
 		
     	 String imgname1=uploadImg1.getOriginalFilename();
     	 String imgname2=uploadImg2.getOriginalFilename();
@@ -74,26 +106,22 @@ public class ProductAdmController extends BaseController{
 		/*Product pro=new Product();
 		BigDecimal price=new BigDecimal("843.5");
 		pro.setPrice(price);*/
-		PanoLoginModel login=(PanoLoginModel)session.getAttribute("login");
-		long usn=login.getSn();
-		pro.setStatus(1);
-		long a=10000;
-		pro.setLeftImgSn(a);
-		pro.setDownImgSn(a);
-		pro.setFullImgSn(a);
-		pro.setTypeSn(a);
-		pro.setSpaceSn(a);
-		pro.setFuncSn(a);
-		pro.setStyleSn(a);
-		pro.setAdderSn(usn);
-		pro.setUpdaterSn(usn);
 		
+		if(imgname1!=null&&!"".equals(imgname1)){
 		pro.setFullImg(imgname1);
+		}
+		if(imgname2!=null&&!"".equals(imgname2)){
 		pro.setLeftImg(imgname2);
+		}
+		if(imgname3!=null&&!"".equals(imgname3)){
 		pro.setDownImg(imgname3);
+		}
+		if(imgname4!=null&&!"".equals(imgname4)){
 		pro.setMaterialImg(imgname4);
+		}
+		if(imgname5!=null&&!"".equals(imgname5)){
 		pro.setFabricImg(imgname5);
-		
+		}
 		System.out.println("aaaaaaaaa");
 		System.out.println(pro.getId()+pro.getName());
 		
@@ -267,10 +295,10 @@ public class ProductAdmController extends BaseController{
 		
 		
 		
-		return this.redirect("/productadm/listproduct");
+		return redirect("/productadm/listproduct");
 	}
 	
-	
+	//修改
 	@RequestMapping("/preupdateproduct")
 	@ResponseBody
 	public void preupdateproduct(HttpSession session,HttpServletResponse response,Model model,String productsn){
@@ -304,13 +332,13 @@ public class ProductAdmController extends BaseController{
 	
 	@RequestMapping("/updateproduct")
 	public String updateproduct(Product pro,HttpSession session,HttpServletRequest request,HttpServletResponse response
-			,@RequestParam("t1") MultipartFile uploadImg1,@RequestParam("t2") MultipartFile uploadImg2
-			,@RequestParam("t3") MultipartFile uploadImg3,@RequestParam("t4") MultipartFile uploadImg4
-			,@RequestParam("t5") MultipartFile uploadImg5){
+			,@RequestParam("et1") MultipartFile uploadImg1,@RequestParam("et2") MultipartFile uploadImg2
+			,@RequestParam("et3") MultipartFile uploadImg3,@RequestParam("et4") MultipartFile uploadImg4
+			,@RequestParam("et5") MultipartFile uploadImg5){
 		System.out.println("进入执行修改product");
 		
 		
-		/* String imgname1=uploadImg1.getOriginalFilename();
+		 String imgname1=uploadImg1.getOriginalFilename();
     	 String imgname2=uploadImg2.getOriginalFilename();
     	 String imgname3=uploadImg3.getOriginalFilename();
     	 String imgname4=uploadImg4.getOriginalFilename();
@@ -323,30 +351,33 @@ public class ProductAdmController extends BaseController{
     	 InputStream in5=null;
     	
     	 FileOutputStream fos=null;
-		Product pro=new Product();
+		/*Product pro=new Product();
 		BigDecimal price=new BigDecimal("843.5");
-		pro.setPrice(price);
+		pro.setPrice(price);*/
 		PanoLoginModel login=(PanoLoginModel)session.getAttribute("login");
 		long usn=login.getSn();
 		pro.setStatus(1);
-		long a=10000;
-		pro.setLeftImgSn(a);
-		pro.setDownImgSn(a);
-		pro.setFullImgSn(a);
-		pro.setTypeSn(a);
-		pro.setSpaceSn(a);
-		pro.setFuncSn(a);
-		pro.setStyleSn(a);
 		pro.setAdderSn(usn);
 		pro.setUpdaterSn(usn);
+		System.out.println("******"+pro.getDimension()+pro.getTypeSn());
 		
-		pro.setFullImg(imgname1);
-		pro.setLeftImg(imgname2);
-		pro.setDownImg(imgname3);
-		pro.setMaterialImg(imgname4);
-		pro.setFabricImg(imgname5);
+		if(imgname1!=null&&!"".equals(imgname1)){
+			pro.setFullImg(imgname1);
+			}
+			if(imgname2!=null&&!"".equals(imgname2)){
+			pro.setLeftImg(imgname2);
+			}
+			if(imgname3!=null&&!"".equals(imgname3)){
+			pro.setDownImg(imgname3);
+			}
+			if(imgname4!=null&&!"".equals(imgname4)){
+			pro.setMaterialImg(imgname4);
+			}
+			if(imgname5!=null&&!"".equals(imgname5)){
+			pro.setFabricImg(imgname5);
+			}
 		
-		System.out.println("修改aaaaaaaaa");
+		System.out.println("aaaaaaaaa");
 		System.out.println(pro.getId()+pro.getName());
 		
 		try {
@@ -376,8 +407,6 @@ public class ProductAdmController extends BaseController{
 				File targetimg1=new File(imgpath,imgname1);
 				if(!targetimg1.exists()){
 					try {
-						in = uploadImg.getInputStream();
-						FileUtils.copyInputStreamToFile(in, targetimg);	
 						in1=uploadImg1.getInputStream();
 						fos=new FileOutputStream(targetimg1);
 						while((readLen=in1.read(buff))!=-1){
@@ -397,8 +426,6 @@ public class ProductAdmController extends BaseController{
 				File targetimg2=new File(imgpath,imgname2);
 				if(!targetimg2.exists()){
 					try {
-						in = uploadImg.getInputStream();
-						FileUtils.copyInputStreamToFile(in, targetimg);	
 						in2=uploadImg2.getInputStream();
 						fos=new FileOutputStream(targetimg2);
 						while((readLen=in2.read(buff))!=-1){
@@ -418,8 +445,6 @@ public class ProductAdmController extends BaseController{
 				File targetimg3=new File(imgpath,imgname3);
 				if(!targetimg3.exists()){
 					try {
-						in = uploadImg.getInputStream();
-						FileUtils.copyInputStreamToFile(in, targetimg);	
 						in3=uploadImg3.getInputStream();
 						fos=new FileOutputStream(targetimg3);
 						while((readLen=in3.read(buff))!=-1){
@@ -439,8 +464,6 @@ public class ProductAdmController extends BaseController{
 				File targetimg4=new File(imgpath,imgname4);
 				if(!targetimg4.exists()){
 					try {
-						in = uploadImg.getInputStream();
-						FileUtils.copyInputStreamToFile(in, targetimg);	
 						in4=uploadImg4.getInputStream();
 						fos=new FileOutputStream(targetimg4);
 						while((readLen=in4.read(buff))!=-1){
@@ -460,8 +483,6 @@ public class ProductAdmController extends BaseController{
 				File targetimg5=new File(imgpath,imgname5);
 				if(!targetimg5.exists()){
 					try {
-						in = uploadImg.getInputStream();
-						FileUtils.copyInputStreamToFile(in, targetimg);	
 						in5=uploadImg5.getInputStream();
 						fos=new FileOutputStream(targetimg5);
 						while((readLen=in5.read(buff))!=-1){
@@ -477,20 +498,6 @@ public class ProductAdmController extends BaseController{
 					pw.println(imgname5+"已存在！");
 					pw.close();
 				}
-				File targetFile=new File(storeDir,fileName);
-				if(!targetFile.exists()){
-				in1=uploadFile.getInputStream();
-				fos=new FileOutputStream(targetFile);
-				while((readLen=in1.read(buff))!=-1){
-					fos.write(buff,0,readLen);
-				 }
-			  }else{
-					response.setContentType("text/html;charset=utf-8");
-					PrintWriter pw =response.getWriter();
-					pw.println(fileName+"文件已存在！");
-					pw.close();
-				}
-	    	  
 	    	 
 	    	 } catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -507,7 +514,7 @@ public class ProductAdmController extends BaseController{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}*/
+			}
 		
 		
 		
@@ -527,18 +534,19 @@ public class ProductAdmController extends BaseController{
 		
 		return this.redirect("/productadm/listproduct");
 	}
-	
+	 
+	//查看产品详情
 	@RequestMapping("/getproductdetail")
 	public void getproductdetail(HttpServletResponse response,String productsn){
-		Product prodt=null;
+		ProductInfo prodtInfo=null;
 		try {
-			prodt = productAdmService.getProductBySn(productsn);
+			prodtInfo = productAdmService.getProductDetail(productsn);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
-		 String jsonprodt=	JsonUtils.objectToJson(prodt);
+		 String jsonprodt=	JsonUtils.objectToJson(prodtInfo);
 		  System.out.println(jsonprodt);
 		  try {
 			this.ajaxOutput(response, jsonprodt);

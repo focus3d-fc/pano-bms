@@ -62,8 +62,11 @@ public class Product implements CommonModel{
 	    private String downImg;
 	    private String materialImg;
 	    private String fabricImg;
+	    private String updateTime1;
+	    private String addTime1;
 	    
-	    
+	    private String venderName;
+	    private String dimension;
 		public Product() {
 			super();
 		}
@@ -431,6 +434,46 @@ public class Product implements CommonModel{
 
 		public void setFabricImg(String fabricImg) {
 			this.fabricImg = fabricImg;
+		}
+
+
+		public String getUpdateTime1() {
+			return updateTime1;
+		}
+
+
+		public void setUpdateTime1(String updateTime1) {
+			this.updateTime1 = updateTime1;
+		}
+
+
+		public String getAddTime1() {
+			return addTime1;
+		}
+
+
+		public void setAddTime1(String addTime1) {
+			this.addTime1 = addTime1;
+		}
+
+
+		public String getVenderName() {
+			return venderName;
+		}
+
+
+		public void setVenderName(String venderName) {
+			this.venderName = venderName;
+		}
+
+
+		public String getDimension() {
+			return dimension;
+		}
+
+
+		public void setDimension(String dimension) {
+			this.dimension = dimension;
 		}
 
 

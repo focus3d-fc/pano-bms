@@ -3,6 +3,7 @@ package com.focus3d.pano.admin.dao.impl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -10,8 +11,12 @@ import org.springframework.stereotype.Repository;
 import com.focus3d.pano.admin.dao.IProductAdmDAO;
 import com.focus3d.pano.common.dao.CommonDao;
 import com.focus3d.pano.model.PanoProduct;
+import com.focus3d.pano.model.PanoProductFunc;
+import com.focus3d.pano.model.PanoProductType;
 import com.focus3d.pano.model.Product;
+import com.focus3d.pano.model.ProductInfo;
 import com.focus3d.pano.model.ProductModel;
+import com.focus3d.pano.model.pano_project_style;
 @Repository
 public class ProductAdmDAOImpl extends BaseDao implements IProductAdmDAO{
 
@@ -37,11 +42,11 @@ public class ProductAdmDAOImpl extends BaseDao implements IProductAdmDAO{
 	}
 
 	
-	public List<Product> listProducts() {
+	public List<ProductInfo> listProductInfo(Map<String,Object> paramMap) {
 		// TODO Auto-generated method stub
 		
-		List<Product> productList=(List<Product>)getSqlMapClientTemplate().queryForList("pano_product.getAllProducts");
-		return productList;
+		List<ProductInfo> productInfoList=(List<ProductInfo>)getSqlMapClientTemplate().queryForList("pano_product.getAllProductInfo",paramMap);
+		return productInfoList;
 	}
 
 
@@ -50,6 +55,13 @@ public class ProductAdmDAOImpl extends BaseDao implements IProductAdmDAO{
 		// TODO Auto-generated method stub
 		Product product=(Product)getSqlMapClientTemplate().queryForObject("pano_product.getProductBySn", psn);
 		return product;
+	}
+
+
+	@Override
+	public ProductInfo getProductDetail(String psn) {
+		// TODO Auto-generated method stub
+		return (ProductInfo)getSqlMapClientTemplate().queryForObject("pano_product.getProductDetailBySn", psn);
 	}
 
 
@@ -68,6 +80,30 @@ public class ProductAdmDAOImpl extends BaseDao implements IProductAdmDAO{
 		int row=-1;
 		row=getSqlMapClientTemplate().update("pano_product.updateProduct", pro);
 		return row ;
+	}
+
+
+	@Override
+	public List<PanoProductType> listAllProType() {
+		// TODO Auto-generated method stub
+		List<PanoProductType> proTypeList=(List<PanoProductType>)getSqlMapClientTemplate().queryForList("pano_product.getAllProType");
+		return proTypeList;
+	}
+
+
+	@Override
+	public List<PanoProductFunc> listAllProFunc() {
+		// TODO Auto-generated method stub
+		 List<PanoProductFunc> proFuncList=(List<PanoProductFunc>)getSqlMapClientTemplate().queryForList("pano_product.getAllProFunc");
+		return proFuncList;
+	}
+
+
+	@Override
+	public List<pano_project_style> listAllProStyle() {
+		// TODO Auto-generated method stub
+		List<pano_project_style> prosTyleList=(List<pano_project_style>)getSqlMapClientTemplate().queryForList("pano_product.getAllProStyle");
+		return prosTyleList;
 	}
 	
 	

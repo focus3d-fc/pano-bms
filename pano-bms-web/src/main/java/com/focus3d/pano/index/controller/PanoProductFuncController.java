@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.focus3d.pano.admin.service.PanoProductFuncService;
 import com.focus3d.pano.model.PanoProductFunc;
 import com.focus3d.pano.model.PanoProductType;
@@ -49,11 +50,30 @@ public class PanoProductFuncController {
 	}
 	
 	@RequestMapping("/insert")
+	
 	public String insert(HttpServletRequest request,HttpServletResponse response){
 		String name = request.getParameter("name");
-		System.out.println(name);
+		String i =null;
+		String ii = null;
+		List<PanoProductType> basics = service.getBasics();
+		if(basics.size()>0){
+		for(PanoProductType p:basics){
+			if(p.getName().equals(name)||name.equals("")){
+				i = "errorr";
+				ii= "panoadm/baseinfoadm/basic-sort";
+				break;
+			}else{
+				ii="/panoadm/baseinfoadm/basic-combo";
+				i = "succeed";
+			}
+		}
+	}else{
 		 Long insert = service.getInsert(name);
-		return "redirect:/basics/classify";
+	}
+		if(i.equals("succeed")){
+		 Long insert = service.getInsert(name);
+		}
+		return ii;
 			
 	}
 	
@@ -112,8 +132,27 @@ public class PanoProductFuncController {
 	@RequestMapping("/insert1")
 	public String insert1(HttpServletRequest request,HttpServletResponse response){
 		String name = request.getParameter("name");
+		String i = null;
+		String ii = null;
+		List<PanoProjectPackage> basics = service.getBasics1();
+		if(basics.size()>0){
+		for(PanoProjectPackage p:basics){
+			if(p.getName().equals(name)||name.equals("")){
+				i = "errorr";
+				ii= "panoadm/baseinfoadm/basic-sort";
+				break;
+			}else{
+				ii="/panoadm/baseinfoadm/basic-combo";
+				i = "succeed";
+			}
+		}
+	}else{
+		Long insert = service.getInsert1(name);
+	}
+		if(i.equals("succeed")){
 		 Long insert = service.getInsert1(name);
-		return "redirect:/basics/classify1";
+		}
+		return ii;
 			
 	}
 	
@@ -167,9 +206,27 @@ public class PanoProductFuncController {
 	@RequestMapping("/insert2")
 	public String insert2(HttpServletRequest request,HttpServletResponse response){
 		String name = request.getParameter("name");
+		String i = null;
+		String ii = null;
+		List<PanoVender> basics = service.getBasics2();
+		if(basics.size()>0){
+		for(PanoVender p:basics){
+			if(p.getName().equals(name)||name.equals("")){
+				i = "errorr";
+				ii= "panoadm/baseinfoadm/basic-sort";
+				break;
+			}else{
+				i = "succeed";
+				ii="/panoadm/baseinfoadm/basic-combo";
+			}
+		}
+	}else{
 		 Long insert = service.getInsert2(name);
-		System.out.println("=====+"+insert+"+===============");
-		return "redirect:/basics/classify2";
+	}
+		if(i.equals("succeed")){
+		 Long insert = service.getInsert2(name);
+		}
+		return ii;
 			
 	}
 	
@@ -220,10 +277,27 @@ public class PanoProductFuncController {
 	@RequestMapping("/insert3")
 	public String insert3(HttpServletRequest request,HttpServletResponse response){
 		String name = request.getParameter("name");
-		System.out.println("----"+name);
+		String i = null;
+		String ii = null;
+		List<pano_project_style> basics = service.getBasics3();
+		if(basics.size()>0){
+		for(pano_project_style p:basics){
+			if(p.getName().equals(name)||name.equals("")){
+				i = "errorr";
+				ii= "panoadm/baseinfoadm/basic-sort";
+				break;
+			}else{
+				ii="/panoadm/baseinfoadm/basic-combo";
+				i = "succeed";
+			}
+		}
+	}else{
 		 Long insert = service.getInsert3(name);
-		System.out.println("=====+"+insert+"+===============");
-		return "redirect:/basics/classify3";
+	}
+		if(i.equals("succeed")){
+		 Long insert = service.getInsert3(name);
+		}
+		return ii;
 			
 	}
 	
@@ -274,9 +348,27 @@ public class PanoProductFuncController {
 	@RequestMapping("/insert4")
 	public String insert4(HttpServletRequest request,HttpServletResponse response){
 		String name = request.getParameter("name");
-		System.out.println(name);
+		String i = null;
+		String ii = null;
+		List<PanoProductFunc> basics = service.getBasics4();
+		if(basics.size()>0){
+		for(PanoProductFunc p:basics){
+			if(p.getName().equals(name)||name.equals("")){
+				i = "errorr";
+				ii= "panoadm/baseinfoadm/basic-sort";
+				break;
+			}else{
+				ii="/panoadm/baseinfoadm/basic-combo";
+				i = "succeed";
+			}
+		}
+	}else{
 		 Long insert = service.getInsert4(name);
-		return "redirect:/basics/classify4";
+	}
+		if(i.equals("succeed")){
+		 Long insert = service.getInsert4(name);
+		}
+		return ii;
 			
 	}
 	

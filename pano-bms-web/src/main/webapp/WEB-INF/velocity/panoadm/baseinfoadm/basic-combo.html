@@ -115,6 +115,9 @@ function addform(sn) {
         alert("添加失败");  
     },  
     success: function(data) {  
+    	if(data[1218]==("f")){
+    		alert("增加失败名称不可以为空或重复")
+    	}
     	window.location.href="/basics/classify1";
     }  
   });

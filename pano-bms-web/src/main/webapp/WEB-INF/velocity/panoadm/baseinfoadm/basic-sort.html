@@ -71,6 +71,7 @@
                         <div class="col-sm-9">
                             <input type="text"  class="form-control" name="name">
                         </div>
+                       
                     </div>
                 </form>
             </div>
@@ -94,14 +95,14 @@
             $("#submit").click(function() {
              
         $.ajax({  
-    type: "POST",  
+    type: "GET",  
     url:'/basics/update?id=' + sn,  
     data:$('#formadd').serialize(),  
     async: false,  
     error: function(request) {  
         alert("添加失败");  
     },  
-    success: function(data) {  
+    success: function(data) {
     	window.location.href="/basics/classify";
     }  
   });
@@ -114,7 +115,7 @@
             $("#submit").click(function() {
              
         $.ajax({  
-    type: "POST",  
+    type: "GET",  
     url:'/basics/insert', 
     data:$('#formadd').serialize(),  
     async: false,  
@@ -122,7 +123,11 @@
         alert("添加失败");  
     },  
     success: function(data) {  
+    	if(data[1218]==("f")){
+    		alert("增加失败名称不可以为空或重复")
+    	}
     	window.location.href="/basics/classify";
+    	
     }  
   });
 

@@ -72,6 +72,12 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 		
 	}
 
+	@Override
+	public List<User> selectUserByMsg(User user) {
+		List<User> userList=(List<User>) getSqlMapClientTemplate().queryForList("selectUserByMsg",user);
+		return userList;
+	}
+
 	
 	
 	
