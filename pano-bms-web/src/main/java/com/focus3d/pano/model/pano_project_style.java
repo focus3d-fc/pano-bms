@@ -18,7 +18,7 @@ public class pano_project_style implements Serializable, CommonModel{
 	private double end_pricep; //预计最高价格区间
 	private Integer adder_sn; // 添加人ID
 	private String adder_name; //添加人姓名
-	private Date add_timeat;  // 添加时间
+	private Date add_time;  // 添加时间
 	private Integer updater_sn; //修改人Id
 	private String updater_name; //修改人姓名
 	private String update_time;  //修改时间
@@ -67,11 +67,11 @@ public class pano_project_style implements Serializable, CommonModel{
 	public void setAdder_name(String adder_name) {
 		this.adder_name = adder_name;
 	}
-	public Date getAdd_timeat() {
-		return add_timeat;
+	public Date getAdd_time() {
+		return add_time;
 	}
-	public void setAdd_timeat(Date add_timeat) {
-		this.add_timeat = add_timeat;
+	public void setAdd_timeat(Date add_time) {
+		this.add_time = add_time;
 	}
 	public Integer getUpdater_sn() {
 		return updater_sn;

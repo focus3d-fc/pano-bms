@@ -43,8 +43,7 @@ public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncD
 
 	@Override
 	public int getDelete(int sn) {
-		int sm = 0;
-		sm =  getSqlMapClientTemplate().delete("pano_bm_basic.getDelete",sn);
+		 int sm =  getSqlMapClientTemplate().delete("pano_bm_basic.getDelete",sn);
 		return sm;
 	}
 
@@ -106,6 +105,14 @@ public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncD
 			e.printStackTrace();
 		}
 		return sm;
+		
+	}
+	
+	public List<PanoProjectPackage>getupdatas1(int sn){
+		System.out.println("DAO");
+		List<PanoProjectPackage> list= (List<PanoProjectPackage>)getSqlMapClientTemplate().queryForList("pano_bm_basic.getupdatas1",sn);
+		System.out.println("DAO1");
+		return list;
 		
 	}
 	

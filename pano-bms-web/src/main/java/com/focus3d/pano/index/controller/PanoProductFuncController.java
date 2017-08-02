@@ -16,15 +16,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.focus3d.pano.admin.service.PanoProductFuncService;
+import com.focus3d.pano.common.controller.BaseController;
 import com.focus3d.pano.model.PanoProductFunc;
 import com.focus3d.pano.model.PanoProductType;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoVender;
 import com.focus3d.pano.model.pano_project_style;
+import com.focustech.common.utils.JsonUtils;
 
 @Controller
 @RequestMapping(value="/basics")
-public class PanoProductFuncController {
+public class PanoProductFuncController extends BaseController{
 
 	
 	@Autowired 
@@ -65,9 +67,11 @@ public class PanoProductFuncController {
 			}else{
 				ii="/panoadm/baseinfoadm/basic-combo";
 				i = "succeed";
+				
 			}
 		}
 	}else{
+		ii="/panoadm/baseinfoadm/basic-combo";
 		 Long insert = service.getInsert(name);
 	}
 		if(i.equals("succeed")){
@@ -168,19 +172,32 @@ public class PanoProductFuncController {
 	}
 	@RequestMapping("/update1")
 	public String update1(HttpServletRequest request){
-		String sn1 = request.getParameter("id");
+		String sn1 = request.getParameter("sn");
 		String name = request.getParameter("name");
+		System.out.println(sn1);
 		long sn = Long.valueOf(sn1);
 		PanoProjectPackage p = new PanoProjectPackage();
 		p.setName(name);
 		p.setSn(sn);
 		int update = service.getUpdate1(p);
-		System.out.println("修改"+update);
-		return "redirect:/basics/classify";
+		
+		return "redirect:/basics/classify1";
 
 	}
 	
-	
+	@RequestMapping("/updates1")
+	public void updates1(HttpServletRequest request,HttpServletResponse response,String sn){
+		System.out.println("套餐修改获得的id:"+sn);
+		PanoProjectPackage getupdatas1 = service.getupdatas1(Integer.parseInt(sn));
+		System.out.println("---"+getupdatas1);
+		String objectToJson = JsonUtils.objectToJson(getupdatas1);
+		System.out.println("11---"+objectToJson);
+		try {
+			this.ajaxOutput(response, objectToJson);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 	/**

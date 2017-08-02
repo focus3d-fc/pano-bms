@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="pano_project_space">
+
+	<typeAlias alias="space" type="com.focus3d.pano.model.pano_project_space" />
+
+	<select id="getspace" resultClass="space" parameterClass="Long">
+		select
+		SN,`NAME`
+		from
+		pano_project_space
+		where HOUSE_SN=#HOUSE_SN#
+	</select>
+
+	<delete id="delroomSet" parameterClass="Long">
+		delete from
+		pano_project_space
+		where SN = #SN#
+	</delete>
+
+	<insert id="addroomSet" parameterClass="space">
+		insert into
+		pano_project_space
+		(`NAME`,HOUSE_SN,ADD_TIME)
+		values(#NAME#,#HOUSE_SN#,#ADD_TIME#)
+	</insert>
+
+</sqlMap>

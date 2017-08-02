@@ -5,18 +5,20 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.focus3d.pano.admin.dao.HousesDAO;
+import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
+import com.focus3d.pano.model.pano_project_space;
 import com.focus3d.pano.model.pano_project_style;
 
 @Repository
 public class HousesDAOImpl extends BaseDao implements HousesDAO {
 
 	@Override
-	public List<pano_project> getHouses() {
+	public List<pano_project> getHouses(Page page) {
 		List<pano_project> list = (List<pano_project>) getSqlMapClientTemplate()
-				.queryForList("pano_project.getHouses");
+				.queryForList("pano_project.getHouses", page);
 		return list;
 	}
 
@@ -50,8 +52,8 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 	@Override
 	public int delHousetypebySN(Long SN) {
 		int row = -1;
-		row = getSqlMapClientTemplate()
-				.delete("pano_project_house.delHousetypebySN", SN);
+		row = getSqlMapClientTemplate().delete(
+				"pano_project_house.delHousetypebySN", SN);
 		return row;
 	}
 
@@ -62,21 +64,23 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 	}
 
 	@Override
-	public int delHousestyle() {
+	public int delHousestyle(Long SN) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public List<pano_ad> getHousead() {
-		// TODO Auto-generated method stub
-		return null;
+		List<pano_ad> list = (List<pano_ad>) getSqlMapClientTemplate()
+				.queryForList("pano_ad.getHousead");
+		return list;
 	}
 
 	@Override
-	public int delHousead() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delHousead(Long SN) {
+		int row = -1;
+		row = getSqlMapClientTemplate().delete("pano_ad.delHousead", SN);
+		return row;
 	}
 
 	@Override
@@ -84,6 +88,42 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 		List<pano_project> list = (List<pano_project>) getSqlMapClientTemplate()
 				.queryForList("pano_project.selHousesbySN", SN);
 		return list;
+	}
+
+	@Override
+	public List<pano_project_space> getspace(Long HOUSE_SN) {
+		List<pano_project_space> list = (List<pano_project_space>) getSqlMapClientTemplate()
+				.queryForList("pano_project_space.getspace", HOUSE_SN);
+		return list;
+	}
+
+	@Override
+	public List<pano_project_house> selHousetypebySN(Long SN) {
+		List<pano_project_house> list = (List<pano_project_house>) getSqlMapClientTemplate()
+				.queryForList("pano_project_house.selHousetypebySN", SN);
+		return list;
+	}
+
+	@Override
+	public int delroomSet(Long SN) {
+		int row = -1;
+		row = getSqlMapClientTemplate().delete("pano_project_space.delroomSet",
+				SN);
+		return row;
+	}
+
+	@Override
+	public void addroomSet(pano_project_space space) {
+		// TODO Auto-generated method stub
+		getSqlMapClientTemplate()
+				.insert("pano_project_space.addroomSet", space);
+	}
+
+	@Override
+	public int selHousesCount() {
+		int count = (Integer) getSqlMapClientTemplate().queryForObject(
+				"pano_project.selHousesCount");
+		return count;
 	}
 
 }

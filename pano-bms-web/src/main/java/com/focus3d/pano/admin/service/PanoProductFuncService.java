@@ -21,7 +21,8 @@ public interface PanoProductFuncService {
 	public List<PanoProjectPackage>getBasics1();  //套餐 查询
 	public Long getInsert1(String name);
 	public int getDelete1(int sn);
-	public int getUpdate1(PanoProjectPackage p);;
+	public int getUpdate1(PanoProjectPackage p);
+	public PanoProjectPackage getupdatas1(int sn);
 	
 	public List<PanoProductFunc>getBasics4(); //功能 查询
 	public Long getInsert4(String name);

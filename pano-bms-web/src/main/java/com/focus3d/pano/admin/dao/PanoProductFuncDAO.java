@@ -21,6 +21,7 @@ public interface PanoProductFuncDAO {
 	public Long getInsert1(String name);
 	public int getDelete1(int sn);
 	public int getUpdate1(PanoProjectPackage p);
+	public List<PanoProjectPackage>getupdatas1(int sn);
 	
 	
 	public List<PanoProductFunc>getBasics4(); //功能 查询

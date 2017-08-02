@@ -8,19 +8,24 @@
 		defaultStatementTimeout="60" statementCachingEnabled="true"
 		classInfoCacheEnabled="true" />
 
-		<sqlMap resource="context/datasource/sqlmap/pano_bm_user_SqlMap.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/pano_bm_login_SqlMap.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/pano_validate_SqlMap.xml"/>
+	<sqlMap resource="context/datasource/sqlmap/pano_bm_user_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_bm_login_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_validate_SqlMap.xml" />
 
-		<sqlMap resource="context/datasource/sqlmap/pano_bm_role_SqlMap.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/pano_bm_resource_SqlMap.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/pano_bm_role_resource_SqlMap.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/pano_bm_user_role_SqlMap.xml"/>
-		<!-- <sqlMap resource="context/datasource/sqlmap/pano_product_SqlMap.xml"/> -->
-		<sqlMap resource="context/datasource/sqlmap/pano_product.xml"/>
-        <sqlMap resource="context/datasource/sqlmap/pano_user_SqlMap.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/pano_product_func.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/pano_product_type.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/pano_project_package.xml"/>
-		
+	<sqlMap resource="context/datasource/sqlmap/pano_bm_role_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_bm_resource_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_bm_role_resource_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_bm_user_role_SqlMap.xml" />
+	<!-- <sqlMap resource="context/datasource/sqlmap/pano_product_SqlMap.xml"/> -->
+	<sqlMap resource="context/datasource/sqlmap/pano_product.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_user_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_product_func.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_product_type.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_project_package.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_project.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_project_house.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_ad.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_project_space.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_bm_longin.xml" />
+		<sqlMap resource="context/datasource/sqlmap/pano_bm_role.xml" />
 </sqlMapConfig>

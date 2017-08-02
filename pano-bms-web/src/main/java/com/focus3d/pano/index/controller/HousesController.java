@@ -1,8 +1,11 @@
 package com.focus3d.pano.index.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.focus3d.pano.admin.service.HousesService;
+import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.common.controller.BaseController;
+import com.focus3d.pano.model.User;
+import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
+import com.focus3d.pano.model.pano_project_space;
 
 /**
  * 
@@ -33,8 +40,54 @@ public class HousesController extends BaseController {
 
 	@RequestMapping("/tohouse")
 	public String tohouse(HttpServletRequest request) {
-		List<pano_project> list = housesService.getHouses();
-		request.setAttribute("HousesList", list);
+
+		String page = request.getParameter("page");
+
+		// 总记录数
+		int count = 0;
+		int currentPage = 0;
+		Page pages = null;
+		List<pano_project> pano_project = null;
+		int upPage = 0;
+		int nextPage = 0;
+
+		// 判断当前页
+		if (page == null || page.equals("")) {
+			currentPage = 1;
+		} else {
+			currentPage = Integer.parseInt(page);
+		}
+		if (currentPage == 1) {
+			upPage = 1;
+			nextPage = 2;
+		}
+
+		// 获取查询总记录数
+		count = housesService.selHousesCount();
+
+		// 通过Page这个类可以获取分页的起始下标和条数
+		pages = new Page(count, currentPage);
+		System.out.println("currentPage：" + currentPage);
+		// 拼接分页语句
+		pano_project = housesService.getHouses(pages);
+		request.setAttribute("HousesList", pano_project);
+		request.setAttribute("pages", pages);
+		int totalPages = pages.getTotalPages();
+
+		if (currentPage == totalPages) {
+			upPage = currentPage - 1;
+			nextPage = totalPages;
+		} else if (currentPage > 1) {
+			upPage = currentPage - 1;
+			nextPage = currentPage + 1;
+		}
+
+		request.setAttribute("upPage", upPage);
+		request.setAttribute("nextPage", nextPage);
+		int index = (currentPage - 1) * pages.getPagesize();
+		request.setAttribute("index", index);
+		request.setAttribute("currentPage", currentPage);
+
 		return "/houses/house";
 	}
 
@@ -47,14 +100,17 @@ public class HousesController extends BaseController {
 
 	@RequestMapping("/addhouses")
 	public String addhouses(HttpServletRequest request,
-			@RequestParam String PROVINCE, @RequestParam String CITY,
-			@RequestParam String AREA, @RequestParam String NAME) {
+			@RequestParam String acmbProvince, @RequestParam String acmbCity,
+			@RequestParam String acmbArea, @RequestParam String asname) {
 		pano_project houses = new pano_project();
-		houses.setPROVINCE(PROVINCE);
-		houses.setCITY(CITY);
-		houses.setAREA(AREA);
-		houses.setNAME(NAME);
-
+		houses.setPROVINCE(acmbProvince);
+		houses.setCITY(acmbCity);
+		houses.setAREA(acmbArea);
+		houses.setNAME(asname);
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String add_time = sdf.format(date);
+		houses.setADD_TIME(add_time);
 		housesService.addHouses(houses);
 		return redirect("tohouse");
 	}
@@ -80,12 +136,24 @@ public class HousesController extends BaseController {
 
 	// -----------------------楼盘-设置-户型-----------------------
 
+	Long PROJECT_SN;
+
 	@RequestMapping("/tohouseSet")
-	public String tohouseSet(HttpServletRequest request) {
-		Long PROJECT_SN = Long.parseLong(request.getParameter("SN"));
-		List<pano_project> plist = housesService.selHousesbySN(PROJECT_SN);
+	public String tohouseSet(HttpServletRequest request, HttpSession session) {
+		PROJECT_SN = Long.parseLong(request.getParameter("SN"));
+		List<pano_project> project = housesService.selHousesbySN(PROJECT_SN);
+		pano_project pList = project.get(0);
+		session.setAttribute("pList", pList);
 		List<pano_project_house> hlist = housesService.getHousetype(PROJECT_SN);
-		request.setAttribute("pList", plist);
+		if (hlist.size() != 0) {
+			request.setAttribute("hList", hlist);
+		}
+		return "/houses/houseSet";
+	}
+
+	@RequestMapping("/tohouseSet2")
+	public String tohouseSet2(HttpServletRequest request) {
+		List<pano_project_house> hlist = housesService.getHousetype(PROJECT_SN);
 		if (hlist.size() != 0) {
 			request.setAttribute("hList", hlist);
 		}
@@ -96,12 +164,73 @@ public class HousesController extends BaseController {
 	public String delHousetype(HttpServletRequest request) {
 		Long SN = Long.parseLong(request.getParameter("SN"));
 		housesService.delHousetypebySN(SN);
-		return redirect("tohouse");
+		return redirect("tohouseSet2");
 	}
 
+	// -----------------------楼盘-设置-风格-----------------------
+
+	@RequestMapping("/tostyleSet")
+	public String tostyleSet() {
+		return "/houses/styleSet";
+	}
+
+	// -----------------------楼盘-设置-广告-----------------------
+
+	@RequestMapping("/toaddSet")
+	public String toaddSet(HttpServletRequest request) {
+		List<pano_ad> list = housesService.getHousead();
+		request.setAttribute("aList", list);
+		return "/houses/addSet";
+	}
+
+	@RequestMapping("/delHousead")
+	public String delHousead(HttpServletRequest request) {
+		Long SN = Long.parseLong(request.getParameter("SN"));
+		housesService.delHousead(SN);
+		return redirect("toaddSet");
+	}
+
+	// -----------------------楼盘-设置-户型-空间设置-----------------------
+
+	Long HOUSE_SN;
+
 	@RequestMapping("/toroomSet")
-	public String toroomSet() {
+	public String toroomSet(HttpServletRequest request, HttpSession session) {
+		HOUSE_SN = Long.parseLong(request.getParameter("SN"));
+		List<pano_project_house> housetype = housesService
+				.selHousetypebySN(HOUSE_SN);
+		String ID = housetype.get(0).getID();
+		session.setAttribute("houseID", ID);
+		List<pano_project_space> sList = housesService.getspace(HOUSE_SN);
+		request.setAttribute("sList", sList);
 		return "/houses/roomSet";
+	}
+
+	@RequestMapping("/toroomSet2")
+	public String toroomSet2(HttpServletRequest request) {
+		List<pano_project_space> sList = housesService.getspace(HOUSE_SN);
+		request.setAttribute("sList", sList);
+		return "/houses/roomSet";
+	}
+
+	@RequestMapping("/delroomSet")
+	public String delroomSet(HttpServletRequest request) {
+		Long SN = Long.parseLong(request.getParameter("SN"));
+		housesService.delroomSet(SN);
+		return redirect("toroomSet2");
+	}
+
+	@RequestMapping("/addroomSet")
+	public String addroomSet(@RequestParam String aname) {
+		pano_project_space space = new pano_project_space();
+		space.setNAME(aname);
+		space.setHOUSE_SN(HOUSE_SN);
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String add_time = sdf.format(date);
+		space.setADD_TIME(add_time);
+		housesService.addroomSet(space);
+		return redirect("toroomSet2");
 	}
 
 	@RequestMapping("/tocombo")

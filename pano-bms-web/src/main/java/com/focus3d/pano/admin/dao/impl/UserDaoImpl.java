@@ -68,8 +68,8 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 	}
 
 	@Override
-	public void updateStatus(Login login) {
-		getSqlMapClientTemplate().update("updateStatus",login);
+	public void updateStatus(User user) {
+		getSqlMapClientTemplate().update("updateStatus",user);
 		
 	}
 
@@ -91,8 +91,15 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 
 	@Override
 	public List<User> limit(Page page) {
+		System.out.println("DAOImpl:limit------------");
 		List<User> userList=(List<User>) getSqlMapClientTemplate().queryForList("limit",page);
 		return userList;
+	}
+
+	@Override
+	public List<String> selectRole_name() {
+		List<String> role_nameList=(List<String>) getSqlMapClientTemplate().queryForList("selectRole_name");
+		return role_nameList;
 	}
 
 	

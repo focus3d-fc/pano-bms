@@ -1,18 +1,12 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>VR营销系统平台</title>
     <link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/style/admstatic/css/admin.css">
-    <script>
-    console.log("进入首页");
-    /* window.location.href="/useradm/listUser"; */
-    </script>
 </head>
 <body>
     <!--顶部-->
@@ -33,14 +27,25 @@
             <h4><span class="glyphicon glyphicon-th-list"></span> 菜单列表</h4>
         </div>
         <ul class="menu">
-            <li><a href="/useradm/listUser" target="right">用户管理</a></li>
+        	#if($!{pbrr.role_user}>0)
+         	<li><a href="/useradm/listUser" target="right">用户管理</a></li>
+         	#end
+         	#if($!{pbrr.role_product}>0)
             <li><a href="/productadm/listproduct" target="right">产品管理</a></li>
-
+            #end
+            #if($!{pbrr.role_basics}>0)
             <li><a href="/basics/classify" target="right">基础信息管理</a></li>
+            #end
+            #if($!{pbrr.role_houses}>0)
             <li><a href="/houses/tohouse" target="right">楼盘管理</a></li>
-
+            #end
+            #if($!{pbrr.role_order}>0)
             <li><a href="/style/admstatic/order.html" target="right">订单管理</a></li>
-            <li><a href="/style/admstatic/role.html" target="right">权限管理</a></li>
+            #end
+            #if($!{pbrr.role_role}>0)
+            <li><a href="/role/select" target="right">权限管理</a></li>
+            #end
+
         </ul>
     </div>
     <!--/左菜单-->
@@ -54,10 +59,36 @@
     </ol>
     <!--/面包屑-->
 
-    <!--显示页面-->
+    
+    <!--/显示页面-->
+    #if($!{pbrr.role_user}>0)
     <div class="admin">
         <iframe scrolling="auto" frameborder src="/useradm/listUser" name="right" width="100%" height="100%"></iframe>
     </div>
-    <!--/显示页面-->
+    #elseif($!{pbrr.role_product}>0)
+     <div class="admin">
+        <iframe scrolling="auto" frameborder src="/productadm/listproduct" name="right" width="100%" height="100%"></iframe>
+    </div>
+    #elseif($!{pbrr.role_basics}>0)
+    <div class="admin">
+        <iframe scrolling="auto" frameborder src="/basics/classify" name="right" width="100%" height="100%"></iframe>
+    </div>
+     #elseif($!{pbrr.role_houses}>0)
+    <div class="admin">
+        <iframe scrolling="auto" frameborder src="/houses/tohouse" name="right" width="100%" height="100%"></iframe>
+    </div>
+     #elseif($!{pbrr.role_order}>0)
+    <div class="admin">
+        <iframe scrolling="auto" frameborder src="/style/admstatic/order.html" name="right" width="100%" height="100%"></iframe>
+    </div>
+     #else
+    <div class="admin">
+        <iframe scrolling="auto" frameborder src="/role/select" name="right" width="100%" height="100%"></iframe>
+    </div>
+    #end
 </body>
+
+
+
+
 </html>

@@ -68,10 +68,19 @@ public class PanoProductFuncServiceImpl implements PanoProductFuncService{
 	}
 	
 	public int getUpdate1(PanoProjectPackage p){
-		System.out.println("1");
 		return productAdmDAO.getUpdate1(p);
 	}
-
+	
+	public PanoProjectPackage getupdatas1(int sn){
+		PanoProjectPackage panoProjectPackage = null;
+		List<PanoProjectPackage> getupdatas1 = productAdmDAO.getupdatas1(sn);
+		if(getupdatas1.size()>0){
+			System.out.println("service");
+		 panoProjectPackage = getupdatas1.get(0);
+		}
+		return panoProjectPackage;
+	}
+	
 	/**
 	 * 厂家
 	 */

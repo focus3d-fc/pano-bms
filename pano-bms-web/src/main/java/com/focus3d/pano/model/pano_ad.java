@@ -14,6 +14,8 @@ import com.focus3d.pano.common.model.CommonModel;
  */
 public class pano_ad implements Serializable, CommonModel {
 
+	private static final long serialVersionUID = -1423892477614156650L;
+
 	private Long SN;
 	private String NAME;
 	private int TYPE;

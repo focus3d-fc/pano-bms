@@ -1,7 +1,6 @@
-      
-    
      $(function(){
-	    	
+    	 
+    	 
 	    //上传图片	
 	    	 'use strict';
 	        // Change this to the location of your server-side upload handler:
@@ -87,7 +86,9 @@
 	            	//alert(txt);
 	            	$("#fullimgsn").val(txt.substr(1));
 	            	$("#resultInfo").text(txt + "," + file);
+	            	
 	            });
+	            $("#resultInfo").text("");
 	        }).on('fileuploadfail', function (e, data) {
 	            $.each(data.files, function (index) {
 	                var error = $('<span class="text-danger"/>').text('File upload failed.');
@@ -181,6 +182,7 @@
         	$("#leftimgsn").val(txt.substr(1));
         	$("#resultInfo1").text(txt + "," + file);
         });
+        $("#resultInfo1").text("");
     }).on('fileuploadfail', function (e, data) {
         $.each(data.files, function (index) {
             var error = $('<span class="text-danger"/>').text('File upload failed.');
@@ -274,6 +276,7 @@ $.each(data.result, function (index, file) {
 	$("#downimgsn").val(txt.substr(1));
 	$("#resultInfo2").text(txt + "," + file);
 });
+$("#resultInfo2").text("");
 }).on('fileuploadfail', function (e, data) {
 $.each(data.files, function (index) {
     var error = $('<span class="text-danger"/>').text('File upload failed.');
@@ -368,6 +371,7 @@ var txt = $("#resultInfo3").text();
   $("#mtimgsn").val(txt.substr(1));
 $("#resultInfo3").text(txt + "," + file);
 });
+    $("#resultInfo3").text("");
 }).on('fileuploadfail', function (e, data) {
 $.each(data.files, function (index) {
 var error = $('<span class="text-danger"/>').text('File upload failed.');
@@ -461,6 +465,7 @@ var txt = $("#resultInfo4").text();
    $("#fbcimgsn").val(txt.substr(1));
 $("#resultInfo4").text(txt + "," + file);
 });
+  $("#resultInfo4").text("");
 }).on('fileuploadfail', function (e, data) {
 $.each(data.files, function (index) {
 var error = $('<span class="text-danger"/>').text('File upload failed.');

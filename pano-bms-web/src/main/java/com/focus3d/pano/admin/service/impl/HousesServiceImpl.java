@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.focus3d.pano.admin.dao.HousesDAO;
 import com.focus3d.pano.admin.service.HousesService;
+import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
+import com.focus3d.pano.model.pano_project_space;
 import com.focus3d.pano.model.pano_project_style;
 
 @Service("housesService")
@@ -19,9 +21,9 @@ public class HousesServiceImpl implements HousesService {
 	private HousesDAO housesDAO;
 
 	@Override
-	public List<pano_project> getHouses() {
+	public List<pano_project> getHouses(Page page) {
 		// TODO Auto-generated method stub
-		return housesDAO.getHouses();
+		return housesDAO.getHouses(page);
 	}
 
 	@Override
@@ -57,31 +59,61 @@ public class HousesServiceImpl implements HousesService {
 	@Override
 	public List<pano_project_style> getHousestyle() {
 		// TODO Auto-generated method stub
-		return null;
+		return housesDAO.getHousestyle();
 	}
 
 	@Override
-	public int delHousestyle() {
+	public int delHousestyle(Long SN) {
 		// TODO Auto-generated method stub
-		return 0;
+		return housesDAO.delHousestyle(SN);
 	}
 
 	@Override
 	public List<pano_ad> getHousead() {
 		// TODO Auto-generated method stub
-		return null;
+		return housesDAO.getHousead();
 	}
 
 	@Override
-	public int delHousead() {
+	public int delHousead(Long SN) {
 		// TODO Auto-generated method stub
-		return 0;
+		return housesDAO.delHousead(SN);
 	}
 
 	@Override
 	public List<pano_project> selHousesbySN(Long SN) {
 		// TODO Auto-generated method stub
 		return housesDAO.selHousesbySN(SN);
+	}
+
+	@Override
+	public List<pano_project_space> getspace(Long HOUSE_SN) {
+		// TODO Auto-generated method stub
+		return housesDAO.getspace(HOUSE_SN);
+	}
+
+	@Override
+	public List<pano_project_house> selHousetypebySN(Long SN) {
+		// TODO Auto-generated method stub
+		return housesDAO.selHousetypebySN(SN);
+	}
+
+	@Override
+	public int delroomSet(Long SN) {
+		// TODO Auto-generated method stub
+		return housesDAO.delroomSet(SN);
+	}
+
+	@Override
+	public void addroomSet(pano_project_space space) {
+		// TODO Auto-generated method stub
+		housesDAO.addroomSet(space);
+	}
+
+	@Override
+	public int selHousesCount() {
+		// TODO Auto-generated method stub
+		return housesDAO.selHousesCount();
 	}
 
 }

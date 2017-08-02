@@ -22,7 +22,9 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void saveUser(String nick_name,String name,
 			String city,String mobile,String email,
-			String cert_no,int sex,long adder_sn) {
+			String cert_no,int sex,long adder_sn,long role_sn,
+			String password,String adder_name,int status,String add_time) {
+		System.out.println("进入：ServiceImpl");
 		User user=new User();
 		user.setNick_name(nick_name);
 		user.setName(name);
@@ -32,8 +34,13 @@ public class UserServiceImpl implements UserService{
 		user.setCert_no(cert_no);
 		user.setSex(sex);
 		user.setAdder_sn(adder_sn);
+		user.setRole_sn(role_sn);
+		user.setPassword(password);
+		user.setAdder_name(adder_name);
+		user.setStatus(status);
+		user.setAdd_time(add_time);
 		userDao.saveUser(user);
-		System.out.println("进入：ServiceImpl");
+		
 	}
 
 
@@ -75,7 +82,8 @@ public class UserServiceImpl implements UserService{
 
 
 	@Override
-	public void updateUserByCert_no(String nick_name,String city,String mobile,String email,String cert_no) {
+	public void updateUserByCert_no(String nick_name,String city,
+			String mobile,String email,String cert_no,long role_sn) {
 		User user=new User();
 		user.setNick_name(nick_name);
 		user.setCity(city);
@@ -83,6 +91,7 @@ public class UserServiceImpl implements UserService{
 		user.setEmail(email);
 		user.setEmail(email);
 		user.setCert_no(cert_no);
+		user.setRole_sn(role_sn);
 		userDao.updateUserByCert_no(user);
 	}
 
@@ -114,10 +123,10 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void updateStatus(String cert_no,int status) {
-		Login login=new Login();
-		login.setCert_no(cert_no);
-		login.setStatus(status);
-		userDao.updateStatus(login);
+		User user=new User();
+		user.setCert_no(cert_no);
+		user.setStatus(status);
+		userDao.updateStatus(user);
 	}
 
 
@@ -146,6 +155,12 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<User> limit(Page page) {
 		return userDao.limit(page);
+	}
+
+
+	@Override
+	public List<String> selectRole_name() {
+		return userDao.selectRole_name();
 	}
 
 

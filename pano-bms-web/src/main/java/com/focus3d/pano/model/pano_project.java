@@ -23,10 +23,10 @@ public class pano_project implements Serializable, CommonModel {
 	private String AREA;
 	private Long ADDER_SN;
 	private String ADDER_NAME;
-	private Date ADD_TIME;
+	private String ADD_TIME;
 	private Long UPDATER_SN;
 	private String UPDATER_NAME;
-	private Date UPDATE_TIME;
+	private String UPDATE_TIME;
 
 	public Long getSN() {
 		return SN;
@@ -84,11 +84,11 @@ public class pano_project implements Serializable, CommonModel {
 		ADDER_NAME = aDDER_NAME;
 	}
 
-	public Date getADD_TIME() {
+	public String getADD_TIME() {
 		return ADD_TIME;
 	}
 
-	public void setADD_TIME(Date aDD_TIME) {
+	public void setADD_TIME(String aDD_TIME) {
 		ADD_TIME = aDD_TIME;
 	}
 
@@ -108,11 +108,11 @@ public class pano_project implements Serializable, CommonModel {
 		UPDATER_NAME = uPDATER_NAME;
 	}
 
-	public Date getUPDATE_TIME() {
+	public String getUPDATE_TIME() {
 		return UPDATE_TIME;
 	}
 
-	public void setUPDATE_TIME(Date uPDATE_TIME) {
+	public void setUPDATE_TIME(String uPDATE_TIME) {
 		UPDATE_TIME = uPDATE_TIME;
 	}
 

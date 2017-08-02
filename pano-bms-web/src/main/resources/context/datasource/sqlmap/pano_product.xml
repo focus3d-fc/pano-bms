@@ -62,7 +62,7 @@
       p.CAPACITY, p.REMARK, p.ADDER_SN as adderSn, p.ADDER_NAME as adderName,p.ADD_TIME as addTime1, p.UPDATER_SN as updaterSn, 
       p.UPDATER_NAME as updaterName, p.UPDATE_TIME as updateTime1,p.dimension,p.venderName,
       p.workManShip,p.LR,p.lr_round as lrRound, p.material_color as materialColor,p.fabric_color as fabricColor,
-    p.full_img as fullImg,p.left_img as leftImg,p.down_img as downImg,p.material_img as materialImg,p.fabric_img as fabricImg,p.venderName
+    p.full_img as fullImg,p.left_img as leftImg,p.down_img as downImg,p.material_img as materialImg,p.fabric_img as fabricImg
     ,pt.NAME as typeName,pf.NAME as funcName,ps.NAME as styleName
     from pano_product p left JOIN pano_product_type pt on p.type_sn=pt.sn left join pano_product_func pf on p.FUNC_SN=pf.SN
 LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn   
@@ -85,14 +85,14 @@ LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn
 	</select>
 	
 	<select id="getAllProductInfo"  resultClass="productInfo" parameterClass="java.util.Map">
-	  select p.SN, p.ID, p.NAME, p.BRAND, p.PRICE, p.STATUS, p.SUMMARY, p.LEFT_IMG_SN as leftImgSn, p.DOWN_IMG_SN as downImgSn,
+	 <!--  select p.SN, p.ID, p.NAME, p.BRAND, p.PRICE, p.STATUS, p.SUMMARY, p.LEFT_IMG_SN as leftImgSn, p.DOWN_IMG_SN as downImgSn,
   p.FULL_IMG_SN as fullImgSn, p.BANNER_IMG_SN as bannerImgSn, p.TYPE_SN as typeSn, p.FUNC_SN as funcSn, p.SPACE_SN as spaceSn,
 	     p.STYLE_SN as styleSn, p.LENGTH, p.WIDE, p.HEIGHT, p.MATERIAL_NAME as materialName,
       p.MATERIAL_IMG_SN as materialImgSn, p.FABRIC_NAME as fabricName, p.FABRIC_IMG_SN as fabricImgSn, p.COLOR, p.MODEL, 
       p.CAPACITY, p.REMARK, p.ADDER_SN as adderSn, p.ADDER_NAME as adderName,p.ADD_TIME as addTime1, p.UPDATER_SN as updaterSn, 
       p.UPDATER_NAME as updaterName, p.UPDATE_TIME as updateTime1,p.dimension,p.venderName,
       p.workManShip,p.LR,p.lr_round as lrRound, p.material_color as materialColor,p.fabric_color as fabricColor,
-    p.full_img as fullImg,p.left_img as leftImg,p.down_img as downImg,p.material_img as materialImg,p.fabric_img as fabricImg,p.venderName
+    p.full_img as fullImg,p.left_img as leftImg,p.down_img as downImg,p.material_img as materialImg,p.fabric_img as fabricImg
     ,pt.NAME as typeName,pf.NAME as funcName,ps.NAME as styleName
     from pano_product p left JOIN pano_product_type pt on p.type_sn=pt.sn left join pano_product_func pf on p.FUNC_SN=pf.SN
 LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn   
@@ -105,7 +105,9 @@ LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn
         <isNotEmpty property="orderSql">     
             $orderSql$     
         </isNotEmpty>  
-    </dynamic>     
+    </dynamic>      -->
+    
+    select * from (<include refid="proBaseSql"/>) pr
     <dynamic prepend=" LIMIT ">  
         <isNotEmpty property="startNum">  
             #startNum#  
@@ -194,7 +196,51 @@ LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn
       This element was generated on Tue Jul 25 11:02:32 CST 2017.
     -->
     update pano_product
-    set ID = #id:VARCHAR#,
+    <dynamic prepend="SET "> 
+    <isNotEmpty property="id" prepend=","><![CDATA[ ID = #id:VARCHAR# ]]></isNotEmpty>
+    <isNotEmpty property="name" prepend=","><![CDATA[ NAME=#name:VARCHAR# ]]></isNotEmpty>    
+    <isNotEmpty property="brand" prepend=","><![CDATA[ BRAND=#brand:VARCHAR# ]]></isNotEmpty>
+    <isNotEmpty property="price" prepend=","><![CDATA[ PRICE=#price:VARCHAR# ]]></isNotEmpty>  
+    <isNotEmpty property="status" prepend=","><![CDATA[ STATUS=#status:INTEGER# ]]></isNotEmpty> 
+    <isNotEmpty property="summary" prepend=","><![CDATA[ SUMMARY = #summary:VARCHAR# ]]></isNotEmpty>   
+    <isNotEmpty property="leftImgSn" prepend=","><![CDATA[ LEFT_IMG_SN = #leftImgSn:BIGINT# ]]></isNotEmpty>   
+    <isNotEmpty property="downImgSn" prepend=","><![CDATA[ DOWN_IMG_SN = #downImgSn:BIGINT# ]]></isNotEmpty>   
+    <isNotEmpty property="fullImgSn" prepend=","><![CDATA[ FULL_IMG_SN = #fullImgSn:BIGINT# ]]></isNotEmpty>    
+    <isNotEmpty property="bannerImgSn" prepend=","><![CDATA[ BANNER_IMG_SN = #bannerImgSn:BIGINT# ]]></isNotEmpty>  
+    <isNotEmpty property="typeSn" prepend=","><![CDATA[ TYPE_SN = #typeSn:BIGINT# ]]></isNotEmpty>
+    <isNotEmpty property="funcSn" prepend=","><![CDATA[ FUNC_SN = #funcSn:BIGINT# ]]></isNotEmpty>
+    <isNotEmpty property="spaceSn" prepend=","><![CDATA[ SPACE_SN = #spaceSn:BIGINT# ]]></isNotEmpty>
+    <isNotEmpty property="styleSn" prepend=","><![CDATA[ STYLE_SN = #styleSn:BIGINT# ]]></isNotEmpty>
+    <isNotEmpty property="length" prepend=","><![CDATA[ LENGTH = #length:INTEGER# ]]></isNotEmpty>
+    <isNotEmpty property="wide" prepend=","><![CDATA[ WIDE = #wide:INTEGER# ]]></isNotEmpty>
+    <isNotEmpty property="height" prepend=","><![CDATA[ HEIGHT = #height:INTEGER# ]]></isNotEmpty>
+    <isNotEmpty property="materialName" prepend=","><![CDATA[ MATERIAL_NAME = #materialName:VARCHAR# ]]></isNotEmpty>
+    <isNotEmpty property="materialImgSn" prepend=","><![CDATA[ MATERIAL_IMG_SN = #materialImgSn:BIGINT# ]]></isNotEmpty>   
+    <isNotEmpty property="fabricName" prepend=","><![CDATA[ FABRIC_NAME = #fabricName:VARCHAR# ]]></isNotEmpty> 
+    <isNotEmpty property="fabricImgSn" prepend=","><![CDATA[ FABRIC_IMG_SN = #fabricImgSn:BIGINT# ]]></isNotEmpty> 
+    <isNotEmpty property="color" prepend=","><![CDATA[ COLOR = #color:VARCHAR# ]]></isNotEmpty> 
+    <isNotEmpty property="model" prepend=","><![CDATA[ MODEL = #model:VARCHAR# ]]></isNotEmpty> 
+    <isNotEmpty property="capacity" prepend=","><![CDATA[ CAPACITY = #capacity:VARCHAR# ]]></isNotEmpty> 
+    <isNotEmpty property="remark" prepend=","><![CDATA[ REMARK = #remark:VARCHAR# ]]></isNotEmpty> 
+    <isNotEmpty property="adderSn" prepend=","><![CDATA[ ADDER_SN = #adderSn:BIGINT# ]]></isNotEmpty> 
+    <isNotEmpty property="adderName" prepend=","><![CDATA[ ADDER_NAME = #adderName:VARCHAR# ]]></isNotEmpty> 
+    <isNotEmpty property="addTime" prepend=","><![CDATA[ ADD_TIME = #addTime:TIMESTAMP# ]]></isNotEmpty> 
+    <isNotEmpty property="updaterSn" prepend=","><![CDATA[ UPDATER_SN = #updaterSn:BIGINT# ]]></isNotEmpty> 
+    <isNotEmpty property="updaterName" prepend=","><![CDATA[ UPDATER_NAME = #updaterName:VARCHAR# ]]></isNotEmpty> 
+    <isNotEmpty property="updateTime" prepend=","><![CDATA[ UPDATE_TIME = #updateTime:TIMESTAMP# ]]></isNotEmpty> 
+    <isNotEmpty property="materialColor" prepend=","><![CDATA[ material_color=#materialColor# ]]></isNotEmpty> 
+    <isNotEmpty property="fabricColor" prepend=","><![CDATA[ fabric_color=#fabricColor# ]]></isNotEmpty> 
+    <isNotEmpty property="lr" prepend=","><![CDATA[ lr=#lr# ]]></isNotEmpty> 
+    <isNotEmpty property="lrRound" prepend=","><![CDATA[ lr_round=#lrRound# ]]></isNotEmpty> 
+    <isNotEmpty property="workManShip" prepend=","><![CDATA[ workmanship=#workManShip# ]]></isNotEmpty> 
+    <isNotEmpty property="fullImg" prepend=","><![CDATA[ full_img=#fullImg# ]]></isNotEmpty> 
+    <isNotEmpty property="leftImg" prepend=","><![CDATA[ left_Img=#leftImg# ]]></isNotEmpty> 
+    <isNotEmpty property="downImg" prepend=","><![CDATA[ down_img=#downImg# ]]></isNotEmpty> 
+    <isNotEmpty property="materialImg" prepend=","><![CDATA[ material_img=#materialImg# ]]></isNotEmpty>  
+    <isNotEmpty property="fabricImg" prepend=","><![CDATA[ fabric_img=#fabricImg# ]]></isNotEmpty>  
+    <isNotEmpty property="dimension" prepend=","><![CDATA[ dimension=#dimension# ]]></isNotEmpty>  
+    <isNotEmpty property="venderName" prepend=","><![CDATA[ vendername=#venderName# ]]></isNotEmpty>   
+    <!--  set ID = #id:VARCHAR#,
       NAME = #name:VARCHAR#,
       BRAND = #brand:VARCHAR#,
       PRICE = #price:DECIMAL#,
@@ -236,7 +282,8 @@ LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn
       material_img=#materialImg#,
       fabric_img=#fabricImg#,
       dimension=#dimension#,
-      vendername=#venderName#
+      vendername=#venderName# -->
+       </dynamic> 
     where SN = #sn:BIGINT#
   </update>
 	

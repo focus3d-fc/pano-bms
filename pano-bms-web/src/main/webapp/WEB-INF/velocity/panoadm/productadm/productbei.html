@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>产品管理</title>
+    <link href="/style/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style/admstatic/css/admin.css">
+   
+    <!-- Bootstrap styles -->
+<link rel="stylesheet" href="/style/bootstrap.min-3.3.5.css">
+<!-- Generic page styles -->
+<link rel="stylesheet" href="/component/upload/css/style.css">
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+<link rel="stylesheet" href="/component/upload/css/jquery.fileupload.css">
+<script src="/script/jquery-1.11.1.min.js"></script>
+<script src="/script/bootstrap.min-3.3.5.js"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="/component/upload/vendor/jquery.ui.widget.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="/component/upload/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="/component/upload/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="/component/upload/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="/component/upload/js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="/component/upload/js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="/component/upload/js/jquery.fileupload-image.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="/component/upload/js/jquery.fileupload-validate.js"></script>
+
+<script type="text/javascript">
+function move(currPage,pageSize){
+	   //var pageSize=document.getElementById("pageSize").value;
+	   
+	   var url="/productadm/listproduct?currPage="+currPage;
+	   if(pageSize!=undefined){
+		   url+="&pageSize="+pageSize;
+	   }
+	   var queryic=document.getElementById("inv").value;
+	   if(queryic!=undefined){
+		   url+="&queryic="+queryic;
+	   }
+	   location.href=url;
+}
+
+
+    function  addpro(){
+    	location.href="/productadm/preaddpro";
+    }
+  
+
+     function updatepro(productsn){
+    	 
+    	  $.ajax({
+    		url:"/productadm/preupdateproduct",	 
+    	    type:"post",
+    	    data:{productsn:productsn},
+    	    datatype:"json",
+    	    success:function(data){
+    	    	
+    	    	var jsonobj=JSON.parse(data);
+    	    	//alert(jsonobj.updateTime1);
+    	    	//alert(jsonobj.typeSn);
+    	    	//alert(jsonobj.venderName);
+    	    	var tpsn=jsonobj.typeSn;
+    	    	var st=jsonobj.styleSn;
+    	    	var fc=jsonobj.funcSn;
+    	    	$("#stp").children("option").each(function(){
+    	               var temp_value = $(this).val();
+    	              if(temp_value == tpsn){
+    	                    $(this).attr("selected",true);
+    	              }
+    	         });
+    	    	$("#sty").children("option").each(function(){
+ 	               var temp_value = $(this).val();
+ 	              if(temp_value == st){
+ 	                    $(this).attr("selected",true);
+ 	              }
+ 	         });
+    	    	$("#sfc").children("option").each(function(){
+ 	               var temp_value = $(this).val();
+ 	              if(temp_value == fc){
+ 	                    $(this).attr("selected",true);
+ 	              }
+ 	         });
+    	    	$("#prosn").val(jsonobj.sn);
+    	    	$("#proid").val(jsonobj.id);
+      	    	$("#proname").val(jsonobj.name);
+      	    	$("#promtn").val(jsonobj.materialName);
+      	    	$("#promtc").val(jsonobj.materialColor);
+      	    	$("#profabn").val(jsonobj.fabricName);
+      	    	$("#profabc").val(jsonobj.fabricColor);
+      	    	$("#prolr").val(jsonobj.lr);
+      	    	$("#prolrrd").val(jsonobj.lrRound);
+      	    	$("#prowmsp").val(jsonobj.workManShip);
+      	    	$("#proprice").val(jsonobj.price);
+      	    	$("#prosumy").val(jsonobj.summary);
+      	    	$("#provder").val(jsonobj.venderName);
+      	    	$("#prodims").val(jsonobj.dimension);
+      	    	
+      	    	
+    		}
+
+    	    
+    	  });  
+    	 
+    	 
+    	// location.href="/productadm/preupdateproduct";
+     }
+   
+
+    function deletepro(productsn){
+    	var r=confirm('您确认删除吗？');
+    	if(r==true){
+    	location.href="/productadm/deleteproduct?productsn="+productsn;
+    	}
+    }
+
+    function getdetail(productsn){
+    	  $.ajax({
+      		url:"/productadm/getproductdetail",	 
+      	    type:"post",
+      	    data:{productsn:productsn},
+      	    datatype:"json",
+      	    success:function(data){
+      	    	
+      	    	var jsonobj=JSON.parse(data);
+      	    	//alert(jsonobj.name);
+      	    	//alert(jsonobj.fullImg);
+      	    	//alert(jsonobj.dimension);
+      	    	$("#dtproid").text(jsonobj.id);
+      	    	$("#dtpron").text(jsonobj.name);
+      	    	$("#dtpromtn").text(jsonobj.materialName);
+      	    	$("#dtpromtc").text(jsonobj.materialColor);
+      	    	$("#dtprofabn").text(jsonobj.fabricName);
+      	    	$("#dtprofabc").text(jsonobj.fabricColor);
+      	    	$("#dtprolr").text(jsonobj.lr);
+      	    	$("#dtprolrrd").text(jsonobj.lrRound);
+      	    	$("#dtprowmsp").text(jsonobj.workManShip);
+      	    	$("#dtproprice").text(jsonobj.price);
+      	    	$("#dtprosumy").text(jsonobj.summary);
+      	    	$("#dtprotp").text(jsonobj.typeName);
+      	    	$("#dtprosty").text(jsonobj.styleName);
+      	    	$("#dtprofc").text(jsonobj.funcName);
+      	    	$("#dtprovder").text(jsonobj.venderName);
+      	    	$("#dtprodims").text(jsonobj.dimension);
+      	    	
+      	    	$("#dtfulli").attr("src","/style/admstatic/images/"+jsonobj.fullImg);
+      	    	$("#dtli").attr("src","/style/admstatic/images/"+jsonobj.leftImg);
+      	    	$("#dtdi").attr("src","/style/admstatic/images/"+jsonobj.downImg);
+      	    	$("#dtmi").attr("src","/style/admstatic/images/"+jsonobj.materialImg);
+      	    	$("#dtfabi").attr("src","/style/admstatic/images/"+jsonobj.fabricImg);
+      	    }
+      	    
+      	  }); 
+    	// location.href="/productadm/preupdateproduct"; 
+    }
+    
+
+       
+
+</script>
+
+</head>
+
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-pencil"></span> 产品管理
+    </div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <form class="form-inline" method="post" action="/productadm/listproduct">
+                        <div class="form-group">
+                            <label class="sr-only"></label>
+                            <input id="scproid" type="text" class="form-control" placeholder="产品编号" name="proid">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only">风格</label>
+                            <div class="col-sm-8">
+                                <select id="scsty" name="styleSn" class="form-control">
+                                    #foreach( $!prost in $!proStyleList)
+                                    <option value="$!prost.sn">$!prost.name</option>
+                                     #end 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only">功能</label>
+                            <div class="col-sm-8">
+                                <select id="scfc" name="funcSn" class="form-control">
+                                     #foreach( $!profc in $!proFuncList)
+                                    <option value="$!profc.sn">$!profc.name</option>
+                                    #end 
+                                </select>
+                            </div>
+                        </div>
+                        <button  type="submit" class="btn btn-primary">搜索</button>
+                    </form>
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-info"  data-toggle="modal"  data-target="#product-add">增加</button>
+                   <!--  <button class="btn btn-info"   onclick="addpro()">增加</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>产品编号</th>
+            <th>分类</th>
+            <th>风格</th>
+            <th>功能</th>
+            <th width="20%">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        #foreach( $!prodt in $!productInfoList)
+        <tr>
+            <td>${velocityCount}</td>
+            <td>$!prodt.id</td>
+            <td>$!prodt.typeName</td>
+            <td>$!prodt.styleName</td>
+            <td>$!prodt.funcName</td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button class="btn btn-success" onclick="getdetail($!prodt.sn)">查看</button>
+                    <button class="btn btn-info" data-toggle="modal" onclick="updatepro($!prodt.sn)" data-target="#product-update">修改</button>
+                    <a href="#" class="btn btn-danger" onClick="deletepro($!prodt.sn)">删除</a>
+                </div>
+            </td>
+        </tr>
+        #end 
+        
+        </tbody>
+    </table>
+    <!--分页-->
+   <!--  <div class="panel-bodya">
+        <nav class="nav-divider clearfix">
+            <ul class="pagination pull-right">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <li>
+                                                共15条 
+                </li>
+            </ul>
+        </nav>
+    </div> -->
+</div>
+
+
+<!-- 上传测试start -->
+
+ <!-- <div class="container">
+    The fileinput-button span is used to style the file input field as button
+    <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>Add files...</span>
+        The file input field used as target for the file upload widget
+        <input id="fileupload" type="file" name="files[]" multiple>
+    </span>
+    <br>
+    <br>
+    The global progress bar
+    <div id="progress" class="progress" style="display: none;">
+        <div class="progress-bar progress-bar-success"></div>
+    </div>
+    The container for the uploaded files
+    <div id="files" class="files"></div>
+    <br>
+	<span id="resultInfo"></span>
+</div> -->
+
+
+	<div class="container">
+    <br>
+    <!-- The fileinput-button span is used to style the file input field as button -->
+    <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>Add files...</span>
+        <!-- The file input field used as target for the file upload widget -->
+        <input id="fileupload1" type="file" name="files[]" multiple>
+    </span>
+    <br>
+    <br>
+    <!-- The global progress bar -->
+   <!--  <div id="progress" class="progress" style="display: none;">
+        <div class="progress-bar progress-bar-success"></div>
+    </div> -->
+    <!-- The container for the uploaded files -->
+    <div id="files1" class="files"></div>
+    <br>
+	<span id="resultInfo1"></span>
+   
+
+</div>	
+<!-- 上传测试end -->
+
+<!--产品详情-->
+<div class="panel panel-default clearfix">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-th-large"></span> 产品详情
+    </div>
+    <div class="panel-body">
+        <div class="form-horizontal">
+          <div class="form-group col-sm-12">
+                <label class="col-sm-2 control-label">图片展示</label>
+                <div class="col-sm-10">
+                    <div class="col-md-4 img-box">
+                        <p class="title">整体图片（正）</p>
+                        <!-- <img id="dtfulli" src='/style/admstatic/images/$!prodtInfo1.fullImg' alt="" class="img-rounded img-responsive"> -->
+                        <!--  <div class="container">
+    The fileinput-button span is used to style the file input field as button
+    <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>Add files...</span>
+        The file input field used as target for the file upload widget
+        <input id="fileupload" type="file" name="files[]" multiple>
+    </span>
+    <br>
+    <br>
+    The global progress bar
+    <div id="progress" class="progress" style="display: none;">
+        <div class="progress-bar progress-bar-success"></div>
+    </div>
+    The container for the uploaded files
+    <div id="files" class="files"></div>
+    <br>
+	<span id="resultInfo"></span>
+</div> -->
+                    </div>
+                    <div class="col-md-4 img-box">
+                        <p class="title">整体图片（左）</p>
+                        <img id="dtli" src="$!fs.url($!leftImgSn)" alt="" class="img-rounded img-responsive">
+                    </div>
+                    <div class="col-md-4 img-box">
+                        <p class="title">整体图片（俯）</p>
+                        <img id="dtdi" src="/style/admstatic/images/$!prodtInfo1.downImg" alt="" class="img-rounded img-responsive"><br/>
+                    </div>
+                    <div class="col-md-4 img-box">
+                        <p class="title">材质图片</p>
+                        <img id="dtmi" src="/style/admstatic/images/$!prodtInfo1.materialImg" alt="" class="img-rounded img-responsive">
+                    </div>
+                    <div class="col-md-4 img-box">
+                        <p class="title">面料图片</p>
+                        <img id="dtfabi" src="/style/admstatic/images/$!prodtInfo1.fabricImg" alt="" class="img-rounded img-responsive">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">产品编号</label>
+                <div class="col-sm-8">
+                    <p id="dtproid" class="form-control-static">$!prodtInfo1.id</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">产品名称</label>
+                <div class="col-sm-8">
+                    <p id="dtpron" class="form-control-static">$!prodtInfo1.name</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">分类</label>
+                <div class="col-sm-8">
+                    <p id="dtprotp" class="form-control-static">$!prodtInfo1.typeName</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">风格</label>
+                <div class="col-sm-8">
+                    <p id="dtprosty" class="form-control-static">$!prodtInfo1.styleName</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">功能</label>
+                <div class="col-sm-8">
+                    <p id="dtprofc" class="form-control-static">$!prodtInfo1.funcName</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">规格参数</label>
+                <div class="col-sm-8">
+                    <p id="dtprodims" class="form-control-static">$!prodtInfo1.dimension</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">材质</label>
+                <div class="col-sm-8">
+                    <p id="dtpromtn" class="form-control-static">$!prodtInfo1.materialName</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">材质颜色</label>
+                <div class="col-sm-8">
+                    <p id="dtpromtc" class="form-control-static">$!prodtInfo1.materialColor</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">面料</label>
+                <div class="col-sm-8">
+                    <p id="dtprofabn" class="form-control-static">$!prodtInfo1.fabricName</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">面料颜色</label>
+                <div class="col-sm-8">
+                    <p id="dtprofabc" class="form-control-static">$!prodtInfo1.fabricColor</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">L/R</label>
+                <div class="col-sm-8">
+                    <p id="dtprolr" class="form-control-static">$!prodtInfo1.lr</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">L/R圆角</label>
+                <div class="col-sm-8">
+                    <p id="dtprolrrd" class="form-control-static">$!prodtInfo1.lrRound</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">厂家</label>
+                <div class="col-sm-8">
+                    <p id="dtprovder" class="form-control-static">$!prodtInfo1.venderName</p>
+                </div>
+            </div>
+          
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">工艺工法</label>
+                <div class="col-sm-8">
+                    <p id="dtprowmsp" class="form-control-static">$!prodtInfo1.workManShip</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">采购价</label>
+                <div class="col-sm-8">
+                    <p id="dtproprice" class="form-control-static">$!prodtInfo1.price</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-12">
+                <label class="col-sm-2 control-label">简介</label>
+                <div class="col-sm-10">
+                    <p id="dtprosumy" class="form-control-static">$!prodtInfo1.summary</p>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+</div>
+
+<!--产品添加-->
+<div class="modal fade " id="product-add" tabindex="-1" role="dialog" aria-labelledby="产品添加">
+    <div class="modal-dialog" role="document" style="width:1100px;margin-left:250px;">
+        <div class="modal-content modal-width">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="产品添加">产品添加</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <form method="post" class="form-horizontal" id="register" action="/productadm/addproduct" enctype="multipart/form-data">
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">产品编号</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="id" placeholder="产品编号">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">产品名称</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" placeholder="产品名称" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">分类</label>
+                        <div class="col-sm-8">
+                            <select name="typeSn" class="form-control">
+                               #foreach( $!protp in $!proTypeList)
+                                    <option value="$!protp.sn">$!protp.name</option>
+                                     #end 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">风格</label>
+                        <div class="col-sm-8">
+                            <select name="styleSn" class="form-control">
+                                #foreach( $!prost in $!proStyleList)
+                                    <option value="$!prost.sn">$!prost.name</option>
+                                     #end 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">功能</label>
+                        <div class="col-sm-8">
+                            <select name="funcSn" class="form-control">
+                                 #foreach( $!profc in $!proFuncList)
+                                    <option value="$!profc.sn">$!profc.name</option>
+                                    #end 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">规格参数</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" placeholder="规格参数" name="dimension">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">材质</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" placeholder="材质" name="materialName">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">材质颜色</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" placeholder="材质颜色" name="materialColor">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">面料</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" placeholder="面料" name="fabricName">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">面料颜色</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" placeholder="面料颜色" name="fabricColor">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">L/R</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" placeholder="L/R" name="lr">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">L/R圆角</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" placeholder="L/R圆角" name="lrRound">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">厂家</label>
+                        <div class="col-sm-8">
+                         
+                          <input type="text" class="form-control"  name="venderName">
+                        
+                           <!--  <select name="venderName" class="form-control">
+                                <option value="">A厂家</option>
+                                <option value="">B厂家</option>
+                            </select> -->
+                        </div>
+                    </div>
+                  <!--   <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">厂家2</label>
+                        <div class="col-sm-8">
+                            <select name="" class="form-control">
+                                <option value="">A厂家</option>
+                                <option value="">B厂家</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">厂家3</label>
+                        <div class="col-sm-8">
+                            <select name="" class="form-control">
+                                <option value="">A厂家</option>
+                                <option value="">B厂家</option>
+                            </select>
+                        </div>
+                    </div> -->
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">工艺工法</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" placeholder="工艺工法" name="workManShip">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">采购价</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" placeholder="采购价" name="price">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-2 control-label">简介</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control textarea" rows="3" name="summary"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-2 control-label">图片展示</label>
+                        <div class="col-sm-10">
+                           <!--  <div class="col-md-4 img-box">
+                                <p class="title">整体图片（正）</p>
+                                <input type="file" class="form-control" name="t1">
+                            </div> -->
+                            <div class="container">
+        <!-- The file input field used as target for the file upload widget -->
+        <input id="fileupload" type="file" name="files[]" multiple>
+    <br>
+    <!-- The global progress bar -->
+    <div id="progress" class="progress" style="display: none;">
+        <div class="progress-bar progress-bar-success"></div>
+    </div>
+    <!-- The container for the uploaded files -->
+                      <div id="files" class="files"></div>
+                             <br>
+	                    <span id="resultInfo"></span>
+                                  </div>
+                          
+                         <!--    <div class="col-md-4 img-box">
+                                <p class="title">整体图片（左）</p>
+                                <input type="file" class="form-control" name="t2">
+                            </div>
+                            <div class="col-md-4 img-box">
+                                <p class="title">整体图片（俯）</p>
+                                <input type="file" class="form-control" name="t3">
+                            </div>
+                            <div class="col-md-4 img-box">
+                                <p class="title">材质图片</p>
+                                <input type="file" class="form-control" name="t4">
+                            </div>
+                            <div class="col-md-4 img-box">
+                                <p class="title">面料图片</p>
+                                <input type="file" class="form-control" name="t5">
+                            </div> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary" form="register">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--产品修改-->
+<div class="modal fade " id="product-update" tabindex="-1" role="dialog" aria-labelledby="产品修改">
+    <div class="modal-dialog" role="document" style="width:1100px;margin-left:250px;">
+        <div class="modal-content modal-width">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="产品添加">产品修改</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <form method="post" class="form-horizontal" id="upprodt" action="/productadm/updateproduct" enctype="multipart/form-data">
+                     <input id="prosn" type="hidden" name="sn">
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">产品编号</label>
+                        <div class="col-sm-8">
+                            <input id="proid" type="text" class="form-control" name="id" placeholder="产品编号">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">产品名称</label>
+                        <div class="col-sm-8">
+                            <input id="proname" type="text" class="form-control" placeholder="产品编号" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">分类</label>
+                        <div class="col-sm-8">
+                            <select id="stp" name="typeSn" class="form-control">
+                                #foreach( $!protp in $!proTypeList)
+                                    <option value="$!protp.sn">$!protp.name</option>
+                                     #end 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">风格</label>
+                        <div class="col-sm-8">
+                            <select id="sty" name="styleSn" class="form-control">
+                               #foreach( $!prost in $!proStyleList)
+                                    <option value="$!prost.sn">$!prost.name</option>
+                                     #end 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">功能</label>
+                        <div class="col-sm-8">
+                            <select id="sfc" name="funcSn" class="form-control">
+                              #foreach( $!profc in $!proFuncList)
+                                    <option value="$!profc.sn">$!profc.name</option>
+                                    #end 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">规格参数</label>
+                        <div class="col-sm-8">
+                            <input id="prodims" type="text" class="form-control" placeholder="规格参数" name="dimension">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">材质</label>
+                        <div class="col-sm-8">
+                            <input id="promtn" type="text" class="form-control" placeholder="材质" name="materialName">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">材质颜色</label>
+                        <div class="col-sm-8">
+                            <input id="promtc" type="text" class="form-control" placeholder="材质颜色" name="materialColor">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">面料</label>
+                        <div class="col-sm-8">
+                            <input id="profabn" type="text" class="form-control" placeholder="面料" name="fabricName">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">面料颜色</label>
+                        <div class="col-sm-8">
+                            <input id="profabc"  type="text" class="form-control" placeholder="面料颜色" name="fabricColor">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">L/R</label>
+                        <div class="col-sm-8">
+                            <input id="prolr" type="text" class="form-control" placeholder="L/R" name="lr">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">L/R圆角</label>
+                        <div class="col-sm-8">
+                            <input id="prolrrd" type="text" class="form-control" placeholder="L/R圆角" name="lrRound">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">厂家1</label>
+                        <div class="col-sm-8">
+                         <input id="provder" type="text" class="form-control" placeholder="厂家" name="venderName">
+                           <!--  <select name="" class="form-control">
+                                <option value="">A厂家</option>
+                                <option value="">B厂家</option>
+                            </select> -->
+                        </div>
+                    </div>
+                   
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">工艺工法</label>
+                        <div class="col-sm-8">
+                            <input id="prowmsp" type="text" class="form-control" placeholder="工艺工法" name="workManShip">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">采购价</label>
+                        <div class="col-sm-8">
+                            <input id="proprice" type="text" class="form-control" placeholder="采购价" name="price">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-2 control-label">简介</label>
+                        <div class="col-sm-10">
+                            <textarea id="prosumy" class="form-control textarea" rows="3" name="summary"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-2 control-label">图片展示</label>
+                        <div class="col-sm-10">
+                            <div class="col-md-4 img-box">
+                                <p class="title">整体图片（正）</p>
+                                <input type="file" class="form-control" name="et1">
+                            </div>
+                            <div class="col-md-4 img-box">
+                                <p class="title">整体图片（左）</p>
+                                <input type="file" class="form-control" name="et2">
+                            </div>
+                            <div class="col-md-4 img-box">
+                                <p class="title">整体图片（俯）</p>
+                                <input type="file" class="form-control" name="et3">
+                            </div>
+                            <div class="col-md-4 img-box">
+                                <p class="title">材质图片</p>
+                                <input type="file" class="form-control" name="et4">
+                            </div>
+                            <div class="col-md-4 img-box">
+                                <p class="title">面料图片</p>
+                                <input type="file" class="form-control" name="et5">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary" form="upprodt">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script> -->
+<!-- <script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script> -->
+<script src="/style/admstatic/js/main.js"></script>
+<script src="/script/member/user/product.js"></script>
+</body>
+</html>

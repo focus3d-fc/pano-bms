@@ -65,7 +65,7 @@
 								data-target="#add">修改</button>
 							<!-- <button class="btn btn-info" onclick="toUp()">修改</button> -->
 							<a href="/houses/delhouses?SN=$!{Houses.SN}"
-								class="btn btn-danger" onClick="del()">删除</a>
+								class="btn btn-danger"">删除</a>
 						</div>
 					</td>
 				</tr>
@@ -74,15 +74,13 @@
 		</table>
 		<nav aria-label="Page navigation" class="nav-divider">
 			<ul class="pagination pull-right">
-				<li><a href="#" aria-label="Previous"> <span
-						aria-hidden="true">&laquo;</span>
-				</a></li>
-				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				<li><a href="/houses/tohouse?page=$!{upPage}"
+					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+				</a></li> #foreach ($item in [1..$!{pages.totalPages}])
+				<li><a href="/houses/tohouse?page=$velocityCount">$velocityCount</a></li>
+				#end
+				<li><a href="/houses/tohouse?page=$!{nextPage}"
+					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 				</a></li>
 			</ul>
 		</nav>
@@ -100,30 +98,31 @@
 					<h4 class="modal-title">添加/修改</h4>
 				</div>
 				<div class="modal-body clearfix">
-					<form class="form-horizontal" id="formadd">
+					<form class="form-horizontal" id="formadd"
+						action="/houses/addhouses">
 						<div class="form-group">
 							<label class="col-sm-3 control-label">省份</label>
 							<div class="col-sm-9">
-								<select class="form-control" id="mcmbProvince"
-									name="mcmbProvince"></select>
+								<select class="form-control" id="acmbProvince"
+									name="acmbProvince"></select>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">城市</label>
 							<div class="col-sm-9">
-								<select class="form-control" id="mcmbCity" name="mcmbCity"></select>
+								<select class="form-control" id="acmbCity" name="acmbCity"></select>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">城市</label>
+							<label class="col-sm-3 control-label">区县</label>
 							<div class="col-sm-9">
-								<select class="form-control" id="mcmbArea" name="mcmbArea"></select>
+								<select class="form-control" id="acmbArea" name="acmbArea"></select>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">楼盘名称</label>
 							<div class="col-sm-9">
-								<input id="mhousesname" name="mhousesname" type="text"
+								<input id="asname" name="asname" type="text"
 									class="form-control" placeholder="楼盘名称">
 							</div>
 						</div>
@@ -142,7 +141,7 @@
 
 	<script type="text/javascript">
 		addressInit('cmbProvince', 'cmbCity', 'cmbArea');
-		addressInit('mcmbProvince', 'mcmbCity', 'mcmbArea');
+		addressInit('acmbProvince', 'acmbCity', 'acmbArea');
 	</script>
 </body>
 </html>

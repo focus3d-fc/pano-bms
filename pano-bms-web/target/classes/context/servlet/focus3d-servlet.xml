@@ -41,7 +41,7 @@
 	  <property name="configLocation" value="classpath:/context/velocity/velocity.properties"/>
    	</bean>
 	<!--异常统一处理-->
-	<bean id="exceptionresolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	<!-- <bean id="exceptionresolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="defaultErrorView">
 			<value>error/default</value>
 		</property>
@@ -52,7 +52,7 @@
 	            <prop key="java.sql.SQLException">/error/default</prop>
 	        </props>
     	</property>
-	</bean>
+	</bean> -->
 	
 	<!-- 上传文件解析器 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

@@ -18,9 +18,10 @@ public interface UserDao{
 	public void updateUserByCert_no(User user);
 	public void updateRole_snByUser_sn(User_Role user_role);
 	public void saveLogin(Login login);
-	public void updateStatus(Login login);
+	public void updateStatus(User user);
 	public List<User> selectUserByMsg(User user);
 	public List<User> selectUserByMsg2(User user);
 	public int selectUserCount();
 	public List<User> limit(Page page);
+	public List<String> selectRole_name();
 }

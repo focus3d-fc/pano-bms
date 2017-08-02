@@ -100,8 +100,9 @@ $().ready(function() {
                 <label class="col-sm-4 control-label">角色</label>
                 <div class="col-sm-8">
                     <select class="form-control" name="role_name">
-                        <option>管理员</option>
-                        <option>运营</option>
+                         #foreach ($!{role_name} in $!{role_nameList})
+                         <option>$!{role_name}</option>
+                         #end
                     </select>
                 </div>
             </div>

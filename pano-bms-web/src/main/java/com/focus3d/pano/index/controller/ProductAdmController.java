@@ -44,7 +44,7 @@ public class ProductAdmController extends BaseController{
 	@Autowired
 	private IFileReadClient fileReadClient;//读取文件接口
 
-	
+	//查询列表
 	@RequestMapping("/listproduct")
 	public String listproduct(HttpSession session,Model model,String proid,String styleSn,String funcSn
 			,Integer pageNum,Integer pageSize){
@@ -52,6 +52,7 @@ public class ProductAdmController extends BaseController{
 		
 		System.out.println(proid);
 		
+		System.out.println("fffffffff"+funcSn);
 		 paramMap.put("id", proid);
 		 paramMap.put("styleSn", styleSn);
 		 paramMap.put("funcSn", funcSn);
@@ -59,33 +60,25 @@ public class ProductAdmController extends BaseController{
 		 model.addAttribute("scStyleSn", styleSn);
 		 model.addAttribute("scFuncSn",funcSn);
 		 
-		/* if(pageNum==null){
+		if(pageNum==null){
 				pageNum=1;
 			}if(pageSize==null){
 				pageSize=5;
 			}
-			   
-		    int startRow = (pageNum - 1) * pageSize;
+		    int allPageSize = productAdmService.countProductInfo(paramMap);
+		    System.out.println("zzzzzzzzzzz"+allPageSize);
+    /* 	    int startRow = (pageNum - 1) * pageSize;
 	        int offset = pageSize;
-	        int allPageSize = productAdmService.countProductInfo(paramMap);
-	        PageUtil page = new PageUtil(allPageSize, pageNum, pageSize);
-		    paramMap.put("startNum", page.getSelectStart());
-		    paramMap.put("pageSize", page.getPageShowSize());*/
+	       
+	        PageUtil page = new PageUtil(allPageSize, pageNum, pageSize);*/
+//		    paramMap.put("startNum", 0);
+//		    paramMap.put("pageSize", pageSize);
 		 
 		 List<ProductInfo> productInfoList=null;
 		 List<pano_project_style> proStyleList=null;
 		 List<PanoProductFunc>  proFuncList=null;
 		 List<PanoProductType> proTypeList=null;
 		 
-		 try {
-			long dec=EncryptUtil.decode("TCoeyKUAXHup");
-			//String file = fileReadClient.getFile(decode, FileAttributeEnum.VISIT_ADDR);
-			System.out.println("*****"+dec);
-			model.addAttribute("leftImgSn",dec);
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		 
 		try {
 			productInfoList = productAdmService.listProductInfo(paramMap);
@@ -102,7 +95,9 @@ public class ProductAdmController extends BaseController{
 		   
 		   //产品详情显示首个
 		   session.setAttribute("prodtInfo1", productInfoList.get(0));
+		   if(productInfoList!=null&&productInfoList.size()>0){
 		   session.setAttribute("productInfoList", productInfoList);
+		   }
 		   session.setAttribute("proStyleList", proStyleList);
 		   session.setAttribute("proFuncList", proFuncList);
 		   session.setAttribute("proTypeList", proTypeList);
@@ -117,7 +112,7 @@ public class ProductAdmController extends BaseController{
 		return "/panoadm/productadm/addproduct";
 	}
 	
-	
+	//添加
 	@RequestMapping("/addproduct")
 	public String addproduct(Product pro,HttpSession session,HttpServletRequest request,HttpServletResponse response
 			){
@@ -132,7 +127,7 @@ public class ProductAdmController extends BaseController{
 		System.out.println("----"+"******"+pro.getFullImgSn1()+pro.getDimension()+pro.getTypeSn());
 		System.out.println(pro.getId()+pro.getName());
 		String fullImgSn1=pro.getFullImgSn1();
-		String leftImgSn1=pro.getMaterialImgSn1();
+		String leftImgSn1=pro.getLeftImgSn1();
 		String downImgSn1=pro.getDownImgSn1();
 		String materialImgSn1=pro.getMaterialImgSn1();
 		String fabricImgSn1=pro.getFabricImgSn1();
@@ -169,7 +164,7 @@ public class ProductAdmController extends BaseController{
 		return redirect("/productadm/listproduct");
 	}
 	
-	//修改
+	//预修改
 	@RequestMapping("/preupdateproduct")
 	public void preupdateproduct(HttpSession session,HttpServletResponse response,Model model,String productsn){
 //		Product prodt=productAdmService.getProductBySn(productsn);
@@ -202,6 +197,7 @@ public class ProductAdmController extends BaseController{
 		//return this.redirect("/panoadm/productadm/product#product-update");
 	}
 	
+	//修改
 	@RequestMapping("/updateproduct")
 	public String updateproduct(Product pro,HttpSession session,HttpServletRequest request,HttpServletResponse response
 			){
@@ -220,7 +216,7 @@ public class ProductAdmController extends BaseController{
 		System.out.println(pro.getId()+pro.getName());
 		
 		String fullImgSn1=pro.getFullImgSn1();
-		String leftImgSn1=pro.getMaterialImgSn1();
+		String leftImgSn1=pro.getLeftImgSn1();
 		String downImgSn1=pro.getDownImgSn1();
 		String materialImgSn1=pro.getMaterialImgSn1();
 		String fabricImgSn1=pro.getFabricImgSn1();
