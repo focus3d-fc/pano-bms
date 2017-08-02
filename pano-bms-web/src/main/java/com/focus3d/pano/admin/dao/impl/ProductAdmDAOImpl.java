@@ -42,6 +42,14 @@ public class ProductAdmDAOImpl extends BaseDao implements IProductAdmDAO{
 	}
 
 	
+	
+	@Override
+	public Integer countProductInfo(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return (Integer)getSqlMapClientTemplate().queryForObject("pano_product.countProductInfo", paramMap);
+	}
+
+
 	public List<ProductInfo> listProductInfo(Map<String,Object> paramMap) {
 		// TODO Auto-generated method stub
 		

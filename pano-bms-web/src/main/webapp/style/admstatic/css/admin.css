@@ -273,3 +273,22 @@ form .form-group:last-child {
     max-width: 200px;
     height: 100%;
 }
+/*套餐设置*/
+.panel-default .combo-title{
+    padding: 10px;
+    /*font-size: 16px;*/
+    font-weight: bold;
+}
+.panel-default .panel-bodya .cof{
+    width: 20%;
+}
+.panel-default .panel-bodya .cof button{
+    margin: 20px 0 20px 200px;
+}
+/*户型设置*/
+.unitSet {
+    padding: 0 ;
+}
+.unitSet table tr td{
+    border: 0 ;
+}

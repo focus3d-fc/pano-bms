@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.focus3d.pano.admin.dao.UserDao;
+import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.model.Login;
 import com.focus3d.pano.model.User;
 import com.focus3d.pano.model.User_Role;
@@ -70,6 +71,28 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 	public void updateStatus(Login login) {
 		getSqlMapClientTemplate().update("updateStatus",login);
 		
+	}
+
+	@Override
+	public List<User> selectUserByMsg(User user) {
+		List<User> userList=(List<User>) getSqlMapClientTemplate().queryForList("selectUserByMsg",user);		
+		return userList;
+	}
+	@Override
+	public List<User> selectUserByMsg2(User user) {
+		List<User> userList=(List<User>) getSqlMapClientTemplate().queryForList("selectUserByMsg2",user);		
+		return userList;
+	}
+	@Override
+	public int selectUserCount() {
+		int count=(Integer) getSqlMapClientTemplate().queryForObject("selectUserCount");
+		return count;
+	}
+
+	@Override
+	public List<User> limit(Page page) {
+		List<User> userList=(List<User>) getSqlMapClientTemplate().queryForList("limit",page);
+		return userList;
 	}
 
 	

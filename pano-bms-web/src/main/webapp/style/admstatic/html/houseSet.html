@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>楼盘设置</title>
+    <title>楼盘设置-户型</title>
     <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <span class="glyphicon glyphicon-pencil"></span> 基础信息管理
+        <span class="glyphicon glyphicon-pencil"></span> 楼盘管理
     </div>
     <div class="panel-body">
         <div class="form-horizontal">
@@ -32,28 +32,28 @@
     <div class="panel-body">
         <!--tab栏标题-->
         <ul class="nav nav-tabs basic-tab">
-            <li class="active"><a href="#unit" data-toggle="tab">户型</a></li>
-            <li><a href="#style" data-toggle="tab">风格</a></li>
-            <li><a href="#ad" data-toggle="tab">广告</a></li>
+            <li class="active"><a href="houseSet.html">户型</a></li>
+            <li><a href="styleSet.html">风格</a></li>
+            <li><a href="addSet.html" data-toggle="tab">广告</a></li>
             <button class="btn btn-info" data-toggle="modal" data-target="#add" style="margin-left: 60px">增加</button>
         </ul>
         <!--tab内容-->
         <div id="basicTabContent" class="tab-content">
             <!--户型-->
-            <div class="tab-pane fade in active" id="unit">
+            <div class="tab-pane fade in active">
                 <table class="table table-hover noMarB">
                     <thead>
                     <tr>
                         <th>序号</th>
                         <th>名称</th>
                         <th width="40%">图片</th>
-                        <th width="20%">操作</th>
+                        <th width="27%">操作</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>1</td>
-                        <td>A0002104</td>
+                        <td>户型A</td>
                         <td class="img-wrap">
                             <div class="img">
                                 <img class="img-show" src="../img/2.jpg">
@@ -61,229 +61,7 @@
                         </td>
                         <td>
                             <div class="btn-group btn-group-sm" role="group">
-                                <a href="#" class="btn btn-primary">套餐设置</a>
-                                <a href="#" class="btn btn-default">空间设置</a>
-                                <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
-                                <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>A0002104</td>
-                        <td class="img-wrap">
-                            <div class="img">
-                                <img class="img-show" src="../img/2.jpg">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="btn-group btn-group-sm" role="group">
-                                <a href="#" class="btn btn-primary">套餐设置</a>
-                                <a href="#" class="btn btn-default">空间设置</a>
-                                <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
-                                <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>A0002104</td>
-                        <td class="img-wrap">
-                            <div class="img">
-                                <img class="img-show" src="../img/2.jpg">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="btn-group btn-group-sm" role="group">
-                                <a href="#" class="btn btn-primary">套餐设置</a>
-                                <a href="#" class="btn btn-default">空间设置</a>
-                                <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
-                                <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>A0002104</td>
-                        <td class="img-wrap">
-                            <div class="img">
-                                <img class="img-show" src="../img/2.jpg">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="btn-group btn-group-sm" role="group">
-                                <a href="#" class="btn btn-primary">套餐设置</a>
-                                <a href="#" class="btn btn-default">空间设置</a>
-                                <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
-                                <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>A0002104</td>
-                        <td class="img-wrap">
-                            <div class="img">
-                                <img class="img-show" src="../img/2.jpg">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="btn-group btn-group-sm" role="group">
-                                <a href="#" class="btn btn-primary">套餐设置</a>
-                                <a href="#" class="btn btn-default">空间设置</a>
-                                <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
-                                <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>A0002104</td>
-                        <td class="img-wrap">
-                            <div class="img">
-                                <img class="img-show" src="../img/2.jpg">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="btn-group btn-group-sm" role="group">
-                                <a href="#" class="btn btn-primary">套餐设置</a>
-                                <a href="#" class="btn btn-default">空间设置</a>
-                                <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
-                                <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!--风格-->
-            <div class="tab-pane fade" id="style">
-                <table class="table table-hover noMarB">
-                    <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th>名称</th>
-                        <th width="30%">图片</th>
-                        <th width="30%">户型</th>
-                        <th width="10%">操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>A0002104</td>
-                        <td>
-                            <div class="img">
-                                <img class="img-show" src="../img/2.jpg">
-                            </div>
-                        </td>
-                        <td>A0002104,A0002104,A0002104,A0002104,A0002104
-                            A0002104,A0002104,A0002104,A0002104,A0002104
-                        </td>
-                        <td>
-                            <div class="btn-group btn-group-sm" role="group">
-                                <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
-                                <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>A0002104</td>
-                        <td>
-                            <div class="img">
-                                <img class="img-show" src="../img/2.jpg">
-                            </div>
-                        </td>
-                        <td>A0002104,A0002104,A0002104,A0002104,A0002104
-                            A0002104,A0002104,A0002104,A0002104,A0002104
-                        </td>
-                        <td>
-                            <div class="btn-group btn-group-sm" role="group">
-                                <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
-                                <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>A0002104</td>
-                        <td>
-                            <div class="img">
-                                <img class="img-show" src="../img/2.jpg">
-                            </div>
-                        </td>
-                        <td>A0002104,A0002104,A0002104,A0002104,A0002104
-                            A0002104,A0002104,A0002104,A0002104,A0002104
-                        </td>
-                        <td>
-                            <div class="btn-group btn-group-sm" role="group">
-                                <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
-                                <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>A0002104</td>
-                        <td>
-                            <div class="img">
-                                <img class="img-show" src="../img/2.jpg">
-                            </div>
-                        </td>
-                        <td>A0002104,A0002104,A0002104,A0002104,A0002104
-                            A0002104,A0002104,A0002104,A0002104,A0002104
-                        </td>
-                        <td>
-                            <div class="btn-group btn-group-sm" role="group">
-                                <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
-                                <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>A0002104</td>
-                        <td>
-                            <div class="img">
-                                <img class="img-show" src="../img/2.jpg">
-                            </div>
-                        </td>
-                        <td>A0002104,A0002104,A0002104,A0002104,A0002104
-                            A0002104,A0002104,A0002104,A0002104,A0002104
-                        </td>
-                        <td>
-                            <div class="btn-group btn-group-sm" role="group">
-                                <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
-                                <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!--广告-->
-            <div class="tab-pane fade" id="ad">
-                <table class="table table-hover noMarB">
-                    <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th width="30%">URL</th>
-                        <th width="30%">图片</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>www.baidu.com</td>
-                        <td>
-                            <div class="img">
-                                <img class="img-show" src="../img/2.jpg">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="btn-group btn-group-sm" role="group">
+                                <a href="roomSet.html" class="btn btn-default">空间设置</a>
                                 <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
                                 <a href="#" class="btn btn-danger" onClick="del()">删除</a>
                             </div>

@@ -11,6 +11,7 @@ import com.focus3d.pano.model.pano_project_style;
 
 public interface IProductAdmDAO {
 	public void addProduct(Product pro);
+	public Integer countProductInfo(Map<String,Object> paramMap);
 	public List<ProductInfo> listProductInfo(Map<String,Object> paramMap);
 	public Product getProductBySn(String psn);
 	public ProductInfo getProductDetail(String psn);

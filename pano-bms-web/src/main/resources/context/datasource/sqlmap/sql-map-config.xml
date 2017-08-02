@@ -22,5 +22,6 @@
 		<sqlMap resource="context/datasource/sqlmap/pano_product_func.xml"/>
 		<sqlMap resource="context/datasource/sqlmap/pano_product_type.xml"/>
 		<sqlMap resource="context/datasource/sqlmap/pano_project_package.xml"/>
-		
+		<sqlMap resource="context/datasource/sqlmap/pano_project.xml"/>
+		<sqlMap resource="context/datasource/sqlmap/pano_project_house.xml"/>
 </sqlMapConfig>

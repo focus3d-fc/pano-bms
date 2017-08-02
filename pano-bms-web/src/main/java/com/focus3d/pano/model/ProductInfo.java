@@ -64,6 +64,12 @@ public class ProductInfo implements CommonModel{
 	    private String fabricImg;
 	    private String updateTime1;
 	    private String addTime1;
+	    private String fullImgUrl;
+	    private String leftImgUrl;
+	    private String downImgUrl;
+	    private String materialImgUrl;
+	    private String fabricImgUrl;
+	    
 	    
 	    private String typeName;
 	    private String funcName;
@@ -457,6 +463,57 @@ public class ProductInfo implements CommonModel{
 
 		public void setAddTime1(String addTime1) {
 			this.addTime1 = addTime1;
+		}
+
+		
+
+		public String getFullImgUrl() {
+			return fullImgUrl;
+		}
+
+
+		public void setFullImgUrl(String fullImgUrl) {
+			this.fullImgUrl = fullImgUrl;
+		}
+
+
+		public String getLeftImgUrl() {
+			return leftImgUrl;
+		}
+
+
+		public void setLeftImgUrl(String leftImgUrl) {
+			this.leftImgUrl = leftImgUrl;
+		}
+
+
+		public String getDownImgUrl() {
+			return downImgUrl;
+		}
+
+
+		public void setDownImgUrl(String downImgUrl) {
+			this.downImgUrl = downImgUrl;
+		}
+
+
+		public String getMaterialImgUrl() {
+			return materialImgUrl;
+		}
+
+
+		public void setMaterialImgUrl(String materialImgUrl) {
+			this.materialImgUrl = materialImgUrl;
+		}
+
+
+		public String getFabricImgUrl() {
+			return fabricImgUrl;
+		}
+
+
+		public void setFabricImgUrl(String fabricImgUrl) {
+			this.fabricImgUrl = fabricImgUrl;
 		}
 
 

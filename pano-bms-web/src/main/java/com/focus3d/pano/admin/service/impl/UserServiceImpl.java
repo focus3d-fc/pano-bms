@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.focus3d.pano.admin.dao.UserDao;
 import com.focus3d.pano.admin.service.UserService;
+import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.model.Login;
 import com.focus3d.pano.model.User;
 import com.focus3d.pano.model.User_Role;
@@ -118,6 +119,37 @@ public class UserServiceImpl implements UserService{
 		login.setStatus(status);
 		userDao.updateStatus(login);
 	}
+
+
+	@Override
+	public List<User> selectUserByMsg(String nick_name,String mobile,int startIndex,int pagesize) {
+		User user=new User();
+		user.setNick_name(nick_name);
+		user.setMobile(mobile);
+		user.setStartIndex(startIndex);
+		user.setPagesize(pagesize);
+		return userDao.selectUserByMsg(user);
+	}
+	@Override
+	public List<User> selectUserByMsg2(String nick_name, String mobile) {
+		User user=new User();
+		user.setNick_name(nick_name);
+		user.setMobile(mobile);
+		return userDao.selectUserByMsg2(user);
+	}
+	@Override
+	public int selectUserCount() {
+		return userDao.selectUserCount();
+	}
+
+
+	@Override
+	public List<User> limit(Page page) {
+		return userDao.limit(page);
+	}
+
+
+
 
 
 

@@ -64,6 +64,11 @@ public class Product implements CommonModel{
 	    private String fabricImg;
 	    private String updateTime1;
 	    private String addTime1;
+	    private String fullImgSn1;
+	    private String leftImgSn1;
+	    private String downImgSn1;
+	    private String materialImgSn1;
+	    private String fabricImgSn1;
 	    
 	    private String venderName;
 	    private String dimension;
@@ -454,6 +459,59 @@ public class Product implements CommonModel{
 
 		public void setAddTime1(String addTime1) {
 			this.addTime1 = addTime1;
+		}
+
+		
+
+		public String getFullImgSn1() {
+			return fullImgSn1;
+		}
+
+
+		public void setFullImgSn1(String fullImgSn1) {
+			this.fullImgSn1 = fullImgSn1;
+		}
+
+        
+		
+		
+		public String getLeftImgSn1() {
+			return leftImgSn1;
+		}
+
+
+		public void setLeftImgSn1(String leftImgSn1) {
+			this.leftImgSn1 = leftImgSn1;
+		}
+
+
+		public String getDownImgSn1() {
+			return downImgSn1;
+		}
+
+
+		public void setDownImgSn1(String downImgSn1) {
+			this.downImgSn1 = downImgSn1;
+		}
+
+
+		public String getMaterialImgSn1() {
+			return materialImgSn1;
+		}
+
+
+		public void setMaterialImgSn1(String materialImgSn1) {
+			this.materialImgSn1 = materialImgSn1;
+		}
+
+
+		public String getFabricImgSn1() {
+			return fabricImgSn1;
+		}
+
+
+		public void setFabricImgSn1(String fabricImgSn1) {
+			this.fabricImgSn1 = fabricImgSn1;
 		}
 
 

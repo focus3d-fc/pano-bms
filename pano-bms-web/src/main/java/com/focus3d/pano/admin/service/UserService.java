@@ -2,6 +2,7 @@ package com.focus3d.pano.admin.service;
 
 import java.util.List;
 
+import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.model.Login;
 import com.focus3d.pano.model.User;
 import com.focus3d.pano.model.User_Role;
@@ -21,4 +22,8 @@ public interface UserService {
 String login_name,String password,int status,
 long user_sn,long adder_sn,String adder_name,String add_time,String cert_no);
 	public void updateStatus(String cert_no,int status);
+	public List<User> selectUserByMsg(String nick_name,String mobile,int startIndex,int pagesize);
+	public List<User> selectUserByMsg2(String nick_name,String mobile);
+	public int selectUserCount();
+	public List<User> limit(Page page);
 }

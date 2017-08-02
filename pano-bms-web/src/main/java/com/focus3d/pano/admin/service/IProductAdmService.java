@@ -15,6 +15,7 @@ public interface IProductAdmService {
 
 	//public List<ProductModel> listproducts();
 	public void addProduct(Product pro);
+	public Integer countProductInfo(Map<String,Object> paramMap);
 	public List<ProductInfo> listProductInfo(Map<String,Object> paramMap);
 	public Product getProductBySn(String psn);
 	public ProductInfo getProductDetail(String psn);

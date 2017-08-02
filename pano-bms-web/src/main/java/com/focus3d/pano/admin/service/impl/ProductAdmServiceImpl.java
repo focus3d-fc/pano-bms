@@ -28,6 +28,14 @@ public class ProductAdmServiceImpl implements IProductAdmService{
 		productAdmDAO.addProduct(pro);
 	}
 
+	
+	@Override
+	public Integer countProductInfo(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return productAdmDAO.countProductInfo(paramMap);
+	}
+
+
 	@Override
 	public List<ProductInfo> listProductInfo(Map<String,Object> paramMap) {
 		// TODO Auto-generated method stub

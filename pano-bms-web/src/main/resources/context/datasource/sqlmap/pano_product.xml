@@ -54,6 +54,36 @@
     <result column="workmanship" jdbcType="VARCHAR" property="workManShip"/>
   </resultMap>
 	
+	<sql id="proBaseSql">
+	   select p.SN, p.ID, p.NAME, p.BRAND, p.PRICE, p.STATUS, p.SUMMARY, p.LEFT_IMG_SN as leftImgSn, p.DOWN_IMG_SN as downImgSn,
+  p.FULL_IMG_SN as fullImgSn, p.BANNER_IMG_SN as bannerImgSn, p.TYPE_SN as typeSn, p.FUNC_SN as funcSn, p.SPACE_SN as spaceSn,
+	     p.STYLE_SN as styleSn, p.LENGTH, p.WIDE, p.HEIGHT, p.MATERIAL_NAME as materialName,
+      p.MATERIAL_IMG_SN as materialImgSn, p.FABRIC_NAME as fabricName, p.FABRIC_IMG_SN as fabricImgSn, p.COLOR, p.MODEL, 
+      p.CAPACITY, p.REMARK, p.ADDER_SN as adderSn, p.ADDER_NAME as adderName,p.ADD_TIME as addTime1, p.UPDATER_SN as updaterSn, 
+      p.UPDATER_NAME as updaterName, p.UPDATE_TIME as updateTime1,p.dimension,p.venderName,
+      p.workManShip,p.LR,p.lr_round as lrRound, p.material_color as materialColor,p.fabric_color as fabricColor,
+    p.full_img as fullImg,p.left_img as leftImg,p.down_img as downImg,p.material_img as materialImg,p.fabric_img as fabricImg,p.venderName
+    ,pt.NAME as typeName,pf.NAME as funcName,ps.NAME as styleName
+    from pano_product p left JOIN pano_product_type pt on p.type_sn=pt.sn left join pano_product_func pf on p.FUNC_SN=pf.SN
+LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn   
+ <dynamic prepend="WHERE ">      
+    <isNotEmpty prepend="AND" property="id"> p.id like concat('%',#id#,'%')</isNotEmpty>  
+    <isNotEmpty prepend="AND" property="styleSn"> p.style_sn = #styleSn#</isNotEmpty>  
+    <isNotEmpty prepend="AND" property="funcSn"> p.func_sn = #funcSn#</isNotEmpty>  
+  </dynamic>  
+  <dynamic prepend="ORDER BY">  
+        <isNotEmpty property="orderSql">     
+            $orderSql$     
+        </isNotEmpty>  
+    </dynamic>     
+	  
+	</sql>
+	
+	<select id="countProductInfo" resultClass="java.lang.Integer">
+	  select count(*) cn from  (<include refid="proBaseSql"/>) p
+	
+	</select>
+	
 	<select id="getAllProductInfo"  resultClass="productInfo" parameterClass="java.util.Map">
 	  select p.SN, p.ID, p.NAME, p.BRAND, p.PRICE, p.STATUS, p.SUMMARY, p.LEFT_IMG_SN as leftImgSn, p.DOWN_IMG_SN as downImgSn,
   p.FULL_IMG_SN as fullImgSn, p.BANNER_IMG_SN as bannerImgSn, p.TYPE_SN as typeSn, p.FUNC_SN as funcSn, p.SPACE_SN as spaceSn,
@@ -65,7 +95,7 @@
     p.full_img as fullImg,p.left_img as leftImg,p.down_img as downImg,p.material_img as materialImg,p.fabric_img as fabricImg,p.venderName
     ,pt.NAME as typeName,pf.NAME as funcName,ps.NAME as styleName
     from pano_product p left JOIN pano_product_type pt on p.type_sn=pt.sn left join pano_product_func pf on p.FUNC_SN=pf.SN
-LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn
+LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn   
  <dynamic prepend="WHERE ">      
     <isNotEmpty prepend="AND" property="id"> p.id like concat('%',#id#,'%')</isNotEmpty>  
     <isNotEmpty prepend="AND" property="styleSn"> p.style_sn = #styleSn#</isNotEmpty>  
@@ -80,8 +110,8 @@ LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn
         <isNotEmpty property="startNum">  
             #startNum#  
         </isNotEmpty>  
-        <isNotEmpty  property="size">  
-            ,#size#  
+        <isNotEmpty  property="pageSize">  
+            ,#pageSize#  
         </isNotEmpty>  
    </dynamic>  
 
@@ -140,15 +170,15 @@ LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn
 	   id,
 	   name,
 	   brand,price,status,summary,length,wide,height,workmanship,lr,lr_round,material_name,material_color,
-	   fabric_name,fabric_color,LEFT_IMG_SN, DOWN_IMG_SN,
-      FULL_IMG_SN,TYPE_SN, FUNC_SN, SPACE_SN, STYLE_SN, ADDER_SN,UPDATER_SN,
+	   fabric_name,fabric_color,LEFT_IMG_SN, DOWN_IMG_SN,FULL_IMG_SN,TYPE_SN, FUNC_SN, SPACE_SN, STYLE_SN, ADDER_SN,UPDATER_SN,
+	   MATERIAL_IMG_SN, FABRIC_IMG_SN,
       full_img,left_img,down_img,material_img,fabric_img,dimension,vendername
       ) values(
 	 #id#,#name#,#brand#,#price#,#status#,#summary#,#length#,#wide#,#height#,#workManShip#,#lr#,#lrRound#,
 	 #materialName#,#materialColor#,#fabricName#,#fabricColor#,
 	 #leftImgSn:BIGINT#, #downImgSn:BIGINT#, #fullImgSn:BIGINT#, 
 	 #typeSn:BIGINT#, #funcSn:BIGINT#, #spaceSn:BIGINT#, #styleSn:BIGINT#,#adderSn:BIGINT#,#updaterSn:BIGINT#
-	 ,#fullImg#,#leftImg#,#downImg#,#materialImg#,#fabricImg#,#dimension#,#venderName#
+	 ,#materialImgSn:BIGINT#, #fabricImgSn:BIGINT#,#fullImg#,#leftImg#,#downImg#,#materialImg#,#fabricImg#,#dimension#,#venderName#
 	   )
 
 	</insert>

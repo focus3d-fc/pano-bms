@@ -54,10 +54,10 @@
             </thead>
                 
                 <tbody>
-                   　　                  #foreach ($!{user} in $!{userList})
+                   　　                  #foreach ($!{user} in $!{userList2})
                     <tr>
-                        <td>$!{velocityCount}</td>
-                        <!-- <td>$!{user.sn}</td> -->
+                        <!-- <td>$!{velocityCount}</td> -->
+                        <td>$!{user.id}</td>
                         <td>$!{user.nick_name}</td>
                         <td>$!{user.name}</td>
                         <td>$!{user.sex_str}</td>
@@ -85,25 +85,20 @@
                   #end
                 </tbody>
         </table>
-    <nav aria-label="Page navigation" class="nav-divider">
-        <!-- <ul class="pagination pull-right">
+    <!-- <nav aria-label="Page navigation" class="nav-divider">
+        <ul class="pagination pull-right">
             <li>
-                <a href="#" aria-label="Previous">
+                <a href="/useradm/selectUser?page=$!{upPage}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
+                </a></li>
+#foreach ($item in [1..$!{pages2.totalPages}])<li><a href="/useradm/selectUser?page=$velocityCount">$velocityCount</a></li> #end
             <li>
-                <a href="#" aria-label="Next">
+                <a href="/useradm/selectUser?page=$!{nextPage}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
-        </ul> -->
-    </nav>
+        </ul>
+    </nav> -->
 </div>
 </body>
 </html>

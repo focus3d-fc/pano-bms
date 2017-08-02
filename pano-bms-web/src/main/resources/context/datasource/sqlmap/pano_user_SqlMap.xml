@@ -3,10 +3,32 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">  
 <sqlMap> 
  <typeAlias alias="user" type="com.focus3d.pano.model.User" />
+ <!-- 分页部分 -->
+    <!-- 查询user数量 -->
+	<select id="selectUserCount" resultClass="int">
+    select count(cert_no) from pano_bm_user
+    </select>
+<select id="limit" parameterClass="com.focus3d.pano.admin.utils.Page" resultClass="user">
+SELECT
+pano_bm_user.SN as id,
+pano_bm_user.NICK_NAME,
+pano_bm_user.`name`,
+pano_bm_user.sex,
+pano_bm_user.MOBILE,
+pano_bm_login.`STATUS`,
+pano_bm_user.cert_no
+FROM
+pano_bm_login
+INNER JOIN pano_bm_user ON pano_bm_user.cert_no = pano_bm_login.CERT_NO
+limit #startIndex#,#pagesize#
+</select>
+ <!-- limit #startIndex#,#pagesize# -->
+ 
+ <!-- 分页部分end -->
  <!-- 根据身份证查询是否已注册 -->
  <select id="selectUserByCert_no" parameterClass="string" resultClass="com.focus3d.pano.model.User">
 SELECT
-pano_bm_user.SN,
+pano_bm_user.SN as id,
 pano_bm_user.NICK_NAME,
 pano_bm_user.`name`,
 pano_bm_user.CITY,
@@ -64,10 +86,10 @@ values(
      )
 </insert>
 
-<!-- 查询用户集合有问题 -->
+<!-- 查询用户集合 -->
 <select id="getUserList" resultClass="user">
 SELECT
-pano_bm_user.SN,
+pano_bm_user.SN as id,
 pano_bm_user.NICK_NAME,
 pano_bm_user.`name`,
 pano_bm_user.sex,
@@ -76,7 +98,7 @@ pano_bm_login.`STATUS`,
 pano_bm_user.cert_no
 FROM
 pano_bm_login
-INNER JOIN pano_bm_user ON pano_bm_user.cert_no = pano_bm_login.CERT_NO ;
+INNER JOIN pano_bm_user ON pano_bm_user.cert_no = pano_bm_login.CERT_NO
  </select>
  <!-- 修改用户表信息 -->
  <update id="updateUserByCert_no" parameterClass="user">
@@ -93,10 +115,53 @@ INNER JOIN pano_bm_user ON pano_bm_user.cert_no = pano_bm_login.CERT_NO ;
  role_sn=#role_sn#
  where user_sn=#user_sn#
  </update>
- 
- 
- 
- 
+ <!-- 搜索 -->
+<select id="selectUserByMsg" parameterClass="user" resultClass="user">
+SELECT
+pano_bm_user.SN as id,
+pano_bm_user.NICK_NAME,
+pano_bm_user.`name`,
+pano_bm_user.sex,
+pano_bm_user.MOBILE,
+pano_bm_login.`STATUS`,
+pano_bm_user.cert_no
+FROM
+pano_bm_login
+INNER JOIN pano_bm_user ON pano_bm_user.cert_no = pano_bm_login.CERT_NO
+<dynamic prepend="WHERE "> 
+         pano_bm_user.cert_no != "null" 
+      <isNotEmpty property="nick_name">  
+         and pano_bm_user.NICK_NAME = #nick_name#  
+      </isNotEmpty>
+      <isNotEmpty property="mobile">  
+         and pano_bm_user.MOBILE = #mobile#  
+      </isNotEmpty>  
+</dynamic>
+<!-- limit #startIndex#,#pagesize# -->
+ </select>
+ <!--  -->
+ <select id="selectUserByMsg2" parameterClass="user" resultClass="user">
+SELECT
+pano_bm_user.SN as id,
+pano_bm_user.NICK_NAME,
+pano_bm_user.`name`,
+pano_bm_user.sex,
+pano_bm_user.MOBILE,
+pano_bm_login.`STATUS`,
+pano_bm_user.cert_no
+FROM
+pano_bm_login
+INNER JOIN pano_bm_user ON pano_bm_user.cert_no = pano_bm_login.CERT_NO
+<dynamic prepend="WHERE "> 
+         pano_bm_user.cert_no != "null" 
+      <isNotEmpty property="nick_name">  
+         and pano_bm_user.NICK_NAME = #nick_name#  
+      </isNotEmpty>
+      <isNotEmpty property="mobile">  
+         and pano_bm_user.MOBILE = #mobile#  
+      </isNotEmpty>  
+</dynamic>
+ </select>
  
  
 </sqlMap>

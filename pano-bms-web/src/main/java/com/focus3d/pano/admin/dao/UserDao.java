@@ -2,6 +2,7 @@ package com.focus3d.pano.admin.dao;
 
 import java.util.List;
 
+import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.model.Login;
 import com.focus3d.pano.model.User;
 import com.focus3d.pano.model.User_Role;
@@ -18,4 +19,8 @@ public interface UserDao{
 	public void updateRole_snByUser_sn(User_Role user_role);
 	public void saveLogin(Login login);
 	public void updateStatus(Login login);
+	public List<User> selectUserByMsg(User user);
+	public List<User> selectUserByMsg2(User user);
+	public int selectUserCount();
+	public List<User> limit(Page page);
 }
