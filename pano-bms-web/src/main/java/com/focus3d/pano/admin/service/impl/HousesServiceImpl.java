@@ -11,6 +11,7 @@ import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
+import com.focus3d.pano.model.pano_project_label;
 import com.focus3d.pano.model.pano_project_space;
 import com.focus3d.pano.model.pano_project_style;
 
@@ -57,9 +58,9 @@ public class HousesServiceImpl implements HousesService {
 	}
 
 	@Override
-	public List<pano_project_style> getHousestyle() {
+	public List<pano_project_style> getHousestyle(Long PROJECT_SN) {
 		// TODO Auto-generated method stub
-		return housesDAO.getHousestyle();
+		return housesDAO.getHousestyle(PROJECT_SN);
 	}
 
 	@Override
@@ -132,6 +133,42 @@ public class HousesServiceImpl implements HousesService {
 	public void upHouse(pano_project houses) {
 		// TODO Auto-generated method stub
 		housesDAO.upHouse(houses);
+	}
+
+	@Override
+	public void addHousetype(pano_project_house house) {
+		// TODO Auto-generated method stub
+		housesDAO.addHousetype(house);
+	}
+
+	@Override
+	public void upHousetype(pano_project_house house) {
+		// TODO Auto-generated method stub
+		housesDAO.upHousetype(house);
+	}
+
+	@Override
+	public List<pano_project_label> getLablebyStyle(Long STYLE_SN) {
+		// TODO Auto-generated method stub
+		return housesDAO.getLablebyStyle(STYLE_SN);
+	}
+
+	@Override
+	public List<pano_project_style> getHousestylebySN(Long SN) {
+		// TODO Auto-generated method stub
+		return housesDAO.getHousestylebySN(SN);
+	}
+
+	@Override
+	public int delLable(Long SN) {
+		// TODO Auto-generated method stub
+		return housesDAO.delLable(SN);
+	}
+
+	@Override
+	public void addLable(pano_project_label lable) {
+		// TODO Auto-generated method stub
+		housesDAO.addLable(lable);
 	}
 
 }

@@ -11,19 +11,18 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.focus3d.pano.admin.service.HousesService;
 import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.common.controller.BaseController;
-import com.focus3d.pano.model.Product;
-import com.focus3d.pano.model.User;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
+import com.focus3d.pano.model.pano_project_label;
 import com.focus3d.pano.model.pano_project_space;
+import com.focus3d.pano.model.pano_project_style;
 import com.focustech.common.utils.JsonUtils;
 
 /**
@@ -202,12 +201,75 @@ public class HousesController extends BaseController {
 		return redirect("tohouseSet2");
 	}
 
+	@RequestMapping("/addHousetype")
+	public String addHousetype(@RequestParam String aname,
+			@RequestParam String fullimgsn) {
+		System.out.println("aname===================" + aname);
+		System.out.println("fullimgsn===================" + fullimgsn);
+		pano_project_house house = new pano_project_house();
+		house.setNAME(aname);
+		Long imgsn = Long.parseLong(fullimgsn);
+		house.setIMG_SN(imgsn);
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String add_time = sdf.format(date);
+		house.setADD_TIME(add_time);
+		housesService.addHousetype(house);
+		return redirect("tohouseSet2");
+	}
+
 	// -----------------------楼盘-设置-风格-----------------------
 
 	@RequestMapping("/tostyleSet")
-	public String tostyleSet() {
+	public String tostyleSet(HttpServletRequest request) {
+		List<pano_project_style> stylist = housesService
+				.getHousestyle(PROJECT_SN);
+		if (stylist.size() != 0) {
+			request.setAttribute("stylist", stylist);
+		}
 		return "/houses/styleSet";
 	}
+
+	// -----------------------楼盘-设置-风格-户型设置-----------------------
+
+	@RequestMapping("/tostyle-houseSet")
+	public String tostylehouseSet() {
+		return "/houses/style-houseSet";
+	}
+
+	// -----------------------楼盘-设置-风格-标签设置-----------------------
+	Long STYLE_SN;
+
+	@RequestMapping("/tostyle-sloginSet")
+	public String tostylesloginSet(HttpServletRequest request) {
+		STYLE_SN = Long.parseLong(request.getParameter("SN"));
+		List<pano_project_label> lable = housesService
+				.getLablebyStyle(STYLE_SN);
+		request.setAttribute("labList", lable);
+		List<pano_project_style> stylist = housesService
+				.getHousestylebySN(STYLE_SN);
+		request.setAttribute("styname", stylist.get(0).getName());
+		return "/houses/style-sloginSet";
+	}
+	
+	@RequestMapping("/tostyle-sloginSet2")
+	public String tostylesloginSet2(HttpServletRequest request) {
+		List<pano_project_label> lable = housesService
+				.getLablebyStyle(STYLE_SN);
+		request.setAttribute("labList", lable);
+		List<pano_project_style> stylist = housesService
+				.getHousestylebySN(STYLE_SN);
+		request.setAttribute("styname", stylist.get(0).getName());
+		return "/houses/style-sloginSet";
+	}
+	
+	@RequestMapping("/delsloginSet")
+	public String delsloginSet(HttpServletRequest request) {
+		Long SN = Long.parseLong(request.getParameter("SN"));
+
+		return redirect("tostyle-sloginSet2");
+	}
+
 
 	// -----------------------楼盘-设置-广告-----------------------
 
@@ -302,4 +364,10 @@ public class HousesController extends BaseController {
 	public String tocombo_add() {
 		return "/houses/combo-add";
 	}
+
+	@RequestMapping("/topro-details")
+	public String topro_details() {
+		return "/houses/pro-details";
+	}
+
 }

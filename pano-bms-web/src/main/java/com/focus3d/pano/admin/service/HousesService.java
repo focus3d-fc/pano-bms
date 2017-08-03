@@ -6,6 +6,7 @@ import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
+import com.focus3d.pano.model.pano_project_label;
 import com.focus3d.pano.model.pano_project_space;
 import com.focus3d.pano.model.pano_project_style;
 
@@ -42,13 +43,22 @@ public interface HousesService {
 	// 户型删除
 	public int delHousetypebySN(Long SN);
 
+	// 户型新增
+	public void addHousetype(pano_project_house house);
+
+	// 户型修改
+	public void upHousetype(pano_project_house house);
+
 	// ----------------------------------------------楼盘-风格----------------------------------------------
 
 	// 风格查询
-	public List<pano_project_style> getHousestyle();
+	public List<pano_project_style> getHousestyle(Long PROJECT_SN);
 
 	// 风格删除
 	public int delHousestyle(Long SN);
+
+	// 根据SN查风格
+	public List<pano_project_style> getHousestylebySN(Long SN);
 
 	// ----------------------------------------------楼盘-广告----------------------------------------------
 
@@ -77,5 +87,18 @@ public interface HousesService {
 
 	// 空间修改
 	public void uproomSet(pano_project_space space);
+
+	// -----------------------楼盘-设置-风格-户型设置-----------------------
+
+	// -----------------------楼盘-设置-风格-标签设置-----------------------
+
+	// 标签查询
+	public List<pano_project_label> getLablebyStyle(Long STYLE_SN);
+
+	// 标签删除
+	public int delLable(Long SN);
+
+	// 标签添加
+	public void addLable(pano_project_label lable);
 
 }

@@ -25,19 +25,4 @@
 		values(#NAME#,#HOUSE_SN#,#ADD_TIME#)
 	</insert>
 
-	<select id="selSpacebySN" resultClass="space" parameterClass="Long">
-		select
-		SN,`NAME`
-		from
-		pano_project_space
-		where SN = #SN#
-	</select>
-
-	<update id="uproomSet" parameterClass="space">
-		update pano_project_space
-		set
-		`NAME`=#NAME#
-		where SN = #SN#
-	</update>
-
 </sqlMap>

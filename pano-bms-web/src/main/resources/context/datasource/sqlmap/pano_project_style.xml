@@ -2,11 +2,29 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="pano_project_style">
 
-	<typeAlias alias="houses" type="com.focus3d.pano.model.pano_project_style" />
+	<typeAlias alias="styles" type="com.focus3d.pano.model.pano_project_style" />
 
 
+	<select id="getHousestyle" resultClass="styles" parameterClass="Long">
+		select
+		SN,`NAME`,IMG_SN
+		from
+		pano_project_style
+		where
+		PROJECT_SN =
+		#PROJECT_SN#
+	</select>
 
-
+	<select id="getHousestylebySN" resultClass="styles"
+		parameterClass="Long">
+		select
+		SN,`NAME`
+		from
+		pano_project_style
+		where
+		SN =
+		#SN#
+	</select>
 
 
 </sqlMap>

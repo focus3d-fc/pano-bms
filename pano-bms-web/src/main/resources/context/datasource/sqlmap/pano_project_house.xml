@@ -31,4 +31,19 @@
 		=#SN#
 	</select>
 
+	<insert id="addHousetype" parameterClass="housestype">
+		insert into
+		pano_project_house
+		(`NAME`,IMG_SN,ADD_TIME)
+		values(#NAME#,#IMG_SN#,#ADD_TIME#)
+	</insert>
+
+	<update id="upHousetype" parameterClass="housestype">
+		update
+		pano_project_house
+		set
+		`NAME`=#NAME#,IMG_SN=#IMG_SN#
+		where SN = #SN#
+	</update>
+
 </sqlMap>

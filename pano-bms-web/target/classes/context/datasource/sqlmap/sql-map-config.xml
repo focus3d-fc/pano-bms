@@ -27,5 +27,9 @@
 	<sqlMap resource="context/datasource/sqlmap/pano_ad.xml" />
 	<sqlMap resource="context/datasource/sqlmap/pano_project_space.xml" />
 	<sqlMap resource="context/datasource/sqlmap/pano_bm_longin.xml" />
-		<sqlMap resource="context/datasource/sqlmap/pano_bm_role.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_usersSide_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_bm_role.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_project_style.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_project_label.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_packageset.xml" />	
 </sqlMapConfig>

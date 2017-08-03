@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="pano_project_label">
+
+	<typeAlias alias="lables" type="com.focus3d.pano.model.pano_project_label" />
+
+	<select id="getLablebyStyle" resultClass="lables"
+		parameterClass="Long">
+		select
+		SN,`NAME`
+		from
+		pano_project_label
+		where
+		TYPE=2
+		and
+		STYLE_SN =
+		#STYLE_SN#
+	</select>
+
+</sqlMap>

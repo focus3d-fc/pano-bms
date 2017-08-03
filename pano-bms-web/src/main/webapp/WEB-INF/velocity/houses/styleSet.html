@@ -33,7 +33,7 @@
 		<div class="panel-body">
 			<!--tab栏标题-->
 			<ul class="nav nav-tabs basic-tab">
-				<li><a href="/houses/tohouseSet2">户型</a></li>
+				<li><a href="/houses/tohouseSet">户型</a></li>
 				<li class="active"><a href="">风格</a></li>
 				<li><a href="/houses/toaddSet">广告</a></li>
 				<button class="btn btn-info" data-toggle="modal" data-target="#add"
@@ -50,74 +50,37 @@
 								<th>序号</th>
 								<th>名称</th>
 								<th width="30%">图片</th>
-								<th>户型设置</th>
-								<th width="10%">操作</th>
+								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody>
+							#foreach ($!{stylist} in $!{stylist})
 							<tr>
-								<td>1</td>
-								<td>地中海</td>
+								<td>$!{velocityCount}</td>
+								<td>$!{stylist.name}</td>
 								<td>
 									<div class="img">
 										<img class="img-show" src="/style/admstatic/img/2.jpg">
 									</div>
 								</td>
-								<td class="unitSet">
-									<table class="table table-hover noMarB">
-										<tr>
-											<td>户型A</td>
-											<td>
-												<div class="btn-group btn-group-sm" role="group">
-													<a href="/houses/tocombo" class="btn btn-primary">套餐设置</a> <a
-														href="#" class="btn btn-danger" onClick="del()">删除</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>户型B</td>
-											<td>
-												<div class="btn-group btn-group-sm" role="group">
-													<a href="/houses/tocombo" class="btn btn-primary">套餐设置</a> <a
-														href="#" class="btn btn-danger" onClick="del()">删除</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>户型B</td>
-											<td>
-												<div class="btn-group btn-group-sm" role="group">
-													<a href="/houses/tocombo" class="btn btn-primary">套餐设置</a> <a
-														href="#" class="btn btn-danger" onClick="del()">删除</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>户型B</td>
-											<td>
-												<div class="btn-group btn-group-sm" role="group">
-													<a href="/houses/tocombo" class="btn btn-primary">套餐设置</a> <a
-														href="#" class="btn btn-danger" onClick="del()">删除</a>
-												</div>
-											</td>
-										</tr>
-									</table>
-								</td>
+
 								<td>
 									<div class="btn-group btn-group-sm" role="group">
-										<button class="btn btn-info" data-toggle="modal"
-											data-target="#add">修改</button>
+										<a href="/houses/tostyle-houseSet" class="btn btn-primary">户型设置</a>
+										<a href="/houses/tostyle-sloginSet?SN=$!{stylist.sn}" class="btn btn-success">标签设置</a>
 										<a href="#" class="btn btn-danger" onClick="del()">删除</a>
 									</div>
 								</td>
 							</tr>
-
+							#end
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 	</div>
+
+
 	<!--增加修改弹窗-->
 	<div class="modal fade " id="add" tabindex="-1" role="dialog"
 		aria-labelledby="添加/修改">
@@ -146,23 +109,6 @@
 							<div class="col-sm-9">
 								<input type="file" class="form-control">
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">新增/修改</label>
-							<div class="col-sm-9">
-								<label class="checkbox-inline" style="margin-left: 10px;">
-									<input type="checkbox" value="option1">户型A
-								</label> <label class="checkbox-inline"> <input type="checkbox"
-									value="option3">户型B
-								</label> <label class="checkbox-inline"> <input type="checkbox"
-									value="option2">户型C
-								</label> <label class="checkbox-inline"> <input type="checkbox"
-									value="option3">户型D
-								</label> <label class="checkbox-inline"> <input type="checkbox"
-									value="option3">户型E
-								</label>
-							</div>
-
 						</div>
 					</form>
 				</div>

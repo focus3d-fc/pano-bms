@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>套餐添加</title>
-    <link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/style/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/style/admstatic/css/admin.css">
+    <script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
+<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
 </head>
 <body>
 <div class="panel panel-default">
@@ -15,22 +17,28 @@
     </div>
     <div class="panel-body">
         <div class="form-horizontal">
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-5">
                 <label class="col-sm-4 control-label">楼盘名称</label>
                 <div class="col-sm-6">
                     <p class="form-control-static">保利项目</p>
                 </div>
             </div>
-            <div class="form-group col-sm-3">
+            <div class="form-group col-sm-6">
                 <label class="col-sm-4 control-label">户型</label>
                 <div class="col-sm-8">
                     <p class="form-control-static">A0002104</p>
                 </div>
             </div>
-            <div class="form-group col-sm-3">
+            <div class="form-group col-sm-5">
                 <label class="col-sm-4 control-label">风格</label>
                 <div class="col-sm-8">
                     <p class="form-control-static">中式</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">套餐风格</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">基础</p>
                 </div>
             </div>
 
@@ -39,36 +47,40 @@
     <div class="combo-title"><span class="glyphicon glyphicon-th-large"></span>产品筛选：</div>
     <div class="panel-body">
         <div class="container">
-            <form class="form-inline">
+            <form class="form-inline"  method="post" action="/packageset/chooseprodt" >
+             <input type="hidden" name="ifscfy" value="true"/>
                 <div class="form-group">
                     <label class="sr-only"></label>
-                    <input type="text" class="form-control" placeholder="产品编号">
+                    <input id="selscpid" type="text" class="form-control" placeholder="产品编号" name="proid">
                 </div>
-                <div class="form-group">
-                    <label class="sr-only">风格</label>
-                    <div class="col-sm-8">
-                        <select class="form-control">
-                            <option>产品风格</option>
-                            <option>产品风格</option>
-                        </select>
-                    </div>
-                </div>
+                
                 <div class="form-group">
                     <label class="sr-only">分类</label>
                     <div class="col-sm-8">
-                        <select class="form-control">
-                            <option>产品分类</option>
-                            <option>产品分类</option>
-                            <option>产品分类</option>
+                        <select  name="typeSn" class="form-control">
+                           #foreach( $!protp in $!proTypeList)
+                                    <option value="$!protp.sn">$!protp.name</option>
+                                     #end 
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="sr-only">风格</label>
                     <div class="col-sm-8">
-                        <select class="form-control">
-                            <option>产品功能</option>
-                            <option>产品功能</option>
+                        <select name="styleSn" class="form-control">
+                           #foreach( $!prost in $!proStyleList)
+                                    <option value="$!prost.sn">$!prost.name</option>
+                                     #end 
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">功能</label>
+                    <div class="col-sm-8">
+                        <select  name="funcSn" class="form-control">
+                             #foreach( $!profc in $!proFuncList)
+                                    <option value="$!profc.sn">$!profc.name</option>
+                                    #end 
                         </select>
                     </div>
                 </div>
@@ -90,6 +102,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                  #foreach( $!prodt in $!productInfoList)
                 <tr>
                     <td>
                         <div class="checkbox">
@@ -98,88 +111,17 @@
                             </label>
                         </div>
                     </td>
-                    <td>998877</td>
-                    <td>家具</td>
-                    <td>中式</td>
-                    <td>沙发</td>
+                   <td>$!prodt.id</td>
+                   <td>$!prodt.typeName</td>
+                   <td>$!prodt.styleName</td>
+                   <td>$!prodt.funcName</td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group">
-                            <a href="pro-details.html" class="btn btn-success">查看</a>
+                            <a href="/packageset/getprodtinpgdetail?prodtsn=$!prodt.sn" class="btn btn-success">查看</a>
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </td>
-                    <td>998877</td>
-                    <td>家具</td>
-                    <td>中式</td>
-                    <td>沙发</td>
-                    <td>
-                        <div class="btn-group btn-group-sm" role="group">
-                            <a href="pro-details.html" class="btn btn-success">查看</a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </td>
-                    <td>998877</td>
-                    <td>家具</td>
-                    <td>中式</td>
-                    <td>沙发</td>
-                    <td>
-                        <div class="btn-group btn-group-sm" role="group">
-                            <a href="pro-details.html" class="btn btn-success">查看</a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </td>
-                    <td>998877</td>
-                    <td>家具</td>
-                    <td>中式</td>
-                    <td>沙发</td>
-                    <td>
-                        <div class="btn-group btn-group-sm" role="group">
-                            <a href="pro-details.html" class="btn btn-success">查看</a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </td>
-                    <td>998877</td>
-                    <td>家具</td>
-                    <td>中式</td>
-                    <td>沙发</td>
-                    <td>
-                        <div class="btn-group btn-group-sm" role="group">
-                            <a href="pro-details.html" class="btn btn-success">查看</a>
-                        </div>
-                    </td>
-                </tr>
+                 #end 
                 </tbody>
             </table>
         </form>
@@ -327,9 +269,19 @@
             <div class="modal-body clearfix">
                 <form class="form-horizontal" id="formadd">
                     <div class="form-group">
+                        <label class="col-sm-3 control-label">类别选择</label>
+                        <div class="col-sm-9">
+                            <select class="form-control">
+                                <option>选择已有的类别</option>
+                                <option>类别1</option>
+                                <option>类别2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-3 control-label">类别名称</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" placeholder="输入新类别">
                         </div>
                     </div>
                 </form>
@@ -341,8 +293,7 @@
         </div>
     </div>
 </div>
-<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
-<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
-<script src="/style/admstatic/js/main.js"></script>
+
+
 </body>
 </html>
