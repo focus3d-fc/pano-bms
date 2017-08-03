@@ -11,6 +11,23 @@
 
 <script type="text/javascript" src="/style/admstatic/js/jsAddresss.js"></script>
 
+<script type="text/javascript">
+	function uphouse(SN) {
+		$.ajax({
+			url : "/houses/upHouseVerify",
+			type : "post",
+			data : {
+				SN : SN
+			},
+			datatype : "json",
+			success : function(data) {
+				var jsonobj = JSON.parse(data);
+				$("#SN").val(jsonobj.SN);
+				$("#usname").val(jsonobj.NAME);
+			}
+		});
+	}
+</script>
 
 </head>
 <body>
@@ -62,8 +79,7 @@
 							<a href="/houses/tohouseSet?SN=$!{Houses.SN}"
 								class="btn btn-success">设置</a>
 							<button class="btn btn-info" data-toggle="modal"
-								data-target="#add">修改</button>
-							<!-- <button class="btn btn-info" onclick="toUp()">修改</button> -->
+								data-target="#up" onclick="uphouse($!Houses.SN)">修改</button>
 							<a href="/houses/delhouses?SN=$!{Houses.SN}"
 								class="btn btn-danger"">删除</a>
 						</div>
@@ -135,6 +151,57 @@
 			</div>
 		</div>
 	</div>
+
+	<!--修改楼盘弹窗-->
+	<div class="modal fade " id="up" tabindex="-1" role="dialog"
+		aria-labelledby="添加/修改">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content modal-width">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">添加/修改</h4>
+				</div>
+				<div class="modal-body clearfix">
+					<form class="form-horizontal" id="formup" action="/houses/upHouse">
+						<input id="SN" name="SN" type="hidden">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">省份</label>
+							<div class="col-sm-9">
+								<select class="form-control" id="ucmbProvince"
+									name="ucmbProvince"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">城市</label>
+							<div class="col-sm-9">
+								<select class="form-control" id="ucmbCity" name="ucmbCity"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">区县</label>
+							<div class="col-sm-9">
+								<select class="form-control" id="ucmbArea" name="ucmbArea"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">楼盘名称</label>
+							<div class="col-sm-9">
+								<input id="usname" name="usname" type="text"
+									class="form-control" placeholder="楼盘名称">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="submit" class="btn btn-primary" form="formup">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
 	<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
 	<script src="/style/admstatic/js/main.js"></script>
@@ -142,6 +209,7 @@
 	<script type="text/javascript">
 		addressInit('cmbProvince', 'cmbCity', 'cmbArea');
 		addressInit('acmbProvince', 'acmbCity', 'acmbArea');
+		addressInit('ucmbProvince', 'ucmbCity', 'ucmbArea');
 	</script>
 </body>
 </html>

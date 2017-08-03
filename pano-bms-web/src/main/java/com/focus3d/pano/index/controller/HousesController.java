@@ -1,25 +1,30 @@
 package com.focus3d.pano.index.controller;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.focus3d.pano.admin.service.HousesService;
 import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.common.controller.BaseController;
+import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.User;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
 import com.focus3d.pano.model.pano_project_space;
+import com.focustech.common.utils.JsonUtils;
 
 /**
  * 
@@ -134,6 +139,36 @@ public class HousesController extends BaseController {
 		return "/houses/house";
 	}
 
+	@RequestMapping("/upHouseVerify")
+	public void upHouseVerify(HttpServletResponse response, Long SN) {
+		pano_project house = null;
+		try {
+			house = housesService.selHousesbySN(SN).get(0);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		String jsonprodt = JsonUtils.objectToJson(house);
+		try {
+			this.ajaxOutput(response, jsonprodt);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@RequestMapping("/upHouse")
+	public String upHouse(@RequestParam String usname, @RequestParam Long SN,
+			@RequestParam String ucmbProvince, @RequestParam String ucmbCity,
+			@RequestParam String ucmbArea) {
+		pano_project house = new pano_project();
+		house.setSN(SN);
+		house.setNAME(usname);
+		house.setPROVINCE(ucmbProvince);
+		house.setCITY(ucmbCity);
+		house.setAREA(ucmbArea);
+		housesService.upHouse(house);
+		return redirect("tohouse");
+	}
+
 	// -----------------------楼盘-设置-户型-----------------------
 
 	Long PROJECT_SN;
@@ -230,6 +265,31 @@ public class HousesController extends BaseController {
 		String add_time = sdf.format(date);
 		space.setADD_TIME(add_time);
 		housesService.addroomSet(space);
+		return redirect("toroomSet2");
+	}
+
+	@RequestMapping("/upRoomVerify")
+	public void upRoomVerify(HttpServletResponse response, Long SN) {
+		pano_project_space space = null;
+		try {
+			space = housesService.selSpacebySN(SN);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		String jsonprodt = JsonUtils.objectToJson(space);
+		try {
+			this.ajaxOutput(response, jsonprodt);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@RequestMapping("/uproomSet")
+	public String uproomSet(@RequestParam String uname, @RequestParam Long SN) {
+		pano_project_space space = new pano_project_space();
+		space.setSN(SN);
+		space.setNAME(uname);
+		housesService.uproomSet(space);
 		return redirect("toroomSet2");
 	}
 

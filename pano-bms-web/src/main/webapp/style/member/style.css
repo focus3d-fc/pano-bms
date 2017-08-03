@@ -154,7 +154,8 @@ input[type="dx"] {
 }
 .bs{color:#fff; font-size:40px;}
 .xbt{color:#fff; font-size:18px; text-align:center; line-height:50px;}
-input[type="submit"]{
+input[type="submit"],
+input[type="button"]{
   font-size: 30px;
   color: #fff;
   outline: none;
@@ -172,7 +173,8 @@ input[type="submit"]{
 	-o-border-bottom-right-radius: 15px;
 	cursor: pointer;
 }
-input[type="submit"]:hover {
+input[type="submit"]:hover,
+input[type="button"]:hover {
 	background: #25b1c1;
   border-bottom-left-radius: 15px;
 	-webkit-border-bottom-left-radius: 15px;

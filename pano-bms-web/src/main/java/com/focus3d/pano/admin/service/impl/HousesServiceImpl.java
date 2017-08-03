@@ -116,4 +116,22 @@ public class HousesServiceImpl implements HousesService {
 		return housesDAO.selHousesCount();
 	}
 
+	@Override
+	public pano_project_space selSpacebySN(Long SN) {
+		// TODO Auto-generated method stub
+		return housesDAO.selSpacebySN(SN);
+	}
+
+	@Override
+	public void uproomSet(pano_project_space space) {
+		// TODO Auto-generated method stub
+		housesDAO.uproomSet(space);
+	}
+
+	@Override
+	public void upHouse(pano_project houses) {
+		// TODO Auto-generated method stub
+		housesDAO.upHouse(houses);
+	}
+
 }

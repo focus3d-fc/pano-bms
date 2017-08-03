@@ -35,17 +35,24 @@
 <script src="/component/upload/js/jquery.fileupload-validate.js"></script>
 <script src="/script/member/user/product.js"></script>
 <script type="text/javascript">
-function move(currPage,pageSize){
+function move(pageNum,pageSize){
 	   //var pageSize=document.getElementById("pageSize").value;
 	   
-	   var url="/productadm/listproduct?currPage="+currPage;
+	   var url="/productadm/listproduct?pageNum="+pageNum;
 	   if(pageSize!=undefined){
 		   url+="&pageSize="+pageSize;
 	   }
-	   var queryic=document.getElementById("inv").value;
-	   if(queryic!=undefined){
-		   url+="&queryic="+queryic;
-	   }
+	  var scfy='${ifscfy}';
+	  var scfg='${scStyleSn}';
+	  var scgn='${scFuncSn}';
+	  var proid='${proid}';
+	  if(scfy=='true'){
+		  url+="&ifscfy="+scfy;
+		  url+="&styleSn="+scfg;
+		  url+="&funcSn="+scgn;
+		  url+="&proid="+proid;
+	  }
+	   
 	   location.href=url;
 }
 
@@ -201,6 +208,7 @@ function move(currPage,pageSize){
             <div class="row">
                 <div class="col-sm-8">
                     <form class="form-inline" method="post" action="/productadm/listproduct">
+                        <input type="hidden" name="ifscfy" value="true"/>
                         <div class="form-group">
                             <label class="sr-only"></label>
                             <input id="scproid" type="text" class="form-control" placeholder="产品编号" name="proid">
@@ -248,7 +256,13 @@ function move(currPage,pageSize){
         <tbody>
          #foreach( $!prodt in $!productInfoList)
         <tr>
-            <td>${velocityCount}</td>
+           
+            <td>#set($epgcount=$!page.perPageInt)
+        		#set($p1=$!page.currentPage - 1)
+		        #set($no=$velocityCount)
+		        #set($num=$p1 * $epgcount + $no)
+		       ${num}
+            </td>
             <td>$!prodt.id</td>
             <td>$!prodt.typeName</td>
             <td>$!prodt.styleName</td>
@@ -265,29 +279,32 @@ function move(currPage,pageSize){
         </tbody>
     </table>
     <!--分页-->
-   <!--  <div class="panel-bodya">
+    <div class="panel-bodya">
         <nav class="nav-divider clearfix">
             <ul class="pagination pull-right">
+             <li><a href="javascript:void(0)" onclick="move(1,$!page.perPageInt)">首页</a></li>
                 <li>
-                    <a href="#" aria-label="Previous">
+                    <a href="javascript:void(0)" aria-label="Previous" onclick="move($!page.currentPage - 1,$!page.perPageInt)">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
+                <li class="active"><a href="javascript:void(0)" onclick="move($!page.currentPage,$!page.perPageInt)">$!page.currentPage</a></li>
+               
                 <li>
-                    <a href="#" aria-label="Next">
+                    <a href="javascript:void(0)" aria-label="Next" onclick="move($!page.currentPage + 1,$!page.perPageInt)">
                         <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" aria-label="Next" onclick="move($!page.totalPage,$!page.perPageInt)">
+                        <span aria-hidden="true">尾页</span>
                     </a>
                 </li>
             </ul>
         </nav>
-    </div> -->
+    </div>
 </div>
-
+      <!-- li-fenye -->
 
 <!-- 上传测试start -->
 

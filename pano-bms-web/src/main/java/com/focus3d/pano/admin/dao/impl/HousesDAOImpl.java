@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.focus3d.pano.admin.dao.HousesDAO;
 import com.focus3d.pano.admin.utils.Page;
+import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
@@ -124,6 +125,24 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 		int count = (Integer) getSqlMapClientTemplate().queryForObject(
 				"pano_project.selHousesCount");
 		return count;
+	}
+
+	@Override
+	public pano_project_space selSpacebySN(Long SN) {
+		pano_project_space space = (pano_project_space) getSqlMapClientTemplate()
+				.queryForObject("pano_project_space.selSpacebySN", SN);
+		return space;
+	}
+
+	@Override
+	public void uproomSet(pano_project_space space) {
+		getSqlMapClientTemplate().update("pano_project_space.uproomSet", space);
+
+	}
+
+	@Override
+	public void upHouse(pano_project houses) {
+		getSqlMapClientTemplate().update("pano_project.upHouse", houses);
 	}
 
 }

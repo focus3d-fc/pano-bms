@@ -31,6 +31,9 @@ public interface HousesService {
 	// 按照SN查询信息
 	public List<pano_project> selHousesbySN(Long SN);
 
+	// 楼盘管理修改
+	public void upHouse(pano_project houses);
+
 	// ----------------------------------------------楼盘-户型----------------------------------------------
 
 	// 户型查询
@@ -68,5 +71,11 @@ public interface HousesService {
 
 	// 空间添加
 	public void addroomSet(pano_project_space space);
+
+	// 根据sn查询空间
+	public pano_project_space selSpacebySN(Long SN);
+
+	// 空间修改
+	public void uproomSet(pano_project_space space);
 
 }

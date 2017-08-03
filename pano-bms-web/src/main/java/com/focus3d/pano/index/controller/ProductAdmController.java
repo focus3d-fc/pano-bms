@@ -1,30 +1,19 @@
 package com.focus3d.pano.index.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.focus3d.pano.admin.service.IProductAdmService;
-
+import com.focus3d.pano.admin.utils.PageInfo;
 import com.focus3d.pano.common.controller.BaseController;
-import com.focus3d.pano.model.PanoLoginModel;
 import com.focus3d.pano.model.PanoProductFunc;
 import com.focus3d.pano.model.PanoProductType;
 import com.focus3d.pano.model.Product;
@@ -35,6 +24,12 @@ import com.focustech.cief.filemanage.client.constant.FileAttributeEnum;
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.JsonUtils;
 
+
+/**
+ * 
+ * @author jing
+ *
+ */
 @Controller
 @RequestMapping(value ="/productadm")
 public class ProductAdmController extends BaseController{
@@ -47,33 +42,38 @@ public class ProductAdmController extends BaseController{
 	//查询列表
 	@RequestMapping("/listproduct")
 	public String listproduct(HttpSession session,Model model,String proid,String styleSn,String funcSn
-			,Integer pageNum,Integer pageSize){
+			,Integer pageNum,Integer pageSize,String ifscfy){
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		
-		System.out.println(proid);
-		
-		System.out.println("fffffffff"+funcSn);
 		 paramMap.put("id", proid);
+		
 		 paramMap.put("styleSn", styleSn);
 		 paramMap.put("funcSn", funcSn);
+		
 		 model.addAttribute("proid", proid);
 		 model.addAttribute("scStyleSn", styleSn);
 		 model.addAttribute("scFuncSn",funcSn);
-		 
-		if(pageNum==null){
+		 model.addAttribute("ifscfy", ifscfy);
+		/*if(pageNum==null){
 				pageNum=1;
 			}if(pageSize==null){
 				pageSize=5;
-			}
-		    int allPageSize = productAdmService.countProductInfo(paramMap);
+			}*/
+		 PageInfo page=new PageInfo();
+		  int allPageSize = productAdmService.countProductInfo(paramMap);
 		    System.out.println("zzzzzzzzzzz"+allPageSize);
+		    page.setTotalRecords(allPageSize);
+		    page.setPerPageInt(pageSize);
+		    page.setCurrentPage(pageNum);
+		    page.pageInfoInvoke(allPageSize, pageSize);
     /* 	    int startRow = (pageNum - 1) * pageSize;
 	        int offset = pageSize;
-	       
 	        PageUtil page = new PageUtil(allPageSize, pageNum, pageSize);*/
-//		    paramMap.put("startNum", 0);
-//		    paramMap.put("pageSize", pageSize);
+		   
+		    paramMap.put("startNum", page.getStartRecord());
+		    paramMap.put("pageSize", page.getPerPageInt());
 		 
+		    session.setAttribute("page", page);
 		 List<ProductInfo> productInfoList=null;
 		 List<pano_project_style> proStyleList=null;
 		 List<PanoProductFunc>  proFuncList=null;

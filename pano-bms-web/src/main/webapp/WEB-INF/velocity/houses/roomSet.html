@@ -11,16 +11,18 @@
 
 <script type="text/javascript">
 function uproom(SN){ 
-	  $.ajax({
-		url:"/productadm/preupdateproduct",	 
+	$.ajax({
+		url:"/houses/upRoomVerify",	 
 	    type:"post",
 	    data:{SN:SN},
 	    datatype:"json",
 	    success:function(data){	    	
 	    	var jsonobj=JSON.parse(data);
-	    	$("#proname").val(jsonobj.name);    	
+	    	$("#SN").val(jsonobj.SN); 
+	    	$("#uname").val(jsonobj.NAME);    	
 		}    
 	  });
+}
 </script>
 
 </head>
@@ -70,7 +72,7 @@ function uproom(SN){
 						<td>
 							<div class="btn-group btn-group-sm" role="group" aria-label="...">
 								<button class="btn btn-info" data-toggle="modal"
-									data-target="#add" onclick="uproom($!sList.SN)">修改</button>
+									data-target="#up" onclick="uproom($!sList.SN)">修改</button>
 								<a href="/houses/delroomSet?SN=$!{sList.SN}"
 									class="btn btn-danger">删除</a>
 							</div>
@@ -107,6 +109,37 @@ function uproom(SN){
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button type="submit" class="btn btn-primary" form="formadd">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--修改弹窗-->
+	<div class="modal fade " id="up" tabindex="-1" role="dialog"
+		aria-labelledby="添加/修改">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content modal-width">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">添加/修改</h4>
+				</div>
+				<div class="modal-body clearfix">
+					<form class="form-horizontal" id="formup"
+						action="/houses/uproomSet">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">空间名称</label>
+							<div class="col-sm-9">
+								<input id="SN" name="SN" type="hidden"> <input
+									id="uname" name="uname" type="text" class="form-control">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="submit" class="btn btn-primary" form="formup">确定</button>
 				</div>
 			</div>
 		</div>
