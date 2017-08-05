@@ -1,9 +1,12 @@
 package com.focus3d.pano.index.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +14,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.focus3d.pano.admin.service.IPackageSetService;
 import com.focus3d.pano.admin.service.IProductAdmService;
 import com.focus3d.pano.admin.utils.PageInfo;
 import com.focus3d.pano.common.controller.BaseController;
 import com.focus3d.pano.model.PanoProductFunc;
 import com.focus3d.pano.model.PanoProductType;
+import com.focus3d.pano.model.PanoUserLongin;
+import com.focus3d.pano.model.PjPackageItem;
+import com.focus3d.pano.model.ProdtcateInPackage;
 import com.focus3d.pano.model.ProductInfo;
 import com.focus3d.pano.model.pano_project_style;
 import com.focustech.cief.filemanage.client.api.IFileReadClient;
 import com.focustech.cief.filemanage.client.constant.FileAttributeEnum;
+import com.focustech.common.utils.JsonUtils;
 
 /**
  * 
@@ -39,15 +47,17 @@ public class PackageSetController extends BaseController{
 	private IProductAdmService productAdmService;
 	@Autowired
 	private IFileReadClient fileReadClient;//读取文件接口    
-	
+	@Autowired
+	private IPackageSetService packageSetService;
 	
 	@RequestMapping("/chooseprodt")
-    public String chooseprodt(HttpSession session,Model model,String proid,String styleSn,String funcSn
+    public String chooseprodt(HttpSession session,Long pgsn,Model model,String proid,String styleSn,String funcSn
 			,Integer pageNum,Integer pageSize,String ifscfy){
 		
 		
 		Map<String,Object> paramMap=new HashMap<String,Object>();
-		
+		System.out.println(pgsn);
+		session.setAttribute("pgsn", pgsn);
 		 paramMap.put("id", proid);
 		
 		 paramMap.put("styleSn", styleSn);
@@ -74,11 +84,15 @@ public class PackageSetController extends BaseController{
 		 List<pano_project_style> proStyleList=null;
 		 List<PanoProductFunc>  proFuncList=null;
 		 List<PanoProductType> proTypeList=null;
+		 
+		 List<ProdtcateInPackage> prodtcateInpgList=null;
 		try {
 			productInfoList = productAdmService.listProductInfo(paramMap);
 			proStyleList=productAdmService.listAllProStyle();
 			proFuncList=productAdmService.listAllProFunc();
 			proTypeList=productAdmService.listAllProType();
+			
+		    prodtcateInpgList=packageSetService.listProdtcateInPackage();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,7 +106,8 @@ public class PackageSetController extends BaseController{
 		   session.setAttribute("proStyleList", proStyleList);
 		   session.setAttribute("proFuncList", proFuncList);
 		   session.setAttribute("proTypeList", proTypeList);
-		
+		   
+		   session.setAttribute("prodtcateInpgList", prodtcateInpgList);
 		
 		
     	return "/houses/combo-add";
@@ -146,6 +161,47 @@ public class PackageSetController extends BaseController{
 		return "/houses/pro-details";
     }
 	
+	
+	@RequestMapping("/getselectedprodt")
+    public void getselectedprodt(HttpServletResponse response,HttpServletRequest request,String[] selsns){
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		
+	//System.out.println("sssssssssssssss"+selsns.length);
+		if(selsns!=null&&selsns.length>0){
+		paramMap.put("selsns", selsns);
+		List<ProductInfo> seledProdtList=packageSetService.getSelectedProdt(paramMap);
+		String jsonprodt=	JsonUtils.objectToJson(seledProdtList);
+		  System.out.println(jsonprodt);
+		  try {
+				this.ajaxOutput(response, jsonprodt);
+			} catch (IOException e) {
+				// TODO Auto-generated catch blocks
+				e.printStackTrace();
+			}
+		}
+    }
+	
+	
+	@RequestMapping("/addpgrelitem")
+    public String addpgrelitem(HttpSession session,Long[] productSn,Long[] itemTypeSn){
+		  PanoUserLongin userLongin = (PanoUserLongin)session.getAttribute("user");
+		   long lsn=userLongin.getSn();
+		   System.out.println("lllllllll"+lsn);
+		   Long packageSn=(Long)session.getAttribute("pgsn");
+		   System.out.println("ppppppp"+packageSn);
+		   if(productSn!=null&&productSn.length>0){
+		   for(int i = 0; i <productSn.length; i++ ){
+		   PjPackageItem pgitem=new PjPackageItem(); 
+		   pgitem.setPackageSn(packageSn);
+		   pgitem.setProductSn(productSn[i]);
+		   pgitem.setItemTypeSn(itemTypeSn[i]);
+		   pgitem.setAdderSn(lsn);
+		   pgitem.setUpdaterSn(lsn);
+		   packageSetService.savePjPackageItem(pgitem);
+		   }
+		 }
+    	return redirect("/housess/packageSet");
+    }
 	
 	/* @RequestMapping("/addpackage")
 	    public String addpackage(){

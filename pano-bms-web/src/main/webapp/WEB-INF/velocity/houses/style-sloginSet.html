@@ -47,7 +47,8 @@
 						<td>$!{labList.NAME}</td>
 						<td>
 							<div class="btn-group btn-group-sm" role="group">
-								<a href="#" class="btn btn-danger">删除</a>
+								<a href="/houses/delsloginSet?SN=$!{labList.SN}"
+									class="btn btn-danger">删除</a>
 							</div>
 						</td>
 					</tr>
@@ -70,11 +71,12 @@
 					<h4 class="modal-title">添加/修改</h4>
 				</div>
 				<div class="modal-body clearfix">
-					<form class="form-horizontal" id="formadd">
+					<form class="form-horizontal" id="formadd" action="/houses/addsloginSet">
 						<div class="form-group">
 							<label class="col-sm-3 control-label">标签名称</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" placeholder="标签名称">
+								<input type="text" class="form-control" placeholder="标签名称"
+									id="aname" name="aname">
 							</div>
 						</div>
 					</form>

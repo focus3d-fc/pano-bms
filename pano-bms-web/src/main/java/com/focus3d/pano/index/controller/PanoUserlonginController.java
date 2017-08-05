@@ -34,14 +34,13 @@ public class PanoUserlonginController extends BaseController{
 	public void UserLongin(HttpServletRequest request,HttpServletResponse response,HttpSession session,String userName,String passWord){
 		PanoUserLongin longIn = new PanoUserLongin();
 		ResultVO rv = new ResultVO();
-		//longIn.setNike_name(userName);
 		longIn.setNick_name(userName);
 		longIn.setPassword(passWord);
 		System.out.println("shang");
 		PanoUserLongin userLongin = user.getUserLongin(longIn);
 		System.out.println("xia");
 		System.out.println(userLongin);
-		if(userLongin.getSn()>0){
+		if(userLongin != null){
 			rv.setResult("success");
 			rv.setResCode(null);
 			rv.setObjData(userLongin);

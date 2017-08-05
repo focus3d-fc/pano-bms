@@ -34,8 +34,8 @@
 	<insert id="addHousetype" parameterClass="housestype">
 		insert into
 		pano_project_house
-		(`NAME`,IMG_SN,ADD_TIME)
-		values(#NAME#,#IMG_SN#,#ADD_TIME#)
+		(`NAME`,IMG_SN,ADD_TIME,PROJECT_SN)
+		values(#NAME#,#IMG_SN#,#ADD_TIME#,#PROJECT_SN#)
 	</insert>
 
 	<update id="upHousetype" parameterClass="housestype">
@@ -45,5 +45,15 @@
 		`NAME`=#NAME#,IMG_SN=#IMG_SN#
 		where SN = #SN#
 	</update>
+
+	<select id="getHousetypebySN" resultClass="housestype"
+		parameterClass="Long">
+		select
+		SN,`NAME`
+		from pano_project_house
+		where
+		SN
+		=#SN#
+	</select>
 
 </sqlMap>

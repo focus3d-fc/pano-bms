@@ -9,6 +9,93 @@
     <link rel="stylesheet" href="/style/admstatic/css/admin.css">
     <script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
 <script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript">
+function move(pageNum,pageSize){
+	   //var pageSize=document.getElementById("pageSize").value;
+	   
+	   var url="/packageset/chooseprodt?pageNum="+pageNum;
+	   if(pageSize!=undefined){
+		   url+="&pageSize="+pageSize;
+	   }
+	  var scfy='${ifscfy}';
+	  var scfg='${scStyleSn}';
+	  var scgn='${scFuncSn}';
+	  var proid='${proid}';
+	  if(scfy=='true'){
+		  url+="&ifscfy="+scfy;
+		  url+="&styleSn="+scfg;
+		  url+="&funcSn="+scgn;
+		  url+="&proid="+proid;
+	  }
+	   
+	   location.href=url;
+}
+
+    function suresel(psn){
+    	var selsn=[]; 
+       $("input:checked").each(function(){ 
+    	   var sn=$(this).val();
+    	   if(sn==psn){
+    		   $(this).prop('checked',false);
+    	   }
+    	  if(sn!=psn){
+    		  selsn.push(sn); 
+    		 
+    	  }
+    	  
+    	   }); 
+    	/* for(var i=0;i<selsn.length;i++){
+    		alert(selsn[i]);
+    	} */
+    	//alert(selsn);
+    	var s="";
+       $.ajax({
+   		url:"/packageset/getselectedprodt",	 
+   	    type:"post",
+   	    data:{"selsns":selsn},
+   	    datatype:"json",
+   	    traditional: true,  
+   	    success:function(data){
+   	    	
+   	    	var jsonobj=JSON.parse(data);
+   	    	//alert(jsonobj.updateTime1);
+   	    	$.each(jsonobj,function(i,obj){
+     	    	
+   	    	 s+='<tr>'
+   	    		+'<td>'+(i+1)+'</td>'
+   	    		+'<td>'+obj.name+'</td>'
+   	    		+'<td id="cateid'+(i+1)+'"></td>'
+   	    		+'<td>'
+   	    		+'  <div class="btn-group btn-group-sm" role="group">'
+   	    		+'  <button class="btn btn-info" data-toggle="modal" onclick="setpcate('+(i+1)+')" data-target="#add">设置类别</button>'
+   	    		+'  <a href="#" class="btn btn-danger" '+'onClick="suresel('+obj.sn+')">删除</a>'
+   	    		+'  </div>'
+   	    		+'</td>'
+   	    		+'</tr>';
+   	    	});	
+   	    	
+   	        $("#tbody").html(s);
+   		}
+
+   	  });  
+    	    
+    }
+
+      function setpcate(tid){
+    	  $("#sttid").val(tid);
+    	 // alert(tid);
+      }
+      function suresetpcate(){
+    	  var tid=$("#sttid").val();
+    	var ittpsn=$('#selct option:selected').val();
+    	var ittpname=$('#selct option:selected').text();
+    	 $("#cateid"+tid).text(ittpname);
+      }
+    
+    $(function(){
+    	
+    });
+</script>
 </head>
 <body>
 <div class="panel panel-default">
@@ -89,7 +176,7 @@
         </div>
     </div>
     <div class="panel-body">
-        <form action="">
+        <form id="selpro" method="post" action="">
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -107,7 +194,7 @@
                     <td>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox">
+                                <input type="checkbox" value='$!prodt.sn'>
                             </label>
                         </div>
                     </td>
@@ -130,22 +217,25 @@
     <div class="panel-bodya">
         <nav class="nav-divider clearfix">
             <div class="pull-left cof">
-                <button class="btn btn-info" type="submit">确认</button>
+                <button class="btn btn-info" type="submit"  onclick="suresel()">确认</button>
             </div>
             <ul class="pagination pull-right">
+            <li><a href="javascript:void(0)" onclick="move(1,$!page.perPageInt)">首页</a></li>
                 <li>
-                    <a href="#" aria-label="Previous">
+                    <a href="javascript:void(0)" aria-label="Previous" onclick="move($!page.currentPage - 1,$!page.perPageInt)">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
+                <li class="active"><a href="javascript:void(0)" onclick="move($!page.currentPage,$!page.perPageInt)">$!page.currentPage</a></li>
+               
                 <li>
-                    <a href="#" aria-label="Next">
+                    <a href="javascript:void(0)" aria-label="Next" onclick="move($!page.currentPage + 1,$!page.perPageInt)">
                         <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                 <li>
+                    <a href="javascript:void(0)" aria-label="Last" onclick="move($!page.totalPage,$!page.perPageInt)">
+                        <span aria-hidden="true">尾页</span>
                     </a>
                 </li>
             </ul>
@@ -164,8 +254,8 @@
                 <th width="15%">操作</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
+            <tbody id="tbody">
+            <!-- <tr>
                 <td>1</td>
                 <td>电视柜</td>
                 <td>类别1</td>
@@ -175,72 +265,18 @@
                         <a href="#" class="btn btn-danger" onClick="del()">删除</a>
                     </div>
                 </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>电视柜</td>
-                <td></td>
-                <td>
-                    <div class="btn-group btn-group-sm" role="group">
-                        <button class="btn btn-info" data-toggle="modal" data-target="#add">设置类别</button>
-                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>电视柜</td>
-                <td>类别1</td>
-                <td>
-                    <div class="btn-group btn-group-sm" role="group">
-                        <button class="btn btn-info" data-toggle="modal" data-target="#add">设置类别</button>
-                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>电视柜</td>
-                <td></td>
-                <td>
-                    <div class="btn-group btn-group-sm" role="group">
-                        <button class="btn btn-info" data-toggle="modal" data-target="#add">设置类别</button>
-                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>电视柜</td>
-                <td>类别1</td>
-                <td>
-                    <div class="btn-group btn-group-sm" role="group">
-                        <button class="btn btn-info" data-toggle="modal" data-target="#add">设置类别</button>
-                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>电视柜</td>
-                <td></td>
-                <td>
-                    <div class="btn-group btn-group-sm" role="group">
-                        <button class="btn btn-info" data-toggle="modal" data-target="#add">设置类别</button>
-                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
-                    </div>
-                </td>
-            </tr>
+            </tr> -->
+            
             </tbody>
         </table>
     </div>
 
     <div class="panel-body">
-        <form class="form-inline">
+        <form id="addpgrel" class="form-inline" method="post" action="/packageset/addpgrelitem">
             <div class="row">
                 <div class="col-md-6 col-md-offset-5">
                     <label class="control-label">套餐定价</label>
-                    <input class="form-control" type="text" class="form-control" placeholder="价格">
+                    <input class="form-control" type="text" class="form-control" placeholder="价格" name="totalPrice">
                 </div>
             </div>
         </form>
@@ -248,7 +284,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-6 col-md-offset-5">
-                <button type="submit" class="btn btn-info">确认</button>
+                <button type="submit" class="btn btn-info" form="addpgrel">确认</button>
                 <button class="btn btn-default" style="margin-left: 60px">取消</button>
             </div>
         </div>
@@ -271,24 +307,26 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">类别选择</label>
                         <div class="col-sm-9">
-                            <select class="form-control">
+                            <select id="selct" class="form-control">
                                 <option>选择已有的类别</option>
-                                <option>类别1</option>
-                                <option>类别2</option>
+                                 #foreach( $!procate in $!prodtcateInpgList)
+                                    <option value="$!procate.sn">$!procate.name</option>
+                                     #end 
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">类别名称</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" placeholder="输入新类别">
+                            <input type="text" class="form-control" placeholder="输入新类别" name="">
                         </div>
                     </div>
+                    <input id="sttid" type="hidden" name="tdid"/>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="submit" class="btn btn-primary" form="formadd">确定</button>
+                <button id="setpgc" type="button" class="btn btn-primary" onclick="suresetpcate()" data-dismiss="modal" form="formadd">确定</button>
             </div>
         </div>
     </div>

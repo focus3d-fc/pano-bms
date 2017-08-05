@@ -122,36 +122,14 @@
     <div id="hx">
         <div class="swiper-container swiper3">
             <div class="swiper-wrapper">
+                #foreach ($!{house} in $!{houseList})
                 <div class="swiper-slide bd-r">
-                    <a href="#">
-                        <img src="/style/admstatic/image/image/room.png" alt="">
-                        <p>两室一厅</p>
+                    <a href="#"><!-- houseList src="$!fs.url($!{style.img_sn})"-->
+                        <img src="$!fs.url($!{house.IMG_SN})" alt="">
+                        <p>$!{house.NAME}</p>
                     </a>
                 </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <img src="/style/admstatic/image/image/room.png" alt="">
-                        <p>三室一厅</p>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <img src="/style/admstatic/image/image/room.png" alt="">
-                        <p>小公寓</p>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <img src="/style/admstatic/image/image/room.png" alt="">
-                        <p>其他</p>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <img src="/style/admstatic/image/image/room.png" alt="">
-                        <p>其他</p>
-                    </a>
-                </div>
+                #end
             </div>
         </div>
     </div>
@@ -196,12 +174,12 @@
             $("#fjshow").toggleClass("on");
 
         })
-        $('#hxshow').click(function () {
+         $('#hxshow').click(function () {
 
             $('#hx').toggleClass('on');
-            $("#hxshow").toggleClass("on");
+            /* $("#hxshow").toggleClass("on");  */
 
-        })
+        }) 
     })
 </script>
 </body>

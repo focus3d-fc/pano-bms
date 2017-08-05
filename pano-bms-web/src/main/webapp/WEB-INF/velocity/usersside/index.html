@@ -13,17 +13,26 @@
     <script src="/style/admstatic/lib/mui/js/mui.picker.min.js"></script>
     <script src="/style/admstatic/js/city.data-3.js"></script> 
     <script src="/style/admstatic/js/main.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- 模态框引入start -->
+ 	<link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+	<!-- 模态框end -->
+	<!-- 联动引入-->
+	<script type="text/javascript" src="/style/admstatic/js/jsAddresss.js"></script>
+	<!--  -->
 </head>
 <body>
 <div class="container index">
     <!--头-->
     <header class="header">
-        <a href="#" class="back">
+        <span href="#" class="back">
             <i class="iconfont">&#xe6bc;</i>
             返回
-        </a>
+        </span>
         <p class="title">千万间软装定制</p>
-        <a href="/userside/toshare" class="share" id="share" >
+        <a href="/usersSide/toshareYM" class="share" id="share" >
             <i class="iconfont">&#xe622;</i>
         </a>
     </header>
@@ -31,10 +40,12 @@
     <section class="banner">
         <div class="location">
             <p href="javascrpt:;" id='showCityPicker3'>
-                <span id="cityResult3"> 上海保利 铃兰公园 </span>
+                <!-- <span id="cityResult3"> 上海保利 铃兰公园 pano_projectList</span> -->
+                <span class="btn btn-info" data-toggle="modal"
+				data-target="#add" style="margin-left: 60px">$!{pano_projectList[0].NAME}</span>
                 <i class="iconfont">&#xe628;</i></a>
             </p>
-            <a href="/userside/tomy" class="my">
+            <a href="/usersSide/tomy" class="my">
                 <i class="iconfont">&#xe61d;</i></a>
             </a>
         </div>
@@ -50,27 +61,29 @@
         </div>
     </section>
     <!--版块-->
+    #foreach ($!{style} in $!{styleList})
     <section class="content">
         <div class="title">
-            <img src="/style/admstatic/image/img/sofa.png" alt="">
-            <span>北<span class="line">|</span>欧<span class="line">|</span>风<span class="line">|</span>格</span>
+            <img src="/style/admstatic/image/img/sofa.png" alt=""><!-- $!{style.name} -->
+            <!-- <span>北<span class="line">|</span>欧<span class="line">|</span>风<span class="line">|</span>格</span> -->
+        <span>$!{style.name}</span>
         </div>
-        <a href="/userside/to720">
-        <img id="dtli" src="$!fs.url($!dec5)" alt="" class="img-rounded img-responsive">
-            <!-- <img src="/style/admstatic/image/image/5.jpg" alt=""> -->
+        <a href="/usersSide/to720?style_id=$!{style.id}">
+        <img id="dtli" src="$!fs.url($!{style.img_sn})" alt="" class="img-rounded img-responsive">
         </a>
         <div class="label">
             <div class="detail fl">
-                <span>舒适</span>
-                <span>简约</span>
-                <span>轻盈</span>
+                <span style="color:black;">舒适</span>
+                <span style="color:black;">简约</span>
+                <span style="color:black;">轻盈</span>
             </div>
             <div class="price fr">
-                <span>16~18</span>万元
+                <!-- <span>16~18</span>万元 -->
+                <span>$!{style.start_price}~$!{style.end_price}</span>万元
             </div>
         </div>
     </section>
-    
+    #end
 
 </div>
 <script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
@@ -81,40 +94,105 @@
         loop: true,
         pagination: '.swiper-pagination',
     })
-
 </script>
-<script>
-    (function($, doc) {
-        $.init();
-        $.ready(function() {
-            /**
-             * 获取对象属性的值
-             * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
-             * @param {Object} obj 对象
-             * @param {String} param 属性名
-             */
-            var _getParam = function(obj, param) {
-                return obj[param] || '';
-            };
-
-            //					//级联示例
-            var cityPicker3 = new $.PopPicker({
-                layer: 3
-            });
-            cityPicker3.setData(cityData3);
-            var showCityPickerButton = doc.getElementById('showCityPicker3');
-            var cityResult3 = doc.getElementById('cityResult3');
-            showCityPickerButton.addEventListener('tap', function(event) {
-                cityPicker3.show(function(items) {
-                    cityResult3.value =  _getParam(items[0], 'text') + " " + _getParam(items[1], 'text') + " " + _getParam(items[2], 'text');
-                    //返回 false 可以阻止选择框的关闭
-                    //return false;
-                });
-            }, false);
-        });
-    })(mui, document);
-</script>
-
+		<!--添加楼盘弹窗-->
+	<div class="modal fade " id="add" tabindex="-1" role="dialog"
+		aria-labelledby="添加/修改">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content modal-width">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">添加/修改</h4>
+				</div>
+				<div class="modal-body clearfix">
+					<form class="form-horizontal" id="formadd"
+						action="/usersSide/toIndex">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">省份</label>
+							<div class="col-sm-9">
+								<select class="form-control change" id="acmbProvince" name="province"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">城市</label>
+							<div class="col-sm-9">
+								<select class="form-control change" id="acmbCity" name="city"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">区县</label>
+							<div class="col-sm-9">
+								<select class="form-control change" id="acmbArea" name="area"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">楼盘名称</label>
+							<div class="col-sm-9">
+							    <select class="form-control" id="asname" name="project_name"></select>
+								<!-- <input id="asname" type="text"
+									class="form-control" placeholder="楼盘名称"> -->
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="submit" class="btn btn-primary" form="formadd">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+				<!-- 模态框end -->
+	<script type="text/javascript">
+		addressInit('acmbProvince', 'acmbCity', 'acmbArea');
+	</script>
+	<script>
+	var path=window.document.location.href.substring(0, window.document.location.href.indexOf
+			(window.document.location.pathname));
+	//console.log("路径："+path);
+	//获得焦点事件
+	$(".change").change(asname);
+	function asname(){
+		var province=$("#acmbProvince").val();
+		var city=$("#acmbCity").val();
+		var area=$("#acmbArea").val();
+		 $.ajax({
+			url:path+"/usersSide/selectProject",
+			type:"post",
+		    data:{"province":province,"city":city,"area":area},
+		    datatype:"json",
+		    success:function(result){
+		    	var projectList=JSON.parse(result);
+		    	//console.log("楼盘名称："+projectList);
+		    	var selectCity = document.getElementById("asname");
+		    	var options = selectCity.getElementsByTagName("option");
+		    	console.log("1.options.length:"+options.length+"-------------------------");
+		    	 for(var i=options.length;i>=1;i--) {
+		    		selectCity.removeChild(options[i-1]);
+		    		console.log("第"+i+"次循环，删除："+options[i-1]);
+				}
+		    	 for(var i=0;i<projectList.length;i++){
+		    		//console.log("项目名"+projectList[i]);
+		    		var option = document.createElement("option");
+		    		option.innerHTML = projectList[i];
+		    		selectCity.appendChild(option);
+		    	} 
+		    	 console.log("2.options.length:"+options.length+"-------------------------");
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    }
+		}); 
+		
+	}
+	</script>
 </body>
 </body>
 </html>

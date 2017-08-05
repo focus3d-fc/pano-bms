@@ -17,4 +17,17 @@
 		#STYLE_SN#
 	</select>
 
+	<delete id="delLable" parameterClass="Long">
+		delete from
+		pano_project_label
+		where SN = #SN#
+	</delete>
+
+	<insert id="addLable" parameterClass="lables">
+		insert into
+		pano_project_label
+		(`NAME`,STYLE_SN,TYPE,ADD_TIME)
+		values(#NAME#,#STYLE_SN#,2,#ADD_TIME#)
+	</insert>
+
 </sqlMap>

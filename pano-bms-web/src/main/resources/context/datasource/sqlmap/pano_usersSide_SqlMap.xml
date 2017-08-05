@@ -2,10 +2,104 @@
 
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">  
 <sqlMap> 
- <!-- <typeAlias alias="user" type="com.focus3d.pano.model.User" /> -->
+ <!-- <typeAlias alias="style" type="com.focus3d.pano.model.Style" /> -->
  <select id="selectAdImg_sn" resultClass="long">
  select img_sn from pano_ad
  </select>
+ <!-- 查风格img_sn和name -->
+ <select id="selectStyleByProject_sn" parameterClass="long" resultClass="com.focus3d.pano.model.Style">
+SELECT
+pano_project.`NAME` as project_name,
+pano_project_style.`NAME`,
+pano_project_style.IMG_SN,
+pano_project.SN as project_sn,
+pano_project_style.SN as id,
+pano_project_style.START_PRICE,
+pano_project_style.END_PRICE
+FROM
+pano_project
+INNER JOIN pano_project_style ON pano_project_style.PROJECT_SN = pano_project.SN
+where pano_project.SN=#project_sn#
+ </select>
+ <!-- 根据style_sn查询lable集合 -->
+ <select id="selectLableByStyle_sn" parameterClass="com.focus3d.pano.model.Lable"
+  resultClass="com.focus3d.pano.model.Lable">
+ SELECT
+pano_project_label.SN as id,
+pano_project_label.`NAME`,
+pano_project_label.TYPE,
+pano_project_label.STYLE_SN,
+pano_project_label.ADDER_SN,
+pano_project_label.ADDER_NAME,
+pano_project_label.ADD_TIME,
+pano_project_label.UPDATER_SN,
+pano_project_label.UPDATER_NAME,
+pano_project_label.UPDATE_TIME 
+FROM
+pano_project_style
+INNER JOIN pano_project_label ON pano_project_style.SN = pano_project_label.STYLE_SN
+where pano_project_label.STYLE_SN=#id#
+ </select>
+ <!-- 根据省、市、区查询projectList(楼盘集合) -->
+ <select id="list_SelectprojectList" parameterType="com.focus3d.pano.model.pano_project" 
+ resultClass="com.focus3d.pano.model.pano_project">
+ SELECT
+pano_project.SN,
+pano_project.`NAME`,
+pano_project.PROVINCE,
+pano_project.CITY,
+pano_project.AREA
+FROM
+pano_project
+where pano_project.PROVINCE=#PROVINCE# and 
+pano_project.CITY=#CITY# and pano_project.AREA=#AREA#
+ </select>
+  <!-- 根据省、市、区查询projectList(楼盘集合) -->
+ <select id="list_SelectprojectList2" parameterType="com.focus3d.pano.model.pano_project" 
+ resultClass="com.focus3d.pano.model.pano_project">
+ SELECT
+pano_project.SN,
+pano_project.`NAME`,
+pano_project.PROVINCE,
+pano_project.CITY,
+pano_project.AREA
+FROM
+pano_project
+where pano_project.PROVINCE=#PROVINCE# and 
+pano_project.CITY=#CITY# and pano_project.AREA=#AREA# and
+pano_project.`NAME`=#NAME#
+ </select>
+ <!-- 根据style_sn,查询户型表img_sn -->
+ <select id="get_selectHouseListByStyle_sn" parameterClass="long" 
+                        resultClass="com.focus3d.pano.model.pano_project_house">
+ SELECT
+pano_project_house.SN,
+pano_project_house.`NAME`,
+pano_project_house.IMG_SN,
+pano_project_house.PROJECT_SN
+FROM
+pano_project_house
+INNER JOIN pano_project_house_style ON pano_project_house_style.HOUSE_SN = pano_project_house.SN
+INNER JOIN pano_project_style ON pano_project_style.SN = pano_project_house_style.STYLE_SN
+ </select>
+ <!-- 查询所有楼盘 -->
+ <select id="get_projectList" resultClass="com.focus3d.pano.model.pano_project">
+ select
+ pano_project.SN,
+pano_project.`NAME`,
+pano_project.PROVINCE,
+pano_project.CITY,
+pano_project.AREA
+FROM
+pano_project
+ </select>
+ <!-- 查询楼盘end -->
+ 
+ 
+ 
+ 
+ 
+ 
 </sqlMap>
 
 

@@ -2,6 +2,11 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="pano_bm_longin">
 	<typeAlias alias="PanoLongin" type="com.focus3d.pano.model.PanoUserLongin"/>
+	<typeAlias alias="PanoProjectPackageStyle" type="com.focus3d.pano.model.PanoProjectPackageStyle"/>
+	<typeAlias alias="getListPano" type="com.focus3d.pano.model.getListPano"/>
+	<typeAlias alias="PanoProjectPackage" type="com.focus3d.pano.model.PanoProjectPackage" />
+	
+	
 		<select id="getUserLongin" resultClass="PanoLongin">
 					select p.ROLE_BASICS,p.ROLE_HOUSES,p.ROLE_ORDER,p.ROLE_PRODUCT,p.ROLE_USER,p.ROLE_ROLE,p1.SN,p1.ADDER_NAME,p1.ADDER_SN,
 				p1.CITY,p1.EMAIL,p1.HEAD_IMG_SN,p.ROLE_ROLE,p.ROLE_USER,
@@ -13,5 +18,39 @@
 				`PASSWORD` = #password#) and p1.NICK_NAME=#nick_name#  and p1.`PASSWORD`=#password#
 		</select>
 		
+		
+		<select id="getPPPSSelect" resultClass="PanoProjectPackageStyle">
+		
+		select p.PROJECT_SN,p.STYLE_SN,p.HOUSE_SN,p.PACKAGE_SN,p.SN 
+		from pano_project_package_style p where p.HOUSE_SN = #house_sn# and p.PROJECT_SN =#project_sn# AND p.STYLE_SN = #style_sn#
+		
+		</select>
+		
+		
+		<select id="getpackage" resultClass="getListPano">
+		
+			select p4.SN,p.id,p1.SN AS project_sn,p2.SN AS style_sn,p3.SN AS house_sn,p.name as package_name,p1.`NAME` AS project_name ,p2.`NAME` as style_name ,p3.`NAME` as house_name
+				from pano_project_package p,pano_project p1,pano_project_style p2,pano_project_house p3,pano_project_package_style p4 where 
+				p.SN = #package_id#  and  p1.SN =#project_id# and p2.SN =#style_id# and p3.SN =#house_id# and p4.sn =#sn#
+		
+		</select>
+		
+		<delete id="getdelete">
+				delete from pano_project_package_style where project_sn = #project_sn# and style_sn=#style_sn# and house_sn=#house_sn# and sn=#sn#
+		</delete>
+		
+		<select id="getselect" resultClass="PanoProjectPackage" >
+				select sn, `NAME` FROM pano_project_package
+		</select>
+			
+		<insert id="getinsert">
+			INSERT INTO  pano_project_package_style (PROJECT_SN,STYLE_SN,HOUSE_SN,PACKAGE_SN) VALUES (#project_sn#,#style_sn#,#house_sn#,#package_sn#)
+		</insert>	
+		
+		<select id="getselect1" resultClass="getListPano">
+			select p.`NAME` AS house_name,p.SN AS house_sn,p1.`NAME` AS project_name,p1.SN AS project_sn,p2.`NAME` AS style_name,p2.SN AS style_sn
+			FROM pano_project_house p,pano_project p1,pano_project_style p2 
+			where p.sn =#house_sn# and p1.SN = #project_sn# and p2.SN = #style_sn#
+		</select>
 		
 </sqlMap>

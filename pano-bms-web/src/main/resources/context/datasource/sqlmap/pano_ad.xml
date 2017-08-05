@@ -14,8 +14,32 @@
 	<delete id="delHousead" parameterClass="Long">
 		delete from
 		pano_ad
-		where SN = #SN#
+		where
+		SN = #SN#
 	</delete>
 
+
+	<insert id="addHousead" parameterClass="ads">
+		insert into
+		pano_ad
+		(LINK,IMG_SN,ADD_TIME)
+		values(#LINK#,#IMG_SN#,#ADD_TIME#)
+	</insert>
+
+	<select id="getHouseadbySN" resultClass="ads" parameterClass="Long">
+		select
+		SN,`NAME`,LINK
+		from
+		pano_ad
+		where SN = #SN#
+	</select>
+
+	<update id="upHousead" parameterClass="ads">
+		update pano_ad
+		set
+		LINK=#LINK#,
+		IMG_SN=#IMG_SN#
+		where SN = #SN#
+	</update>
 
 </sqlMap>

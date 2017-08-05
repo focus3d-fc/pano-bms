@@ -9,9 +9,10 @@ import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
+import com.focus3d.pano.model.pano_project_house_style;
 import com.focus3d.pano.model.pano_project_label;
 import com.focus3d.pano.model.pano_project_space;
-import com.focus3d.pano.model.pano_project_style;
+import com.focus3d.pano.model.project_style;
 
 @Repository
 public class HousesDAOImpl extends BaseDao implements HousesDAO {
@@ -59,8 +60,8 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 	}
 
 	@Override
-	public List<pano_project_style> getHousestyle(Long PROJECT_SN) {
-		List<pano_project_style> list = (List<pano_project_style>) getSqlMapClientTemplate()
+	public List<project_style> getHousestyle(Long PROJECT_SN) {
+		List<project_style> list = (List<project_style>) getSqlMapClientTemplate()
 				.queryForList("pano_project_style.getHousestyle", PROJECT_SN);
 		return list;
 	}
@@ -170,22 +171,95 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 	}
 
 	@Override
-	public List<pano_project_style> getHousestylebySN(Long SN) {
-		List<pano_project_style> list = (List<pano_project_style>) getSqlMapClientTemplate()
+	public List<project_style> getHousestylebySN(Long SN) {
+		List<project_style> list = (List<project_style>) getSqlMapClientTemplate()
 				.queryForList("pano_project_style.getHousestylebySN", SN);
 		return list;
 	}
 
 	@Override
 	public int delLable(Long SN) {
-		// TODO Auto-generated method stub
-		return 0;
+		int row = -1;
+		row = getSqlMapClientTemplate().delete("pano_project_label.delLable",
+				SN);
+		return row;
 	}
 
 	@Override
 	public void addLable(pano_project_label lable) {
 		// TODO Auto-generated method stub
+		getSqlMapClientTemplate().insert("pano_project_label.addLable", lable);
+	}
 
+	@Override
+	public List<pano_project_house> selHousebyStyle(
+			pano_project_house_style style) {
+		List<pano_project_house> list = (List<pano_project_house>) getSqlMapClientTemplate()
+				.queryForList("pano_project_house_style.selHousebyStyle", style);
+		return list;
+	}
+
+	@Override
+	public int delstylehouseSet(pano_project_house_style style) {
+		int row = -1;
+		row = getSqlMapClientTemplate().delete(
+				"pano_project_house_style.delstylehouseSet", style);
+		return row;
+	}
+
+	@Override
+	public int clearStyleHouse(pano_project_house_style style) {
+		int row = -1;
+		row = getSqlMapClientTemplate().delete(
+				"pano_project_house_style.clearStyleHouse", style);
+		return row;
+	}
+
+	@Override
+	public List<project_style> getAllHousestyle() {
+		List<project_style> list = (List<project_style>) getSqlMapClientTemplate()
+				.queryForList("pano_project_style.getAllHousestyle");
+		return list;
+	}
+
+	@Override
+	public void addHousestyle(project_style style) {
+		// TODO Auto-generated method stub
+		getSqlMapClientTemplate().insert("pano_project_style.addHousestyle",
+				style);
+	}
+
+	@Override
+	public void addHousead(pano_ad ad) {
+		// TODO Auto-generated method stub
+		getSqlMapClientTemplate().insert("pano_ad.addHousead", ad);
+	}
+
+	@Override
+	public pano_ad getHouseadbySN(Long SN) {
+		pano_ad ad = (pano_ad) getSqlMapClientTemplate().queryForObject(
+				"pano_ad.getHouseadbySN", SN);
+		return ad;
+	}
+
+	@Override
+	public void upHousead(pano_ad ad) {
+		// TODO Auto-generated method stub
+		getSqlMapClientTemplate().update("pano_ad.upHousead", ad);
+	}
+
+	@Override
+	public pano_project_house getHousetypebySN(Long SN) {
+		pano_project_house ht = (pano_project_house) getSqlMapClientTemplate()
+				.queryForObject("pano_project_house.getHousetypebySN", SN);
+		return ht;
+	}
+
+	@Override
+	public void addStyleHouse(pano_project_house_style style) {
+		// TODO Auto-generated method stub
+		getSqlMapClientTemplate().insert(
+				"pano_project_house_style.addStyleHouse", style);
 	}
 
 }

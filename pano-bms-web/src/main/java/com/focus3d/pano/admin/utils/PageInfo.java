@@ -17,7 +17,7 @@ public class PageInfo implements Serializable {
 	private static final long serialVersionUID = -553736326800368491L;
 	private Integer currentPage = 1;
 	/** 每页显示的条数 */
-	private Integer perPageInt = 5;
+	private Integer perPageInt = 10;
 	/** 查询数据库开始记录数 */
 	private Integer startRecord = 0;
 	/** 查询数据库结束记录数 */
@@ -71,7 +71,7 @@ public class PageInfo implements Serializable {
 		if (perPageInt == null) {
 			perPageInt = 0;
 		}
-		this.perPageInt = perPageInt < 1 ? 5 : perPageInt;
+		this.perPageInt = perPageInt < 1 ? 10 : perPageInt;
 		calcSplitPage();
 		calcTotalPage();
 		return this;

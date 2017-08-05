@@ -32,4 +32,5 @@
 	<sqlMap resource="context/datasource/sqlmap/pano_project_style.xml" />
 	<sqlMap resource="context/datasource/sqlmap/pano_project_label.xml" />
 	<sqlMap resource="context/datasource/sqlmap/pano_packageset.xml" />	
+	<sqlMap resource="context/datasource/sqlmap/pano_project_house_style.xml" />
 </sqlMapConfig>

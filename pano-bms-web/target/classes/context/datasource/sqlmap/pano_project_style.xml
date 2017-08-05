@@ -2,8 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="pano_project_style">
 
-	<typeAlias alias="styles" type="com.focus3d.pano.model.pano_project_style" />
-
+	<typeAlias alias="styles" type="com.focus3d.pano.model.project_style" />
 
 	<select id="getHousestyle" resultClass="styles" parameterClass="Long">
 		select
@@ -26,5 +25,24 @@
 		#SN#
 	</select>
 
+	<delete id="delHousestyle" parameterClass="Long">
+		delete from
+		pano_project_style
+		where SN = #SN#
+	</delete>
+
+	<select id="getAllHousestyle" resultClass="styles">
+		select
+		SN,`NAME`
+		from
+		pano_project_style
+	</select>
+
+	<insert id="addHousestyle" parameterClass="styles">
+		insert into
+		pano_project_style
+		(`NAME`,IMG_SN,ADD_TIME,PROJECT_SN)
+		values(#NAME#,#IMG_SN#,#ADD_TIME#,#PROJECT_SN#)
+	</insert>
 
 </sqlMap>

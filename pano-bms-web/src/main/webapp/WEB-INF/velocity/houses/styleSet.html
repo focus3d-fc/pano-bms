@@ -8,6 +8,33 @@
 <link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="/style/admstatic/css/admin.css">
+
+<link rel="stylesheet" href="/style/bootstrap.min-3.3.5.css">
+<!-- Generic page styles -->
+<link rel="stylesheet" href="/component/upload/css/style.css">
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+<link rel="stylesheet"
+	href="/component/upload/css/jquery.fileupload.css">
+<script src="/script/jquery-1.11.1.min.js"></script>
+<script src="/script/bootstrap.min-3.3.5.js"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="/component/upload/vendor/jquery.ui.widget.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="/component/upload/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="/component/upload/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="/component/upload/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="/component/upload/js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="/component/upload/js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="/component/upload/js/jquery.fileupload-image.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="/component/upload/js/jquery.fileupload-validate.js"></script>
+<script src="/script/member/user/product.js"></script>
 </head>
 <body>
 	<div class="panel panel-default">
@@ -33,7 +60,7 @@
 		<div class="panel-body">
 			<!--tab栏标题-->
 			<ul class="nav nav-tabs basic-tab">
-				<li><a href="/houses/tohouseSet">户型</a></li>
+				<li><a href="/houses/tohouseSet2">户型</a></li>
 				<li class="active"><a href="">风格</a></li>
 				<li><a href="/houses/toaddSet">广告</a></li>
 				<button class="btn btn-info" data-toggle="modal" data-target="#add"
@@ -57,18 +84,21 @@
 							#foreach ($!{stylist} in $!{stylist})
 							<tr>
 								<td>$!{velocityCount}</td>
-								<td>$!{stylist.name}</td>
+								<td>$!{stylist.NAME}</td>
 								<td>
 									<div class="img">
-										<img class="img-show" src="/style/admstatic/img/2.jpg">
+										<img class="img-show" src="$!fs.url($!stylist.IMG_SN)">
 									</div>
 								</td>
 
 								<td>
 									<div class="btn-group btn-group-sm" role="group">
-										<a href="/houses/tostyle-houseSet" class="btn btn-primary">户型设置</a>
-										<a href="/houses/tostyle-sloginSet?SN=$!{stylist.sn}" class="btn btn-success">标签设置</a>
-										<a href="#" class="btn btn-danger" onClick="del()">删除</a>
+										<a href="/houses/tostyle-houseSet?SN=$!{stylist.SN}"
+											class="btn btn-primary">户型设置</a> <a
+											href="/houses/tostyle-sloginSet?SN=$!{stylist.SN}"
+											class="btn btn-success">标签设置</a> <a
+											href="/houses/delstyleSet?SN=$!{stylist.SN}"
+											class="btn btn-danger">删除</a>
 									</div>
 								</td>
 							</tr>
@@ -94,23 +124,31 @@
 					<h4 class="modal-title">添加/修改</h4>
 				</div>
 				<div class="modal-body clearfix">
-					<form class="form-horizontal" id="formadd">
+					<form method="post" class="form-horizontal" id="formadd"
+						action="/houses/addstyleSet">
+						<input id="fullimgsn" type="hidden" name="fullImgSn" />
+
 						<div class="form-group">
 							<label class="col-sm-3 control-label">新增/修改</label>
 							<div class="col-sm-9">
-								<select class="form-control">
-									<option>地中海</option>
-									<option>中式</option>
+								<select class="form-control" name="aname"> #foreach
+									($!{allsty} in $!{allsty})
+									<option value="$!{allsty.NAME}">$!{allsty.NAME}</option> #end
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">上传图片</label>
-							<div class="col-sm-9">
-								<input type="file" class="form-control">
-							</div>
-						</div>
 					</form>
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label">上传图片</label>
+						<div class="col-sm-9">
+							<input class="form-control" id="fileupload" type="file"
+								name="files[]" multiple>
+						</div>
+					</div>
+					<div id="files" class="files"></div>
+					<span id="resultInfo"></span>
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -119,8 +157,6 @@
 			</div>
 		</div>
 	</div>
-	<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
-	<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
 	<script src="/style/admstatic/js/main.js"></script>
 
 </body>

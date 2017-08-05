@@ -6,9 +6,10 @@ import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
+import com.focus3d.pano.model.pano_project_house_style;
 import com.focus3d.pano.model.pano_project_label;
 import com.focus3d.pano.model.pano_project_space;
-import com.focus3d.pano.model.pano_project_style;
+import com.focus3d.pano.model.project_style;
 
 public interface HousesDAO {
 
@@ -49,16 +50,25 @@ public interface HousesDAO {
 	// 户型修改
 	public void upHousetype(pano_project_house house);
 
+	// 根据SN查户型
+	public pano_project_house getHousetypebySN(Long SN);
+
 	// ----------------------------------------------楼盘-风格----------------------------------------------
 
 	// 风格查询
-	public List<pano_project_style> getHousestyle(Long PROJECT_SN);
+	public List<project_style> getHousestyle(Long PROJECT_SN);
 
 	// 风格删除
 	public int delHousestyle(Long SN);
 
 	// 根据SN查风格
-	public List<pano_project_style> getHousestylebySN(Long SN);
+	public List<project_style> getHousestylebySN(Long SN);
+
+	// 查询所有风格
+	public List<project_style> getAllHousestyle();
+
+	// 风格添加
+	public void addHousestyle(project_style style);
 
 	// ----------------------------------------------楼盘-广告----------------------------------------------
 
@@ -67,6 +77,15 @@ public interface HousesDAO {
 
 	// 广告删除
 	public int delHousead(Long SN);
+
+	// 广告添加
+	public void addHousead(pano_ad ad);
+
+	// 根据SN查广告
+	public pano_ad getHouseadbySN(Long SN);
+
+	// 广告修改
+	public void upHousead(pano_ad ad);
 
 	// ----------------------------------------------楼盘-户型-空间设置----------------------------------------------
 
@@ -89,6 +108,19 @@ public interface HousesDAO {
 	public void uproomSet(pano_project_space space);
 
 	// -----------------------楼盘-设置-风格-户型设置-----------------------
+
+	// 根据风格查户型
+	public List<pano_project_house> selHousebyStyle(
+			pano_project_house_style style);
+
+	// 删除风格户型关联
+	public int delstylehouseSet(pano_project_house_style style);
+
+	// 清空关联
+	public int clearStyleHouse(pano_project_house_style style);
+	
+	// 添加关联
+	public void addStyleHouse(pano_project_house_style style);
 
 	// -----------------------楼盘-设置-风格-标签设置-----------------------
 

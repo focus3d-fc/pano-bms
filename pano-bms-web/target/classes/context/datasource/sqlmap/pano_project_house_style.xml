@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="pano_project_house_style">
+
+	<typeAlias alias="house_style"
+		type="com.focus3d.pano.model.pano_project_house_style" />
+
+
+	<resultMap id="house_styleMap"
+		class="com.focus3d.pano.model.pano_project_house_style">
+		<id column="SN" property="SN" jdbcType="BIGINT" />
+		<result column="HOUSE_SN" property="HOUSE_SN" jdbcType="BIGINT" />
+		<result column="STYLE_SN" property="STYLE_SN" jdbcType="BIGINT" />
+		<result column="PANO_ID" property="PANO_ID" jdbcType="BIGINT" />
+		<result column="PROJECT_SN" property="PROJECT_SN" jdbcType="BIGINT" />
+		<result column="ADDER_SN" property="ADDER_SN" jdbcType="BIGINT" />
+		<result column="ADDER_NAME" property="ADDER_NAME" jdbcType="VARCHAR" />
+		<result column="ADD_TIME" property="ADD_TIME" jdbcType="DATE" />
+		<result column="UPDATER_SN" property="UPDATER_SN" jdbcType="BIGINT" />
+		<result column="UPDATER_NAME" property="UPDATER_NAME" jdbcType="VARCHAR" />
+		<result column="UPDATE_TIME" property="UPDATE_TIME" jdbcType="DATE" />
+		<result column="NAME" property="NAME" jdbcType="VARCHAR" />
+		<collection property="Houses" javaType="java.util.List"
+			ofType="com.focus3d.pano.model.pano_project_house">
+			<id property="SN" column="SN" />
+			<result property="ID" column="ID" />
+			<result property="NAME" column="NAME" />
+			<result property="AREA" column="AREA" />
+			<result property="IMG_SN" column="IMG_SN" />
+			<result property="ROOM_NUM" column="ROOM_NUM" />
+			<result property="HALL_NUM" column="HALL_NUM" />
+			<result property="PROJECT_SN" column="PROJECT_SN" />
+			<result property="PANO_ID" column="PANO_ID" />
+			<result property="ADDER_SN" column="ADDER_SN" />
+			<result property="ADDER_NAME" column="ADDER_NAME" />
+			<result property="ADD_TIME" column="ADD_TIME" />
+			<result property="UPDATER_SN" column="UPDATER_SN" />
+			<result property="UPDATER_NAME" column="UPDATER_NAME" />
+			<result property="UPDATE_TIME" column="UPDATE_TIME" />
+		</collection>
+	</resultMap>
+
+
+	<select id="selHousebyStyle" resultClass="com.focus3d.pano.model.pano_project_house"
+		parameterClass="com.focus3d.pano.model.pano_project_house_style">
+		SELECT
+		pano_project_house.SN,
+		pano_project_house.`NAME`
+		FROM
+		pano_project_house
+		INNER JOIN pano_project_house_style ON
+		pano_project_house_style.HOUSE_SN =
+		pano_project_house.SN
+		WHERE
+		pano_project_house_style.PROJECT_SN=#PROJECT_SN#
+		AND
+		pano_project_house_style.STYLE_SN=#STYLE_SN#
+	</select>
+
+
+	<delete id="delstylehouseSet" parameterClass="com.focus3d.pano.model.pano_project_house_style">
+		delete from
+		pano_project_house_style
+		where HOUSE_SN = #HOUSE_SN#
+		and
+		PROJECT_SN=#PROJECT_SN#
+		and STYLE_SN=#STYLE_SN#
+	</delete>
+
+	<delete id="clearStyleHouse" parameterClass="com.focus3d.pano.model.pano_project_house_style">
+		delete from
+		pano_project_house_style
+		where
+		PROJECT_SN=#PROJECT_SN#
+		and
+		STYLE_SN=#STYLE_SN#
+	</delete>
+
+	<insert id="addStyleHouse" parameterClass="com.focus3d.pano.model.pano_project_house_style">
+		insert into
+		pano_project_house_style
+		(PROJECT_SN,STYLE_SN,HOUSE_SN,ADD_TIME)
+		values(#PROJECT_SN#,#STYLE_SN#,#HOUSE_SN#,#ADD_TIME#)
+	</insert>
+
+</sqlMap>
