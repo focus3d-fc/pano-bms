@@ -11,6 +11,8 @@ public class PanoProjectPackage implements Serializable, CommonModel{
 	private static final long serialVersionUID = 2116671993371130823L;
 	private Long sn;         //序列号
 	private String name;     //名称
+	private Long img_sn;     //图片id
+	private String id;       //ID
 	private Long style_sn;    //风格s
 	private BigDecimal total_price;  //总价
 	private Long adder_sn;    //添加人id
@@ -73,6 +75,20 @@ public class PanoProjectPackage implements Serializable, CommonModel{
 				+ ", add_time=" + add_time + ", updater_sn=" + updater_sn
 				+ ", updater_name=" + updater_name + ", update_time="
 				+ update_time + "]";
+	}
+	
+	
+	public Long getImg_sn() {
+		return img_sn;
+	}
+	public void setImg_sn(Long img_sn) {
+		this.img_sn = img_sn;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public Long getSn() {
 		return sn;

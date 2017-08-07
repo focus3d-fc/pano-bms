@@ -23,6 +23,7 @@
 		select
 		SN,`NAME`,PROVINCE,CITY,AREA
 		from pano_project
+		order by ADD_TIME desc
 		limit #startIndex#,#pagesize#
 	</select>
 
@@ -69,5 +70,14 @@
 		where SN =
 		#SN#
 	</update>
+
+	<select id="selHousesbyName" resultClass="houses"
+		parameterClass="String">
+		select
+		SN,`NAME`,PROVINCE,CITY,AREA
+		from pano_project
+		where
+		`NAME` like concat('%',#NAME#,'%')
+	</select>
 
 </sqlMap>

@@ -46,7 +46,7 @@ public class ProductAdmController extends BaseController{
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		
 		 paramMap.put("id", proid);
-		
+		System.out.println("--"+styleSn);
 		 paramMap.put("styleSn", styleSn);
 		 paramMap.put("funcSn", funcSn);
 		
@@ -94,8 +94,9 @@ public class ProductAdmController extends BaseController{
 		   }*/
 		   
 		   //产品详情显示首个
-		   session.setAttribute("prodtInfo1", productInfoList.get(0));
+		   
 		   if(productInfoList!=null&&productInfoList.size()>0){
+		   session.setAttribute("prodtInfo1", productInfoList.get(0));
 		   session.setAttribute("productInfoList", productInfoList);
 		   }
 		   session.setAttribute("proStyleList", proStyleList);
@@ -175,7 +176,31 @@ public class ProductAdmController extends BaseController{
 		Product prodt=null;
 		try {
 			prodt = productAdmService.getProductBySn(productsn);
-	       
+			Long fullImgSn=prodt.getFullImgSn();
+			Long leftImgSn=prodt.getLeftImgSn();
+			Long downImgSn=prodt.getDownImgSn();
+			Long materialImgSn=prodt.getMaterialImgSn();
+			Long fabricImgSn=prodt.getFabricImgSn();
+			if(fullImgSn!=null){
+			 String fullImgUrl=fileReadClient.getFile(fullImgSn, FileAttributeEnum.VISIT_ADDR);
+			 prodt.setFullImgUrl(fullImgUrl);
+			}
+		     if(leftImgSn!=null){ 
+			  String leftImgUrl=fileReadClient.getFile(prodt.getLeftImgSn(), FileAttributeEnum.VISIT_ADDR);
+			  prodt.setLeftImgUrl(leftImgUrl);
+		      }
+		     if(downImgSn!=null){
+			  String downImgUrl=fileReadClient.getFile(prodt.getDownImgSn(),FileAttributeEnum.VISIT_ADDR);
+			  prodt.setDownImgUrl(downImgUrl);
+		     }
+		      if(materialImgSn!=null){ 
+		     String materialImgUrl=fileReadClient.getFile(prodt.getMaterialImgSn(), FileAttributeEnum.VISIT_ADDR);
+		     prodt.setMaterialImgUrl(materialImgUrl);
+		      }
+		      if(fabricImgSn!=null){
+		     String fabricImgUrl=fileReadClient.getFile(prodt.getFabricImgSn(), FileAttributeEnum.VISIT_ADDR);
+		     prodt.setFabricImgUrl(fabricImgUrl);
+		      }
 	       
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
@@ -216,6 +241,7 @@ public class ProductAdmController extends BaseController{
 		System.out.println(pro.getId()+pro.getName());
 		
 		String fullImgSn1=pro.getFullImgSn1();
+		System.out.println(fullImgSn1);
 		String leftImgSn1=pro.getLeftImgSn1();
 		String downImgSn1=pro.getDownImgSn1();
 		String materialImgSn1=pro.getMaterialImgSn1();
@@ -224,6 +250,7 @@ public class ProductAdmController extends BaseController{
 		try {
 			if(fullImgSn1!=null&&!"".equals(fullImgSn1)){
 				long fimgsn = EncryptUtil.decode(fullImgSn1);
+				System.out.println(fimgsn);
 				pro.setFullImgSn(fimgsn);
 				}
 				

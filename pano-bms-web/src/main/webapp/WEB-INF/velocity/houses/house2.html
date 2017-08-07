@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>楼盘管理</title>
+<link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="/style/admstatic/css/admin.css">
+
+<script type="text/javascript" src="/style/admstatic/js/jsAddresss.js"></script>
+
+<script type="text/javascript">
+	function uphouse(SN) {
+		$.ajax({
+			url : "/houses/upHouseVerify",
+			type : "post",
+			data : {
+				SN : SN
+			},
+			datatype : "json",
+			success : function(data) {
+				var jsonobj = JSON.parse(data);
+				$("#SN").val(jsonobj.SN);
+				$("#usname").val(jsonobj.NAME);
+			}
+		});
+	}
+</script>
+
+</head>
+<body>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-pencil"></span> 楼盘管理
+		</div>
+		<div class="panel-body">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-7">
+						<form class="form-inline" action="/houses/selhouses">
+							<select class="form-control" id="cmbProvince" name="cmbProvince"></select>
+							<select class="form-control" id="cmbCity" name="cmbCity"></select>
+							<select class="form-control" id="cmbArea" name="cmbArea"></select>
+							<input name="housesname" type="text" class="form-control"
+								placeholder="楼盘名称">
+							<button type="submit" class="btn btn-primary">搜索</button>
+						</form>
+					</div>
+					<div class="col-xs-2">
+						<button class="btn btn-info" data-toggle="modal"
+							data-target="#add" style="margin-left: 60px">增加</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>省份</th>
+					<th>城市</th>
+					<th>区县</th>
+					<th>楼盘名称</th>
+					<th width="20%">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				#foreach ($!{Houses} in $!{HousesList})
+				<tr>
+					<td>$!{velocityCount}</td>
+					<td>$!{Houses.PROVINCE}</td>
+					<td>$!{Houses.CITY}</td>
+					<td>$!{Houses.AREA}</td>
+					<td>$!{Houses.NAME}</td>
+					<td>
+						<div class="btn-group btn-group-sm" role="group">
+							<a href="/houses/tohouseSet?SN=$!{Houses.SN}"
+								class="btn btn-success">设置</a>
+							<button class="btn btn-info" data-toggle="modal"
+								data-target="#up" onclick="uphouse($!Houses.SN)">修改</button>
+							<a href="/houses/delhouses?SN=$!{Houses.SN}"
+								class="btn btn-danger"">删除</a>
+						</div>
+					</td>
+				</tr>
+				#end
+			</tbody>
+		</table>
+
+	</div>
+	<!--添加楼盘弹窗-->
+	<div class="modal fade " id="add" tabindex="-1" role="dialog"
+		aria-labelledby="添加/修改">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content modal-width">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">添加/修改</h4>
+				</div>
+				<div class="modal-body clearfix">
+					<form class="form-horizontal" id="formadd"
+						action="/houses/addhouses">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">省份</label>
+							<div class="col-sm-9">
+								<select class="form-control" id="acmbProvince"
+									name="acmbProvince"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">城市</label>
+							<div class="col-sm-9">
+								<select class="form-control" id="acmbCity" name="acmbCity"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">区县</label>
+							<div class="col-sm-9">
+								<select class="form-control" id="acmbArea" name="acmbArea"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">楼盘名称</label>
+							<div class="col-sm-9">
+								<input id="asname" name="asname" type="text"
+									class="form-control" placeholder="楼盘名称">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="submit" class="btn btn-primary" form="formadd">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--修改楼盘弹窗-->
+	<div class="modal fade " id="up" tabindex="-1" role="dialog"
+		aria-labelledby="添加/修改">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content modal-width">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">添加/修改</h4>
+				</div>
+				<div class="modal-body clearfix">
+					<form class="form-horizontal" id="formup" action="/houses/upHouse">
+						<input id="SN" name="SN" type="hidden">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">省份</label>
+							<div class="col-sm-9">
+								<select class="form-control" id="ucmbProvince"
+									name="ucmbProvince"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">城市</label>
+							<div class="col-sm-9">
+								<select class="form-control" id="ucmbCity" name="ucmbCity"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">区县</label>
+							<div class="col-sm-9">
+								<select class="form-control" id="ucmbArea" name="ucmbArea"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">楼盘名称</label>
+							<div class="col-sm-9">
+								<input id="usname" name="usname" type="text"
+									class="form-control" placeholder="楼盘名称">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="submit" class="btn btn-primary" form="formup">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
+	<script src="/style/admstatic/js/main.js"></script>
+
+	<script type="text/javascript">
+		addressInit('cmbProvince', 'cmbCity', 'cmbArea');
+		addressInit('acmbProvince', 'acmbCity', 'acmbArea');
+		addressInit('ucmbProvince', 'ucmbCity', 'ucmbArea');
+	</script>
+</body>
+</html>

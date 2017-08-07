@@ -60,9 +60,17 @@
                         <td>$!{user.id}</td>
                         <td>$!{user.nick_name}</td>
                         <td>$!{user.name}</td>
-                        <td>$!{user.sex_str}</td>
+                        #if ($!{user.sex}==1)
+                        <td>女</td>
+                        #else
+                        <td>男</td>
+                        #end
                         <td>$!{user.mobile}</td>
-                        <td>$!{user.status_str}</td>
+                        #if ($!{user.status}==1)
+                        <td>正常</td>
+                        #else
+                        <td>暂停使用</td>
+                        #end
                         <td>
                             <div class="btn-group btn-group-sm" role="group" aria-label="...">
                             <a href="/useradm/getUser?cert_no=$!{user.cert_no}" class="btn btn-success">查看</a>

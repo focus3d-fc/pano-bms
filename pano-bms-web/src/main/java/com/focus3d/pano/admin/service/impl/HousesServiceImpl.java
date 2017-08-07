@@ -233,4 +233,10 @@ public class HousesServiceImpl implements HousesService {
 		housesDAO.addStyleHouse(style);
 	}
 
+	@Override
+	public List<pano_project> selHousesbyName(String NAME) {
+		// TODO Auto-generated method stub
+		return housesDAO.selHousesbyName(NAME);
+	}
+
 }

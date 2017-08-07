@@ -12,7 +12,7 @@ public class Page  implements CommonModel{
 
 	private int currentPage;// 当前页
 
-	private int pagesize = 3;// 显示几条记录
+	private int pagesize = 10;// 显示几条记录
 
 	private int count; // 总记录数
 

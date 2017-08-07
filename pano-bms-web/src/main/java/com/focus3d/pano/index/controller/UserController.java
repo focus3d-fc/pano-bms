@@ -151,14 +151,10 @@ updater_sn(修改人id),updater_name(修改人姓名),update_time(修改时间)
 			int sex=Integer.parseInt(request.getParameter("sex"));
 			String password=request.getParameter("password");
 			//根据身份证查询是否已添加
-			System.out.println("1添加用户-------------------------------------------------");
 			//User user=userService.selectUserByCert_no(cert_no);
-			System.out.println("2添加用户-------------------------------------------------");
 			//if(user==null){
 			if(true){
-				System.out.println("3添加用户-------------------------------------------------");
 				long role_sn=userService.selectSnByRole_Name(role_name);
-				System.out.println("4添加用户-------------------------------------------------");
 /**
 * 插入login表信息//需要添加的字段
 * ----------------------------------------------------------------------
@@ -187,11 +183,16 @@ updater_sn(修改人id),updater_name(修改人姓名),update_time(修改时间)
 				String add_time=sdf.format(date);
 				                        System.out.println("add_time:"+add_time);
 //插入到用户表
-System.out.println("5添加用户-------------------------------------------------");
 userService.saveUser(nick_name,name,city,mobile,
 email,cert_no,sex,adder_sn,role_sn,password,adder_name,status,add_time);
-System.out.println("6添加用户-------------------------------------------------");
-				return this.redirect("/useradm/listUser");
+//查询刚刚插入的用户sn
+
+User user_select=userService.selectUsersnByCert_no(cert_no);
+long user_sn=user_select.getId();
+System.out.println("1.插入login表");
+userService.saveLogin(nick_name,password,status,user_sn,adder_sn,adder_name,add_time,cert_no);
+System.out.println("2.已经插入到login表");				
+return this.redirect("/useradm/listUser");
 			}else{
 				String existCert_no="该身份证已注册";
 				request.setAttribute("existCert_no",existCert_no);
@@ -320,6 +321,7 @@ System.out.println("1.修改用户表信息");
 					
 					//获取查询总记录数 
 					List<User> userList2_=userService.selectUserByMsg2(nick_name,mobile);
+					System.out.println("userList2_:"+userList2_);
 					count = userList2_.size();
 					System.out.println("搜索userList2_:"+userList2_+"-------------------------------");
 					System.out.println("搜索count:"+count+"-------------------------------");

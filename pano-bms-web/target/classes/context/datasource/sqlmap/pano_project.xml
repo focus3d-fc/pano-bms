@@ -18,10 +18,12 @@
 		<result column="UPDATE_TIME" property="UPDATE_TIME" jdbcType="DATE" />
 	</resultMap>
 
-	<select id="getHouses" resultClass="houses" parameterClass="com.focus3d.pano.admin.utils.Page">
+	<select id="getHouses" resultClass="houses"
+		parameterClass="com.focus3d.pano.admin.utils.Page">
 		select
 		SN,`NAME`,PROVINCE,CITY,AREA
 		from pano_project
+		order by ADD_TIME desc
 		limit #startIndex#,#pagesize#
 	</select>
 
@@ -57,7 +59,25 @@
 	</select>
 
 	<select id="selHousesCount" resultClass="int">
-		select count(SN) from pano_project
+		select count(SN) from
+		pano_project
+	</select>
+
+	<update id="upHouse" parameterClass="houses">
+		update pano_project
+		set
+		`NAME`=#NAME#,PROVINCE=#PROVINCE#,CITY=#CITY#,AREA=#AREA#
+		where SN =
+		#SN#
+	</update>
+
+	<select id="selHousesbyName" resultClass="houses"
+		parameterClass="String">
+		select
+		SN,`NAME`,PROVINCE,CITY,AREA
+		from pano_project
+		where
+		`NAME` like concat('%',#NAME#,'%')
 	</select>
 
 </sqlMap>

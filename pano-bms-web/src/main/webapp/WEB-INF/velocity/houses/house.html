@@ -22,6 +22,18 @@
 			datatype : "json",
 			success : function(data) {
 				var jsonobj = JSON.parse(data);
+				var PROVINCE=jsonobj.PROVINCE;
+				var CITY=jsonobj.CITY;
+				var AREA=jsonobj.AREA;
+									
+				$("#ucmbProvince").append("<option value='"+PROVINCE+"'>"+PROVINCE+"省"+"</option>");
+				$("#ucmbCity").append("<option value='"+CITY+"'>"+CITY+"</option>");
+				$("#ucmbArea").append("<option value='"+AREA+"'>"+AREA+"</option>");
+				
+	 	        $("#ucmbProvince").find('option[value="'+PROVINCE+'"]').attr("selected",true);
+	 	        $("#ucmbCity").find('option[value="'+CITY+'"]').attr("selected",true);
+	 	        $("#ucmbArea").find('option[value="'+AREA+'"]').attr("selected",true);
+	 	       				
 				$("#SN").val(jsonobj.SN);
 				$("#usname").val(jsonobj.NAME);
 			}

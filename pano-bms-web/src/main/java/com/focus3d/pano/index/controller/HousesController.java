@@ -129,23 +129,41 @@ public class HousesController extends BaseController {
 		return redirect("tohouse");
 	}
 
+	/*
+	 * @RequestMapping("/selhouses") public String selhouses(HttpServletRequest
+	 * request,
+	 * 
+	 * @RequestParam String cmbProvince, @RequestParam String cmbCity,
+	 * 
+	 * @RequestParam String cmbArea, @RequestParam String housesname) {
+	 * pano_project houses = new pano_project();
+	 * houses.setPROVINCE(cmbProvince); houses.setCITY(cmbCity);
+	 * houses.setAREA(cmbArea); if (housesname != null) {
+	 * houses.setNAME(housesname); } List<pano_project> list =
+	 * housesService.selHouses(houses);
+	 * 
+	 * if (list.size() != 0) { request.setAttribute("HousesList", list); }
+	 * return "/houses/house"; }
+	 */
+
 	@RequestMapping("/selhouses")
 	public String selhouses(HttpServletRequest request,
 			@RequestParam String cmbProvince, @RequestParam String cmbCity,
 			@RequestParam String cmbArea, @RequestParam String housesname) {
-		pano_project houses = new pano_project();
-		houses.setPROVINCE(cmbProvince);
-		houses.setCITY(cmbCity);
-		houses.setAREA(cmbArea);
-		if (housesname != null) {
-			houses.setNAME(housesname);
+		List<pano_project> list = new ArrayList<pano_project>();
+		if ("".equals(housesname) || housesname == null) {
+			pano_project houses = new pano_project();
+			houses.setPROVINCE(cmbProvince);
+			houses.setCITY(cmbCity);
+			houses.setAREA(cmbArea);
+			list = housesService.selHouses(houses);
+		} else {
+			list = housesService.selHousesbyName(housesname);
 		}
-		List<pano_project> list = housesService.selHouses(houses);
-
 		if (list.size() != 0) {
 			request.setAttribute("HousesList", list);
 		}
-		return "/houses/house";
+		return "/houses/house2";
 	}
 
 	@RequestMapping("/upHouseVerify")
@@ -215,6 +233,11 @@ public class HousesController extends BaseController {
 	public String addHousetype(String aname, String fullImgSn, Long SN) {
 		pano_project_house house = new pano_project_house();
 		house.setNAME(aname);
+
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String add_time = sdf.format(date);
+
 		Long imgsn = null;
 		try {
 			imgsn = EncryptUtil.decode(fullImgSn);
@@ -223,9 +246,6 @@ public class HousesController extends BaseController {
 			e.printStackTrace();
 		}
 		house.setIMG_SN(imgsn);
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String add_time = sdf.format(date);
 		if (SN == null) {
 			house.setADD_TIME(add_time);
 			house.setPROJECT_SN(PROJECT_SN);
@@ -604,11 +624,6 @@ public class HousesController extends BaseController {
 				lp.setHouse_id(house_sn);
 				lp.setStyle_id(style_sn);
 				getListPano getpackage = service.getpackage(lp);
-				System.out
-						.println("----" + getpackage.getHouse_sn()
-								+ getpackage.getProject_sn()
-								+ getpackage.getStyle_sn());
-				list.add(getpackage);
 				request.setAttribute("listss", getpackage);
 			}
 		} else {

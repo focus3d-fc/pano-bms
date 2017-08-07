@@ -18,7 +18,7 @@ public interface PanoProductFuncDAO {
 	
 	
 	public List<PanoProjectPackage>getBasics1(); //套餐 查询
-	public Long getInsert1(String name);
+	public Long getInsert1(PanoProjectPackage pano);
 	public int getDelete1(int sn);
 	public int getUpdate1(PanoProjectPackage p);
 	public List<PanoProjectPackage>getupdatas1(int sn);

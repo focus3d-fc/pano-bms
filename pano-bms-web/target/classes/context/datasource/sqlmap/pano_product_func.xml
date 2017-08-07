@@ -32,13 +32,13 @@
 	
 	
 	<select id="getBasics1" resultClass="PanoProjectPackage">
-		select `NAME`,SN from pano_project_package
+		select `NAME`,SN,img_sn from pano_project_package
 	</select>
 	
 	 
 	 <insert id="getInsert1">
-		insert into pano_project_package (name,STYLE_SN,TOTAL_PRICE,ADDER_SN,UPDATER_SN
-		) values (#name#,1,1,1,1)
+		insert into pano_project_package (name,ADDER_SN,IMG_SN,ID
+		) values (#name#,#adder_sn#,#img_sn#,#id#)
 	</insert>
 	
 	<delete id="getDelete1">
@@ -46,7 +46,7 @@
 	</delete>
 	
 	<update id="getUpdate1"   >
-		UPDATE pano_project_package set NAME=#name# where SN=#sn#
+		UPDATE pano_project_package set NAME=#name#,IMG_SN=#img_sn# where SN=#sn#
 	</update>
 	
 	

@@ -24,4 +24,6 @@ public interface UserDao{
 	public int selectUserCount();
 	public List<User> limit(Page page);
 	public List<String> selectRole_name();
+	public User selectUsersnByCert_no(String cert_no);
+	
 }

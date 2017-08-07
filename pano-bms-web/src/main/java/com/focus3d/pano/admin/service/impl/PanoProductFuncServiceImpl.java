@@ -58,8 +58,8 @@ public class PanoProductFuncServiceImpl implements PanoProductFuncService{
 		return productAdmDAO.getBasics1();
 	}
 
-	public Long getInsert1(String name) {
-		return productAdmDAO.getInsert1(name);
+	public Long getInsert1(PanoProjectPackage pano) {
+		return productAdmDAO.getInsert1(pano);
 	}
 	
 	@Override

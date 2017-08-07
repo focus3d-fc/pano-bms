@@ -3,6 +3,11 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">  
 <sqlMap> 
  <typeAlias alias="user" type="com.focus3d.pano.model.User" />
+ <!-- 根据cert_sn查询user表sn -->
+ <select id="selectUsersnByCert_no" parameterClass="string" resultClass="user">
+ select sn as id from pano_bm_user where cert_no=#cert_no#
+ </select>
+ <!--  -->
  <!-- 查询角色start -->
  <select id="selectRole_name" resultClass="string">
  select role_name from pano_bm_role
@@ -75,7 +80,7 @@ values(
 <!-- 插入login表 -->
 <insert id="saveLogin" parameterClass="com.focus3d.pano.model.Login">
 insert into pano_bm_login (
-login_name,password,status,user_sn,adder_sn,adder_name,add_time,cert_no,updater_sn,
+login_name,password,status,user_sn,adder_sn,adder_name,add_time,cert_no,updater_sn
 )
 values(
 #login_name#,#password#,#status#,#user_sn#,#adder_sn#,#adder_name#,#add_time#,#cert_no#,-1     

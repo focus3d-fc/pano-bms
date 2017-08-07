@@ -164,6 +164,12 @@ public class UserServiceImpl implements UserService{
 	}
 
 
+	@Override
+	public User selectUsersnByCert_no(String cert_no) {
+		return userDao.selectUsersnByCert_no(cert_no);
+	}
+
+
 
 
 

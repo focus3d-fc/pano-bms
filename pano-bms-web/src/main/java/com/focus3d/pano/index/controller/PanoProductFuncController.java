@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,10 @@ import com.focus3d.pano.common.controller.BaseController;
 import com.focus3d.pano.model.PanoProductFunc;
 import com.focus3d.pano.model.PanoProductType;
 import com.focus3d.pano.model.PanoProjectPackage;
+import com.focus3d.pano.model.PanoUserLongin;
 import com.focus3d.pano.model.PanoVender;
 import com.focus3d.pano.model.pano_project_style;
+import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.JsonUtils;
 
 @Controller
@@ -134,8 +137,25 @@ public class PanoProductFuncController extends BaseController{
 	}
 	
 	@RequestMapping("/insert1")
-	public String insert1(HttpServletRequest request,HttpServletResponse response){
+	public String insert1(HttpServletRequest request,HttpServletResponse response,HttpSession session,String fullImgSn){
 		String name = request.getParameter("name");
+		Long img_sn = null;
+		try {
+			img_sn = EncryptUtil.decode(fullImgSn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		PanoUserLongin pano =(PanoUserLongin)session.getAttribute("user");
+		Long sn = pano.getSn();
+		int  a = (int)(Math.random() * 10000000);
+		String id = a+"";
+		StringBuffer sb = new StringBuffer("A");
+		sb.append(id);
+		PanoProjectPackage pack = new PanoProjectPackage();
+		pack.setId(sb.toString());
+		pack.setImg_sn(img_sn);
+		pack.setName(name);
+		pack.setAdder_sn(sn);
 		String i = null;
 		String ii = null;
 		List<PanoProjectPackage> basics = service.getBasics1();
@@ -150,12 +170,12 @@ public class PanoProductFuncController extends BaseController{
 				i = "succeed";
 			}
 		}
-	}else{
-		Long insert = service.getInsert1(name);
-	}
 		if(i.equals("succeed")){
-		 Long insert = service.getInsert1(name);
-		}
+			 Long insert = service.getInsert1(pack);
+			}
+	}else{
+		Long insert = service.getInsert1(pack);
+	}
 		return ii;
 			
 	}
@@ -171,14 +191,21 @@ public class PanoProductFuncController extends BaseController{
 		 
 	}
 	@RequestMapping("/update1")
-	public String update1(HttpServletRequest request){
-		String sn1 = request.getParameter("sn");
+	public String update1(HttpServletRequest request,String fullImgSn){
+		Long img_sn = null;
+		try {
+			img_sn = EncryptUtil.decode(fullImgSn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("图片ID:"+img_sn);
+		String sn1 = request.getParameter("id");
 		String name = request.getParameter("name");
-		System.out.println(sn1);
 		long sn = Long.valueOf(sn1);
 		PanoProjectPackage p = new PanoProjectPackage();
 		p.setName(name);
 		p.setSn(sn);
+		p.setImg_sn(img_sn);
 		int update = service.getUpdate1(p);
 		
 		return "redirect:/basics/classify1";
@@ -187,11 +214,8 @@ public class PanoProductFuncController extends BaseController{
 	
 	@RequestMapping("/updates1")
 	public void updates1(HttpServletRequest request,HttpServletResponse response,String sn){
-		System.out.println("套餐修改获得的id:"+sn);
 		PanoProjectPackage getupdatas1 = service.getupdatas1(Integer.parseInt(sn));
-		System.out.println("---"+getupdatas1);
 		String objectToJson = JsonUtils.objectToJson(getupdatas1);
-		System.out.println("11---"+objectToJson);
 		try {
 			this.ajaxOutput(response, objectToJson);
 		} catch (IOException e) {

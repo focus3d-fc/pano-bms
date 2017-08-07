@@ -50,8 +50,6 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 
 	@Override
 	public void updateUserByCert_no(User user) {
-		System.out.println("进入DAOImpl修改-------------------------------------------");
-		System.out.println("user:"+user);
 		getSqlMapClientTemplate().update("updateUserByCert_no",user);
 		
 	}
@@ -64,7 +62,9 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 
 	@Override
 	public void saveLogin(Login login) {
+		System.out.println("A.DAOImpl:");
 		getSqlMapClientTemplate().insert("saveLogin",login);
+		System.out.println("B.DAOImpl:");
 	}
 
 	@Override
@@ -91,7 +91,6 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 
 	@Override
 	public List<User> limit(Page page) {
-		System.out.println("DAOImpl:limit------------");
 		List<User> userList=(List<User>) getSqlMapClientTemplate().queryForList("limit",page);
 		return userList;
 	}
@@ -100,6 +99,12 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 	public List<String> selectRole_name() {
 		List<String> role_nameList=(List<String>) getSqlMapClientTemplate().queryForList("selectRole_name");
 		return role_nameList;
+	}
+
+	@Override
+	public User selectUsersnByCert_no(String cert_no) {
+		User user=(User)getSqlMapClientTemplate().queryForObject("selectUsersnByCert_no",cert_no);
+		return user;
 	}
 
 	

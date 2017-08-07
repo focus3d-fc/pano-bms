@@ -36,6 +36,9 @@ public interface HousesDAO {
 	// 楼盘管理修改
 	public void upHouse(pano_project houses);
 
+	// 根据名称查楼盘
+	public List<pano_project> selHousesbyName(String NAME);
+
 	// ----------------------------------------------楼盘-户型----------------------------------------------
 
 	// 户型查询
@@ -118,7 +121,7 @@ public interface HousesDAO {
 
 	// 清空关联
 	public int clearStyleHouse(pano_project_house_style style);
-	
+
 	// 添加关联
 	public void addStyleHouse(pano_project_house_style style);
 

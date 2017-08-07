@@ -34,6 +34,7 @@
 <!-- The File Upload validation plugin -->
 <script src="/component/upload/js/jquery.fileupload-validate.js"></script>
 <script src="/script/member/user/product.js"></script>
+<script src="/script/member/user/product1.js"></script>
 <script type="text/javascript">
 function move(pageNum,pageSize){
 	   //var pageSize=document.getElementById("pageSize").value;
@@ -56,14 +57,64 @@ function move(pageNum,pageSize){
 	   location.href=url;
 }
 
-
+   
     function  addpro(){
     	location.href="/productadm/preaddpro";
     }
-  
+    //每次点击添加要清已添加得预览图片的div
+    function preaddpro(){
+    	$("#files").text("");
+    	$("#fullimgsn").val("");
+    	$("#files1").text("");
+    	$("#leftimgsn").val("");
+    	$("#files2").text("");
+    	$("#downimgsn").val("");
+    	$("#files3").text("");
+    	$("#mtimgsn").val("");
+    	$("#files4").text("");
+    	$("#fbcimgsn").val("");
+    
+    }
+     //点击后可清掉该项之前的选择
+    function fulliclear(){
+    	$("#files").text("");
+    	$("#fullimgsn").val("");
+    }
+    function lefticlear(){
+    	$("#files1").text("");
+    	$("#leftimgsn").val("");
+    }
+    function downiclear(){
+    	$("#files2").text("");
+    	$("#downimgsn").val("");
+    }
+    function matericlear(){
+    	$("#files3").text("");
+    	$("#mtimgsn").val("");
+    }
+    function fabriciclear(){
+    	$("#files4").text("");
+    	$("#fbcimgsn").val("");
+    }
 
+    
+    
      function updatepro(productsn){
-    	 $('form').attr('action','/productadm/updateproduct');
+    	// $('form').attr('action','/productadm/updateproduct');
+    //切换修改对象，清掉之前的选择
+    	$("#files0").text("");
+    	$("#fullimgsn01").val("");
+    	$("#files01").text("");
+    	$("#leftimgsn01").val("");
+    	$("#files02").text("");
+    	$("#downimgsn01").val("");
+    	$("#files03").text("");
+    	$("#mtimgsn01").val("");
+    	$("#files04").text("");
+    	$("#fbcimgsn01").val("");
+    	
+    	
+    	
     	  $.ajax({
     		url:"/productadm/preupdateproduct",	 
     	    type:"post",
@@ -111,7 +162,11 @@ function move(pageNum,pageSize){
       	    	$("#provder").val(jsonobj.venderName);
       	    	$("#prodims").val(jsonobj.dimension);
       	    	
-      	    	
+      	    	$("#profulli").attr("src",jsonobj.fullImgUrl);
+       	    	$("#proli").attr("src",jsonobj.leftImgUrl);
+       	    	$("#prodi").attr("src",jsonobj.downImgUrl);
+       	    	$("#promi").attr("src",jsonobj.materialImgUrl);
+       	    	$("#profabi").attr("src",jsonobj.fabricImgUrl);
     		}
 
     	    
@@ -217,6 +272,7 @@ function move(pageNum,pageSize){
                             <label class="sr-only">风格</label>
                             <div class="col-sm-8">
                                 <select id="scsty" name="styleSn" class="form-control">
+                                   <option value="">--请选择--</option>
                                     #foreach( $!prost in $!proStyleList)
                                     <option value="$!prost.sn">$!prost.name</option>
                                      #end 
@@ -227,6 +283,7 @@ function move(pageNum,pageSize){
                             <label class="sr-only">功能</label>
                             <div class="col-sm-8">
                                 <select id="scfc" name="funcSn" class="form-control">
+                                      <option value="">--请选择--</option>
                                      #foreach( $!profc in $!proFuncList)
                                     <option value="$!profc.sn">$!profc.name</option>
                                     #end 
@@ -237,7 +294,7 @@ function move(pageNum,pageSize){
                     </form>
                 </div>
                 <div class="col-sm-2">
-                    <a href="#mod" class="btn btn-info" data-toggle="tab">增加</a>
+                    <a href="#mod" class="btn btn-info" data-toggle="tab" onclick="preaddpro()">增加</a>
                 </div>
             </div>
         </div>
@@ -270,7 +327,7 @@ function move(pageNum,pageSize){
             <td>
                 <div class="btn-group btn-group-sm" role="group">
                     <a href="#detail" class="btn btn-success" data-toggle="tab" onclick="getdetail($!prodt.sn)">查看</a>
-                    <a href="#mod" class="btn btn-info" data-toggle="tab" onclick="updatepro($!prodt.sn)">修改</a>
+                    <a href="#mod1" class="btn btn-info" data-toggle="tab" onclick="updatepro($!prodt.sn)">修改</a>
                     <a href="#" class="btn btn-danger" onClick="deletepro($!prodt.sn)">删除</a>
                 </div>
             </td>
@@ -473,24 +530,24 @@ function move(pageNum,pageSize){
         <div class="panel-body">
              
             <form method="post" class="form-horizontal" id="register" action="/productadm/addproduct" enctype="multipart/form-data">
-                <input id="prosn" type="hidden" name="sn">
+               
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">产品编号</label>
                     <div class="col-sm-8">
-                        <input id="proid" type="text" class="form-control" name="id" placeholder="产品编号">
+                        <input  type="text" class="form-control" name="id" placeholder="产品编号">
                     </div>
                 </div>
                
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">产品名称</label>
                     <div class="col-sm-8">
-                        <input id="proname" type="text" class="form-control" placeholder="产品名称" name="name">
+                        <input  type="text" class="form-control" placeholder="产品名称" name="name">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">分类</label>
                     <div class="col-sm-8">
-                        <select id="stp" name="typeSn" class="form-control">
+                        <select  name="typeSn" class="form-control">
                            #foreach( $!protp in $!proTypeList)
                                     <option value="$!protp.sn">$!protp.name</option>
                                      #end 
@@ -500,7 +557,7 @@ function move(pageNum,pageSize){
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">风格</label>
                     <div class="col-sm-8">
-                        <select id="sty" name="styleSn" class="form-control">
+                        <select  name="styleSn" class="form-control">
                             #foreach( $!prost in $!proStyleList)
                                     <option value="$!prost.sn">$!prost.name</option>
                                      #end 
@@ -510,7 +567,7 @@ function move(pageNum,pageSize){
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">功能</label>
                     <div class="col-sm-8">
-                        <select id="sfc" name="funcSn" class="form-control">
+                        <select  name="funcSn" class="form-control">
                            #foreach( $!profc in $!proFuncList)
                                     <option value="$!profc.sn">$!profc.name</option>
                                     #end 
@@ -520,49 +577,49 @@ function move(pageNum,pageSize){
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">规格参数</label>
                     <div class="col-sm-8">
-                        <input id="prodims" type="text" class="form-control" placeholder="规格参数" name="dimension">
+                        <input  type="text" class="form-control" placeholder="规格参数" name="dimension">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">材质</label>
                     <div class="col-sm-8">
-                        <input id="promtn" type="text" class="form-control" placeholder="材质" name="materialName">
+                        <input  type="text" class="form-control" placeholder="材质" name="materialName">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">材质颜色</label>
                     <div class="col-sm-8">
-                        <input id="promtc" type="text" class="form-control" placeholder="材质颜色" name="materialColor">
+                        <input  type="text" class="form-control" placeholder="材质颜色" name="materialColor">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">面料</label>
                     <div class="col-sm-8">
-                        <input id="profabn" type="text" class="form-control" placeholder="面料" name="fabricName">
+                        <input  type="text" class="form-control" placeholder="面料" name="fabricName">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">面料颜色</label>
                     <div class="col-sm-8">
-                        <input id="profabc" type="text" class="form-control" placeholder="面料颜色" name="fabricColor">
+                        <input  type="text" class="form-control" placeholder="面料颜色" name="fabricColor">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">L/R</label>
                     <div class="col-sm-8">
-                        <input id="prolr" type="text" class="form-control" placeholder="L/R" name="lr">
+                        <input  type="text" class="form-control" placeholder="L/R" name="lr">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">L/R圆角</label>
                     <div class="col-sm-8">
-                        <input id="prolrrd" type="text" class="form-control" placeholder="L/R圆角" name="lrRound">
+                        <input  type="text" class="form-control" placeholder="L/R圆角" name="lrRound">
                     </div>
                 </div>
                  <div class="form-group col-sm-6">
                         <label class="col-sm-4 control-label">厂家</label>
                         <div class="col-sm-8">
-                          <input id="provder" type="text" class="form-control"  name="venderName">
+                          <input  type="text" class="form-control"  name="venderName">
                         </div>
                     </div>
                 
@@ -570,19 +627,19 @@ function move(pageNum,pageSize){
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">工艺工法</label>
                     <div class="col-sm-8">
-                        <input id="prowmsp" type="text" class="form-control" placeholder="工艺工法" name="workManShip">
+                        <input  type="text" class="form-control" placeholder="工艺工法" name="workManShip">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">采购价</label>
                     <div class="col-sm-8">
-                        <input id="proprice" type="text" class="form-control" placeholder="采购价" name="price">
+                        <input  type="text" class="form-control" placeholder="采购价" name="price">
                     </div>
                 </div>
                 <div class="form-group col-sm-12">
                     <label class="col-sm-2 control-label">简介</label>
                     <div class="col-sm-10">
-                        <textarea id="prosumy" class="form-control textarea" rows="3" name="summary"></textarea>
+                        <textarea  class="form-control textarea" rows="3" name="summary"></textarea>
                     </div>
                 </div><br/>
                  
@@ -598,18 +655,18 @@ function move(pageNum,pageSize){
                     
                         <div class="col-md-4 img-box">
                             <p class="title">整体图片（正）</p>
-                           <span class="btn btn-success fileinput-button">
+                          <span class="btn btn-success fileinput-button" onclick="fulliclear()">
         <i class="glyphicon glyphicon-plus"></i>
         <span>选择图片</span>
         <input id="fileupload" type="file" name="files[]" multiple>
     </span>
     <div id="files" class="files"></div>
-	<span id="resultInfo"></span>
+	<span id="resultInfo"></span> 
                         </div>
                            
                         <div class="col-md-4 img-box">
                             <p class="title">整体图片（左）</p>
-                           <span class="btn btn-success fileinput-button">
+                           <span class="btn btn-success fileinput-button" onclick="lefticlear()">
         <i class="glyphicon glyphicon-plus"></i>
         <span>选择图片</span>
         <input id="fileupload1" type="file" name="files[]" multiple>
@@ -619,7 +676,7 @@ function move(pageNum,pageSize){
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">整体图片（俯）</p>
-                             <span class="btn btn-success fileinput-button">
+                             <span class="btn btn-success fileinput-button" onclick="downiclear()">
         <i class="glyphicon glyphicon-plus"></i>
         <span>选择图片</span>
         <input id="fileupload2" type="file" name="files[]" multiple>
@@ -629,7 +686,7 @@ function move(pageNum,pageSize){
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">材质图片</p>
-                           <span class="btn btn-success fileinput-button">
+                           <span class="btn btn-success fileinput-button" onclick="matericlear()">
         <i class="glyphicon glyphicon-plus"></i>
         <span>选择图片</span>
         <input id="fileupload3" type="file" name="files[]" multiple>
@@ -639,7 +696,7 @@ function move(pageNum,pageSize){
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">面料图片</p>
-                            <span class="btn btn-success fileinput-button">
+                            <span class="btn btn-success fileinput-button" onclick="fabriciclear()">
         <i class="glyphicon glyphicon-plus"></i>
         <span>选择图片</span>
         <input id="fileupload4" type="file" name="files[]" multiple>
@@ -665,7 +722,7 @@ function move(pageNum,pageSize){
       
         
         <!--产品修改-->
-    <!-- <div class="panel panel-default clearfix tab-pane fade" id="mod1">
+    <div class="panel panel-default clearfix tab-pane fade" id="mod1">
         <div class="panel-heading">
             <span class="glyphicon glyphicon-th-large"></span> 产品修改
         </div>
@@ -781,40 +838,81 @@ function move(pageNum,pageSize){
                     <div class="col-sm-10">
                         <textarea id="prosumy" class="form-control textarea" rows="3" name="summary"></textarea>
                     </div>
-                </div>
-                <div class="form-group col-sm-12">
+                </div><br/>
+                <input id="fullimgsn01" type="hidden" name="fullImgSn1"/>
+                <input id="leftimgsn01" type="hidden" name="leftImgSn1"/>
+                <input id="downimgsn01" type="hidden" name="downImgSn1"/>
+                <input id="mtimgsn01" type="hidden" name="materialImgSn1"/>
+                <input id="fbcimgsn01" type="hidden" name="fabricImgSn1"/>
+                
+                 
+               
+            </form>
+             <div class="form-group col-sm-12">
                     <label class="col-sm-2 control-label">图片展示</label>
                     <div class="col-sm-10">
                         <div class="col-md-4 img-box">
                             <p class="title">整体图片（正）</p>
-                            <input type="file" name="et1">
+                            <img id="profulli" src="" alt="" class="img-rounded img-responsive">
+                             <span class="btn btn-success fileinput-button" >
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>选择图片</span>
+        <input id="fileupload0" type="file" name="files[]" multiple>
+    </span>
+    <div id="files0" class="files"></div>
+	<span id="resultInfo0"></span>
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">整体图片（左）</p>
-                            <input type="file" name="et2">
+                            <img id="proli" src="" alt="" class="img-rounded img-responsive">
+                            <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>选择图片</span>
+        <input id="fileupload01" type="file" name="files[]" multiple>
+    </span>
+    <div id="files01" class="files"></div>
+	<span id="resultInfo01"></span> 
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">整体图片（俯）</p>
-                            <input type="file" name="et3">
+                             <img id="prodi" src="" alt="" class="img-rounded img-responsive">
+                            <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>选择图片</span>
+        <input id="fileupload02" type="file" name="files[]" multiple>
+    </span>
+    <div id="files02" class="files"></div>
+	<span id="resultInfo02"></span>
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">材质图片</p>
-                            <input type="file" name="et4">
+                            <img id="promi" src="" alt="" class="img-rounded img-responsive">
+                            <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>选择图片</span>
+        <input id="fileupload03" type="file" name="files[]" multiple>
+    </span>
+    <div id="files03" class="files"></div>
+	<span id="resultInfo03"></span>
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">面料图片</p>
-                            <input type="file" name="et5">
+                             <img id="profabi" src="" alt="" class="img-rounded img-responsive">
+                            <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>选择图片</span>
+        <input id="fileupload04" type="file" name="files[]" multiple>
+    </span>
+    <div id="files04" class="files"></div>
+	<span id="resultInfo04"></span>
                         </div>
                     </div>
                 </div>
-                 
-                <div class="form-group col-sm-12 text-center">
+                 <div class="form-group col-sm-12 text-center">
                     <button type="submit" class="btn btn-primary" form="upprodt">确定</button>
                 </div>
-            </form>
-             
         </div>
-    </div> -->
+    </div>
     
 </div>
 

@@ -69,6 +69,12 @@ public class Product implements CommonModel{
 	    private String downImgSn1;
 	    private String materialImgSn1;
 	    private String fabricImgSn1;
+	    private String fullImgUrl;
+	    private String leftImgUrl;
+	    private String downImgUrl;
+	    private String materialImgUrl;
+	    private String fabricImgUrl;
+	    
 	    
 	    private String venderName;
 	    private String dimension;
@@ -512,6 +518,58 @@ public class Product implements CommonModel{
 
 		public void setFabricImgSn1(String fabricImgSn1) {
 			this.fabricImgSn1 = fabricImgSn1;
+		}
+
+
+		
+		
+		public String getFullImgUrl() {
+			return fullImgUrl;
+		}
+
+
+		public void setFullImgUrl(String fullImgUrl) {
+			this.fullImgUrl = fullImgUrl;
+		}
+
+
+		public String getLeftImgUrl() {
+			return leftImgUrl;
+		}
+
+
+		public void setLeftImgUrl(String leftImgUrl) {
+			this.leftImgUrl = leftImgUrl;
+		}
+
+
+		public String getDownImgUrl() {
+			return downImgUrl;
+		}
+
+
+		public void setDownImgUrl(String downImgUrl) {
+			this.downImgUrl = downImgUrl;
+		}
+
+
+		public String getMaterialImgUrl() {
+			return materialImgUrl;
+		}
+
+
+		public void setMaterialImgUrl(String materialImgUrl) {
+			this.materialImgUrl = materialImgUrl;
+		}
+
+
+		public String getFabricImgUrl() {
+			return fabricImgUrl;
+		}
+
+
+		public void setFabricImgUrl(String fabricImgUrl) {
+			this.fabricImgUrl = fabricImgUrl;
 		}
 
 

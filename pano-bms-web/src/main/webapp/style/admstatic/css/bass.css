@@ -1,8 +1,8 @@
-/*公用的 通配所有的标签和伪类*/
+/*鍏敤鐨�閫氶厤鎵�湁鐨勬爣绛惧拰浼被*/
 
 body, h1, h2, h3, h4, h5, h6, form, fieldset, legend, input {
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 ul, ol, dl {
@@ -24,7 +24,7 @@ a {
 }
 
 body {
-    font: 0.2rem 'Microsoft Yahei', sans-serif; /*sans-serif 是手机默认字体*/
+    font: 0.2rem 'Microsoft Yahei', sans-serif; /*sans-serif 鏄墜鏈洪粯璁ゅ瓧浣�/
 }
 
 ol, ul {
@@ -35,11 +35,11 @@ input, textarea {
     border: 0;
     resize: none;
     outline: none;
-    /*只对ios 浏览器  清除默认样式*/
+    /*鍙ios 娴忚鍣� 娓呴櫎榛樿鏍峰紡*/
     -webkit-appearance: none;
 }
 
-/*清除浮动*/
+/*娓呴櫎娴姩*/
 .clearfix::before,
 .clearfix::after {
     content: ".";
@@ -68,9 +68,9 @@ input, textarea {
 ::after {
     padding: 0;
     margin: 0;
-    /*清除移动端默认的tap点击的高亮效果*/
+    /*娓呴櫎绉诲姩绔粯璁ょ殑tap鐐瑰嚮鐨勯珮浜晥鏋�/
     -webkit-tap-highlight-color: transparent;
-    /*设置我们所有的 宽度从border开始计算*/
+    /*璁剧疆鎴戜滑鎵�湁鐨�瀹藉害浠巄order寮�璁＄畻*/
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
@@ -87,8 +87,8 @@ input, textarea {
     margin:auto;
 }
 
-/*字体图标*/
-/*最后转为本地*/
+/*瀛椾綋鍥炬爣*/
+/*鏈�悗杞负鏈湴*/
 @font-face {
     font-family: 'iconfont';
     src: url('../font/iconfont.eot');
@@ -107,7 +107,7 @@ input, textarea {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/*头部*/
+/*澶撮儴*/
 header.header{
     position: relative;
     width: 100%;
@@ -151,7 +151,7 @@ header.header{
     font-size: .4rem;
 }
 
-/*几个常用类*/
+/*鍑犱釜甯哥敤绫�/
 .col-e{
     color: #bebebe !important;
 }
