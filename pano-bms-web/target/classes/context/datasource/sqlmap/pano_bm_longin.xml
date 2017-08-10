@@ -5,6 +5,7 @@
 	<typeAlias alias="PanoProjectPackageStyle" type="com.focus3d.pano.model.PanoProjectPackageStyle"/>
 	<typeAlias alias="getListPano" type="com.focus3d.pano.model.getListPano"/>
 	<typeAlias alias="PanoProjectPackage" type="com.focus3d.pano.model.PanoProjectPackage" />
+	<typeAlias alias="PanoProjectHousePackage" type="com.focus3d.pano.model.PanoProjectHousePackage" />
 	
 	
 		<select id="getUserLongin" resultClass="PanoLongin">
@@ -21,36 +22,62 @@
 		
 		<select id="getPPPSSelect" resultClass="PanoProjectPackageStyle">
 		
-		select p.PROJECT_SN,p.STYLE_SN,p.HOUSE_SN,p.PACKAGE_SN,p.SN 
-		from pano_project_package_style p where p.HOUSE_SN = #house_sn# and p.PROJECT_SN =#project_sn# AND p.STYLE_SN = #style_sn#
+				SELECT SN
+					FROM pano_project_house_package 
+						WHERE HOUSE_STYLE_SN =#house_style_sn#
 		
 		</select>
 		
-		
+		<!-- 查询户型 楼盘 风格 套餐姓名 -->
 		<select id="getpackage" resultClass="getListPano">
 		
-			select p4.SN,p.id,p1.SN AS project_sn,p2.SN AS style_sn,p3.SN AS house_sn,p.name as package_name,p1.`NAME` AS project_name ,p2.`NAME` as style_name ,p3.`NAME` as house_name
-				from pano_project_package p,pano_project p1,pano_project_style p2,pano_project_house p3,pano_project_package_style p4 where 
-				p.SN = #package_id#  and  p1.SN =#project_id# and p2.SN =#style_id# and p3.SN =#house_id# and p4.sn =#sn#
+			SELECT	p5.sn,p1.`NAME` AS package_name,p1.sn AS package_sn ,p1.ID AS id,p2.`NAME` AS house_name,p2.SN AS house_sn, p3.`NAME` AS project_name, p3.SN AS project_sn,p4.`NAME` AS style_name,p4.SN AS style_sn
+			FROM pano_project_package p1,pano_project_house p2,pano_project p3,pano_project_style p4,pano_project_house_package p5
+			WHERE p1.SN = #package_sn# AND p2.SN= #house_sn# AND p3.SN = #project_sn# AND p4.SN = #style_sn# and p5.sn=#sn# 
 		
 		</select>
 		
+		<select id="getpackage2" resultClass="PanoProjectHousePackage">
+				SELECT SN,PACKAGE_SN,HOUSE_STYLE_SN FROM pano_project_house_package 
+				WHERE HOUSE_STYLE_SN = #house_style_sn#
+		</select>
+		
+		
+		<select id="getpackage1" resultClass="PanoProjectPackageStyle">
+				SELECT SN  FROM pano_project_house_style p
+				WHERE p.HOUSE_SN = #house_sn# AND p.STYLE_SN = #style_sn# 
+				AND p.PROJECT_SN = #project_sn#
+		</select>
+		<!-- 查询户型 楼盘 风格 套餐姓名 -->
+		
+		
+		
+		
+		<!-- 套餐页面删除 -->
 		<delete id="getdelete">
-				delete from pano_project_package_style where project_sn = #project_sn# and style_sn=#style_sn# and house_sn=#house_sn# and sn=#sn#
+				delete from pano_project_house_package  where  SN =#sn#
 		</delete>
 		
+		<!-- 查询套餐列表 -->
 		<select id="getselect" resultClass="PanoProjectPackage" >
 				select sn, `NAME` FROM pano_project_package
 		</select>
-			
+			<!-- 添加套餐 -->
 		<insert id="getinsert">
-			INSERT INTO  pano_project_package_style (PROJECT_SN,STYLE_SN,HOUSE_SN,PACKAGE_SN) VALUES (#project_sn#,#style_sn#,#house_sn#,#package_sn#)
+			INSERT INTO  pano_project_house_style (PROJECT_SN,STYLE_SN,HOUSE_SN) VALUES (#project_sn#,#style_sn#,#house_sn#)
 		</insert>	
 		
+			
+		<insert id="getinserts">
+		
+				INSERT INTO pano_project_house_package (HOUSE_STYLE_SN,PACKAGE_SN) VALUES (#house_style_sn#,#package_sn#)
+		
+		</insert>
+		
 		<select id="getselect1" resultClass="getListPano">
-			select p.`NAME` AS house_name,p.SN AS house_sn,p1.`NAME` AS project_name,p1.SN AS project_sn,p2.`NAME` AS style_name,p2.SN AS style_sn
+		select p.`NAME` AS house_name,p.SN AS house_sn,p1.`NAME` AS project_name,p1.SN AS project_sn,p2.`NAME` AS style_name,p2.SN AS style_sn
 			FROM pano_project_house p,pano_project p1,pano_project_style p2 
-			where p.sn =#house_sn# and p1.SN = #project_sn# and p2.SN = #style_sn#
+			where p.sn =#house_sn#  and p1.SN =#project_sn#  and p2.SN = #style_sn#
 		</select>
 		
 </sqlMap>

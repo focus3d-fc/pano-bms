@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>千万间软装定制</title>
+    <link rel="stylesheet" href="/h5static/lib/mui/css/mui.picker.min.css">
+    <link rel="stylesheet" href="/h5static/lib/swiper/swiper.min.css">
+    <link rel="stylesheet" href="/h5static/css/bass.css">
+    <link rel="stylesheet" href="/h5static/css/index.css">
+    <script src="/h5static/lib/mui/js/mui.min.js"></script>
+    <script src="/h5static/lib/mui/js/mui.picker.min.js"></script>
+    <script src="/h5static/js/city.data-3.js"></script> 
+    <script src="/h5static/js/main.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- 模态框引入start -->
+ 	<link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+	<!-- 模态框end -->
+	<!-- 联动引入-->
+	<script type="text/javascript" src="/style/admstatic/js/jsAddresss.js"></script>
+	<!--  -->
+</head>
+<body>
+<div class="container index">
+    <!--头-->
+    <!-- <header class="header">
+        <span href="#" class="back">
+            <i class="iconfont">&#xe6bc;</i>
+            返回
+        </span>
+        <p class="title">千万间软装定制</p>
+        <a href="/usersSide/toshareYM" class="share" id="share" >
+            <i class="iconfont">&#xe622;</i>
+        </a>
+    </header> -->
+    <!--广告-->
+    <section class="banner">
+        <div class="location">
+            <p href="javascrpt:;" id='showCityPicker3'>
+                <!-- <span id="cityResult3"> 上海保利 铃兰公园 pano_projectList</span> -->
+                <span class="btn btn-info" data-toggle="modal"
+				data-target="#add" style="margin-left: 60px">$!{pano_projectList[0].NAME}</span>
+                <i class="iconfont">&#xe628;</i></a>
+            </p>
+            <a href="/usersSide/tomy" class="my">
+            </a>
+        </div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                 #foreach ($!{adImg_sn} in $!{adImg_snList})
+                <a href="/userside/toabout" class="swiper-slide">
+                <img id="dtli" src="$!fs.url($!adImg_sn)" alt="" class="img-rounded img-responsive">
+                </a>
+                #end
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+    <!--版块-->
+    #foreach ($!{style} in $!{styleList})
+    <section class="content">
+        <div class="title">
+            <img src="/h5static/image/img/bo.png" alt=""><!-- $!{style.name} -->
+            <!-- <span>北<span class="line">|</span>欧<span class="line">|</span>风<span class="line">|</span>格</span> -->
+        <span>$!{style.name}</span>
+        </div>
+        <a href="/usersSide/to720?style_id=$!{style.id}">
+        <img id="dtli" src="$!fs.url($!{style.img_sn})" alt="" class="img-rounded img-responsive">
+        </a>
+        <div class="label">
+            <div class="detail fl">
+                <span style="color:black;">舒适</span>
+                <span style="color:black;">简约</span>
+                <span style="color:black;">轻盈</span>
+            </div>
+            <div class="price fr">
+                <!-- <span>16~18</span>万元 -->
+                <span>$!{style.start_price}~$!{style.end_price}</span>万元
+            </div>
+        </div>
+    </section>
+    #end
+
+</div>
+<script src="/h5static/lib/jQuery/jquery-3.2.1.min.js"></script>
+<script src="/h5static/lib/swiper/swiper.jquery.min.js"></script>
+<script>
+    var mySwiper = new Swiper ('.swiper-container', {
+        autoplay: 5000,//可选选项，自动滑动
+        loop: true,
+        pagination: '.swiper-pagination',
+    })
+</script>
+	<!--添加楼盘弹窗-->
+	<div class="modal fade " id="add" tabindex="-1" role="dialog"
+		aria-labelledby="添加/修改">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content modal-width">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">添加/修改</h4>
+				</div>
+				<div class="modal-body clearfix">
+					<form class="form-horizontal" id="formadd"
+						action="/usersSide/toIndex">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">省份</label>
+							<div class="col-sm-9">
+								<select class="form-control change" id="acmbProvince" name="province"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">城市</label>
+							<div class="col-sm-9">
+								<select class="form-control change" id="acmbCity" name="city"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">区县</label>
+							<div class="col-sm-9">
+								<select class="form-control change" id="acmbArea" name="area"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">楼盘名称</label>
+							<div class="col-sm-9">
+							    <select class="form-control" id="asname" name="project_name"></select>
+								<!-- <input id="asname" type="text"
+									class="form-control" placeholder="楼盘名称"> -->
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="submit" class="btn btn-primary" form="formadd">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+				<!-- 模态框end -->
+	<script type="text/javascript">
+		addressInit('acmbProvince', 'acmbCity', 'acmbArea');
+	</script>
+	<script>
+	var path=window.document.location.href.substring(0, window.document.location.href.indexOf
+			(window.document.location.pathname));
+	//console.log("路径："+path);
+	//获得焦点事件
+	$(".change").change(asname);
+	function asname(){
+		var province=$("#acmbProvince").val();
+		var city=$("#acmbCity").val();
+		var area=$("#acmbArea").val();
+		 $.ajax({
+			url:path+"/usersSide/selectProject",
+			type:"post",
+		    data:{"province":province,"city":city,"area":area},
+		    datatype:"json",
+		    success:function(result){
+		    	var projectList=JSON.parse(result);
+		    	//console.log("楼盘名称："+projectList);
+		    	var selectCity = document.getElementById("asname");
+		    	var options = selectCity.getElementsByTagName("option");
+		    	console.log("1.options.length:"+options.length+"-------------------------");
+		    	 for(var i=options.length;i>=1;i--) {
+		    		selectCity.removeChild(options[i-1]);
+		    		console.log("第"+i+"次循环，删除："+options[i-1]);
+				}
+		    	 for(var i=0;i<projectList.length;i++){
+		    		//console.log("项目名"+projectList[i]);
+		    		var option = document.createElement("option");
+		    		option.innerHTML = projectList[i];
+		    		selectCity.appendChild(option);
+		    	} 
+		    	 console.log("2.options.length:"+options.length+"-------------------------");
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    }
+		}); 
+		
+	}
+	</script>
+</body>
+</body>
+</html>

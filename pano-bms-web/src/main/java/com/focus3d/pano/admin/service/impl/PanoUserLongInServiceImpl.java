@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.focus3d.pano.admin.dao.PanoUserLongInDAO;
 import com.focus3d.pano.admin.service.PanoUserLongInService;
+import com.focus3d.pano.model.PanoProjectHousePackage;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoProjectPackageStyle;
 import com.focus3d.pano.model.PanoUserLongin;
@@ -25,23 +26,36 @@ public class PanoUserLongInServiceImpl implements PanoUserLongInService{
 		return panoUserLongin;
 	}
 	@Override
-	public List<PanoProjectPackageStyle> getPPPSSelect(PanoProjectPackageStyle ppps) {
-		List<PanoProjectPackageStyle> pppsSelect = userlongin.getPPPSSelect(ppps);
+	public List<PanoProjectPackageStyle> getPPPSSelect(Long house_style_sn ) {
+		List<PanoProjectPackageStyle> pppsSelect = userlongin.getPPPSSelect(house_style_sn);
 		return pppsSelect;
 	}
 	
 	
 	@Override
 	public getListPano getpackage(getListPano sn) {
-	      getListPano getpackage =null;
-		List<getListPano> getpackage2 = userlongin.getpackage(sn);
-		if(getpackage2.size()>0){
-			getpackage = getpackage2.get(0);
+		getListPano list = null;
+		List<getListPano> getpackage = userlongin.getpackage(sn);
+		if(getpackage.size()>0){
+			list = getpackage.get(0);
 		}
-		return getpackage;
+		return list;
+	}
+	
+	public List<PanoProjectHousePackage> getpackage2(Long house_style_sn){
+		return userlongin.getpackage2(house_style_sn);
+		
+	}
+	public PanoProjectPackageStyle getpackage1(PanoProjectPackageStyle sn) {
+		PanoProjectPackageStyle list = null;
+		List<PanoProjectPackageStyle> getpackage1 = userlongin.getpackage1(sn);
+		if(getpackage1.size()>0){
+			list=getpackage1.get(0);
+		}
+		return list;
 	}
 	@Override
-	public int getdelete(PanoProjectPackageStyle sns) {
+	public int getdelete(PanoProjectHousePackage sns) {
 		return userlongin.getdelete(sns);
 	}
 	@Override
@@ -52,17 +66,29 @@ public class PanoUserLongInServiceImpl implements PanoUserLongInService{
 	public Long getinsert(PanoProjectPackageStyle pano) {
 		return  userlongin.getinsert(pano);
 	}
+	
+	public PanoProjectPackageStyle getselects(PanoProjectPackageStyle pano){
+		PanoProjectPackageStyle getList = null;
+		List<PanoProjectPackageStyle> getselects = userlongin.getselects(pano);
+		System.out.println("service长度："+getselects.size());
+		if(getselects.size()>0){
+			getList = getselects.get(0);
+		}
+		  return getList;
+	}
+	
 	@Override
 	public getListPano getselect1(getListPano pano) {
 		getListPano getList = null;
 		List<getListPano> getListPano = userlongin.getselect1(pano);
-		System.out.println("service长度"+getListPano.size());
 		if(getListPano.size()>0){
-			System.out.println("1");
 			getList = getListPano.get(0);
 		}
-		System.out.println("2");
 		return getList;
+	}
+	@Override
+	public Long getinserts(PanoProjectHousePackage pano) {
+		return userlongin.getinserts(pano);
 	}
 	
 

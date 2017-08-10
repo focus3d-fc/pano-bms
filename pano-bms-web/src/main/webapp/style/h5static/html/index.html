@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>千万间软装定制</title>
+    <link rel="stylesheet" href="../lib/mui/css/mui.picker.min.css">
+    <link rel="stylesheet" href="../lib/swiper/swiper.min.css">
+    <link rel="stylesheet" href="../css/bass.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../lib/mui/js/mui.min.js"></script>
+    <script src="../lib/mui/js/mui.picker.min.js"></script>
+    <script src="../js/city.data-3.js"></script>
+    <script src="../js/main.js"></script>
+</head>
+<body>
+<div class="container index">
+    <!--头-->
+    <!--<header class="header">-->
+        <!--<a href="#" class="back">-->
+            <!--<i class="iconfont">&#xe6bc;</i>-->
+            <!--返回-->
+        <!--</a>-->
+        <!--<p class="title">千万间软装定制</p>-->
+        <!--<a href="share.html" class="share" id="share" >-->
+            <!--<i class="iconfont">&#xe622;</i>-->
+        <!--</a>-->
+    <!--</header>-->
+    <!--广告-->
+    <section class="banner">
+        <div class="location">
+            <p href="javascrpt:;" id='showCityPicker3'>
+                <span id="cityResult3"> 上海保利 铃兰公园 </span>
+                <i></i>
+            </p>
+            <a href="my.html" class="my">
+            </a>
+        </div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <a href="about.html" class="swiper-slide">
+                    <img src="../image/image/1.jpg">
+                </a>
+                <a href="about.html" class="swiper-slide">
+                    <img src="../image/image/2.jpg" alt="">
+                </a>
+                <a href="about.html" class="swiper-slide">
+                    <img src="../image/image/3.jpg" alt="">
+                </a>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+    <!--版块-->
+    <section class="content">
+        <div class="title">
+            <img src="../image/img/bo.png" alt="">
+            <span>北<span class="line">|</span>欧<span class="line">|</span>风<span class="line">|</span>格</span>
+        </div>
+        <a href="720.html">
+            <img src="../image/image/5.jpg" alt="">
+        </a>
+        <div class="label">
+            <div class="detail fl">
+                <span>舒适</span>
+                <span>简约</span>
+                <span>轻盈</span>
+            </div>
+            <div class="price fr">
+                <span>16~18</span>万元
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="title">
+            <img src="../image/img/jy.png" alt="">
+            <span>现<span class="line">|</span>代<span class="line">|</span>风<span class="line">|</span>格</span>
+        </div>
+        <a href="720.html">
+            <img src="../image/image/sl-1.jpg" alt="">
+        </a>
+        <div class="label">
+            <div class="detail fl">
+                <span>舒适</span>
+                <span>简约</span>
+                <span>轻盈</span>
+            </div>
+            <div class="price fr">
+                <span>16~18</span>万元
+            </div>
+        </div>
+    </section>
+
+
+    <div class="slogin">
+       「&nbsp;格&nbsp;物&nbsp;至&nbsp;居&nbsp;」
+
+    </div>
+
+</div>
+
+<script src="../lib/jQuery/jquery-3.2.1.min.js"></script>
+<script src="../lib/swiper/swiper.jquery.min.js"></script>
+<script>
+    var mySwiper = new Swiper ('.swiper-container', {
+        autoplay: 5000,//可选选项，自动滑动
+        loop: true,
+        pagination: '.swiper-pagination',
+    })
+
+</script>
+<script>
+    (function($, doc) {
+        $.init();
+        $.ready(function() {
+            /**
+             * 获取对象属性的值
+             * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
+             * @param {Object} obj 对象
+             * @param {String} param 属性名
+             */
+            var _getParam = function(obj, param) {
+                return obj[param] || '';
+            };
+
+            //					//级联示例
+            var cityPicker3 = new $.PopPicker({
+                layer: 3
+            });
+            cityPicker3.setData(cityData3);
+            var showCityPickerButton = doc.getElementById('showCityPicker3');
+            var cityResult3 = doc.getElementById('cityResult3');
+            showCityPickerButton.addEventListener('tap', function(event) {
+                cityPicker3.show(function(items) {
+                    cityResult3.value =  _getParam(items[0], 'text') + " " + _getParam(items[1], 'text') + " " + _getParam(items[2], 'text');
+                    //返回 false 可以阻止选择框的关闭
+                    //return false;
+                });
+            }, false);
+        });
+    })(mui, document);
+</script>
+
+</body>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="pano_user_receive_address">
+
+
+	<typeAlias alias="address"
+		type="com.focus3d.pano.model.pano_user_receive_address" />
+
+	<select id="selAddressbyUserSN" resultClass="address"
+		parameterClass="Long">
+		select
+		SN,USER_NAME,SEX,MOBILE,BACKUP_MOBILE,PROVINCE,CITY,AREA,STREET,`DEFAULT`
+		from pano_user_receive_address
+		where USER_SN = #USER_SN#
+	</select>
+
+
+	<insert id="addAddress" parameterClass="address">
+		insert into
+		pano_user_receive_address
+		(USER_NAME,MOBILE,PROVINCE,CITY,AREA,STREET,USER_SN,SEX,ADD_TIME)
+		values(#USER_NAME#,#MOBILE#,#PROVINCE#,#CITY#,#AREA#,#STREET#,#USER_SN#,#SEX#,#ADD_TIME#)
+	</insert>
+
+
+	<delete id="delAddress" parameterClass="Long">
+		delete from
+		pano_user_receive_address
+		where
+		SN = #SN#
+	</delete>
+
+	<select id="selAddressbySN" resultClass="address"
+		parameterClass="Long">
+		select
+		SN,USER_NAME,SEX,MOBILE,BACKUP_MOBILE,PROVINCE,CITY,AREA,STREET,`DEFAULT`
+		from pano_user_receive_address
+		where SN = #SN#
+	</select>
+
+	<update id="upAddress" parameterClass="address">
+		update
+		pano_user_receive_address
+		set
+		USER_NAME=#USER_NAME#,
+		MOBILE=#MOBILE#,PROVINCE=#PROVINCE#,CITY=#CITY#,AREA=#AREA#,STREET=#STREET#,UPDATE_TIME=#UPDATE_TIME#
+		where SN = #SN#
+	</update>
+
+</sqlMap>

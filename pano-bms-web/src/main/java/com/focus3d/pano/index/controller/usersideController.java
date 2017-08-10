@@ -1,11 +1,25 @@
 package com.focus3d.pano.index.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.focus3d.pano.common.controller.BaseController;
+import com.focus3d.pano.model.pano_mem_user;
+import com.focus3d.pano.model.pano_user_receive_address;
+import com.focus3d.pano.usersside.service.PersonalService;
+
 //           /userside/toindex
 @Controller
 @RequestMapping("/userside")
-public class usersideController {
+public class usersideController extends BaseController {
+
+	@Autowired
+	private PersonalService personalService;
 
 	@RequestMapping("/toindex")
 	public String toindex() {
@@ -25,11 +39,6 @@ public class usersideController {
 	@RequestMapping("/toaddaddress")
 	public String toaddaddress() {
 		return "/userside/addaddress";
-	}
-
-	@RequestMapping("/toaddress")
-	public String toaddress() {
-		return "/userside/address";
 	}
 
 	@RequestMapping("/tocar")
@@ -62,11 +71,6 @@ public class usersideController {
 		return "/userside/login";
 	}
 
-	@RequestMapping("/tomy")
-	public String tomy() {
-		return "/userside/my";
-	}
-
 	@RequestMapping("/toorderAll")
 	public String toorderAll() {
 		return "/userside/orderAll";
@@ -90,6 +94,39 @@ public class usersideController {
 	@RequestMapping("/toshare")
 	public String toshare() {
 		return "/userside/share";
+	}
+
+	@RequestMapping("/tomy")
+	public String tomy(HttpServletRequest request) {
+		Long SN = Long.parseLong(request.getParameter("SN"));
+		pano_mem_user memuser = personalService.selUserbySN(SN);
+		request.setAttribute("memuser", memuser);
+		return "/userside/my";
+	}
+
+	// --------------------------------------------收货地址--------------------------------------------
+	Long USER_SN;
+
+	@RequestMapping("/toaddress")
+	public String toaddress(HttpServletRequest request) {
+		USER_SN = Long.parseLong(request.getParameter("USER_SN"));
+		List<pano_user_receive_address> address = personalService
+				.selAddressbyUserSN(USER_SN);
+		request.setAttribute("address", address);
+		return "/userside/address";
+	}
+
+	@RequestMapping("/toaddress2")
+	public String toaddress2(HttpServletRequest request) {
+		List<pano_user_receive_address> address = personalService
+				.selAddressbyUserSN(USER_SN);
+		request.setAttribute("address", address);
+		return "/userside/address";
+	}
+
+	@RequestMapping("/addSite")
+	public String addSite() {
+		return redirect("toaddress2");
 	}
 
 }

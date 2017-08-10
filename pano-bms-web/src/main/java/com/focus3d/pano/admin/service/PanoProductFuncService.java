@@ -8,6 +8,7 @@ import com.focus3d.pano.model.PanoProductFunc;
 import com.focus3d.pano.model.PanoProductType;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoVender;
+import com.focus3d.pano.model.panoSkin;
 import com.focus3d.pano.model.pano_project_style;
 
 public interface PanoProductFuncService {
@@ -38,4 +39,11 @@ public interface PanoProductFuncService {
 	public Long getInsert3(String name);
 	public int getDelete3(int sn);
 	public int getUpdate3(pano_project_style p);
+	
+	
+	public List<panoSkin>getBasics5(); //导航 查询
+	public Long getInsert5(panoSkin pano);
+	public int getDelete5(int sn);
+	public int getUpdate5(panoSkin p);
+	public panoSkin getupdatas5(int sn);
 }

@@ -7,6 +7,7 @@
  <typeAlias alias="PanoProductType" type="com.focus3d.pano.model.PanoProductType" />
  <typeAlias alias="PanoProjectPackage" type="com.focus3d.pano.model.PanoProjectPackage" />
  <typeAlias alias="PanoProductFunc" type="com.focus3d.pano.model.PanoProductFunc" />
+  <typeAlias alias="panoSkin" type="com.focus3d.pano.model.panoSkin" />
 
 
 	<select id="getBasics" resultClass="PanoProductType" >
@@ -92,21 +93,43 @@
 	
  	
 	<select id="getBasics4" resultClass="PanoProductFunc">
-		select `NAME`,SN from pano_product_func
+		select `NAME`,SN from pano_skin
 	</select>
 	
 	<insert id="getInsert4">
-		insert into pano_product_func (name,ADDER_SN,UPDATER_SN
+		insert into pano_skin (name,ADDER_SN,UPDATER_SN
 		) values (#name#,1,1)
 	</insert>
 	
 	<delete id="getDelete4">
-		DELETE FROM pano_product_func WHERE SN = #sn#
+		DELETE FROM pano_skin WHERE SN = #sn#
 	</delete> 
 	
 	<update id="getUpdate4" parameterClass="PanoProductFunc" >
-		UPDATE pano_product_func set name=#name# where SN=#sn#
+		UPDATE pano_skin set name=#name# where SN=#sn#
 	</update>
 	 
+	
+	
+	
+	<!-- 基础导航栏 -->
+	
+	<select id="getBasics5" resultClass="panoSkin">
+		select `NAME`,SN,img_sn from pano_skin
+	</select>
+	
+	 
+	 <insert id="getInsert5">
+		insert into pano_skin (name,ADDER_SN,IMG_SN
+		) values (#name#,#adder_sn#,#img_sn#)
+	</insert>
+	
+	<delete id="getDelete5">
+		DELETE FROM pano_skin WHERE SN = #SN#
+	</delete>
+	
+	<update id="getUpdate5"   >
+		UPDATE pano_skin set NAME=#name#,IMG_SN=#img_sn# where SN=#sn#
+	</update>
 	
 </sqlMap>

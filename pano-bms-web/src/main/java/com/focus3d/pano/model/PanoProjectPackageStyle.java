@@ -7,16 +7,23 @@ import com.focus3d.pano.common.model.CommonModel;
 public class PanoProjectPackageStyle implements CommonModel{
 		
 	private Long sn;  //序列号
+	private Long pano_id;  //全景id
 	private Long project_sn; //'楼盘sn',
 	private Long style_sn;  // '风格sn',
 	private Long house_sn; // '户型sn',
-	private Long package_sn; // '套餐sn',
 	private Integer adder_sn; // 添加人 ID
 	private String adder_name; //添加人姓名
 	private Date add_time;  // 添加时间
 	private Integer updater_sn; //修改人Id
 	private String updater_name; //修改人姓名
 	private String update_time;  //修改时间
+	
+	public Long getPano_id() {
+		return pano_id;
+	}
+	public void setPano_id(Long pano_id) {
+		this.pano_id = pano_id;
+	}
 	public Long getSn() {
 		return sn;
 	}
@@ -42,12 +49,6 @@ public class PanoProjectPackageStyle implements CommonModel{
 	}
 	public void setHouse_sn(Long house_sn) {
 		this.house_sn = house_sn;
-	}
-	public Long getPackage_sn() {
-		return package_sn;
-	}
-	public void setPackage_sn(Long package_sn) {
-		this.package_sn = package_sn;
 	}
 	public Integer getAdder_sn() {
 		return adder_sn;

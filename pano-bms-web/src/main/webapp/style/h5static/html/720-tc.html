@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>720</title>
+    <link rel="stylesheet" href="../css/bass.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../lib/swiper/swiper.min.css">
+    <script src="../js/main.js"></script>
+</head>
+<body>
+<div class="container se720">
+
+    <!--场景-->
+    <section class="hide">
+        <img src="../image/image/720.png" alt="">
+        <p class="location location2">客厅</p>
+        <nav class="nav">
+            <a href="#"  id="tcshow">
+                <div class="img"></div>
+                <p class="bbColor">套餐</p>
+            </a>
+            <a href="720-space.html" id="fjshow">
+                <img src="../image/img/13.png" alt="">
+                <p>房间</p>
+            </a>
+            <a href="720-unit.html" id="hxshow">
+                <img src="../image/img/25.png" alt="">
+                <p>户型</p>
+            </a>
+            <a href="car.html">
+                <img src="../image/img/20.png" alt="">
+                <p>购物车</p>
+            </a>
+        </nav>
+    </section>
+    <!--套餐弹窗-->
+    <div id="tc" >
+        <div class="swiper-container swiper1">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../image/img/26.png" alt="">
+                        <p>基础套餐</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../image/img/22.png" alt="">
+                        <p>灯具</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../image/img/26.png" alt="">
+                        <p>床</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../image/img/24.png" alt="">
+                        <p>柜子</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../image/img/23.png" alt="">
+                        <p>窗帘</p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="../image/img/23.png" alt="">
+                        <p>窗帘</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../lib/jQuery/jquery-3.2.1.min.js"></script>
+<script src="../lib/swiper/swiper.jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var Swiper1 = new Swiper('.swiper1',{
+            autoplayStopOnLast:true,
+            slidesPerView : 5,
+            slidesPerGroup : 1,
+        })
+        var Swiper2 = new Swiper('.swiper2',{
+            lazyLoading:true,
+            autoplayStopOnLast:true,
+            slidesPerView : 4,
+            slidesPerGroup : 1,
+            spaceBetween:10,
+        })
+        var Swiper3 = new Swiper('.swiper3',{
+            autoplayStopOnLast:true,
+            slidesPerView : 4,
+            slidesPerGroup : 1,
+            spaceBetween:10,
+        })
+    })
+
+    $(function(){
+        $('#tcshow').click(function () {
+            var that = $(this);
+            $('#tc').toggleClass('on');
+            that.find('p').toggleClass('ffColor');
+            that .find('.img').toggleClass('on');
+            $('.location').toggleClass('show')
+        })
+    })
+
+</script>
+</body>
+</body>
+</html>

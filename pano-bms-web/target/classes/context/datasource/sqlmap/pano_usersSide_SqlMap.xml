@@ -8,7 +8,7 @@
  </select>
  <!-- 查风格img_sn和name -->
  <select id="selectStyleByProject_sn" parameterClass="long" resultClass="com.focus3d.pano.model.Style">
-SELECT
+<!-- SELECT
 pano_project.`NAME` as project_name,
 pano_project_style.`NAME`,
 pano_project_style.IMG_SN,
@@ -18,7 +18,20 @@ pano_project_style.START_PRICE,
 pano_project_style.END_PRICE
 FROM
 pano_project
-INNER JOIN pano_project_style ON pano_project_style.PROJECT_SN = pano_project.SN
+INNER JOIN pano_project_style ON pano_project_style.PROJECT_SN = pano_project.SN -->
+SELECT
+pano_project.`NAME` as project_name,
+pano_project_style.`NAME`,
+pano_project_style.IMG_SN,
+pano_project_style.PROJECT_SN as project_sn,
+pano_project_style.SN as id,
+pano_project_style.START_PRICE,
+pano_project_style.END_PRICE
+FROM
+pano_project_house_style
+INNER JOIN pano_project_style ON pano_project_style.SN = pano_project_house_style.STYLE_SN
+INNER JOIN pano_project_house ON pano_project_house_style.HOUSE_SN = pano_project_house.SN
+INNER JOIN pano_project ON pano_project_house.PROJECT_SN = pano_project.SN
 where pano_project.SN=#project_sn#
  </select>
  <!-- 根据style_sn查询lable集合 -->
@@ -72,15 +85,16 @@ pano_project.`NAME`=#NAME#
  <!-- 根据style_sn,查询户型表img_sn -->
  <select id="get_selectHouseListByStyle_sn" parameterClass="long" 
                         resultClass="com.focus3d.pano.model.pano_project_house">
- SELECT
+SELECT
 pano_project_house.SN,
 pano_project_house.`NAME`,
 pano_project_house.IMG_SN,
-pano_project_house.PROJECT_SN
+pano_project_style.PROJECT_SN
 FROM
-pano_project_house
-INNER JOIN pano_project_house_style ON pano_project_house_style.HOUSE_SN = pano_project_house.SN
+pano_project_house_style
 INNER JOIN pano_project_style ON pano_project_style.SN = pano_project_house_style.STYLE_SN
+INNER JOIN pano_project_house ON pano_project_house_style.HOUSE_SN = pano_project_house.SN
+where pano_project_style.SN=#style_sn#
  </select>
  <!-- 查询所有楼盘 -->
  <select id="get_projectList" resultClass="com.focus3d.pano.model.pano_project">
@@ -94,10 +108,91 @@ FROM
 pano_project
  </select>
  <!-- 查询楼盘end -->
- 
- 
- 
- 
+ <!-- 查询套餐s -->
+ <select id="get_selectPackageListByStyle_sn" 
+ resultClass="com.focus3d.pano.model.PanoProjectPackage">
+SELECT
+pano_project_package.SN,
+pano_project_package.`NAME`,
+pano_project_package.IMG_SN
+FROM
+pano_project_house_style
+INNER JOIN pano_project_house_package ON pano_project_house_package.HOUSE_STYLE_SN = pano_project_house_style.SN
+INNER JOIN pano_project_house ON pano_project_house_style.HOUSE_SN = pano_project_house.SN
+INNER JOIN pano_project_style ON pano_project_style.SN = pano_project_house_style.STYLE_SN
+INNER JOIN pano_project_package ON pano_project_house_package.PACKAGE_SN = pano_project_package.SN
+where pano_project_style.SN=#style_sn#
+ </select>
+ <!-- 查询楼盘end -->
+ <!-- 根据house_sn查询space -->
+ <select id="list_selectSpaceNameListByHouse_sn" parameterClass="long"
+ resultClass="com.focus3d.pano.model.pano_project_space"><!-- HOUSE_PACKAGE_SN -->
+SELECT
+pano_project_space.SN,
+pano_project_space.`NAME`,
+pano_project_space.HOUSE_SN
+FROM
+pano_project_house
+INNER JOIN pano_project_space ON pano_project_house.SN = pano_project_space.HOUSE_SN
+ where pano_project_space.HOUSE_SN=#house_sn#
+
+ </select>
+ <!-- 查询项目名s,通过style_sn -->
+ <select id="list_selectProjectByStyle_sn" parameterClass="long" 
+ resultClass="com.focus3d.pano.model.pano_project">
+SELECT
+pano_project.`NAME`,
+pano_project.SN,
+pano_project.PROVINCE,
+pano_project.CITY,
+pano_project.AREA
+FROM
+pano_project_house_style
+INNER JOIN pano_project ON pano_project.SN = pano_project_house_style.PROJECT_SN
+INNER JOIN pano_project_style ON pano_project_style.SN = pano_project_house_style.STYLE_SN
+where pano_project_style.SN=#style_sn#
+ </select>
+ <!-- 根据户型查套餐 -->
+ <select id="list_selectPackageByHouse_sn" parameterClass="long" 
+ resultClass="com.focus3d.pano.model.PanoProjectPackage">
+ SELECT
+pano_project_package.`NAME`,
+pano_project_package.SN,
+pano_project_package.IMG_SN
+FROM
+pano_project_house_style
+INNER JOIN pano_project_house_package ON pano_project_house_package.HOUSE_STYLE_SN = pano_project_house_style.SN
+INNER JOIN pano_project_house ON pano_project_house_style.HOUSE_SN = pano_project_house.SN
+INNER JOIN pano_project_package ON pano_project_house_package.PACKAGE_SN = pano_project_package.SN
+where pano_project_house.SN=#house_sn#
+ </select>
+ <!-- 用户登录 -->
+ <select id="get_selectMUserByPhone" parameterClass="string" 
+ resultClass="com.focus3d.pano.model.pano_mem_user">
+ SELECT
+pano_mem_user.SN,
+pano_mem_user.NICK_NAME,
+pano_mem_user.MOBILE,
+pano_mem_user.EMAIL,
+pano_mem_user.CITY
+FROM
+pano_mem_user
+where pano_mem_user.MOBILE=#phone#
+ </select>
+ <!-- 查套餐 -->
+ <select id="list_selectPackageTypeListByPackage_Sn" parameterClass="long" 
+ resultClass="com.focus3d.pano.model.PanoProjectPackageType">
+ SELECT
+pano_project_package_type.HOUSE_PACKAGE_SN,
+pano_project_package_type.`NAME`,
+pano_project_package_type.SPACE_SN,
+pano_project_package_type.SN
+FROM
+pano_project_house_package
+INNER JOIN pano_project_package ON pano_project_package.SN = pano_project_house_package.PACKAGE_SN
+INNER JOIN pano_project_package_type ON pano_project_package_type.HOUSE_PACKAGE_SN = pano_project_house_package.SN
+ where pano_project_package.SN=#package_sn#
+ </select>
  
  
 </sqlMap>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" href="../css/bass.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <script type="text/javascript" src="../lib/jQuery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/getVerifyCode.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+</head>
+<body>
+<div class="container">
+    <!--头-->
+    <header class="header">
+        <a href="#" class="back">
+            <i class="iconfont">&#xe6bc;</i>
+            返回
+        </a>
+        <p class="title">个人中心</p>
+        <a href="#" class="share">
+            <i class="iconfont">&#xe622;</i>
+        </a>
+    </header>
+    <!--头像-->
+    <section class="my-bg login-bg">
+        <img src="../image/img/tx.png" alt="">
+        <p class="login">
+            <a class="login_register" onclick="$('.wrap').show();">点击登录</a>
+        </p>
+    </section>
+    <!--订单-->
+    <section class="order">
+        <p class="title">我的订单</p>
+        <div class="order-statu">
+            <a href="#">
+                <i class="iconfont">&#xe64d;</i>
+                <p>全部订单</p>
+            </a>
+            <a href="#">
+                <i class="iconfont">&#xe627;</i>
+                <p>代付款</p>
+            </a>
+            <a href="#">
+                <i class="iconfont">&#xe600;</i>
+                <p>已付款</p>
+            </a>
+        </div>
+        <div class="my-order">
+            <i class="iconfont">&#xe61e;</i>
+            <span>收货地址</span>
+            <i class="iconfont fr">&#xe6c7;</i>
+        </div>
+        <div class="my-order">
+            <i class="iconfont">&#xe60b;</i>
+            <span>联系我们</span>
+            <i class="iconfont fr">&#xe6c7;</i>
+        </div>
+        <div class="my-order">
+            <i class="iconfont">&#xe603;</i>
+            <span>实名认证</span>
+            <i class="iconfont fr">&#xe6c7;</i>
+        </div>
+    </section>
+</div>
+<!--注册弹窗-->
+<div class="wrap">
+    <div id="login">
+        <form action="">
+            <div class="login-title">
+                登录
+                <i class=" iconfont fr"  onclick="$('.wrap').hide();">&#xe64e;</i>
+            </div>
+            <div class="row">
+                <i class=" iconfont">&#xe61b;</i>
+                <input type="tel" placeholder="请输入手机号" id="j_phone">
+            </div>
+            <div class="row">
+                <i class=" iconfont">&#xe66f;</i>
+                <input type="text" placeholder="验证码">
+                <span id="j_getVerifyCode">获取验证码</span>
+            </div>
+            <button type="submit">立即登录</button>
+            <div class="line">
+                <span>其他方式登录</span>
+                    <a href="#">
+                        <i class=" iconfont">&#xe81d;</i>
+                    </a>
+            </div>
+        </form>
+    </div>
+</div>
+<!--注册验证-->
+<script>
+    //获取手机验证码-登录
+    $("#j_getVerifyCode").on("click",getVerifyCode({
+        callBack: function (){//按钮点击后的回调函数，-----必须-----
+            //在这里你还是可以对你的按钮进行操作
+            alert("验证码发送成功");
+        },
+        time: 60,//定时时间，以秒为单位，默认60秒
+        getCurrentTime: function (time){//获取倒计时当前时间
+        },
+        isPhone: true,//是否为发送手机验证码，如果是则会验证手机号格式，-----必须-----
+        getPhone: function (){//获取手机号，此处一定要return
+            return $("#j_phone").val();
+        },
+        phoneReg: /^1[34578]\d{9}$/,//手机号验证正则
+        phoneCallBack: function (){//当手机号有误时的回调，默认会中止操作
+            alert("您输入的手机号有误");
+        },
+        timeIsUpText: "重新发送",//倒计时时间到了后按钮所显示文字
+        timeRunnigText: "s后重新发送",//倒计时时间正在走的时候按钮所显示文字。默认为"xxs后重新获取"
+        unabledClass: "unlabed"//按钮不能用的样式，即点击按钮后的样式
+    }));
+</script>
+
+</body>
+</html>

@@ -1,78 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-    <title>个人中心</title>
-    <link rel="stylesheet" href="/style/admstatic/css/bass.css">
-    <link rel="stylesheet" href="/style/admstatic/css/index.css">
-    <script src="/style/admstatic/js/main.js"></script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0">
+<title>个人中心</title>
+<link rel="stylesheet" href="/style/h5static/css/bass.css">
+<link rel="stylesheet" href="/style/h5static/css/index.css">
+<script src="/style/h5static/js/main.js"></script>
 </head>
 <body>
-<div class="container">
-    <!--头-->
-    <header class="header">
-        <a href="#" class="back">
-            <i class="iconfont">&#xe6bc;</i>
-            返回
-        </a>
-        <p class="title">个人中心</p>
-        <a href="#" class="share">
-            <i class="iconfont">&#xe622;</i>
-        </a>
-    </header>
-    <!--头像-->
-    <section class="my-bg">
-        <img src="/style/admstatic/image/image/66.jpg" alt="">
-        <p class="name">华安</p>
-        <p class="other">浙江 杭州</p>
-    </section>
-    <!--订单-->
-    <section class="order">
-        <p class="title">我的订单</p>
-        <div class="order-statu">
-            <a href="/userside/toorderAll">
-                <i class="iconfont">&#xe64d;</i>
-                <p>全部订单</p>
-            </a>
-            <a href="/userside/topaying">
-                <i class="iconfont">&#xe627;</i>
-                <p>待付款</p>
-            </a>
-            <a href="/userside/topaid">
-                <i class="iconfont">&#xe600;</i>
-                <p>已付款</p>
-            </a>
-        </div>
-        <div class="my-order">
-            <a href="/userside/toaddress">
-                <i class="iconfont">&#xe61e;</i>
-                <span>收货地址</span>
-                <i class="iconfont fr">&#xe6c7;</i>
-            </a>
-        </div>
-        <div class="my-order">
-            <a href="#">
-                <i class="iconfont">&#xe60b;</i>
-                <span>联系我们</span>
-                <i class="iconfont fr">&#xe6c7;</i>
-            </a>
-        </div>
-        <div class="my-order">
-            <a href="/userside/tocer">
-                <i class="iconfont">&#xe603;</i>
-                <span>实名认证</span>
-                <i class="iconfont fr">&#xe6c7;</i>
-            </a>
-        </div>
-    </section>
-    <section class="operation">
-        <a href="/userside/tologin">退出登录</a>
-    </section>
+	<div class="container">
+
+		<!--头像-->
+		<section class="my-bg">
+			<div class="blur">
+				<img src="$!fs.url($!memuser.HEAD_IMG_SN)" alt="">
+			</div>
+			<div class="my-content">
+				<img src="$!fs.url($!memuser.HEAD_IMG_SN)" alt="">
+				<p class="name">$!{memuser.NICK_NAME}</p>
+				<p class="other">$!{memuser.CITY}</p>
+			</div>
+
+		</section>
+		<!--订单-->
+		<section class="order">
+			<p class="title">我的订单</p>
+			<div class="order-statu">
+				<a href="/userside/toorderAll"> <img
+					src="/style/h5static/image/img/36.png" alt="">
+					<p>全部订单</p>
+				</a> <a href="/userside/topaying"> <img
+					src="/style/h5static/image/img/34.png" alt="">
+					<p>待付款</p>
+				</a> <a href="/userside/topaid"> <img
+					src="/style/h5static/image/img/35.png" alt="">
+					<p>已付款</p>
+				</a>
+			</div>
+			<div class="my-order">
+				<a href="/personal/toaddress?USER_SN=$!{memuser.SN}"> <img
+					src="/style/h5static/image/img/39.png" alt="">
+					<p>收货地址</p> <img src="/style/h5static/image/img/28.png" alt="">
+				</a>
+			</div>
+			<div class="my-order">
+				<a href="#"> <img src="/style/h5static/image/img/40.png" alt="">
+					<p>联系我们</p> <img src="/style/h5static/image/img/28.png" alt="">
+				</a>
+			</div>
+			<div class="my-order">
+				<a href="/userside/tocer"> <img
+					src="/style/h5static/image/img/38.png" alt="">
+					<p>实名认证</p> <img src="/style/h5static/image/img/28.png" alt="">
+				</a>
+			</div>
+		</section>
+		<section class="operation">
+			<a href="/userside/tologin">退出登录</a>
+		</section>
 
 
-</div>
+	</div>
 
 </body>
 </html>

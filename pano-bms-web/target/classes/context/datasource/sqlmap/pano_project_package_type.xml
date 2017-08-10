@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="pano_project_package_type">
+		<typeAlias alias="PanoProjectPackageType" type="com.focus3d.pano.model.PanoProjectPackageType"/>
+		<typeAlias alias="pano_project_space" type="com.focus3d.pano.model.pano_project_space"/>
+		<typeAlias alias="PackageTypeList" type="com.focus3d.pano.model.PackageTypeList"/>
+	
+	<!-- 线查询户型套餐是否为空 -->
+	<select id="getSelect" resultClass="PanoProjectPackageType">
+		SELECT sn
+			FROM pano_project_package_type
+				WHERE HOUSE_PACKAGE_SN = #sn#
+	</select>
+	
+	
+	
+	
+	<!-- 若为空则只显示固定数值 -->
+	
+	<select id="getList" resultClass="PackageTypeList" >
+		SELECT p.`NAME` AS house_name,p.SN AS house_sn,p1.`name` AS project_name,p1.SN AS  project_sn, p2.`NAME` AS package_name ,p2.SN AS package_sn,p2.ID AS package_id,p3.`NAME` AS style_name,p3.SN AS style_sn,p4.sn AS sn
+				FROM pano_project_house p,pano_project p1,pano_project_package p2, pano_project_style p3,pano_project_house_package p4
+						WHERE p.SN = #house_sn# AND p1.SN =#project_sn#  AND p2.SN =#package_sn#  AND p3.SN = #style_sn# AND p4.SN =#sn#
+	</select>
+	
+	
+	
+	
+	<!-- 查询跟户型对应的空间Name -->
+	<select id="getSpace" resultClass="pano_project_space">
+		
+		SELECT p.`NAME`,p.SN
+				FROM pano_project_space p , pano_project_house p1
+						    WHERE p1.SN = p.HOUSE_SN AND p1.sn = #sn#
+	
+	</select>
+	
+	
+	
+	  <!-- 添加套餐类型  添加类型的Name 户型套餐SN  和空间SN -->
+	  <insert id="getAddType">
+	  
+	  	 INSERT INTO pano_project_package_type 
+	  		 (`NAME`,SPACE_SN,HOUSE_PACKAGE_SN) VALUES (#name#,#space_sn#,#house_package_sn#)
+	  
+	  </insert>
+	  
+	  
+	  <!-- 通过户型套餐表主键 查询套餐类型Sn 和 空间SN -->
+	  	<select id="getSelectType" resultClass="PanoProjectPackageType" >
+	  		
+	  			SELECT SN,SPACE_SN
+					FROM pano_project_package_type 
+						WHERE HOUSE_PACKAGE_SN = #sn#
+	  	
+	  	</select>
+	  
+	  
+	  
+	  
+	  <!-- 查询套餐类型表不为空  显示 户型 楼盘 风格 套餐 套餐ID 分类 空间 等属性 -->
+	  <select id="getSelectList" resultClass="PackageTypeList">
+	  		SELECT p.`NAME` AS house_name,p1.`NAME` AS project_name,p2.`NAME` AS package_name,p2.ID AS package_id,
+	  		p3.`NAME`AS style_name,p4.`NAME` AS type_name,p4.SN  AS type_id,p5.`NAME` AS space_name  
+				FROM pano_project_house p,pano_project p1,pano_project_package p2, 
+					pano_project_style p3,pano_project_package_type p4,pano_project_space p5
+						WHERE p.SN = #house_sn# AND p1.SN = #project_sn# AND p2.SN = #package_sn# AND p3.SN = #style_sn#
+							 AND p4.SN = #type_sn# AND p5.SN = #space_sn#
+	  </select>
+	  
+	  
+	  
+	  
+	  <!-- 删除数据 -->
+	  <delete id="getDelete">
+	  			DELETE FROM pano_project_package_type WHERE sn =#sn#
+	  </delete>
+	  
+	  
+	  
+	  
+	  
+</sqlMap>

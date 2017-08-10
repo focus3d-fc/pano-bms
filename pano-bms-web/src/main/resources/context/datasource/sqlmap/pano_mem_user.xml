@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="pano_mem_user">
+
+	<typeAlias alias="memuser" type="com.focus3d.pano.model.pano_mem_user" />
+
+	<select id="selUserbySN" resultClass="memuser" parameterClass="Long">
+		select
+		SN,NICK_NAME,HEAD_IMG_SN,CITY,MOBILE,EMAIL,WX_ID,SEX
+		from
+		pano_mem_user
+		where SN = #SN#
+	</select>
+
+</sqlMap>

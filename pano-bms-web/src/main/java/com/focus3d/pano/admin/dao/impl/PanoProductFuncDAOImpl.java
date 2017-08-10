@@ -10,6 +10,7 @@ import com.focus3d.pano.model.PanoProductFunc;
 import com.focus3d.pano.model.PanoProductType;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoVender;
+import com.focus3d.pano.model.panoSkin;
 import com.focus3d.pano.model.pano_project_style;
 
 @Repository
@@ -253,6 +254,59 @@ public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncD
 			e.printStackTrace();
 		}
 		return sm;
+		
+	}
+	
+	/**
+	 * 导航
+	 */
+
+	@Override
+	public List<panoSkin> getBasics5() {
+		List<panoSkin> productList = null;
+		try{
+			productList=(List<panoSkin>)getSqlMapClientTemplate().queryForList("pano_bm_basic.getBasics5");
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return productList;
+	}
+
+	@Override
+	public Long getInsert5(panoSkin pano) {
+		Long sn = null;
+		try{
+		 sn =(Long) getSqlMapClientTemplate().insert("pano_bm_basic.getInsert5",pano);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return sn;
+	}
+
+	@Override
+	public int getDelete5(int sn) {
+		int sm = 0;
+		sm =  getSqlMapClientTemplate().delete("pano_bm_basic.getDelete5",sn);
+		return sm;
+	}
+	
+	
+	public int getUpdate5(panoSkin p){
+		
+		int sm = 0;
+		try{
+		sm =  getSqlMapClientTemplate().update("pano_bm_basic.getUpdate5",p);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return sm;
+		
+	}
+	
+	public List<panoSkin>getupdatas5(int sn){
+		List<panoSkin> list= (List<panoSkin>)getSqlMapClientTemplate().queryForList("pano_bm_basic.getupdatas5",sn);
+		return list;
 		
 	}
 }

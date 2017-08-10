@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>新增地址</title>
+    <link rel="stylesheet" href="../lib/mui/css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/bass.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../lib/mui/js/mui.min.js"></script>
+    <script src="../lib/mui/js/mui.picker.min.js"></script>
+    <script src="../js/city.data-3.js"></script>
+    <script src="../js/main.js"></script>
+</head>
+<body>
+<div class="container add">
+    <!--头-->
+
+    <!--图片-->
+    <section class="addr-section">
+        <div class="add-item">
+            <label class="label">收货人:</label>
+            <input type="text" placeholder="姓名">
+        </div>
+        <div class="add-item">
+            <label class="label">联系电话:</label>
+            <input type="tel" placeholder="输入号码">
+        </div>
+        <div class="add-item " id='showCityPicker3'>
+            <label class="label">送货城市:</label>
+            <input type="text" placeholder="请选择城市" id="cityResult3">
+            <i class="iconfont" >&#xe6c7;</i>
+        </div>
+        <div class="add-item">
+            <label class="label">详细地址:</label>
+            <input type="tel" placeholder="请填写地址，不少于5个字">
+        </div>
+    </section>
+
+    <button class="button bcdz">
+        保存地址
+    </button>
+
+
+</div>
+<script>
+    (function($, doc) {
+        $.init();
+        $.ready(function() {
+            /**
+             * 获取对象属性的值
+             * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
+             * @param {Object} obj 对象
+             * @param {String} param 属性名
+             */
+            var _getParam = function(obj, param) {
+                return obj[param] || '';
+            };
+
+            //					//级联示例
+            var cityPicker3 = new $.PopPicker({
+                layer: 3
+            });
+            cityPicker3.setData(cityData3);
+            var showCityPickerButton = doc.getElementById('showCityPicker3');
+            var cityResult3 = doc.getElementById('cityResult3');
+            showCityPickerButton.addEventListener('tap', function(event) {
+                cityPicker3.show(function(items) {
+                    cityResult3.value =  _getParam(items[0], 'text') + " " + _getParam(items[1], 'text') + " " + _getParam(items[2], 'text');
+                    //返回 false 可以阻止选择框的关闭
+                    //return false;
+                });
+            }, false);
+        });
+    })(mui, document);
+</script>
+</body>
+</body>
+</html>

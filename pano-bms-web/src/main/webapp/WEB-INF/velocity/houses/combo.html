@@ -53,7 +53,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					#foreach ($!{lists} in $!{list})
+					#foreach ($!{lists} in $!{lists})
 					<tr>
 						<td>$!{velocityCount}</td>
 						<td>$!{lists.id}</td>
@@ -63,10 +63,8 @@
 						<td>$!{lists.package_name}</td>
 						<td>
 							<div class="btn-group btn-group-sm" role="group">
-								<a class="btn btn-info"
-									href="/packageset/chooseprodt?pgsn=$!{lists.sn}">选择产品</a> <a
-									href="/houses/delete?id=$!{lists.house_sn}&id1=$!{lists.project_sn}&id2=$!{lists.style_sn}&id3=$!{lists.sn}"
-									class="btn btn-danger" onClick="del()">删除</a>
+								 <a class="btn btn-info" href="/type/selectList?ids=$!{lists.project_sn}&ids1=$!{lists.house_sn}&ids2=$!{lists.style_sn}&ids4=$!{lists.package_sn}&ids5=$!{lists.sn}" >设置分类</a> 
+								 <a href="/houses/delete?id2=$!{lists.sn}" class="btn btn-danger" onClick="del()">删除</a>
 							</div>
 						</td>
 					</tr>

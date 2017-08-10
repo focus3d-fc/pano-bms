@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.focus3d.pano.admin.dao.PanoUserLongInDAO;
 import com.focus3d.pano.model.PanoProductType;
+import com.focus3d.pano.model.PanoProjectHousePackage;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoProjectPackageStyle;
 import com.focus3d.pano.model.PanoUserLongin;
@@ -21,11 +22,12 @@ public class PanoUserLongInImpl extends BaseDao implements PanoUserLongInDAO{
 	}
 
 	@Override
-	public List<PanoProjectPackageStyle> getPPPSSelect( PanoProjectPackageStyle ppps) {
-		List<PanoProjectPackageStyle>  list =(List<PanoProjectPackageStyle>)getSqlMapClientTemplate().queryForList("pano_bm_longin.getPPPSSelect",ppps);
+	public List<PanoProjectPackageStyle> getPPPSSelect( Long house_style_sn) {
+		List<PanoProjectPackageStyle>  list =(List<PanoProjectPackageStyle>)getSqlMapClientTemplate().queryForList("pano_bm_longin.getPPPSSelect",house_style_sn);
 		return list;
 	}
-
+	
+	
 	@Override
 	public List<getListPano> getpackage(getListPano sn) {
 		List<getListPano> list = null;
@@ -37,9 +39,20 @@ public class PanoUserLongInImpl extends BaseDao implements PanoUserLongInDAO{
 		return list;
 	
 	}
+	
+	public List<PanoProjectHousePackage> getpackage2(Long house_style_sn){
+		List<PanoProjectHousePackage> list = null;
+		list =  (List<PanoProjectHousePackage>)getSqlMapClientTemplate().queryForList("pano_bm_longin.getpackage2",house_style_sn);
+		return list;
+	}
+	
+	public List<PanoProjectPackageStyle> getpackage1(PanoProjectPackageStyle sn){
+		return (List<PanoProjectPackageStyle>)getSqlMapClientTemplate().queryForList("pano_bm_longin.getpackage1",sn);
+	}
+	
 
 	@Override
-	public int getdelete(PanoProjectPackageStyle sns) {
+	public int getdelete(PanoProjectHousePackage sns) {
 		return  getSqlMapClientTemplate().delete("pano_bm_longin.getdelete",sns);
 	}
 
@@ -54,14 +67,30 @@ public class PanoUserLongInImpl extends BaseDao implements PanoUserLongInDAO{
 		Long i = (Long)getSqlMapClientTemplate().insert("pano_bm_longin.getinsert",pano);
 		return i;
 	}
-
+	
+	public Long getinserts(PanoProjectHousePackage pano){
+		Long i = null ;
+		try{
+		 i = (Long)getSqlMapClientTemplate().insert("pano_bm_longin.getinserts",pano);
+		 System.out.println("套餐是否成功+="+i);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return i;
+	}
+	
+	
+	public List<PanoProjectPackageStyle>getselects(PanoProjectPackageStyle pano){
+		List<PanoProjectPackageStyle> list = null;
+		list =(List<PanoProjectPackageStyle>)getSqlMapClientTemplate().queryForList("pano_bm_longin.getselects",pano);
+		return list;
+	}
+	
 	@Override
 	public List<getListPano> getselect1(getListPano pano) {
 		List<getListPano> list = null;
-		System.out.println("DAO");
 		list	=(List<getListPano>)getSqlMapClientTemplate().queryForList("pano_bm_longin.getselect1",pano);
 		System.out.println(list.size());
-		System.out.println("DAO1");
 		return list;
 	}
 

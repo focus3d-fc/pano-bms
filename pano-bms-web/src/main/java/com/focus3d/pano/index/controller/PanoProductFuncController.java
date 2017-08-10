@@ -23,6 +23,7 @@ import com.focus3d.pano.model.PanoProductType;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoUserLongin;
 import com.focus3d.pano.model.PanoVender;
+import com.focus3d.pano.model.panoSkin;
 import com.focus3d.pano.model.pano_project_style;
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.JsonUtils;
@@ -434,6 +435,111 @@ public class PanoProductFuncController extends BaseController{
 		return "redirect:/basics/classify";
 
 	}
+	
+	
+	
+	/**
+	 * 导航
+	 * @param request
+	 * @return
+	 */
+	
+	@RequestMapping("/classify5")
+	public String merchant5(HttpServletRequest request){
+		List<panoSkin> type =null;
+		
+		try{
+			type = service.getBasics5();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		 request.setAttribute("type1",type );
+		return "/panoadm/baseinfoadm/basic-Navigation";
+	}
+	
+	@RequestMapping("/insert5")
+	public String insert5(HttpServletRequest request,HttpServletResponse response,HttpSession session,String fullImgSn){
+		String name = request.getParameter("name");
+		Long img_sn = null;
+		try {
+			img_sn = EncryptUtil.decode(fullImgSn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		PanoUserLongin pano =(PanoUserLongin)session.getAttribute("user");
+		Long sn = pano.getSn();
+		panoSkin pack = new panoSkin();
+		pack.setImg_sn(img_sn);
+		pack.setName(name);
+		pack.setAdder_sn(sn);
+		String i = null;
+		String ii = null;
+		 List<panoSkin> basics5 = service.getBasics5();
+		if(basics5.size()>0){
+		for(panoSkin p:basics5){
+			if(p.getName().equals(name)||name.equals("")){
+				i = "errorr";
+				ii= "panoadm/baseinfoadm/basic-sort";
+				break;
+			}else{
+				ii="/panoadm/baseinfoadm/basic-combo";
+				i = "succeed";
+			}
+		}
+		if(i.equals("succeed")){
+			 Long insert = service.getInsert5(pack);
+			}
+	}else{
+		Long insert = service.getInsert5(pack);
+	}
+		return ii;
+			
+	}
+	
+	
+	
+	@RequestMapping("/dalete5")
+	public String dalete5(HttpServletRequest request,HttpServletResponse response){
+		String name = request.getParameter("id");
+		int delete = service.getDelete5(Integer.parseInt(name));
+		return "redirect:/basics/classify5";
+
+		 
+	}
+	@RequestMapping("/update5")
+	public String update5(HttpServletRequest request,String fullImgSn){
+		Long img_sn = null;
+		try {
+			img_sn = EncryptUtil.decode(fullImgSn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("图片ID:"+img_sn);
+		String sn1 = request.getParameter("id");
+		String name = request.getParameter("name");
+		long sn = Long.valueOf(sn1);
+		panoSkin p = new panoSkin();
+		p.setName(name);
+		p.setSn(sn);
+		p.setImg_sn(img_sn);
+		int update = service.getUpdate5(p);
+		
+		return "redirect:/basics/classify5";
+
+	}
+	
+	@RequestMapping("/updates5")
+	public void updates5(HttpServletRequest request,HttpServletResponse response,String sn){
+		panoSkin getupdatas1 = service.getupdatas5(Integer.parseInt(sn));
+		String objectToJson = JsonUtils.objectToJson(getupdatas1);
+		try {
+			this.ajaxOutput(response, objectToJson);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 }
 	

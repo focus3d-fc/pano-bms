@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>720</title>
+    <link rel="stylesheet" href="/style/h5static/css/bass.css">
+    <link rel="stylesheet" href="/style/h5static/css/index.css">
+    <link rel="stylesheet" href="/style/h5static/lib/swiper/swiper.min.css">
+    <script src="/style/h5static/js/main.js"></script>
+</head>
+<body>
+<div class="container se720">
+
+    <!--场景-->
+    <section class="hide">
+        <img src="/style/h5static/image/image/720.png" alt="">
+        <p class="location">客厅</p>
+        <nav class="nav">
+            <a href="/usersSide/to720_tc"  id="tcshow">
+                <img src="/style/h5static/image/img/18.png" alt="">
+                <p>套餐</p>
+            </a>
+            <a href="/usersSide/to720_space" id="fjshow">
+                <div class="img"></div>
+                <p class="bbColor">房间</p>
+            </a>
+            <a href="/usersSide/to720_unit" id="hxshow">
+                <img src="/style/h5static/image/img/25.png" alt="">
+                <p>户型</p>
+            </a>
+            <a href="/usersSide/tocar">
+                <img src="/style/h5static/image/img/20.png" alt="">
+                <p>购物车</p>
+            </a>
+        </nav>
+    </section>
+
+    <!--空间弹窗-->
+    <div id="fj" >
+        <div class="swiper-container swiper2">
+            <div class="swiper-wrapper">
+                #foreach ($!{space} in $!{spaceList})
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="/style/h5static/image/image/room.png" alt="">
+                        <p>$!{space.NAME}</p>
+                    </a>
+                </div>
+                #end
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="/style/h5static/lib/jQuery/jquery-3.2.1.min.js"></script>
+<script src="/style/h5static/lib/swiper/swiper.jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var Swiper1 = new Swiper('.swiper1',{
+            autoplayStopOnLast:true,
+            slidesPerView : 5,
+            slidesPerGroup : 1,
+        })
+        var Swiper2 = new Swiper('.swiper2',{
+            lazyLoading:true,
+            autoplayStopOnLast:true,
+            slidesPerView : 4,
+            slidesPerGroup : 1,
+            spaceBetween:10,
+        })
+        var Swiper3 = new Swiper('.swiper3',{
+            autoplayStopOnLast:true,
+            slidesPerView : 4,
+            slidesPerGroup : 1,
+            spaceBetween:10,
+        })
+    })
+
+    $(function(){
+        $('#fjshow').click(function () {
+            var that = $(this);
+            $('#fj').toggleClass('on');
+            that.find('p').toggleClass('ffColor');
+            that .find('.img').toggleClass('on');
+            $('.location').toggleClass('show')
+        })
+    })
+</script>
+</body>
+</body>
+</html>

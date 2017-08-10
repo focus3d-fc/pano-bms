@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>确认订单</title>
+    <link rel="stylesheet" href="../css/bass.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <script type="text/javascript" src="../lib/jQuery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/getVerifyCode.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+</head>
+<body>
+<div class="container confirm">
+
+    <!--列表头-->
+    <section class="address">
+        <img src="../image/img/8.png" alt="">
+        <div>
+            <p class="clearfix">
+                <span class="fl">收货人：周俊龙</span>
+                <span class="fr">13495937497</span>
+            </p>
+            <p>
+                收货地址：上海上海市皮东新区花木街道海桐小区40号402室区40号402室
+            </p>
+        </div>
+        <a href="address.html" class="right"><i class="iconfont">&#xe6c7;</i></a>
+    </section>
+    <!--订单-->
+    <section class="order-items">
+      <div class="order-item">
+          <div class="title">
+              <div>
+                  <img src="../image/img/30.png" alt="">
+                  基础套餐
+              </div>
+              <span class="red">
+                  等待买家付款
+              </span>
+          </div>
+          <div class="cont">
+              <a href="#"><img src="../image/image/2.jpg" ></a>
+              <div class="detail">
+                  <a href="#"><p class="detail-tlt">简约现代大会议桌现代风格套餐A带实木全套</p></a>
+                  <p class="col detail-con">窗帘套餐</p>
+              </div>
+              <div class="price">
+                  <p class="red">￥26000</p>
+                  <s class="col"> ￥26000</s>
+                  <p class="col">×<span>1</span></p>
+              </div>
+          </div>
+          <div class="row">
+           <p>购买数量</p>
+          <p>
+              <span class="square">-</span>
+              <span>1</span>
+              <span class="square">+</span>
+          </p>
+          </div>
+          <div class="row">
+              <p>请输入兑换优惠码：</p>
+              <p>
+                  <span class="square">1</span>
+                  <span class="square">1</span>
+                  <span class="square">1</span>
+                  <span class="square">1</span>
+                  <span class="square">1</span>
+                  <span class="square">1</span>
+              </p>
+          </div>
+          <div class="row noboder">
+              <p>付款方式：</p>
+          </div>
+          <p>
+              <a href="#" class="paying">付全款
+                  <span class="red">95折</span>
+            </a>
+              <a href="#" class="paid">预付2成</a>
+          </p>
+          <div class="row2">
+              <p>
+                  <img src="../image/img/choose2.png" alt="">
+                  <a onclick="$('.wrap').show();" >我已阅读并同意
+                      <span class="red">合同条款</span>
+                  </a>
+              </p>
+          </div>
+          <div class="total">
+              共 <span>1</span>件产品 合计￥<span class="red">18000</span>元
+              <a class="tj" onclick="$('.wrap1').show();">
+                  提交订单
+              </a>
+          </div>
+      </div>
+    </section>
+</div>
+<!--合同条款弹窗-->
+<div class="wrap">
+    <div id="agree">
+        <h3>合同条款</h3>
+        <p>
+            我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款
+            我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款
+            我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款我是条款
+        </p>
+        <div>
+            <a href="#" class="paid" onclick="$('.wrap').hide();"> 我已阅读</a>
+        </div>
+    </div>
+</div>
+<!--提交订单弹窗-->
+<div class="wrap1">
+    <div id="confirm">
+        <form action="">
+            <div class="confirm-title">
+                输入下列验证码意味着您确认合同内容并且签署此合同
+                <div class="confirm-close">
+                    <i class="iconfont">&#xe70c;</i>
+                </div>
+            </div>
+            <div class="row">
+                <i class=" iconfont">&#xe61b;</i>
+                <input type="tel" placeholder="请输入手机号" id="j_phone">
+            </div>
+            <div class="row">
+                <i class=" iconfont">&#xe66f;</i>
+                <input type="text" placeholder="验证码">
+                <span id="j_getVerifyCode">获取验证码</span>
+            </div>
+            <button type="submit">立即验证</button>
+        </form>
+    </div>
+</div>
+<!--注册验证-->
+<script>
+    //获取手机验证码-登录
+    $("#j_getVerifyCode").on("click",getVerifyCode({
+        callBack: function (){//按钮点击后的回调函数，-----必须-----
+            //在这里你还是可以对你的按钮进行操作
+            alert("验证码发送成功");
+        },
+        time: 60,//定时时间，以秒为单位，默认60秒
+        getCurrentTime: function (time){//获取倒计时当前时间
+        },
+        isPhone: true,//是否为发送手机验证码，如果是则会验证手机号格式，-----必须-----
+        getPhone: function (){//获取手机号，此处一定要return
+            return $("#j_phone").val();
+        },
+        phoneReg: /^1[34578]\d{9}$/,//手机号验证正则
+        phoneCallBack: function (){//当手机号有误时的回调，默认会中止操作
+            alert("您输入的手机号有误");
+        },
+        timeIsUpText: "重新发送",//倒计时时间到了后按钮所显示文字
+        timeRunnigText: "s后重新发送",//倒计时时间正在走的时候按钮所显示文字。默认为"xxs后重新获取"
+        unabledClass: "unlabed"//按钮不能用的样式，即点击按钮后的样式
+    }));
+
+//    点击确认订单消失
+    $(function(){
+        $(".wrap1").click(function(){
+            $(".wrap1").hide();
+            return false;
+        })
+        $("#confirm").click(function(){
+            return false;
+        })
+    })
+</script>
+</body>
+</html>

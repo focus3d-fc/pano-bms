@@ -7,41 +7,45 @@ import com.focus3d.pano.common.model.CommonModel;
 public class getListPano implements CommonModel{
 	private Long sn;
 	private String id;   //套餐ID
+	private Long package_sn;
+	private Long huose_style_sn;
 	private String package_name;  //套餐姓名
-	private Long package_id;
 	private String house_name;    //户型姓名
 	private Long house_sn;
-	private Long house_id;
 	private String project_name; //楼盘姓名
-	private Long project_sn;	 //id
-	private Long project_id;		
+	private Long project_sn;	 
 	private String style_name;  
 	private Long style_sn;//风格姓名
-	private Long style_id;
+	
+	public Long getHuose_style_sn() {
+		return huose_style_sn;
+	}
+	public void setHuose_style_sn(Long huose_style_sn) {
+		this.huose_style_sn = huose_style_sn;
+	}
 	public Long getSn() {
 		return sn;
 	}
 	public void setSn(Long sn) {
 		this.sn = sn;
 	}
-	
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
+	public Long getPackage_sn() {
+		return package_sn;
+	}
+	public void setPackage_sn(Long package_sn) {
+		this.package_sn = package_sn;
+	}
 	public String getPackage_name() {
 		return package_name;
 	}
 	public void setPackage_name(String package_name) {
 		this.package_name = package_name;
-	}
-	public Long getPackage_id() {
-		return package_id;
-	}
-	public void setPackage_id(Long package_id) {
-		this.package_id = package_id;
 	}
 	public String getHouse_name() {
 		return house_name;
@@ -55,12 +59,6 @@ public class getListPano implements CommonModel{
 	public void setHouse_sn(Long house_sn) {
 		this.house_sn = house_sn;
 	}
-	public Long getHouse_id() {
-		return house_id;
-	}
-	public void setHouse_id(Long house_id) {
-		this.house_id = house_id;
-	}
 	public String getProject_name() {
 		return project_name;
 	}
@@ -73,12 +71,6 @@ public class getListPano implements CommonModel{
 	public void setProject_sn(Long project_sn) {
 		this.project_sn = project_sn;
 	}
-	public Long getProject_id() {
-		return project_id;
-	}
-	public void setProject_id(Long project_id) {
-		this.project_id = project_id;
-	}
 	public String getStyle_name() {
 		return style_name;
 	}
@@ -90,12 +82,6 @@ public class getListPano implements CommonModel{
 	}
 	public void setStyle_sn(Long style_sn) {
 		this.style_sn = style_sn;
-	}
-	public Long getStyle_id() {
-		return style_id;
-	}
-	public void setStyle_id(Long style_id) {
-		this.style_id = style_id;
 	}
 	@Override
 	public Long getAdderSn() {
@@ -167,6 +153,7 @@ public class getListPano implements CommonModel{
 		// TODO Auto-generated method stub
 		
 	}
+	
 	
 	
 	

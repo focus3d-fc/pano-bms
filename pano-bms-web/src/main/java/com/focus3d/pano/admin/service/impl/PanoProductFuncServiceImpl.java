@@ -12,6 +12,7 @@ import com.focus3d.pano.model.PanoProductFunc;
 import com.focus3d.pano.model.PanoProductType;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoVender;
+import com.focus3d.pano.model.panoSkin;
 import com.focus3d.pano.model.pano_project_style;
 @Service
 public class PanoProductFuncServiceImpl implements PanoProductFuncService{
@@ -144,4 +145,38 @@ public class PanoProductFuncServiceImpl implements PanoProductFuncService{
 	public int getUpdate4(PanoProductFunc p){
 		return productAdmDAO.getUpdate4(p);
 	}
+	
+	
+	/**
+	 * 导航
+	 */
+	@Override
+	public List<panoSkin> getBasics5() {
+		return productAdmDAO.getBasics5();
+	}
+
+	public Long getInsert5(panoSkin pano) {
+		return productAdmDAO.getInsert5(pano);
+	}
+	
+	@Override
+	public int getDelete5(int sn) {
+		return	productAdmDAO.getDelete5(sn);
+	}
+	
+	public int getUpdate5(panoSkin p){
+		return productAdmDAO.getUpdate5(p);
+	}
+	
+	public panoSkin getupdatas5(int sn){
+		panoSkin panoProjectPackage = null;
+		List<panoSkin> getupdatas1 = productAdmDAO.getupdatas5(sn);
+		if(getupdatas1.size()>0){
+			System.out.println("service");
+		 panoProjectPackage = getupdatas1.get(0);
+		}
+		return panoProjectPackage;
+	}
+
+	
 }
