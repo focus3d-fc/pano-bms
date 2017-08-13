@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.focus3d.pano.common.controller.BaseController;
-import com.focus3d.pano.model.Lable;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoProjectPackageType;
 import com.focus3d.pano.model.Style;
@@ -25,7 +24,6 @@ import com.focus3d.pano.model.pano_project_space;
 import com.focus3d.pano.usersside.service.UsersSideService;
 import com.focus3d.pano.usersside.utils.SmsSend;
 import com.focustech.common.utils.JsonUtils;
-//     /userside/toindex       /usersSide/toIndex
 @Controller
 @RequestMapping("/usersSide")
 public class UsersSideController extends BaseController{
@@ -87,12 +85,12 @@ public class UsersSideController extends BaseController{
 		System.out.println("风格s："+styleList);
 		model.addAttribute("styleList",styleList);
 		//根据每个风格-查询对应的-标签集合
-		for(int i=0;i<styleList.size();i++){
+		/*for(int i=0;i<styleList.size();i++){
 			Long style_sn=styleList.get(i).getId();
 			//System.out.println("风格sn:"+style_sn);
 			List<Lable> lableList=usersSideService.selectLableByStyle_sn(style_sn);
 			//System.out.println("标签集合,lableList:"+lableList);			
-		}
+		}*/
 		
 		return "/usersside/index";
 	}
@@ -102,7 +100,7 @@ public class UsersSideController extends BaseController{
 		System.out.println("进入查询项目名方法：");
 		//System.out.println("省："+province+",市："+city+",区："+area);
 		List<pano_project> projectList=usersSideService.list_SelectprojectList(province,city,area);
-		List<String> project_name=new ArrayList();
+		List<String> project_name=new ArrayList<String>();
 		for(int i=0;i<projectList.size();i++){
 			project_name.add(projectList.get(i).getNAME());
 		}
@@ -196,9 +194,9 @@ public class UsersSideController extends BaseController{
 		System.out.println("手机号："+phone);
 		SmsSend send=new SmsSend();
 		//不能删下面注释代码！！
-		/*String phoneCode=send.sendPhoneCode(phone);
+		String phoneCode=send.sendPhoneCode(phone);
 		System.out.println("手机验证码为："+phoneCode);
-		session.setAttribute("phoneCode",phoneCode);*/
+		session.setAttribute("phoneCode",phoneCode);
 	}
 	@RequestMapping("/surelogin")
 	public String login(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws IOException{
