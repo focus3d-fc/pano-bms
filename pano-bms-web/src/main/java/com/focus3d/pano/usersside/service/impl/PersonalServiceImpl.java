@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.focus3d.pano.model.OrderRelevance;
 import com.focus3d.pano.model.pano_mem_user;
+import com.focus3d.pano.model.pano_order;
+import com.focus3d.pano.model.pano_order_item;
+import com.focus3d.pano.model.pano_project_package_product;
 import com.focus3d.pano.model.pano_user_receive_address;
 import com.focus3d.pano.usersside.dao.PersonalDAO;
 import com.focus3d.pano.usersside.service.PersonalService;
@@ -50,6 +54,18 @@ public class PersonalServiceImpl implements PersonalService {
 	public void upAddress(pano_user_receive_address address) {
 		// TODO Auto-generated method stub
 		personalDAO.upAddress(address);
+	}
+
+	@Override
+	public void upMemuser(pano_mem_user memuser) {
+		// TODO Auto-generated method stub
+		personalDAO.upMemuser(memuser);
+	}
+
+	@Override
+	public List<OrderRelevance> selOrderbyUser(Long USER_SN) {
+		// TODO Auto-generated method stub
+		return personalDAO.selOrderbyUser(USER_SN);
 	}
 
 }

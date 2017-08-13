@@ -6,31 +6,35 @@
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0">
 <title>收货地址</title>
-<link rel="stylesheet" href="/style/admstatic/css/bass.css">
-<link rel="stylesheet" href="/style/admstatic/css/index.css">
-<script src="/style/admstatic/js/main.js"></script>
+<link rel="stylesheet" href="/style/h5static/css/bass.css">
+<link rel="stylesheet" href="/style/h5static/css/index.css">
+<script src="/style/h5static/js/main.js"></script>
 </head>
 <body>
 	<div class="container addr">
 
 		<!--图片-->
 		<section class="addr-section">
-			#foreach ($!{address} in $!{address})
+			#foreach ($!{address} in $!{address}) #if($!{address.DEFAULT}==1)
 			<div class="addr-item">
-				<div>
-					<p class="clearfix">
-						<span class="fl">$!{address.USER_NAME}/
-							#if($!{address.SEX}==1) 女士 #end #if($!{address.SEX}==2) 先生 #end </span>
-						<span class="fr">$!{address.MOBILE}</span>
-					</p>
-					<p>收货地址：$!{address.PROVINCE}$!{address.CITY}$!{address.AREA}$!{address.STREET}</p>
-					<p class="clearfix">
-						<a href="/personal/delSite?SN=$!{address.SN}" class="fr">删除</a> <a
-							href="/personal/toupAddress?SN=$!{address.SN}" class="fr">编辑</a>
-					</p>
+				<img src="/style/h5static/image/img/27.png" alt=""> #end
+				#if($!{address.DEFAULT}==0)
+				<div class="addr-item col">
+					#end
+					<div>
+						<p class="clearfix">
+							<span class="fl">$!{address.USER_NAME}/
+								#if($!{address.SEX}==1) 女士 #end #if($!{address.SEX}==2) 先生 #end
+							</span> <span class="fr">$!{address.MOBILE}</span>
+						</p>
+						<p>收货地址：$!{address.PROVINCE}$!{address.CITY}$!{address.AREA}$!{address.STREET}</p>
+						<p class="clearfix">
+							<a href="/personal/delSite?SN=$!{address.SN}" class="fr">删除</a> <a
+								href="/personal/toupAddress?SN=$!{address.SN}" class="fr">编辑</a>
+						</p>
+					</div>
 				</div>
-			</div>
-			#end
+				#end
 		</section>
 		<a href="/personal/toaddaddress" class="button bcdz"> 添加地址 </a>
 

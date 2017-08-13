@@ -5,7 +5,12 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.focus3d.pano.admin.dao.impl.BaseDao;
+import com.focus3d.pano.model.OrderRelevance;
 import com.focus3d.pano.model.pano_mem_user;
+import com.focus3d.pano.model.pano_order;
+import com.focus3d.pano.model.pano_order_item;
+import com.focus3d.pano.model.pano_project_package_product;
+import com.focus3d.pano.model.pano_project_package_type;
 import com.focus3d.pano.model.pano_user_receive_address;
 import com.focus3d.pano.usersside.dao.PersonalDAO;
 
@@ -54,6 +59,19 @@ public class PersonalDAOImpl extends BaseDao implements PersonalDAO {
 		// TODO Auto-generated method stub
 		getSqlMapClientTemplate().update("pano_user_receive_address.upAddress",
 				address);
+	}
+
+	@Override
+	public void upMemuser(pano_mem_user memuser) {
+		// TODO Auto-generated method stub
+		getSqlMapClientTemplate().update("pano_mem_user.upMemuser", memuser);
+	}
+
+	@Override
+	public List<OrderRelevance> selOrderbyUser(Long USER_SN) {
+		List<OrderRelevance> list = (List<OrderRelevance>) getSqlMapClientTemplate()
+				.queryForList("OrderRelevance.selOrderbyUser", USER_SN);
+		return list;
 	}
 
 }

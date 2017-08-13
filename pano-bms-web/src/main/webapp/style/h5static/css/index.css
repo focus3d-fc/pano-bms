@@ -971,7 +971,7 @@
     font-size: .14rem;
 }
 #tc,#fj,#hx{
-    visibility: visible;
+
     position: fixed;
     height: 1rem;
     bottom: 2.05rem;
@@ -983,7 +983,7 @@
     bottom: 1.05rem;
 }
 #tc.on,#fj.on,#hx.on{
-    visibility: hidden;
+    display: block;
     color: #fff;
 }
 .ffColor{
@@ -1168,24 +1168,26 @@
 .car{
     position: relative;
 }
-.pro-show{
-    padding-top: .2rem ;
+.pro-show {
+    adding-top: .2rem ;
     background-color: #fff;
-}
-.pro-show .pro-raw{
+    width: 100%;
     display:-webkit-flex;
     display:-moz-flex;
     display:flex;
     display:-ms-flexbox;
-    flex-flow: row nowrap;
+    flex-flow: row wrap ;
     justify-content: space-around;
-    padding-bottom: .2rem ;
+    padding: .1rem;
+
 
 }
-.pro-show .pro-raw .left{
-    width: 45%;
+.pro-show  .left{
+    width: 50%;
+    padding: .1rem  .1rem ;
+
 }
-.pro-show .pro-raw .left a{
+.pro-show  .left a{
     width: 100%;
     display:-webkit-flex;
     display:-moz-flex;
@@ -1199,15 +1201,15 @@
     background-color: #f6f6f6;
 
 }
-.pro-raw .left img{
+.pro-show .left img{
     width: 40%;
     height: 1rem;
     margin-right: .1rem;
 }
-.pro-raw .left div{
+.pro-show .left div{
     width: 60%;
 }
-.pro-raw .left div p{
+.pro-show .left div p{
     margin-bottom: .05rem;
  }
 .left .col{
@@ -1264,4 +1266,10 @@
     background-size: 0.27rem .4rem;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+/*导航反转效果*/
+.active{
+    -webkit-filter: invert(1);
+    filter: invert(1);
 }

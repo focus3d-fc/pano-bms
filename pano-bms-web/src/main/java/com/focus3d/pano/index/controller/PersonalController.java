@@ -32,20 +32,30 @@ public class PersonalController extends BaseController {
 
 	// --------------------------------------------个人中心--------------------------------------------
 
+	Long USER_SN;
+
 	/**
 	 * 进入到个人中心
 	 */
 	@RequestMapping("/tomy")
 	public String tomy(HttpServletRequest request) {
-		Long SN = Long.parseLong(request.getParameter("SN"));
-		pano_mem_user memuser = personalService.selUserbySN(SN);
+		USER_SN = Long.parseLong(request.getParameter("SN"));
+		pano_mem_user memuser = personalService.selUserbySN(USER_SN);
+		request.setAttribute("memuser", memuser);
+		return "/userside/my";
+	}
+
+	/**
+	 * 进入到个人中心2
+	 */
+	@RequestMapping("/tomy2")
+	public String tomy2(HttpServletRequest request) {
+		pano_mem_user memuser = personalService.selUserbySN(USER_SN);
 		request.setAttribute("memuser", memuser);
 		return "/userside/my";
 	}
 
 	// --------------------------------------------收货地址--------------------------------------------
-
-	Long USER_SN;
 
 	/**
 	 * 进入到收货地址
@@ -156,6 +166,60 @@ public class PersonalController extends BaseController {
 		site.setUPDATE_TIME(add_time);
 		personalService.upAddress(site);
 		return redirect("toaddress2");
+	}
+
+	// --------------------------------------------实名认证--------------------------------------------
+
+	/**
+	 * 进入实名认证
+	 */
+	@RequestMapping("/tocer")
+	public String tocer(HttpServletRequest request) {
+		Long SN = Long.parseLong(request.getParameter("SN"));
+		pano_mem_user memuser = personalService.selUserbySN(SN);
+		request.setAttribute("memuser", memuser);
+		return "/userside/cer";
+	}
+
+	/**
+	 * 修改身份信息
+	 */
+	@RequestMapping("/upCert")
+	public String upCert(HttpServletRequest request, @RequestParam String SN,
+			@RequestParam String NAME, @RequestParam String SEX,
+			@RequestParam String CERT_NO) {
+		Long USER_SN = Long.parseLong(SN);
+		int USER_SEX = Integer.parseInt(SEX);
+		pano_mem_user memuser = new pano_mem_user();
+		memuser.setSN(USER_SN);
+		memuser.setNAME(NAME);
+		memuser.setSEX(USER_SEX);
+		memuser.setCERT_NO(CERT_NO);
+		personalService.upMemuser(memuser);
+		return redirect("tomy2");
+	}
+
+	// --------------------------------------------实名认证--------------------------------------------
+
+	/**
+	 * 进入全部订单
+	 */
+	@RequestMapping("/toorderAll")
+	public String toorderAll(HttpServletRequest request) {
+		// 1、套餐类型
+		Long SN = Long.parseLong(request.getParameter("SN"));
+
+		// 2、订单状态
+
+		// 3、风格
+
+		// 4、户型
+
+		// 5、订单总价
+
+		// 6、运费
+
+		return "/userside/orderAll";
 	}
 
 }

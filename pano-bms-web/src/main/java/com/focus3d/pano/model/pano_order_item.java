@@ -1,31 +1,28 @@
 package com.focus3d.pano.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.focus3d.pano.common.model.CommonModel;
 
 /**
  * 
- * 会员用户实体类
+ * 订单项
  * 
  * @author 熊峰
  * 
  */
-public class pano_mem_user implements Serializable, CommonModel {
+public class pano_order_item implements Serializable, CommonModel {
 
 	private static final long serialVersionUID = -1423892477614156650L;
 
 	private Long SN;
-	private String NICK_NAME;
-	private int SEX;
-	private Long HEAD_IMG_SN;
-	private String CITY;
-	private String MOBILE;
-	private String EMAIL;
-	private String WX_ID;
-	private String NAME;
-	private String CERT_NO;
+	private Long PRODUCT_SN;
+	private String PRODUCT_NAME;
+	private int ITEM_AMOUNT;
+	private BigDecimal ITEM_PRICE;
+	private String ORDER_NUM;
 	private Long ADDER_SN;
 	private String ADDER_NAME;
 	private String ADD_TIME;
@@ -41,76 +38,44 @@ public class pano_mem_user implements Serializable, CommonModel {
 		SN = sN;
 	}
 
-	public String getNICK_NAME() {
-		return NICK_NAME;
+	public Long getPRODUCT_SN() {
+		return PRODUCT_SN;
 	}
 
-	public void setNICK_NAME(String nICK_NAME) {
-		NICK_NAME = nICK_NAME;
+	public void setPRODUCT_SN(Long pRODUCT_SN) {
+		PRODUCT_SN = pRODUCT_SN;
 	}
 
-	public int getSEX() {
-		return SEX;
+	public String getPRODUCT_NAME() {
+		return PRODUCT_NAME;
 	}
 
-	public void setSEX(int sEX) {
-		SEX = sEX;
+	public void setPRODUCT_NAME(String pRODUCT_NAME) {
+		PRODUCT_NAME = pRODUCT_NAME;
 	}
 
-	public Long getHEAD_IMG_SN() {
-		return HEAD_IMG_SN;
+	public int getITEM_AMOUNT() {
+		return ITEM_AMOUNT;
 	}
 
-	public void setHEAD_IMG_SN(Long hEAD_IMG_SN) {
-		HEAD_IMG_SN = hEAD_IMG_SN;
+	public void setITEM_AMOUNT(int iTEM_AMOUNT) {
+		ITEM_AMOUNT = iTEM_AMOUNT;
 	}
 
-	public String getCITY() {
-		return CITY;
+	public BigDecimal getITEM_PRICE() {
+		return ITEM_PRICE;
 	}
 
-	public void setCITY(String cITY) {
-		CITY = cITY;
+	public void setITEM_PRICE(BigDecimal iTEM_PRICE) {
+		ITEM_PRICE = iTEM_PRICE;
 	}
 
-	public String getMOBILE() {
-		return MOBILE;
+	public String getORDER_NUM() {
+		return ORDER_NUM;
 	}
 
-	public void setMOBILE(String mOBILE) {
-		MOBILE = mOBILE;
-	}
-
-	public String getEMAIL() {
-		return EMAIL;
-	}
-
-	public void setEMAIL(String eMAIL) {
-		EMAIL = eMAIL;
-	}
-
-	public String getWX_ID() {
-		return WX_ID;
-	}
-
-	public void setWX_ID(String wX_ID) {
-		WX_ID = wX_ID;
-	}
-
-	public String getNAME() {
-		return NAME;
-	}
-
-	public void setNAME(String nAME) {
-		NAME = nAME;
-	}
-
-	public String getCERT_NO() {
-		return CERT_NO;
-	}
-
-	public void setCERT_NO(String cERT_NO) {
-		CERT_NO = cERT_NO;
+	public void setORDER_NUM(String oRDER_NUM) {
+		ORDER_NUM = oRDER_NUM;
 	}
 
 	public Long getADDER_SN() {

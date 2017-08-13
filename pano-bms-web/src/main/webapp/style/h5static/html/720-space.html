@@ -103,12 +103,15 @@
 
     $(function(){
         $('#fjshow').click(function () {
-            var that = $(this);
-            $('#fj').toggleClass('on');
-            that.find('p').toggleClass('ffColor');
-            that .find('.img').toggleClass('on');
+            $('#fj').toggle();
+            $(this).toggleClass('active')
             $('.location').toggleClass('show')
         })
+        $('#fj').find('a').click(function () {
+            $(this).toggleClass('active');
+        })
+
+
     })
 </script>
 </body>

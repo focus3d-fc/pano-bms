@@ -6,10 +6,19 @@
 
 	<select id="selUserbySN" resultClass="memuser" parameterClass="Long">
 		select
-		SN,NICK_NAME,HEAD_IMG_SN,CITY,MOBILE,EMAIL,WX_ID,SEX
+		SN,NICK_NAME,HEAD_IMG_SN,CITY,MOBILE,EMAIL,WX_ID,SEX,`NAME`,`CERT_NO`
 		from
 		pano_mem_user
 		where SN = #SN#
 	</select>
+
+	<update id="upMemuser" parameterClass="memuser">
+		update
+		pano_mem_user
+		set
+		NAME=#NAME#,SEX=#SEX#,CERT_NO=#CERT_NO#
+		where SN = #SN#
+	</update>
+
 
 </sqlMap>

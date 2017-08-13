@@ -1,51 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-    <title>实名认证</title>
-    <link rel="stylesheet" href="/style/admstatic/css/bass.css">
-    <link rel="stylesheet" href="/style/admstatic/css/index.css">
-    <script src="/style/admstatic/js/main.js"></script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0">
+<title>实名认证</title>
+<link rel="stylesheet" href="/style/admstatic/css/bass.css">
+<link rel="stylesheet" href="/style/admstatic/css/index.css">
+<script src="/style/admstatic/js/main.js"></script>
+<script type="text/javascript">
+
+	/* $("#submit").click(function(){
+	 var a= document.getElementById("CERT_NO").value;  
+	 var patten= new RegExp(/^[0-9]{17}[0-9|X]$/);  
+	 if(patten.test(a))  
+	 {      
+	 alert("输入正确");  
+	 }else  
+	 {     
+	 alert("输入错误");  
+	 }
+	 }); */
+</script>
 </head>
 <body>
-<div class="container add">
-    <!--头-->
-    <header class="header">
-        <a href="#" class="back">
-            <i class="iconfont">&#xe6bc;</i>
-            返回
-        </a>
-        <p class="title">实名认证</p>
-        <a href="#" class="share">
-            <i class="iconfont">&#xe622;</i>
-        </a>
-    </header>
-    <!--图片-->
-    <section class="addr-section">
-        <form action="">
-            <div class="add-item mrg">
-                <p class="label">姓名</p>
-                <p class="p">GFI</p>
-            </div>
-            <div class="add-item">
-                <label class="label">性别:</label>
-                <select name="" id="">
-                    <option value="男">男</option>
-                    <option value="女">女</option>
-                </select>
-            </div>
-            <div class="add-item">
-                <label class="label">身份证号码:</label>
-                <input type="tel" placeholder="身份证号码">
-            </div>
-            <div class="cer-submit">
-                <button class="submit" type="submit"> 确认提交</button>
-            </div>
-        </form>
-    </section>
-</div>
+	<div class="container add">
+		<!--头-->
+		<header class="header">
+			<a href="#" class="back"> <i class="iconfont">&#xe6bc;</i> 返回
+			</a>
+			<p class="title">实名认证</p>
+			<a href="#" class="share"> <i class="iconfont">&#xe622;</i>
+			</a>
+		</header>
+		<!--图片-->
+		<section class="addr-section">
+			<form method="post" action="/personal/upCert">
+				<input id="SN" type="hidden" name="SN" value="$!{memuser.SN}" />
+				<div class="add-item mrg">
+					<p class="label">姓名:</p>
+					<input type="text" placeholder="姓名" id="NAME" name="NAME"
+						value="$!{memuser.NAME}">
+				</div>
+				<div class="add-item">
+					<label class="label">性别:</label> <select name="SEX" id="SEX">
+						<option value="2">男</option>
+						<option value="1">女</option>
+					</select>
+				</div>
+				<div class="add-item">
+					<label class="label">身份证号码:</label> <input type="tel"
+						placeholder="身份证号码" id="CERT_NO" name="CERT_NO"
+						value="$!{memuser.CERT_NO}">
+				</div>
+				<div class="cer-submit">
+					<button id="submit" class="submit" type="submit">确认提交</button>
+				</div>
+			</form>
+		</section>
+	</div>
 </body>
 </body>
 </html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="OrderRelevance">
+
+	<typeAlias alias="order" type="com.focus3d.pano.model.OrderRelevance" />
+
+	<select id="selOrderbyUser" resultClass="order" parameterClass="Long">
+		SELECT
+		pano_project_package_type.`NAME` AS PACKAGE_TYPE,
+		pano_order.`STATUS`,
+		pano_project_style.`NAME` AS STYLE,
+		pano_project_house.`NAME` AS HOUSE,
+		pano_order.TOTAL_PRICE,
+		pano_order_logtc.PRICE AS LOGTC_PRICE,
+		pano_project_house_package.IMG_SN
+		FROM
+		pano_order
+		INNER JOIN pano_order_item ON pano_order.ORDER_NUM =
+		pano_order_item.ORDER_NUM
+		INNER JOIN pano_product ON pano_order_item.PRODUCT_SN = pano_product.SN
+		INNER JOIN pano_project_style ON pano_product.STYLE_SN =
+		pano_project_style.SN
+		INNER JOIN pano_project_house_style ON pano_product.STYLE_SN =
+		pano_project_house_style.STYLE_SN
+		INNER JOIN pano_project_house ON pano_project_house_style.HOUSE_SN =
+		pano_project_house_style.STYLE_SN
+		INNER JOIN pano_project_package_product ON pano_order_item.PRODUCT_SN =
+		pano_project_package_product.PRODUCT_SN
+		INNER JOIN pano_project_package_type ON
+		pano_project_package_product.PACKAGE_TYPE_SN =
+		pano_project_package_type.SN
+		INNER JOIN pano_order_logtc ON pano_order.ORDER_NUM =
+		pano_order_logtc.ORDER_SN
+		INNER JOIN pano_project_house_package ON pano_project_house_style.SN =
+		pano_project_house_package.HOUSE_STYLE_SN
+		WHERE pano_order.USER_SN=#USER_SN#
+	</select>
+
+
+</sqlMap>

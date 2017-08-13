@@ -2,6 +2,7 @@ package com.focus3d.pano.usersside.dao;
 
 import java.util.List;
 
+import com.focus3d.pano.model.OrderRelevance;
 import com.focus3d.pano.model.pano_mem_user;
 import com.focus3d.pano.model.pano_user_receive_address;
 
@@ -28,4 +29,14 @@ public interface PersonalDAO {
 
 	// 修改收货地址
 	public void upAddress(pano_user_receive_address address);
+
+	// ----------------------------------------------实名认证----------------------------------------------
+
+	// 修改实名信息
+	public void upMemuser(pano_mem_user memuser);
+
+	// ----------------------------------------------全部订单----------------------------------------------
+
+	// 根据用户编号查询所有订单
+	public List<OrderRelevance> selOrderbyUser(Long USER_SN);
 }
