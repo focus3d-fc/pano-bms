@@ -74,4 +74,18 @@ public class PersonalDAOImpl extends BaseDao implements PersonalDAO {
 		return list;
 	}
 
+	@Override
+	public List<OrderRelevance> selOrderbyUser2(Long USER_SN) {
+		List<OrderRelevance> list = (List<OrderRelevance>) getSqlMapClientTemplate()
+				.queryForList("OrderRelevance.selOrderbyUser2", USER_SN);
+		return list;
+	}
+
+	@Override
+	public List<OrderRelevance> selOrderbyUser3(Long USER_SN) {
+		List<OrderRelevance> list = (List<OrderRelevance>) getSqlMapClientTemplate()
+				.queryForList("OrderRelevance.selOrderbyUser3", USER_SN);
+		return list;
+	}
+
 }

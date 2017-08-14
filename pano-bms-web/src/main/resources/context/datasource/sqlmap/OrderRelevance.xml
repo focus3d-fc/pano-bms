@@ -6,34 +6,135 @@
 
 	<select id="selOrderbyUser" resultClass="order" parameterClass="Long">
 		SELECT
-		pano_project_package_type.`NAME` AS PACKAGE_TYPE,
 		pano_order.`STATUS`,
-		pano_project_style.`NAME` AS STYLE,
-		pano_project_house.`NAME` AS HOUSE,
 		pano_order.TOTAL_PRICE,
 		pano_order_logtc.PRICE AS LOGTC_PRICE,
-		pano_project_house_package.IMG_SN
+		pano_project_package_type.`NAME` AS PACKAGE_TYPE,
+		pano_project_style.`NAME` AS STYLE,
+		pano_project_house_package.IMG_SN,
+		pano_project_house.`NAME` AS HOUSE,
+		pano_order_item.ITEM_AMOUNT,
+		(pano_order.TOTAL_PRICE+pano_order_logtc.PRICE) AS SUM_PRICE
 		FROM
 		pano_order
 		INNER JOIN pano_order_item ON pano_order.ORDER_NUM =
 		pano_order_item.ORDER_NUM
-		INNER JOIN pano_product ON pano_order_item.PRODUCT_SN = pano_product.SN
-		INNER JOIN pano_project_style ON pano_product.STYLE_SN =
+		INNER JOIN pano_order_logtc ON
+		pano_order.ORDER_NUM =
+		pano_order_logtc.ORDER_SN
+		INNER JOIN
+		pano_project_package_product ON pano_order_item.PRODUCT_SN =
+		pano_project_package_product.PRODUCT_SN
+		INNER JOIN
+		pano_project_package_type ON
+		pano_project_package_product.PACKAGE_TYPE_SN =
+		pano_project_package_type.SN
+		INNER JOIN pano_product ON
+		pano_order_item.PRODUCT_SN = pano_product.SN
+		INNER JOIN
+		pano_project_style ON pano_product.STYLE_SN =
 		pano_project_style.SN
 		INNER JOIN pano_project_house_style ON pano_product.STYLE_SN =
 		pano_project_house_style.STYLE_SN
-		INNER JOIN pano_project_house ON pano_project_house_style.HOUSE_SN =
-		pano_project_house_style.STYLE_SN
-		INNER JOIN pano_project_package_product ON pano_order_item.PRODUCT_SN =
+		INNER JOIN pano_project_house_package
+		ON pano_project_house_style.SN =
+		pano_project_house_package.HOUSE_STYLE_SN
+		INNER JOIN pano_project_house
+		ON pano_project_house_style.HOUSE_SN =
+		pano_project_house.SN
+		WHERE
+		pano_order.USER_SN=#USER_SN#
+		ORDER BY pano_order.ORDER_TIME
+	</select>
+
+	<select id="selOrderbyUser2" resultClass="order" parameterClass="Long">
+		SELECT
+		pano_order.`STATUS`,
+		pano_order.TOTAL_PRICE,
+		pano_order_logtc.PRICE AS LOGTC_PRICE,
+		pano_project_package_type.`NAME` AS PACKAGE_TYPE,
+		pano_project_style.`NAME` AS STYLE,
+		pano_project_house_package.IMG_SN,
+		pano_project_house.`NAME` AS HOUSE,
+		pano_order_item.ITEM_AMOUNT,
+		(pano_order.TOTAL_PRICE+pano_order_logtc.PRICE) AS SUM_PRICE
+		FROM
+		pano_order
+		INNER JOIN pano_order_item ON pano_order.ORDER_NUM =
+		pano_order_item.ORDER_NUM
+		INNER JOIN pano_order_logtc ON
+		pano_order.ORDER_NUM =
+		pano_order_logtc.ORDER_SN
+		INNER JOIN
+		pano_project_package_product ON pano_order_item.PRODUCT_SN =
 		pano_project_package_product.PRODUCT_SN
-		INNER JOIN pano_project_package_type ON
+		INNER JOIN
+		pano_project_package_type ON
 		pano_project_package_product.PACKAGE_TYPE_SN =
 		pano_project_package_type.SN
-		INNER JOIN pano_order_logtc ON pano_order.ORDER_NUM =
-		pano_order_logtc.ORDER_SN
-		INNER JOIN pano_project_house_package ON pano_project_house_style.SN =
+		INNER JOIN pano_product ON
+		pano_order_item.PRODUCT_SN = pano_product.SN
+		INNER JOIN
+		pano_project_style ON pano_product.STYLE_SN =
+		pano_project_style.SN
+		INNER JOIN pano_project_house_style ON pano_product.STYLE_SN =
+		pano_project_house_style.STYLE_SN
+		INNER JOIN pano_project_house_package
+		ON pano_project_house_style.SN =
 		pano_project_house_package.HOUSE_STYLE_SN
-		WHERE pano_order.USER_SN=#USER_SN#
+		INNER JOIN pano_project_house
+		ON pano_project_house_style.HOUSE_SN =
+		pano_project_house.SN
+		WHERE
+		pano_order.USER_SN=#USER_SN#
+		AND
+		pano_order.`STATUS`=1
+		ORDER BY pano_order.ORDER_TIME
+	</select>
+
+	<select id="selOrderbyUser3" resultClass="order" parameterClass="Long">
+		SELECT
+		pano_order.`STATUS`,
+		pano_order.TOTAL_PRICE,
+		pano_order_logtc.PRICE AS LOGTC_PRICE,
+		pano_project_package_type.`NAME` AS PACKAGE_TYPE,
+		pano_project_style.`NAME` AS STYLE,
+		pano_project_house_package.IMG_SN,
+		pano_project_house.`NAME` AS HOUSE,
+		pano_order_item.ITEM_AMOUNT,
+		(pano_order.TOTAL_PRICE+pano_order_logtc.PRICE) AS SUM_PRICE
+		FROM
+		pano_order
+		INNER JOIN pano_order_item ON pano_order.ORDER_NUM =
+		pano_order_item.ORDER_NUM
+		INNER JOIN pano_order_logtc ON
+		pano_order.ORDER_NUM =
+		pano_order_logtc.ORDER_SN
+		INNER JOIN
+		pano_project_package_product ON pano_order_item.PRODUCT_SN =
+		pano_project_package_product.PRODUCT_SN
+		INNER JOIN
+		pano_project_package_type ON
+		pano_project_package_product.PACKAGE_TYPE_SN =
+		pano_project_package_type.SN
+		INNER JOIN pano_product ON
+		pano_order_item.PRODUCT_SN = pano_product.SN
+		INNER JOIN
+		pano_project_style ON pano_product.STYLE_SN =
+		pano_project_style.SN
+		INNER JOIN pano_project_house_style ON pano_product.STYLE_SN =
+		pano_project_house_style.STYLE_SN
+		INNER JOIN pano_project_house_package
+		ON pano_project_house_style.SN =
+		pano_project_house_package.HOUSE_STYLE_SN
+		INNER JOIN pano_project_house
+		ON pano_project_house_style.HOUSE_SN =
+		pano_project_house.SN
+		WHERE
+		pano_order.USER_SN=#USER_SN#
+		AND
+		pano_order.`STATUS` BETWEEN 3 AND 8
+		ORDER BY pano_order.ORDER_TIME
 	</select>
 
 

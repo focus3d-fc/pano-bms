@@ -24,6 +24,8 @@ public class OrderRelevance implements Serializable, CommonModel {
 	private String TOTAL_PRICE;// 订单总价
 	private String LOGTC_PRICE;// 运费
 	private String IMG_SN;// 图片
+	private String ITEM_AMOUNT;// 商品数量
+	private String SUM_PRICE;// 总价+运费
 
 	public Long getSN() {
 		return SN;
@@ -91,6 +93,22 @@ public class OrderRelevance implements Serializable, CommonModel {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getITEM_AMOUNT() {
+		return ITEM_AMOUNT;
+	}
+
+	public void setITEM_AMOUNT(String iTEM_AMOUNT) {
+		ITEM_AMOUNT = iTEM_AMOUNT;
+	}
+
+	public String getSUM_PRICE() {
+		return SUM_PRICE;
+	}
+
+	public void setSUM_PRICE(String sUM_PRICE) {
+		SUM_PRICE = sUM_PRICE;
 	}
 
 	@Override

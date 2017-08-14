@@ -1,5 +1,6 @@
 package com.focus3d.pano.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -7,10 +8,13 @@ import com.focus3d.pano.common.model.CommonModel;
 
 
 
-public class Product implements CommonModel{
+public class Product implements Serializable,CommonModel{
 	   
-	
-	    private Long sn;
+	private static final long serialVersionUID = -7114008581475297315L;
+
+		private Long sn;
+		
+		private long product_sn;
 
 	    private String id;
 
@@ -19,7 +23,7 @@ public class Product implements CommonModel{
 	    private String brand;
 
 	    private BigDecimal price;
-
+	    private BigDecimal discount_price;
 	    private Integer status;
 
 	    private String summary;
@@ -78,19 +82,169 @@ public class Product implements CommonModel{
 	    
 	    private String venderName;
 	    private String dimension;
+	    
 		public Product() {
 			super();
+			// TODO Auto-generated constructor stub
 		}
-
-
-		public Long getSn() {
-			return sn;
-		}
-
-
-		public void setSn(Long sn) {
+		
+		
+		
+		public Product(Long sn, long product_sn, String id, String name,
+				String brand, BigDecimal price, BigDecimal discount_price,
+				Integer status, String summary, Long leftImgSn, Long downImgSn,
+				Long fullImgSn, Long bannerImgSn, Long typeSn, Long funcSn,
+				Long spaceSn, Long styleSn, Integer length, Integer wide,
+				Integer height, String materialName, Long materialImgSn,
+				String fabricName, Long fabricImgSn, String color,
+				String model, String capacity, String remark, Long adderSn,
+				String adderName, Date addTime, Long updaterSn,
+				String updaterName, Date updateTime, String materialColor,
+				String fabricColor, String workManShip, String lr,
+				String lrRound, String fullImg, String leftImg, String downImg,
+				String materialImg, String fabricImg, String updateTime1,
+				String addTime1, String fullImgSn1, String leftImgSn1,
+				String downImgSn1, String materialImgSn1, String fabricImgSn1,
+				String fullImgUrl, String leftImgUrl, String downImgUrl,
+				String materialImgUrl, String fabricImgUrl, String venderName,
+				String dimension) {
+			super();
 			this.sn = sn;
+			this.product_sn = product_sn;
+			this.id = id;
+			this.name = name;
+			this.brand = brand;
+			this.price = price;
+			this.discount_price = discount_price;
+			this.status = status;
+			this.summary = summary;
+			this.leftImgSn = leftImgSn;
+			this.downImgSn = downImgSn;
+			this.fullImgSn = fullImgSn;
+			this.bannerImgSn = bannerImgSn;
+			this.typeSn = typeSn;
+			this.funcSn = funcSn;
+			this.spaceSn = spaceSn;
+			this.styleSn = styleSn;
+			this.length = length;
+			this.wide = wide;
+			this.height = height;
+			this.materialName = materialName;
+			this.materialImgSn = materialImgSn;
+			this.fabricName = fabricName;
+			this.fabricImgSn = fabricImgSn;
+			this.color = color;
+			this.model = model;
+			this.capacity = capacity;
+			this.remark = remark;
+			this.adderSn = adderSn;
+			this.adderName = adderName;
+			this.addTime = addTime;
+			this.updaterSn = updaterSn;
+			this.updaterName = updaterName;
+			this.updateTime = updateTime;
+			this.materialColor = materialColor;
+			this.fabricColor = fabricColor;
+			this.workManShip = workManShip;
+			this.lr = lr;
+			this.lrRound = lrRound;
+			this.fullImg = fullImg;
+			this.leftImg = leftImg;
+			this.downImg = downImg;
+			this.materialImg = materialImg;
+			this.fabricImg = fabricImg;
+			this.updateTime1 = updateTime1;
+			this.addTime1 = addTime1;
+			this.fullImgSn1 = fullImgSn1;
+			this.leftImgSn1 = leftImgSn1;
+			this.downImgSn1 = downImgSn1;
+			this.materialImgSn1 = materialImgSn1;
+			this.fabricImgSn1 = fabricImgSn1;
+			this.fullImgUrl = fullImgUrl;
+			this.leftImgUrl = leftImgUrl;
+			this.downImgUrl = downImgUrl;
+			this.materialImgUrl = materialImgUrl;
+			this.fabricImgUrl = fabricImgUrl;
+			this.venderName = venderName;
+			this.dimension = dimension;
 		}
+
+
+
+		@Override
+		public String toString() {
+			return "Product [sn=" + sn + ", product_sn=" + product_sn + ", id="
+					+ id + ", name=" + name + ", brand=" + brand + ", price="
+					+ price + ", discount_price=" + discount_price
+					+ ", status=" + status + ", summary=" + summary
+					+ ", leftImgSn=" + leftImgSn + ", downImgSn=" + downImgSn
+					+ ", fullImgSn=" + fullImgSn + ", bannerImgSn="
+					+ bannerImgSn + ", typeSn=" + typeSn + ", funcSn=" + funcSn
+					+ ", spaceSn=" + spaceSn + ", styleSn=" + styleSn
+					+ ", length=" + length + ", wide=" + wide + ", height="
+					+ height + ", materialName=" + materialName
+					+ ", materialImgSn=" + materialImgSn + ", fabricName="
+					+ fabricName + ", fabricImgSn=" + fabricImgSn + ", color="
+					+ color + ", model=" + model + ", capacity=" + capacity
+					+ ", remark=" + remark + ", adderSn=" + adderSn
+					+ ", adderName=" + adderName + ", addTime=" + addTime
+					+ ", updaterSn=" + updaterSn + ", updaterName="
+					+ updaterName + ", updateTime=" + updateTime
+					+ ", materialColor=" + materialColor + ", fabricColor="
+					+ fabricColor + ", workManShip=" + workManShip + ", lr="
+					+ lr + ", lrRound=" + lrRound + ", fullImg=" + fullImg
+					+ ", leftImg=" + leftImg + ", downImg=" + downImg
+					+ ", materialImg=" + materialImg + ", fabricImg="
+					+ fabricImg + ", updateTime1=" + updateTime1
+					+ ", addTime1=" + addTime1 + ", fullImgSn1=" + fullImgSn1
+					+ ", leftImgSn1=" + leftImgSn1 + ", downImgSn1="
+					+ downImgSn1 + ", materialImgSn1=" + materialImgSn1
+					+ ", fabricImgSn1=" + fabricImgSn1 + ", fullImgUrl="
+					+ fullImgUrl + ", leftImgUrl=" + leftImgUrl
+					+ ", downImgUrl=" + downImgUrl + ", materialImgUrl="
+					+ materialImgUrl + ", fabricImgUrl=" + fabricImgUrl
+					+ ", venderName=" + venderName + ", dimension=" + dimension
+					+ "]";
+		}
+
+
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + (int) (product_sn ^ (product_sn >>> 32));
+			return result;
+		}
+
+
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Product other = (Product) obj;
+			if (product_sn != other.product_sn)
+				return false;
+			return true;
+		}
+
+
+
+		public long getProduct_sn() {
+			return product_sn;
+		}
+
+
+
+		public void setProduct_sn(long product_sn) {
+			this.product_sn = product_sn;
+		}
+
 
 
 		public String getId() {
@@ -98,9 +252,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public void setId(String id) {
 			this.id = id;
 		}
+
 
 
 		public String getName() {
@@ -108,9 +264,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public void setName(String name) {
 			this.name = name;
 		}
+
 
 
 		public String getBrand() {
@@ -118,9 +276,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public void setBrand(String brand) {
 			this.brand = brand;
 		}
+
 
 
 		public BigDecimal getPrice() {
@@ -128,9 +288,23 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public void setPrice(BigDecimal price) {
 			this.price = price;
 		}
+
+
+
+		public BigDecimal getDiscount_price() {
+			return discount_price;
+		}
+
+
+
+		public void setDiscount_price(BigDecimal discount_price) {
+			this.discount_price = discount_price;
+		}
+
 
 
 		public Integer getStatus() {
@@ -138,9 +312,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public void setStatus(Integer status) {
 			this.status = status;
 		}
+
 
 
 		public String getSummary() {
@@ -148,14 +324,17 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public void setSummary(String summary) {
 			this.summary = summary;
 		}
 
-        
+
+
 		public Long getLeftImgSn() {
 			return leftImgSn;
 		}
+
 
 
 		public void setLeftImgSn(Long leftImgSn) {
@@ -163,9 +342,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public Long getDownImgSn() {
 			return downImgSn;
 		}
+
 
 
 		public void setDownImgSn(Long downImgSn) {
@@ -173,9 +354,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public Long getFullImgSn() {
 			return fullImgSn;
 		}
+
 
 
 		public void setFullImgSn(Long fullImgSn) {
@@ -183,9 +366,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public Long getBannerImgSn() {
 			return bannerImgSn;
 		}
+
 
 
 		public void setBannerImgSn(Long bannerImgSn) {
@@ -193,9 +378,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public Long getTypeSn() {
 			return typeSn;
 		}
+
 
 
 		public void setTypeSn(Long typeSn) {
@@ -203,9 +390,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public Long getFuncSn() {
 			return funcSn;
 		}
+
 
 
 		public void setFuncSn(Long funcSn) {
@@ -213,9 +402,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public Long getSpaceSn() {
 			return spaceSn;
 		}
+
 
 
 		public void setSpaceSn(Long spaceSn) {
@@ -223,9 +414,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public Long getStyleSn() {
 			return styleSn;
 		}
+
 
 
 		public void setStyleSn(Long styleSn) {
@@ -233,9 +426,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public Integer getLength() {
 			return length;
 		}
+
 
 
 		public void setLength(Integer length) {
@@ -243,9 +438,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public Integer getWide() {
 			return wide;
 		}
+
 
 
 		public void setWide(Integer wide) {
@@ -253,9 +450,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public Integer getHeight() {
 			return height;
 		}
+
 
 
 		public void setHeight(Integer height) {
@@ -263,9 +462,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getMaterialName() {
 			return materialName;
 		}
+
 
 
 		public void setMaterialName(String materialName) {
@@ -273,9 +474,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public Long getMaterialImgSn() {
 			return materialImgSn;
 		}
+
 
 
 		public void setMaterialImgSn(Long materialImgSn) {
@@ -283,9 +486,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getFabricName() {
 			return fabricName;
 		}
+
 
 
 		public void setFabricName(String fabricName) {
@@ -293,9 +498,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public Long getFabricImgSn() {
 			return fabricImgSn;
 		}
+
 
 
 		public void setFabricImgSn(Long fabricImgSn) {
@@ -303,9 +510,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getColor() {
 			return color;
 		}
+
 
 
 		public void setColor(String color) {
@@ -313,9 +522,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getModel() {
 			return model;
 		}
+
 
 
 		public void setModel(String model) {
@@ -323,9 +534,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getCapacity() {
 			return capacity;
 		}
+
 
 
 		public void setCapacity(String capacity) {
@@ -333,9 +546,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getRemark() {
 			return remark;
 		}
+
 
 
 		public void setRemark(String remark) {
@@ -343,12 +558,11 @@ public class Product implements CommonModel{
 		}
 
 
-		
-		
-		
+
 		public String getMaterialColor() {
 			return materialColor;
 		}
+
 
 
 		public void setMaterialColor(String materialColor) {
@@ -356,20 +570,23 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getFabricColor() {
 			return fabricColor;
 		}
+
 
 
 		public void setFabricColor(String fabricColor) {
 			this.fabricColor = fabricColor;
 		}
 
-		
+
 
 		public String getWorkManShip() {
 			return workManShip;
 		}
+
 
 
 		public void setWorkManShip(String workManShip) {
@@ -377,9 +594,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getLr() {
 			return lr;
 		}
+
 
 
 		public void setLr(String lr) {
@@ -387,9 +606,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getLrRound() {
 			return lrRound;
 		}
+
 
 
 		public void setLrRound(String lrRound) {
@@ -397,10 +618,11 @@ public class Product implements CommonModel{
 		}
 
 
-		
+
 		public String getFullImg() {
 			return fullImg;
 		}
+
 
 
 		public void setFullImg(String fullImg) {
@@ -408,9 +630,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getLeftImg() {
 			return leftImg;
 		}
+
 
 
 		public void setLeftImg(String leftImg) {
@@ -418,9 +642,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getDownImg() {
 			return downImg;
 		}
+
 
 
 		public void setDownImg(String downImg) {
@@ -428,9 +654,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getMaterialImg() {
 			return materialImg;
 		}
+
 
 
 		public void setMaterialImg(String materialImg) {
@@ -438,9 +666,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getFabricImg() {
 			return fabricImg;
 		}
+
 
 
 		public void setFabricImg(String fabricImg) {
@@ -448,9 +678,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getUpdateTime1() {
 			return updateTime1;
 		}
+
 
 
 		public void setUpdateTime1(String updateTime1) {
@@ -458,32 +690,35 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getAddTime1() {
 			return addTime1;
 		}
+
 
 
 		public void setAddTime1(String addTime1) {
 			this.addTime1 = addTime1;
 		}
 
-		
+
 
 		public String getFullImgSn1() {
 			return fullImgSn1;
 		}
 
 
+
 		public void setFullImgSn1(String fullImgSn1) {
 			this.fullImgSn1 = fullImgSn1;
 		}
 
-        
-		
-		
+
+
 		public String getLeftImgSn1() {
 			return leftImgSn1;
 		}
+
 
 
 		public void setLeftImgSn1(String leftImgSn1) {
@@ -491,9 +726,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getDownImgSn1() {
 			return downImgSn1;
 		}
+
 
 
 		public void setDownImgSn1(String downImgSn1) {
@@ -501,9 +738,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getMaterialImgSn1() {
 			return materialImgSn1;
 		}
+
 
 
 		public void setMaterialImgSn1(String materialImgSn1) {
@@ -511,9 +750,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getFabricImgSn1() {
 			return fabricImgSn1;
 		}
+
 
 
 		public void setFabricImgSn1(String fabricImgSn1) {
@@ -521,11 +762,11 @@ public class Product implements CommonModel{
 		}
 
 
-		
-		
+
 		public String getFullImgUrl() {
 			return fullImgUrl;
 		}
+
 
 
 		public void setFullImgUrl(String fullImgUrl) {
@@ -533,9 +774,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getLeftImgUrl() {
 			return leftImgUrl;
 		}
+
 
 
 		public void setLeftImgUrl(String leftImgUrl) {
@@ -543,9 +786,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getDownImgUrl() {
 			return downImgUrl;
 		}
+
 
 
 		public void setDownImgUrl(String downImgUrl) {
@@ -553,9 +798,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getMaterialImgUrl() {
 			return materialImgUrl;
 		}
+
 
 
 		public void setMaterialImgUrl(String materialImgUrl) {
@@ -563,9 +810,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getFabricImgUrl() {
 			return fabricImgUrl;
 		}
+
 
 
 		public void setFabricImgUrl(String fabricImgUrl) {
@@ -573,9 +822,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getVenderName() {
 			return venderName;
 		}
+
 
 
 		public void setVenderName(String venderName) {
@@ -583,9 +834,11 @@ public class Product implements CommonModel{
 		}
 
 
+
 		public String getDimension() {
 			return dimension;
 		}
+
 
 
 		public void setDimension(String dimension) {
@@ -593,102 +846,89 @@ public class Product implements CommonModel{
 		}
 
 
+
+		//-------------------------------------------------------------
 		@Override
 		public Long getAdderSn() {
 			// TODO Auto-generated method stub
-			return adderSn;
+			return null;
 		}
-
-
 		@Override
 		public void setAdderSn(Long adderSn) {
 			// TODO Auto-generated method stub
-			this.adderSn=adderSn;
+			
 		}
-
-
 		@Override
 		public String getAdderName() {
 			// TODO Auto-generated method stub
-			return adderName;
+			return null;
 		}
-
-
 		@Override
 		public void setAdderName(String adderName) {
 			// TODO Auto-generated method stub
-			this.adderName=adderName;
+			
 		}
-
-
 		@Override
 		public Date getAddTime() {
 			// TODO Auto-generated method stub
-			return addTime;
+			return null;
 		}
-
-
 		@Override
 		public void setAddTime(Date addTime) {
 			// TODO Auto-generated method stub
-			this.setAddTime(addTime);
+			
 		}
-
-
 		@Override
 		public Long getUpdaterSn() {
 			// TODO Auto-generated method stub
-			return updaterSn;
+			return null;
 		}
-
-
 		@Override
 		public void setUpdaterSn(Long updaterSn) {
 			// TODO Auto-generated method stub
-			this.updaterSn=updaterSn;
+			
 		}
-
-
 		@Override
 		public String getUpdaterName() {
 			// TODO Auto-generated method stub
-			return updaterName;
+			return null;
 		}
-
-
 		@Override
 		public void setUpdaterName(String updaterName) {
 			// TODO Auto-generated method stub
-			this.updaterName=updaterName;
+			
 		}
-
-
 		@Override
 		public Date getUpdateTime() {
 			// TODO Auto-generated method stub
-			return updateTime;
+			return null;
 		}
-
-
 		@Override
 		public void setUpdateTime(Date updateTime) {
 			// TODO Auto-generated method stub
-			this.updateTime=updateTime;
+			
 		}
-
-
+		@Override
+		public Long getSn() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		@Override
+		public void setSn(Long sn) {
+			// TODO Auto-generated method stub
+			
+		}
 		@Override
 		public String getEncryptSn() {
 			// TODO Auto-generated method stub
 			return null;
 		}
-
-
 		@Override
 		public void setEncryptSn(String encryptSn) {
 			// TODO Auto-generated method stub
 			
 		}
-
+	    
+		
 	    
 }

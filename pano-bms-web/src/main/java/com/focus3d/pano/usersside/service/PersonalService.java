@@ -42,4 +42,10 @@ public interface PersonalService {
 
 	// 根据用户编号查询所有订单
 	public List<OrderRelevance> selOrderbyUser(Long USER_SN);
+
+	// 根据用户编号查询待付款订单
+	public List<OrderRelevance> selOrderbyUser2(Long USER_SN);
+
+	// 根据用户编号查询已付款订单
+	public List<OrderRelevance> selOrderbyUser3(Long USER_SN);
 }

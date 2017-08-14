@@ -14,51 +14,30 @@
 
     <!--订单-->
     <section class="order-items">
+        #foreach ($!{addToCar} in $!{addToCarList})
         <div class="order-item">
             <div class="title">
                 <div>
                     <img src="/style/h5static/image/img/30.png" alt="">
-                    基础套餐B
+                    <!-- 基础套餐B -->$!{addToCar.house_name}-基础套餐
                 </div>
             </div>
             <div class="cont">
                 <div class="choose">
                 </div>
-                <a href="#"><img src="/style/h5static/image/image/2.jpg" ></a>
+                <a href="#"><img src="$!fs.url($!{addToCar.package_img_sn})" alt=""></a>
                 <div class="detail">
-                    <a href="#"><p>简约现代大会议桌现代风格套餐A带实木全套</p></a>
-                    <p >户型：三室两厅</p>
-                    <p class="red">￥26000 <s class="col"> ￥26000</s></p>
+                    <a href="#"><p>$!{addToCar.style_name}$!{addToCar.house_name}$!{addToCar.package_name}</p></a>
+                    <p >户型：$!{addToCar.house_name}</p>
+                    <p class="red">￥$!{addToCar.package_price} <s class="col"> ￥$!{addToCar.package_discount_price}</s></p>
                 </div>
             </div>
             <div class="total show">
-                <a href="carshow.html"> 点击展开 <i class="iconfont">&#xe612;</i></a>
+                <a href="/usersSide/carshow?package_sn=$!{addToCar.package_sn}"> 点击展开 <i class="iconfont">&#xe612;</i></a>
             </div>
 
         </div>
-        <div class="order-item">
-            <div class="title">
-                <div>
-                    <img src="/style/h5static/image/img/30.png" alt="">
-                    基础套餐B
-                </div>
-            </div>
-            <div class="cont">
-                <div class="choose">
-
-                </div>
-                <a href="#"><img src="/style/h5static/image/image/2.jpg" ></a>
-                <div class="detail">
-                    <a href="#"><p>简约现代大会议桌现代风格套餐A带实木全套</p></a>
-                    <p >户型：三室两厅</p>
-                    <p class="red">￥26000 <s class="col"> ￥26000</s></p>
-                </div>
-            </div>
-            <div class="total show">
-                点击展开 <img src="/style/h5static/image/img/45.png" alt="">
-            </div>
-
-        </div>
+        #end
         <nav class="nav">
             <a href="/usersSide/to720_tc"  id="tcshow">
                 <img src="/style/h5static/image/img/18.png" alt="">

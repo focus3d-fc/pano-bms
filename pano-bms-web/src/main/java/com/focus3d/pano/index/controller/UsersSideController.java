@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,10 +14,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.focus3d.pano.common.controller.BaseController;
+import com.focus3d.pano.model.AddToCar;
+import com.focus3d.pano.model.Lable;
+import com.focus3d.pano.model.PanoProduct;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoProjectPackageType;
+import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.Style;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
@@ -24,6 +28,7 @@ import com.focus3d.pano.model.pano_project_space;
 import com.focus3d.pano.usersside.service.UsersSideService;
 import com.focus3d.pano.usersside.utils.SmsSend;
 import com.focustech.common.utils.JsonUtils;
+//     /userside/toindex       /usersSide/toIndex
 @Controller
 @RequestMapping("/usersSide")
 public class UsersSideController extends BaseController{
@@ -85,12 +90,12 @@ public class UsersSideController extends BaseController{
 		System.out.println("风格s："+styleList);
 		model.addAttribute("styleList",styleList);
 		//根据每个风格-查询对应的-标签集合
-		/*for(int i=0;i<styleList.size();i++){
+		for(int i=0;i<styleList.size();i++){
 			Long style_sn=styleList.get(i).getId();
 			//System.out.println("风格sn:"+style_sn);
 			List<Lable> lableList=usersSideService.selectLableByStyle_sn(style_sn);
 			//System.out.println("标签集合,lableList:"+lableList);			
-		}*/
+		}
 		
 		return "/usersside/index";
 	}
@@ -100,7 +105,7 @@ public class UsersSideController extends BaseController{
 		System.out.println("进入查询项目名方法：");
 		//System.out.println("省："+province+",市："+city+",区："+area);
 		List<pano_project> projectList=usersSideService.list_SelectprojectList(province,city,area);
-		List<String> project_name=new ArrayList<String>();
+		List<String> project_name=new ArrayList();
 		for(int i=0;i<projectList.size();i++){
 			project_name.add(projectList.get(i).getNAME());
 		}
@@ -194,9 +199,9 @@ public class UsersSideController extends BaseController{
 		System.out.println("手机号："+phone);
 		SmsSend send=new SmsSend();
 		//不能删下面注释代码！！
-		String phoneCode=send.sendPhoneCode(phone);
+		/*String phoneCode=send.sendPhoneCode(phone);
 		System.out.println("手机验证码为："+phoneCode);
-		session.setAttribute("phoneCode",phoneCode);
+		session.setAttribute("phoneCode",phoneCode);*/
 	}
 	@RequestMapping("/surelogin")
 	public String login(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws IOException{
@@ -220,21 +225,84 @@ public class UsersSideController extends BaseController{
 	@RequestMapping("/tocar")
 	public String tocar(HttpServletRequest request,HttpSession session){
 		System.out.println("进入tocar方法:");
-		session.getAttribute("packageList");
+		//查询显示在购物车里的属性信息
+		long user_sn=111111;
+		List<AddToCar> addToCarList=usersSideService.get_selectAddToCar2(user_sn);
+		System.out.println("addToCarList:"+addToCarList);
+		request.setAttribute("addToCarList",addToCarList);
 		return "/usersside/car";
 	}
-	// /addToCar
 	@RequestMapping("/addToCar")
-	public String addToCar(HttpServletRequest request){
-		long package_sn=Long.parseLong(request.getParameter("package_sn"));
-		List<PanoProjectPackageType> packageTypeList=usersSideService.list_selectPackageTypeListByPackage_Sn(package_sn);
-		System.out.println("套餐类型集合："+packageTypeList);
+	public String addToCar(HttpServletRequest request,HttpSession session){
+		System.out.println("进入/addToCar方法");
+		long package_sn=Long.parseLong(request.getParameter("package_sn"));		
+		//此方法仅作为查询pano_project_house_package.SN as house_package_sn
+		List<AddToCar> addToCarList_only=usersSideService.get_selectAddToCar(package_sn);
+		System.out.println("addToCarList_only:"+addToCarList_only);
+		long house_package_sn=addToCarList_only.get(0).getHouse_package_sn();
+		//向购物车表插入数据-------------------------------------------------------------------------		
+		/*
+	private long USER_SN;---------------登陆后获得
+	private long HOUSE_PACKAGE_SN;------上有
+	private int PURCHASE_NUM;-----------默认1
+		 */
+		long USER_SN=111111;
+		System.out.println("1.测试");
+		usersSideService.add_ShopCar(USER_SN,house_package_sn);
+		System.out.println("2.测试");
 		return "/usersside/720-tc";
 	}
-	
-	
-	
-	
+	//点击展开进入此方法
+	@RequestMapping("/carshow")
+	public String carshow(HttpServletRequest request,HttpSession session){
+		System.out.println("进入/carshow方法");
+		//获取
+		long package_sn=Long.parseLong(request.getParameter("package_sn"));
+		//查询套餐对应的户型
+		List<AddToCar> addToCarList=usersSideService.get_selectAddToCar(package_sn);
+		//查询套餐类型集合
+		List<PanoProjectPackageType> packageTypeList=usersSideService.
+				list_selectPackageTypeListByPackage_Sn(package_sn);
+		//System.out.println("套餐类型集合："+packageTypeList);
+		int pAgeTListSize=packageTypeList.size();
+		//设置每个套餐类型里面的产品集合
+		System.out.println("套餐类型集合长度:"+pAgeTListSize);
+		if(pAgeTListSize>0){
+			//类型1有产品集合里3个产品，类型2/3没有
+			List<Product> productList=null;
+			for(int i=0;i<pAgeTListSize;i++){
+			  long packageType_sn=packageTypeList.get(i).getSN();
+			  productList=usersSideService.list_selectProductListByPAT_sn(packageType_sn);			
+			  //下面代码有问题
+			  if(productList.size()==0){
+				Product product=new Product();
+				productList.add(product);
+			    //packageTypeList.get(i).setProductList(productList);
+			  }
+			packageTypeList.get(i).setProductList(productList);
+			System.out.println("套餐类型sn:"+packageType_sn+",产品集合："+productList);
+			}
+		}
+		//System.out.println("1.packageTypeList:"+packageTypeList);addToCarList
+		request.setAttribute("addToCarList",addToCarList);
+		request.setAttribute("packageTypeList",packageTypeList);
+		return "/usersside/carshow";
+	}
+	//点击展开进入此方法
+	@RequestMapping("/topro")
+	public String topro(HttpServletRequest request){
+		System.out.println("进入/topro方法");
+		long packageType_sn=Long.parseLong(request.getParameter("packageType_sn"));
+		
+		System.out.println("套餐类型sn:"+packageType_sn);
+		
+		List<Product> productList_pro=usersSideService.list_selectProductByPackageType_sn(packageType_sn);
+		System.out.println("产品集合_pro:"+productList_pro);
+		
+		request.setAttribute("productList_pro",productList_pro);
+		
+		return "/usersside/pro";
+	}
 	
 	
 	

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.focus3d.pano.common.controller.BaseController;
+import com.focus3d.pano.model.OrderRelevance;
 import com.focus3d.pano.model.pano_mem_user;
 import com.focus3d.pano.model.pano_user_receive_address;
 import com.focus3d.pano.usersside.service.PersonalService;
@@ -199,27 +200,46 @@ public class PersonalController extends BaseController {
 		return redirect("tomy2");
 	}
 
-	// --------------------------------------------实名认证--------------------------------------------
+	// --------------------------------------------订单--------------------------------------------
 
 	/**
 	 * 进入全部订单
 	 */
 	@RequestMapping("/toorderAll")
 	public String toorderAll(HttpServletRequest request) {
-		// 1、套餐类型
-		Long SN = Long.parseLong(request.getParameter("SN"));
-
-		// 2、订单状态
-
-		// 3、风格
-
-		// 4、户型
-
-		// 5、订单总价
-
-		// 6、运费
-
+		List<OrderRelevance> orderList = personalService
+				.selOrderbyUser(USER_SN);
+		request.setAttribute("orderList", orderList);
 		return "/userside/orderAll";
 	}
 
+	/**
+	 * 进入待付款
+	 */
+	@RequestMapping("/topaying")
+	public String topaying(HttpServletRequest request) {
+		List<OrderRelevance> orderList = personalService
+				.selOrderbyUser2(USER_SN);
+		request.setAttribute("orderList", orderList);
+		return "/userside/paying";
+	}
+
+	/**
+	 * 进入已付款
+	 */
+	@RequestMapping("/topaid")
+	public String topaid(HttpServletRequest request) {
+		List<OrderRelevance> orderList = personalService
+				.selOrderbyUser3(USER_SN);
+		request.setAttribute("orderList", orderList);
+		return "/userside/paid";
+	}
+	
+	/**
+	 * 进入支付
+	 */
+	@RequestMapping("/toconfirm")
+	public String toconfirm() {
+		return "/userside/confirm";
+	}
 }

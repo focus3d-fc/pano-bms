@@ -68,4 +68,16 @@ public class PersonalServiceImpl implements PersonalService {
 		return personalDAO.selOrderbyUser(USER_SN);
 	}
 
+	@Override
+	public List<OrderRelevance> selOrderbyUser2(Long USER_SN) {
+		// TODO Auto-generated method stub
+		return personalDAO.selOrderbyUser2(USER_SN);
+	}
+
+	@Override
+	public List<OrderRelevance> selOrderbyUser3(Long USER_SN) {
+		// TODO Auto-generated method stub
+		return personalDAO.selOrderbyUser3(USER_SN);
+	}
+
 }
