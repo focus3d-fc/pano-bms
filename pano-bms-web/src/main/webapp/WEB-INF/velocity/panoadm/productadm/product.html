@@ -2,7 +2,8 @@
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>产品管理</title>
    <link href="/style/bootstrap.min.css" rel="stylesheet">
@@ -100,22 +101,27 @@ function move(pageNum,pageSize){
     function upfulliclear(){
     	$("#files0").text("");
     	$("#fullimgsn01").val("");
+    	$("#profulli").attr("src","");
     }
     function uplefticlear(){
     	$("#files01").text("");
     	$("#leftimgsn01").val("");
+    	$("#proli").attr("src","");
     }
     function updowniclear(){
     	$("#files02").text("");
     	$("#downimgsn01").val("");
+    	$("#prodi").attr("src","");
     }
     function upmatericlear(){
     	$("#files03").text("");
     	$("#mtimgsn01").val("");
+    	$("#promi").attr("src","");
     }
     function upfabriciclear(){
     	$("#files04").text("");
     	$("#fbcimgsn01").val("");
+    	$("#profabi").attr("src","");
     }
 
     
@@ -267,6 +273,8 @@ function move(pageNum,pageSize){
 	                    $(this).attr("selected",true);
 	              }
 	         });
+	    	
+	 	
    });
        
 
@@ -292,7 +300,7 @@ function move(pageNum,pageSize){
                             <label class="sr-only">风格</label>
                             <div class="col-sm-8">
                                 <select id="scsty" name="styleSn" class="form-control">
-                                   <option value="">--请选择--</option>
+                                   <option value="">--选择风格--</option>
                                     #foreach( $!prost in $!proStyleList)
                                     <option value="$!prost.sn">$!prost.name</option>
                                      #end 
@@ -303,7 +311,7 @@ function move(pageNum,pageSize){
                             <label class="sr-only">功能</label>
                             <div class="col-sm-8">
                                 <select id="scfc" name="funcSn" class="form-control">
-                                      <option value="">--请选择--</option>
+                                      <option value="">--选择功能--</option>
                                      #foreach( $!profc in $!proFuncList)
                                     <option value="$!profc.sn">$!profc.name</option>
                                     #end 
@@ -365,8 +373,10 @@ function move(pageNum,pageSize){
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li class="active"><a href="javascript:void(0)" onclick="move($!page.currentPage,$!page.perPageInt)">$!page.currentPage</a></li>
-               
+               <!--  <li class="active"><a href="javascript:void(0)" onclick="move($!page.currentPage,$!page.perPageInt)">$!page.currentPage</a></li> -->
+               #foreach ($item in [1..$!{page.totalPage}])
+				<li><a href="/productadm/listproduct?pageNum=$velocityCount">$velocityCount</a></li>
+				#end
                 <li>
                     <a href="javascript:void(0)" aria-label="Next" onclick="move($!page.currentPage + 1,$!page.perPageInt)">
                         <span aria-hidden="true">&raquo;</span>

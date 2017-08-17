@@ -4,7 +4,7 @@
 	    //上传图片	
 	    	 'use strict';
 	        // Change this to the location of your server-side upload handler:
-	        var url =  'http://139.196.103.164:8018/pano/fs/upload';
+	        var url =  'http://file.joy-homeplus.com/pano/fs/upload';
 	        var uploadButton = $('<button/>')
 	                .addClass('btn btn-primary')
 	                .prop('disabled', true)

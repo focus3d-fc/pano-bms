@@ -88,10 +88,9 @@ public class ProductAdmController extends BaseController{
 		}
 		   
 		   //产品详情显示首个
-		   
+		   session.setAttribute("productInfoList", productInfoList);
 		   if(productInfoList!=null&&productInfoList.size()>0){
 		   session.setAttribute("prodtInfo1", productInfoList.get(0));
-		   session.setAttribute("productInfoList", productInfoList);
 		   }
 		   session.setAttribute("proStyleList", proStyleList);
 		   session.setAttribute("proFuncList", proFuncList);
