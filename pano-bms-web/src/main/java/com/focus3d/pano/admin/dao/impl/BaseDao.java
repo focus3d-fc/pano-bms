@@ -9,7 +9,7 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class BaseDao extends SqlMapClientDaoSupport{
 	public BaseDao(){
-		System.out.println("----------------baseDao��ʼ��---------");
+		System.out.println("----------------baseDao--------");
 	}
   @Resource(name="ciefSqlMapClient")
   private SqlMapClient sqlMapClient;
