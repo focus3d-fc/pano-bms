@@ -1,4 +1,4 @@
-﻿package com.focus3d.pano.usersside.utils;
+package com.focus3d.pano.usersside.utils;
 
 import java.io.UnsupportedEncodingException;
 
