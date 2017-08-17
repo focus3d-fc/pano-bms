@@ -107,19 +107,10 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 		return user;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
+	@Override
+	public void updateAllocateSpace(User user) {
+		getSqlMapClientTemplate().update("update_allocateSpace", user);
+	}
 }
 
 

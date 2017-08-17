@@ -1,24 +1,39 @@
 package com.focus3d.pano.index.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+
+import net.sf.json.JSONObject;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.focus3d.pano.admin.service.UserService;
 import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.common.controller.BaseController;
 import com.focus3d.pano.model.PanoLoginModel;
 import com.focus3d.pano.model.PanoUserLongin;
 import com.focus3d.pano.model.User;
+import com.focus3d.pano.rm.PanoRpcUtils;
+import com.focustech.common.utils.EncryptUtil;
 @Controller
 @RequestMapping("/useradm")
 public class UserController extends BaseController {
+	@Value("${rpc.fs.domain}")
+	private String rpcFsDomain;
 	@Resource
 	private UserService userService;
 	
@@ -191,8 +206,12 @@ User user_select=userService.selectUsersnByCert_no(cert_no);
 long user_sn=user_select.getId();
 System.out.println("1.插入login表");
 userService.saveLogin(nick_name,password,status,user_sn,adder_sn,adder_name,add_time,cert_no);
-System.out.println("2.已经插入到login表");				
-return this.redirect("/useradm/listUser");
+System.out.println("2.已经插入到login表");	
+
+		//add by lihaijun 2017/8/17
+		updateUserSpace(user_select, user_sn);
+
+		return this.redirect("/useradm/listUser");
 			}else{
 				String existCert_no="该身份证已注册";
 				request.setAttribute("existCert_no",existCert_no);
@@ -202,6 +221,30 @@ return this.redirect("/useradm/listUser");
 			System.out.println("出现异常，留在原页面------------------------------------------------");
 			e.printStackTrace();
 			return "/panoadm/useradm/users-add";
+		}
+	}
+	
+	
+	
+	/**
+	 * add by lihaijun 2017/8/17
+	 * *
+	 * @param user_select
+	 * @param user_sn
+	 */
+	private void updateUserSpace(User user_select, long user_sn) {
+		//add by lihaijun 2017/8/17
+		//分配用户空间
+		//String token = defaultEncryptService.encrypt(EncryptUtil.encode(user.getSn()), null);
+		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
+		qparams.add(new BasicNameValuePair("userToken", EncryptUtil.encode(user_sn)));
+		PanoRpcUtils panoRpcUtils = new PanoRpcUtils();
+		String rv = panoRpcUtils.httpRequest(rpcFsDomain + "/pano/prm/user_space_allocate", qparams, HttpMethod.POST);
+		JSONObject rpcJo = JSONObject.fromObject(rv);
+		if("1".equals(rpcJo.getString("status"))){
+			user_select.setIsAllocateSpace(1);
+			user_select.setId(user_sn);
+			userService.updateAllocateSpace(user_select);
 		}
 	}
 	

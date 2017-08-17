@@ -170,6 +170,12 @@ public class UserServiceImpl implements UserService{
 	}
 
 
+	@Override
+	public void updateAllocateSpace(User user) {
+		userDao.updateAllocateSpace(user);
+	}
+
+
 
 
 

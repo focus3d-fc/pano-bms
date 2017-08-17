@@ -31,4 +31,9 @@ long user_sn,long adder_sn,String adder_name,String add_time,String cert_no);
 	public List<User> limit(Page page);
 	public List<String> selectRole_name();
 	public User selectUsersnByCert_no(String cert_no);
+	/**
+	 * *
+	 * @param user
+	 */
+	public void updateAllocateSpace(User user);
 }

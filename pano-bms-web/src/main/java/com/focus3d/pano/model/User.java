@@ -41,6 +41,10 @@ public class User implements Serializable,CommonModel{
 	private int startIndex;// 起始下标
 	private int pagesize;// 当前页
 /**---------分页属性-----------------------------------------*/
+	
+	//add by lihaijun 2017/8/17
+	private Integer isAllocateSpace;//用户空间
+	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -455,23 +459,13 @@ public class User implements Serializable,CommonModel{
 		
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public Integer getIsAllocateSpace() {
+		return isAllocateSpace;
+	}
+
+
+	public void setIsAllocateSpace(Integer isAllocateSpace) {
+		this.isAllocateSpace = isAllocateSpace;
+	}
 }
