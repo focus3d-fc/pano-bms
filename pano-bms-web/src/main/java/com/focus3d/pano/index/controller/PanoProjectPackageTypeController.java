@@ -96,8 +96,6 @@ public class PanoProjectPackageTypeController extends BaseController{
 						list.setSpace_sn(type.getSpace_sn());
 						list.setType_sn(type.getSn());
 						PackageTypeList selectList = typeService.getSelectList(list);
-						
-						System.out.println("套餐SN:="+selectList.getType_id());
 						request.setAttribute("listType", selectList);
 						typeList.add(selectList);
 					}
@@ -151,7 +149,6 @@ public class PanoProjectPackageTypeController extends BaseController{
 			types.setName(text);
 			typeService.getAddType(types);
 			try {
-				System.out.println("添加完毕");
 				this.ajaxOutput(response,"完毕");
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -164,9 +161,7 @@ public class PanoProjectPackageTypeController extends BaseController{
 		 */
 		@RequestMapping("/delete")
 		public String delete(HttpServletRequest request){
-			System.out.println("进入删除后");
 			String sn = request.getParameter("sntype");
-			System.out.println("得到要删除的SN：="+sn);
 			typeService.getDelete(Long.parseLong(sn));
 			return "redirect:/type/selectList";
 			

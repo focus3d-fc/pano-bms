@@ -9,7 +9,7 @@ import com.focus3d.pano.common.model.CommonModel;
  * 
  * 收货地址实体类
  * 
- * @author 54280
+ * @author 熊峰
  * 
  */
 public class pano_user_receive_address implements Serializable, CommonModel {

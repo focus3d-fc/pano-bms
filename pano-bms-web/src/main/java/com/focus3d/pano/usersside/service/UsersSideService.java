@@ -2,11 +2,9 @@ package com.focus3d.pano.usersside.service;
 
 import java.util.List;
 
-import com.focus3d.pano.model.AddToCar;
 import com.focus3d.pano.model.Lable;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoProjectPackageType;
-import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.Style;
 import com.focus3d.pano.model.pano_mem_user;
 import com.focus3d.pano.model.pano_project;
@@ -31,13 +29,8 @@ public interface UsersSideService {
 	public List<pano_mem_user> get_selectMUserByPhone(String phone);
 	public List<PanoProjectPackageType> list_selectPackageTypeListByPackage_Sn(
 			long package_sn);
-	public List<PanoProjectPackage> get_selectPackageByPackage_sn(
-			long package_sn);
-	public List<AddToCar> get_selectAddToCar(long package_sn);
-	public void add_ShopCar(long USER_SN,long house_package_sn);
-	public List<AddToCar> get_selectAddToCar2(long user_sn);
-	public List<Product> list_selectProductListByPAT_sn(long packageType_sn);
-	public List<Product> list_selectProductByPackageType_sn(long packageType_sn);
+	
+	
 	
 }
 

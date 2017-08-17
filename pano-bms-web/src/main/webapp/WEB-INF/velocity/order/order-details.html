@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>订单管理-详情</title>
+<link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="/style/admstatic/css/admin.css">
+</head>
+<body>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-th-list"></span> 订单详情
+		</div>
+		<div class="panel-body">
+			<div class="form-horizontal">
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">姓名</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">$!{orderList.NICK_NAME}</p>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">用户ID</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">$!{orderList.USER_SN}</p>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">订单状态</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">#if($!{orderList.STATUS}==1)
+							待付款 #end #if($!{orderList.STATUS}==2) 取消付款 #end
+							#if($!{orderList.STATUS}==3) 已支付 #end
+							#if($!{orderList.STATUS}==4) 待发货 #end
+							#if($!{orderList.STATUS}==5) 已收货 #end
+							#if($!{orderList.STATUS}==6) 取消购买 #end
+							#if($!{orderList.STATUS}==7) 售后 #end #if($!{orderList.STATUS}==8)
+							退款成功 #end</p>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">物流状态</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">#if($!{orderList.SEND}==0) 未发货
+							#end#if($!{orderList.SEND}==1) 发货 #end</p>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">物流单号</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">$!{orderList.LOGTC_ID}</p>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">订单金额</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">$!{orderList.TOTAL_PRICE}</p>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">联系电话</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">$!{orderList.MOBILE}</p>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">备用电话</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">$!{orderList.BACKUP_MOBILE}</p>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">订单日期</label>
+					<div class="col-sm-8 field">
+						<p class="form-control-static">$!{orderList.ORDER_TIME}</p>
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2 control-label">收货地址</label>
+					<div class="col-sm-8 field">
+						<p class="form-control-static">$!{orderList.PROVINCE}$!{orderList.CITY}$!{orderList.AREA}$!{orderList.STREET}</p>
+					</div>
+				</div>
+				<div class="col-sm-12 text-center">
+					<a href="/order/toOrder" class="btn btn-default">返回</a>
+				</div>
+
+
+			</div>
+		</div>
+</body>
+</html>

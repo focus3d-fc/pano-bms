@@ -31,7 +31,7 @@
 		<!-- 查询户型 楼盘 风格 套餐姓名 -->
 		<select id="getpackage" resultClass="getListPano">
 		
-			SELECT	p5.sn,p1.`NAME` AS package_name,p1.sn AS package_sn ,p1.ID AS id,p2.`NAME` AS house_name,p2.SN AS house_sn, p3.`NAME` AS project_name, p3.SN AS project_sn,p4.`NAME` AS style_name,p4.SN AS style_sn
+			SELECT	p5.sn,p5.PACKAGE_PRICE AS package_price,p5.IMG_SN AS img_sn,p1.`NAME` AS package_name,p1.sn AS package_sn ,p1.ID AS id,p2.`NAME` AS house_name,p2.SN AS house_sn, p3.`NAME` AS project_name, p3.SN AS project_sn,p4.`NAME` AS style_name,p4.SN AS style_sn
 			FROM pano_project_package p1,pano_project_house p2,pano_project p3,pano_project_style p4,pano_project_house_package p5
 			WHERE p1.SN = #package_sn# AND p2.SN= #house_sn# AND p3.SN = #project_sn# AND p4.SN = #style_sn# and p5.sn=#sn# 
 		
@@ -80,4 +80,12 @@
 			where p.sn =#house_sn#  and p1.SN =#project_sn#  and p2.SN = #style_sn#
 		</select>
 		
+		 <update id="getInsert5">
+				UPDATE pano_project_house_package 
+				 <dynamic prepend="SET">  
+   						 <isNotNull  prepend="," property="package_price"> PACKAGE_PRICE=#package_price#</isNotNull> 
+    					 <isNotNull  prepend=","  property="IMG_SN">IMG_SN =#IMG_SN#</isNotNull>  
+    			</dynamic> 
+    			  where sn=#sn# 		  
+	</update>
 </sqlMap>

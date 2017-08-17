@@ -5,6 +5,8 @@ import java.util.Date;
 import com.focus3d.pano.common.model.CommonModel;
 
 public class getListPano implements CommonModel{
+	private Long package_price;
+	private Long img_sn;
 	private Long sn;
 	private String id;   //套餐ID
 	private Long package_sn;
@@ -16,7 +18,29 @@ public class getListPano implements CommonModel{
 	private Long project_sn;	 
 	private String style_name;  
 	private Long style_sn;//风格姓名
+	private String getFullImgUrl;
 	
+	
+	public String getGetFullImgUrl() {
+		return getFullImgUrl;
+	}
+	public void setGetFullImgUrl(String getFullImgUrl) {
+		this.getFullImgUrl = getFullImgUrl;
+	}
+	public Long getPackage_price() {
+		return package_price;
+	}
+	public void setPackage_price(Long package_price) {
+		this.package_price = package_price;
+	}
+	
+	
+	public Long getImg_sn() {
+		return img_sn;
+	}
+	public void setImg_sn(Long img_sn) {
+		this.img_sn = img_sn;
+	}
 	public Long getHuose_style_sn() {
 		return huose_style_sn;
 	}

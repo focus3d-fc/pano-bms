@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="OrderAdmin">
+
+	<typeAlias alias="OrderAdmin" type="com.focus3d.pano.model.OrderAdmin" />
+	<typeAlias alias="houses" type="com.focus3d.pano.model.pano_project" />
+
+	<select id="selOrder" resultClass="OrderAdmin"
+		parameterClass="com.focus3d.pano.admin.utils.Page">
+		SELECT
+		pano_order.SN AS ORDER_SN,
+		pano_order.`STATUS`,
+		pano_order.USER_SN,
+		pano_order.TOTAL_PRICE,
+		pano_order_logtc.SEND,
+		pano_mem_user.NICK_NAME
+		FROM
+		pano_order
+		INNER JOIN pano_order_logtc ON
+		pano_order_logtc.ORDER_SN = pano_order.SN
+		INNER JOIN pano_mem_user ON
+		pano_order.USER_SN = pano_mem_user.SN
+		order by
+		pano_order.ORDER_TIME
+		desc
+		limit #startIndex#,#pagesize#
+	</select>
+
+
+	<select id="selOrderCount" resultClass="int">
+		SELECT
+		COUNT(1)
+		FROM
+		pano_order
+		INNER JOIN pano_order_logtc ON pano_order_logtc.ORDER_SN =
+		pano_order.SN
+		INNER JOIN pano_mem_user ON pano_order.USER_SN =
+		pano_mem_user.SN
+	</select>
+
+
+	<select id="selOrderbySN" resultClass="OrderAdmin"
+		parameterClass="Long">
+		SELECT
+		pano_order.SN AS ORDER_SN,
+		pano_order.ORDER_TIME,
+		pano_order.`STATUS`,
+		pano_order.USER_SN,
+		pano_order.TOTAL_PRICE,
+		pano_order_logtc.SEND,
+		pano_order_logtc.ID AS LOGTC_ID,
+		pano_user_receive_address.PROVINCE,
+		pano_user_receive_address.CITY,
+		pano_user_receive_address.AREA,
+		pano_user_receive_address.STREET,
+		pano_user_receive_address.MOBILE,
+		pano_user_receive_address.BACKUP_MOBILE,
+		pano_mem_user.NICK_NAME
+		FROM
+		pano_order
+		INNER JOIN pano_order_logtc ON pano_order_logtc.ORDER_SN =
+		pano_order.SN
+		INNER JOIN pano_mem_user ON pano_mem_user.SN =
+		pano_order.USER_SN
+		INNER JOIN pano_user_receive_address ON
+		pano_user_receive_address.USER_SN = pano_mem_user.SN
+		WHERE
+		pano_order.SN = #ORDER_SN#
+		AND
+		pano_user_receive_address.`DEFAULT` = 1
+	</select>
+
+
+	<select id="selHouse" resultClass="houses">
+		select
+		SN,`NAME`
+		from
+		pano_project
+		order by ADD_TIME desc
+	</select>
+
+
+	<select id="selOrderbyAll" resultClass="OrderAdmin"
+		parameterClass="OrderAdmin">
+		SELECT
+		pano_order.SN AS ORDER_SN,
+		pano_order.ORDER_TIME,
+		pano_order.`STATUS`,
+		pano_order.USER_SN,
+		pano_order.TOTAL_PRICE,
+		pano_mem_user.NICK_NAME,
+		pano_project.SN AS PROJECT_SN,
+		pano_project.`NAME` AS PROJECT_NAME,
+		pano_order_logtc.SEND
+		FROM
+		pano_order
+		INNER JOIN pano_order_logtc ON pano_order.SN = pano_order_logtc.ORDER_SN
+		INNER JOIN pano_order_item ON pano_order_item.ORDER_SN = pano_order.SN
+		INNER JOIN pano_mem_user ON pano_order.USER_SN = pano_mem_user.SN
+		INNER JOIN pano_project_house_package ON
+		pano_order_item.HOUSE_PACKAGE_SN = pano_project_house_package.SN
+		INNER JOIN pano_project_house_style ON
+		pano_project_house_package.HOUSE_STYLE_SN =
+		pano_project_house_style.SN
+		INNER JOIN pano_project ON pano_project_house_style.PROJECT_SN =
+		pano_project.SN
+
+		<dynamic prepend="WHERE ">
+			1=1
+			<isNotEmpty property="ORDER_TIME">
+				and
+				pano_order.ORDER_TIME=#ORDER_TIME#
+			</isNotEmpty>
+			<isNotEmpty property="PROJECT_SN">
+				and pano_project.SN=#PROJECT_SN#
+			</isNotEmpty>
+			<isNotEmpty property="NICK_NAME">
+				and
+				pano_mem_user.NICK_NAME=#NICK_NAME#
+			</isNotEmpty>
+		</dynamic>
+
+	</select>
+
+
+	<select id="selOrderbyHouse" resultClass="OrderAdmin"
+		parameterClass="OrderAdmin">
+		SELECT
+		pano_order.SN AS ORDER_SN,
+		pano_order.`STATUS`,
+		pano_order.USER_SN,
+		pano_order.TOTAL_PRICE,
+		pano_order_logtc.SEND,
+		pano_mem_user.NICK_NAME,
+		pano_project.`NAME` AS PROJECT_NAME,
+		pano_project.SN AS PROJECT_SN,
+		pano_order.ORDER_TIME
+		FROM
+		pano_order
+		INNER JOIN pano_order_logtc ON pano_order.ORDER_NUM =
+		pano_order_logtc.ORDER_SN
+		INNER JOIN pano_mem_user ON
+		pano_order.USER_SN = pano_mem_user.SN
+		INNER JOIN pano_order_item ON
+		pano_order.ORDER_NUM =
+		pano_order_item.ORDER_NUM
+		INNER JOIN pano_product
+		ON pano_order_item.PRODUCT_SN = pano_product.SN
+		INNER JOIN
+		pano_project_style ON pano_product.STYLE_SN =
+		pano_project_style.SN
+		INNER JOIN pano_project ON pano_project_style.PROJECT_SN =
+		pano_project.SN
+		WHERE
+		pano_project.SN=#PROJECT_SN#
+	</select>
+
+
+	<select id="selOrderbyNickname" resultClass="OrderAdmin"
+		parameterClass="OrderAdmin">
+		SELECT
+		pano_order.SN AS ORDER_SN,
+		pano_order.`STATUS`,
+		pano_order.USER_SN,
+		pano_order.TOTAL_PRICE,
+		pano_order_logtc.SEND,
+		pano_mem_user.NICK_NAME,
+		pano_project.`NAME` AS PROJECT_NAME,
+		pano_project.SN AS PROJECT_SN,
+		pano_order.ORDER_TIME
+		FROM
+		pano_order
+		INNER JOIN pano_order_logtc ON pano_order.ORDER_NUM =
+		pano_order_logtc.ORDER_SN
+		INNER JOIN pano_mem_user ON
+		pano_order.USER_SN = pano_mem_user.SN
+		INNER JOIN pano_order_item ON
+		pano_order.ORDER_NUM =
+		pano_order_item.ORDER_NUM
+		INNER JOIN pano_product
+		ON pano_order_item.PRODUCT_SN = pano_product.SN
+		INNER JOIN
+		pano_project_style ON pano_product.STYLE_SN =
+		pano_project_style.SN
+		INNER JOIN pano_project ON pano_project_style.PROJECT_SN =
+		pano_project.SN
+		WHERE
+		pano_mem_user.NICK_NAME=#NICK_NAME#
+	</select>
+
+</sqlMap>

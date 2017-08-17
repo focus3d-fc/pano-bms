@@ -94,5 +94,16 @@ public class PanoUserLongInImpl extends BaseDao implements PanoUserLongInDAO{
 		return list;
 	}
 
+	@Override
+	public int getInsert1(PanoProjectHousePackage sn) {
+		int i =0;
+		try{
+		i=  getSqlMapClientTemplate().update("pano_bm_longin.getInsert5",sn);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return i;
+	}
+
 
 }

@@ -88,4 +88,26 @@ public class PersonalDAOImpl extends BaseDao implements PersonalDAO {
 		return list;
 	}
 
+	@Override
+	public List<pano_user_receive_address> selAddressbyDef(Long USER_SN) {
+		List<pano_user_receive_address> list = (List<pano_user_receive_address>) getSqlMapClientTemplate()
+				.queryForList("pano_user_receive_address.selAddressbyDef",
+						USER_SN);
+		return list;
+	}
+
+	@Override
+	public List<OrderRelevance> selOrderbySN(Long ORDER_SN) {
+		List<OrderRelevance> list = (List<OrderRelevance>) getSqlMapClientTemplate()
+				.queryForList("OrderRelevance.selOrderbySN", ORDER_SN);
+		return list;
+	}
+
+	@Override
+	public void upDef(pano_user_receive_address address) {
+		// TODO Auto-generated method stub
+		getSqlMapClientTemplate().update("pano_user_receive_address.upDef",
+				address);
+	}
+
 }

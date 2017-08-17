@@ -24,6 +24,8 @@ public interface PanoUserLongInDAO {
 	public List<getListPano> getpackage(getListPano sn);
 	public List<PanoProjectHousePackage> getpackage2(Long house_style_sn);
 	public List<PanoProjectPackageStyle> getpackage1(PanoProjectPackageStyle sn);
+	
+	public int getInsert1(PanoProjectHousePackage sn);
 
 }
 

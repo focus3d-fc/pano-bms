@@ -12,63 +12,104 @@
 </head>
 <body>
 <div class="container car se720">
-
+    <!--头-->
+    <header class="header">
+        <a href="#" class="back">
+            <i class="iconfont">&#xe6bc;</i>
+            返回
+        </a>
+        <p class="title">购物车</p>
+        <a href="#" class="share">
+            <i class="iconfont">&#xe622;</i>
+        </a>
+    </header>
     <!--订单-->
     <section class="order-items">
         <div class="order-item">
             <div class="title">
               <span>
                   <i class="iconfont">&#xe71f;</i>
-                  $!{addToCarList[0].house_name}-基础套餐
+                  基础套餐
               </span>
             </div>
             <div class="cont">
                 <div class="choose">
                     <input type="radio" >
                 </div>
-                <a href="#"><img src="$!fs.url($!{addToCarList[0].package_img_sn})" ></a>
+                <a href="#"><img src="/style/admstatic/image/image/2.jpg" ></a>
                 <div class="detail">
-                    <a href="#"><p>$!{addToCarList[0].style_name}$!{addToCarList[0].house_name}$!{addToCarList[0].package_name}</p></a>
-                    <p >户型：$!{addToCarList[0].house_name}</p>
-                    <p class="red">￥$!{addToCarList[0].package_price} <s class="col"> ￥$!{addToCarList[0].package_discount_price}</s></p>
+                    <a href="#"><p>简约现代大会议桌现代风格套餐A带实木全套</p></a>
+                    <p >户型：三室量两厅</p>
+                    <p class="red">￥26000 <s class="col"> ￥26000</s></p>
                 </div>
             </div>
         </div>
         <div class="pro-show">
-             #foreach ($!{packageType} in $!{packageTypeList})
+            <div class="pro-raw">
                 <div class="left">
-                    <a href="/usersSide/topro?packageType_sn=$!{packageType.SN}">
-<img src="$!fs.url($!{packageType.productList[0].fullImgSn})" alt="">
+                    <a href="/userside/topro">
+                        <img src="/style/admstatic/image/image/sofa111.png" alt="">
                         <div class="de">
-                            <p>$!{packageType.productList[0].name}</p>
-<p class="col">$!{packageType.productList[0].length}*$!{packageType.productList[0].wide}*$!{packageType.productList[0].height}</p>
-                            <p>$!{packageType.productList[0].color} *1</p>
+                            <p>北欧风格沙发</p>
+                            <p class="col">2100*15*21</p>
+                            <p>黄色 *1</p>
                         </div>
                     </a>
                 </div>
-                #end
-
+                <div class="left">
+                    <a href="/userside/topro">
+                        <img src="/style/admstatic/image/image/sofa111.png" alt="">
+                        <div class="de">
+                            <p>北欧风格沙发</p>
+                            <p class="col">2100*15*21</p>
+                            <p>黄色 *1</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="pro-raw">
+                <div class="left">
+                    <a href="/userside/topro">
+                        <img src="/style/admstatic/image/image/sofa111.png" alt="">
+                        <div class="de">
+                            <p>北欧风格沙发</p>
+                            <p class="col">2100*15*21</p>
+                            <p>黄色 *1</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="left">
+                    <a href="/userside/topro">
+                        <img src="/style/admstatic/image/image/sofa111.png" alt="">
+                        <div class="de">
+                            <p>北欧风格沙发</p>
+                            <p class="col">2100*15*21</p>
+                            <p>黄色 *1</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="total show">
-            <a href="/usersSide/tocar">
+            <a href="/userside/tocar">
                 点击收起 <i class="iconfont">&#xe60c;</i>
             </a>
         </div>
 
         <nav class="nav">
-            <a href="/usersSide/to720_tc"  id="tcshow">
+            <a href="#"  id="tcshow">
                 <i class="iconfont ">&#xe71f;</i>
                 <p>套餐</p>
             </a>
-            <a href="/usersSide/to720_space" id="fjshow">
+            <a href="#" id="fjshow">
                 <i class="iconfont">&#xe614;</i>
                 <p>房间</p>
             </a>
-            <a href="/usersSide/to720_unit" id="hxshow">
+            <a href="#" id="hxshow">
                 <i class="iconfont">&#xe759;</i>
                 <p>户型</p>
             </a>
-            <a href="/usersSide/tocar" class="on">
+            <a href="#" class="on">
                 <i class="iconfont">&#xe664;</i>
                 <p>购物车</p>
             </a>
@@ -79,20 +120,11 @@
             <input type="radio" >
         </div>
         <p>合计：<span class="red">1400</span></p>
-
-        <a href="confirm.html" class="button">结算</a>
-
+        <div class="button">
+            <a href="/userside/toconfirm">结算</a>
+        </div>
     </div>
 </div>
-<script src="../lib/jQuery/jquery-3.2.1.min.js"></script>
-<script>
 
-    $(function(){
-        $('.choose').click(function () {
-            $(this).toggleClass("imgChoose")
-        })
-    })
-
-</script>
 </body>
 </html>

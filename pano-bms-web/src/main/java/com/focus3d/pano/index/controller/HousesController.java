@@ -22,6 +22,8 @@ import com.focus3d.pano.common.controller.BaseController;
 import com.focus3d.pano.model.PanoProjectHousePackage;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoProjectPackageStyle;
+import com.focus3d.pano.model.PanoUserLongin;
+import com.focus3d.pano.model.ProductInfo;
 import com.focus3d.pano.model.getListPano;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
@@ -30,8 +32,11 @@ import com.focus3d.pano.model.pano_project_house_style;
 import com.focus3d.pano.model.pano_project_label;
 import com.focus3d.pano.model.pano_project_space;
 import com.focus3d.pano.model.project_style;
+import com.focustech.cief.filemanage.client.api.IFileReadClient;
+import com.focustech.cief.filemanage.client.constant.FileAttributeEnum;
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.JsonUtils;
+import com.opensymphony.oscache.util.StringUtil;
 
 /**
  * 
@@ -51,6 +56,8 @@ public class HousesController extends BaseController {
 	@Autowired
 	private PanoUserLongInService service;
 
+	@Autowired
+	private IFileReadClient fileReadClient;//读取文件接口    
 	// -----------------------楼盘管理-----------------------
 
 	@RequestMapping("/tohouse")
@@ -664,7 +671,7 @@ public class HousesController extends BaseController {
 		return "/houses/combo";
 
 	}
-
+	long package_price;
 	@RequestMapping("/packageSet2")
 	public String packageSet2(HttpServletRequest request) {
 		List<getListPano> list = new ArrayList<getListPano>();
@@ -710,11 +717,17 @@ public class HousesController extends BaseController {
 			lp.setProject_sn(project_sn);
 			lp.setHouse_sn(house_sn);
 			lp.setStyle_sn(style_sn);
+			 ProductInfo prodtInfo=null;
 			for (PanoProjectHousePackage p : getpackage2) {
 				lp.setHuose_style_sn(p.getHouse_style_sn());
 				lp.setPackage_sn(p.getPackage_sn());
 				lp.setSn(p.getSn());
 				getListPano getpackage = service.getpackage(lp);
+				Long fullImgSn = getpackage.getImg_sn();
+				if(fullImgSn!=null){
+		  			 String fullImgUrl=fileReadClient.getFile(fullImgSn, FileAttributeEnum.VISIT_ADDR);
+		  			getpackage.setGetFullImgUrl(fullImgUrl);
+		  			}
 				request.setAttribute("listss", getpackage);
 				list.add(service.getpackage(lp));
 			}
@@ -781,4 +794,30 @@ public class HousesController extends BaseController {
 		return redirect("packageSet2");
 
 	}
+	
+	@RequestMapping("/insert1")
+	public String insert1(HttpServletRequest request,HttpSession session,String fullImgSn){
+		String name = request.getParameter("names");
+		String sn = request.getParameter("sn");
+		Long img_sn = null;
+		try {
+			img_sn = EncryptUtil.decode(fullImgSn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		PanoProjectHousePackage p = new PanoProjectHousePackage();
+		System.out.println("进入套餐设置"+name+"-"+sn+"-"+img_sn);
+		p.setIMG_SN(img_sn);
+		System.out.println("进入套餐设置1");
+		if(StringUtil.isEmpty(name)){
+		}
+		p.setPackage_price(Double.parseDouble(name));
+		System.out.println("进入套餐设置2");
+		p.setSn(Long.parseLong(sn));
+		service.getInsert1(p);
+		return redirect("packageSet2");
+			
+	}
+	
+	
 }

@@ -1,4 +1,5 @@
-package com.focus3d.pano.usersside.utils;
+﻿package com.focus3d.pano.usersside.utils;
+
 import java.io.UnsupportedEncodingException;
 
 import com.alibaba.fastjson.JSON;
@@ -8,6 +9,7 @@ import com.alibaba.fastjson.JSON;
  * @Description:普通短信发送
  */
 public class SmsSend {
+
 	public static final String charset = "utf-8";
 	// 用户平台API账号(非登录账号,示例:N1234567)
 	public static String account = "N7476327";
@@ -31,7 +33,8 @@ public class SmsSend {
 		}
 		//获取StringBuilder内部修改好的字符串
 		phoneCode = builder.toString();
-		String msg="【格物至居】您的动态密码是："+phoneCode;
+		System.out.println("随机验证码为："+phoneCode);
+	    String msg = "【格物至居】您的验证码是："+phoneCode;
 		//手机号码
 		//String phone = "18952133329";
 		//状态报告
@@ -54,4 +57,6 @@ public class SmsSend {
 		return phoneCode;
 	
 	}
+
+
 }

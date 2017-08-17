@@ -9,6 +9,13 @@
 <link rel="stylesheet" href="/style/h5static/css/bass.css">
 <link rel="stylesheet" href="/style/h5static/css/index.css">
 <script src="/style/h5static/js/main.js"></script>
+
+<script>
+	function setDef(SN) {
+		window.location.href = "/personal/setDef?SN=" + SN;
+	}
+</script>
+
 </head>
 <body>
 	<div class="container addr">
@@ -19,7 +26,7 @@
 			<div class="addr-item">
 				<img src="/style/h5static/image/img/27.png" alt=""> #end
 				#if($!{address.DEFAULT}==0)
-				<div class="addr-item col">
+				<div class="addr-item col" onclick="setDef('$!{address.SN}')">
 					#end
 					<div>
 						<p class="clearfix">

@@ -36,5 +36,6 @@
 	<sqlMap resource="context/datasource/sqlmap/pano_mem_user.xml" />
 	<sqlMap resource="context/datasource/sqlmap/pano_user_receive_address.xml" />
 	<sqlMap resource="context/datasource/sqlmap/pano_project_package_type.xml" />
-		<sqlMap resource="context/datasource/sqlmap/OrderRelevance.xml" />
+	<sqlMap resource="context/datasource/sqlmap/OrderRelevance.xml" />
+	<sqlMap resource="context/datasource/sqlmap/OrderAdmin.xml" />
 </sqlMapConfig>

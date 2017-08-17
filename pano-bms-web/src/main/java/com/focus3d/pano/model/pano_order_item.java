@@ -18,11 +18,10 @@ public class pano_order_item implements Serializable, CommonModel {
 	private static final long serialVersionUID = -1423892477614156650L;
 
 	private Long SN;
-	private Long PRODUCT_SN;
-	private String PRODUCT_NAME;
-	private int ITEM_AMOUNT;
-	private BigDecimal ITEM_PRICE;
-	private String ORDER_NUM;
+	private Long ORDER_SN;
+	private Long HOUSE_PACKAGE_SN;
+	private int PURCHASE_NUM;
+	private BigDecimal PRICE;
 	private Long ADDER_SN;
 	private String ADDER_NAME;
 	private String ADD_TIME;
@@ -38,44 +37,36 @@ public class pano_order_item implements Serializable, CommonModel {
 		SN = sN;
 	}
 
-	public Long getPRODUCT_SN() {
-		return PRODUCT_SN;
+	public Long getORDER_SN() {
+		return ORDER_SN;
 	}
 
-	public void setPRODUCT_SN(Long pRODUCT_SN) {
-		PRODUCT_SN = pRODUCT_SN;
+	public void setORDER_SN(Long oRDER_SN) {
+		ORDER_SN = oRDER_SN;
 	}
 
-	public String getPRODUCT_NAME() {
-		return PRODUCT_NAME;
+	public Long getHOUSE_PACKAGE_SN() {
+		return HOUSE_PACKAGE_SN;
 	}
 
-	public void setPRODUCT_NAME(String pRODUCT_NAME) {
-		PRODUCT_NAME = pRODUCT_NAME;
+	public void setHOUSE_PACKAGE_SN(Long hOUSE_PACKAGE_SN) {
+		HOUSE_PACKAGE_SN = hOUSE_PACKAGE_SN;
 	}
 
-	public int getITEM_AMOUNT() {
-		return ITEM_AMOUNT;
+	public int getPURCHASE_NUM() {
+		return PURCHASE_NUM;
 	}
 
-	public void setITEM_AMOUNT(int iTEM_AMOUNT) {
-		ITEM_AMOUNT = iTEM_AMOUNT;
+	public void setPURCHASE_NUM(int pURCHASE_NUM) {
+		PURCHASE_NUM = pURCHASE_NUM;
 	}
 
-	public BigDecimal getITEM_PRICE() {
-		return ITEM_PRICE;
+	public BigDecimal getPRICE() {
+		return PRICE;
 	}
 
-	public void setITEM_PRICE(BigDecimal iTEM_PRICE) {
-		ITEM_PRICE = iTEM_PRICE;
-	}
-
-	public String getORDER_NUM() {
-		return ORDER_NUM;
-	}
-
-	public void setORDER_NUM(String oRDER_NUM) {
-		ORDER_NUM = oRDER_NUM;
+	public void setPRICE(BigDecimal pRICE) {
+		PRICE = pRICE;
 	}
 
 	public Long getADDER_SN() {

@@ -56,7 +56,7 @@ public class PackageSetController extends BaseController{
 		
 		
 		Map<String,Object> paramMap=new HashMap<String,Object>();
-		System.out.println(pgsn);
+		System.out.println("产品列表分类获得类型SN："+pgsn);
 		session.setAttribute("pgsn", pgsn);
 		 paramMap.put("id", proid);
 		

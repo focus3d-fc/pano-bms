@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>订单管理</title>
+<link rel="stylesheet"
+	href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/style/admstatic/lib/datetimepicker/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="/style/admstatic/css/admin.css">
+</head>
+<body>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-pencil"></span> 订单管理
+		</div>
+		<div class="panel-body">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<form class="form-inline" action="/order/selOrder">
+							<input type="text" class="form-control" value="日期"
+								id="datetimepicker" name="ORDER_TIME"> <select
+								class="form-control" name="PROJECT_SN">
+								<option>楼盘名称</option> #foreach ($!{houseList} in $!{houseList})
+								<option id="$!{houseList.SN}" value="$!{houseList.SN}">$!{houseList.NAME}</option>
+								#end
+							</select> <input type="text" class="form-control" placeholder="用户姓名"
+								name="NICK_NAME">
+							<button type="submit" class="btn btn-primary">搜索</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>姓名</th>
+					<th>用户ID</th>
+					<th>订单状态</th>
+					<th>物流状态</th>
+					<th>订单金额</th>
+					<th width="20%">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				#foreach ($!{orderList} in $!{orderList})
+				<tr>
+					<td>$!{velocityCount}</td>
+					<td>$!{orderList.NICK_NAME}</td>
+					<td>$!{orderList.USER_SN}</td>
+					<td>#if($!{orderList.STATUS}==1) 待付款 #end
+						#if($!{orderList.STATUS}==2) 取消付款 #end
+						#if($!{orderList.STATUS}==3) 已支付 #end #if($!{orderList.STATUS}==4)
+						待发货 #end #if($!{orderList.STATUS}==5) 已收货 #end
+						#if($!{orderList.STATUS}==6) 取消购买 #end
+						#if($!{orderList.STATUS}==7) 售后 #end #if($!{orderList.STATUS}==8)
+						退款成功 #end</td>
+					<td>#if($!{orderList.SEND}==0) 未发货
+						#end#if($!{orderList.SEND}==1) 发货 #end</td>
+					<td>$!{orderList.TOTAL_PRICE}</td>
+					<td><a
+						href="/order/toorder-details?ORDER_SN=$!{orderList.ORDER_SN}"
+						class="btn btn-success">查看</a></td>
+				</tr>
+				#end
+
+			</tbody>
+		</table>
+		<nav aria-label="Page navigation" class="nav-divider">
+			<ul class="pagination pull-right">
+				<li><a href="/order/toOrder?page=$!{upPage}"
+					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+				</a></li> #foreach ($item in [1..$!{pages.totalPages}])
+				<li><a href="/order/toOrder?page=$velocityCount">$velocityCount</a></li>
+				#end
+				<li><a href="/order/toOrder?page=$!{nextPage}"
+					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
+		</nav>
+	</div>
+	<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
+	<script
+		src="/style/admstatic/lib/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+	<script
+		src="/style/admstatic/lib/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script>
+		$('#datetimepicker').datetimepicker({
+			format : "yyyy-mm-dd",
+			autoclose : true,
+			todayBtn : true,
+			todayHighlight : true,
+			showMeridian : true,
+			minView : 2,
+			startDate : "2017.1.1",
+			language : 'zh-CN',
+			initialDate : new Date()
+		});
+	</script>
+
+
+</body>
+</html>

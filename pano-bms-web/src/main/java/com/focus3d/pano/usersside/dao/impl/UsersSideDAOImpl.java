@@ -6,13 +6,11 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.focus3d.pano.admin.dao.impl.BaseDao;
-import com.focus3d.pano.model.AddToCar;
 import com.focus3d.pano.model.Lable;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoProjectPackageType;
-import com.focus3d.pano.model.Pano_Order_Shopcart;
-import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.Style;
+import com.focus3d.pano.model.User;
 import com.focus3d.pano.model.pano_mem_user;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
@@ -120,47 +118,6 @@ public class UsersSideDAOImpl  extends BaseDao implements UsersSideDAO{
 				queryForList("list_selectPackageTypeListByPackage_Sn",package_sn);
 		return packageTypeList;
 	}
-
-	@Override
-	public List<PanoProjectPackage> get_selectPackageByPackage_sn(
-			long package_sn) {
-		List<PanoProjectPackage> packageList_only=(List<PanoProjectPackage>) getSqlMapClientTemplate().
-				queryForList("get_selectPackageByPackage_sn",package_sn);
-		return packageList_only;
-	}
-
-	@Override
-	public List<AddToCar> get_selectAddToCar(long package_sn) {
-		List<AddToCar> addToCarList_only=(List<AddToCar>) getSqlMapClientTemplate().
-				queryForList("get_selectAddToCar",package_sn);
-		return addToCarList_only;
-	}
-
-	@Override
-	public void add_ShopCar(Pano_Order_Shopcart shopcart) {
-		getSqlMapClientTemplate().insert("add_ShopCar",shopcart);
-	}
-	@Override
-	public List<AddToCar> get_selectAddToCar2(long user_sn) {
-		List<AddToCar> addToCarList_only2=(List<AddToCar>) getSqlMapClientTemplate().
-				queryForList("get_selectAddToCar2",user_sn);
-		return addToCarList_only2;
-	}
-
-	@Override
-	public List<Product> list_selectProductListByPAT_sn(long packageType_sn) {
-		List<Product> PanoProductList=(List<Product>) getSqlMapClientTemplate().
-				queryForList("list_selectProductListByPAT_sn",packageType_sn);
-		return PanoProductList;
-	}
-
-	@Override
-	public List<Product> list_selectProductByPackageType_sn(long packageType_sn) {
-		List<Product> productList_pro=(List<Product>) getSqlMapClientTemplate().
-				queryForList("list_selectProductByPackageType_sn",packageType_sn);
-		return productList_pro;
-	}
-	
 
 
 

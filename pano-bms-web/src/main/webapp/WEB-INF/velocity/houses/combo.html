@@ -10,6 +10,32 @@
 <script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
 <script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
 <script src="/style/admstatic/js/format.js"></script>
+
+<!-- Generic page styles -->
+<link rel="stylesheet" href="/component/upload/css/style.css">
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+<link rel="stylesheet"
+	href="/component/upload/css/jquery.fileupload.css">
+<script src="/script/jquery-1.11.1.min.js"></script>
+<script src="/script/bootstrap.min-3.3.5.js"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="/component/upload/vendor/jquery.ui.widget.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="/component/upload/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="/component/upload/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="/component/upload/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="/component/upload/js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="/component/upload/js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="/component/upload/js/jquery.fileupload-image.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="/component/upload/js/jquery.fileupload-validate.js"></script>
+<script src="/script/member/user/product.js"></script>
 </head>
 <body>
 	<div class="panel panel-default">
@@ -45,24 +71,33 @@
 					<tr>
 						<th>序号</th>
 						<th>套餐ID</th>
+						<th>套餐价格</th>
+						<th>套餐图片</th>
 						<th>项目</th>
 						<th>户型</th>
 						<th>风格</th>
 						<th>套餐种类</th>
-						<th width="15%">操作</th>
+						<th width="20%">操作</th>
 					</tr>
 				</thead>
 				<tbody>
 					#foreach ($!{lists} in $!{lists})
 					<tr>
-						<td>$!{velocityCount}</td>
+						<td>$!{lists.sn}</td>
 						<td>$!{lists.id}</td>
+						<td>$!{lists.package_price}</td>
+						<td>
+                        <div class="img">
+						<img class="img-show" src="$!fs.url($!lists.img_sn)"  width="100" height ="80">
+						</div>
+                        </td>
 						<td>$!{lists.project_name}</td>
 						<td>$!{lists.house_name}</td>
 						<td>$!{lists.style_name}</td>
 						<td>$!{lists.package_name}</td>
 						<td>
 							<div class="btn-group btn-group-sm" role="group">
+							<button class="btn btn-info" data-toggle="modal" data-target="#app" onclick="addform('$!{lists.sn}')">套餐设置</button>
 								 <a class="btn btn-info" href="/type/selectList?ids=$!{lists.project_sn}&ids1=$!{lists.house_sn}&ids2=$!{lists.style_sn}&ids4=$!{lists.package_sn}&ids5=$!{lists.sn}" >设置分类</a> 
 								 <a href="/houses/delete?id2=$!{lists.sn}" class="btn btn-danger" onClick="del()">删除</a>
 							</div>
@@ -93,7 +128,7 @@
 				<div class="modal-body clearfix">
 					<form class="form-horizontal" id="formadd" action="/houses/insert">
 						<div class="form-group">
-							<label class="col-sm-3 control-label">新增/修改</label>
+							<label class="col-sm-3 control-label">新增套餐</label>
 							<div class="col-sm-9"></div>
 							#foreach ($!{getselects} in $!{getselect}) <label
 								class='checkbox-inline' style='margin-left: 10px;'> <input
@@ -105,6 +140,7 @@
 						</div>
 					</form>
 				</div>
+				
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button type="submit" class="btn btn-primary" form="formadd">确定</button>
@@ -112,7 +148,67 @@
 			</div>
 		</div>
 	</div>
-	</script>
+
+<div class="modal fade " id="app" tabindex="-1" role="dialog" aria-labelledby="添加/修改">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-width">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">添加/修改</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <form class="form-horizontal" method="post" id="formad" >
+               			<input id="fullimgsn" type="hidden" name="fullImgSn" />
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">设置套餐价格</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="names" id="ids">
+                        </div>
+                    </div>
+                </form>
+            </div>
+           			  <div class="form-group">
+						<label class="col-sm-3 control-label">上传图片</label>
+						<div class="col-sm-9">
+							<input class="form-control" id="fileupload" type="file"
+								name="files[]" multiple>
+						</div>
+					</div>
+					<div id="files" class="files"></div>
+					<span id="resultInfo"></span>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="submit" type="button"  class="btn btn-primary" >确定</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
+<script>
+
+function addform(sn) {
+  $("#submit").click(function() {
+	 var ids = $("#ids").val()
+	 if(ids == ""){
+			alert("请输入价格");
+			return false;
+	 }
+   $.ajax({  
+    type: "POST",  
+    url:'/houses/insert1?sn=' + sn,  
+    data:$('#formad').serialize(),  
+    async: false,  
+    success: function(data) {  
+    	window.location.href="/houses/packageSet2";
+    }  
+  });
+
+            });
+        }
+        
+</script>
+
 </html>

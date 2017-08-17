@@ -17,15 +17,17 @@ public class OrderRelevance implements Serializable, CommonModel {
 	private static final long serialVersionUID = -1423892477614156650L;
 
 	private Long SN;
+	private Long ORDER_SN;// 订单SN
 	private String PACKAGE_TYPE;// 套餐类型
 	private String STATUS;// 订单状态
 	private String STYLE;// 风格
 	private String HOUSE;// 户型
 	private String TOTAL_PRICE;// 订单总价
 	private String LOGTC_PRICE;// 运费
-	private String IMG_SN;// 图片
-	private String ITEM_AMOUNT;// 商品数量
+	private Long IMG_SN;// 图片
+	private String PURCHASE_NUM;// 商品数量
 	private String SUM_PRICE;// 总价+运费
+	private String PACKAGE;// 套餐名称
 
 	public Long getSN() {
 		return SN;
@@ -33,6 +35,14 @@ public class OrderRelevance implements Serializable, CommonModel {
 
 	public void setSN(Long sN) {
 		SN = sN;
+	}
+
+	public Long getORDER_SN() {
+		return ORDER_SN;
+	}
+
+	public void setORDER_SN(Long oRDER_SN) {
+		ORDER_SN = oRDER_SN;
 	}
 
 	public String getPACKAGE_TYPE() {
@@ -83,11 +93,11 @@ public class OrderRelevance implements Serializable, CommonModel {
 		LOGTC_PRICE = lOGTC_PRICE;
 	}
 
-	public String getIMG_SN() {
+	public Long getIMG_SN() {
 		return IMG_SN;
 	}
 
-	public void setIMG_SN(String iMG_SN) {
+	public void setIMG_SN(Long iMG_SN) {
 		IMG_SN = iMG_SN;
 	}
 
@@ -95,12 +105,12 @@ public class OrderRelevance implements Serializable, CommonModel {
 		return serialVersionUID;
 	}
 
-	public String getITEM_AMOUNT() {
-		return ITEM_AMOUNT;
+	public String getPURCHASE_NUM() {
+		return PURCHASE_NUM;
 	}
 
-	public void setITEM_AMOUNT(String iTEM_AMOUNT) {
-		ITEM_AMOUNT = iTEM_AMOUNT;
+	public void setPURCHASE_NUM(String pURCHASE_NUM) {
+		PURCHASE_NUM = pURCHASE_NUM;
 	}
 
 	public String getSUM_PRICE() {
@@ -109,6 +119,14 @@ public class OrderRelevance implements Serializable, CommonModel {
 
 	public void setSUM_PRICE(String sUM_PRICE) {
 		SUM_PRICE = sUM_PRICE;
+	}
+
+	public String getPACKAGE() {
+		return PACKAGE;
+	}
+
+	public void setPACKAGE(String pACKAGE) {
+		PACKAGE = pACKAGE;
 	}
 
 	@Override

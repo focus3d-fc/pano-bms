@@ -16,9 +16,9 @@
 	<import resource="classpath:/com/focustech/cief/filemanage/conf/filemanage-client.xml" />
 	
 	<bean id="fsClient" class="com.focustech.cief.filemanage.client.ClientNode">
-		<property name="clientName" value="${cfs.client.name}" />
-		<property name="directDataServer" value="${cfs.client.direct.server}"/>
-		<property name="directVisitServer" value="${cfs.client.visit.server}"/>
+		<property name="clientName" value="pano" />
+		<property name="directDataServer" value="139.196.103.164:8018"/>
+		<property name="directVisitServer" value="http://file.joy-homeplus.com"/>
 	</bean>
 	
 

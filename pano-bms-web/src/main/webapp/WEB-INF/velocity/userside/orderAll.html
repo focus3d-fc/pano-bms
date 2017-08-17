@@ -25,7 +25,7 @@
 				<div class="title">
 					<div>
 						<img src="/style/h5static/image/img/30.png" alt="">
-						$!{orderList.PACKAGE_TYPE}
+						$!{orderList.HOUSE}基础套餐
 					</div>
 					<span class="red"> #if($!{orderList.STATUS}==1) 待付款 #end
 						#if($!{orderList.STATUS}==2) 取消付款 #end
@@ -36,7 +36,7 @@
 						退款成功 #end </span>
 				</div>
 				<div class="cont">
-					<a href="#"><img src="/style/h5static/image/image/2.jpg"></a>
+					<a href="#"><img src="$!fs.url($!{orderList.IMG_SN})"></a>
 					<div class="detail">
 						<a href="#"><p class="detail-tlt">$!{orderList.HOUSE}$!{orderList.STYLE}</p></a>
 						<p class="col detail-con">户型：$!{orderList.HOUSE}</p>
@@ -45,17 +45,18 @@
 						<p class="red">$!{orderList.TOTAL_PRICE}</p>
 						<s class="col"> $!{orderList.TOTAL_PRICE}</s>
 						<p class="col">
-							×<span>$!{orderList.ITEM_AMOUNT}</span>
+							×<span>$!{orderList.PURCHASE_NUM}</span>
 						</p>
 					</div>
 				</div>
 				<div class="total">
-					共 <span>$!{orderList.ITEM_AMOUNT}</span>件产品 合计￥<span>$!{orderList.SUM_PRICE}</span>元（含运费
+					共 <span>$!{orderList.PURCHASE_NUM}</span>件产品 合计￥<span>$!{orderList.SUM_PRICE}</span>元（含运费
 					<span>$!{orderList.LOGTC_PRICE}</span>元 ）
 				</div>
 				#if($!{orderList.STATUS}==1)
 				<p>
-					<a href="/personal/toconfirm" class="paying">立即付款</a>
+					<a href="/personal/toconfirm?ORDER_SN=$!{orderList.ORDER_SN}"
+						class="paying">立即付款</a>
 				</p>
 				#end #if($!{orderList.STATUS}==2)
 				<p>

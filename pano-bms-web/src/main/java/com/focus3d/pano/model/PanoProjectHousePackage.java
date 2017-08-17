@@ -8,7 +8,9 @@ public class PanoProjectHousePackage implements CommonModel{
 	private Long sn;			//序列
 	private Long house_style_sn;	//户型风格sn
 	private Long package_sn;		//套餐SN
-	private Long package_price;		// 套餐价格
+	private double package_price;		// 套餐价格
+	private double DISCOUNT_PRICE;		// 套餐折扣价格
+	private Long IMG_SN;		//套餐图片
 	private Long adderSn;    //添加人id
 	private String adderName; //添加人姓名
 	private Date addTime;     //添加时间
@@ -33,11 +35,23 @@ public class PanoProjectHousePackage implements CommonModel{
 	public void setPackage_sn(Long package_sn) {
 		this.package_sn = package_sn;
 	}
-	public Long getPackage_price() {
+	public double getPackage_price() {
 		return package_price;
 	}
-	public void setPackage_price(Long package_price) {
+	public void setPackage_price(double package_price) {
 		this.package_price = package_price;
+	}
+	public double getDISCOUNT_PRICE() {
+		return DISCOUNT_PRICE;
+	}
+	public void setDISCOUNT_PRICE(double dISCOUNT_PRICE) {
+		DISCOUNT_PRICE = dISCOUNT_PRICE;
+	}
+	public Long getIMG_SN() {
+		return IMG_SN;
+	}
+	public void setIMG_SN(Long iMG_SN) {
+		IMG_SN = iMG_SN;
 	}
 	public Long getAdderSn() {
 		return adderSn;
@@ -85,6 +99,9 @@ public class PanoProjectHousePackage implements CommonModel{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	
 	
 	
 	

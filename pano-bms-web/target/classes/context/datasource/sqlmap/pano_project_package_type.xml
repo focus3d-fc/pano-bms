@@ -4,6 +4,11 @@
 		<typeAlias alias="PanoProjectPackageType" type="com.focus3d.pano.model.PanoProjectPackageType"/>
 		<typeAlias alias="pano_project_space" type="com.focus3d.pano.model.pano_project_space"/>
 		<typeAlias alias="PackageTypeList" type="com.focus3d.pano.model.PackageTypeList"/>
+		<typeAlias alias="Package_Product" type="com.focus3d.pano.model.Package_Product"/>
+		<typeAlias alias="ProductList" type="com.focus3d.pano.model.ProductList"/>
+		<typeAlias alias="Paging" type="com.focus3d.pano.model.Paging"/>
+		<typeAlias alias="GetproductList" type="com.focus3d.pano.model.GetproductList"/>
+		<typeAlias alias="Product" type="com.focus3d.pano.model.Product"/>
 	
 	<!-- 线查询户型套餐是否为空 -->
 	<select id="getSelect" resultClass="PanoProjectPackageType">
@@ -60,8 +65,8 @@
 	  
 	  <!-- 查询套餐类型表不为空  显示 户型 楼盘 风格 套餐 套餐ID 分类 空间 等属性 -->
 	  <select id="getSelectList" resultClass="PackageTypeList">
-	  		SELECT p.`NAME` AS house_name,p1.`NAME` AS project_name,p2.`NAME` AS package_name,p2.ID AS package_id,
-	  		p3.`NAME`AS style_name,p4.`NAME` AS type_name,p4.SN  AS type_id,p5.`NAME` AS space_name  
+	  		SELECT p.`NAME` AS house_name,p.sn AS house_sn,p1.`NAME` AS project_name,p1.sn AS project_sn,p2.`NAME` AS package_name,p2.sn AS package_sn,p2.ID AS package_id,
+	  		p3.`NAME`AS style_name,p3.sn AS style_sn,p4.`NAME` AS type_name,p4.SN  AS type_id,p5.`NAME` AS space_name  
 				FROM pano_project_house p,pano_project p1,pano_project_package p2, 
 					pano_project_style p3,pano_project_package_type p4,pano_project_space p5
 						WHERE p.SN = #house_sn# AND p1.SN = #project_sn# AND p2.SN = #package_sn# AND p3.SN = #style_sn#
@@ -80,4 +85,111 @@
 	  
 	  
 	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  <!-- 产品页面  套餐分类下的产品 里面没有对应的数据 -->
+	  <select id="getProduct" resultClass="Package_Product">
+	  		SELECT	SN,PRODUCT_SN,PACKAGE_TYPE_SN
+				FROM pano_project_package_product  WHERE PACKAGE_TYPE_SN = #sn#
+	  </select>
+	  
+	  
+	  
+	  <!-- 产品页面显示所有的(pano_product)产品表的值 -->
+	  	<select id="getProductList" resultClass="ProductList" parameterClass="java.util.Map">
+	  	SELECT p.SN AS product_SN,p.ID AS product_id,pf.`NAME` AS product_func_name,ps.`NAME` AS project_style_name,pt.`NAME` AS product_type_name
+	  		 FROM pano_product p,pano_product_func pf,pano_product_type pt,pano_project_style ps 
+                 WHERE p.FUNC_SN = pf.SN AND p.STYLE_SN = ps.SN AND p.TYPE_SN = pt.SN
+   						 and  p.id like concat('%',#product_id#,'%')
+   						 <isNotNull prepend="AND" property="style_name"> ps.name = #style_name#</isNotNull> 
+    					 <isNotNull prepend="AND" property="func_name"> pf.name = #func_name#</isNotNull>  
+   						 <isNotNull prepend="AND" property="type_name"> pt.name = #type_name#</isNotNull>
+	  				 LIMIT #startIndex#,#pageSize#  
+       					 
+   					
+	  	</select>
+	  	
+	  	<!-- 查询总记录数 -->
+	 	 <select id="getTotalRecord" resultClass="java.lang.Integer">
+	 	 		SELECT COUNT(1) AS totalRecord  FROM pano_product p,pano_product_func pf,pano_product_type pt,pano_project_style ps 
+                 WHERE p.FUNC_SN = pf.SN AND p.STYLE_SN = ps.SN AND p.TYPE_SN = pt.SN
+   						and  p.id like  concat('%', #product_id#, '%') 
+   						 <isNotNull prepend="AND" property="style_name"> ps.name = #style_name#</isNotNull> 
+    					 <isNotNull prepend="AND" property="func_name"> pf.name = #func_name#</isNotNull>  
+   						 <isNotNull prepend="AND" property="type_name"> pt.name = #type_name#</isNotNull>
+					
+	 	 </select>
+	 		
+	 		<!-- 查询产品下的风格 类型 功能名称用于下拉框查询-->				
+	  	<select id="getType" resultClass="ProductList">
+	  	     SELECT `NAME` AS type_name  FROM pano_product_type 
+	  	</select>
+	  
+	  	<select id="getFunc" resultClass="ProductList">
+	  	     SELECT `NAME` AS func_name  FROM pano_product_func
+	  	</select>	
+	  	
+	  	<select id="getStyle" resultClass="ProductList">
+	  	     SELECT `NAME` AS style_name  FROM pano_project_style
+	  	</select>
+	  	
+	  	<!-- 通过传过来的ID 展示户型 风格 分类 楼盘 等固定值 -->
+	  	<select id="getListProduct" resultClass="GetproductList">
+	  			SELECT p.`NAME` AS house_name ,ppr.`NAME` AS project_name,pp.`NAME` AS package_name ,ps.`NAME` AS style_name,pt.`NAME` AS type_name
+				FROM pano_project_house p,pano_project ppr,pano_project_package pp, 
+					pano_project_style ps,pano_project_package_type pt 
+						WHERE p.SN =#house_sn# AND ppr.SN =#project_sn#  AND pp.SN =#package_sn#  
+							 AND ps.SN =#style_sn#  AND pt.SN = #type_sn#
+	  	</select>
+	  	
+	  	<select id="getProductSn" resultClass="Product">
+	  	     SELECT TYPE_SN AS typeSn,STYLE_SN AS styleSn,FUNC_SN AS funcSn,ID AS id,SN AS sn
+                    FROM pano_product  WHERE SN = #sn#
+	  	</select>
+	  	
+	  	<select id="GetMap" parameterClass="java.util.Map" resultClass="GetproductList">
+	  	    SELECT pp.SN AS sn,pp.ID AS product_id,pf.`NAME` AS func_name,pt.`NAME` AS ptype_name,ps.`NAME` AS pstyle_name
+                 FROM pano_product pp INNER JOIN pano_product_func pf ON pp.FUNC_SN = pf.SN  INNER JOIN  pano_product_type pt ON pp.TYPE_SN =pt.SN INNER JOIN pano_project_style ps ON pp.STYLE_SN = ps.SN
+                      <dynamic prepend="where">    
+                          <isNotNull prepend="AND" property="sn"> pp.sn= #sn#</isNotNull>   
+   						 <isNotNull prepend="AND" property="style_sn"> ps.sn = #style_sn#</isNotNull> 
+    					 <isNotNull prepend="AND" property="func_sn"> pf.sn = #func_sn#</isNotNull>  
+   						 <isNotNull prepend="AND" property="type_sn"> pt.sn = #type_sn#</isNotNull>
+  					</dynamic> 
+	  	
+	  	</select>
+	  	
+	  	<!-- 删除分类产品表的关联字段 -->
+	  <delete id="getdelete">
+	  
+	 	 DELETE FROM pano_project_package_product  WHERE PACKAGE_TYPE_SN = #package_type_sn#  AND PRODUCT_SN = #product_sn#
+	  
+	  </delete>
+	  	
+	  <insert id="getinsert" >
+	       INSERT INTO  pano_project_package_product (PACKAGE_TYPE_SN,PRODUCT_SN) VALUES (#package_type_sn#,#product_sn#)
+	  </insert>	
+	  	
+	  <select id="getSelectProduct" resultClass="Package_Product">
+	         SELECT PRODUCT_SN
+                    FROM pano_project_package_product WHERE PACKAGE_TYPE_SN = #package_type_sn#
+	  </select>	
+	  	
+	  	
+	  	
+	  	
+	  	
+	  	
+	  	
+	  	
 </sqlMap>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>套餐添加</title>
+    <link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style/admstatic/css/admin.css">
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-pencil"></span> 套餐设置
+    </div>
+    <div class="panel-body">
+        <div class="form-horizontal">
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">楼盘名称</label>
+                <div class="col-sm-6">
+                    <p class="form-control-static">$!{getListProduct.project_name}</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">户型</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">$!{getListProduct.house_name}</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">风格</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">$!{getListProduct.style_name}</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">分类</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">$!{getListProduct.type_name}</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">套餐风格</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">$!{getListProduct.package_name}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="combo-title"><span class="glyphicon glyphicon-th-large"></span>产品筛选：</div>
+    <div class="panel-body">
+        <div class="container">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label class="sr-only"></label>
+                    <input type="text" class="form-control" placeholder="产品编号" name ="productid" >
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">风格</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" name="style">
+                        <option>不限</option>
+                         #foreach ($!{styles} in $!{style})
+                            <option>$!{styles.style_name}</option>
+                            #end
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">类型</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" name="typepr" >
+                         <option>不限</option>
+                             #foreach ($!{types} in $!{type})
+                            <option>$!{types.type_name}</option>
+                            #end
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">功能</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" name="func">
+                         <option>不限</option>
+                             #foreach ($!{funcs} in $!{func})
+                            <option>$!{funcs.func_name}</option>
+                            #end
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">搜索</button>
+            </form>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form action="/typeproduct/insert"  id="formadd">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>请选择</th>
+                    <th>产品编码</th>
+                    <th>分类</th>
+                    <th>风格</th>
+                    <th>功能</th>
+                    <th width="10%">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+               
+                 #foreach ($!{Lists} in $!{product})
+                <tr>
+                    <td>
+                        <div>
+                            <label>
+                                <input type="checkbox"  value="$!{Lists.product_SN}" name="name">
+                            </label>
+                        </div>
+                    </td>
+                    <td>$!{Lists.product_id}</td>
+                    <td>$!{Lists.product_type_name}</td>
+                    <td>$!{Lists.project_style_name}</td>
+                    <td>$!{Lists.product_func_name}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a href="/typeproduct/getprodtinpgdetail?prodtsn=$!{Lists.product_SN}" class="btn btn-success">查看</a>
+                        </div>
+                    </td>
+                </tr>
+                #end
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+    <div class="panel-bodya">
+        <nav class="nav-divider clearfix">
+           <div class="pull-left cof" >
+                <button class="btn btn-info" type="submit"  form="formadd">确认</button>
+            </div>
+        <ul class="pagination pull-right">
+            <li>
+                <a href="/typeproduct/select?pagenum=$!{upPage}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a></li>
+			#foreach ($item in [1..$!{prList.totalPages}])<li><a href="/typeproduct/select?pagenum=$velocityCount">$velocityCount</a></li> #end
+            <li>
+                <a href="/typeproduct/select?pagenum=$!{nextPage}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+            
+	 
+       
+    </div>
+
+
+    <div class="combo-title"><span class="glyphicon glyphicon glyphicon-list"></span>产品列表：</div>
+
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>产品编码</th>
+                <th>分类</th>
+                <th>风格</th>
+                <th>功能</th>
+                <th>操作</th>
+
+            </tr>
+            </thead>
+            <tbody>
+             #foreach ($!{Lists} in $!{getMap})
+            <tr>
+               <td>$!{velocityCount}</td>
+               <td>$!{Lists.product_id}</td>
+               <td>$!{Lists.ptype_name}</td>
+               <td>$!{Lists.pstyle_name}</td>
+               <td>$!{Lists.func_name}</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <a href="/typeproduct/delete?sn=$!{Lists.SN}" class="btn btn-danger" onClick="del()">删除</a>
+                    </div>
+                </td>
+            </tr>
+            #end
+            </tbody>
+        </table>
+    </div>
+
+
+    </div>
+
+<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
+<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
+<script src="/style/admstatic/js/main.js"></script>
+<script src="/style/admstatic/js/format.js"></script>
+<script src="/style/admstatic/js/jquery-1.8.3.min.js"></script>
+
+
+</body>
+</html>

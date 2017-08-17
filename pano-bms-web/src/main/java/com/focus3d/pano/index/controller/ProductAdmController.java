@@ -46,7 +46,6 @@ public class ProductAdmController extends BaseController{
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		
 		 paramMap.put("id", proid);
-		System.out.println("--"+styleSn);
 		 paramMap.put("styleSn", styleSn);
 		 paramMap.put("funcSn", funcSn);
 		
@@ -61,7 +60,6 @@ public class ProductAdmController extends BaseController{
 			}*/
 		 PageInfo page=new PageInfo();
 		  int allPageSize = productAdmService.countProductInfo(paramMap);
-		    System.out.println("zzzzzzzzzzz"+allPageSize);
 		    page.setTotalRecords(allPageSize);
 		    page.setPerPageInt(pageSize);
 		    page.setCurrentPage(pageNum);
@@ -86,12 +84,8 @@ public class ProductAdmController extends BaseController{
 			proFuncList=productAdmService.listAllProFunc();
 			proTypeList=productAdmService.listAllProType();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		  /* for(ProductInfo p:productInfoList){
-			   System.out.println("---------"+p.getId()+p.getName()+p.getBrand()+p.getUpdateTime1());
-		   }*/
 		   
 		   //产品详情显示首个
 		   

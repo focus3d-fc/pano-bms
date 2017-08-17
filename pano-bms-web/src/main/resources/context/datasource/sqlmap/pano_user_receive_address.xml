@@ -33,7 +33,7 @@
 	<select id="selAddressbySN" resultClass="address"
 		parameterClass="Long">
 		select
-		SN,USER_NAME,SEX,MOBILE,BACKUP_MOBILE,PROVINCE,CITY,AREA,STREET,`DEFAULT`
+		SN,USER_NAME,SEX,MOBILE,BACKUP_MOBILE,PROVINCE,CITY,AREA,STREET,`DEFAULT`,USER_SN
 		from pano_user_receive_address
 		where SN = #SN#
 	</select>
@@ -44,6 +44,23 @@
 		set
 		USER_NAME=#USER_NAME#,
 		MOBILE=#MOBILE#,PROVINCE=#PROVINCE#,CITY=#CITY#,AREA=#AREA#,STREET=#STREET#,UPDATE_TIME=#UPDATE_TIME#
+		where SN = #SN#
+	</update>
+
+	<select id="selAddressbyDef" resultClass="address"
+		parameterClass="Long">
+		select
+		SN,USER_NAME,SEX,MOBILE,BACKUP_MOBILE,PROVINCE,CITY,AREA,STREET,`DEFAULT`
+		from pano_user_receive_address
+		where `DEFAULT`=1
+		and USER_SN = #USER_SN#
+	</select>
+
+	<update id="upDef" parameterClass="address">
+		update
+		pano_user_receive_address
+		set
+		`DEFAULT`=#DEFAULT#
 		where SN = #SN#
 	</update>
 

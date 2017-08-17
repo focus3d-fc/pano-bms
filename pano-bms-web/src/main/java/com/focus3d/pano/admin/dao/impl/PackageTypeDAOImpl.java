@@ -1,15 +1,21 @@
 package com.focus3d.pano.admin.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.focus3d.pano.admin.dao.PackageTypeDAO;
+import com.focus3d.pano.model.GetproductList;
 import com.focus3d.pano.model.PackageTypeList;
+import com.focus3d.pano.model.Package_Product;
 import com.focus3d.pano.model.PanoProjectPackageType;
 import com.focus3d.pano.model.PanoUserLongin;
+import com.focus3d.pano.model.Product;
+import com.focus3d.pano.model.ProductList;
 import com.focus3d.pano.model.pano_project_space;
 @Repository
-public class PackageTypeDAOImpl extends BaseDao implements PackageTypeDAO{
+public  class PackageTypeDAOImpl extends BaseDao implements PackageTypeDAO{
 
 	/**
 	 * 根据户型套餐 查询 套餐类型的 是否为 空
@@ -95,5 +101,118 @@ public class PackageTypeDAOImpl extends BaseDao implements PackageTypeDAO{
 	public int getDelete(Long sn) {
 		return  getSqlMapClientTemplate().delete("pano_project_package_type.getDelete",sn);
 	}
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * 
+	 *    产品页面功能  
+	 *    
+	 * 
+	 *   第一次进入页面时 没有
+	 */
+	public List<Package_Product> getProduct(Long sn) {
+		return 	(List<Package_Product>)getSqlMapClientTemplate().queryForList("pano_project_package_type.getProduct",sn);
+		
+	}
+
+
+
+	/**
+	 * 根据 前台穿的值 封装到一个Map里面 查询所有的产品数值
+	 */
+	public List<ProductList> getProductList(Map<String, Object> map) {
+		List<ProductList> list = null;
+		try{
+		list = (List<ProductList>)getSqlMapClientTemplate().queryForList("pano_project_package_type.getProductList",map);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+
+	/**
+	 * 查询总记录数
+	 */
+	public Integer getTotalRecord(Map<String, Object> map) {
+		Integer integer = null;
+		try{
+		 integer = (Integer)getSqlMapClientTemplate().queryForObject("pano_project_package_type.getTotalRecord", map);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return integer;
+	}
+
+
+	/**
+	 * 查询风格 功能 类型名称
+	 */
+	public List<ProductList> getType() {
+		return (List<ProductList>)getSqlMapClientTemplate().queryForList("pano_project_package_type.getType");
+	}
+
+	public List<ProductList> getFunc() {
+		return (List<ProductList>)getSqlMapClientTemplate().queryForList("pano_project_package_type.getFunc");
+	}
+
+	public List<ProductList> getStyle() {
+		return (List<ProductList>)getSqlMapClientTemplate().queryForList("pano_project_package_type.getStyle");
+	}
+
+
+
+	@Override
+	public List<GetproductList> getListProduct(GetproductList list) {
+		return (List<GetproductList>)getSqlMapClientTemplate().queryForList("pano_project_package_type.getListProduct",list);
+	}
+
+
+
+	@Override
+	public List<Product> getProductSn(Long sn) {
+		return (List<Product>)getSqlMapClientTemplate().queryForList("pano_project_package_type.getProductSn",sn); 
+	}
+
+
+
+	@Override
+	public List<GetproductList> GetMap(Map map) {
+		return (List<GetproductList>)getSqlMapClientTemplate().queryForList("pano_project_package_type.GetMap",map); 
+	}
+
+
+
+	@Override
+	public int getdelete(Package_Product product) {
+		return  getSqlMapClientTemplate().delete("pano_project_package_type.getdelete",product);
+	}
+
+
+
+	@Override
+	public Long getinsert(Package_Product product) {
+		
+		return  (Long)getSqlMapClientTemplate().insert("pano_project_package_type.getinsert",product);
+	}
+
+
+
+	@Override
+	public List<Package_Product> getSelectProduct(Long package_type_sn) {
+		return (List<Package_Product>)getSqlMapClientTemplate().queryForList("pano_project_package_type.getSelectProduct",package_type_sn); 
+	} 
 
 }

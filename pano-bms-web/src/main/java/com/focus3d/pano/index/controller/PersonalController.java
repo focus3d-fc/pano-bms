@@ -169,6 +169,34 @@ public class PersonalController extends BaseController {
 		return redirect("toaddress2");
 	}
 
+	/**
+	 * 修改收货地址默认状态
+	 */
+	@RequestMapping("/setDef")
+	public String setDef(HttpServletRequest request) {
+		Long ADDRESS_SN = Long.parseLong(request.getParameter("SN"));
+
+		pano_user_receive_address address = personalService
+				.selAddressbySN(ADDRESS_SN);
+
+		if (address.getDEFAULT() == 0) {
+
+			List<pano_user_receive_address> addressed = personalService
+					.selAddressbyDef(address.getUSER_SN());
+			pano_user_receive_address aed = new pano_user_receive_address();
+			aed.setSN(addressed.get(0).getSN());
+			aed.setDEFAULT(0);
+			personalService.upDef(aed);
+
+			pano_user_receive_address a = new pano_user_receive_address();
+			a.setSN(address.getSN());
+			a.setDEFAULT(1);
+			personalService.upDef(a);
+		}
+
+		return redirect("toaddress2");
+	}
+
 	// --------------------------------------------实名认证--------------------------------------------
 
 	/**
@@ -234,12 +262,18 @@ public class PersonalController extends BaseController {
 		request.setAttribute("orderList", orderList);
 		return "/userside/paid";
 	}
-	
+
 	/**
 	 * 进入支付
 	 */
 	@RequestMapping("/toconfirm")
-	public String toconfirm() {
+	public String toconfirm(HttpServletRequest request) {
+		List<pano_user_receive_address> address = personalService
+				.selAddressbyDef(USER_SN);
+		request.setAttribute("address", address.get(0));
+		Long ORDER_SN = Long.parseLong(request.getParameter("ORDER_SN"));
+		List<OrderRelevance> orderList = personalService.selOrderbySN(ORDER_SN);
+		request.setAttribute("orderList", orderList.get(0));
 		return "/userside/confirm";
 	}
 }

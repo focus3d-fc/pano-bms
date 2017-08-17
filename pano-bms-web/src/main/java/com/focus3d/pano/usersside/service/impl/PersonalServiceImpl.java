@@ -80,4 +80,22 @@ public class PersonalServiceImpl implements PersonalService {
 		return personalDAO.selOrderbyUser3(USER_SN);
 	}
 
+	@Override
+	public List<pano_user_receive_address> selAddressbyDef(Long USER_SN) {
+		// TODO Auto-generated method stub
+		return personalDAO.selAddressbyDef(USER_SN);
+	}
+
+	@Override
+	public List<OrderRelevance> selOrderbySN(Long ORDER_SN) {
+		// TODO Auto-generated method stub
+		return personalDAO.selOrderbySN(ORDER_SN);
+	}
+
+	@Override
+	public void upDef(pano_user_receive_address address) {
+		// TODO Auto-generated method stub
+		personalDAO.upDef(address);
+	}
+
 }
