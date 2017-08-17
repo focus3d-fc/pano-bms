@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN" "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
+<urlrewrite>
+	<!--<rule>
+		<from>^/login.html$</from>
+		<to>/session/new</to>
+	</rule>-->
+	<rule>
+		<from>^/login.html$</from>
+		<to>/veuser/new</to>
+	</rule>
+    <rule>
+        <from>^/land.html$</from>
+        <to>/session/vnew</to>
+    </rule>
+   
+
+    <outbound-rule>
+        <from>^/session/vnew$</from>
+        <to>/land.html</to>
+    </outbound-rule>
+   
+</urlrewrite>
+

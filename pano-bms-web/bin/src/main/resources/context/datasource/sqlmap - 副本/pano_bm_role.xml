@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="pano_bm_role">
+	<typeAlias alias="PanoRole" type="com.focus3d.pano.model.PanoRole"/>
+	<typeAlias alias="PanoBmRoleResource" type="com.focus3d.pano.model.PanoBmRoleResource"/>
+	<typeAlias alias="BackUpdate" type="com.focus3d.pano.model.BackUpdate"/>
+	
+	
+	<select id="getPanoRole" resultClass="PanoRole">
+	       select SN,ROLE_NAME from pano_bm_role
+	</select>
+
+	<delete id="getPRDelete">
+		delete from pano_bm_role where sn = #sn#
+	</delete>
+	
+	<delete id="getPBRRDelete">
+		delete from pano_bm_role_resource where role_sn = #role_sn#
+	</delete>
+	
+	
+	<insert id="getRPInsert">
+		insert into  pano_bm_role (role_name) values (#role_name#)
+	</insert>
+	
+	<select id="getPRSelect" resultClass="PanoRole">
+		select SN,role_name from pano_bm_role where role_name = #role_name#
+	</select>
+	
+	<insert id="getResource" parameterClass="PanoBmRoleResource">
+		insert into pano_bm_role_resource (role_sn,role_user,role_basics,role_product,role_houses,role_order,role_role)
+		values (#role_sn#,#role_user#,#role_basics#,#role_product#,#role_houses#,#role_order#,#role_role#)
+	</insert>
+	
+	
+	<update id="getRPupdate">
+		update pano_bm_role set role_name = #role_name# where sn=#sn#
+	</update>
+	
+	<update id="getPBRRUpdate">
+		update pano_bm_role_resource set role_order=#role_order#,role_role=#role_role#,role_user=#role_user#,role_basics=#role_basics#,
+		role_product=#role_product#,role_houses=#role_houses# where role_sn = #role_sn#
+	</update>
+	
+	<select id="updateBack" resultClass="BackUpdate">
+			select p.SN,p.ROLE_NAME,p1.ROLE_BASICS,p1.ROLE_HOUSES,p1.ROLE_PRODUCT,p1.ROLE_USER,p1.ROLE_ROLE,p1.ROLE_ORDER
+			from pano_bm_role p INNER JOIN pano_bm_role_resource p1
+			on p.SN = p1.ROLE_SN where  p.SN = #sn#
+	</select>
+	
+	
+	
+</sqlMap>
+

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用户管理</title>
+    <link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style/admstatic/css/admin.css">
+    
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-pencil"></span> 用户管理
+    </div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6">
+                    <form class="form-inline" action="/useradm/selectUser">
+                        <div class="form-group">
+                            <label class="sr-only"></label>
+                            <input type="text" class="form-control" name="nick_name" placeholder="用户名">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only">手机号</label>
+                            <input type="tel" class="form-control" name="mobile" placeholder="手机号">
+                        </div>
+                        <button type="submit" class="btn btn-primary">搜索</button>
+                    </form>
+                </div>
+                <div class="col-xs-2">
+                    <a href="/useradm/jumpSaveUser" class="btn btn-info">增加</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>昵称</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>手机号</th>
+                    <th>状态</th>
+                    <th width="20%">操作</th>
+                </tr>
+            </thead>
+                <tbody>
+                   　　                  #foreach ($!{user} in $!{userList})
+                    <tr>
+                        <!-- <td>$!{index}+$!{velocityCount}</td> -->
+                        <td>$!{user.id}</td>
+                        <td>$!{user.nick_name}</td>
+                        <td>$!{user.name}</td>
+                        <td>$!{user.sex_str}</td>
+                        <td>$!{user.mobile}</td>
+                        <td>$!{user.status_str}</td>
+                        <td>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                            <a href="/useradm/getUser?cert_no=$!{user.cert_no}" class="btn btn-success">查看</a>
+                            <a href="/useradm/updateUser?cert_no=$!{user.cert_no}" class="btn btn-info">修改</a>                      
+                            <!-- <button class="btn btn-danger">锁定</button> -->
+                          
+                            #if ($!{user.status}==1)
+                           	 <a href="/useradm/updateStatus?cert_no=$!{user.cert_no}&&status=$!{user.status}"class="btn btn-danger">
+                           			 锁定
+                             </a>
+                             #else
+                             <a href="/useradm/updateStatus?cert_no=$!{user.cert_no}&&status=$!{user.status}"class="btn btn-danger">
+                           			-解锁-
+                             </a>
+                               #end
+                            </a>
+                            </div>
+                        </td>
+                    </tr>
+                  #end
+                </tbody>
+        </table>
+     <nav aria-label="Page navigation" class="nav-divider">
+        <ul class="pagination pull-right">
+            <li>
+                <a href="/useradm/listUser?page=$!{upPage}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a></li>
+#foreach ($item in [1..$!{pages.totalPages}])<li><a href="/useradm/listUser?page=$velocityCount">$velocityCount</a></li> #end
+            <li>
+                <a href="/useradm/listUser?page=$!{nextPage}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+</body>
+</html>
+
+	  

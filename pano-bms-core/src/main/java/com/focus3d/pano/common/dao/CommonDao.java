@@ -22,6 +22,19 @@ import com.focustech.common.utils.ReflectUtils;
 public class CommonDao<T> extends IbatisWrapper {
 	private static final Logger log = LoggerFactory.getLogger(CommonDao.class);
 	private static final String SELECT_BY_PRIMARYKEY = ".ibatorgenerated_selectByPrimaryKey";
+	
+	public static final String DELETE_BY_PRIMARYKEY = ".ibatorgenerated_deleteByPrimaryKey";
+    public static final String INSERT_SELECTIVE = ".ibatorgenerated_insertSelective";
+    public static final String UPDATE_BY_PRIMARYKEY_SELECTIVE = ".ibatorgenerated_updateByPrimaryKeySelective";
+    public static final String COUNT_BY_EXAMPLE = ".ibatorgenerated_countByExample";
+    public static final String DELETE_BY_EXAMPLE = ".ibatorgenerated_deleteByExample";
+    public static final String SELECT_BY_EXAMPLE = ".ibatorgenerated_selectByExample";
+    public static final String SELECT_LIST_RECORD = ".ibatorgenerated_selectListRecord";
+    public static final String SELECT_LIST_COUNT = ".ibatorgenerated_selectListCount";
+    public static final String UPDATE_BY_EXAMPLE_SELECTIVE = ".ibatorgenerated_updateByExampleSelective";
+    public static final String SELECT_BY_EXAMPLE_BLOB = SELECT_BY_EXAMPLE + "WithBLOBs";
+    public static final String CLAUSE_CLASS_SUFFIX = "Criteria";
+    public static final String INSERT = ".ibatorgenerated_insert";
 
 	public <T> T getBySn(Long sn, Class<?> cls) {
         	try {
@@ -133,7 +146,7 @@ public class CommonDao<T> extends IbatisWrapper {
 	     * @param t 对应的领域对象或领域Model。
 	     * @throws SQLException
 	     */
-	    private static final String INSERT = ".ibatorgenerated_insert";
+		
 	    public void insertBySystem(T t) {
 	    	if(t instanceof BaseEntity){
 	    		BaseEntity baseEntity = (BaseEntity)t;

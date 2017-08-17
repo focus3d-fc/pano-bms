@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="pano_project">
+
+	<typeAlias alias="houses" type="com.focus3d.pano.model.pano_project" />
+
+	<resultMap id="pano_projectMap" class="com.focus3d.pano.model.pano_project">
+		<result column="SN" property="SN" jdbcType="BIGINT" />
+		<result column="NAME" property="NAME" jdbcType="VARCHAR" />
+		<result column="PROVINCE" property="PROVINCE" jdbcType="VARCHAR" />
+		<result column="CITY" property="CITY" jdbcType="VARCHAR" />
+		<result column="AREA" property="AREA" jdbcType="VARCHAR" />
+		<result column="ADDER_SN" property="ADDER_SN" jdbcType="BIGINT" />
+		<result column="ADDER_NAME" property="ADDER_NAME" jdbcType="VARCHAR" />
+		<result column="ADD_TIME" property="ADD_TIME" jdbcType="DATE" />
+		<result column="UPDATER_SN" property="UPDATER_SN" jdbcType="BIGINT" />
+		<result column="UPDATER_NAME" property="UPDATER_NAME" jdbcType="VARCHAR" />
+		<result column="UPDATE_TIME" property="UPDATE_TIME" jdbcType="DATE" />
+	</resultMap>
+
+	<select id="getHouses" resultClass="houses" parameterClass="com.focus3d.pano.admin.utils.Page">
+		select
+		SN,`NAME`,PROVINCE,CITY,AREA
+		from pano_project
+		limit #startIndex#,#pagesize#
+	</select>
+
+	<delete id="delHousesbySN" parameterClass="Long">
+		delete from
+		pano_project
+		where SN = #SN#
+	</delete>
+
+	<insert id="addHouses" parameterClass="houses">
+		insert into pano_project
+		(`NAME`,PROVINCE,CITY,AREA,ADD_TIME)
+		values(#NAME#,#PROVINCE#,#CITY#,#AREA#,#ADD_TIME#)
+	</insert>
+
+	<select id="selHouses" resultClass="houses" parameterClass="houses">
+		select
+		SN,`NAME`,PROVINCE,CITY,AREA
+		from pano_project
+		where
+		PROVINCE=#PROVINCE#
+		and CITY=#CITY#
+		and AREA=#AREA#
+		<isNotEmpty prepend="AND" property="NAME"> `NAME` like
+			concat('%',#NAME#,'%')</isNotEmpty>
+	</select>
+
+	<select id="selHousesbySN" resultClass="houses" parameterClass="Long">
+		select
+		SN,`NAME`,PROVINCE,CITY,AREA
+		from pano_project
+		where SN = #SN#
+	</select>
+
+	<select id="selHousesCount" resultClass="int">
+		select count(SN) from pano_project
+	</select>
+
+</sqlMap>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="pano_project_house">
+
+	<typeAlias alias="housestype" type="com.focus3d.pano.model.pano_project_house" />
+
+
+	<select id="getHousetype" resultClass="housestype"
+		parameterClass="Long">
+		select
+		SN,`NAME`,IMG_SN
+		from pano_project_house
+		where
+		PROJECT_SN =
+		#PROJECT_SN#
+	</select>
+
+	<delete id="delHousetypebySN" parameterClass="Long">
+		delete from
+		pano_project_house
+		where SN = #SN#
+	</delete>
+
+	<select id="selHousetypebySN" resultClass="housestype"
+		parameterClass="Long">
+		select
+		SN,ID
+		from pano_project_house
+		where
+		SN
+		=#SN#
+	</select>
+
+</sqlMap>

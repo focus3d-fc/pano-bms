@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用户管理-修改</title>
+    <link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style/admstatic/css/admin.css">
+     <script type="text/javascript">
+		
+	</script>
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-pencil"></span> 用户修改
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" action="/useradm/SureUpdateUser">
+            <div class="form-group col-xs-6">
+                <label  class="col-sm-4 control-label">用户ID</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">$!user.id</p>
+                </div>
+            </div>
+            <div class="form-group col-xs-6" >
+                <label class="col-sm-4 control-label">昵称</label>
+                <div class="col-sm-8">
+                    <input name="nick_name" type="text" class="form-control" value="$!user.nick_name">
+                </div>
+            </div>
+            <div class="form-group col-xs-6" >
+                <label class="col-sm-4 control-label">密码</label>
+                <div class="col-sm-8">
+                    <input required name="password" type="password" class="form-control" placeholder="密码">
+                </div>
+            </div>
+            <div class="form-group col-xs-6" >
+                <label class="col-sm-4 control-label">姓名</label>
+                <div class="col-sm-8">
+                    
+                    <p class="form-control-static">$!user.name</p>
+                    <!-- <input name="name" type="text" class="form-control" value="$!user.name"> -->
+                </div>
+            </div>
+            <div class="form-group col-xs-6" >
+                <label class="col-sm-4 control-label">城市</label>
+                <div class="col-sm-8">
+                    <select name="city" class="form-control">
+                        <option>南京</option>
+                        <option>无锡</option>
+                        <option>徐州</option>
+                        <option>常州</option>
+                        <option>苏州</option>
+                        <option>南通</option>
+                        <option>连云港</option>
+                        <option>淮安</option>
+                        <option>盐城</option>
+                        <option>扬州</option>
+                        <option>镇江</option>
+                        <option>泰州</option>
+                        <option>宿迁</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-xs-6" >
+                <label class="col-sm-4 control-label">手机</label>
+                <div class="col-sm-8">
+                    <input name="mobile" type="tel" class="form-control" value="$!user.mobile">
+                </div>
+            </div>
+            <div class="form-group col-xs-6" >
+                <label class="col-sm-4 control-label">邮箱</label>
+                <div class="col-sm-8">
+                    <input name="email" type="email" class="form-control" value="$!user.email">
+                </div>
+            </div>
+            <div class="form-group col-xs-6" >
+                <label class="col-sm-4 control-label">身份证</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">$!user.cert_no</p>
+                    <input name="cert_no" type="hidden" class="form-control" value="$!user.cert_no">
+                    <!-- <input name="cert_no" type="text" class="form-control" value="$!user.cert_no"> -->
+                </div>
+            </div>
+            <div class="form-group col-xs-6" >
+                <label class="col-sm-4 control-label">角色</label>
+                <div class="col-sm-8">
+                    <select name="role_name" class="form-control">
+                        #foreach ($!{role_name} in $!{role_nameList})
+                         <option>$!{role_name}</option>
+                         #end
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-xs-6" >
+                <label class="col-sm-4 control-label">性别</label>
+                <div class="col-sm-8">
+                    <label class="radio-inline">
+                        <p class="form-control-static">$!user.sex_str</p>
+                        <!-- <input type="radio" name="sex"  value="2" checked> 男 -->
+                    </label>
+                    <!-- <label class="radio-inline">
+                        <input type="radio" name="sex" value="1"> 女
+                    </label> -->
+                </div>
+            </div>
+            <div class="col-xs-12 text-center">
+                <button type="submit" class="btn btn-primary">确定</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

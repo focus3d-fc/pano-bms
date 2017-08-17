@@ -1,0 +1,50 @@
+<krpano version="1.19">
+	
+	<include url="%$pano_domain%/krp/version/api_v%$api_version%.xml" />
+	
+	#foreach($!scene in $!scenes)
+	<scene name="scene_$!scene.id" pano_id="$!scene.id">
+		<preview url="$!scene.imgPath/preview.jpg"/>
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1792" tiledimageheight="1792">
+				<cube url="$!scene.imgPath/%s/l2/%v/l2_%s_%v_%h.jpg" />
+   			</level>
+			<level tiledimagewidth="1024" tiledimageheight="1024">
+				<cube url="$!scene.imgPath/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+		<image if="webvr.isenabled">
+			<cube url="$!scene.imgPath/vr/pano_%s.jpg"/>
+		</image>
+	</scene>
+	#end
+	<config>
+		<info pid="$!work.encryptSn" id="" title="$!work.name" desc=""/>
+		<auth auth_name="作者：$!user.nickName" uid="$!user.encryptSn" status="1" link=""/>
+		<feature show_comment="1" enable_comment="1" enable_vr="1" enable_like="1" show_pv="1" enable_password="0" enable_selected="0" enable_location="0" enable_intro="0" show_auth="1" enable_gyro="0" enable_littleplanet="0" enable_autorotate="1"/>
+		<qr enabled="1" url=""/>
+		<start_image enabled="1"/>
+		<logo enabled="1" url="" link="#" is_720="1" align="1" app_link=""/>
+		<thumbs title="场景选择" thumb="" show_thumb="0">
+			<category name="场景选择" thumb="">
+				#foreach($!scene in $!scenes)
+				<pano name="pano$!scene.id" title="$!scene.name" thumb="$!scene.imgPath/thumb.jpg" pano_id="$!scene.id"/>
+				#end
+			</category>
+		</thumbs>
+		<links/>
+		<panos>
+			#foreach($!scene in $!scenes)
+			<pano name="scene_$!scene.id">
+				<info pano_id="$!scene.id" title="$!scene.name"/>
+				<view hlookat="10" vlookat="10" fovtype="MFOV" fov="95" maxpixelzoom="2.0" fovmin="70" fovmax="120" vlookatmin="-90" vlookatmax="90" autorotatekeepview="0" loadscenekeepview="0"/>
+				<sound enabled="0" is_global="0" url=""/>
+				<voice enabled="0" is_global="0" url=""/>
+				<bottom_circle enabled="-1"/>
+				<top_circle enabled="-1"/>
+				<weather enabled="0"/>
+			</pano>
+			#end
+		</panos>
+	</config>
+</krpano>

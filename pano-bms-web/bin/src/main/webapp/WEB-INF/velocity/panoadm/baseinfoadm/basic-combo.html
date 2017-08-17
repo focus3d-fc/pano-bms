@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>基础信息管理</title>
+    <link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style/admstatic/css/admin.css">
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-pencil"></span> 基础信息管理
+    </div>
+    <div class="panel-body">
+        <!--tab栏标题-->
+        <ul class="nav nav-tabs basic-tab">
+            <li><a href="/basics/classify"   >分类</a></li>
+            <li><a href="/basics/classify4"   >功能</a></li>
+            <li><a href="/basics/classify2"   >厂家</a></li>
+            <li><a href="/basics/classify3"   >风格</a></li>
+            <li  class="active"><a href="basic-combo.html"   >套餐种类</a></li>
+            <button class="btn btn-info" data-toggle="modal" data-target="#add" style="margin-left: 60px" onclick="addform1()">增加</button>
+        </ul>
+        <!--tab内容-->
+        <div id="basicTabContent" class="tab-content">
+            <!--套餐-->
+            <div class="tab-pane fade in active" id="combo">
+                <table class="table table-hover noMarB">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>名称</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    #foreach ($!{types} in $!{type1})
+                    <tr>
+                        <td>$!{types.sn}</td>
+                        <td>$!{types.name}</td>
+                        <td>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                                <button class="btn btn-info" data-toggle="modal" data-target="#add" onclick="addform('$!{types.sn}')">修改</button>
+                                <a href="/basics/dalete1?id=$!{types.sn}" class="btn btn-danger" onClick="del()">删除</a>
+                            </div>
+                        </td>
+                    </tr>
+                    #end
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--增加修改弹窗-->
+<div class="modal fade " id="add" tabindex="-1" role="dialog" aria-labelledby="添加/修改">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-width">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">添加/修改</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <form class="form-horizontal" id="formadd" >
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">新增/修改</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="name">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="submit" type="button"  class="btn btn-primary" >确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
+<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
+<script src="/style/admstatic/js/main.js"></script>
+<script>
+
+function addform(sn) {
+  $("#submit").click(function() {
+   $.ajax({  
+    type: "POST",  
+    url:'/basics/update1?id=' + sn,  
+    data:$('#formadd').serialize(),  
+    async: false,  
+    error: function(request) {  
+        alert("添加失败");  
+    },  
+    success: function(data) {  
+    	window.location.href="/basics/classify1";
+    }  
+  });
+
+            });
+        }
+
+        
+ function addform1() {
+ $("#submit").click(function() {
+   $.ajax({  
+    type: "POST",  
+    url:'/basics/insert1',  
+    data:$('#formadd').serialize(),  
+    async: false,  
+    error: function(request) {  
+        alert("添加失败");  
+    },  
+    success: function(data) {  
+    	if(data[1218]==("f")){
+    		alert("增加失败名称不可以为空或重复")
+    	}
+    	window.location.href="/basics/classify1";
+    }  
+  });
+
+            });
+        }
+</script>
+</body>
+</html>

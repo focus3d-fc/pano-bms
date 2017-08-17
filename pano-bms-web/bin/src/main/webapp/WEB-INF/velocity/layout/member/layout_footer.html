@@ -1,0 +1,28 @@
+
+<div class="footer">
+	<p class="text-center footer_lx mar_t20">
+		Copyright © 2017 南京焦点方寸信息技术有限公司 版权<br>备案证书号：苏ICP备08107572号
+	</p>
+</div>
+<input type="hidden" id="usn" value="$!usn"/>
+<input type="hidden" id="fs" value="$!fserver"/>
+<script type="text/javascript" src="/script/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/script/jquery.validate.extend.js"></script>
+<script src="/script/bootstrap.min-3.3.5.js"></script>
+
+<nav class="navbar navbar-default navbar-fixed-bottom #if($!messageType == 2) alert-danger #else alert-success #end" role="navigation" style="display:none;">
+	<div class="container-fluid" >
+	    <div class="content text-center">
+
+	    </div>
+    </div>
+</nav>
+<span id="message" style="display:none;">$!message</span>
+<script src="/script/common/msgshow.js"></script>
+<script type="text/javascript">
+//导航
+$(function(){
+	var navbarIdx = $("#navbarIdx").val();
+	$(".nav-pills > li:eq(" + (--navbarIdx) + ")").addClass("active");
+});
+</script>

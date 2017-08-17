@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE aspectj PUBLIC "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+<aspectj>
+  <weaver options="-XlazyTjp">
+    <exclude within="*..*CGLIB*" />
+  </weaver>
+  <aspects>
+  	<!--
+  	<aspect name="com.focustech.cief.sql.aspectj.SqlAdaptAspect" />
+	<aspect name="com.focustech.cief.autowired.aspectj.CiefAutowiredAspectj" />
+	<aspect name="com.focustech.cief.xss.aspectj.XssAspectj" />
+	<aspect name="com.focustech.cief.textarea.aspectj.TextAreaLineAspectj" />
+	-->
+  </aspects>
+</aspectj>

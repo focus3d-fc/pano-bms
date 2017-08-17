@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>角色管理</title>
+    <link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style/admstatic/css/admin.css">
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-pencil"></span> 角色
+    </div>
+    <div class="panel-body">
+        <button class="btn btn-info" data-toggle="modal" data-target="#add" style="margin-left: 60px" onclick="addform1()">增加</button>
+    </div>
+    <table class="table table-hover noMarB">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>名称</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+       #foreach ($!{roles} in $!{role})
+        <tr>
+            <td>$!{roles.sn}</td>
+            <td>$!{roles.role_name}</td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                    <button class="btn btn-info" data-toggle="modal" data-target="#app" onclick="addform('$!{roles.sn}')">修改</button>
+                    <a href="/role/delete?id=$!{roles.sn}" class="btn btn-danger" onClick="del()">删除</a>
+                </div>
+            </td>
+        </tr>
+       #end
+        </tbody>
+    </table>
+</div>
+<!--增加弹窗-->
+<div class="modal fade " id="add" tabindex="-1" role="dialog" aria-labelledby="添加/修改">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-width">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">添加角色</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <form class="form-horizontal" id="formadd" >
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">新增角色</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="name" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">新增权限</label>
+                        <div class="col-sm-9">
+                            <label class="checkbox-inline" style="margin-left: 10px;">
+                                <input type="checkbox" value="用户管理" name="user">用户管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="产品管理" name="product">产品管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="基础信息管理" name="basics">基础信息管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="订单管理" name="order">订单管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="楼盘管理" name="houses" >楼盘管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="权限管理" name="role" >权限管理
+                            </label>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="submits"  type="button" class="btn btn-primary">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--修改弹窗-->
+<div class="modal fade " id="app" tabindex="-1" role="dialog" aria-labelledby="添加/修改">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-width">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"  aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">修改角色</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <form class="form-horizontal" id="formad"  action="/role/update">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">修改角色</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="update"  name="name">
+                           	<input type="hidden"  name="sn" id="ids"> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">修改权限</label>
+                        <div class="col-sm-9">
+                            <label class="checkbox-inline" style="margin-left: 10px;">
+                                <input type="checkbox" value="用户管理" name="user" id="users">用户管理
+                            </label>
+                           
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="产品管理" name="product" id="products">产品管理
+                            </label>
+                           
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="基础信息管理" name="basics" id="basicss">基础信息管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="订单管理" name="order" id="orders">订单管理
+                            </label>
+                           
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="楼盘管理" name="houses" id="housess" >楼盘管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="权限管理" name="role" id="roles">权限管理
+                            </label>
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+           <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary" form="formad">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
+<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
+<script src="/style/admstatic/js/main.js"></script>
+
+<script>
+
+
+			function addform1(){
+			    $("#submits").click(function(){
+					$.ajax({  
+					type: "POST",  
+					url:'/role/insert',  
+					data:$('#formadd').serialize(),  
+					async: false,  
+					success: function(data) {  
+						var jsonobj=JSON.parse(data);
+						if(jsonobj=="errorr"){
+							alert("添加失败,名称为空或期重复") 
+						}
+					window.location.href="/role/select";
+					    }				
+					})
+			    })
+			}
+
+
+			
+			
+        function addform(sn) {
+        	$.ajax({  
+   			 type: "POST",  
+   			 url:'/role/update1',  
+   			 data:{sn,sn},  
+   			 datatype:"json",
+    			success: function(data) {  
+    			var jsonobj=JSON.parse(data);
+    			console.info(jsonobj)
+				$("#update").val(jsonobj.role_name)
+				$("#ids").val(jsonobj.sn)
+				if(jsonobj.role_basics>0){
+					$("#basicss").attr("checked","checked")
+				}else{
+					
+				}if(jsonobj.role_houses>0){
+					$("#housess").attr("checked","checked")
+				}else{
+					
+				}if(jsonobj.role_product>0){
+					$("#products").attr("checked","checked")
+				}else{
+					
+				}if(jsonobj.role_user>0){
+					$("#users").attr("checked","checked")
+				}else{
+					
+				}if(jsonobj.role_role>0){
+					$("#roles").attr("checked","checked")
+				}else{
+					
+				}if(jsonobj.role_order>0){
+					$("#orders").attr("checked","checked")
+				}else{
+					
+				}
+    		}  
+    })
+ }
+        
+        
+        
+       
+</script>
+
+</body>
+</html>

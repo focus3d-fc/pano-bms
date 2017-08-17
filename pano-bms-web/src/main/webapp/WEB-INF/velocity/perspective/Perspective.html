@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" href="/style/bootstrap.min-3.3.5.css" />
+    <link rel="stylesheet" href="/style/perspective/perspective.css">
+    <link rel="stylesheet" href="/component/upload/css/style.css">
+	<link rel="stylesheet" href="/component/upload/css/jquery.fileupload.css">
+    <script>
+       window.onload = function () {
+           var space = $.parseJSON('$!space');
+           house_style_sn = '$!house_style_sn';
+           for(var i=0;i<space.length;i++){
+               var li = $("<li></li>",{
+                   text:space[i].NAME,
+                   click:function(){
+                       query_view($(this).attr("id"));
+                   }
+               }).attr("id",space[i].SN);
+               $("#space_container").append(li);
+           }
+       }
+    </script>
+</head>
+
+<body>
+<div id="left-top">
+    <ul id="space_container" class="mar0pad0">
+        <div class="clr">
+        </div>
+    </ul>
+    <!--webGL begin-->
+    <div id="WebGl-Output" class="mar0pad0"></div>
+    <!--webGL end-->
+    <div id="view">
+        <ul id="view_container" class="mar0pad0">
+        </ul>
+        <button id="view_insert" class="btn glyphicon glyphicon-plus float_r mar_t10 mar_r10" data-toggle="modal"/>
+            <div class="clr"></div>
+    </div>
+
+    <div id="result" style="display:none">
+        <table id="product_result" class="table" style="width: 100%;font-size:16px;">
+            <caption style="font-weight:bold;text-align:center;line-height:40px;color:#000;">图元产品信息</caption>
+            <thead>
+            <th class="info">序号</th>
+            <th class="info">编号</th>
+            <th class="info">名称</th>
+            <th width="20%" class="info">默认显示</th>
+            </thead>
+            <tbody id="prodcut_container">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="layer">
+    <div id="layer_control">
+
+    </div>
+    <div id="element_control">
+    </div>
+</div>
+
+
+
+<div id="element_upload" style="position: absolute;left:900px;top:500px;display: none">
+    <div style="width:280px;height:300px;border:1px solid #ddd;display:block;margin:0 auto;">
+        <img id="element_pic" style="width:auto;height:auto;text-align:center;"/>
+    </div>
+
+    <div class="clearfix"></div>
+    <div style="margin-top:-190px;display:block;position:relative;">
+    <span class="btn btn-success fileinput-button" style="margin:20px 0px; margin-left:90px;">
+        <span>Add files...</span>
+        <input id="elementupload" type="file">
+    </span>
+        <div class="clearfix"></div>
+        <span style="display:block; text-align: left; margin-top:0px;text-align: center;">
+             <input id="elementpic_upload" class="btn btn-default" type="button" style="display:none" value="上传"/>
+    </span>
+        <div class="clearfix"></div>
+        <div id="element_progress" class="progress" style="width:280px;height:20px;margin-top:75px;text-align: center;">
+            <div class="progress-bar progress-bar-success"></div>
+        </div>
+
+    </div>
+
+
+    <input type="hidden" id="product_mapid"/>
+
+    <input type='range' id='product_scale' class='tip fill fill-replace' value='100' min='1' max='200' />
+    <div class="clearfix"></div>
+    <button id="elementProductUpdate" type="button" class="btn btn-info btn-lg btn-block" style="width:100px;float:left;margin-top:20px;display: none">保存</button>
+    <button id="elementProductClose" type="button" class="btn btn-default btn-lg btn-block"style="width:100px;float:right;margin-top:20px;">关闭</button>
+    <div class="clearfix"></div>
+
+</div>
+
+<div class="modal fade" id="view_entering" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                   	 视角信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form id="view_form" class="bs-example bs-example-form" role="form">
+                    <div class="input-group">
+                        <span class="input-group-addon">视角名称</span>
+                        <input name="viewName" id="viewName" type="text" class="form-control">
+                        <input name="sn" id="viewSn" type="hidden" />
+                        <input name="mapid" id="view_mapid" type="hidden"/>
+                    </div>
+                    <br>
+
+                    <br>
+                    <div class="input-group">
+
+                        <img id="view_pic" style="width:568px;height:300px;border:1px solid #ddd;display:block;margin:0 auto;"/>
+                        <div class="clearfix"></div>
+<div style="margin-top:-190px;margin-left:230px;display:block;position:relative;">
+
+                        <span class="btn btn-success fileinput-button" >
+					        <i class="glyphicon glyphicon-plus"></i>
+					        <span>Add files...</span>
+                            <!-- The file input field used as target for the file upload widget -->
+					        <input id="fileupload" type="file" multiple>
+					    </span>
+</div>
+
+                        <div class="input-group">
+                            <div id="progress" class="progress" style="width:568px;height:20px;margin-top:135px;">
+                                <div class="progress-bar progress-bar-success"></div>
+                            </div>
+
+                            <div id="files" class="files">
+
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <span style="margin:0 auto;display:block;text-align: center; margin-top:-158px;position:relative">
+                            <input id="viewpic_upload" class="btn btn-default" type="button" style="display: none" value="上传"/>
+                        </span>
+                    </div>
+                    
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" id="view_save" style="display:none">保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="layer_entering" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    层信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form id="layer_form" class="bs-example bs-example-form" role="form">
+                    <div class="input-group">
+                        <span class="input-group-addon">层名称</span>
+                        <input name="layerName" id="layerName" type="text" class="form-control">
+                        <input name="sn" id="layer_sn" type="hidden"/>
+                    </div>
+                    <br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" id="layer_save">保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="element_entering" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    图元信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form id="element_form" class="bs-example bs-example-form" role="form">
+                    <div class="input-group">
+                        <ul id="element_check_container">
+
+                        </ul>
+                    </div>
+                    <br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" id="element_save">保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/script/bootstrap.min-3.3.5.js"></script>
+<script type="text/javascript" src="/script/perspective/perspective.js"></script>
+<script type="text/javascript" src="/script/libs/three.js"></script>
+<script type="text/javascript" src="/script/libs/CanvasRenderer.js"></script>
+<script type="text/javascript" src="/script/libs/Projector.js"></script>
+<script src="/component/upload/vendor/jquery.ui.widget.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="/component/upload/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="/component/upload/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="/component/upload/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="/component/upload/js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="/component/upload/js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="/component/upload/js/jquery.fileupload-image.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="/component/upload/js/jquery.fileupload-validate.js"></script>
+</body>
+</html>

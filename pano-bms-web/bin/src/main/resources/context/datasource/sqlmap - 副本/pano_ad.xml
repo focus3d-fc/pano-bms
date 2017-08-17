@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="pano_ad">
+
+	<typeAlias alias="ads" type="com.focus3d.pano.model.pano_ad" />
+
+	<select id="getHousead" resultClass="ads">
+		select
+		SN,LINK,IMG_SN
+		from
+		pano_ad
+	</select>
+
+	<delete id="delHousead" parameterClass="Long">
+		delete from
+		pano_ad
+		where SN = #SN#
+	</delete>
+
+
+</sqlMap>

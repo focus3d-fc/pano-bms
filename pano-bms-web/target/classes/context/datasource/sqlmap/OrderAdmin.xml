@@ -58,8 +58,10 @@
 		pano_mem_user.NICK_NAME
 		FROM
 		pano_order
-		INNER JOIN pano_order_logtc ON pano_order_logtc.ORDER_SN = pano_order.SN
-		INNER JOIN pano_mem_user ON pano_mem_user.SN = pano_order.USER_SN
+		INNER JOIN pano_order_logtc ON pano_order_logtc.ORDER_SN =
+		pano_order.SN
+		INNER JOIN pano_mem_user ON pano_mem_user.SN =
+		pano_order.USER_SN
 		INNER JOIN pano_user_receive_address ON
 		pano_user_receive_address.USER_SN = pano_mem_user.SN
 		WHERE
@@ -82,29 +84,25 @@
 		parameterClass="OrderAdmin">
 		SELECT
 		pano_order.SN AS ORDER_SN,
+		pano_order.ORDER_TIME,
 		pano_order.`STATUS`,
 		pano_order.USER_SN,
 		pano_order.TOTAL_PRICE,
-		pano_order_logtc.SEND,
 		pano_mem_user.NICK_NAME,
-		pano_project.`NAME` AS PROJECT_NAME,
 		pano_project.SN AS PROJECT_SN,
-		pano_order.ORDER_TIME
+		pano_project.`NAME` AS PROJECT_NAME,
+		pano_order_logtc.SEND
 		FROM
 		pano_order
-		INNER JOIN pano_order_logtc ON pano_order.ORDER_NUM =
-		pano_order_logtc.ORDER_SN
-		INNER JOIN pano_mem_user ON
-		pano_order.USER_SN = pano_mem_user.SN
-		INNER JOIN pano_order_item ON
-		pano_order.ORDER_NUM =
-		pano_order_item.ORDER_NUM
-		INNER JOIN pano_product
-		ON pano_order_item.PRODUCT_SN = pano_product.SN
-		INNER JOIN
-		pano_project_style ON pano_product.STYLE_SN =
-		pano_project_style.SN
-		INNER JOIN pano_project ON pano_project_style.PROJECT_SN =
+		INNER JOIN pano_order_logtc ON pano_order.SN = pano_order_logtc.ORDER_SN
+		INNER JOIN pano_order_item ON pano_order_item.ORDER_SN = pano_order.SN
+		INNER JOIN pano_mem_user ON pano_order.USER_SN = pano_mem_user.SN
+		INNER JOIN pano_project_house_package ON
+		pano_order_item.HOUSE_PACKAGE_SN = pano_project_house_package.SN
+		INNER JOIN pano_project_house_style ON
+		pano_project_house_package.HOUSE_STYLE_SN =
+		pano_project_house_style.SN
+		INNER JOIN pano_project ON pano_project_house_style.PROJECT_SN =
 		pano_project.SN
 
 		<dynamic prepend="WHERE ">

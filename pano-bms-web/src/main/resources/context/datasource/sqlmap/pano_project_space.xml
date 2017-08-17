@@ -39,5 +39,9 @@
 		`NAME`=#NAME#
 		where SN = #SN#
 	</update>
-
+	
+	<select id="house_space" parameterClass="Long" resultClass="java.util.HashMap">
+      SELECT space.SN,space.NAME,space.HOUSE_SN FROM pano_project_house_style house_style LEFT JOIN pano_project_space SPACE ON house_style.HOUSE_SN = space.HOUSE_SN
+      where house_style.SN = #houseStyleSn#
+  	</select>
 </sqlMap>
