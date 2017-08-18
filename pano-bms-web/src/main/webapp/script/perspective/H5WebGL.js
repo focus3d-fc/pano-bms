@@ -279,7 +279,6 @@ function QueryPerspectiveInfoCallback(data){
 }
 
 function QueryViewAllProducts(data){
-    debugger;
     elementName = "element_"+data.elementSn;
     layerName = "layer_"+data.layerSn;
     productSn = data.productSn;

@@ -659,6 +659,11 @@ var WebGL = {
         this.edge = new THREE.EdgesHelper(element,0x1535f7);
         scene.add(this.edge);
     },
+    removeEdge:function () {
+        if(this.edge){
+            scene.remove(this.edge);
+        }
+    },
     ExchangeElementOrder:function (data) {
         var layer =  this.root.getObjectByName("layer_"+data.layerSn);
         var pre_element = layer.getObjectByName("element_"+data.pre);
@@ -682,6 +687,7 @@ var WebGL = {
     },
 	delete:function(parent,element){
     	parent.remove(element);
+        this.removeEdge();
 	}
 }
 //页面默认初始化方法

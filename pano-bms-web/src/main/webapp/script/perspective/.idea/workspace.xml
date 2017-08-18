@@ -4,8 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/perspective.js" line="39" />
     <bookmark url="file://$PROJECT_DIR$/perspective.js" line="279" />
     <bookmark url="file://$PROJECT_DIR$/perspective.js" line="609" />
-    <bookmark url="file://$PROJECT_DIR$/perspective.js" line="914" />
-    <bookmark url="file://$PROJECT_DIR$/perspective.js" line="750" />
+    <bookmark url="file://$PROJECT_DIR$/perspective.js" line="920" />
+    <bookmark url="file://$PROJECT_DIR$/perspective.js" line="756" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e9efdb4-7a7f-44f9-8023-c6c01e5a929f" name="Default" comment="" />
@@ -28,21 +28,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="perspective.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="perspective.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/perspective.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="819" column="43" lean-forward="true" selection-start-line="819" selection-start-column="43" selection-end-line="819" selection-end-column="43" />
+            <state relative-caret-position="395">
+              <caret line="679" column="44" lean-forward="false" selection-start-line="679" selection-start-column="44" selection-end-line="679" selection-end-column="44" />
               <folding>
                 <element signature="n#!!block;n#createView#0" expanded="false" />
                 <element signature="n#!!block;n#View#0" expanded="false" />
                 <element signature="n#!!block;n#Layer#0" expanded="false" />
                 <element signature="n#!!block;n#Element#0" expanded="false" />
-                <element signature="e#12652#20519#0" expanded="false" />
-                <element signature="e#20544#24431#0" expanded="false" />
+                <element signature="e#20677#24564#0" expanded="false" />
                 <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
+                <element signature="n#!!block;n#query_view#0" expanded="false" />
                 <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-                <element signature="e#25721#28865#0" expanded="false" />
+                <element signature="e#25854#28998#0" expanded="false" />
                 <element signature="n#!!block;n#query_layer#0" expanded="false" />
                 <element signature="n#!!block;n#query_element#0" expanded="false" />
                 <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -119,11 +119,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="H5WebGL.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="H5WebGL.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/H5WebGL.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="280" column="35" lean-forward="false" selection-start-line="280" selection-start-column="35" selection-end-line="280" selection-end-column="35" />
+            <state relative-caret-position="271">
+              <caret line="280" column="36" lean-forward="false" selection-start-line="280" selection-start-column="36" selection-end-line="280" selection-end-column="36" />
               <folding>
                 <element signature="e#172#8730#0" expanded="false" />
                 <element signature="e#331#428#0" expanded="false" />
@@ -144,7 +144,6 @@
                 <element signature="e#8689#8728#0" expanded="false" />
                 <element signature="n#!!block;n#QueryPerspectiveInfo#0" expanded="false" />
                 <element signature="n#!!block;n#QueryPerspectiveInfoCallback#0" expanded="false" />
-                <element signature="n#!!block;n#QueryViewAllProducts#0" expanded="false" />
                 <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
                 <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
                 <element signature="n#!!block;n#ExchangeProduct#0" expanded="false" />
@@ -196,10 +195,10 @@
         <option value="$PROJECT_DIR$/../../style/h5static/js/H5WebGL.js" />
         <option value="$PROJECT_DIR$/../../style/h5static/html/pro.html" />
         <option value="$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html" />
-        <option value="$PROJECT_DIR$/H5WebGL.js" />
-        <option value="$PROJECT_DIR$/perspective.js" />
         <option value="$PROJECT_DIR$/../../style/perspective/perspective.css" />
         <option value="$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html" />
+        <option value="$PROJECT_DIR$/perspective.js" />
+        <option value="$PROJECT_DIR$/H5WebGL.js" />
       </list>
     </option>
   </component>
@@ -338,12 +337,12 @@
       <workItem from="1502760396905" duration="40208000" />
       <workItem from="1502846097689" duration="40959000" />
       <workItem from="1502934406113" duration="17569000" />
-      <workItem from="1503031181068" duration="14348000" />
+      <workItem from="1503031181068" duration="14569000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="202977000" />
+    <option name="totallyTimeSpent" value="203198000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -384,7 +383,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -398,11 +397,11 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12652#20519#0" expanded="false" />
-            <element signature="e#20544#24431#0" expanded="false" />
+            <element signature="e#20677#24564#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
+            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25721#28865#0" expanded="false" />
+            <element signature="e#25854#28998#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -494,7 +493,6 @@
             <element signature="e#8689#8728#0" expanded="false" />
             <element signature="n#!!block;n#QueryPerspectiveInfo#0" expanded="false" />
             <element signature="n#!!block;n#QueryPerspectiveInfoCallback#0" expanded="false" />
-            <element signature="n#!!block;n#QueryViewAllProducts#0" expanded="false" />
             <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
             <element signature="n#!!block;n#ExchangeProduct#0" expanded="false" />
@@ -512,11 +510,11 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12652#20519#0" expanded="false" />
-            <element signature="e#20544#24431#0" expanded="false" />
+            <element signature="e#20677#24564#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
+            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25721#28865#0" expanded="false" />
+            <element signature="e#25854#28998#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -585,11 +583,11 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12652#20519#0" expanded="false" />
-            <element signature="e#20544#24431#0" expanded="false" />
+            <element signature="e#20677#24564#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
+            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25721#28865#0" expanded="false" />
+            <element signature="e#25854#28998#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -648,11 +646,11 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12652#20519#0" expanded="false" />
-            <element signature="e#20544#24431#0" expanded="false" />
+            <element signature="e#20677#24564#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
+            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25721#28865#0" expanded="false" />
+            <element signature="e#25854#28998#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -711,11 +709,11 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12652#20519#0" expanded="false" />
-            <element signature="e#20544#24431#0" expanded="false" />
+            <element signature="e#20677#24564#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
+            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25721#28865#0" expanded="false" />
+            <element signature="e#25854#28998#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -774,11 +772,11 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12652#20519#0" expanded="false" />
-            <element signature="e#20544#24431#0" expanded="false" />
+            <element signature="e#20677#24564#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
+            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25721#28865#0" expanded="false" />
+            <element signature="e#25854#28998#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -837,11 +835,11 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12652#20519#0" expanded="false" />
-            <element signature="e#20544#24431#0" expanded="false" />
+            <element signature="e#20677#24564#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
+            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25721#28865#0" expanded="false" />
+            <element signature="e#25854#28998#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -900,11 +898,11 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12652#20519#0" expanded="false" />
-            <element signature="e#20544#24431#0" expanded="false" />
+            <element signature="e#20677#24564#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
+            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25721#28865#0" expanded="false" />
+            <element signature="e#25854#28998#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -963,11 +961,11 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12652#20519#0" expanded="false" />
-            <element signature="e#20544#24431#0" expanded="false" />
+            <element signature="e#20677#24564#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
+            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25721#28865#0" expanded="false" />
+            <element signature="e#25854#28998#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -1026,11 +1024,11 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12652#20519#0" expanded="false" />
-            <element signature="e#20544#24431#0" expanded="false" />
+            <element signature="e#20677#24564#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
+            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25721#28865#0" expanded="false" />
+            <element signature="e#25854#28998#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -1089,39 +1087,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/H5WebGL.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="280" column="35" lean-forward="false" selection-start-line="280" selection-start-column="35" selection-end-line="280" selection-end-column="35" />
-          <folding>
-            <element signature="e#172#8730#0" expanded="false" />
-            <element signature="e#331#428#0" expanded="false" />
-            <element signature="e#461#2014#0" expanded="false" />
-            <element signature="e#2047#2954#0" expanded="false" />
-            <element signature="e#2987#3873#0" expanded="false" />
-            <element signature="e#3905#3974#0" expanded="false" />
-            <element signature="e#4006#4096#0" expanded="false" />
-            <element signature="e#4135#4594#0" expanded="false" />
-            <element signature="e#4634#5137#0" expanded="false" />
-            <element signature="e#5180#6342#0" expanded="false" />
-            <element signature="e#6384#7134#0" expanded="false" />
-            <element signature="e#7174#7227#0" expanded="false" />
-            <element signature="e#7254#7475#0" expanded="false" />
-            <element signature="e#7506#7674#0" expanded="false" />
-            <element signature="e#7717#8207#0" expanded="false" />
-            <element signature="e#8248#8652#0" expanded="false" />
-            <element signature="e#8689#8728#0" expanded="false" />
-            <element signature="n#!!block;n#QueryPerspectiveInfo#0" expanded="false" />
-            <element signature="n#!!block;n#QueryPerspectiveInfoCallback#0" expanded="false" />
-            <element signature="n#!!block;n#QueryViewAllProducts#0" expanded="false" />
-            <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
-            <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
-            <element signature="n#!!block;n#ExchangeProduct#0" expanded="false" />
-            <element signature="n#!!block;n#ExchangeView#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -1161,18 +1126,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/perspective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="819" column="43" lean-forward="true" selection-start-line="819" selection-start-column="43" selection-end-line="819" selection-end-column="43" />
+        <state relative-caret-position="395">
+          <caret line="679" column="44" lean-forward="false" selection-start-line="679" selection-start-column="44" selection-end-line="679" selection-end-column="44" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12652#20519#0" expanded="false" />
-            <element signature="e#20544#24431#0" expanded="false" />
+            <element signature="e#20677#24564#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
+            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25721#28865#0" expanded="false" />
+            <element signature="e#25854#28998#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -1201,6 +1166,38 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/H5WebGL.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="280" column="36" lean-forward="false" selection-start-line="280" selection-start-column="36" selection-end-line="280" selection-end-column="36" />
+          <folding>
+            <element signature="e#172#8730#0" expanded="false" />
+            <element signature="e#331#428#0" expanded="false" />
+            <element signature="e#461#2014#0" expanded="false" />
+            <element signature="e#2047#2954#0" expanded="false" />
+            <element signature="e#2987#3873#0" expanded="false" />
+            <element signature="e#3905#3974#0" expanded="false" />
+            <element signature="e#4006#4096#0" expanded="false" />
+            <element signature="e#4135#4594#0" expanded="false" />
+            <element signature="e#4634#5137#0" expanded="false" />
+            <element signature="e#5180#6342#0" expanded="false" />
+            <element signature="e#6384#7134#0" expanded="false" />
+            <element signature="e#7174#7227#0" expanded="false" />
+            <element signature="e#7254#7475#0" expanded="false" />
+            <element signature="e#7506#7674#0" expanded="false" />
+            <element signature="e#7717#8207#0" expanded="false" />
+            <element signature="e#8248#8652#0" expanded="false" />
+            <element signature="e#8689#8728#0" expanded="false" />
+            <element signature="n#!!block;n#QueryPerspectiveInfo#0" expanded="false" />
+            <element signature="n#!!block;n#QueryPerspectiveInfoCallback#0" expanded="false" />
+            <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
+            <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
+            <element signature="n#!!block;n#ExchangeProduct#0" expanded="false" />
+            <element signature="n#!!block;n#ExchangeView#0" expanded="false" />
           </folding>
         </state>
       </provider>
