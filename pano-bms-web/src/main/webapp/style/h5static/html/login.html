@@ -14,54 +14,54 @@
 <body>
 <div class="container">
     <!--头-->
+    <header class="header">
+        <a href="#" class="back">
+            <i class="iconfont">&#xe6bc;</i>
+            返回
+        </a>
+        <p class="title">个人中心</p>
+        <a href="#" class="share">
+            <i class="iconfont">&#xe622;</i>
+        </a>
+    </header>
     <!--头像-->
     <section class="my-bg login-bg">
-        <div class="my-content">
-            <img src="../image/img/tx.png" alt="">
-            <p class="login">
-                <a class="login_register" onclick="$('.wrap').show();">点击登录</a>
-            </p>
-        </div>
-
-
+        <img src="../image/img/tx.png" alt="">
+        <p class="login">
+            <a class="login_register" onclick="$('.wrap').show();">点击登录</a>
+        </p>
     </section>
     <!--订单-->
     <section class="order">
         <p class="title">我的订单</p>
         <div class="order-statu">
-            <a href="javascript:;">
-                <img src="../image/img/36.png" alt="">
+            <a href="#">
+                <i class="iconfont">&#xe64d;</i>
                 <p>全部订单</p>
             </a>
-            <a  href="javascript:;">
-                <img src="../image/img/34.png" alt="">
-                <p>待付款</p>
+            <a href="#">
+                <i class="iconfont">&#xe627;</i>
+                <p>代付款</p>
             </a>
-            <a  href="javascript:;">
-                <img src="../image/img/35.png" alt="">
+            <a href="#">
+                <i class="iconfont">&#xe600;</i>
                 <p>已付款</p>
             </a>
         </div>
         <div class="my-order">
-            <a  href="javascript:;">
-                <img src="../image/img/39.png"  alt="">
-                <p>收货地址</p>
-                <img src="../image/img/28.png"  alt="">
-            </a>
+            <i class="iconfont">&#xe61e;</i>
+            <span>收货地址</span>
+            <i class="iconfont fr">&#xe6c7;</i>
         </div>
         <div class="my-order">
-            <a  href="javascript:;">
-                <img src="../image/img/40.png"  alt="">
-                <p>联系我们</p>
-                <img src="../image/img/28.png"  alt="">
-            </a>
+            <i class="iconfont">&#xe60b;</i>
+            <span>联系我们</span>
+            <i class="iconfont fr">&#xe6c7;</i>
         </div>
         <div class="my-order">
-            <a  href="javascript:;">
-                <img src="../image/img/38.png"  alt="">
-                <p>实名认证</p>
-                <img src="../image/img/28.png"  alt="">
-            </a>
+            <i class="iconfont">&#xe603;</i>
+            <span>实名认证</span>
+            <i class="iconfont fr">&#xe6c7;</i>
         </div>
     </section>
 </div>
@@ -74,13 +74,13 @@
                 <i class=" iconfont fr"  onclick="$('.wrap').hide();">&#xe64e;</i>
             </div>
             <div class="row">
-                <img src="../image/img/29.png" alt="">
+                <i class=" iconfont">&#xe61b;</i>
                 <input type="tel" placeholder="请输入手机号" id="j_phone">
             </div>
             <div class="row">
-                <img src="../image/img/31.png" alt="">
+                <i class=" iconfont">&#xe66f;</i>
                 <input type="text" placeholder="验证码">
-                <span id="j_getVerifyCode">发送验证码</span>
+                <span id="j_getVerifyCode">获取验证码</span>
             </div>
             <button type="submit">立即登录</button>
             <div class="line">

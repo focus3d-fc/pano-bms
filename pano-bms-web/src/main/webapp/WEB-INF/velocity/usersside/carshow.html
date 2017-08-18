@@ -5,126 +5,147 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <title>购物车</title>
-    <link rel="stylesheet" href="/style/admstatic/css/bass.css">
-    <link rel="stylesheet" href="/style/admstatic/css/index.css">
-    <script src="/style/admstatic/lib/zepto.js"></script>
-    <script src="/style/admstatic/js/main.js"></script>
+    <link rel="stylesheet" href="/style/h5static/css/bass.css">
+    <link rel="stylesheet" href="/style/h5static/css/index.css">
+
+    <script src="/style/h5static/js/main.js"></script>
 </head>
 <body>
 <div class="container car se720">
-    <!--头-->
-    <header class="header">
-        <a href="#" class="back">
-            <i class="iconfont">&#xe6bc;</i>
-            返回
-        </a>
-        <p class="title">购物车</p>
-        <a href="#" class="share">
-            <i class="iconfont">&#xe622;</i>
-        </a>
-    </header>
+
     <!--订单-->
     <section class="order-items">
         <div class="order-item">
             <div class="title">
               <span>
                   <i class="iconfont">&#xe71f;</i>
-                  基础套餐
+                  $!{addToCarList[0].house_name}-基础套餐
               </span>
             </div>
             <div class="cont">
-                <div class="choose">
-                    <input type="radio" >
+                <div class="choose" id="chooseId" 
+                name="choose" data-myid="$!{addToCarList[0].package_price}">
                 </div>
-                <a href="#"><img src="/style/admstatic/image/image/2.jpg" ></a>
+                <a href="#"><img src="$!fs.url($!{addToCarList[0].package_img_sn})" ></a>
                 <div class="detail">
-                    <a href="#"><p>简约现代大会议桌现代风格套餐A带实木全套</p></a>
-                    <p >户型：三室量两厅</p>
-                    <p class="red">￥26000 <s class="col"> ￥26000</s></p>
+                    <a href="#"><p>$!{addToCarList[0].style_name}$!{addToCarList[0].house_name}$!{addToCarList[0].package_name}</p></a>
+                    <p >户型：$!{addToCarList[0].house_name}</p>
+                    <p class="red">￥$!{addToCarList[0].package_price} <s class="col"> ￥$!{addToCarList[0].package_discount_price}</s></p>
                 </div>
             </div>
         </div>
         <div class="pro-show">
-            <div class="pro-raw">
+             #foreach ($!{packageType} in $!{packageTypeList})
                 <div class="left">
-                    <a href="/userside/topro">
-                        <img src="/style/admstatic/image/image/sofa111.png" alt="">
+                    <a href="/usersSide/topro?packageType_sn=$!{packageType.SN}">
+<img src="$!fs.url($!{packageType.productList[0].fullImgSn})" alt="">
                         <div class="de">
-                            <p>北欧风格沙发</p>
-                            <p class="col">2100*15*21</p>
-                            <p>黄色 *1</p>
+                            <p>$!{packageType.productList[0].name}</p>
+<p class="col">$!{packageType.productList[0].length}*$!{packageType.productList[0].wide}*$!{packageType.productList[0].height}</p>
+                            <p>$!{packageType.productList[0].color} *1</p>
                         </div>
                     </a>
                 </div>
-                <div class="left">
-                    <a href="/userside/topro">
-                        <img src="/style/admstatic/image/image/sofa111.png" alt="">
-                        <div class="de">
-                            <p>北欧风格沙发</p>
-                            <p class="col">2100*15*21</p>
-                            <p>黄色 *1</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="pro-raw">
-                <div class="left">
-                    <a href="/userside/topro">
-                        <img src="/style/admstatic/image/image/sofa111.png" alt="">
-                        <div class="de">
-                            <p>北欧风格沙发</p>
-                            <p class="col">2100*15*21</p>
-                            <p>黄色 *1</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="left">
-                    <a href="/userside/topro">
-                        <img src="/style/admstatic/image/image/sofa111.png" alt="">
-                        <div class="de">
-                            <p>北欧风格沙发</p>
-                            <p class="col">2100*15*21</p>
-                            <p>黄色 *1</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
+                #end
+
         </div>
         <div class="total show">
-            <a href="/userside/tocar">
+            <a href="/usersSide/tocar">
                 点击收起 <i class="iconfont">&#xe60c;</i>
             </a>
         </div>
 
         <nav class="nav">
-            <a href="#"  id="tcshow">
+            <a href="/usersSide/to720_tc"  id="tcshow">
                 <i class="iconfont ">&#xe71f;</i>
                 <p>套餐</p>
             </a>
-            <a href="#" id="fjshow">
+            <a href="/usersSide/to720_space" id="fjshow">
                 <i class="iconfont">&#xe614;</i>
                 <p>房间</p>
             </a>
-            <a href="#" id="hxshow">
+            <a href="/usersSide/to720_unit" id="hxshow">
                 <i class="iconfont">&#xe759;</i>
                 <p>户型</p>
             </a>
-            <a href="#" class="on">
+            <a href="/usersSide/tocar" class="on">
                 <i class="iconfont">&#xe664;</i>
                 <p>购物车</p>
             </a>
         </nav>
     </section>
     <div class="car-total">
-        <div class="choose">
-            <input type="radio" >
-        </div>
-        <p>合计：<span class="red">1400</span></p>
-        <div class="button">
-            <a href="/userside/toconfirm">结算</a>
-        </div>
+    <!-- 这个全选按钮没必要用 （只有一个）-->
+        <!-- <div class="choose" id="choose_all" data-myid="0">
+        </div> -->
+        <p>合计：<span class="red" id="price_sum"></span></p>
+
+        <!-- <a href="/usersSide/toconfirm?package_sn=$!{addToCarList[0].package_sn}"
+         class="button">结算</a> -->
+         <span id="submit"
+         class="button">结算</span>
+
     </div>
 </div>
+<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
+<script>
+    $("#submit").click(function () {
+    var path=window.document.location.href.substring(0,window.document.location.href.indexOf(window.document.location.pathname));
+	  if($("#chooseId").hasClass("imgChoose")){
+		  var total_price=$("#price_sum").html();
+		  $.ajax({
+				url:path+"/usersSide/toconfirm",
+				type:"post",
+				data:{"house_package_sn":$!{addToCarList[0].house_package_sn},"total_price_":total_price},
+				datatype:"json",
+				success:function(result){
+				   var msg=JSON.parse(result);
+				   console.log("进入success");
+				   location.href="/usersSide/toconfirm_YM";
+					
+				}
+			});
+		  
+	  } 
+    }); 
+    $(function(){
+        $('.choose').click(function () {
+        	console.log("选中按钮");
+            $(this).toggleClass("imgChoose");
+            //获取价格
+            var chooseArr = document.getElementsByName("choose");
+            var lengths=chooseArr.length;
+            //console.log("1.集合长度："+lengths);
+            var chooseArr_ed = document.getElementsByClassName("imgChoose");
+            
+            //全选        // var name=$( this ).prop("className");获取类名
+                    // $(this).hasClass("imgChoose")//是否包含imgChoose类
+             if($("#choose_all").hasClass("imgChoose")){//点击全选，选中全部
+            	console.log("点击全选按钮，选中全部");
+            	for(var i=0;i<chooseArr.length;i++){
+            		if($(chooseArr[i]).hasClass("imgChoose")==false){
+            			$(chooseArr[i]).toggleClass("imgChoose");
+                	}
+                }
+            } 
+            //计算选中的套餐总价
+             var sum=0;
+             for(var i=0;i<chooseArr_ed.length;i++){
+             	var price=parseFloat(chooseArr_ed[i].dataset.myid);
+             	sum=sum+price;
+             }
+             $("#price_sum").html("￥"+sum);
+            
+             
+        });
+        
+         
+        
+        
+        
+        
+    })
 
+</script>
 </body>
 </html>

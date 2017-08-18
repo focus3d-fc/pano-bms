@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -18,14 +17,15 @@
     <link rel="stylesheet" href="/style/h5static/css/bass.css">
     <link rel="stylesheet" href="/style/h5static/css/index.css">
     <link rel="stylesheet" href="/style/h5static/lib/swiper/swiper.min.css">
-     <script src="/style/h5static/js/main.js"></script>
-    <script src="/style/h5static/js/jquery-1.11.1.min.js"></script>
+    <script src="/style/h5static/js/main.js"></script>
+     <script src="/style/h5static/js/jquery-1.11.1.min.js"></script>
      <script src="/style/h5static/js/pano.js"></script>
      <style>
             @-ms-viewport { width:device-width;}
             @media only screen and (min-device-width:800px) { html { overflow:hidden; } }
             html { height:100%; }
             body { height:100%; overflow:hidden; margin:0; padding:0; font-family:微软雅黑, Arial, Helvetica, sans-serif; font-size:16px; color:#FFFFFF; background-color:#000000; }
+       		.bd-r2 {width: 95.5px; margin-right: 10px;}
         </style>
 </head>
 <body>
@@ -33,39 +33,56 @@
 		<div id="pano" style="width:100%;height:100%;">
 			<!-- 这里是全景显示区域 -->
 		</div>
-			<div id="scrollAreas" style="position: absolute;bottom: 100px;left: 100px;width: 100%;height: 50px;"></div> 
+			<div id="scrollArea" style="position: absolute;bottom: 100px;left: 100px;width:100%;height: 50px;"></div> 
 <div class="container se720">
+
     <!--场景-->
-    <section class="hide"  id="pano" >
-        <p class="location">客厅</p>
+    <section class="hide">
+        <p class="location location3">客厅</p>
+        <div class="re-box">
+             <span class="rd">
+                 壁柜
+             </span>
+            <div class="rd-show">
+                <p>产品：<span>xx壁柜</span></p>
+                <p>材质：<span>实木</span></p>
+                <p>颜色：<span>黄</span></p>
+                <p>参数：<span>800*20*60</span></p>
+                <p>货号：<span>SB311</span></p>
+                <img src="/style/h5static/image/image/5.jpg" alt="">
+                <a class="shopDetail" href="pro.html">查看详情</a>
+
+            </div>
+        </div>
+
         <nav class="nav">
-             <a href="/usersSide/to720_tc"  id="tcshow">
+            <a href="#"  id="tcshow">
                 <img src="/style/h5static/image/img/18.png" alt="">
                 <p>套餐</p>
             </a>
-            <a href="/usersSide/to720_space" id="fjshow">
+            <a href="#" id="fjshow">
                 <img src="/style/h5static/image/img/13.png" alt="">
                 <p>房间</p>
             </a>
             <a href="#" id="hxshow">
-                <div class="img"></div>
-                <p class="bbColor">户型</p>
+                <img src="/style/h5static/image/img/25.png" alt="">
+                <p>户型</p>
             </a>
-          <a href="/usersSide/tocar">
+            <a href="/usersSide/tocar" >
                 <img src="/style/h5static/image/img/20.png" alt="">
                 <p>购物车</p>
             </a>
         </nav>
     </section>
-
-    <!--户型弹窗-->
-    <div id="hx" >
-        <div class="swiper-container swiper3">
-            <div class="swiper-wrapper">
-            </div>
-        </div>
-    </div>
-</div><!-- 这里styleId是动态数据，模拟从h5首页点击风格打开一个默认的全景 -->
+     		<!--户型弹窗-->
+    			<div id="hx" >
+					<div class="swiper-container swiper3">
+						<div class="swiper-wrapper">
+          			  	</div>
+					</div>
+	  		   </div>
+</div>
+<!-- 这里styleId是动态数据，模拟从h5首页点击风格打开一个默认的全景 -->
         <input type="hidden" id="styleId" value="$!{style_id}"/>
         <!-- 变量，js里面用到 -->
         <input type="hidden" id="houseId"/>
@@ -75,7 +92,15 @@
 <script src="/style/h5static/lib/jQuery/jquery-3.2.1.min.js"></script>
 <script src="/style/h5static/lib/swiper/swiper.jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
+	alert();
+    $(function(){
+       $('.rd').click(function () {
+           $(this).hide();
+           $('.rd-show').show();
+       })
+    })
+    
+     $(document).ready(function () {
         var Swiper1 = new Swiper('.swiper1',{
             autoplayStopOnLast:true,
             slidesPerView : 5,
@@ -98,15 +123,74 @@
 
 
     $(function(){
+        debugger;
         $("a[id='hxshow']").click(function () {
-            $('#hx').toggle();
-            $(this).toggleClass('active')
-            $('.location').toggleClass('show')
-        })
+        	var status = $(this).attr("status");
+    		console.info(status);
+    		if(!status || status == 0){
+    			$('#hx').show();
+    			$(this).attr("status", 1);
+    		} else {
+    			$('#hx').hide();
+    			$(this).attr("status", 0);
+    		}
+            $(this).toggleClass('active');
+            getHouse();
+        });
         $('#hx').find('a').click(function () {
             $(this).toggleClass('active');
         })
     })
+    
+    
+    
+     $(function(){
+        $("a[id='fjshow']").click(function () {
+        	var status = $(this).attr("status");
+    		console.info(status);
+    		if(!status || status == 0){
+    			$('#hx').show();
+    			$(this).attr("status", 1);
+    		} else {
+    			$('#hx').hide();
+    			$(this).attr("status", 0);
+    		}
+            $(this).toggleClass('active');
+            
+            //全景id
+        	var panoId = $("#panoId").val();
+        	console.info("套餐ID"+houseId);
+            getFjshow(panoId);
+        });
+        $('#hx').find('a').click(function () {
+            $(this).toggleClass('active');
+        })
+    })
+    
+    
+    
+    $(function(){
+        $("a[id='tcshow']").click(function () {
+        	var status = $(this).attr("status");
+    		console.info(status);
+    		if(!status || status == 0){
+    			$('#hx').show();
+    			$(this).attr("status", 1);
+    		} else {
+    			$('#hx').hide();
+    			$(this).attr("status", 0);
+    		}
+            $(this).toggleClass('active');
+            var houseId = $("#houseId").val();
+            console.info("户型ID"+houseId);
+            getTcshow(houseId);
+        });
+        $('#hx').find('a').click(function () {
+            $(this).toggleClass('active');
+        })
+    })
+    
 </script>
 </body>
+
 </html>

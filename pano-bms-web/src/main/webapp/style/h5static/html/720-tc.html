@@ -5,33 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <title>720</title>
-    <link rel="stylesheet" href="../css/bass.css">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../lib/swiper/swiper.min.css">
-    <script src="../js/main.js"></script>
+    <link rel="stylesheet" href="./css/bass.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./lib/swiper/swiper.min.css">
+    <script src="./js/main.js"></script>
+     <script src="./js/jquery-1.11.1.min.js"></script>
+     <script src="./js/pano.js"></script>
+     
+     <style>
+            @-ms-viewport { width:device-width;}
+            @media only screen and (min-device-width:800px) { html { overflow:hidden; } }
+            html { height:100%; }
+            body { height:100%; overflow:hidden; margin:0; padding:0; font-family:微软雅黑, Arial, Helvetica, sans-serif; font-size:16px; color:#FFFFFF; background-color:#000000; }
+        </style>
 </head>
 <body>
+<script src="./js/pano.js"></script>
+<div id="pano" style="width:100%;height:100%;">
+			<!-- 这里是全景显示区域 -->
+		</div>
+		
+		<div id="scrollArea" style="position: absolute;bottom: 100px;left: 100px;width: 100%;height: 50px;">
+		</div>
 <div class="container se720">
 
     <!--场景-->
     <section class="hide">
-        <img src="../image/image/720.png" alt="">
         <p class="location location2">客厅</p>
         <nav class="nav">
             <a href="#"  id="tcshow" >
                 <div class="img"></div>
                 <p class="bbColor">套餐</p>
             </a>
-            <a href="720-space.html" id="fjshow">
-                <img src="../image/img/13.png" alt="">
+            <a href="./720-space.html" id="fjshow">
+                <img src="./image/img/13.png" alt="">
                 <p>房间</p>
             </a>
-            <a href="720-unit.html" id="hxshow">
-                <img src="../image/img/25.png" alt="">
+            <a href="./720-unit.html" id="hxshow">
+                <img src="./image/img/25.png" alt="">
                 <p>户型</p>
             </a>
-            <a href="car.html">
-                <img src="../image/img/20.png" alt="">
+            <a href="./car.html">
+                <img src="./image/img/20.png" alt="">
                 <p>购物车</p>
             </a>
         </nav>
@@ -42,37 +57,37 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <a href="#">
-                        <img src="../image/img/26.png" alt="">
+                        <img src="./image/img/26.png" alt="">
                         <p>基础套餐</p>
                     </a>
                 </div>
                 <div class="swiper-slide">
                     <a href="#">
-                        <img src="../image/img/22.png" alt="">
+                        <img src="./image/img/22.png" alt="">
                         <p>灯具</p>
                     </a>
                 </div>
                 <div class="swiper-slide">
                     <a href="#">
-                        <img src="../image/img/26.png" alt="">
+                        <img src="./image/img/26.png" alt="">
                         <p>床</p>
                     </a>
                 </div>
                 <div class="swiper-slide">
                     <a href="#">
-                        <img src="../image/img/24.png" alt="">
+                        <img src="./image/img/24.png" alt="">
                         <p>柜子</p>
                     </a>
                 </div>
                 <div class="swiper-slide">
                     <a href="#">
-                        <img src="../image/img/23.png" alt="">
+                        <img src="./image/img/23.png" alt="">
                         <p>窗帘</p>
                     </a>
                 </div>
                 <div class="swiper-slide">
                     <a href="#">
-                        <img src="../image/img/23.png" alt="">
+                        <img src="./image/img/23.png" alt="">
                         <p>窗帘</p>
                     </a>
                 </div>
@@ -82,8 +97,16 @@
 
 </div>
 
-<script src="../lib/jQuery/jquery-3.2.1.min.js"></script>
-<script src="../lib/swiper/swiper.jquery.min.js"></script>
+ <!-- 这里styleId是动态数据，模拟从h5首页点击风格打开一个默认的全景 -->
+        <input type="hidden" id="styleId" value="1"/>
+        <!-- 变量，js里面用到 -->
+        <input type="hidden" id="houseId"/>
+        <input type="hidden" id="panoId"/>
+        <!-- 对接的js文件 -->
+        <script src="./js/pano_hotspot.js"></script>
+<script src="./lib/jQuery/jquery-3.2.1.min.js"></script>
+<script src="./lib/swiper/swiper.jquery.min.js"></script>
+
 <script>
     $(document).ready(function () {
         var Swiper1 = new Swiper('.swiper-container',{

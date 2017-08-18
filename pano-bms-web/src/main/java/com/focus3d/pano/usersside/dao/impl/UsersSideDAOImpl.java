@@ -6,12 +6,17 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.focus3d.pano.admin.dao.impl.BaseDao;
+import com.focus3d.pano.model.AddToCar;
 import com.focus3d.pano.model.Lable;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoProjectPackageType;
+import com.focus3d.pano.model.Pano_Order_Shopcart;
+import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.Style;
-import com.focus3d.pano.model.User;
 import com.focus3d.pano.model.pano_mem_user;
+import com.focus3d.pano.model.pano_order;
+import com.focus3d.pano.model.pano_order_item;
+import com.focus3d.pano.model.pano_order_logtc;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
 import com.focus3d.pano.model.pano_project_space;
@@ -118,6 +123,113 @@ public class UsersSideDAOImpl  extends BaseDao implements UsersSideDAO{
 				queryForList("list_selectPackageTypeListByPackage_Sn",package_sn);
 		return packageTypeList;
 	}
+
+	@Override
+	public List<PanoProjectPackage> get_selectPackageByPackage_sn(
+			long package_sn) {
+		List<PanoProjectPackage> packageList_only=(List<PanoProjectPackage>) getSqlMapClientTemplate().
+				queryForList("get_selectPackageByPackage_sn",package_sn);
+		return packageList_only;
+	}
+
+	@Override
+	public List<AddToCar> get_selectAddToCar(long package_sn) {
+		List<AddToCar> addToCarList_only=(List<AddToCar>) getSqlMapClientTemplate().
+				queryForList("get_selectAddToCar",package_sn);
+		return addToCarList_only;
+	}
+
+	@Override
+	public void add_ShopCar(Pano_Order_Shopcart shopcart) {
+		getSqlMapClientTemplate().insert("add_ShopCar",shopcart);
+	}
+	@Override
+	public List<AddToCar> get_selectAddToCar2(long user_sn) {
+		List<AddToCar> addToCarList_only2=(List<AddToCar>) getSqlMapClientTemplate().
+				queryForList("get_selectAddToCar2",user_sn);
+		return addToCarList_only2;
+	}
+
+	@Override
+	public List<Product> list_selectProductListByPAT_sn(long packageType_sn) {
+		List<Product> PanoProductList=(List<Product>) getSqlMapClientTemplate().
+				queryForList("list_selectProductListByPAT_sn",packageType_sn);
+		return PanoProductList;
+	}
+
+	@Override
+	public List<Product> list_selectProductByPackageType_sn(long packageType_sn) {
+		List<Product> productList_pro=(List<Product>) getSqlMapClientTemplate().
+				queryForList("list_selectProductByPackageType_sn",packageType_sn);
+		return productList_pro;
+	}
+
+	@Override
+	public List<AddToCar> selectCarByPackage_sn(long package_sn) {
+		List<AddToCar> packageList_only=(List<AddToCar>) getSqlMapClientTemplate().
+				queryForList("selectCarByPackage_sn",package_sn);
+		return packageList_only;
+	}
+
+	@Override
+	public void delete_shopCarByHouse_package_sn(long house_package_sn) {
+		getSqlMapClientTemplate().
+		    delete("delete_shopCarByHouse_package_sn",house_package_sn);
+	}
+
+	@Override
+	public List<pano_order_item> list_selectProductListByPackage_sn(
+			long package_sn) {
+		List<pano_order_item> itemList=(List<pano_order_item>) getSqlMapClientTemplate().
+				queryForList("list_selectProductListByPackage_sn",package_sn);
+		return itemList;
+	}
+
+	@Override
+	public void insert_item(pano_order_item item) {
+		System.out.println("1.DAOImpl:item");
+		getSqlMapClientTemplate().insert("insert_item",item);
+		System.out.println("2.DAOImpl:item");
+	}
+
+	@Override
+	public void insert_logtc(pano_order_logtc logtc) {
+		getSqlMapClientTemplate().insert("insert_logtc",logtc);
+	}
+
+	@Override
+	public void insert_order(pano_order order) {
+		getSqlMapClientTemplate().insert("insert_order",order);
+	}
+
+	@Override
+	public pano_order get_order_snByOrder_num(String ORDER_NUM) {
+		pano_order order=(pano_order) getSqlMapClientTemplate().
+				queryForObject("get_order_snByOrder_num",ORDER_NUM);
+		return order;
+	}
+
+	@Override
+	public long get_address_snByUser_sn(long user_sn) {
+		long address_sn=(Long) getSqlMapClientTemplate().
+				queryForObject("get_address_snByUser_sn",user_sn);
+		return address_sn;
+	}
+
+	@Override
+	public List<AddToCar> get_selectAddToCarToConfirm(pano_order order) {
+		List<AddToCar> addToCarList_toConfirm=(List<AddToCar>) getSqlMapClientTemplate().
+				queryForList("get_selectAddToCarToConfirm",order);
+		return addToCarList_toConfirm;
+	}
+
+	@Override
+	public long get_House_package_snByPackage_sn(long package_sn) {
+		long house_package_sn=(Long) getSqlMapClientTemplate().
+				queryForObject("get_House_package_snByPackage_sn",package_sn);
+		return house_package_sn;
+	}
+	
 
 
 
