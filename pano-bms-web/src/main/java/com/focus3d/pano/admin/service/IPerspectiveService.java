@@ -1,6 +1,7 @@
 package com.focus3d.pano.admin.service;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,4 +46,10 @@ public interface IPerspectiveService{
 	void ExchangeElementOrder(String pre,String next) throws SQLException;
 	
 	void ExchangeLayerOrder(String pre,String next) throws SQLException;
+	
+	List<Map<String, Object>> QueryPerspectiveInfo(HashMap map) throws SQLException;
+	
+	List<PanoPerspectiveElementProduct> QueryElementProdctList(Long elementSn) throws SQLException;
+	
+	List<LinkedHashMap<String, Object>> QueryViewLayerElementInfo(Long sn) throws SQLException;
 }

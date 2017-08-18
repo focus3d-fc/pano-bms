@@ -343,4 +343,22 @@
     -->
     <![CDATA[select count(*) from pano_perspective_element_product]]>
   </select>
+  
+  <select id="query_product_view_element" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+      SELECT 
+	    view.sn AS viewSn,
+    	element.sn AS elementSn,
+    	layer.sn AS layerSn
+	  FROM
+	    pano_perspective_view VIEW 
+	    INNER JOIN pano_perspective_layer layer 
+	      ON layer.view_sn = view.sn 
+	    INNER JOIN pano_perspective_element element 
+	      ON element.layer_sn = layer.sn 
+	    INNER JOIN pano_perspective_element_product elementProduct
+	      ON elementProduct.element_sn = element.sn 
+	  WHERE view.house_style_sn = #houseStyleSn# 
+	    AND element.package_type_sn = #packageTypeSn# 
+	    AND elementProduct.product_sn = #productSn#
+  </select>
 </sqlMap>

@@ -1044,14 +1044,11 @@ function queryPackageTypeName(layer){
             if(data){
                 var container = $("#element_check_container");
                 container.empty();
-
                 $("#element_container").find("li").each(function(){
                     var key = $(this).data("package_type_sn");
                     data[key].selected = true;
                 })
-
                 for(var key in data){
-
                     var li = $("<li></li>");
                     //var checkbox = $("<div></div>").append($("<label></label>").append($("<input type='checkbox'/>").attr("id",data[key].id)).append($("<text></text>").text(data[key].name)));
 
@@ -1135,6 +1132,7 @@ function query_elementProduct(element){
 
 //构造图元多产品显示结果集
 function initProductResult(element,data){
+    $("#elementProductClose").trigger("click");
     ControlElementClear();
     var _tbody = $("#prodcut_container");
     for(var i=0,len=data.length;i<len;i++){

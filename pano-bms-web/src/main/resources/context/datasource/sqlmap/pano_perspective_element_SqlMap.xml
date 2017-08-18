@@ -379,8 +379,8 @@
 	  elementProduct.`scale` AS scale
 	FROM
 	  pano_perspective_element element 
-	  LEFT JOIN pano_perspective_element_product elementProduct 
-	    ON element.ELEMENT_PRODUCT_SN = elementProduct.sn 
+	  LEFT JOIN (SELECT _elementProduct.* FROM pano_perspective_element_product _elementProduct INNER JOIN pano_product product ON _elementProduct.product_sn = product.sn) AS elementProduct
+		ON element.ELEMENT_PRODUCT_SN = elementProduct.sn
 	WHERE element.`LAYER_SN` = #layerSn#
 	ORDER BY element.`ELEMENT_ORDER` ASC
   </select>

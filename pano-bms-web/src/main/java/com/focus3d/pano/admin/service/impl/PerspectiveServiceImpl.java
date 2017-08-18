@@ -2,6 +2,7 @@ package com.focus3d.pano.admin.service.impl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -137,6 +138,25 @@ public class PerspectiveServiceImpl implements IPerspectiveService{
 			throws SQLException {
 		int value = perspectiveElement.UpdateElementProductSn(model);
 		return value;
+	}
+
+	@Override
+	public List<Map<String, Object>> QueryPerspectiveInfo(HashMap map) throws SQLException {
+		List<Map<String, Object>> list = perspectiveElementProduct.QueryPerspectiveInfoByProductSn(map);
+		return list;
+	}
+
+	@Override
+	public List<PanoPerspectiveElementProduct> QueryElementProdctList(
+			Long elementSn) throws SQLException {
+		List<PanoPerspectiveElementProduct> list = perspectiveElementProduct.QueryElementProdctList(elementSn);
+		return list;
+	}
+
+	@Override
+	public List<LinkedHashMap<String, Object>> QueryViewLayerElementInfo(Long sn) throws SQLException {
+		List<LinkedHashMap<String, Object>> list = perspectiveView.QueryViewLayerElementInfo(sn);
+		return null;
 	}
 
 }

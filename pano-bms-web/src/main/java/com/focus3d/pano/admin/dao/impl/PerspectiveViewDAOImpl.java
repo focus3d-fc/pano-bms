@@ -1,6 +1,7 @@
 package com.focus3d.pano.admin.dao.impl;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,11 @@ public class PerspectiveViewDAOImpl extends CommonDao<PanoPerspectiveViewModel>{
 	
 	public List<LinkedHashMap<String, Object>> QueryViewAllProductInfo(PanoPerspectiveViewModel model) throws SQLException{
 		List<LinkedHashMap<String, Object>> list = getSqlMapClient().queryForList("pano_perspective_view.view_all_products", model);
+		return list;
+	}
+	
+	public List<LinkedHashMap<String, Object>> QueryViewLayerElementInfo(Long sn) throws SQLException{
+		List<LinkedHashMap<String, Object>> list = getSqlMapClient().queryForList("pano_perspective_view.view_layer_element", sn);
 		return list;
 	}
 	

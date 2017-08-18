@@ -357,7 +357,7 @@
 	      elementProduct.product_map AS elementMap,
 	      elementProduct.`position` AS position,
 	      elementProduct.`scale` AS scale,
-	      type.`NAME` AS elementName,
+	      type.`NAME` AS elementName, 
 	      element.package_type_sn AS elementStyleId
 	    FROM
 	      pano_perspective_view VIEW 
@@ -365,13 +365,37 @@
 	        ON view.`SN` = layer.view_sn 
 	      LEFT JOIN pano_perspective_element element 
 	        ON layer.`SN` = element.`LAYER_SN` 
-	      LEFT JOIN pano_perspective_element_product elementProduct
+	      LEFT JOIN (SELECT _elementProduct.* FROM pano_perspective_element_product _elementProduct INNER JOIN pano_product product ON _elementProduct.product_sn = product.sn) AS elementProduct
 		ON element.element_product_sn = elementProduct.sn
 	      LEFT JOIN pano_project_package_type TYPE 
 	        ON element.package_type_sn = type.sn 
 		 WHERE view.`SN` = #sn#
 		 ORDER BY layerOrder ASC,elementOrder ASC
 	</select>
+	
+ 	<select id="view_layer_element" parameterClass="java.lang.Long" resultClass="java.util.LinkedHashMap">
+ 		SELECT 
+      view.`SN` AS viewId,
+      View.`VIEW_NAME` AS viewName,
+      view.`BASE_MAP` AS viewMap,
+      layer.`SN` AS layerId,
+      layer.`LAYER_NAME` AS layerName,
+      layer.`LAYER_ORDER` AS layerOrder,
+      element.`SN` AS elementId,
+      element.`ELEMENT_ORDER` AS elementOrder,
+      type.`NAME` AS elementName,
+      element.package_type_sn AS elementStyleId 
+    FROM
+      pano_perspective_view VIEW
+      LEFT JOIN pano_perspective_layer layer 
+        ON view.`SN` = layer.view_sn
+      LEFT JOIN pano_perspective_element element
+        ON layer.`SN` = element.`LAYER_SN`
+      LEFT JOIN pano_project_package_type TYPE 
+        ON element.package_type_sn = type.sn
+    WHERE view.`SN` = #sn#
+    ORDER BY layerOrder ASC,elementOrder ASC
+ 	</select>
   
   	<select id="query_package_type" parameterClass="com.focus3d.pano.model.ibator.PanoPerspectiveView" resultClass="java.util.HashMap">
       SELECT 

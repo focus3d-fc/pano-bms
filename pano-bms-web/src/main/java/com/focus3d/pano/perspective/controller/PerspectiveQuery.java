@@ -2,7 +2,10 @@ package com.focus3d.pano.perspective.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +29,6 @@ import com.focustech.cief.filemanage.client.api.IFileReadClient;
 import com.focustech.cief.filemanage.client.constant.FileAttributeEnum;
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.JsonUtils;
-import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
 
 @Controller
 @RequestMapping("/perspective")
@@ -536,6 +538,123 @@ public class PerspectiveQuery extends BaseController {
 		} catch (Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping("QueryPerspectiveByProductSn")
+	public void QueryPerspectiveByProductSn(HttpServletResponse response,String houseStyleSn,String packageTypeSn,String productSn){
+		try {
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("houseStyleSn",houseStyleSn);
+			map.put("packageTypeSn",packageTypeSn);
+			map.put("productSn",productSn);
+			List<Map<String, Object>> list = _service.QueryPerspectiveInfo(map);
+			
+			for(Map<String, Object> child:list){
+				child.put("productSn", productSn);
+			}
+			ajaxOutput(response, JsonUtils.arrayToJson(list.toArray()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e){
+			e.printStackTrace();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping("QueryViewElementInfo")
+	public void QueryViewElementInfo(HttpServletResponse response,String viewSn,String elementSn,String productSn) throws SQLException{
+		try {
+			Long element_sn = Long.parseLong(elementSn);
+			Long product_sn = Long.parseLong(productSn);
+			
+			PanoPerspectiveViewModel viewModel = new PanoPerspectiveViewModel();
+			viewModel.setSn(Long.parseLong(viewSn));
+			
+			List<PanoPerspectiveElementProduct> product_list = _service.QueryElementProdctList(element_sn);
+			
+			Map<String, Object> data = new HashMap<String, Object>(); 
+			
+			List<LinkedHashMap<String, Object>> list = _service.QueryViewAllProductInfo(viewModel);
+			for (LinkedHashMap<String, Object> map : list){
+				if(map.get("viewMap")!=null){
+					Long viewMapKey = Long.parseLong(map.get("viewMap").toString());
+					
+					Map<String, String> viewMapFile = client.getFile(viewMapKey);
+					map.put("viewMapUrl",viewMapFile.get(FileAttributeEnum.VISIT_ADDR.name()));
+					map.put("viewMapWidth",viewMapFile.get(FileAttributeEnum.WIDTH.name()));
+					map.put("viewMapHeight",viewMapFile.get(FileAttributeEnum.HEIGHT.name()));
+					map.put("viewMapId",EncryptUtil.encode(viewMapKey));
+				}
+				
+				if(map.get("elementId")!=null){
+					Long elementId = Long.parseLong(map.get("elementId").toString());	
+					if(elementId.longValue() == element_sn.longValue()){
+						for(PanoPerspectiveElementProduct product:product_list){
+							if(product.getProductSn().longValue() == product_sn.longValue()){
+								Long elementMapKey = product.getProductMap();
+								Map<String, String> elementMapFile = client.getFile(elementMapKey);
+								map.put("elementMapUrl",elementMapFile.get(FileAttributeEnum.VISIT_ADDR.name()));
+								map.put("elementMapWidth",elementMapFile.get(FileAttributeEnum.WIDTH.name()));
+								map.put("elementMapHeight",elementMapFile.get(FileAttributeEnum.HEIGHT.name()));
+								map.put("elementMapId",EncryptUtil.encode(elementMapKey));
+								
+								map.put("position",product.getPosition());
+								map.put("scale", product.getScale());
+								System.out.println(product.getScale());
+								break;
+							}
+						}
+					}else{
+						if(map.get("elementMap")!=null){
+							Long elementMapKey = Long.parseLong(map.get("elementMap").toString());
+							
+							Map<String, String> elementMapFile = client.getFile(elementMapKey);
+							
+							map.put("elementMapUrl",elementMapFile.get(FileAttributeEnum.VISIT_ADDR.name()));
+							map.put("elementMapWidth",elementMapFile.get(FileAttributeEnum.WIDTH.name()));
+							map.put("elementMapHeight",elementMapFile.get(FileAttributeEnum.HEIGHT.name()));
+							map.put("elementMapId",EncryptUtil.encode(elementMapKey));
+						}
+					}
+				}
+			}
+			
+			List<Map<String, Object>> product_info = new LinkedList<Map<String, Object>>();
+			for(PanoPerspectiveElementProduct product:product_list){
+				Map<String, Object> info = new HashMap<String, Object>();
+				Long mapKey = product.getProductMap();
+				Map<String, String> mapFile = client.getFile(mapKey);
+				info.put("productSn", product.getProductSn());
+				info.put("url",mapFile.get(FileAttributeEnum.VISIT_ADDR.name()));
+				info.put("width",mapFile.get(FileAttributeEnum.WIDTH.name()));
+				info.put("height",mapFile.get(FileAttributeEnum.HEIGHT.name()));
+				info.put("position",product.getPosition());
+				info.put("scale",product.getScale());
+				
+				if(product.getProductSn().longValue() == product_sn.longValue()){
+					product_info.add(0, info);
+				}else{
+					product_info.add(info);
+				}		
+			}
+			
+			data.put("renderList",list);
+			data.put("productList",product_info);
+			
+			ajaxOutput(response, JsonUtils.mapToJson(data));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e){
+			e.printStackTrace();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping("pro")
+	public String QueryPro(HttpServletResponse response){
+		return "/perspective/pro";
 	}
 	
 }
