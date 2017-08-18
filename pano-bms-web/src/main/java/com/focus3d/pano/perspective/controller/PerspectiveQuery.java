@@ -554,6 +554,7 @@ public class PerspectiveQuery extends BaseController {
 			
 			for(Map<String, Object> child:list){
 				child.put("productSn", productSn);
+				child.put("packageTypeSn", packageTypeSn);
 			}
 			result.put("count", list.size());
 			result.put("list", JsonUtils.arrayToJson(list.toArray()));

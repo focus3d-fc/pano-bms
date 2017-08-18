@@ -11,6 +11,8 @@ var productSn;
 var index = 0;
 var view_index = 0;
 
+var paramData = new Object();
+
 var WebGL = {
     scene:{},
     root:null,
@@ -281,7 +283,9 @@ function QueryPerspectiveInfoCallback(data){
 function QueryViewAllProducts(data){
     elementName = "element_"+data.elementSn;
     layerName = "layer_"+data.layerSn;
-    productSn = data.productSn;
+    paramData["productSn"] = data.productSn;
+    paramData["packageTypeSn"] = data.packageTypeSn;
+    debugger;
     $.ajax({url:"/perspective/QueryViewElementInfo",
         type: "POST",
         data:data,
@@ -364,7 +368,7 @@ function string_to_vec(data){
 function ExchangeProduct(element){
     var i = (++index)%productList.length;
     var data = productList[i];
-    productSn = data.productSn;
+    paramData["productSn"] = data.productSn;
     WebGL.reLoadElement(element,data);
 }
 

@@ -75,7 +75,8 @@
         }).hide();
         
         $("#Confirm_Select").on("click",function(){
-            alert(productSn);
+            alert(paramData["productSn"]);
+            alert(paramData["packageTypeSn"]);
         });
         var rate = 800/580.0;
         var width = WebGL_Container.width();
