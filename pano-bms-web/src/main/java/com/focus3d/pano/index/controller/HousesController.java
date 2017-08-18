@@ -396,12 +396,13 @@ public class HousesController extends BaseController {
 		house.setADD_TIME(add_time);
 
 		String[] parameterValues = request.getParameterValues("uname");
+		if(parameterValues!=null&&parameterValues.length>0){
 		for (int i = 0; i < parameterValues.length; i++) {
 			Long HOUSE_SN = Long.parseLong(parameterValues[i]);
 			house.setHOUSE_SN(HOUSE_SN);
 			housesService.addStyleHouse(house);
+		 }
 		}
-
 		return redirect("tostyle-houseSet2");
 	}
 
