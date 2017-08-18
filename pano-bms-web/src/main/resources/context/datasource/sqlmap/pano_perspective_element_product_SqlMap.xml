@@ -361,4 +361,14 @@
 	    AND element.package_type_sn = #packageTypeSn# 
 	    AND elementProduct.product_sn = #productSn#
   </select>
+  
+  <select id="query_element_product" parameterClass="java.lang.Long" resultMap="ibatorgenerated_BaseResultMap">
+      SELECT 
+         elementProduct.*
+      FROM
+        pano_perspective_element_product elementProduct 
+        INNER JOIN pano_product product 
+          ON elementProduct.product_sn = product.sn 
+      WHERE elementProduct.element_sn = #sn#
+  </select>
 </sqlMap>

@@ -33,9 +33,7 @@ public class PerspectiveElementProductDAOImpl extends CommonDao<PanoPerspectiveE
 	}
 	
 	public List<PanoPerspectiveElementProduct> QueryElementProdctList(Long sn) throws SQLException{
-		PanoPerspectiveElementProductCriteria productCriteria = new PanoPerspectiveElementProductCriteria();
-		productCriteria.createCriteria().andElementSnEqualTo(sn);
-		List<PanoPerspectiveElementProduct> list = getSqlMapClient().queryForList("pano_perspective_element_product"+SELECT_BY_EXAMPLE,productCriteria);
+		List<PanoPerspectiveElementProduct> list = getSqlMapClient().queryForList("pano_perspective_element_product.query_element_product",sn);
 		return list;
 	}
 	

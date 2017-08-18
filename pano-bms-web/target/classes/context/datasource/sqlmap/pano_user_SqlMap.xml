@@ -188,6 +188,10 @@ pano_bm_user
 </dynamic>
  </select>
  
+ <!-- add by lihaijun 2017/8/17 -->
+ <update id="update_allocateSpace" parameterClass="user">
+ 	UPDATE `pano_bm_user` SET IS_ALLOCATE_SPACE = 1 WHERE sn = #id#
+ </update>
  
 </sqlMap>
 

@@ -36,7 +36,7 @@
             <div class="swiper-button-next"></div>
         </div>
     </section>
-    <div class="button">
+    <div class="button" id="Confirm_Select">
         确认选择
     </div>
 </div>
@@ -58,6 +58,23 @@
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev',
     })
+
+    $(function(){
+        WebGL_Container = $("#WebGl-OutPut");
+        $("#Confirm_Select").on("click",function(){
+            alert(productSn);
+        });
+        var rate = 800/580.0;
+        var width = WebGL_Container.width();
+        var height = parseInt(width/rate);
+        WebGL_Container.height(height);
+
+        WebGL.init(width,height);
+        scaler = width/800.0;
+        var value = '$!viewlist';
+        var _list = $.parseJSON('$!viewlist');
+        QueryPerspectiveInfoCallback(_list);
+    });
 </script>
 </body>
 </body>

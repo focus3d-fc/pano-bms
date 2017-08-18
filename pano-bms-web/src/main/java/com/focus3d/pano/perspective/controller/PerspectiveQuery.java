@@ -29,6 +29,7 @@ import com.focustech.cief.filemanage.client.api.IFileReadClient;
 import com.focustech.cief.filemanage.client.constant.FileAttributeEnum;
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.JsonUtils;
+import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
 
 @Controller
 @RequestMapping("/perspective")
@@ -541,7 +542,8 @@ public class PerspectiveQuery extends BaseController {
 	}
 	
 	@RequestMapping("QueryPerspectiveByProductSn")
-	public void QueryPerspectiveByProductSn(HttpServletResponse response,String houseStyleSn,String packageTypeSn,String productSn){
+	public Map<String, Object> QueryPerspectiveByProductSn(String houseStyleSn,String packageTypeSn,String productSn){
+		HashMap<String, Object> result = new HashMap<String,Object>();
 		try {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("houseStyleSn",houseStyleSn);
@@ -552,13 +554,14 @@ public class PerspectiveQuery extends BaseController {
 			for(Map<String, Object> child:list){
 				child.put("productSn", productSn);
 			}
-			ajaxOutput(response, JsonUtils.arrayToJson(list.toArray()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (SQLException e){
+			result.put("count", list.size());
+			result.put("list", JsonUtils.arrayToJson(list.toArray()));
+		}catch (SQLException e){
 			e.printStackTrace();
 		} catch (Exception e){
 			e.printStackTrace();
+		}finally{
+			return result;
 		}
 	}
 	
@@ -652,9 +655,16 @@ public class PerspectiveQuery extends BaseController {
 		}
 	}
 	
-	@RequestMapping("pro")
-	public String QueryPro(HttpServletResponse response){
-		return "/perspective/pro";
+	@RequestMapping("QueryPerspective")
+	public String QueryPro(HttpServletResponse response,String houseStyleSn,String packageTypeSn,String productSn,ModelMap model_map){
+		Map<String, Object> map = QueryPerspectiveByProductSn(houseStyleSn,packageTypeSn,productSn);
+		int num = Integer.parseInt(map.get("count").toString());
+		if(num!=0){
+			model_map.put("viewlist", map.get("list"));
+			return "/perspective/pro";
+		}
+		
+		return "";
 	}
 	
 }

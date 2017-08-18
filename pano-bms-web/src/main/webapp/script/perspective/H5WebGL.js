@@ -7,22 +7,9 @@ var scaler;
 var elementName;
 var layerName;
 var productList;
+var productSn;
 var index = 0;
 var view_index = 0;
-
-$(function(){
-    WebGL_Container = $("#WebGl-OutPut");
-    var rate = 800/580.0;
-    var width = WebGL_Container.width();
-    var height = parseInt(width/rate);
-    WebGL_Container.height(height);
-
-    WebGL.init(width,height);
-    scaler = width/800.0;
-    alert(scaler);
-
-    QueryPerspectiveInfo();
-})
 
 var WebGL = {
     scene:{},
@@ -294,6 +281,7 @@ function QueryPerspectiveInfoCallback(data){
 function QueryViewAllProducts(data){
     elementName = "element_"+data.elementSn;
     layerName = "layer_"+data.layerSn;
+    productSn = data.productSn;
     $.ajax({url:"/perspective/QueryViewElementInfo",
         type: "POST",
         data:data,
@@ -376,6 +364,7 @@ function string_to_vec(data){
 function ExchangeProduct(element){
     var i = (++index)%productList.length;
     var data = productList[i];
+    productSn = data.productSn;
     WebGL.reLoadElement(element,data);
 }
 
