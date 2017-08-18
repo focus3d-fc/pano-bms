@@ -13,7 +13,7 @@ var webgl_control;
 
 var _offset;
 
-var upload_url = "http://139.196.103.164:8018/pano/fs/upload";
+var upload_url = "http://file.joy-homeplus.com/pano/fs/upload";
 
 var upload_data;
 
@@ -142,15 +142,6 @@ function View(data){
             $("#view_entering").modal("show");
         }
 	});
-    /*
-    this.node.on({
-		mouseover:function () {
-            _control.show();
-        },
-		mouseout:function (){
-            _control.hide();
-        }
-	});*/
 
     this.control.append(_delete);
     this.control.append(_edit);
@@ -171,9 +162,8 @@ function View(data){
         view_container.append(this.node);
     }
 
-    var inserLayerControl = $("<input></input>",{
-        class:"btn btn-default w8",
-        value:"添加"
+    var inserLayerControl =  $("<span></span>",{
+        class:"float_r glyphicon glyphicon-plus-sign dis_block mar_t10 mar_r10 s20"
     }).on({
         click:function(){
             $("#layer_entering").modal("show");
@@ -186,15 +176,14 @@ function View(data){
         }
     });
 
-
     layer_control.empty();
     layer_container = $("<ul></ul>",{
         id:"layer_container"
     });
 
-    layer_control.append($("<p></p>",{
-        class:"text-center"
-    }).append(inserLayerControl));
+    layer_control.append(inserLayerControl).append($("<div></div>",{
+        class:"clr"
+    }));
 
     layer_control.append(layer_container);
 
@@ -311,7 +300,7 @@ function Layer(parent,data){
     });
 
     var _down = $("<span></span>",{
-        class:"glyphicon glyphicon-arrow-down mart_t10"
+        class:"glyphicon glyphicon-arrow-down mart_t10 mar_r10"
     }).on({
         click:function () {
             event.stopPropagation();
@@ -430,7 +419,7 @@ function Element(parent,data){
     });
 
     var _down = $("<span></span>",{
-        class:"glyphicon glyphicon-arrow-down mart_t10"
+        class:"glyphicon glyphicon-arrow-down mart_t10 mar_r10"
     }).on({
         click:function () {
             event.stopPropagation();
@@ -945,7 +934,7 @@ function query_element(layer){
         dataType:"json",
         success:function(data){
             var insert = $("<span></span>",{
-                class:"float_r glyphicon glyphicon-plus-sign dis_block mar_t10 mar_r10"
+                class:"float_r glyphicon glyphicon-plus-sign dis_block mar_t10 mar_r10 s20"
             }).off("click").on({
                 click:function(){
                     queryPackageTypeName(layer);
@@ -1032,16 +1021,15 @@ function  updateLayer(layer_sn,callback) {
 //查询套餐中分类名称作为图元名称
 function queryPackageTypeName(layer){
     var _data = {};
-    _data["houseStyleSn"] = house_style_sn;
-    _data["houseSpaceSn"] = 100010;
-
+    _data["houseStyleSn"] = 100079;
+    _data["houseSpaceSn"] = 100020;
     $.ajax({
         url:"/perspective/queryPackageTypeName",
         type: "POST",
         data:_data,
         dataType:"json",
         success:function(data){
-            if(data){
+            if(data&&Object.keys(data).length!=0){
                 var container = $("#element_check_container");
                 container.empty();
                 $("#element_container").find("li").each(function(){
@@ -1050,7 +1038,6 @@ function queryPackageTypeName(layer){
                 })
                 for(var key in data){
                     var li = $("<li></li>");
-                    //var checkbox = $("<div></div>").append($("<label></label>").append($("<input type='checkbox'/>").attr("id",data[key].id)).append($("<text></text>").text(data[key].name)));
 
                     var parent = $("<div></div>",{
                         class:"packge_name"

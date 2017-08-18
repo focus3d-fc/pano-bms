@@ -369,7 +369,7 @@
   <select id="query_element" parameterClass="com.focus3d.pano.model.ibator.PanoPerspectiveElementModel" resultClass="java.util.HashMap">
     SELECT 
 	  element.sn AS id,
-	  element.`ELEMENT_NAME` AS name,
+	  packageType.NAME AS name,
 	  element.`LAYER_SN` AS layerSn,
 	  element.`ELEMENT_ORDER` AS elementOrder,
 	  element.`PACKAGE_TYPE_SN` AS packageTypeSn,
@@ -379,6 +379,8 @@
 	  elementProduct.`scale` AS scale
 	FROM
 	  pano_perspective_element element 
+	  INNER JOIN pano_project_package_type packageType
+	  ON element.`PACKAGE_TYPE_SN` = packageType.sn
 	  LEFT JOIN (SELECT _elementProduct.* FROM pano_perspective_element_product _elementProduct INNER JOIN pano_product product ON _elementProduct.product_sn = product.sn) AS elementProduct
 		ON element.ELEMENT_PRODUCT_SN = elementProduct.sn
 	WHERE element.`LAYER_SN` = #layerSn#

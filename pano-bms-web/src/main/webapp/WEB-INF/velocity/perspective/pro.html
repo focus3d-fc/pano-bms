@@ -15,7 +15,15 @@
 
     <!--图片-->
     <section class="product">
-        <div id="WebGl-OutPut"style="width:100%"></div>
+        
+        
+        <div class="toushi">
+            <div id="WebGl-OutPut"style="width:100%"></div>
+            <div class="control" id="exchange_view">
+                <img src="/style/h5static/image/img/44.png" alt="">
+                <p>切换视角</p>
+            </div>
+        </div>
         <p>北欧风格茶几</p>
         <p class="content">品牌：马萨圣地</p>
         <p class="content">规格参数：210*180*20</p>
@@ -61,6 +69,11 @@
 
     $(function(){
         WebGL_Container = $("#WebGl-OutPut");
+        
+        $("#exchange_view").on("click",function(){
+            ExchangeView();
+        }).hide();
+        
         $("#Confirm_Select").on("click",function(){
             alert(productSn);
         });

@@ -273,12 +273,13 @@ function QueryPerspectiveInfoCallback(data){
         view_list = data;
         QueryViewAllProducts(view_list[view_index]);
         if(data.length>1){
-
+            $("#exchange_view").show();
         }
     }
 }
 
 function QueryViewAllProducts(data){
+    debugger;
     elementName = "element_"+data.elementSn;
     layerName = "layer_"+data.layerSn;
     productSn = data.productSn;
@@ -370,6 +371,7 @@ function ExchangeProduct(element){
 
 function ExchangeView(){
     var i = (++view_index)%view_list.length;
+    var data = view_list[i];
     QueryViewAllProducts(view_list[i]);
 }
 

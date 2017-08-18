@@ -2,10 +2,10 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/perspective.js" line="39" />
-    <bookmark url="file://$PROJECT_DIR$/perspective.js" line="290" />
-    <bookmark url="file://$PROJECT_DIR$/perspective.js" line="620" />
-    <bookmark url="file://$PROJECT_DIR$/perspective.js" line="925" />
-    <bookmark url="file://$PROJECT_DIR$/perspective.js" line="761" />
+    <bookmark url="file://$PROJECT_DIR$/perspective.js" line="279" />
+    <bookmark url="file://$PROJECT_DIR$/perspective.js" line="609" />
+    <bookmark url="file://$PROJECT_DIR$/perspective.js" line="914" />
+    <bookmark url="file://$PROJECT_DIR$/perspective.js" line="750" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e9efdb4-7a7f-44f9-8023-c6c01e5a929f" name="Default" comment="" />
@@ -28,29 +28,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="perspective.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="perspective.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/perspective.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="1468" column="1" lean-forward="true" selection-start-line="1468" selection-start-column="1" selection-end-line="1468" selection-end-column="1" />
+            <state relative-caret-position="296">
+              <caret line="819" column="43" lean-forward="true" selection-start-line="819" selection-start-column="43" selection-end-line="819" selection-end-column="43" />
               <folding>
                 <element signature="n#!!block;n#createView#0" expanded="false" />
                 <element signature="n#!!block;n#View#0" expanded="false" />
                 <element signature="n#!!block;n#Layer#0" expanded="false" />
                 <element signature="n#!!block;n#Element#0" expanded="false" />
-                <element signature="e#12774#20641#0" expanded="false" />
-                <element signature="e#20666#24553#0" expanded="false" />
+                <element signature="e#12652#20519#0" expanded="false" />
+                <element signature="e#20544#24431#0" expanded="false" />
                 <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
-                <element signature="n#!!block;n#query_view#0" expanded="false" />
                 <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-                <element signature="e#25843#28987#0" expanded="false" />
+                <element signature="e#25721#28865#0" expanded="false" />
                 <element signature="n#!!block;n#query_layer#0" expanded="false" />
                 <element signature="n#!!block;n#query_element#0" expanded="false" />
                 <element signature="n#!!block;n#updateView#0" expanded="false" />
                 <element signature="n#!!block;n#ClearViewEnterning#0" expanded="false" />
                 <element signature="n#!!block;n#updateLayer#0" expanded="false" />
-                <element signature="n#!!block;n#queryPackageTypeName#0" expanded="false" />
-                <element signature="e#31595#33812#0" expanded="false" />
                 <element signature="n#!!block;n#updateElement#0" expanded="false" />
                 <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
                 <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
@@ -82,10 +79,10 @@
       <file leaf-file-name="perspective.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../style/perspective/perspective.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1900">
-              <caret line="76" column="3" lean-forward="false" selection-start-line="76" selection-start-column="3" selection-end-line="76" selection-end-column="3" />
+            <state relative-caret-position="645">
+              <caret line="75" column="15" lean-forward="false" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="15" />
               <folding>
-                <marker date="1502877924850" expanded="true" signature="306:330" ph="{...}" />
+                <marker date="1503048920124" expanded="true" signature="306:330" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -94,10 +91,14 @@
       <file leaf-file-name="Perspective.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="22" column="8" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="22" selection-end-column="8" />
+            <state relative-caret-position="300">
+              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding>
                 <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -106,12 +107,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pro.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pro.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="40" column="10" lean-forward="true" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
-              <folding />
+            <state relative-caret-position="525">
+              <caret line="72" column="27" lean-forward="false" selection-start-line="72" selection-start-column="7" selection-end-line="72" selection-end-column="27" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -119,8 +122,8 @@
       <file leaf-file-name="H5WebGL.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/H5WebGL.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="811">
-              <caret line="366" column="31" lean-forward="true" selection-start-line="366" selection-start-column="31" selection-end-line="366" selection-end-column="31" />
+            <state relative-caret-position="438">
+              <caret line="280" column="35" lean-forward="false" selection-start-line="280" selection-start-column="35" selection-end-line="280" selection-end-column="35" />
               <folding>
                 <element signature="e#172#8730#0" expanded="false" />
                 <element signature="e#331#428#0" expanded="false" />
@@ -140,8 +143,11 @@
                 <element signature="e#8248#8652#0" expanded="false" />
                 <element signature="e#8689#8728#0" expanded="false" />
                 <element signature="n#!!block;n#QueryPerspectiveInfo#0" expanded="false" />
+                <element signature="n#!!block;n#QueryPerspectiveInfoCallback#0" expanded="false" />
+                <element signature="n#!!block;n#QueryViewAllProducts#0" expanded="false" />
                 <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
                 <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
+                <element signature="n#!!block;n#ExchangeProduct#0" expanded="false" />
                 <element signature="n#!!block;n#ExchangeView#0" expanded="false" />
               </folding>
             </state>
@@ -152,23 +158,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>element_pic</find>
-      <find>elementProductUpdate</find>
-      <find>element_upload</find>
-      <find>view_save</find>
-      <find>updateView</find>
-      <find>updateElementExhibtionMap</find>
-      <find>element</find>
-      <find>updateElementProductCallback</find>
-      <find>alert</find>
       <find>product_scale</find>
       <find>edit_element</find>
       <find>elementPictureClose</find>
       <find>ResultHide();</find>
-      <find>query_view</find>
       <find>ControlViewHtmlClear</find>
       <find>view_container</find>
-      <find>createView</find>
       <find>debugger</find>
       <find>element_</find>
       <find>getObjectByName</find>
@@ -182,18 +177,29 @@
       <find>QueryPerspectiveInfo</find>
       <find>productSn</find>
       <find>ExchangeProduct</find>
+      <find>QueryViewAllProducts</find>
+      <find>house_style_sn</find>
+      <find>houseSpaceSn</find>
+      <find>createView</find>
+      <find>query_view</find>
+      <find>data</find>
+      <find>添加</find>
+      <find>element_container</find>
+      <find>down</find>
+      <find>element_upload</find>
+      <find>houseStyleSn</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../../style/perspective/perspective.css" />
-        <option value="$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html" />
         <option value="$PROJECT_DIR$/../../style/h5static/js/H5WebGL.js" />
-        <option value="$PROJECT_DIR$/perspective.js" />
         <option value="$PROJECT_DIR$/../../style/h5static/html/pro.html" />
         <option value="$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html" />
         <option value="$PROJECT_DIR$/H5WebGL.js" />
+        <option value="$PROJECT_DIR$/perspective.js" />
+        <option value="$PROJECT_DIR$/../../style/perspective/perspective.css" />
+        <option value="$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html" />
       </list>
     </option>
   </component>
@@ -332,12 +338,12 @@
       <workItem from="1502760396905" duration="40208000" />
       <workItem from="1502846097689" duration="40959000" />
       <workItem from="1502934406113" duration="17569000" />
-      <workItem from="1503031181068" duration="6216000" />
+      <workItem from="1503031181068" duration="14348000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="194845000" />
+    <option name="totallyTimeSpent" value="202977000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -392,19 +398,16 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12774#20641#0" expanded="false" />
-            <element signature="e#20666#24553#0" expanded="false" />
+            <element signature="e#12652#20519#0" expanded="false" />
+            <element signature="e#20544#24431#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
-            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25843#28987#0" expanded="false" />
+            <element signature="e#25721#28865#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
             <element signature="n#!!block;n#ClearViewEnterning#0" expanded="false" />
             <element signature="n#!!block;n#updateLayer#0" expanded="false" />
-            <element signature="n#!!block;n#queryPackageTypeName#0" expanded="false" />
-            <element signature="e#31595#33812#0" expanded="false" />
             <element signature="n#!!block;n#updateElement#0" expanded="false" />
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
@@ -437,7 +440,7 @@
         <state relative-caret-position="1900">
           <caret line="76" column="3" lean-forward="false" selection-start-line="76" selection-start-column="3" selection-end-line="76" selection-end-column="3" />
           <folding>
-            <marker date="1502877924850" expanded="true" signature="306:330" ph="{...}" />
+            <marker date="1503048920124" expanded="true" signature="306:330" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -448,6 +451,10 @@
           <caret line="226" column="0" lean-forward="false" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="77" />
           <folding>
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -486,8 +493,11 @@
             <element signature="e#8248#8652#0" expanded="false" />
             <element signature="e#8689#8728#0" expanded="false" />
             <element signature="n#!!block;n#QueryPerspectiveInfo#0" expanded="false" />
+            <element signature="n#!!block;n#QueryPerspectiveInfoCallback#0" expanded="false" />
+            <element signature="n#!!block;n#QueryViewAllProducts#0" expanded="false" />
             <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
+            <element signature="n#!!block;n#ExchangeProduct#0" expanded="false" />
             <element signature="n#!!block;n#ExchangeView#0" expanded="false" />
           </folding>
         </state>
@@ -502,19 +512,16 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12774#20641#0" expanded="false" />
-            <element signature="e#20666#24553#0" expanded="false" />
+            <element signature="e#12652#20519#0" expanded="false" />
+            <element signature="e#20544#24431#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
-            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25843#28987#0" expanded="false" />
+            <element signature="e#25721#28865#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
             <element signature="n#!!block;n#ClearViewEnterning#0" expanded="false" />
             <element signature="n#!!block;n#updateLayer#0" expanded="false" />
-            <element signature="n#!!block;n#queryPackageTypeName#0" expanded="false" />
-            <element signature="e#31595#33812#0" expanded="false" />
             <element signature="n#!!block;n#updateElement#0" expanded="false" />
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
@@ -547,7 +554,7 @@
         <state relative-caret-position="1900">
           <caret line="76" column="3" lean-forward="false" selection-start-line="76" selection-start-column="3" selection-end-line="76" selection-end-column="3" />
           <folding>
-            <marker date="1502877924850" expanded="true" signature="306:330" ph="{...}" />
+            <marker date="1503048920124" expanded="true" signature="306:330" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -558,6 +565,10 @@
           <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="33" />
           <folding>
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -574,19 +585,16 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12774#20641#0" expanded="false" />
-            <element signature="e#20666#24553#0" expanded="false" />
+            <element signature="e#12652#20519#0" expanded="false" />
+            <element signature="e#20544#24431#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
-            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25843#28987#0" expanded="false" />
+            <element signature="e#25721#28865#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
             <element signature="n#!!block;n#ClearViewEnterning#0" expanded="false" />
             <element signature="n#!!block;n#updateLayer#0" expanded="false" />
-            <element signature="n#!!block;n#queryPackageTypeName#0" expanded="false" />
-            <element signature="e#31595#33812#0" expanded="false" />
             <element signature="n#!!block;n#updateElement#0" expanded="false" />
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
@@ -620,6 +628,10 @@
           <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding>
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -636,19 +648,16 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12774#20641#0" expanded="false" />
-            <element signature="e#20666#24553#0" expanded="false" />
+            <element signature="e#12652#20519#0" expanded="false" />
+            <element signature="e#20544#24431#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
-            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25843#28987#0" expanded="false" />
+            <element signature="e#25721#28865#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
             <element signature="n#!!block;n#ClearViewEnterning#0" expanded="false" />
             <element signature="n#!!block;n#updateLayer#0" expanded="false" />
-            <element signature="n#!!block;n#queryPackageTypeName#0" expanded="false" />
-            <element signature="e#31595#33812#0" expanded="false" />
             <element signature="n#!!block;n#updateElement#0" expanded="false" />
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
@@ -682,6 +691,10 @@
           <caret line="190" column="78" lean-forward="false" selection-start-line="190" selection-start-column="66" selection-end-line="190" selection-end-column="78" />
           <folding>
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -698,19 +711,16 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12774#20641#0" expanded="false" />
-            <element signature="e#20666#24553#0" expanded="false" />
+            <element signature="e#12652#20519#0" expanded="false" />
+            <element signature="e#20544#24431#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
-            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25843#28987#0" expanded="false" />
+            <element signature="e#25721#28865#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
             <element signature="n#!!block;n#ClearViewEnterning#0" expanded="false" />
             <element signature="n#!!block;n#updateLayer#0" expanded="false" />
-            <element signature="n#!!block;n#queryPackageTypeName#0" expanded="false" />
-            <element signature="e#31595#33812#0" expanded="false" />
             <element signature="n#!!block;n#updateElement#0" expanded="false" />
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
@@ -744,6 +754,10 @@
           <caret line="95" column="0" lean-forward="true" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
           <folding>
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -760,19 +774,16 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12774#20641#0" expanded="false" />
-            <element signature="e#20666#24553#0" expanded="false" />
+            <element signature="e#12652#20519#0" expanded="false" />
+            <element signature="e#20544#24431#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
-            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25843#28987#0" expanded="false" />
+            <element signature="e#25721#28865#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
             <element signature="n#!!block;n#ClearViewEnterning#0" expanded="false" />
             <element signature="n#!!block;n#updateLayer#0" expanded="false" />
-            <element signature="n#!!block;n#queryPackageTypeName#0" expanded="false" />
-            <element signature="e#31595#33812#0" expanded="false" />
             <element signature="n#!!block;n#updateElement#0" expanded="false" />
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
@@ -806,6 +817,10 @@
           <caret line="46" column="16" lean-forward="true" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
           <folding>
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -822,19 +837,16 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12774#20641#0" expanded="false" />
-            <element signature="e#20666#24553#0" expanded="false" />
+            <element signature="e#12652#20519#0" expanded="false" />
+            <element signature="e#20544#24431#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
-            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25843#28987#0" expanded="false" />
+            <element signature="e#25721#28865#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
             <element signature="n#!!block;n#ClearViewEnterning#0" expanded="false" />
             <element signature="n#!!block;n#updateLayer#0" expanded="false" />
-            <element signature="n#!!block;n#queryPackageTypeName#0" expanded="false" />
-            <element signature="e#31595#33812#0" expanded="false" />
             <element signature="n#!!block;n#updateElement#0" expanded="false" />
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
@@ -868,6 +880,10 @@
           <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -884,19 +900,16 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12774#20641#0" expanded="false" />
-            <element signature="e#20666#24553#0" expanded="false" />
+            <element signature="e#12652#20519#0" expanded="false" />
+            <element signature="e#20544#24431#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
-            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25843#28987#0" expanded="false" />
+            <element signature="e#25721#28865#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
             <element signature="n#!!block;n#ClearViewEnterning#0" expanded="false" />
             <element signature="n#!!block;n#updateLayer#0" expanded="false" />
-            <element signature="n#!!block;n#queryPackageTypeName#0" expanded="false" />
-            <element signature="e#31595#33812#0" expanded="false" />
             <element signature="n#!!block;n#updateElement#0" expanded="false" />
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
@@ -930,6 +943,10 @@
           <caret line="16" column="54" lean-forward="true" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
           <folding>
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -946,19 +963,16 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12774#20641#0" expanded="false" />
-            <element signature="e#20666#24553#0" expanded="false" />
+            <element signature="e#12652#20519#0" expanded="false" />
+            <element signature="e#20544#24431#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
-            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25843#28987#0" expanded="false" />
+            <element signature="e#25721#28865#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
             <element signature="n#!!block;n#ClearViewEnterning#0" expanded="false" />
             <element signature="n#!!block;n#updateLayer#0" expanded="false" />
-            <element signature="n#!!block;n#queryPackageTypeName#0" expanded="false" />
-            <element signature="e#31595#33812#0" expanded="false" />
             <element signature="n#!!block;n#updateElement#0" expanded="false" />
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
@@ -992,6 +1006,10 @@
           <caret line="11" column="45" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="45" />
           <folding>
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -1008,19 +1026,16 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12774#20641#0" expanded="false" />
-            <element signature="e#20666#24553#0" expanded="false" />
+            <element signature="e#12652#20519#0" expanded="false" />
+            <element signature="e#20544#24431#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
-            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25843#28987#0" expanded="false" />
+            <element signature="e#25721#28865#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
             <element signature="n#!!block;n#ClearViewEnterning#0" expanded="false" />
             <element signature="n#!!block;n#updateLayer#0" expanded="false" />
-            <element signature="n#!!block;n#queryPackageTypeName#0" expanded="false" />
-            <element signature="e#31595#33812#0" expanded="false" />
             <element signature="n#!!block;n#updateElement#0" expanded="false" />
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
@@ -1054,6 +1069,10 @@
           <caret line="202" column="76" lean-forward="false" selection-start-line="202" selection-start-column="66" selection-end-line="202" selection-end-column="76" />
           <folding>
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -1062,38 +1081,103 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../style/h5static/js/H5WebGL.js" />
+    <entry file="file://$PROJECT_DIR$/../../style/h5static/html/pro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="13" column="8" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/H5WebGL.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="280" column="35" lean-forward="false" selection-start-line="280" selection-start-column="35" selection-end-line="280" selection-end-column="35" />
+          <folding>
+            <element signature="e#172#8730#0" expanded="false" />
+            <element signature="e#331#428#0" expanded="false" />
+            <element signature="e#461#2014#0" expanded="false" />
+            <element signature="e#2047#2954#0" expanded="false" />
+            <element signature="e#2987#3873#0" expanded="false" />
+            <element signature="e#3905#3974#0" expanded="false" />
+            <element signature="e#4006#4096#0" expanded="false" />
+            <element signature="e#4135#4594#0" expanded="false" />
+            <element signature="e#4634#5137#0" expanded="false" />
+            <element signature="e#5180#6342#0" expanded="false" />
+            <element signature="e#6384#7134#0" expanded="false" />
+            <element signature="e#7174#7227#0" expanded="false" />
+            <element signature="e#7254#7475#0" expanded="false" />
+            <element signature="e#7506#7674#0" expanded="false" />
+            <element signature="e#7717#8207#0" expanded="false" />
+            <element signature="e#8248#8652#0" expanded="false" />
+            <element signature="e#8689#8728#0" expanded="false" />
+            <element signature="n#!!block;n#QueryPerspectiveInfo#0" expanded="false" />
+            <element signature="n#!!block;n#QueryPerspectiveInfoCallback#0" expanded="false" />
+            <element signature="n#!!block;n#QueryViewAllProducts#0" expanded="false" />
+            <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
+            <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
+            <element signature="n#!!block;n#ExchangeProduct#0" expanded="false" />
+            <element signature="n#!!block;n#ExchangeView#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="72" column="27" lean-forward="false" selection-start-line="72" selection-start-column="7" selection-end-line="72" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../../style/perspective/perspective.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1900">
-          <caret line="76" column="3" lean-forward="false" selection-start-line="76" selection-start-column="3" selection-end-line="76" selection-end-column="3" />
+        <state relative-caret-position="645">
+          <caret line="75" column="15" lean-forward="false" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="15" />
           <folding>
-            <marker date="1502877924850" expanded="true" signature="306:330" ph="{...}" />
+            <marker date="1503048920124" expanded="true" signature="306:330" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding>
+            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/perspective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="1468" column="1" lean-forward="true" selection-start-line="1468" selection-start-column="1" selection-end-line="1468" selection-end-column="1" />
+        <state relative-caret-position="296">
+          <caret line="819" column="43" lean-forward="true" selection-start-line="819" selection-start-column="43" selection-end-line="819" selection-end-column="43" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#12774#20641#0" expanded="false" />
-            <element signature="e#20666#24553#0" expanded="false" />
+            <element signature="e#12652#20519#0" expanded="false" />
+            <element signature="e#20544#24431#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
-            <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#25843#28987#0" expanded="false" />
+            <element signature="e#25721#28865#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
             <element signature="n#!!block;n#ClearViewEnterning#0" expanded="false" />
             <element signature="n#!!block;n#updateLayer#0" expanded="false" />
-            <element signature="n#!!block;n#queryPackageTypeName#0" expanded="false" />
-            <element signature="e#31595#33812#0" expanded="false" />
             <element signature="n#!!block;n#updateElement#0" expanded="false" />
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
@@ -1118,65 +1202,6 @@
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../style/h5static/html/pro.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="13" column="8" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="22" column="8" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="22" selection-end-column="8" />
-          <folding>
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/H5WebGL.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="811">
-          <caret line="366" column="31" lean-forward="true" selection-start-line="366" selection-start-column="31" selection-end-line="366" selection-end-column="31" />
-          <folding>
-            <element signature="e#172#8730#0" expanded="false" />
-            <element signature="e#331#428#0" expanded="false" />
-            <element signature="e#461#2014#0" expanded="false" />
-            <element signature="e#2047#2954#0" expanded="false" />
-            <element signature="e#2987#3873#0" expanded="false" />
-            <element signature="e#3905#3974#0" expanded="false" />
-            <element signature="e#4006#4096#0" expanded="false" />
-            <element signature="e#4135#4594#0" expanded="false" />
-            <element signature="e#4634#5137#0" expanded="false" />
-            <element signature="e#5180#6342#0" expanded="false" />
-            <element signature="e#6384#7134#0" expanded="false" />
-            <element signature="e#7174#7227#0" expanded="false" />
-            <element signature="e#7254#7475#0" expanded="false" />
-            <element signature="e#7506#7674#0" expanded="false" />
-            <element signature="e#7717#8207#0" expanded="false" />
-            <element signature="e#8248#8652#0" expanded="false" />
-            <element signature="e#8689#8728#0" expanded="false" />
-            <element signature="n#!!block;n#QueryPerspectiveInfo#0" expanded="false" />
-            <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
-            <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
-            <element signature="n#!!block;n#ExchangeView#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="40" column="10" lean-forward="true" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>

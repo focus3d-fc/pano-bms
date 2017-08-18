@@ -13,13 +13,21 @@
            house_style_sn = '$!house_style_sn';
            for(var i=0;i<space.length;i++){
                var li = $("<li></li>",{
-                   text:space[i].NAME,
-                   click:function(){
+                   text:space[i].NAME
+               }).on("click",function(){
+                   $(this).parent().children().each(function () {
+                       $(this).removeClass("space_selected");
+                   })
+
+                   if(!$(this).hasClass("space_selected")){
+                       $(this).addClass("space_selected");
                        query_view($(this).attr("id"));
                    }
                }).attr("id",space[i].SN);
                $("#space_container").append(li);
            }
+           $("#space_container").append($("<div class='clr'></div>"));
+           $("#space_container").children().first().trigger("click");
        }
     </script>
 </head>
@@ -27,8 +35,7 @@
 <body>
 <div id="left-top">
     <ul id="space_container" class="mar0pad0">
-        <div class="clr">
-        </div>
+
     </ul>
     <!--webGL begin-->
     <div id="WebGl-Output" class="mar0pad0"></div>
@@ -66,7 +73,7 @@
 
 
 
-<div id="element_upload" style="position: absolute;left:900px;top:500px;display: none">
+<div id="element_upload" style="position: absolute;left:860px;top:500px;display:;background:#e8e8e8;padding:20px;border-radius:4px;">
     <div style="width:280px;height:300px;border:1px solid #ddd;display:block;margin:0 auto;">
         <img id="element_pic" style="width:auto;height:auto;text-align:center;"/>
     </div>
@@ -82,7 +89,7 @@
              <input id="elementpic_upload" class="btn btn-default" type="button" style="display:none" value="上传"/>
     </span>
         <div class="clearfix"></div>
-        <div id="element_progress" class="progress" style="width:280px;height:20px;margin-top:75px;text-align: center;">
+        <div id="element_progress" class="progress" style="width:280px;height:20px;margin-top:96px;text-align: center;">
             <div class="progress-bar progress-bar-success"></div>
         </div>
 
@@ -93,8 +100,8 @@
 
     <input type='range' id='product_scale' class='tip fill fill-replace' value='100' min='1' max='200' />
     <div class="clearfix"></div>
-    <button id="elementProductUpdate" type="button" class="btn btn-info btn-lg btn-block" style="width:100px;float:left;margin-top:20px;display: none">保存</button>
-    <button id="elementProductClose" type="button" class="btn btn-default btn-lg btn-block"style="width:100px;float:right;margin-top:20px;">关闭</button>
+    <button id="elementProductUpdate" type="button" class="btn btn-info btn-block" style="width:100px;float:left;margin-top:20px;display: none">保存</button>
+    <button id="elementProductClose" type="button" class="btn btn-default btn-block"style="width:100px;float:right;margin-top:20px;">关闭</button>
     <div class="clearfix"></div>
 
 </div>

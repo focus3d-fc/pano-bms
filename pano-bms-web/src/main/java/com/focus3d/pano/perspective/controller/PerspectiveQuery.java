@@ -549,6 +549,7 @@ public class PerspectiveQuery extends BaseController {
 			map.put("houseStyleSn",houseStyleSn);
 			map.put("packageTypeSn",packageTypeSn);
 			map.put("productSn",productSn);
+			
 			List<Map<String, Object>> list = _service.QueryPerspectiveInfo(map);
 			
 			for(Map<String, Object> child:list){
