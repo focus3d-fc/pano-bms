@@ -186,6 +186,7 @@
 }
 .my-bg p{
     position: absolute;
+    bottom: 0.5rem;
     width: 100%;
     height: .4rem;
     font-size: .28rem;
@@ -323,10 +324,18 @@
     line-height: .8rem;
     border-bottom: 1px solid #eee;
 }
-#login .row i,
+#login .row img,
 #confirm .row i{
     font-size: 0.4rem;
     vertical-align: middle;
+}
+#login .row img{
+    width: 0.65rem;
+    height: .65rem;
+    margin-bottom: .1rem;
+}
+#login .row input{
+    font-size: .14rem;
 }
 #login button,
 #confirm button{
@@ -347,6 +356,9 @@
 #j_getVerifyCode{
     width: 30%;
     color: #6f6f6f;
+    padding-left: .2rem;
+    border-left:1px solid  #ddd;
+    font-size: .14rem;
 }
 #login .line{
     position: relative;
@@ -651,6 +663,7 @@
     line-height: .9rem;
     border-top: 1px solid #ddd;
     padding: 0 0 0 .2rem;
+    border-bottom: none;
 
 }
 .confirm  .order-item .total .tj{
@@ -945,6 +958,7 @@
     width: 2.1rem;
     background-color: rgba(0,0,0,.4);
     border-radius: .05rem;
+    overflow: hidden;
 }
 
 .se720 .re-box .rd-show img{
@@ -1228,6 +1242,26 @@
 /*产品简介页面*/
 .product{
     background-color: #fff;
+}
+.product .toushi{
+    position: relative;
+
+}
+.product .control{
+    position: absolute;
+    width: 1rem;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+}
+.product .control img{
+    width: .65rem;
+    height: .64rem;
+}
+.product .control p{
+    font-size: .18rem;
+    height: .6rem;
+    padding: 0;
 }
 .product img{
     width: 100%;

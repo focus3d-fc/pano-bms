@@ -9,18 +9,20 @@
     <link rel="stylesheet" href="../css/bass.css">
     <link rel="stylesheet" href="../css/index.css">
     <script src="../js/main.js"></script>
-
-    <script>
-
-    </script>
-
 </head>
 <body>
 <div class="container">
-	
+
     <!--图片-->
     <section class="product">
-        <div id="WebGl-OutPut"style="width:100%"></div>
+        <div class="toushi">
+            <img src="../image/image/2.jpg" alt="">
+            <div class="control">
+                <img src="../image/img/44.png" alt="">
+                <p>切换视角</p>
+            </div>
+        </div>
+
         <p>北欧风格茶几</p>
         <p class="content">品牌：马萨圣地</p>
         <p class="content">规格参数：210*180*20</p>
@@ -41,14 +43,20 @@
             <div class="swiper-button-next"></div>
         </div>
     </section>
-    <div class="button" id="Confirm_Select">
+    <div class="button">
         确认选择
     </div>
 </div>
 <script src="../lib/jQuery/jquery-3.2.1.min.js"></script>
 <script src="../lib/swiper/swiper.jquery.min.js"></script>
-
-
+<script>
+    var mySwiper = new Swiper ('.swiper-container', {
+        //autoplay: 5000,//可选选项，自动滑动
+        loop: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+    })
+</script>
 </body>
 </body>
 </html>

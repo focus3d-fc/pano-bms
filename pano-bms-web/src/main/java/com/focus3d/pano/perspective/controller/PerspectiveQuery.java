@@ -663,7 +663,6 @@ public class PerspectiveQuery extends BaseController {
 			model_map.put("viewlist", map.get("list"));
 			return "/perspective/pro";
 		}
-		
 		return "";
 	}
 	

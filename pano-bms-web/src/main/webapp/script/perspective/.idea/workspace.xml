@@ -109,8 +109,8 @@
       <file leaf-file-name="pro.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="67" column="44" lean-forward="true" selection-start-line="67" selection-start-column="44" selection-end-line="67" selection-end-column="44" />
+            <state relative-caret-position="484">
+              <caret line="40" column="10" lean-forward="true" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -119,8 +119,8 @@
       <file leaf-file-name="H5WebGL.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/H5WebGL.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="773">
-              <caret line="361" column="1" lean-forward="true" selection-start-line="361" selection-start-column="1" selection-end-line="361" selection-end-column="1" />
+            <state relative-caret-position="811">
+              <caret line="366" column="31" lean-forward="true" selection-start-line="366" selection-start-column="31" selection-end-line="366" selection-end-column="31" />
               <folding>
                 <element signature="e#172#8730#0" expanded="false" />
                 <element signature="e#331#428#0" expanded="false" />
@@ -142,7 +142,6 @@
                 <element signature="n#!!block;n#QueryPerspectiveInfo#0" expanded="false" />
                 <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
                 <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
-                <element signature="n#!!block;n#ExchangeProduct#0" expanded="false" />
                 <element signature="n#!!block;n#ExchangeView#0" expanded="false" />
               </folding>
             </state>
@@ -153,7 +152,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CaculatePicContainerWidth</find>
       <find>element_pic</find>
       <find>elementProductUpdate</find>
       <find>element_upload</find>
@@ -174,7 +172,6 @@
       <find>debugger</find>
       <find>element_</find>
       <find>getObjectByName</find>
-      <find>ExchangeProduct</find>
       <find>elementProductClose</find>
       <find>ElementUploadHide</find>
       <find>query_elementProduct</find>
@@ -183,6 +180,8 @@
       <find>query_element</find>
       <find>ControlElementClear</find>
       <find>QueryPerspectiveInfo</find>
+      <find>productSn</find>
+      <find>ExchangeProduct</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -193,8 +192,8 @@
         <option value="$PROJECT_DIR$/../../style/h5static/js/H5WebGL.js" />
         <option value="$PROJECT_DIR$/perspective.js" />
         <option value="$PROJECT_DIR$/../../style/h5static/html/pro.html" />
-        <option value="$PROJECT_DIR$/H5WebGL.js" />
         <option value="$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html" />
+        <option value="$PROJECT_DIR$/H5WebGL.js" />
       </list>
     </option>
   </component>
@@ -333,12 +332,12 @@
       <workItem from="1502760396905" duration="40208000" />
       <workItem from="1502846097689" duration="40959000" />
       <workItem from="1502934406113" duration="17569000" />
-      <workItem from="1503031181068" duration="5612000" />
+      <workItem from="1503031181068" duration="6216000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="194241000" />
+    <option name="totallyTimeSpent" value="194845000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -489,7 +488,6 @@
             <element signature="n#!!block;n#QueryPerspectiveInfo#0" expanded="false" />
             <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
-            <element signature="n#!!block;n#ExchangeProduct#0" expanded="false" />
             <element signature="n#!!block;n#ExchangeView#0" expanded="false" />
           </folding>
         </state>
@@ -1146,8 +1144,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/H5WebGL.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="773">
-          <caret line="361" column="1" lean-forward="true" selection-start-line="361" selection-start-column="1" selection-end-line="361" selection-end-column="1" />
+        <state relative-caret-position="811">
+          <caret line="366" column="31" lean-forward="true" selection-start-line="366" selection-start-column="31" selection-end-line="366" selection-end-column="31" />
           <folding>
             <element signature="e#172#8730#0" expanded="false" />
             <element signature="e#331#428#0" expanded="false" />
@@ -1169,7 +1167,6 @@
             <element signature="n#!!block;n#QueryPerspectiveInfo#0" expanded="false" />
             <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
-            <element signature="n#!!block;n#ExchangeProduct#0" expanded="false" />
             <element signature="n#!!block;n#ExchangeView#0" expanded="false" />
           </folding>
         </state>
@@ -1177,8 +1174,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="67" column="44" lean-forward="true" selection-start-line="67" selection-start-column="44" selection-end-line="67" selection-end-column="44" />
+        <state relative-caret-position="484">
+          <caret line="40" column="10" lean-forward="true" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
           <folding />
         </state>
       </provider>
