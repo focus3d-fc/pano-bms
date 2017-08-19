@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,15 +20,13 @@ import com.alibaba.fastjson.JSON;
 import com.focus3d.pano.common.controller.BaseController;
 import com.focus3d.pano.wechat.utils.Constants;
 import com.focus3d.pano.wechat.utils.OAuthUtil;
-import com.focus3d.pano.wechat.utils.OAuthUtil.Token;
-import com.focus3d.pano.wechat.utils.OAuthUtil.UserInfo;
+import com.focus3d.pano.wechat.utils.Token;
+import com.focus3d.pano.wechat.utils.UserInfo;
 
 
 @Controller
 @RequestMapping("/wechat")
 public class WeChatAuthController extends BaseController {
-	
-	private static final Logger log = LoggerFactory.getLogger(OAuthUtil.class);
 	
 	@RequestMapping(value="/oauth")
 	public void oauth(HttpServletRequest request, HttpServletResponse response){
@@ -48,7 +44,6 @@ public class WeChatAuthController extends BaseController {
 		}
 	}
 	
-	@ResponseBody
 	@RequestMapping("/redirect")
 	public String redirect(
 			HttpServletRequest request,
@@ -58,7 +53,6 @@ public class WeChatAuthController extends BaseController {
 			String state) throws Exception{
 		
 		try{
-			log.debug("进入重定向");
 			System.out.println("进入重定向...Code:"+code+"|State:"+state);
 			Token token = OAuthUtil.redirect(code);
 			UserInfo userInfo = OAuthUtil.userinfo(token.getAccess_token(), token.getOpenid(), Constants.WXMP_OAUTH_USERINFO_LANG);
@@ -73,21 +67,11 @@ public class WeChatAuthController extends BaseController {
 			 * REMIND: 此处暂时不涉及登录
 			 */
 			String openid = userInfo.getOpenid();
-			//return "redirect:/wechat/userInfo";
-			String x = userInfo.getOpenid() +"<br/>";
-			x+= userInfo.getCity() +"<br/>";
-			x+= userInfo.getCountry() +"<br/>";
-			x+= userInfo.getHeadimgurl() +"<br/>";
-			x+= userInfo.getNickname() +"<br/>";
-			x+= userInfo.getProvince() +"<br/>";
-			x+= userInfo.getSex() +"<br/>";
-			x+= userInfo.getUnionid() +"<br/>";
 			
-			
-			
-			return x;
+			return "redirect:/wechat/userInfo";
 		}catch(Exception e){
-			return e.getMessage();
+			e.printStackTrace();
+			return null;
 		}
 		
 		
@@ -116,8 +100,8 @@ public class WeChatAuthController extends BaseController {
 			return x;
 		}catch(Exception e){
 			e.printStackTrace();
-			return e.getMessage();
 		}
+		
+		return null;
 	}
-	
 }
