@@ -99,9 +99,8 @@ public class WeChatAuthController extends BaseController {
 			return x;
 		}catch(Exception e){
 			e.printStackTrace();
+			return "";
 		}
-		
-		return null;
 	}
 	
 }
