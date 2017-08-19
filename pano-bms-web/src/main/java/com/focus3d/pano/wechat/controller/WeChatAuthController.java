@@ -68,6 +68,7 @@ public class WeChatAuthController extends BaseController {
 			 */
 			String openid = userInfo.getOpenid();
 			
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
