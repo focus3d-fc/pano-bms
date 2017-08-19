@@ -77,6 +77,7 @@ public class PanoUserlonginController extends BaseController{
 		jo.put("pwd", password);
 		Cookie ck = new Cookie("pano_ticket", encryptService.encrypt(jo.toString(), null));
 		ck.setPath("/");
+		ck.setDomain("joy-homeplus.com");
 		response.addCookie(ck);
 	}
 	
