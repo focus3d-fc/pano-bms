@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" href="/style/jquery.validate.css" />
     <link rel="stylesheet" type="text/css" href="/style/bootstrap.min-3.3.5.css" />
     <link rel="stylesheet" href="/style/perspective/perspective.css">
     <!--link rel="stylesheet" href="/component/upload/css/style.css"-->
 	<link rel="stylesheet" href="/component/upload/css/jquery.fileupload.css">
+
 
     <style>
         *{
@@ -155,7 +157,6 @@
 </div>
 
 
-
 <div id="element_upload" style="position: absolute;left:860px;top:500px;display:;background:#e8e8e8;padding:20px;border-radius:4px;">
     <div style="width:280px;height:300px;border:1px solid #ddd;display:block;margin:0 auto;">
         <img id="element_pic" style="width:auto;height:auto;text-align:center;"/>
@@ -177,7 +178,6 @@
         </div>
 
     </div>
-
 
     <input type="hidden" id="product_mapid"/>
 
@@ -201,26 +201,28 @@
                 <form id="view_form" class="bs-example bs-example-form" role="form">
                     <div class="input-group">
                         <span class="input-group-addon">视角名称</span>
-                        <input name="viewName" id="viewName" type="text" class="form-control">
+                        <input name="viewName" id="viewName" type="text" class="form-control" required/>
                         <input name="sn" id="viewSn" type="hidden" />
                         <input name="mapid" id="view_mapid" type="hidden"/>
                     </div>
                     <br>
 
                     <br>
+
                     <div class="input-group">
 
                         <img id="view_pic" style="width:568px;height:300px;border:1px solid #ddd;display:block;margin:0 auto;"/>
                         <div class="clearfix"></div>
-<div style="margin-top:-190px;margin-left:230px;display:block;position:relative;">
 
-                        <span class="btn btn-success fileinput-button" >
-					        <i class="glyphicon glyphicon-plus"></i>
-					        <span>Add files...</span>
-                            <!-- The file input field used as target for the file upload widget -->
-					        <input id="fileupload" type="file" multiple>
-					    </span>
-</div>
+                        <div style="margin-top:-190px;margin-left:230px;display:block;position:relative;">
+
+                            <span class="btn btn-success fileinput-button" >
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span>Add files...</span>
+                                <!-- The file input field used as target for the file upload widget -->
+                                <input id="fileupload" type="file" multiple>
+                            </span>
+                        </div>
 
                         <div class="input-group">
                             <div id="progress" class="progress" style="width:568px;height:20px;margin-top:135px;">
@@ -238,14 +240,12 @@
                             <input id="viewpic_upload" class="btn btn-default" type="button" style="display: none" value="上传"/>
                         </span>
                     </div>
-                    
-
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
-                <button type="button" class="btn btn-primary" id="view_save" style="display:none">保存
+                <button type="button" class="btn btn-primary" id="view_save" style="">保存
                 </button>
             </div>
         </div>
@@ -264,7 +264,7 @@
                 <form id="layer_form" class="bs-example bs-example-form" role="form">
                     <div class="input-group">
                         <span class="input-group-addon">层名称</span>
-                        <input name="layerName" id="layerName" type="text" class="form-control">
+                        <input name="layerName" id="layerName" type="text" class="form-control" required>
                         <input name="sn" id="layer_sn" type="hidden"/>
                     </div>
                     <br>
@@ -308,9 +308,9 @@
     </div>
 </div>
 
-
-
 <script type="text/javascript" src="/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/script/jquery.validate.min.js"></script>
+
 <script type="text/javascript" src="/script/bootstrap.min-3.3.5.js"></script>
 <script type="text/javascript" src="/script/perspective/perspective.js"></script>
 <script type="text/javascript" src="/script/libs/three.js"></script>
