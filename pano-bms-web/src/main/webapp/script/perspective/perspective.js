@@ -25,6 +25,10 @@ var edit_element;
 
 var edit_layer;
 
+var view_validator;
+
+var layer_validator;
+
 function createView(data){
     var _this = this;
 
@@ -166,15 +170,16 @@ function View(data){
         class:"float_r glyphicon glyphicon-plus-sign dis_block mar_t10 mar_r10 s20"
     }).on({
         click:function(){
-            if(space_sn){
-                $("#layer_entering").modal("show");
-                $("#layer_save").off("click").on("click",function(){
+            $("#layer_entering").modal("show");
+            $("#layer_save").off("click").on("click",function(){
+                layer_validator = $("#layer_form").validate();
+                if($("#layer_form").valid()){
                     updateLayer(data.id,function (data) {
                         _this.add_layer(data);
                         $("#layer_entering").modal("hide");
                     });
-                });
-            }
+                }
+            });
         }
     });
 
@@ -278,10 +283,14 @@ function Layer(parent,data){
             $("#layer_entering").modal("show");
 
             $("#layer_save").off("click").on("click",function(){
-                updateLayer(data.viewSn,function(data){
-                    _this.reLoad(data);
-                    $("#layer_entering").modal("hide");
-                });
+                layer_validator = $("#layer_form").validate();
+
+                if($("#layer_form").valid()) {
+                    updateLayer(data.viewSn, function (data) {
+                        _this.reLoad(data);
+                        $("#layer_entering").modal("hide");
+                    });
+                }
             });
         }
 	});
@@ -702,6 +711,10 @@ $(function(){
     WebGL_Container = $("#WebGl-Output");
     WebGL.init();
 
+    $.extend($.validator.messages, {
+        required: "必填字段",
+    });
+
     $("#view_entering").on('hidden.bs.modal', function () {
         $("#viewName").val("");
         $("#view_pic").attr("src","");
@@ -712,6 +725,9 @@ $(function(){
             'width', '0%'
         );
         $("#view_save").hide();
+        if(view_validator){
+            view_validator.resetForm();
+        }
     });
 
     $("#view_entering").on('shown.bs.modal', function(){
@@ -723,17 +739,25 @@ $(function(){
     $("#layer_entering").on('hidden.bs.modal', function () {
         $("#layerName").val("");
         $("#layer_sn").val("");
+        if(layer_validator){
+            layer_validator.resetForm();
+        }
     });
 
 
     $("#view_insert").on("click",function () {
         $("#view_save").off("click").on("click",function () {
-            updateView(function(data){
-                WebGL.clearScene();
-                ControlViewHtmlClear();
-                var view = new View(data);
-                $("#view_entering").modal("hide");
-            });
+            if(space_sn){
+                view_validator = $("#view_form").validate();
+                if($("#view_form").valid()){
+                    updateView(function(data){
+                        WebGL.clearScene();
+                        ControlViewHtmlClear();
+                        var view = new View(data);
+                        $("#view_entering").modal("hide");
+                    });
+                }
+            }
         });
         $("#view_entering").modal("show");
     });

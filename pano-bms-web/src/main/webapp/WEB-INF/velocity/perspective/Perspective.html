@@ -3,90 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" href="/style/jquery.validate.css" />
     <link rel="stylesheet" type="text/css" href="/style/bootstrap.min-3.3.5.css" />
     <link rel="stylesheet" href="/style/perspective/perspective.css">
     <!--link rel="stylesheet" href="/component/upload/css/style.css"-->
 	<link rel="stylesheet" href="/component/upload/css/jquery.fileupload.css">
-
-    <style>
-        *{
-            margin:0;
-            padding:0;
-        }
-        body { line-height: 1; font-size: 14px; font-family: '微软雅黑' !important }
-        ul, ol, dl { list-style: none; }
-        img { vertical-align: middle; border: 0; }
-        /*去除链接虚 */
-        a { text-decoration: none; outline: none; }
-        a:active { star:expression(this.onFocus=this.blur());
-        }
-        /* 链接 */
-        a { cursor: pointer; color: #333; }
-        a:link, a:visited { text-decoration: none; }
-        a:hover { color: #407cde; }
-        /* 布局 */
-        .dis_inb { display: inline-block; *display:inline;
-            *zoom:1;
-            vertical-align: top; letter-spacing: normal; }
-        .dis_block { display: block; }
-        .float_l { float: left; }
-        .float_r { float: right }
-        .float_c { margin: 0 auto; padding: 0 auto; }
-        /* 清除左右浮动 */
-        .clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
-        .clearfix { display: inline-block; }
-        .clr { clear: both; padding: 0ox; margin: 0px; overflow: hidden; width: 100%; height: 1px; font-size: 0px; line-height: 0px; }
-        .column { display: block; float: left; }/*列*/
-        .colgroup { float: left; width: 100% }/*组*/
-        .first { margin-left: 0; clear: left; }/*左边距为零，清除左浮动*/
-        /* 对齐方式 */
-        .text_c { text-align: center; }
-        .text_l { text-align: left; }
-        .text_r { text-align: right; }
-
-        .mar0pad0{margin:0px;padding:0px;}
-        .mar_l20{margin-left:20px;}
-        .mar_l5{margin-left:5px;}
-        .mar_t10{margin-top:10px;}
-        .mar_r10{margin-right:10px;}
-        /*main style*/
-
-        #left-top { width:800px; margin:0;height: 30px;float:left;}
-        #space_container, #view_container #layer_container #element_container { overflow: hidden; zoom: 1; background: #000; border: 1px solid #000; height: 36px; line-height:36px; }
-        #space_container li, #view_container li #layer_container li #element_container li { float: left; color: #fff; height: 30px; cursor: pointer; line-height: 30px; list-style-type: none; padding: 0 20px; }
-        #WebGl-Output {width: 800px; height: 580px; background:#9BCCEB; display:block;margin:0px;}
-        #view {  height:55px;border-bottom:1px solid #e6e6e6;border-right:1px solid #e6e6e6;}
-
-        #view ul li{float:left;margin:0px;padding:20px 20px;display:block; border-left:1px solid #e6e6e6;}
-        .click{}
-
-        #left-top #bottom #view { }
-
-        #layer { width:55%; height: 460px; float:left; }
-        #layer_control {width:400px; height: 100%; float:left;border-right: 1px #e6e6e6 solid;overflow: auto;}
-        #layer_control ul li{line-height:36px; border-bottom:1px solid #e6e6e6; text-indent:24px; width:335px;}
-
-
-        #element_control {  width:400px; height: 100%; float:left;}
-        #element_control ul li{line-height:36px; border-bottom:1px solid #e6e6e6; text-indent:24px; width:340px;}
-
-        .view_div { width: 100px; height: 30px; }
-        .view_edit_img { width: 10px; height: 10px; }
-        .layer_div { width: 100px; height: 30px; }
-        .layer_div img { width: 10px; height: 10px; float: right; }
-
-
-        .packge_name{ line-height:40px;}
-        .packge_name input{margin-right: 16px;}
-        .w8{width:80px;}
-
-        .selected{background-color: #D6D6D6}
-        .space_selected{background-color: #494949}
-
-        li,tr{cursor:pointer}
-
-        .s20{font-size:22px;margin-bottom:5px;}
-    </style>
 
     <script>
        window.onload = function () {
@@ -155,7 +76,6 @@
 </div>
 
 
-
 <div id="element_upload" style="position: absolute;left:860px;top:500px;display:;background:#e8e8e8;padding:20px;border-radius:4px;">
     <div style="width:280px;height:300px;border:1px solid #ddd;display:block;margin:0 auto;">
         <img id="element_pic" style="width:auto;height:auto;text-align:center;"/>
@@ -177,7 +97,6 @@
         </div>
 
     </div>
-
 
     <input type="hidden" id="product_mapid"/>
 
@@ -201,26 +120,28 @@
                 <form id="view_form" class="bs-example bs-example-form" role="form">
                     <div class="input-group">
                         <span class="input-group-addon">视角名称</span>
-                        <input name="viewName" id="viewName" type="text" class="form-control">
+                        <input name="viewName" id="viewName" type="text" class="form-control" required/>
                         <input name="sn" id="viewSn" type="hidden" />
                         <input name="mapid" id="view_mapid" type="hidden"/>
                     </div>
                     <br>
 
                     <br>
+
                     <div class="input-group">
 
                         <img id="view_pic" style="width:568px;height:300px;border:1px solid #ddd;display:block;margin:0 auto;"/>
                         <div class="clearfix"></div>
-<div style="margin-top:-190px;margin-left:230px;display:block;position:relative;">
 
-                        <span class="btn btn-success fileinput-button" >
-					        <i class="glyphicon glyphicon-plus"></i>
-					        <span>Add files...</span>
-                            <!-- The file input field used as target for the file upload widget -->
-					        <input id="fileupload" type="file" multiple>
-					    </span>
-</div>
+                        <div style="margin-top:-190px;margin-left:230px;display:block;position:relative;">
+
+                            <span class="btn btn-success fileinput-button" >
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span>Add files...</span>
+                                <!-- The file input field used as target for the file upload widget -->
+                                <input id="fileupload" type="file" multiple>
+                            </span>
+                        </div>
 
                         <div class="input-group">
                             <div id="progress" class="progress" style="width:568px;height:20px;margin-top:135px;">
@@ -238,14 +159,12 @@
                             <input id="viewpic_upload" class="btn btn-default" type="button" style="display: none" value="上传"/>
                         </span>
                     </div>
-                    
-
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
-                <button type="button" class="btn btn-primary" id="view_save" style="display:none">保存
+                <button type="button" class="btn btn-primary" id="view_save" style="">保存
                 </button>
             </div>
         </div>
@@ -264,7 +183,7 @@
                 <form id="layer_form" class="bs-example bs-example-form" role="form">
                     <div class="input-group">
                         <span class="input-group-addon">层名称</span>
-                        <input name="layerName" id="layerName" type="text" class="form-control">
+                        <input name="layerName" id="layerName" type="text" class="form-control" required>
                         <input name="sn" id="layer_sn" type="hidden"/>
                     </div>
                     <br>
@@ -308,9 +227,9 @@
     </div>
 </div>
 
-
-
 <script type="text/javascript" src="/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/script/jquery.validate.min.js"></script>
+
 <script type="text/javascript" src="/script/bootstrap.min-3.3.5.js"></script>
 <script type="text/javascript" src="/script/perspective/perspective.js"></script>
 <script type="text/javascript" src="/script/libs/three.js"></script>
