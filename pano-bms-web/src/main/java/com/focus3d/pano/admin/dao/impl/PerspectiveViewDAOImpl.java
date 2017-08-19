@@ -51,4 +51,9 @@ public class PerspectiveViewDAOImpl extends CommonDao<PanoPerspectiveViewModel>{
 		return list;
 	}
 	
+	public List<String> QueryUsedPackageTypeName(Long sn) throws SQLException{
+		List<String> list = getSqlMapClient().queryForList("pano_perspective_view.query_used_package_type", sn);
+		return list;
+	}
+	
 }

@@ -21,6 +21,8 @@ var house_style_sn;
 
 var space_sn;
 
+var view_sn;
+
 var edit_element;
 
 var edit_layer;
@@ -43,6 +45,7 @@ function createView(data){
         class:"click"
     }).on("click",function (control){
         return function () {
+            view_sn = data.sn;
             $(this).parent().children().each(function () {
                 $(this).find("#control").hide();
                 $(this).removeClass("selected");
@@ -96,6 +99,7 @@ function View(data){
 	    id:"view_"+_this.data.id,
 	    class:"click"
     }).on("click",function (){
+        view_sn = data.id;
         $(this).parent().children().each(function () {
             if($(this).attr("id") != _this.node.attr("id")){
                 $(this).find("#control").hide();
@@ -1063,30 +1067,35 @@ function queryPackageTypeName(layer){
         data:_data,
         dataType:"json",
         success:function(data){
-            if(data&&Object.keys(data).length!=0){
+            var used = data.used;
+            var all_data = data.all;
+            if(all_data&&Object.keys(all_data).length!=0){
                 var container = $("#element_check_container");
                 container.empty();
-                $("#element_container").find("li").each(function(){
-                    var key = $(this).data("package_type_sn");
-                    data[key].selected = true;
-                })
-                for(var key in data){
+                for(var i=0,len = used.length;i<len;i++){
+                    var key = used[i];
+                    if(key in all_data){
+                        all_data[key].selected = true;
+                    }
+                }
+                for(var key in all_data){
                     var li = $("<li></li>");
 
                     var parent = $("<div></div>",{
                         class:"packge_name"
                     });
 
-                    var checkbox = $("<input type='checkbox'/>").attr("id",data[key].id).off("click").on("click",function () {
+                    var checkbox = $("<input type='checkbox'/>").attr("id",all_data[key].id).off("click").on("click",function () {
                         if($(this).is(":checked")){
                             $("#element_check_container input:enabled:checked").prop("checked",false);
                             $(this).prop("checked",true);
                         }
                     });
-                    if(data[key].selected){
+                    
+                    if(all_data[key].selected){
                         checkbox.attr("checked",true).attr('disabled',true);
                     }
-                    parent.append(checkbox).append($("<text></text>").text(data[key].name));
+                    parent.append(checkbox).append($("<text></text>").text(all_data[key].name));
 
                     container.append(parent);
                 }

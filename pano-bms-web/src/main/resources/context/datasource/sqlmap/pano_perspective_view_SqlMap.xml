@@ -405,7 +405,19 @@
 	      ON package.sn = packageType.house_package_sn 
 	  WHERE packageType.space_sn = #houseSpaceSn# 
 	    AND package.house_style_sn = #houseStyleSn#
-  </select>
+  	</select>
+  	
+  	<select id="query_used_package_type" parameterClass="java.lang.Integer" resultClass="java.lang.String">
+  	    SELECT 
+	      element.package_type_sn AS packageTypeSn
+	    FROM
+	      pano_perspective_view VIEW 
+	      INNER JOIN pano_perspective_layer layer 
+	        ON layer.view_sn = view.sn 
+	      INNER JOIN pano_perspective_element element 
+	        ON element.layer_sn = layer.sn 
+	    WHERE view.sn = 100119 
+  	</select>
   
   	<delete id="delete_view" parameterClass="com.focus3d.pano.model.ibator.PanoPerspectiveViewModel">
 	    DELETE 

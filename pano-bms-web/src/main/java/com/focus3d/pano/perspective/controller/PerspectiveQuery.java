@@ -302,6 +302,10 @@ public class PerspectiveQuery extends BaseController {
 			PanoPerspectiveViewModel model) {
 		try {
 			List<Map<String, Object>> list = _service.QueryPackageTypeName(model);
+			List<String> used_list = _service.QueryUsedPackageTypeName(model.getSn());
+			
+			JSONObject result = new JSONObject();
+			
 			JSONObject json = new JSONObject();
 			for(Map<String, Object> map:list){
 				JSONObject child = new JSONObject();
@@ -311,7 +315,9 @@ public class PerspectiveQuery extends BaseController {
 				child.put("name",name);
 				json.put(id, child);
 			}
-			ajaxOutput(response, json.toJSONString());
+			result.put("used", used_list);
+			result.put("all", json);
+			ajaxOutput(response, result.toJSONString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
