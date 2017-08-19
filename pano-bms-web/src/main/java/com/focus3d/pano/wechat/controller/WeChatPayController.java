@@ -38,7 +38,7 @@ public class WeChatPayController extends BaseController {
 			
 	        data.put("body", "focus3d 支付测试");
 	        data.put("out_trade_no", "zs"+new Date().getTime());
-	        data.put("device_info", "1");
+	        data.put("device_info", "1000");
 	        data.put("fee_type", "CNY");
 	        data.put("total_fee", "1");
 	        data.put("spbill_create_ip", "127.0.0.1");
@@ -53,11 +53,10 @@ public class WeChatPayController extends BaseController {
 	        	// 二次签名
 	        	HashMap<String, String> paySingMap = new HashMap<String, String>();
 	        	paySingMap.put("appid", wx.getAppId());
-	        	paySingMap.put("partnerid", wx.getMchId());
-	        	paySingMap.put("prepayid", r.get("partner_id"));
-	        	paySingMap.put("noncestr", r.get("nonce_str"));
-	        	paySingMap.put("timeStamp", new Date().getTime()/1000+"");
-	        	paySingMap.put("package", "Sign=WXPay");
+	        	paySingMap.put("body", "test");
+	        	paySingMap.put("device_info", "1000");
+	        	paySingMap.put("mch_id", wx.getMchId());
+	        	paySingMap.put("nonce_str", r.get("nonce_str"));
 	        	
 	        	String pay_sing = WxPayUtil.generateSignature(data, wx.getMchKey());
 	        	r.put("paySign", pay_sing);
