@@ -31,7 +31,7 @@ public class WeChatPayController extends BaseController {
 		
 		try{
 			
-			//UserInfo userInfo = (UserInfo)session.getAttribute(Constants.SESSION_WX_USER);
+			UserInfo userInfo = (UserInfo)session.getAttribute(Constants.SESSION_WX_USER);
 			
 			HashMap<String, String> data = new HashMap<String, String>();
 			
@@ -44,7 +44,7 @@ public class WeChatPayController extends BaseController {
 	        data.put("notify_url", "http://gwzj.joy-homeplus.com/wechat/testNotify");
 	        data.put("trade_type", "JSAPI");
 	        data.put("product_id", "12");
-	        data.put("openid", "oHSqcw37i18XF01iXDEasSFpbNZY");
+	        data.put("openid", userInfo.getOpenid());
 
 	        Map<String, String> r = wp.unifiedOrder(data);
 	        request.setAttribute("result", r);
