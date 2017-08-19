@@ -22,8 +22,8 @@ import javax.net.ssl.X509TrustManager;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-import com.focus3d.pano.wechat.utils.*;
-
+import com.focustech.common.utils.JsonUtils;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * 微信OAuth2.0网页授权
@@ -129,7 +129,7 @@ public class OAuthUtil {
 			e.printStackTrace();
 		}
 		
-		Token token = (Token) JsonUtil.getDtoFromJsonObjStr(buffer.toString(), Token.class);
+		Token token = JSONObject.parseObject(buffer.toString(), Token.class);
 		System.out.println("REDIRECT Token >>> "+token.toString());
 		return token;
 	}
@@ -180,7 +180,9 @@ public class OAuthUtil {
 		}
 		
 		System.out.println("UserInfo Result JSON >>> "+buffer.toString());
-		UserInfo userInfo = (UserInfo) JsonUtil.getDtoFromJsonObjStr(buffer.toString(), UserInfo.class);
+		
+
+		UserInfo userInfo = JSONObject.parseObject(buffer.toString(), UserInfo.class);
 		System.out.println("UserInfo >>> "+userInfo.toString());
 		return userInfo;
 	}
