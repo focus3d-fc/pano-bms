@@ -326,8 +326,8 @@ public class OAuthUtil {
 			buffer.append(this.expires_in);
 			buffer.append(" | scope : ");
 			buffer.append(this.scope);
-			buffer.append(" | unionid : ");
-			buffer.append(this.unionid);
+//			buffer.append(" | unionid : ");
+//			buffer.append(this.unionid);
 			return buffer.toString();
 		}
 		
