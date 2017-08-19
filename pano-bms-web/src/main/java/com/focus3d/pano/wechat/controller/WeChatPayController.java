@@ -45,11 +45,11 @@ public class WeChatPayController extends BaseController {
 	        data.put("notify_url", "http://gwzj.joy-homeplus.com/wechat/testNotify");
 	        data.put("trade_type", "JSAPI");
 	        data.put("product_id", "12");
-	        data.put("timeStamp", new Date().getTime()+"");
 	        data.put("openid", userInfo.getOpenid());
-
 	        
 	        Map<String, String> r = wp.unifiedOrder(data);
+
+	        r.put("timeStamp", new Date().getTime()+"");
 	        request.setAttribute("result", r);
 		}catch(Exception e){
 
