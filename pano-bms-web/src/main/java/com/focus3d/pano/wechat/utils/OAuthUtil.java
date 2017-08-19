@@ -88,7 +88,7 @@ public class OAuthUtil {
 		
 	}
 	
-	private static final Logger log = LoggerFactory.getLogger(OAuthUtil.class);
+
 	
 	
 	/**
@@ -135,10 +135,8 @@ public class OAuthUtil {
 			e.printStackTrace();
 		}
 		
-		log.debug("oauth-->"+buffer.toString());
 		
-		
-		Token token = JSONObject.parseObject(buffer.toString(), Token.class);
+		Token token = (Token) JSONObject.parse(buffer.toString());
 		System.out.println("REDIRECT Token >>> "+token.toString());
 		return token;
 	}
