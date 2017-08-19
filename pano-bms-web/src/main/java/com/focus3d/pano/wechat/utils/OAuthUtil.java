@@ -24,6 +24,9 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import com.focustech.common.utils.JsonUtils;
 import com.alibaba.fastjson.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * 微信OAuth2.0网页授权
@@ -85,6 +88,9 @@ public class OAuthUtil {
 		
 	}
 	
+	Logger log4s = LoggerFactory.getLogger(OAuthUtil.class);
+	
+	
 	/**
 	 * 重定向
 	 * @param code
@@ -128,6 +134,7 @@ public class OAuthUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 		Token token = JSONObject.parseObject(buffer.toString(), Token.class);
 		System.out.println("REDIRECT Token >>> "+token.toString());
