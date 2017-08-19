@@ -22,7 +22,7 @@ import javax.net.ssl.X509TrustManager;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-import com.focustech.common.utils.JsonUtils;
+import com.focus3d.pano.wechat.utils.*;
 
 
 /**
@@ -129,7 +129,7 @@ public class OAuthUtil {
 			e.printStackTrace();
 		}
 		
-		Token token = JsonUtils.readValue(buffer.toString(), Token.class);
+		Token token = (Token) JsonUtil.getDtoFromJsonObjStr(buffer.toString(), Token.class);
 		System.out.println("REDIRECT Token >>> "+token.toString());
 		return token;
 	}
@@ -180,7 +180,7 @@ public class OAuthUtil {
 		}
 		
 		System.out.println("UserInfo Result JSON >>> "+buffer.toString());
-		UserInfo userInfo = JsonUtils.readValue(buffer.toString(), UserInfo.class);
+		UserInfo userInfo = (UserInfo) JsonUtil.getDtoFromJsonObjStr(buffer.toString(), UserInfo.class);
 		System.out.println("UserInfo >>> "+userInfo.toString());
 		return userInfo;
 	}
