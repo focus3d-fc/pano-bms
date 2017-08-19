@@ -29,7 +29,6 @@ import com.focustech.cief.filemanage.client.api.IFileReadClient;
 import com.focustech.cief.filemanage.client.constant.FileAttributeEnum;
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.JsonUtils;
-import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
 
 @Controller
 @RequestMapping("/perspective")
