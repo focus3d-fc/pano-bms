@@ -416,7 +416,7 @@
 	        ON layer.view_sn = view.sn 
 	      INNER JOIN pano_perspective_element element 
 	        ON element.layer_sn = layer.sn 
-	    WHERE view.sn = 100119 
+	    WHERE view.sn = #sn#
   	</select>
   
   	<delete id="delete_view" parameterClass="com.focus3d.pano.model.ibator.PanoPerspectiveViewModel">

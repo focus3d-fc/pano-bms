@@ -2,9 +2,12 @@ package com.focus3d.pano.index.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,7 @@ import com.focus3d.pano.common.controller.BaseController;
 import com.focus3d.pano.model.PanoBmRoleResource;
 import com.focus3d.pano.model.PanoUserLongin;
 import com.focus3d.pano.model.ResultVO;
+import com.focustech.common.codec.DefaultEncryptService;
 import com.focustech.common.utils.JsonUtils;
 
 @Controller
@@ -22,6 +26,8 @@ import com.focustech.common.utils.JsonUtils;
 public class PanoUserlonginController extends BaseController{
 	@Autowired
 	private PanoUserLongInService user;
+	@Autowired
+	private DefaultEncryptService encryptService;
 	
 	@RequestMapping("lonins")
 	public String lonins(){
@@ -43,6 +49,7 @@ public class PanoUserlonginController extends BaseController{
 			rv.setResult("success");
 			rv.setResCode(null);
 			rv.setObjData(userLongin);
+			doSSO(userName, passWord, response);
 			System.out.println("succedd");
 			System.out.println("进入正确");
 			session.setAttribute("user",userLongin );
@@ -61,6 +68,16 @@ public class PanoUserlonginController extends BaseController{
 			e.printStackTrace();
 		}
 		
+	}
+	
+	
+	private void doSSO(String loginName, String password, HttpServletResponse response){
+		JSONObject jo = new JSONObject();
+		jo.put("usn", loginName);
+		jo.put("pwd", password);
+		Cookie ck = new Cookie("pano_ticket", encryptService.encrypt(jo.toString(), null));
+		ck.setPath("/");
+		response.addCookie(ck);
 	}
 	
 	@RequestMapping("/homepage")
