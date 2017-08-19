@@ -1,6 +1,7 @@
 package com.focus3d.pano.admin.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -237,6 +238,12 @@ public class HousesServiceImpl implements HousesService {
 	public List<pano_project> selHousesbyName(String NAME) {
 		// TODO Auto-generated method stub
 		return housesDAO.selHousesbyName(NAME);
+	}
+
+	@Override
+	public List<pano_project_house_style> selHouseStyle(Map map) {
+		// TODO Auto-generated method stub
+		return housesDAO.selHouseStyle(map);
 	}
 
 }

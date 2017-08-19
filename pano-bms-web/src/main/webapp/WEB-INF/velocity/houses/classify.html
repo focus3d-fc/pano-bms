@@ -147,6 +147,16 @@
 				$("#submit").click(function(){
 					var text =$("#textss").val();
 					var option = $("#optionss").val();
+					console.info("----"+text);
+					console.info("----"+option);
+					if(text == ""){
+						alert("请选择类型名称");
+						return false;
+					}
+					if(text == null){
+						alert("请选择空间名称");
+						return false;
+					}
 					$.ajax({
 						url:'/type/insertList',
 						type: "POST",  

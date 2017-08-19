@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ProductRelevance">
+
+	<typeAlias alias="pro" type="com.focus3d.pano.model.ProductRelevance" />
+
+	<select id="selPro" resultClass="pro" parameterClass="Map">
+		SELECT
+		pano_product.`NAME` AS PRODUCT_NAME,
+		pano_product.BRAND,
+		pano_product.LENGTH,
+		pano_product.WIDE,
+		pano_product.HEIGHT,
+		pano_product.REMARK,
+		pano_product.FULL_IMG_SN AS
+		IMG_SN,
+		pano_product.SN
+		AS PRODUCT_SN
+		FROM
+		pano_project_package_type
+		INNER JOIN
+		pano_project_package_product ON
+		pano_project_package_product.PACKAGE_TYPE_SN =
+		pano_project_package_type.SN
+		INNER JOIN pano_product ON
+		pano_project_package_product.PRODUCT_SN =
+		pano_product.SN
+		WHERE
+		pano_project_package_type.SN=#PACKAGETYPE_SN#
+		limit
+		#startIndex#,#pagesize#
+	</select>
+
+
+	<select id="selProCount" resultClass="int">
+		SELECT
+		COUNT(1)
+		FROM
+		pano_project_package_type
+		INNER JOIN pano_project_package_product ON
+		pano_project_package_product.PACKAGE_TYPE_SN =
+		pano_project_package_type.SN
+		INNER JOIN pano_product ON
+		pano_project_package_product.PRODUCT_SN =
+		pano_product.SN
+		WHERE
+		pano_project_package_type.SN=#PACKAGETYPE_SN#
+	</select>
+
+	<select id="selProbySN" resultClass="pro" parameterClass="Long">
+		SELECT
+		pano_product.`NAME` AS PRODUCT_NAME,
+		pano_product.BRAND,
+		pano_product.LENGTH,
+		pano_product.WIDE,
+		pano_product.HEIGHT,
+		pano_product.REMARK,
+		pano_product.LEFT_IMG_SN,
+		pano_product.DOWN_IMG_SN,
+		pano_product.FULL_IMG_SN,
+		pano_product.BANNER_IMG_SN,
+		pano_product.FABRIC_IMG_SN,
+		pano_product.MATERIAL_IMG_SN,
+		pano_product.SN
+		AS PRODUCT_SN
+		FROM
+		pano_product
+		WHERE pano_product.SN=#PRODUCT_SN#
+	</select>
+
+	<select id="selImgbySN" resultClass="pro" parameterClass="Long">
+		SELECT
+		pano_product.LEFT_IMG_SN,
+		pano_product.DOWN_IMG_SN,
+		pano_product.FULL_IMG_SN,
+		pano_product.BANNER_IMG_SN,
+		pano_product.FABRIC_IMG_SN,
+		pano_product.MATERIAL_IMG_SN
+		FROM
+		pano_product
+		WHERE pano_product.SN=#PRODUCT_SN#
+	</select>
+
+</sqlMap>

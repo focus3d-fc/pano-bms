@@ -1,6 +1,7 @@
 package com.focus3d.pano.admin.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -266,6 +267,13 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 	public List<pano_project> selHousesbyName(String NAME) {
 		List<pano_project> list = (List<pano_project>) getSqlMapClientTemplate()
 				.queryForList("pano_project.selHousesbyName", NAME);
+		return list;
+	}
+
+	@Override
+	public List<pano_project_house_style> selHouseStyle(Map map) {
+		List<pano_project_house_style> list = (List<pano_project_house_style>) getSqlMapClientTemplate()
+				.queryForList("pano_project_house_style.selHouseStyle", map);
 		return list;
 	}
 

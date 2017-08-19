@@ -1,16 +1,15 @@
-function addToShopcar(packageSn){
+function clickHouse(houseSn){
 	
-	//alert(packageSn);
+	//alert("点击户型进入此方法:"+houseSn);
 	var path=window.document.location.href.substring(0, window.document.location.href.indexOf
-			(window.document.location.pathname));//path+"/usersSide/addToCar"
-	console.log(packageSn);
-	var package_Sn=packageSn;
+			(window.document.location.pathname));
 	$.ajax({
-		url:path+"/usersSide/addToCar",
+		url:path+"/usersSide/selectPackage",
 		type:"post",
-	    data:{"packageSn":package_Sn},
+	    data:{"houseSn":houseSn},
+	    dataType: "json",
 	    success:function(data){
-	    	//alert("success!");
+	    	console.log("点击户型图片，返回success");
 	    },
 	    error:function(xhr,textStatus){
 	        console.log('请求错误')
@@ -18,12 +17,6 @@ function addToShopcar(packageSn){
 	});
 	
 	//------------------------------------------------------
-	
-	
-	
-	
-	
-	
 	
 	/*alert(packageSn);
 	$.ajax({

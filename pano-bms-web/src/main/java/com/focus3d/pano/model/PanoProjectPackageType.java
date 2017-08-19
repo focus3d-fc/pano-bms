@@ -23,6 +23,7 @@ public class PanoProjectPackageType implements Serializable,CommonModel{
 	private String update_time;  //修改时间
 	//新增字段--------------------------------------
 	private List<Product> productList;//套餐类型下面对应的产品集合
+	private long house_style_sn;//户型风格sn
 	
 	public PanoProjectPackageType() {
 		super();

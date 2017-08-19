@@ -12,4 +12,10 @@ public interface ProductRelevanceDAO {
 
 	// 查询信息
 	public List<ProductRelevance> selPro(Map map);
+
+	// 根据SN查产品
+	public List<ProductRelevance> selProbySN(Long PRODUCT_SN);
+
+	// 查询产品图片
+	public List<ProductRelevance> selImgbySN(Long PRODUCT_SN);
 }

@@ -1,6 +1,7 @@
 package com.focus3d.pano.admin.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.model.pano_ad;
@@ -124,6 +125,9 @@ public interface HousesDAO {
 
 	// 添加关联
 	public void addStyleHouse(pano_project_house_style style);
+
+	// 查询户型风格SN
+	public List<pano_project_house_style> selHouseStyle(Map map);
 
 	// -----------------------楼盘-设置-风格-标签设置-----------------------
 

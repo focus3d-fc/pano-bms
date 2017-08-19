@@ -87,8 +87,8 @@ public class UsersSideServiceImpl implements UsersSideService{
 	}
 	@Override
 	public List<PanoProjectPackageType> list_selectPackageTypeListByPackage_Sn(
-			long package_sn) {
-		return usersSideDAO.list_selectPackageTypeListByPackage_Sn(package_sn);
+			long house_package_sn) {
+		return usersSideDAO.list_selectPackageTypeListByPackage_Sn(house_package_sn);
 	}
 	@Override
 	public List<PanoProjectPackage> get_selectPackageByPackage_sn(
@@ -96,8 +96,8 @@ public class UsersSideServiceImpl implements UsersSideService{
 		return usersSideDAO.get_selectPackageByPackage_sn(package_sn);
 	}
 	@Override
-	public List<AddToCar> get_selectAddToCar(long package_sn) {
-		return usersSideDAO.get_selectAddToCar(package_sn);
+	public List<AddToCar> get_selectAddToCar(long house_package_sn) {
+		return usersSideDAO.get_selectAddToCar(house_package_sn);
 	}
 	@Override
 	public void add_ShopCar(long USER_SN,long house_package_sn) {

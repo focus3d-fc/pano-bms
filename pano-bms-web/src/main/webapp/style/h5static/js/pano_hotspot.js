@@ -112,6 +112,9 @@ function getHouse(){
 	    		//绑定点击户型图片事件，切换户型全景
 	    		img.bind("click", function(){
 	    			var houseSn = $(this).attr("encryptSn");
+	    			clickHouse(houseSn);
+	    			//alert("户型sn:"+houseSn);
+	    			
 	    			//设置当前选中的户型sn
 	    			$("#houseId").val(houseSn);
 	    			var panoId = $(this).attr("pano_id");

@@ -11,8 +11,6 @@ var productSn;
 var index = 0;
 var view_index = 0;
 
-var paramData = new Object();
-
 var WebGL = {
     scene:{},
     root:null,
@@ -30,16 +28,17 @@ var WebGL = {
         _offset = WebGL_Container.offset();
         scene = new THREE.Scene();
         camera = new THREE.OrthographicCamera(-1*width/2.0,width/2.0,height/2.0,-1*height/2.0,0,1000);
-        //camera = new THREE.PerspectiveCamera(45,WebGL_Container.width()/WebGL_Container.height(),0,1000);
+        // camera = new
+		// THREE.PerspectiveCamera(45,WebGL_Container.width()/WebGL_Container.height(),0,1000);
         camera.position.set(0,0,1000);
         camera.lookAt(scene.position);
         scene.add(camera);
 
         this.root = new THREE.Object3D();
         scene.add(this.root);
-        //scene.scale.set(scaler,scaler,1);
+        // scene.scale.set(scaler,scaler,1);
         this.root.position.set(0,0,0);
-        //this.root.scale.set(scaler,scaler,1);
+        // this.root.scale.set(scaler,scaler,1);
 
         var ambient_light =  new THREE.AmbientLight(0xffffff);
         ambient_light.intensity = 0.5;
@@ -83,7 +82,7 @@ var WebGL = {
 
                 this.INTERSECTED.position.set(_pos.x,_pos.y,_pos.z);
 
-                //console.log(this.INTERSECTED.position.z);
+                // console.log(this.INTERSECTED.position.z);
 
                 this.pre_pos = new THREE.Vector3(x,y,1).unproject(camera);
             }else{
@@ -104,7 +103,7 @@ var WebGL = {
             console.log(intersects.length);
             for (var i=0,len = intersects.length;i<len;i++) {
                 if(intersects[i].object.name == elementName){
-                    //WebGL.reLoadElement(intersects[i].object,)
+                    // WebGL.reLoadElement(intersects[i].object,)
                     ExchangeProduct(intersects[i].object);
                 }
             }
@@ -131,7 +130,7 @@ var WebGL = {
         return mesh;
     },
     createLayer:function (parent,data){
-        //var target = new THREE.Object3D();
+        // var target = new THREE.Object3D();
         var _plane = new THREE.PlaneGeometry(1,1,1,1);
         var _mat = new THREE.MeshLambertMaterial({transparent:true});
         var target = new THREE.Mesh(_plane,_mat);
@@ -275,7 +274,7 @@ function QueryPerspectiveInfoCallback(data){
         view_list = data;
         QueryViewAllProducts(view_list[view_index]);
         if(data.length>1){
-            $("#exchange_view").show();
+
         }
     }
 }
@@ -283,9 +282,7 @@ function QueryPerspectiveInfoCallback(data){
 function QueryViewAllProducts(data){
     elementName = "element_"+data.elementSn;
     layerName = "layer_"+data.layerSn;
-    paramData["productSn"] = data.productSn;
-    paramData["packageTypeSn"] = data.packageTypeSn;
-    debugger;
+    productSn = data.productSn;
     $.ajax({url:"/perspective/QueryViewElementInfo",
         type: "POST",
         data:data,
@@ -368,13 +365,44 @@ function string_to_vec(data){
 function ExchangeProduct(element){
     var i = (++index)%productList.length;
     var data = productList[i];
-    paramData["productSn"] = data.productSn;
+    productSn = data.productSn;
     WebGL.reLoadElement(element,data);
+    $.ajax({
+    	url:'/userside/upset',
+    	data:{"productSn":productSn},
+    	Type:'Get',
+    		success:function(data){
+    			var jsonobj=JSON.parse(data);
+    			$("#pna").text(jsonobj.PRODUCT_NAME)
+    			$("#bra").text("品牌:"+jsonobj.BRAND);
+    			var length = jsonobj.LENGTH;
+    			var wide = jsonobj.WIDE;
+    			var height = jsonobj.HEIGHT;
+    			$("#lwh").text("规格参数:"+length+"*"+wide+"*"+height)
+    			$("#rem").text("简介:"+jsonobj.REMARK);
+    			var a = jsonobj.LEFT_IMG_SN;
+    			var b = jsonobj.DOWN_IMG_SN;
+    			var c = jsonobj.FULL_IMG_SN;
+    			var d=  jsonobj.BANNER_IMG_SN;
+    			var e = jsonobj.FABRIC_IMG_SN;
+    			var f = jsonobj.MATERIAL_IMG_SN;
+    			var myArray=new Array(a,b,c,d,e,f);
+
+
+    			for(var i = 0; i < myArray.length; i++){ 
+    				var imgsn=parseFloat(myArray[i]);
+    				$("#image").attr("src","$!fs.url(imgsn)"); 
+    			}
+ 
+    			
+    		}
+    	
+    })
+    
 }
 
 function ExchangeView(){
     var i = (++view_index)%view_list.length;
-    var data = view_list[i];
     QueryViewAllProducts(view_list[i]);
 }
 

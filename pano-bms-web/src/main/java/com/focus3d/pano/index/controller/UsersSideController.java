@@ -197,16 +197,19 @@ public class UsersSideController extends BaseController{
 	}
 	
 	@RequestMapping("/selectPackage")
-	public String selectPackage(HttpServletRequest request,HttpSession session){
+	public void selectPackage(String houseSn,HttpServletResponse response,HttpServletRequest request,HttpSession session) throws Exception{
 		System.out.println("进入selectPackage方法:");
-		String house_sn_str=request.getParameter("house_sn");
-		long house_sn=Long.parseLong(house_sn_str);
+		long house_sn=EncryptUtil.decode(houseSn);
+		
 		List<PanoProjectPackage> packageList=usersSideService.list_selectPackageByHouse_sn(house_sn);
 		session.setAttribute("packageList",packageList);
 		System.out.println("户型"+house_sn+"套餐："+packageList);
 		//return this.redirect("/usersside/720");
 		session.setAttribute("house_sn",house_sn);
-		return "/usersside/720";
+		String msg="";
+		String jsonProject=	JsonUtils.objectToJson(msg);
+		this.ajaxOutput(response,jsonProject);
+		//return "/usersside/720";
 	}
 	//获取验证码----------------------------------------------------------------
 	@RequestMapping("/getVerifyCode")
@@ -220,7 +223,7 @@ public class UsersSideController extends BaseController{
 		session.setAttribute("phoneCode",phoneCode);*/
 	}
 	@RequestMapping("/surelogin")
-	public String login(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws IOException{
+	public void login(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws IOException{
 		String phoneCode_out=(String)session.getAttribute("phoneCode");
 		String phoneCode_in=request.getParameter("phoneCode_in");
 		System.out.println("phoneCode_out:"+phoneCode_out+",phoneCode_in:"+phoneCode_in);
@@ -235,8 +238,9 @@ public class UsersSideController extends BaseController{
 			return "";
 		}*/
 		//验证码正确，进入登录后页面
-		
-		return "";
+		String msg="";
+		String jsonProject=	JsonUtils.objectToJson(msg);
+		this.ajaxOutput(response,jsonProject);
 	}
 	@RequestMapping("/tocar")
 	public String tocar(HttpServletRequest request,HttpSession session){
@@ -249,43 +253,87 @@ public class UsersSideController extends BaseController{
 		return "/usersside/car";
 	}
 	@RequestMapping("/addToCar")
-	public String addToCar(HttpServletRequest request,HttpSession session){
+	public void addToCar(String packageSn,HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception{
 		System.out.println("进入/addToCar方法");
-		long package_sn=Long.parseLong(request.getParameter("package_sn"));
+		//这里packageSn是户型套餐表主键,不是套餐表主键
+		long house_package_sn=EncryptUtil.decode(packageSn);
+		System.out.println("house_package_sn套餐sn:"+house_package_sn);
+		//long package_sn=Long.parseLong(request.getParameter("package_sn"));
 		//查询购物车里是否已经添加该套餐，如果已经添加了那么此次点击就是删掉，如果没有添加就添加进去
-		List<AddToCar> packageList_only=usersSideService.selectCarByPackage_sn(package_sn);
+		List<AddToCar> packageList_only=usersSideService.selectCarByPackage_sn(house_package_sn);
+		System.out.println("packageList_only集合长度:"+packageList_only.size());
 		if(packageList_only.size()==0){
 			//此方法仅作为查询pano_project_house_package.SN as house_package_sn
-			List<AddToCar> addToCarList_only=usersSideService.get_selectAddToCar(package_sn);
+			List<AddToCar> addToCarList_only=usersSideService.get_selectAddToCar(house_package_sn);
 			System.out.println("addToCarList_only:"+addToCarList_only);
-			long house_package_sn=addToCarList_only.get(0).getHouse_package_sn();
+			//long house_package_sn=addToCarList_only.get(0).getHouse_package_sn();
 			//向购物车表插入数据-------------------------------------------------------------------------		
-			/*
-		private long USER_SN;---------------登陆后获得
-		private long HOUSE_PACKAGE_SN;------上有
-		private int PURCHASE_NUM;-----------默认1
-			 */
+			
+		//private long USER_SN;---------------登陆后获得
+		//private long HOUSE_PACKAGE_SN;------上有
+		//private int PURCHASE_NUM;-----------默认1
+			
 			long USER_SN=(Long)session.getAttribute("user_sn");
 			usersSideService.add_ShopCar(USER_SN,house_package_sn);
 		}else{
-			long house_package_sn=packageList_only.get(0).getHouse_package_sn();
+			//long house_package_sn=packageList_only.get(0).getHouse_package_sn();
 			//通过house_package_sn删除购物车表记录
 			usersSideService.delete_shopCarByHouse_package_sn(house_package_sn);
 			//System.out.println("删除购物车完成");
 		}
-		return "/usersside/720-tc";
+		System.out.println("操作购物车结束");
+		String msg="";
+		String jsonProject=	JsonUtils.objectToJson(msg);
+		this.ajaxOutput(response,jsonProject);
+		//return "/usersside/720-tc";
 	}
+	long house_package_sn;
 	//点击展开进入此方法
 	@RequestMapping("/carshow")
 	public String carshow(HttpServletRequest request,HttpSession session){
 		System.out.println("进入/carshow方法");
 		//获取
-		long package_sn=Long.parseLong(request.getParameter("package_sn"));
+		house_package_sn=Long.parseLong(request.getParameter("house_package_sn"));
 		//查询套餐对应的户型
-		List<AddToCar> addToCarList=usersSideService.get_selectAddToCar(package_sn);
+		List<AddToCar> addToCarList=usersSideService.get_selectAddToCar(house_package_sn);
 		//查询套餐类型集合
 		List<PanoProjectPackageType> packageTypeList=usersSideService.
-				list_selectPackageTypeListByPackage_Sn(package_sn);
+				list_selectPackageTypeListByPackage_Sn(house_package_sn);
+		//System.out.println("套餐类型集合："+packageTypeList);
+		int pAgeTListSize=packageTypeList.size();
+		//设置每个套餐类型里面的产品集合
+		System.out.println("套餐类型集合长度:"+pAgeTListSize);
+		if(pAgeTListSize>0){
+			//类型1有产品集合里3个产品，类型2/3没有
+			List<Product> productList=null;
+			for(int i=0;i<pAgeTListSize;i++){
+			  long packageType_sn=packageTypeList.get(i).getSN();
+			  productList=usersSideService.list_selectProductListByPAT_sn(packageType_sn);			
+			  //下面代码有问题
+			  if(productList.size()==0){
+				Product product=new Product();
+				productList.add(product);
+			    //packageTypeList.get(i).setProductList(productList);
+			  }
+			packageTypeList.get(i).setProductList(productList);
+			System.out.println("套餐类型sn:"+packageType_sn+",产品集合："+productList);
+			}
+		}
+		//System.out.println("1.packageTypeList:"+packageTypeList);addToCarList
+		request.setAttribute("addToCarList",addToCarList);
+		request.setAttribute("packageTypeList",packageTypeList);
+		return "/usersside/carshow";
+	}
+	
+	@RequestMapping("/carshow2")
+	public String carshow2(HttpServletRequest request,HttpSession session){
+		System.out.println("=================进入/carshow2方法==================");
+		//获取
+		//查询套餐对应的户型
+		List<AddToCar> addToCarList=usersSideService.get_selectAddToCar(house_package_sn);
+		//查询套餐类型集合
+		List<PanoProjectPackageType> packageTypeList=usersSideService.
+				list_selectPackageTypeListByPackage_Sn(house_package_sn);
 		//System.out.println("套餐类型集合："+packageTypeList);
 		int pAgeTListSize=packageTypeList.size();
 		//设置每个套餐类型里面的产品集合
@@ -546,20 +594,17 @@ BigDecimal total_price=new BigDecimal(total_price_.substring(1,total_price_.leng
 	    public String toYM(){
 			System.out.println("进入/toYM方法");
 			
-			
-			
-			
-			
 			//return "/usersside/index";
 			return this.redirect("/usersSide/toIndex");
 		}
-		@RequestMapping("/toTest")
-	    public void toYM(String packageSn){
+		/*@RequestMapping("/toTest")
+	    public void toYM(String packageSn) throws Exception{
 			System.out.println("进入/toTest方法");
+			//String str="UEUyeKALoATG";
+			long package_sn=EncryptUtil.decode(packageSn);
+			System.out.println("package_sn套餐sn:"+package_sn);
 			
-			System.out.println("1.套餐sn:"+packageSn);
-			
-		}
+		}*/
 	
 	
 	
