@@ -18,7 +18,7 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
 	</context:component-scan>
 
-	<context:property-placeholder location="classpath:/context/properties/context.properties,classpath:/context/properties/notification.properties,classpath:/context/properties/config.properties" />
+	<context:property-placeholder location="classpath:/context/properties/context.properties,classpath:/context/properties/notification.properties,classpath:/context/properties/config.properties,classpath:/context/properties/wechat.properties" />
 
 	<import resource="classpath:/context/service/service.xml" />
 	<import resource="classpath:/context/datasource/datasource.xml" />
@@ -26,6 +26,9 @@
 	<import resource="classpath:/context/component/component.xml" />
 	<import resource="classpath:/context/component/cfs_client.xml" />
 	<import resource="classpath:/context/notify/sms.xml" />
+	
+	<!-- 微信配置 -->
+	<import resource="classpath:/context/component/wechat.xml" />
 	
 	<bean id="loginFilter" class="com.focus3d.pano.filter.LoginFilter"/>
 	<bean id="visitFilter" class="com.focus3d.pano.filter.VisitLimitFilter"/>
