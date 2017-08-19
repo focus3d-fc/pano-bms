@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.focus3d.pano.common.controller.BaseController;
 
+import com.focus3d.pano.wechat.service.WeChatPayService;
 import com.focus3d.pano.wechat.utils.*;
-import com.focus3d.pano.wechat.service.*;
 
 @Controller
 @RequestMapping("/wechat")
@@ -24,8 +24,11 @@ public class WeChatPayController extends BaseController {
 	@RequestMapping("/testPay")
 	public String pay(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception{
 		
+		WeChatPayService wp = new WeChatPayService();
+		
 		try{
-			WeChatPayService wp = new WeChatPayService();
+			
+			UserInfo userInfo = (UserInfo)session.getAttribute(Constants.SESSION_WX_USER);
 			
 			HashMap<String, String> data = new HashMap<String, String>();
 			
@@ -38,7 +41,7 @@ public class WeChatPayController extends BaseController {
 	        data.put("notify_url", "http://gwzj.joy-homeplus.com/wechat/testNotify");
 	        data.put("trade_type", "JSAPI");
 	        data.put("product_id", "12");
-	        data.put("openid", "oHSqcw37i18XF01iXDEasSFpbNZY");
+	        data.put("openid", userInfo.getOpenid());
 
 	        Map<String, String> r = wp.unifiedOrder(data);
 	        request.setAttribute("result", r);
