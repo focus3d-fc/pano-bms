@@ -159,4 +159,10 @@ public class PerspectiveServiceImpl implements IPerspectiveService{
 		return null;
 	}
 
+	@Override
+	public List<String> QueryUsedPackageTypeName(Long sn) throws SQLException {
+		List<String> list = perspectiveView.QueryUsedPackageTypeName(sn);
+		return list;
+	}
+
 }

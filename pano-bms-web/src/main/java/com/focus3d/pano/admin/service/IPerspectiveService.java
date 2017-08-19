@@ -52,4 +52,6 @@ public interface IPerspectiveService{
 	List<PanoPerspectiveElementProduct> QueryElementProdctList(Long elementSn) throws SQLException;
 	
 	List<LinkedHashMap<String, Object>> QueryViewLayerElementInfo(Long sn) throws SQLException;
+	
+	List<String> QueryUsedPackageTypeName(Long sn) throws SQLException;
 }
