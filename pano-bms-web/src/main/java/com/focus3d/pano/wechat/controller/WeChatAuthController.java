@@ -95,7 +95,7 @@ public class WeChatAuthController extends BaseController {
 			x+= userInfo.getNickname() +"<br/>";
 			x+= userInfo.getProvince() +"<br/>";
 			x+= userInfo.getSex() +"<br/>";
-			x+= userInfo.getUnionid() +"<br/>";
+			x+= userInfo.getUnionid() +"<br //>";
 			
 			return x;
 		}catch(Exception e){
