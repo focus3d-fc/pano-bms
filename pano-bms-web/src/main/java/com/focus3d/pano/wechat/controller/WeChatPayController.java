@@ -48,6 +48,7 @@ public class WeChatPayController extends BaseController {
 	        data.put("timeStamp", new Date().getTime()+"");
 	        data.put("openid", userInfo.getOpenid());
 
+	        
 	        Map<String, String> r = wp.unifiedOrder(data);
 	        request.setAttribute("result", r);
 		}catch(Exception e){
