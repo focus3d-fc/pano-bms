@@ -263,6 +263,8 @@ function Layer(parent,data){
         class:"float_l mar0pad0"
     }).text(data.name);
 
+    //this.node_name = $("<p></p>").css({width:"200px",height:"36px",line_height:"36px",border:"1px solid green"}).text(data.name);
+
     this.control = $("<p></p>",{
         id:"control",
         class:"float_r mar0pad0",
@@ -1054,13 +1056,12 @@ function  updateLayer(layer_sn,callback) {
         }
     });
 }
-
 /*添加图元功能*/
 //查询套餐中分类名称作为图元名称
 function queryPackageTypeName(layer){
     var _data = {};
-    _data["houseStyleSn"] = 100079;
-    _data["houseSpaceSn"] = 100020;
+    _data["houseStyleSn"] = house_style_sn;
+    _data["houseSpaceSn"] = space_sn;
     $.ajax({
         url:"/perspective/queryPackageTypeName",
         type: "POST",
@@ -1091,7 +1092,7 @@ function queryPackageTypeName(layer){
                             $(this).prop("checked",true);
                         }
                     });
-                    
+
                     if(all_data[key].selected){
                         checkbox.attr("checked",true).attr('disabled',true);
                     }

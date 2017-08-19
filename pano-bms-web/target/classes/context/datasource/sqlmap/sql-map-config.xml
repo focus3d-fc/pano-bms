@@ -39,8 +39,10 @@
 	<sqlMap resource="context/datasource/sqlmap/OrderRelevance.xml" />
 	<sqlMap resource="context/datasource/sqlmap/OrderAdmin.xml" />
 	<sqlMap resource="context/datasource/sqlmap/pano_project_space_SqlMap.xml" />
-	<sqlMap resource="context/datasource/sqlmap/pano_perspective_element_product_SqlMap.xml" />
+	<sqlMap
+		resource="context/datasource/sqlmap/pano_perspective_element_product_SqlMap.xml" />
 	<sqlMap resource="context/datasource/sqlmap/pano_perspective_element_SqlMap.xml" />
 	<sqlMap resource="context/datasource/sqlmap/pano_perspective_layer_SqlMap.xml" />
 	<sqlMap resource="context/datasource/sqlmap/pano_perspective_view_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/ProductRelevance.xml" />
 </sqlMapConfig>
