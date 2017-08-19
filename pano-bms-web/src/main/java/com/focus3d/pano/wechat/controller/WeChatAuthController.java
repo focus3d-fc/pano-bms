@@ -44,6 +44,7 @@ public class WeChatAuthController extends BaseController {
 		}
 	}
 	
+	@ResponseBody
 	@RequestMapping("/redirect")
 	public String redirect(
 			HttpServletRequest request,
@@ -67,13 +68,22 @@ public class WeChatAuthController extends BaseController {
 			 * REMIND: 此处暂时不涉及登录
 			 */
 			String openid = userInfo.getOpenid();
+			//return "redirect:/wechat/userInfo";
+			String x = userInfo.getOpenid() +"<br/>";
+			x+= userInfo.getCity() +"<br/>";
+			x+= userInfo.getCountry() +"<br/>";
+			x+= userInfo.getHeadimgurl() +"<br/>";
+			x+= userInfo.getNickname() +"<br/>";
+			x+= userInfo.getProvince() +"<br/>";
+			x+= userInfo.getSex() +"<br/>";
+			x+= userInfo.getUnionid() +"<br/>";
 			
-			
+			return x;
 		}catch(Exception e){
-			e.printStackTrace();
+			return e.getMessage();
 		}
 		
-		return "redirect:/wechat/userInfo";
+		
 	}
 	
 	@ResponseBody
@@ -99,7 +109,7 @@ public class WeChatAuthController extends BaseController {
 			return x;
 		}catch(Exception e){
 			e.printStackTrace();
-			return "";
+			return e.getMessage();
 		}
 	}
 	
