@@ -34,10 +34,10 @@ public interface UsersSideService {
 	public List<PanoProjectPackage> list_selectPackageByHouse_sn(long house_sn);
 	public List<pano_mem_user> get_selectMUserByPhone(String phone);
 	public List<PanoProjectPackageType> list_selectPackageTypeListByPackage_Sn(
-			long package_sn);
+			long house_package_sn);
 	public List<PanoProjectPackage> get_selectPackageByPackage_sn(
 			long package_sn);
-	public List<AddToCar> get_selectAddToCar(long package_sn);
+	public List<AddToCar> get_selectAddToCar(long house_package_sn);
 	public void add_ShopCar(long USER_SN,long house_package_sn);
 	public List<AddToCar> get_selectAddToCar2(long user_sn);
 	public List<Product> list_selectProductListByPAT_sn(long packageType_sn);

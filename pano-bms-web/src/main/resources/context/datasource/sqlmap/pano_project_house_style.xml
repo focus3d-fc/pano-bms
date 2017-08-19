@@ -83,4 +83,18 @@
 		values(#PROJECT_SN#,#STYLE_SN#,#HOUSE_SN#,#ADD_TIME#)
 	</insert>
 
+	<select id="selHouseStyle" resultClass="com.focus3d.pano.model.pano_project_house_style"
+		parameterClass="Map">
+		SELECT
+		pano_project_house_style.SN
+		FROM
+		pano_project_house_style
+		WHERE
+		pano_project_house_style.HOUSE_SN=#HOUSE_SN#
+		AND
+		pano_project_house_style.STYLE_SN=#STYLE_SN#
+		AND
+		pano_project_house_style.PROJECT_SN=#PROJECT_SN#
+	</select>
+
 </sqlMap>

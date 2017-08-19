@@ -37,7 +37,10 @@
         <div class="pro-show">
              #foreach ($!{packageType} in $!{packageTypeList})
                 <div class="left">
-                    <a href="/usersSide/topro?packageType_sn=$!{packageType.SN}">
+                    <!-- <a href="/usersSide/topro?packageType_sn=$!{packageType.SN}"> -->
+                    <a href="/perspective/QueryPerspective?packageTypeSn=$!{packageType.SN}
+                    &&house_style_sn=$!{packageType.house_style_sn}
+                    &&product_sn=$!{packageType.productList[0].product_sn}">
 <img src="$!fs.url($!{packageType.productList[0].fullImgSn})" alt="">
                         <div class="de">
                             <p>$!{packageType.productList[0].name}</p>

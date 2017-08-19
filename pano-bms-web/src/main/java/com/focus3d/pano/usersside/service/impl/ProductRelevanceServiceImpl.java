@@ -28,4 +28,16 @@ public class ProductRelevanceServiceImpl implements ProductRelevanceService {
 		return productRelevanceDAO.selPro(map);
 	}
 
+	@Override
+	public List<ProductRelevance> selProbySN(Long PRODUCT_SN) {
+		// TODO Auto-generated method stub
+		return productRelevanceDAO.selProbySN(PRODUCT_SN);
+	}
+
+	@Override
+	public List<ProductRelevance> selImgbySN(Long PRODUCT_SN) {
+		// TODO Auto-generated method stub
+		return productRelevanceDAO.selImgbySN(PRODUCT_SN);
+	}
+
 }

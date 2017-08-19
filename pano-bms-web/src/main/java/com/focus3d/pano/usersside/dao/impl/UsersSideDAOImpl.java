@@ -118,9 +118,9 @@ public class UsersSideDAOImpl  extends BaseDao implements UsersSideDAO{
 
 	@Override
 	public List<PanoProjectPackageType> list_selectPackageTypeListByPackage_Sn(
-			long package_sn) {
+			long house_package_sn) {
 		List<PanoProjectPackageType> packageTypeList=(List<PanoProjectPackageType>) getSqlMapClientTemplate().
-				queryForList("list_selectPackageTypeListByPackage_Sn",package_sn);
+				queryForList("list_selectPackageTypeListByPackage_Sn",house_package_sn);
 		return packageTypeList;
 	}
 
@@ -133,9 +133,9 @@ public class UsersSideDAOImpl  extends BaseDao implements UsersSideDAO{
 	}
 
 	@Override
-	public List<AddToCar> get_selectAddToCar(long package_sn) {
+	public List<AddToCar> get_selectAddToCar(long house_package_sn) {
 		List<AddToCar> addToCarList_only=(List<AddToCar>) getSqlMapClientTemplate().
-				queryForList("get_selectAddToCar",package_sn);
+				queryForList("get_selectAddToCar",house_package_sn);
 		return addToCarList_only;
 	}
 

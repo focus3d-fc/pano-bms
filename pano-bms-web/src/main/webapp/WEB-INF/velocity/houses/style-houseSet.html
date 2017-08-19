@@ -47,7 +47,9 @@
 						<td>$!{houList.NAME}</td>
 						<td>
 							<div class="btn-group btn-group-sm" role="group">
-								<a href="/houses/packageSet?SN=$!{houList.SN}"
+								<a href="" onclick="topage($!{houList.SN})"
+									class="btn btn-success">透视图管理</a> <a
+									href="/houses/packageSet?SN=$!{houList.SN}"
 									class="btn btn-primary">套餐设置</a> <a
 									href="/houses/delstyle-houseSet?SN=$!{houList.SN}"
 									class="btn btn-danger">删除</a>
@@ -94,6 +96,22 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+
+		function topage(HouseSN) {
+			 $.ajax({
+				url:'/houses/selHouseStyle',
+				data:{"HouseSN":HouseSN},
+				Type:'Get',
+				datatype:"json",
+				success:function(data){
+					var jsonobj=JSON.parse(data);
+					var hsSN=jsonobj.SN;
+					window.location.href="/perspective/query?houseStyleSn="+hsSN;
+				}
+			 }); 
+		}
+	</script>
 
 	<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
 	<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
