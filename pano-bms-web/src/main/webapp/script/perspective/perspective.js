@@ -166,13 +166,15 @@ function View(data){
         class:"float_r glyphicon glyphicon-plus-sign dis_block mar_t10 mar_r10 s20"
     }).on({
         click:function(){
-            $("#layer_entering").modal("show");
-            $("#layer_save").off("click").on("click",function(){
-                updateLayer(data.id,function (data) {
-                    _this.add_layer(data);
-                    $("#layer_entering").modal("hide");
+            if(space_sn){
+                $("#layer_entering").modal("show");
+                $("#layer_save").off("click").on("click",function(){
+                    updateLayer(data.id,function (data) {
+                        _this.add_layer(data);
+                        $("#layer_entering").modal("hide");
+                    });
                 });
-            });
+            }
         }
     });
 
@@ -533,8 +535,8 @@ var WebGL = {
 	},
 	onmousedown:function(event){
     	event.preventDefault();
-        var x = ((event.clientX - _offset.left) / WebGL_Container.width()) * 2 - 1;
-        var y = - ((event.clientY - _offset.top) / WebGL_Container.height() ) * 2 + 1;
+        var x = ((event.clientX + $(document).scrollLeft() - _offset.left) / WebGL_Container.width()) * 2 - 1;
+        var y = - ((event.clientY + $(document).scrollTop() - _offset.top) / WebGL_Container.height() ) * 2 + 1;
         var vector  = new THREE.Vector3(x,y,1).unproject(camera);
         var ray = vector.sub(camera.position).normalize();
         var raycaster = new THREE.Raycaster(camera.position,ray);
@@ -940,6 +942,7 @@ function query_element(layer){
         data:_data,
         dataType:"json",
         success:function(data){
+            $("#elementProductClose").trigger("click");
             var insert = $("<span></span>",{
                 class:"float_r glyphicon glyphicon-plus-sign dis_block mar_t10 mar_r10 s20"
             }).off("click").on({
