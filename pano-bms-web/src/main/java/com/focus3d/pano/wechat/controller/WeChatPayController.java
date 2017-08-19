@@ -51,6 +51,7 @@ public class WeChatPayController extends BaseController {
 
 	        
 	        r.put("timeStamp", new Date().getTime()/1000+"");
+	        r.put("openId", userInfo.getOpenid());
 	        request.setAttribute("result", r);
 		}catch(Exception e){
 
