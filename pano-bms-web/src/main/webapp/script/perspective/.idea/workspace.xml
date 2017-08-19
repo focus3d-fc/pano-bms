@@ -31,8 +31,8 @@
       <file leaf-file-name="perspective.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/perspective.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="1065" column="48" lean-forward="true" selection-start-line="1065" selection-start-column="48" selection-end-line="1065" selection-end-column="48" />
+            <state relative-caret-position="262">
+              <caret line="1064" column="26" lean-forward="true" selection-start-line="1064" selection-start-column="26" selection-end-line="1064" selection-end-column="26" />
               <folding>
                 <element signature="n#!!block;n#createView#0" expanded="false" />
                 <element signature="n#!!block;n#View#0" expanded="false" />
@@ -71,7 +71,7 @@
                 <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
                 <element signature="n#!!block;n#ResultHide#0" expanded="false" />
                 <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-                <marker date="1503145019149" expanded="false" signature="21305:25634" ph="{...}" />
+                <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -152,9 +152,9 @@
         <option value="$PROJECT_DIR$/../../style/h5static/html/pro.html" />
         <option value="$PROJECT_DIR$/H5WebGL.js" />
         <option value="$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html" />
-        <option value="$PROJECT_DIR$/perspective.js" />
         <option value="$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html" />
         <option value="$PROJECT_DIR$/../../style/perspective/perspective.css" />
+        <option value="$PROJECT_DIR$/perspective.js" />
       </list>
     </option>
   </component>
@@ -294,12 +294,12 @@
       <workItem from="1502846097689" duration="40959000" />
       <workItem from="1502934406113" duration="17569000" />
       <workItem from="1503031181068" duration="15835000" />
-      <workItem from="1503112817993" duration="17182000" />
+      <workItem from="1503112817993" duration="17892000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="221646000" />
+    <option name="totallyTimeSpent" value="222356000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -311,7 +311,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -387,7 +387,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503145019149" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -498,7 +498,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503145019149" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -606,7 +606,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503145019149" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -681,7 +681,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503145019149" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -746,7 +746,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503145019149" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -811,7 +811,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503145019149" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -876,7 +876,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503145019149" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -941,7 +941,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503145019149" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1006,7 +1006,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503145019149" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1071,7 +1071,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503145019149" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1136,7 +1136,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503145019149" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1233,8 +1233,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/perspective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="1065" column="48" lean-forward="true" selection-start-line="1065" selection-start-column="48" selection-end-line="1065" selection-end-column="48" />
+        <state relative-caret-position="262">
+          <caret line="1064" column="26" lean-forward="true" selection-start-line="1064" selection-start-column="26" selection-end-line="1064" selection-end-column="26" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
@@ -1273,7 +1273,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503145019149" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>

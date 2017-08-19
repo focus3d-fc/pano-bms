@@ -407,7 +407,7 @@
 	    AND package.house_style_sn = #houseStyleSn#
   	</select>
   	
-  	<select id="query_used_package_type" parameterClass="java.lang.Integer" resultClass="java.lang.String">
+  	<select id="query_used_package_type" parameterClass="java.lang.Long" resultClass="java.lang.String">
   	    SELECT 
 	      element.package_type_sn AS packageTypeSn
 	    FROM
