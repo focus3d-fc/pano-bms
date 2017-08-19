@@ -21,10 +21,13 @@ import com.focus3d.pano.wechat.utils.*;
 @RequestMapping("/wechat")
 public class WeChatPayController extends BaseController {
 	
+	@Autowired
+    WeChatConfig wx;
+	
 	@RequestMapping("/testPay")
 	public String pay(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception{
 		
-		WeChatPayService wp = new WeChatPayService();
+		WeChatPayService wp = new WeChatPayService(wx);
 		
 		try{
 			
