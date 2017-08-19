@@ -32,7 +32,7 @@
         <entry file="file://$PROJECT_DIR$/perspective.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="262">
-              <caret line="1064" column="26" lean-forward="true" selection-start-line="1064" selection-start-column="26" selection-end-line="1064" selection-end-column="26" />
+              <caret line="1064" column="26" lean-forward="false" selection-start-line="1064" selection-start-column="26" selection-end-line="1064" selection-end-column="26" />
               <folding>
                 <element signature="n#!!block;n#createView#0" expanded="false" />
                 <element signature="n#!!block;n#View#0" expanded="false" />
@@ -71,7 +71,7 @@
                 <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
                 <element signature="n#!!block;n#ResultHide#0" expanded="false" />
                 <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-                <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
+                <marker date="1503153263602" expanded="false" signature="21305:25634" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -294,12 +294,12 @@
       <workItem from="1502846097689" duration="40959000" />
       <workItem from="1502934406113" duration="17569000" />
       <workItem from="1503031181068" duration="15835000" />
-      <workItem from="1503112817993" duration="17892000" />
+      <workItem from="1503112817993" duration="18496000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222356000" />
+    <option name="totallyTimeSpent" value="222960000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -311,7 +311,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -387,7 +387,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503153263602" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -498,7 +498,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503153263602" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -606,7 +606,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503153263602" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -681,7 +681,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503153263602" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -746,7 +746,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503153263602" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -811,7 +811,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503153263602" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -876,7 +876,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503153263602" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -941,7 +941,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503153263602" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1006,7 +1006,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503153263602" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1071,7 +1071,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503153263602" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1136,7 +1136,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503153263602" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1234,7 +1234,7 @@
     <entry file="file://$PROJECT_DIR$/perspective.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="262">
-          <caret line="1064" column="26" lean-forward="true" selection-start-line="1064" selection-start-column="26" selection-end-line="1064" selection-end-column="26" />
+          <caret line="1064" column="26" lean-forward="false" selection-start-line="1064" selection-start-column="26" selection-end-line="1064" selection-end-column="26" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
@@ -1273,7 +1273,7 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-            <marker date="1503148281507" expanded="false" signature="21305:25634" ph="{...}" />
+            <marker date="1503153263602" expanded="false" signature="21305:25634" ph="{...}" />
           </folding>
         </state>
       </provider>

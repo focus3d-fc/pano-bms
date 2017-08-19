@@ -1063,7 +1063,6 @@ function queryPackageTypeName(layer){
     _data["houseStyleSn"] = house_style_sn;
     _data["houseSpaceSn"] = space_sn;
     _data["sn"] = view_sn;
-    alert(view_sn);
     $.ajax({
         url:"/perspective/queryPackageTypeName",
         type: "POST",

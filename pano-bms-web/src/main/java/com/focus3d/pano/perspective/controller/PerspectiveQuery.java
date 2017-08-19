@@ -361,7 +361,7 @@ public class PerspectiveQuery extends BaseController {
 		} catch (IOException e) {
 
 		} catch (SQLException e) {
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
