@@ -1,5 +1,6 @@
 package com.focus3d.pano.wechat.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,19 +22,22 @@ import com.focus3d.pano.wechat.utils.*;
 @RequestMapping("/wechat")
 public class WeChatPayController extends BaseController {
 	
+	@Autowired
+    WeChatConfig wx;
+	
 	@RequestMapping("/testPay")
 	public String pay(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception{
 		
-		WeChatPayService wp = new WeChatPayService();
+		WeChatPayService wp = new WeChatPayService(wx);
 		
 		try{
 			
-			//UserInfo userInfo = (UserInfo)session.getAttribute(Constants.SESSION_WX_USER);
+			UserInfo userInfo = (UserInfo)session.getAttribute(Constants.SESSION_WX_USER);
 			
 			HashMap<String, String> data = new HashMap<String, String>();
 			
 	        data.put("body", "focus3d 支付测试");
-	        data.put("out_trade_no", "1993092019231");
+	        data.put("out_trade_no", "1993092019231"+new Date().getTime());
 	        data.put("device_info", "1");
 	        data.put("fee_type", "CNY");
 	        data.put("total_fee", "1");
@@ -41,9 +45,11 @@ public class WeChatPayController extends BaseController {
 	        data.put("notify_url", "http://gwzj.joy-homeplus.com/wechat/testNotify");
 	        data.put("trade_type", "JSAPI");
 	        data.put("product_id", "12");
-	        data.put("openid", "oHSqcw37i18XF01iXDEasSFpbNZY");
-
+	        data.put("openid", userInfo.getOpenid());
+	        
 	        Map<String, String> r = wp.unifiedOrder(data);
+
+	        r.put("timeStamp", new Date().getTime()+"");
 	        request.setAttribute("result", r);
 		}catch(Exception e){
 
@@ -57,6 +63,6 @@ public class WeChatPayController extends BaseController {
 	@ResponseBody
 	@RequestMapping("/testNotify")
 	public String notify(HttpServletRequest request,HttpServletResponse response,HttpSession session){
-		return "支付成功";
+		return new Date().getTime()+"";
 	}
 }

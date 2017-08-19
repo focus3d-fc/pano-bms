@@ -7,9 +7,9 @@ public class WeChatPayService {
 	
 	public WxPay wp;
 	
-	public WeChatPayService() throws Exception {
-		WxPayConfig config = new WxPayConfigImpl();
-		this.wp = new WxPay(config);
+	public WeChatPayService(WeChatConfig config) throws Exception {
+		WxPayConfig configi = new WxPayConfigImpl(config);
+		this.wp = new WxPay(configi);
 	}
 	
 	public Map<String, String> unifiedOrder(Map<String, String> reqData) throws Exception{

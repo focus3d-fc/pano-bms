@@ -12,8 +12,4 @@
          http://www.springframework.org/schema/context/spring-aop-3.0.xsd">
 
 	<bean class="com.focustech.common.utils.SpringContextUtil"/>
-	
-	
-	<bean id="defaultEncryptService" class="com.focustech.common.codec.DefaultEncryptService" />
-	
 </beans>

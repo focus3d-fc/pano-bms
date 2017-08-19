@@ -19,7 +19,6 @@ import java.io.InputStream;
 @Component
 public class WxPayConfigImpl extends WxPayConfig {
 
-    @Autowired
     WeChatConfig wx;
 
     /**
@@ -27,14 +26,24 @@ public class WxPayConfigImpl extends WxPayConfig {
      */
     private byte[] certData;
 
+    
+    public WxPayConfigImpl(){
+    	
+    }
+    
+    public WxPayConfigImpl(WeChatConfig wx){
+    	this.wx = wx;
+        String certPath = wx.getKeyPath();
+//      File file = new File(certPath);
+//      InputStream certStream = new FileInputStream(file);
+//      this.certData = new byte[(int) file.length()];
+//      certStream.read(this.certData);
+//      certStream.close();
+    }
+    
     @PostConstruct
     public void  init() throws Exception{
-        String certPath = wx.getKeyPath();
-//        File file = new File(certPath);
-//        InputStream certStream = new FileInputStream(file);
-//        this.certData = new byte[(int) file.length()];
-//        certStream.read(this.certData);
-//        certStream.close();
+
     }
 
 
