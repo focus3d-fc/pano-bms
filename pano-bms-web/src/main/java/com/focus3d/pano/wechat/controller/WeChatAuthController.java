@@ -45,7 +45,7 @@ public class WeChatAuthController extends BaseController {
 	}
 	
 	@RequestMapping("/redirect")
-	public void redirect(
+	public String redirect(
 			HttpServletRequest request,
 			HttpServletResponse response,
 			HttpSession session,
@@ -67,9 +67,12 @@ public class WeChatAuthController extends BaseController {
 			 * REMIND: 此处暂时不涉及登录
 			 */
 			String openid = userInfo.getOpenid();
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		
+		return "redirect:/wechat/userInfo";
 	}
 	
 	@ResponseBody
