@@ -242,6 +242,7 @@ function Layer(parent,data){
                 _this.control.show();
                 $(this).addClass("selected");
                 edit_layer = _this.layer;
+                WebGL.removeEdge();
                 query_element(_this);
             }
         }
