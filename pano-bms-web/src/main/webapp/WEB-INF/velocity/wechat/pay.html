@@ -15,7 +15,7 @@
 	        WeixinJSBridge.invoke(
 	                'getBrandWCPayRequest', {
 	                    "appId":"$result.get(appId)",     //公众号名称，由商户传入
-	                    "timeStamp":"$result.get(101)",         //时间戳，自1970年以来的秒数
+	                    "timeStamp":"$result.get(timeStamp)",         //时间戳，自1970年以来的秒数
 	                    "nonceStr":"$result.get(nonce_str)", //随机串
 	                    "package":"prepay_id=wx201708161602075a9c270ed90249249393",
 	                    "signType":"$result.get(sign_type)",         //微信签名方式。只支持MD5
