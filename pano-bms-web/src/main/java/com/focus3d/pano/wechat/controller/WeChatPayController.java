@@ -47,14 +47,25 @@ public class WeChatPayController extends BaseController {
 	        data.put("product_id", "12");
 	        data.put("openid", "oHSqcw37i18XF01iXDEasSFpbNZY");
 	        
-	       
-	        
 	        Map<String, String> r = wp.unifiedOrder(data);
 
-	        r.put("paySign", WxPayUtil.generateSignature(data, wx.getMchKey()));
-	        r.put("timeStamp", new Date().getTime()/1000+"");
-	        //r.put("openId", userInfo.getOpenid());
-	        request.setAttribute("result", r);
+	        if("SUCCESS".equals(r.get("result_code"))){
+	        	// 二次签名
+	        	HashMap<String, String> paySingMap = new HashMap<String, String>();
+	        	paySingMap.put("appid", wx.getAppId());
+	        	paySingMap.put("partnerid", wx.getMchId());
+	        	paySingMap.put("prepayid", r.get("partner_id"));
+	        	paySingMap.put("noncestr", r.get("nonce_str"));
+	        	paySingMap.put("timeStamp", new Date().getTime()/1000+"");
+	        	paySingMap.put("package", "Sign=WXPay");
+	        	
+	        	String pay_sing = WxPayUtil.generateSignature(data, wx.getMchKey());
+	        	r.put("paySign", pay_sing);
+		        r.put("timeStamp", new Date().getTime()/1000+"");
+		        
+		        request.setAttribute("result", r);
+	        }
+	        
 		}catch(Exception e){
 
 			e.printStackTrace();
