@@ -50,7 +50,7 @@ public class WeChatPayController extends BaseController {
 	        Map<String, String> r = wp.unifiedOrder(data);
 
 	        
-	        r.put("timeStamp", new Date().getTime()+"");
+	        r.put("timeStamp", new Date().getTime()/1000+"");
 	        request.setAttribute("result", r);
 		}catch(Exception e){
 
