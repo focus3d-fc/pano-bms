@@ -37,7 +37,7 @@ public class WeChatPayController extends BaseController {
 			HashMap<String, String> data = new HashMap<String, String>();
 			
 	        data.put("body", "focus3d 支付测试");
-	        data.put("out_trade_no", "199309"+new Date().getTime());
+	        data.put("out_trade_no", "zs"+new Date().getTime());
 	        data.put("device_info", "1");
 	        data.put("fee_type", "CNY");
 	        data.put("total_fee", "1");
@@ -47,11 +47,13 @@ public class WeChatPayController extends BaseController {
 	        data.put("product_id", "12");
 	        data.put("openid", "oHSqcw37i18XF01iXDEasSFpbNZY");
 	        
+	       
+	        
 	        Map<String, String> r = wp.unifiedOrder(data);
 
-	        
+	        r.put("paySign", WxPayUtil.generateSignature(data, wx.getMchKey()));
 	        r.put("timeStamp", new Date().getTime()/1000+"");
-	        r.put("openId", userInfo.getOpenid());
+	        //r.put("openId", userInfo.getOpenid());
 	        request.setAttribute("result", r);
 		}catch(Exception e){
 
