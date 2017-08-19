@@ -88,7 +88,7 @@ public class OAuthUtil {
 		
 	}
 	
-	Logger log4s = LoggerFactory.getLogger(OAuthUtil.class);
+	private static final Logger log = LoggerFactory.getLogger(OAuthUtil.class);
 	
 	
 	/**
@@ -134,6 +134,8 @@ public class OAuthUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		log.debug("oauth-->"+buffer.toString());
 		
 		
 		Token token = JSONObject.parseObject(buffer.toString(), Token.class);
