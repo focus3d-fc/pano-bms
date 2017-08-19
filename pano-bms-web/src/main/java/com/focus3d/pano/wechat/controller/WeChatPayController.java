@@ -53,7 +53,7 @@ public class WeChatPayController extends BaseController {
 	        	// 二次签名
 	        	HashMap<String, String> paySingMap = new HashMap<String, String>();
 	        	paySingMap.put("appid", wx.getAppId());
-	        	paySingMap.put("noncestr", r.get("nonce_str"));
+	        	paySingMap.put("noncestr", WxPayUtil.generateNonceStr());
 	        	paySingMap.put("package", "Sign=WXPay");
 	        	paySingMap.put("partnerid", wx.getMchId());
 	        	paySingMap.put("prepayid", r.get("partner_id"));
