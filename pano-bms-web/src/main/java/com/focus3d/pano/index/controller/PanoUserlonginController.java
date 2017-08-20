@@ -49,7 +49,7 @@ public class PanoUserlonginController extends BaseController{
 			rv.setResult("success");
 			rv.setResCode(null);
 			rv.setObjData(userLongin);
-			doSSO(userName, passWord, response);
+			doSSO(userName, passWord, request, response);
 			System.out.println("succedd");
 			System.out.println("进入正确");
 			session.setAttribute("user",userLongin );
@@ -71,12 +71,22 @@ public class PanoUserlonginController extends BaseController{
 	}
 	
 	
-	private void doSSO(String loginName, String password, HttpServletResponse response){
+	private void doSSO(String loginName, String password, HttpServletRequest request, HttpServletResponse response){
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			String name = cookie.getName();
+			if("pano_ticket".equals(name)){
+				cookie.setMaxAge(0);
+				cookie.setPath("/");
+				response.addCookie(cookie);
+			}
+		}
 		JSONObject jo = new JSONObject();
 		jo.put("usn", loginName);
 		jo.put("pwd", password);
 		Cookie ck = new Cookie("pano_ticket", encryptService.encrypt(jo.toString(), null));
 		ck.setPath("/");
+		ck.setMaxAge(-1);
 		ck.setDomain("joy-homeplus.com");
 		response.addCookie(ck);
 	}
