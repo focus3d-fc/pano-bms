@@ -51,25 +51,10 @@ public class WeChatPayController extends BaseController {
 	        
 	        Map<String, String> r = wp.unifiedOrder(data);
 
-	        if("SUCCESS".equals(r.get("result_code"))){
-	        	// 二次签名
-	        	
-	        	SortedMap<Object, Object> paySingMap = new TreeMap<Object, Object>();
-	        	paySingMap.put("appid", wx.getAppId());
-	        	paySingMap.put("noncestr", WxPayUtil.generateNonceStr());
-	        	paySingMap.put("package", "Sign=WXPay");
-	        	paySingMap.put("partnerid", wx.getMchId());
-	        	paySingMap.put("prepayid", r.get("partner_id"));
-	        	paySingMap.put("timeStamp", new Date().getTime()/1000+"");
-	        	
-	        	String pay_sing = WxPayUtil.createSign("utf-8", paySingMap, wx.getMchKey());
-	        	r.put("paySign", pay_sing);
-		        r.put("timeStamp", new Date().getTime()/1000+"");
-		        r.put("openid", "oHSqcw37i18XF01iXDEasSFpbNZY");
-		        
-		        request.setAttribute("result", r);
-	        }
+	        r.put("timeStamp", new Date().getTime()/1000+"");
+	        r.put("openid", "oHSqcw37i18XF01iXDEasSFpbNZY");
 	        
+	        request.setAttribute("result", r);
 		}catch(Exception e){
 
 			e.printStackTrace();
