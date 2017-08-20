@@ -65,7 +65,7 @@ public class WeChatPayController extends BaseController {
 	        	String pay_sing = WxPayUtil.createSign("utf-8", paySingMap, wx.getMchKey());
 	        	r.put("paySign", pay_sing);
 		        r.put("timeStamp", new Date().getTime()/1000+"");
-		        r.put("openid", userInfo.getOpenid());
+		        r.put("openid", "oHSqcw37i18XF01iXDEasSFpbNZY");
 		        
 		        request.setAttribute("result", r);
 	        }
