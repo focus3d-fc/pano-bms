@@ -722,20 +722,17 @@ public class PerspectiveQuery extends BaseController {
 		String packageTypeSn =request.getParameter("packageTypeSn");
 		String productSn =request.getParameter("product_sn");
 		// 验证有没有透视图
-		Map<String, Object> map = QueryPerspectiveByProductSn(houseStyleSn,
-				packageTypeSn, productSn);
+		Map<String, Object> map = QueryPerspectiveByProductSn(houseStyleSn,packageTypeSn,productSn);
 
 		int num = Integer.parseInt(map.get("count").toString());
 
 		if (num != 0) {
 			model_map.put("viewlist", map.get("list"));
 
-			List<ProductRelevance> proList = productRelevanceService
-					.selProbySN(Long.parseLong(productSn));
+			List<ProductRelevance> proList = productRelevanceService.selProbySN(Long.parseLong(productSn));
 			request.setAttribute("proList", proList.get(0));
 
-			List<ProductRelevance> ImgList = productRelevanceService
-					.selImgbySN(Long.parseLong(productSn));
+			List<ProductRelevance> ImgList = productRelevanceService.selImgbySN(Long.parseLong(productSn));
 			List<Long> images = new ArrayList<Long>();
 			for (ProductRelevance productRelevance : ImgList) {
 				images.add(productRelevance.getLEFT_IMG_SN());
@@ -747,7 +744,6 @@ public class PerspectiveQuery extends BaseController {
 			}
 			request.setAttribute("images", images);
 			return "/perspective/pro";
-
 		}
 
 		return this.redirect("/usersSide/carshow2");
