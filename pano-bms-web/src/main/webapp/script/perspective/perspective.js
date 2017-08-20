@@ -632,9 +632,9 @@ var WebGL = {
             map.wrapS = THREE.RepeatWrapping;
             map.wrapT = THREE.RepeatWrapping;
             map.needsUpdate = true;
-            if(data.repeat){
-                var vec = string_to_vec(data.repeat);
-                map.repeat.set(vec.x,vec.y);
+            if(data.repeating){
+                var vec = string_to_vec(data.repeating);
+                map.repeating.set(vec.x,vec.y);
             }
         }
 
@@ -670,9 +670,9 @@ var WebGL = {
 
         var map = element.material.map;
         if(map){
-            if(data.repeat){
-                var vec = string_to_vec(data.repeat);
-                map.repeat.set(vec.x,vec.y);
+            if(data.repeating){
+                var vec = string_to_vec(data.repeating);
+                map.repeating.set(vec.x,vec.y);
             }
         }
 
@@ -696,9 +696,9 @@ var WebGL = {
     mirror:function (element) {
         var map = element.material.map;
         if(map){
-            var repeatX = parseFloat(map.repeat.x);
+            var repeatX = parseFloat(map.repeating.x);
             repeatX = -1 * repeatX;
-            map.repeat.set(repeatX,1);
+            map.repeating.set(repeatX,1);
         }
     },
     resetScale:function(element,scale){
@@ -1332,7 +1332,7 @@ function updateElementProductCallback(element,product){
         _data["scale"] = (parseFloat($("#product_scale").val())/100.0).toFixed(2).toString();
         var map = element.element.material.map;
         if(map){
-            _data["repeat"] = vec_to_string(map.repeat);
+            _data["repeating"] = vec_to_string(map.repeating);
         }
         $.ajax({
             url:"/perspective/elementProductUpdate",

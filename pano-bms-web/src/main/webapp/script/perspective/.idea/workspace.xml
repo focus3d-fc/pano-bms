@@ -28,17 +28,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="perspective.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="perspective.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/perspective.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="1337" column="52" lean-forward="true" selection-start-line="1337" selection-start-column="52" selection-end-line="1337" selection-end-column="52" />
+            <state relative-caret-position="188">
+              <caret line="1341" column="35" lean-forward="true" selection-start-line="1341" selection-start-column="35" selection-end-line="1341" selection-end-column="35" />
               <folding>
                 <element signature="n#!!block;n#createView#0" expanded="false" />
                 <element signature="n#!!block;n#View#0" expanded="false" />
                 <element signature="n#!!block;n#Layer#0" expanded="false" />
                 <element signature="n#!!block;n#Element#0" expanded="false" />
-                <element signature="e#13487#22494#0" expanded="false" />
+                <element signature="e#13487#22518#0" expanded="false" />
                 <element signature="e#13731#15077#0" expanded="false" />
                 <element signature="e#15107#15987#0" expanded="false" />
                 <element signature="e#16017#16888#0" expanded="false" />
@@ -46,17 +46,17 @@
                 <element signature="e#17012#17087#0" expanded="false" />
                 <element signature="e#17144#17689#0" expanded="false" />
                 <element signature="e#17729#18012#0" expanded="false" />
-                <element signature="e#18052#19540#0" expanded="false" />
-                <element signature="e#19582#20541#0" expanded="false" />
-                <element signature="e#20573#20774#0" expanded="false" />
-                <element signature="e#20814#20867#0" expanded="false" />
-                <element signature="e#20894#21115#0" expanded="false" />
-                <element signature="e#21146#21314#0" expanded="false" />
-                <element signature="e#22519#26852#0" expanded="false" />
+                <element signature="e#18052#19549#0" expanded="false" />
+                <element signature="e#19591#20559#0" expanded="false" />
+                <element signature="e#20591#20798#0" expanded="false" />
+                <element signature="e#20838#20891#0" expanded="false" />
+                <element signature="e#20918#21139#0" expanded="false" />
+                <element signature="e#21170#21338#0" expanded="false" />
+                <element signature="e#22543#26876#0" expanded="false" />
                 <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
                 <element signature="n#!!block;n#query_view#0" expanded="false" />
                 <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-                <element signature="e#28142#31286#0" expanded="false" />
+                <element signature="e#28166#31310#0" expanded="false" />
                 <element signature="n#!!block;n#query_layer#0" expanded="false" />
                 <element signature="n#!!block;n#query_element#0" expanded="false" />
                 <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -99,10 +99,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Perspective.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Perspective.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="581">
+            <state relative-caret-position="806">
               <caret line="107" column="36" lean-forward="false" selection-start-line="107" selection-start-column="16" selection-end-line="107" selection-end-column="36" />
               <folding>
                 <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -126,7 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>initProductResult</find>
       <find>delete</find>
       <find>ControlElementClear</find>
       <find>QueryPerspectiveInfo</find>
@@ -154,8 +153,9 @@
       <find>view_save</find>
       <find>updateView</find>
       <find>elementProductClose</find>
-      <find>view_insert</find>
       <find>elementProductUpdate</find>
+      <find>view_insert</find>
+      <find>repeat</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -308,12 +308,12 @@
       <workItem from="1502934406113" duration="17569000" />
       <workItem from="1503031181068" duration="15835000" />
       <workItem from="1503112817993" duration="18496000" />
-      <workItem from="1503233279856" duration="2696000" />
+      <workItem from="1503233279856" duration="3338000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="225656000" />
+    <option name="totallyTimeSpent" value="226298000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -325,7 +325,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -368,7 +368,7 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#13487#22494#0" expanded="false" />
+            <element signature="e#13487#22518#0" expanded="false" />
             <element signature="e#13731#15077#0" expanded="false" />
             <element signature="e#15107#15987#0" expanded="false" />
             <element signature="e#16017#16888#0" expanded="false" />
@@ -376,17 +376,17 @@
             <element signature="e#17012#17087#0" expanded="false" />
             <element signature="e#17144#17689#0" expanded="false" />
             <element signature="e#17729#18012#0" expanded="false" />
-            <element signature="e#18052#19540#0" expanded="false" />
-            <element signature="e#19582#20541#0" expanded="false" />
-            <element signature="e#20573#20774#0" expanded="false" />
-            <element signature="e#20814#20867#0" expanded="false" />
-            <element signature="e#20894#21115#0" expanded="false" />
-            <element signature="e#21146#21314#0" expanded="false" />
-            <element signature="e#22519#26852#0" expanded="false" />
+            <element signature="e#18052#19549#0" expanded="false" />
+            <element signature="e#19591#20559#0" expanded="false" />
+            <element signature="e#20591#20798#0" expanded="false" />
+            <element signature="e#20838#20891#0" expanded="false" />
+            <element signature="e#20918#21139#0" expanded="false" />
+            <element signature="e#21170#21338#0" expanded="false" />
+            <element signature="e#22543#26876#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
             <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#28142#31286#0" expanded="false" />
+            <element signature="e#28166#31310#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -456,7 +456,7 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#13487#22494#0" expanded="false" />
+            <element signature="e#13487#22518#0" expanded="false" />
             <element signature="e#13731#15077#0" expanded="false" />
             <element signature="e#15107#15987#0" expanded="false" />
             <element signature="e#16017#16888#0" expanded="false" />
@@ -464,17 +464,17 @@
             <element signature="e#17012#17087#0" expanded="false" />
             <element signature="e#17144#17689#0" expanded="false" />
             <element signature="e#17729#18012#0" expanded="false" />
-            <element signature="e#18052#19540#0" expanded="false" />
-            <element signature="e#19582#20541#0" expanded="false" />
-            <element signature="e#20573#20774#0" expanded="false" />
-            <element signature="e#20814#20867#0" expanded="false" />
-            <element signature="e#20894#21115#0" expanded="false" />
-            <element signature="e#21146#21314#0" expanded="false" />
-            <element signature="e#22519#26852#0" expanded="false" />
+            <element signature="e#18052#19549#0" expanded="false" />
+            <element signature="e#19591#20559#0" expanded="false" />
+            <element signature="e#20591#20798#0" expanded="false" />
+            <element signature="e#20838#20891#0" expanded="false" />
+            <element signature="e#20918#21139#0" expanded="false" />
+            <element signature="e#21170#21338#0" expanded="false" />
+            <element signature="e#22543#26876#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
             <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#28142#31286#0" expanded="false" />
+            <element signature="e#28166#31310#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -577,7 +577,7 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#13487#22494#0" expanded="false" />
+            <element signature="e#13487#22518#0" expanded="false" />
             <element signature="e#13731#15077#0" expanded="false" />
             <element signature="e#15107#15987#0" expanded="false" />
             <element signature="e#16017#16888#0" expanded="false" />
@@ -585,17 +585,17 @@
             <element signature="e#17012#17087#0" expanded="false" />
             <element signature="e#17144#17689#0" expanded="false" />
             <element signature="e#17729#18012#0" expanded="false" />
-            <element signature="e#18052#19540#0" expanded="false" />
-            <element signature="e#19582#20541#0" expanded="false" />
-            <element signature="e#20573#20774#0" expanded="false" />
-            <element signature="e#20814#20867#0" expanded="false" />
-            <element signature="e#20894#21115#0" expanded="false" />
-            <element signature="e#21146#21314#0" expanded="false" />
-            <element signature="e#22519#26852#0" expanded="false" />
+            <element signature="e#18052#19549#0" expanded="false" />
+            <element signature="e#19591#20559#0" expanded="false" />
+            <element signature="e#20591#20798#0" expanded="false" />
+            <element signature="e#20838#20891#0" expanded="false" />
+            <element signature="e#20918#21139#0" expanded="false" />
+            <element signature="e#21170#21338#0" expanded="false" />
+            <element signature="e#22543#26876#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
             <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#28142#31286#0" expanded="false" />
+            <element signature="e#28166#31310#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -698,7 +698,7 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#13487#22494#0" expanded="false" />
+            <element signature="e#13487#22518#0" expanded="false" />
             <element signature="e#13731#15077#0" expanded="false" />
             <element signature="e#15107#15987#0" expanded="false" />
             <element signature="e#16017#16888#0" expanded="false" />
@@ -706,17 +706,17 @@
             <element signature="e#17012#17087#0" expanded="false" />
             <element signature="e#17144#17689#0" expanded="false" />
             <element signature="e#17729#18012#0" expanded="false" />
-            <element signature="e#18052#19540#0" expanded="false" />
-            <element signature="e#19582#20541#0" expanded="false" />
-            <element signature="e#20573#20774#0" expanded="false" />
-            <element signature="e#20814#20867#0" expanded="false" />
-            <element signature="e#20894#21115#0" expanded="false" />
-            <element signature="e#21146#21314#0" expanded="false" />
-            <element signature="e#22519#26852#0" expanded="false" />
+            <element signature="e#18052#19549#0" expanded="false" />
+            <element signature="e#19591#20559#0" expanded="false" />
+            <element signature="e#20591#20798#0" expanded="false" />
+            <element signature="e#20838#20891#0" expanded="false" />
+            <element signature="e#20918#21139#0" expanded="false" />
+            <element signature="e#21170#21338#0" expanded="false" />
+            <element signature="e#22543#26876#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
             <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#28142#31286#0" expanded="false" />
+            <element signature="e#28166#31310#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -786,7 +786,7 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#13487#22494#0" expanded="false" />
+            <element signature="e#13487#22518#0" expanded="false" />
             <element signature="e#13731#15077#0" expanded="false" />
             <element signature="e#15107#15987#0" expanded="false" />
             <element signature="e#16017#16888#0" expanded="false" />
@@ -794,17 +794,17 @@
             <element signature="e#17012#17087#0" expanded="false" />
             <element signature="e#17144#17689#0" expanded="false" />
             <element signature="e#17729#18012#0" expanded="false" />
-            <element signature="e#18052#19540#0" expanded="false" />
-            <element signature="e#19582#20541#0" expanded="false" />
-            <element signature="e#20573#20774#0" expanded="false" />
-            <element signature="e#20814#20867#0" expanded="false" />
-            <element signature="e#20894#21115#0" expanded="false" />
-            <element signature="e#21146#21314#0" expanded="false" />
-            <element signature="e#22519#26852#0" expanded="false" />
+            <element signature="e#18052#19549#0" expanded="false" />
+            <element signature="e#19591#20559#0" expanded="false" />
+            <element signature="e#20591#20798#0" expanded="false" />
+            <element signature="e#20838#20891#0" expanded="false" />
+            <element signature="e#20918#21139#0" expanded="false" />
+            <element signature="e#21170#21338#0" expanded="false" />
+            <element signature="e#22543#26876#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
             <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#28142#31286#0" expanded="false" />
+            <element signature="e#28166#31310#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -866,7 +866,7 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#13487#22494#0" expanded="false" />
+            <element signature="e#13487#22518#0" expanded="false" />
             <element signature="e#13731#15077#0" expanded="false" />
             <element signature="e#15107#15987#0" expanded="false" />
             <element signature="e#16017#16888#0" expanded="false" />
@@ -874,17 +874,17 @@
             <element signature="e#17012#17087#0" expanded="false" />
             <element signature="e#17144#17689#0" expanded="false" />
             <element signature="e#17729#18012#0" expanded="false" />
-            <element signature="e#18052#19540#0" expanded="false" />
-            <element signature="e#19582#20541#0" expanded="false" />
-            <element signature="e#20573#20774#0" expanded="false" />
-            <element signature="e#20814#20867#0" expanded="false" />
-            <element signature="e#20894#21115#0" expanded="false" />
-            <element signature="e#21146#21314#0" expanded="false" />
-            <element signature="e#22519#26852#0" expanded="false" />
+            <element signature="e#18052#19549#0" expanded="false" />
+            <element signature="e#19591#20559#0" expanded="false" />
+            <element signature="e#20591#20798#0" expanded="false" />
+            <element signature="e#20838#20891#0" expanded="false" />
+            <element signature="e#20918#21139#0" expanded="false" />
+            <element signature="e#21170#21338#0" expanded="false" />
+            <element signature="e#22543#26876#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
             <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#28142#31286#0" expanded="false" />
+            <element signature="e#28166#31310#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -946,7 +946,7 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#13487#22494#0" expanded="false" />
+            <element signature="e#13487#22518#0" expanded="false" />
             <element signature="e#13731#15077#0" expanded="false" />
             <element signature="e#15107#15987#0" expanded="false" />
             <element signature="e#16017#16888#0" expanded="false" />
@@ -954,17 +954,17 @@
             <element signature="e#17012#17087#0" expanded="false" />
             <element signature="e#17144#17689#0" expanded="false" />
             <element signature="e#17729#18012#0" expanded="false" />
-            <element signature="e#18052#19540#0" expanded="false" />
-            <element signature="e#19582#20541#0" expanded="false" />
-            <element signature="e#20573#20774#0" expanded="false" />
-            <element signature="e#20814#20867#0" expanded="false" />
-            <element signature="e#20894#21115#0" expanded="false" />
-            <element signature="e#21146#21314#0" expanded="false" />
-            <element signature="e#22519#26852#0" expanded="false" />
+            <element signature="e#18052#19549#0" expanded="false" />
+            <element signature="e#19591#20559#0" expanded="false" />
+            <element signature="e#20591#20798#0" expanded="false" />
+            <element signature="e#20838#20891#0" expanded="false" />
+            <element signature="e#20918#21139#0" expanded="false" />
+            <element signature="e#21170#21338#0" expanded="false" />
+            <element signature="e#22543#26876#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
             <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#28142#31286#0" expanded="false" />
+            <element signature="e#28166#31310#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -1026,7 +1026,7 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#13487#22494#0" expanded="false" />
+            <element signature="e#13487#22518#0" expanded="false" />
             <element signature="e#13731#15077#0" expanded="false" />
             <element signature="e#15107#15987#0" expanded="false" />
             <element signature="e#16017#16888#0" expanded="false" />
@@ -1034,17 +1034,17 @@
             <element signature="e#17012#17087#0" expanded="false" />
             <element signature="e#17144#17689#0" expanded="false" />
             <element signature="e#17729#18012#0" expanded="false" />
-            <element signature="e#18052#19540#0" expanded="false" />
-            <element signature="e#19582#20541#0" expanded="false" />
-            <element signature="e#20573#20774#0" expanded="false" />
-            <element signature="e#20814#20867#0" expanded="false" />
-            <element signature="e#20894#21115#0" expanded="false" />
-            <element signature="e#21146#21314#0" expanded="false" />
-            <element signature="e#22519#26852#0" expanded="false" />
+            <element signature="e#18052#19549#0" expanded="false" />
+            <element signature="e#19591#20559#0" expanded="false" />
+            <element signature="e#20591#20798#0" expanded="false" />
+            <element signature="e#20838#20891#0" expanded="false" />
+            <element signature="e#20918#21139#0" expanded="false" />
+            <element signature="e#21170#21338#0" expanded="false" />
+            <element signature="e#22543#26876#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
             <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#28142#31286#0" expanded="false" />
+            <element signature="e#28166#31310#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -1106,7 +1106,7 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#13487#22494#0" expanded="false" />
+            <element signature="e#13487#22518#0" expanded="false" />
             <element signature="e#13731#15077#0" expanded="false" />
             <element signature="e#15107#15987#0" expanded="false" />
             <element signature="e#16017#16888#0" expanded="false" />
@@ -1114,17 +1114,17 @@
             <element signature="e#17012#17087#0" expanded="false" />
             <element signature="e#17144#17689#0" expanded="false" />
             <element signature="e#17729#18012#0" expanded="false" />
-            <element signature="e#18052#19540#0" expanded="false" />
-            <element signature="e#19582#20541#0" expanded="false" />
-            <element signature="e#20573#20774#0" expanded="false" />
-            <element signature="e#20814#20867#0" expanded="false" />
-            <element signature="e#20894#21115#0" expanded="false" />
-            <element signature="e#21146#21314#0" expanded="false" />
-            <element signature="e#22519#26852#0" expanded="false" />
+            <element signature="e#18052#19549#0" expanded="false" />
+            <element signature="e#19591#20559#0" expanded="false" />
+            <element signature="e#20591#20798#0" expanded="false" />
+            <element signature="e#20838#20891#0" expanded="false" />
+            <element signature="e#20918#21139#0" expanded="false" />
+            <element signature="e#21170#21338#0" expanded="false" />
+            <element signature="e#22543#26876#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
             <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#28142#31286#0" expanded="false" />
+            <element signature="e#28166#31310#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -1186,7 +1186,7 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#13487#22494#0" expanded="false" />
+            <element signature="e#13487#22518#0" expanded="false" />
             <element signature="e#13731#15077#0" expanded="false" />
             <element signature="e#15107#15987#0" expanded="false" />
             <element signature="e#16017#16888#0" expanded="false" />
@@ -1194,17 +1194,17 @@
             <element signature="e#17012#17087#0" expanded="false" />
             <element signature="e#17144#17689#0" expanded="false" />
             <element signature="e#17729#18012#0" expanded="false" />
-            <element signature="e#18052#19540#0" expanded="false" />
-            <element signature="e#19582#20541#0" expanded="false" />
-            <element signature="e#20573#20774#0" expanded="false" />
-            <element signature="e#20814#20867#0" expanded="false" />
-            <element signature="e#20894#21115#0" expanded="false" />
-            <element signature="e#21146#21314#0" expanded="false" />
-            <element signature="e#22519#26852#0" expanded="false" />
+            <element signature="e#18052#19549#0" expanded="false" />
+            <element signature="e#19591#20559#0" expanded="false" />
+            <element signature="e#20591#20798#0" expanded="false" />
+            <element signature="e#20838#20891#0" expanded="false" />
+            <element signature="e#20918#21139#0" expanded="false" />
+            <element signature="e#21170#21338#0" expanded="false" />
+            <element signature="e#22543#26876#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
             <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#28142#31286#0" expanded="false" />
+            <element signature="e#28166#31310#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -1266,7 +1266,7 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#13487#22494#0" expanded="false" />
+            <element signature="e#13487#22518#0" expanded="false" />
             <element signature="e#13731#15077#0" expanded="false" />
             <element signature="e#15107#15987#0" expanded="false" />
             <element signature="e#16017#16888#0" expanded="false" />
@@ -1274,17 +1274,17 @@
             <element signature="e#17012#17087#0" expanded="false" />
             <element signature="e#17144#17689#0" expanded="false" />
             <element signature="e#17729#18012#0" expanded="false" />
-            <element signature="e#18052#19540#0" expanded="false" />
-            <element signature="e#19582#20541#0" expanded="false" />
-            <element signature="e#20573#20774#0" expanded="false" />
-            <element signature="e#20814#20867#0" expanded="false" />
-            <element signature="e#20894#21115#0" expanded="false" />
-            <element signature="e#21146#21314#0" expanded="false" />
-            <element signature="e#22519#26852#0" expanded="false" />
+            <element signature="e#18052#19549#0" expanded="false" />
+            <element signature="e#19591#20559#0" expanded="false" />
+            <element signature="e#20591#20798#0" expanded="false" />
+            <element signature="e#20838#20891#0" expanded="false" />
+            <element signature="e#20918#21139#0" expanded="false" />
+            <element signature="e#21170#21338#0" expanded="false" />
+            <element signature="e#22543#26876#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
             <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#28142#31286#0" expanded="false" />
+            <element signature="e#28166#31310#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -1346,7 +1346,7 @@
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#13487#22494#0" expanded="false" />
+            <element signature="e#13487#22518#0" expanded="false" />
             <element signature="e#13731#15077#0" expanded="false" />
             <element signature="e#15107#15987#0" expanded="false" />
             <element signature="e#16017#16888#0" expanded="false" />
@@ -1354,17 +1354,17 @@
             <element signature="e#17012#17087#0" expanded="false" />
             <element signature="e#17144#17689#0" expanded="false" />
             <element signature="e#17729#18012#0" expanded="false" />
-            <element signature="e#18052#19540#0" expanded="false" />
-            <element signature="e#19582#20541#0" expanded="false" />
-            <element signature="e#20573#20774#0" expanded="false" />
-            <element signature="e#20814#20867#0" expanded="false" />
-            <element signature="e#20894#21115#0" expanded="false" />
-            <element signature="e#21146#21314#0" expanded="false" />
-            <element signature="e#22519#26852#0" expanded="false" />
+            <element signature="e#18052#19549#0" expanded="false" />
+            <element signature="e#19591#20559#0" expanded="false" />
+            <element signature="e#20591#20798#0" expanded="false" />
+            <element signature="e#20838#20891#0" expanded="false" />
+            <element signature="e#20918#21139#0" expanded="false" />
+            <element signature="e#21170#21338#0" expanded="false" />
+            <element signature="e#22543#26876#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
             <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#28142#31286#0" expanded="false" />
+            <element signature="e#28166#31310#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -1466,16 +1466,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="806">
+          <caret line="107" column="36" lean-forward="false" selection-start-line="107" selection-start-column="16" selection-end-line="107" selection-end-column="36" />
+          <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#1;n#div#2;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/perspective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="1337" column="52" lean-forward="true" selection-start-line="1337" selection-start-column="52" selection-end-line="1337" selection-end-column="52" />
+        <state relative-caret-position="188">
+          <caret line="1341" column="35" lean-forward="true" selection-start-line="1341" selection-start-column="35" selection-end-line="1341" selection-end-column="35" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
-            <element signature="e#13487#22494#0" expanded="false" />
+            <element signature="e#13487#22518#0" expanded="false" />
             <element signature="e#13731#15077#0" expanded="false" />
             <element signature="e#15107#15987#0" expanded="false" />
             <element signature="e#16017#16888#0" expanded="false" />
@@ -1483,17 +1504,17 @@
             <element signature="e#17012#17087#0" expanded="false" />
             <element signature="e#17144#17689#0" expanded="false" />
             <element signature="e#17729#18012#0" expanded="false" />
-            <element signature="e#18052#19540#0" expanded="false" />
-            <element signature="e#19582#20541#0" expanded="false" />
-            <element signature="e#20573#20774#0" expanded="false" />
-            <element signature="e#20814#20867#0" expanded="false" />
-            <element signature="e#20894#21115#0" expanded="false" />
-            <element signature="e#21146#21314#0" expanded="false" />
-            <element signature="e#22519#26852#0" expanded="false" />
+            <element signature="e#18052#19549#0" expanded="false" />
+            <element signature="e#19591#20559#0" expanded="false" />
+            <element signature="e#20591#20798#0" expanded="false" />
+            <element signature="e#20838#20891#0" expanded="false" />
+            <element signature="e#20918#21139#0" expanded="false" />
+            <element signature="e#21170#21338#0" expanded="false" />
+            <element signature="e#22543#26876#0" expanded="false" />
             <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
             <element signature="n#!!block;n#query_view#0" expanded="false" />
             <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
-            <element signature="e#28142#31286#0" expanded="false" />
+            <element signature="e#28166#31310#0" expanded="false" />
             <element signature="n#!!block;n#query_layer#0" expanded="false" />
             <element signature="n#!!block;n#query_element#0" expanded="false" />
             <element signature="n#!!block;n#updateView#0" expanded="false" />
@@ -1521,27 +1542,6 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="107" column="36" lean-forward="false" selection-start-line="107" selection-start-column="16" selection-end-line="107" selection-end-column="36" />
-          <folding>
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#2;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>

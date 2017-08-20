@@ -227,7 +227,7 @@ public class PerspectiveQuery extends BaseController {
 					json.put("height", map.get(FileAttributeEnum.HEIGHT.name()));
 					json.put("position", child.get("position").toString());
 					json.put("scale", child.get("scale").toString());
-					json.put("repeat", child.get("repeat").toString());
+					json.put("repeating", child.get("repeating").toString());
 				}
 
 				array.add(json);
@@ -271,7 +271,7 @@ public class PerspectiveQuery extends BaseController {
 					json.put("height", map.get(FileAttributeEnum.HEIGHT.name()));
 					json.put("position", child.get("position").toString());
 					json.put("scale", child.get("scale").toString());
-					json.put("repeat", child.get("repeat").toString());
+					json.put("repeating", child.get("repeating").toString());
 				}
 				array.add(json);
 			}
@@ -430,7 +430,7 @@ public class PerspectiveQuery extends BaseController {
 						map.get(FileAttributeEnum.HEIGHT.name()));
 				jsonObject.put("position", product.getPosition());
 				jsonObject.put("scale", product.getScale());
-				jsonObject.put("repeat", product.getRepeat());
+				jsonObject.put("repeating", product.getRepeating());
 			} else {
 				jsonObject.put("sn", "");
 				jsonObject.put("url", "");
@@ -438,7 +438,7 @@ public class PerspectiveQuery extends BaseController {
 				jsonObject.put("height", "");
 				jsonObject.put("position", "");
 				jsonObject.put("scale", "");
-				jsonObject.put("repeat", "");
+				jsonObject.put("repeating", "");
 			}
 
 			ajaxOutput(response, jsonObject.toString());
@@ -471,7 +471,7 @@ public class PerspectiveQuery extends BaseController {
 			jsonObject.put("height", map.get(FileAttributeEnum.HEIGHT.name()));
 			jsonObject.put("position", model.getPosition());
 			jsonObject.put("scale", model.getScale());
-			jsonObject.put("repeat", model.getRepeat());
+			jsonObject.put("repeating", model.getRepeating());
 
 			ajaxOutput(response, jsonObject.toString());
 		} catch (IOException e) {
@@ -651,7 +651,7 @@ public class PerspectiveQuery extends BaseController {
 
 								map.put("position", product.getPosition());
 								map.put("scale", product.getScale());
-								map.put("repeat", product.getRepeat());
+								map.put("repeating", product.getRepeating());
 								System.out.println(product.getScale());
 								break;
 							}
@@ -683,16 +683,14 @@ public class PerspectiveQuery extends BaseController {
 				Long mapKey = product.getProductMap();
 				Map<String, String> mapFile = client.getFile(mapKey);
 				info.put("productSn", product.getProductSn());
-				info.put("url",
-						mapFile.get(FileAttributeEnum.VISIT_ADDR.name()));
+				info.put("url",mapFile.get(FileAttributeEnum.VISIT_ADDR.name()));
 				info.put("width", mapFile.get(FileAttributeEnum.WIDTH.name()));
 				info.put("height", mapFile.get(FileAttributeEnum.HEIGHT.name()));
 				info.put("position", product.getPosition());
 				info.put("scale", product.getScale());
-				info.put("repeat", product.getRepeat());
+				info.put("repeating", product.getRepeating());
 
-				if (product.getProductSn().longValue() == product_sn
-						.longValue()) {
+				if (product.getProductSn().longValue() == product_sn.longValue()) {
 					product_info.add(0, info);
 				} else {
 					product_info.add(info);
