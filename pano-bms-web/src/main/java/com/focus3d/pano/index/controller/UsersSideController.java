@@ -268,11 +268,12 @@ public class UsersSideController extends BaseController{
 		System.out.println("phoneCode_out:"+phoneCode_out+",phoneCode_in:"+phoneCode_in);
 		//验证码正确，进入登录后页面
 		String msg="";
-		if(phoneCode_in.equals("phoneCode_out")){
+		if(phoneCode_in.equals(phoneCode_out)){
 			msg="success";
 		}else{
 			msg="error";
 		}
+		System.out.println("登录验证："+msg);
 		String jsonProject=	JsonUtils.objectToJson(msg);
 		this.ajaxOutput(response,jsonProject);
 	}
