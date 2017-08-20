@@ -121,15 +121,6 @@ function View(data){
         id:"control",
         class:"float_r mar0pad0"
     });
-
-    var _mirror = $("<span>",{
-        class:"glyphicon glyphicon-trash mar_l5",
-        click:function(){
-            event.stopPropagation();
-            WebGL.mirror(_this.view);
-        }
-    });
-
 	var _delete = $("<span>",{
     	class:"glyphicon glyphicon-trash mar_l5",
         click:function(){
@@ -157,7 +148,6 @@ function View(data){
             $("#view_entering").modal("show");
         }
 	});
-    this.control.append(_mirror);
     this.control.append(_delete);
     this.control.append(_edit);
 	this.node.append(this.node_name);
@@ -420,7 +410,7 @@ function Element(parent,data){
     })
 
     var _mirror = $("<span></span>",{
-        class:"glyphicon glyphicon-trash mar_l5 mar_r10 mar_t10",
+        class:"glyphicon glyphicon-road mar_l5 mar_r10 mar_t10",
         click:function(){
             event.stopPropagation();
             WebGL.mirror(_this.element);
@@ -678,6 +668,9 @@ var WebGL = {
 
         var map = element.material.map;
         if(map){
+            map.wrapS = THREE.RepeatWrapping;
+            map.wrapT = THREE.RepeatWrapping;
+            map.needsUpdate = true;
             if(data.repeating){
                 var vec = string_to_vec(data.repeating);
                 map.repeat.set(vec.x,vec.y);
@@ -706,6 +699,9 @@ var WebGL = {
         if(map){
             var repeatX = parseFloat(map.repeat.x);
             repeatX = -1 * repeatX;
+            map.wrapS = THREE.RepeatWrapping;
+            map.wrapT = THREE.RepeatWrapping;
+            map.needsUpdate = true;
             map.repeat.set(repeatX,1);
         }
     },
@@ -996,6 +992,7 @@ function query_viewproducts(key){
                             element_data.elementOrder = layer.layer.children.length + 1;
                             element_data.position = _data.position;
                             element_data.scale = _data.scale;
+                            element_data.repeating = _data.repeating;
                             element_data.url = _data.elementMapUrl;
                             element_data.width = _data.elementMapWidth;
                             element_data.height = _data.elementMapHeight;
@@ -1340,7 +1337,7 @@ function updateElementProductCallback(element,product){
         _data["scale"] = (parseFloat($("#product_scale").val())/100.0).toFixed(2).toString();
         var map = element.element.material.map;
         if(map){
-            _data["repeating"] = vec_to_string(map.repeating);
+            _data["repeating"] = vec_to_string(map.repeat);
         }
         $.ajax({
             url:"/perspective/elementProductUpdate",
@@ -1350,6 +1347,8 @@ function updateElementProductCallback(element,product){
             success:function(data){
                 if(data){
                     $.extend(element.data,data);
+                    productInfo = data;
+                    debugger;
                     product.find("input[type='checkbox']").removeAttr("disabled");
                     $("#product_"+data.sn).data("data",data);
                 }
