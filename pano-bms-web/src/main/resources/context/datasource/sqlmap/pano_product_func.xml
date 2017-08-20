@@ -103,20 +103,20 @@
 	
  	
 	<select id="getBasics4" resultClass="PanoProductFunc">
-		select `NAME`,SN from pano_skin
+		select `NAME`,SN from pano_product_func
 	</select>
 	
 	<insert id="getInsert4">
-		insert into pano_skin (name,ADDER_SN,UPDATER_SN
+		insert into pano_product_func (name,ADDER_SN,UPDATER_SN
 		) values (#name#,1,1)
 	</insert>
 	
 	<delete id="getDelete4">
-		DELETE FROM pano_skin WHERE SN = #sn#
+		DELETE FROM pano_product_func WHERE SN = #sn#
 	</delete> 
 	
 	<update id="getUpdate4" parameterClass="PanoProductFunc" >
-		UPDATE pano_skin set name=#name# where SN=#sn#
+		UPDATE pano_product_func set name=#name# where SN=#sn#
 	</update>
 	 
 	
