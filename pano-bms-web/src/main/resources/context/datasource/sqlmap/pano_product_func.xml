@@ -26,6 +26,11 @@
 	<update id="getUpdate" parameterClass="PanoProductType" >
 		UPDATE pano_product_type set name=#name# where sn=#sn#
 	</update>
+	<select id="select" resultClass="PanoProductType">
+		select `NAME`,SN from pano_product_type where sn=#sn#
+	</select>
+	
+	
 	
 	
 	
@@ -54,6 +59,13 @@
     			</dynamic>
     			 where SN=#sn#
 	</update>
+	<select id="select1" resultClass="PanoProjectPackage">
+		select `NAME`,SN from pano_project_package where sn=#sn#
+	</select>
+	
+	
+	
+	
 	
 	
 	
@@ -75,6 +87,15 @@
 	<update id="getUpdate2" >
 		UPDATE pano_project_vender set NAME=#name# where SN=#sn#
 	</update>
+	<select id="select2" resultClass="PanoVender">
+		select `NAME`,SN from pano_project_vender where sn=#sn#
+	</select>
+	
+	
+	
+	
+	
+	
 	
 
 	
@@ -98,6 +119,15 @@
     			</dynamic>
     			 where SN=#sn#
 	</update>
+	<select id="select3" resultClass="style">
+		select `NAME`,SN from pano_project_style where sn=#sn#
+	</select>
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -115,11 +145,13 @@
 		DELETE FROM pano_product_func WHERE SN = #sn#
 	</delete> 
 	
-	<update id="getUpdate4" parameterClass="PanoProductFunc" >
+	<update id="getUpdate4"  >
 		UPDATE pano_product_func set name=#name# where SN=#sn#
 	</update>
 	 
-	
+	<select id="select4" resultClass="PanoProductFunc">
+		select `NAME`,SN from pano_product_func where sn=#sn#
+	</select>
 	
 	
 	<!-- 基础导航栏 -->
@@ -139,7 +171,16 @@
 	</delete>
 	
 	<update id="getUpdate5"   >
-		UPDATE pano_skin set NAME=#name#,IMG_SN=#img_sn# where SN=#sn#
+		UPDATE pano_skin 
+		<dynamic prepend="SET">  
+   						 <isNotNull  prepend="," property="name"> NAME=#name#</isNotNull> 
+    					 <isNotNull  prepend="," property="img_sn">IMG_SN =#img_sn#</isNotNull>  
+    			</dynamic>
+    			 where SN=#sn#
 	</update>
+	
+	<select id="select5" resultClass="panoSkin">
+		select `NAME`,SN from pano_skin where sn=#sn#
+	</select>
 	
 </sqlMap>

@@ -59,6 +59,11 @@ public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncD
 		return sm;
 		
 	}
+	public List<PanoProductType> getselect(int sn){
+		return (List<PanoProductType>)getSqlMapClientTemplate().queryForList("pano_bm_basic.select",sn);
+	}
+	
+	
 	
 	
 	
@@ -110,12 +115,15 @@ public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncD
 	}
 	
 	public List<PanoProjectPackage>getupdatas1(int sn){
-		System.out.println("DAO");
 		List<PanoProjectPackage> list= (List<PanoProjectPackage>)getSqlMapClientTemplate().queryForList("pano_bm_basic.getupdatas1",sn);
-		System.out.println("DAO1");
 		return list;
 		
 	}
+	public List<PanoProjectPackage> getselect1(int sn){
+		return (List<PanoProjectPackage>)getSqlMapClientTemplate().queryForList("pano_bm_basic.select1",sn);
+	}
+	
+	
 	
 	/**
 	 * 厂家
@@ -163,6 +171,12 @@ public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncD
 		return sm;
 		
 	}
+	public List<PanoVender> getselect2(int sn){
+		return (List<PanoVender>)getSqlMapClientTemplate().queryForList("pano_bm_basic.select2",sn);
+	}
+	
+	
+	
 	
 	/**
 	 * 风格
@@ -209,6 +223,12 @@ public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncD
 		return sm;
 		
 	}
+		public List<pano_project_style> getselect3(int sn){
+			return (List<pano_project_style>)getSqlMapClientTemplate().queryForList("pano_bm_basic.select3",sn);
+		}
+		
+		
+		
 	
 	/**
 	 * 功能
@@ -247,15 +267,19 @@ public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncD
 		
 		int sm = 0;
 		try{
-			System.out.println("4DAO");
 		sm =  getSqlMapClientTemplate().update("pano_bm_basic.getUpdate4",p);
-		System.out.println("4DAO1");
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return sm;
 		
 	}
+	
+	public List<PanoProductFunc> getselect4(int sn){
+			return(List<PanoProductFunc>)getSqlMapClientTemplate().queryForList("pano_bm_basic.select4",sn);
+		
+	}
+	
 	
 	/**
 	 * 导航
@@ -308,5 +332,9 @@ public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncD
 		List<panoSkin> list= (List<panoSkin>)getSqlMapClientTemplate().queryForList("pano_bm_basic.getupdatas5",sn);
 		return list;
 		
+	}
+
+	public List<panoSkin> getselect5(int sn){
+		return (List<panoSkin>)getSqlMapClientTemplate().queryForList("pano_bm_basic.select5",sn);
 	}
 }

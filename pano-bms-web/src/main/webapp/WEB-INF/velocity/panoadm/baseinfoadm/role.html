@@ -183,35 +183,39 @@
    			 url:'/role/update1',  
    			 data:{sn,sn},  
    			 datatype:"json",
-    			success: function(data) {  
+    			success: function(data) { 
     			var jsonobj=JSON.parse(data);
-    			console.info(jsonobj)
 				$("#update").val(jsonobj.role_name)
 				$("#ids").val(jsonobj.sn)
-				if(jsonobj.role_basics>0){
-					$("#basicss").attr("checked","checked")
+				if(jsonobj.role_basics != 0 ){
+					$("#basicss").attr("checked","checked");
+				} else {
+					$("#basicss").removeAttr("checked");
+				}
+				if(jsonobj.role_houses != 0 ){
+					$("#housess").attr("checked","checked");
 				}else{
-					
-				}if(jsonobj.role_houses>0){
-					$("#housess").attr("checked","checked")
+					$("#housess").removeAttr("checked");
+				}
+				if(jsonobj.role_product != 0){
+					$("#products").attr("checked","checked");
+				} else {
+					$("#products").removeAttr("checked");
+				}
+				if(jsonobj.role_user!= 0){
+					$("#users").attr("checked","checked");
 				}else{
-					
-				}if(jsonobj.role_product>0){
-					$("#products").attr("checked","checked")
+					$("#users").removeAttr("checked");
+				}
+				if(jsonobj.role_role != 0){
+					$("#roles").attr("checked","checked");
 				}else{
-					
-				}if(jsonobj.role_user>0){
-					$("#users").attr("checked","checked")
-				}else{
-					
-				}if(jsonobj.role_role>0){
-					$("#roles").attr("checked","checked")
-				}else{
-					
-				}if(jsonobj.role_order>0){
-					$("#orders").attr("checked","checked")
-				}else{
-					
+					$("#roles").removeAttr("checked");
+				}
+				if(jsonobj.role_order != 0){
+					$("#orders").attr("checked","checked");
+				} else {
+					$("#orders").removeAttr("checked");
 				}
     		}  
     })

@@ -58,13 +58,11 @@ public class PanoBmRoleController extends BaseController{
 		int order1 = 0;
 		String roles = request.getParameter("role");
 		String order = request.getParameter("order");
-		System.out.println("--"+roles+"--"+order);
 		String role_name = request.getParameter("name");
 		String user = request.getParameter("user");
 		String basics = request.getParameter("basics");
 		String houses = request.getParameter("houses");
 		String product = request.getParameter("product");
-		System.out.println("添加的值wei:"+role_name+"-"+user+"-"+basics+"-"+houses+"-"+product);
 		if(user!=null){
 			user1 = 1;
 		}if(basics!=null){
@@ -229,9 +227,11 @@ public class PanoBmRoleController extends BaseController{
 	
 	@RequestMapping("update1")
 	public void update1(HttpServletRequest request,HttpServletResponse response,String sn){
+		System.out.println("---"+sn);
 		BackUpdate back = role.getupdateBack(Integer.parseInt(sn));
 		
 		String objectToJson = JsonUtils.objectToJson(back);
+		System.out.println(objectToJson+"返回值-----");
 		try {
 			this.ajaxOutput(response, objectToJson);
 		} catch (IOException e) {

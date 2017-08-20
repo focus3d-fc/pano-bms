@@ -23,6 +23,7 @@ import com.focus3d.pano.model.PanoProductType;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoUserLongin;
 import com.focus3d.pano.model.PanoVender;
+import com.focus3d.pano.model.ResultVO;
 import com.focus3d.pano.model.panoSkin;
 import com.focus3d.pano.model.pano_project_style;
 import com.focustech.common.utils.EncryptUtil;
@@ -57,32 +58,40 @@ public class PanoProductFuncController extends BaseController{
 	}
 	
 	@RequestMapping("/insert")
-	
-	public String insert(HttpServletRequest request,HttpServletResponse response){
+	public void insert(HttpServletRequest request,HttpServletResponse response){
 		String name = request.getParameter("name");
+		System.out.println("获得值为L:"+name);
 		String i =null;
-		String ii = null;
+		ResultVO rv = new ResultVO();
 		List<PanoProductType> basics = service.getBasics();
 		if(basics.size()>0){
+			System.out.println("111");
 		for(PanoProductType p:basics){
-			if(p.getName().equals(name)||name.equals("")){
+			System.out.println(p.getName());
+			if(p.getName().equals(name)||StringUtil.isEmpty(name)){
+				rv.setResult("errorr");
+				rv.setResCode("登录失败");
 				i = "errorr";
-				ii= "panoadm/baseinfoadm/basic-sort";
 				break;
 			}else{
-				ii="/panoadm/baseinfoadm/basic-combo";
+				System.out.println("success");
+				rv.setResult("success");
+				rv.setResCode("登录成功");
 				i = "succeed";
 				
 			}
 		}
+		if(i.equals("succeed")){
+			 Long insert = service.getInsert(name);
+			}
 	}else{
-		ii="/panoadm/baseinfoadm/basic-combo";
 		 Long insert = service.getInsert(name);
 	}
-		if(i.equals("succeed")){
-		 Long insert = service.getInsert(name);
+		try {
+			this.ajaxOutput(response, JsonUtils.objectToJson(rv));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		return ii;
 			
 	}
 	
@@ -101,6 +110,7 @@ public class PanoProductFuncController extends BaseController{
 	}
 	@RequestMapping("/update")
 	public String update(HttpServletRequest request){
+		System.out.println("修改页面");
 		String sn1 = request.getParameter("id");
 		String name = request.getParameter("name");
 		long sn = Long.valueOf(sn1);
@@ -108,9 +118,22 @@ public class PanoProductFuncController extends BaseController{
 		p.setName(name);
 		p.setSn(sn);
 		int update = service.getUpdate(p);
-		System.out.println("修改"+update);
 		return "redirect:/basics/classify";
 
+	}
+
+	@ResponseBody
+	@RequestMapping("select")
+	public void select(String sn,HttpServletResponse response){
+		System.out.println("功能主键"+sn);
+		PanoProductType getselect2 = service.getselect(Integer.parseInt(sn));
+		String objectToJson = JsonUtils.objectToJson(getselect2);
+		try {
+			this.ajaxOutput(response, objectToJson);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -139,7 +162,7 @@ public class PanoProductFuncController extends BaseController{
 	}
 	
 	@RequestMapping("/insert1")
-	public String insert1(HttpServletRequest request,HttpServletResponse response,HttpSession session,String fullImgSn){
+	public void insert1(HttpServletRequest request,HttpServletResponse response,HttpSession session,String fullImgSn){
 		String name = request.getParameter("name");
 		Long img_sn = null;
 		try {
@@ -158,17 +181,21 @@ public class PanoProductFuncController extends BaseController{
 		pack.setImg_sn(img_sn);
 		pack.setName(name);
 		pack.setAdder_sn(sn);
+		
+		
 		String i = null;
-		String ii = null;
+		ResultVO rv = new ResultVO();
 		List<PanoProjectPackage> basics = service.getBasics1();
 		if(basics.size()>0){
 		for(PanoProjectPackage p:basics){
 			if(p.getName().equals(name)||name.equals("")){
+				rv.setResult("errorr");
+				rv.setResCode("登录失败");
 				i = "errorr";
-				ii= "panoadm/baseinfoadm/basic-sort";
 				break;
 			}else{
-				ii="/panoadm/baseinfoadm/basic-combo";
+				rv.setResult("success");
+				rv.setResCode("登录成功");
 				i = "succeed";
 			}
 		}
@@ -178,8 +205,12 @@ public class PanoProductFuncController extends BaseController{
 	}else{
 		Long insert = service.getInsert1(pack);
 	}
-		return ii;
-			
+		try {
+			this.ajaxOutput(response, JsonUtils.objectToJson(rv));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+		
 	}
 	
 	
@@ -217,16 +248,24 @@ public class PanoProductFuncController extends BaseController{
 
 	}
 	
-	@RequestMapping("/updates1")
-	public void updates1(HttpServletRequest request,HttpServletResponse response,String sn){
-		PanoProjectPackage getupdatas1 = service.getupdatas1(Integer.parseInt(sn));
-		String objectToJson = JsonUtils.objectToJson(getupdatas1);
+	
+	@ResponseBody
+	@RequestMapping("select1")
+	public void select1(String sn,HttpServletResponse response){
+		System.out.println("功能主键"+sn);
+		 PanoProjectPackage getselect1 = service.getselect1(Integer.parseInt(sn));
+		String objectToJson = JsonUtils.objectToJson(getselect1);
 		try {
 			this.ajaxOutput(response, objectToJson);
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
 	
 
 	/**
@@ -250,31 +289,36 @@ public class PanoProductFuncController extends BaseController{
 	}
 	
 	@RequestMapping("/insert2")
-	public String insert2(HttpServletRequest request,HttpServletResponse response){
+	public void insert2(HttpServletRequest request,HttpServletResponse response){
 		String name = request.getParameter("name");
-		String i = null;
-		String ii = null;
+		ResultVO rv = new ResultVO();
+		String i =null;
 		List<PanoVender> basics = service.getBasics2();
 		if(basics.size()>0){
 		for(PanoVender p:basics){
 			if(p.getName().equals(name)||name.equals("")){
+				rv.setResult("errorr");
+				rv.setResCode("登录失败");
 				i = "errorr";
-				ii= "panoadm/baseinfoadm/basic-sort";
 				break;
 			}else{
+				rv.setResult("success");
+				rv.setResCode("登录成功");
 				i = "succeed";
-				ii="/panoadm/baseinfoadm/basic-combo";
 			}
 		}
+		if(i.equals("succeed")){
+			 Long insert = service.getInsert2(name);
+			}
 	}else{
 		 Long insert = service.getInsert2(name);
 	}
-		if(i.equals("succeed")){
-		 Long insert = service.getInsert2(name);
+		try {
+			this.ajaxOutput(response, JsonUtils.objectToJson(rv));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		return ii;
-			
-	}
+}
 	
 	@RequestMapping("/dalete2")
 	public String dalete2(HttpServletRequest request,HttpServletResponse response){
@@ -299,6 +343,19 @@ public class PanoProductFuncController extends BaseController{
 
 	}
 	
+	@ResponseBody
+	@RequestMapping("select2")
+	public void select2(String sn,HttpServletResponse response){
+		System.out.println("功能主键"+sn);
+		  PanoVender getselect2 = service.getselect2(Integer.parseInt(sn));
+		String objectToJson = JsonUtils.objectToJson(getselect2);
+		try {
+			this.ajaxOutput(response, objectToJson);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * 风格
@@ -315,7 +372,7 @@ public class PanoProductFuncController extends BaseController{
 	}
 	
 	@RequestMapping("/insert3")
-	public String insert3(HttpServletRequest request,HttpServletResponse response,String fullImgSn){
+	public void insert3(HttpServletRequest request,HttpServletResponse response,String fullImgSn){
 		Long img_sn = null;
 		try {
 			img_sn = EncryptUtil.decode(fullImgSn);
@@ -324,32 +381,35 @@ public class PanoProductFuncController extends BaseController{
 		}
 		String name = request.getParameter("name");
 		pano_project_style style = new pano_project_style();
-		System.out.println("获得图片SN："+img_sn+"姓名："+name);
 		style.setImg_sn(img_sn);
 		style.setName(name);
-		
-		String i = null;
-		String ii = null;
+		ResultVO rv = new ResultVO();
+		String i =null;
 		List<pano_project_style> basics = service.getBasics3();
 		if(basics.size()>0){
 		for(pano_project_style p:basics){
 			if(p.getName().equals(name)||name.equals("")){
+				rv.setResult("errorr");
+				rv.setResCode("登录失败");
 				i = "errorr";
-				ii= "panoadm/baseinfoadm/basic-sort";
 				break;
 			}else{
-				ii="/panoadm/baseinfoadm/basic-combo";
+				rv.setResult("success");
+				rv.setResCode("登录成功");
 				i = "succeed";
 			}
-			if(i.equals("succeed")){
-				 Long insert = service.getInsert3(style);
-				}
 		}
+		if(i.equals("succeed")){
+			 Long insert = service.getInsert3(style);
+			}
 	}else{
 		 Long insert = service.getInsert3(style);
 	}
-		return ii;
-			
+		try {
+			this.ajaxOutput(response, JsonUtils.objectToJson(rv));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping("/dalete3")
@@ -385,6 +445,23 @@ public class PanoProductFuncController extends BaseController{
 
 	}
 	
+	@ResponseBody
+	@RequestMapping("select3")
+	public void select3(String sn,HttpServletResponse response){
+		System.out.println("功能主键"+sn);
+		pano_project_style getselect3 = service.getselect3(Integer.parseInt(sn));
+		String objectToJson = JsonUtils.objectToJson(getselect3);
+		try {
+			this.ajaxOutput(response, objectToJson);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
 	/**
 	 * 
 	 * @param 功能
@@ -405,32 +482,42 @@ public class PanoProductFuncController extends BaseController{
 		return "/panoadm/baseinfoadm/basic-function";
 	}
 	
-	
+	@ResponseBody
 	@RequestMapping("/insert4")
-	public String insert4(HttpServletRequest request,HttpServletResponse response){
+	public void insert4(HttpServletRequest request,HttpServletResponse response){
 		String name = request.getParameter("name");
-		String i = null;
-		String ii = null;
+		ResultVO rv = new ResultVO();
+		String i =null;
 		List<PanoProductFunc> basics = service.getBasics4();
 		if(basics.size()>0){
 		for(PanoProductFunc p:basics){
 			if(p.getName().equals(name)||name.equals("")){
+				rv.setResult("errorr");
+				rv.setResCode("登录失败");
 				i = "errorr";
-				ii= "panoadm/baseinfoadm/basic-sort";
 				break;
 			}else{
-				ii="/panoadm/baseinfoadm/basic-combo";
+				rv.setResult("success");
+				rv.setResCode("登录成功");
 				i = "succeed";
 			}
 		}
+		if(i.equals("succeed")){
+			 Long insert = service.getInsert4(name);
+			}
 	}else{
 		 Long insert = service.getInsert4(name);
 	}
-		if(i.equals("succeed")){
-		 Long insert = service.getInsert4(name);
+		
+		
+		try {
+			this.ajaxOutput(response, JsonUtils.objectToJson(rv));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		return ii;
-			
+		
+		
+		
 	}
 	
 	@RequestMapping("/dalete4")
@@ -454,7 +541,20 @@ public class PanoProductFuncController extends BaseController{
 		return "redirect:/basics/classify";
 
 	}
-	
+	@ResponseBody
+	@RequestMapping("select4")
+	public void select4(String sn,HttpServletResponse response){
+		System.out.println("功能主键"+sn);
+		PanoProductFunc getselect4 = service.getselect4(Integer.parseInt(sn));
+		String objectToJson = JsonUtils.objectToJson(getselect4);
+		System.out.println(objectToJson+"+++++++==");
+		try {
+			this.ajaxOutput(response, objectToJson);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 	/**
@@ -478,7 +578,7 @@ public class PanoProductFuncController extends BaseController{
 	}
 	
 	@RequestMapping("/insert5")
-	public String insert5(HttpServletRequest request,HttpServletResponse response,HttpSession session,String fullImgSn){
+	public void insert5(HttpServletRequest request,HttpServletResponse response,HttpSession session,String fullImgSn){
 		String name = request.getParameter("name");
 		Long img_sn = null;
 		try {
@@ -492,17 +592,20 @@ public class PanoProductFuncController extends BaseController{
 		pack.setImg_sn(img_sn);
 		pack.setName(name);
 		pack.setAdder_sn(sn);
-		String i = null;
-		String ii = null;
+		
+		ResultVO rv = new ResultVO();
+		String i =null;
 		 List<panoSkin> basics5 = service.getBasics5();
 		if(basics5.size()>0){
 		for(panoSkin p:basics5){
 			if(p.getName().equals(name)||name.equals("")){
+				rv.setResult("errorr");
+				rv.setResCode("登录失败");
 				i = "errorr";
-				ii= "panoadm/baseinfoadm/basic-sort";
 				break;
 			}else{
-				ii="/panoadm/baseinfoadm/basic-combo";
+				rv.setResult("success");
+				rv.setResCode("登录成功");
 				i = "succeed";
 			}
 		}
@@ -512,7 +615,11 @@ public class PanoProductFuncController extends BaseController{
 	}else{
 		Long insert = service.getInsert5(pack);
 	}
-		return ii;
+		try {
+			this.ajaxOutput(response, JsonUtils.objectToJson(rv));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 			
 	}
 	
@@ -534,10 +641,12 @@ public class PanoProductFuncController extends BaseController{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("图片ID:"+img_sn);
 		String sn1 = request.getParameter("id");
 		String name = request.getParameter("name");
 		long sn = Long.valueOf(sn1);
+		if(StringUtil.isEmpty(name)){
+			name = null;
+		}
 		panoSkin p = new panoSkin();
 		p.setName(name);
 		p.setSn(sn);
@@ -559,7 +668,19 @@ public class PanoProductFuncController extends BaseController{
 		}
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping("select5")
+	public void select5(String sn,HttpServletResponse response){
+		System.out.println("功能主键"+sn);
+		panoSkin getselect5 = service.getselect5(Integer.parseInt(sn));
+		String objectToJson = JsonUtils.objectToJson(getselect5);
+		try {
+			this.ajaxOutput(response, objectToJson);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
 	
 

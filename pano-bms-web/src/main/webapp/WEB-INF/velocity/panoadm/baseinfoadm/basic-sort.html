@@ -70,15 +70,16 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">新增/修改</label>
                         <div class="col-sm-9">
-                            <input type="text"  class="form-control" name="name">
+                            <input type="text" class="form-control" name="name" id="fun" value="">
                         </div>
                        
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="cancel" type="reset" class="btn btn-default" data-dismiss="modal" > 关闭</button>
                 <button id="submit" type="button" class="btn btn-primary">确定</button>
+                <button id="submit2" type="button" class="btn btn-primary">确定</button>
             </div>
         </div>
     </div>
@@ -92,40 +93,60 @@
 <script src="/style/admstatic/js/main.js"></script>
 
 <script type="text/javascript">
-        function addform(sn) {
-            $("#submit").click(function() {
-             
-        $.ajax({  
-    type: "GET",  
-    url:'/basics/update?id=' + sn,  
-    data:$('#formadd').serialize(),  
-    async: false,  
-    error: function(request) {  
-        alert("添加失败");  
-    },  
-    success: function(data) {
-    	window.location.href="/basics/classify";
-    }  
-  });
 
-            });
-        }
+
+
+
+        function addform(sn) {
+        	
+        	$("#submit2").hide();
+			 $("#submit").show();
+        	
+        	$("#cancel").click(function(){
+              	$("#fun").val("");
+              	 $(this).unbind('click');
+        	 })
+        	 
+        	 
+        	$.ajax({
+        		url : '/basics/select',
+        		type : "post",
+        		data :{sn:sn},
+        		datatype : "json",
+        		success : function(data) {
+        			var jsonobj = JSON.parse(data);
+        			$("#fun").val(jsonobj.name);
+        		}
+        	});
+        	
+			$("#submit").click(function() {
+     			 $.ajax({  
+    				type: "GET",  
+    				url:'/basics/update?id=' + sn,  
+   					 data:$('#formadd').serialize(),  
+    				async: false,  
+    				success: function(data) {
+    				window.location.href="/basics/classify";
+   					 }  
+  				});
+			});
+	 	}
         
         
-        function addform1() {
-            $("#submit").click(function() {
-             
-        $.ajax({  
+function addform1() {
+	$("#submit").hide();
+	 $("#submit2").show();
+    $("#submit2").click(function() {
+    	$("#submit").hide();
+    $.ajax({  
     type: "GET",  
     url:'/basics/insert', 
     data:$('#formadd').serialize(),  
     async: false,  
-    error: function(request) {  
-        alert("添加失败");  
-    },  
     success: function(data) {  
-    	if(data[1218]==("f")){
-    		alert("增加失败名称不可以为空或重复")
+    	var jsonobj=JSON.parse(data);
+    	if(jsonobj.result =="errorr"){
+    		alert("用户名不能为空或重复")
     	}
     	window.location.href="/basics/classify";
     	
