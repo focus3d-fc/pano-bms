@@ -38,16 +38,15 @@ public class WeChatPayController extends BaseController {
 			
 			HashMap<String, String> data = new HashMap<String, String>();
 			
-	        data.put("body", "focus3d 支付测试");
-	        data.put("out_trade_no", "zs"+new Date().getTime());
+	        data.put("body", "focus3d 支付测试"); // 订单信息
+	        data.put("out_trade_no", "zs"+new Date().getTime()); // 订单编号
 	        data.put("device_info", "1");
 	        data.put("fee_type", "CNY");
-	        data.put("total_fee", "1");
-	        data.put("spbill_create_ip", "127.0.0.1");
+	        data.put("total_fee", "1"); // 订单金， 这里单位是分 记得转换 *100
+	        data.put("spbill_create_ip", "127.0.0.1"); // 获取ip地址填入
 	        data.put("notify_url", "http://gwzj.joy-homeplus.com/wechat/testNotify");
 	        data.put("trade_type", "JSAPI");
-	        data.put("product_id", "12");
-	        data.put("openid", "oHSqcw37i18XF01iXDEasSFpbNZY");
+	        data.put("openid", userInfo.getOpenid());
 	        
 	        Map<String, String> r = wp.unifiedOrder(data);
 
