@@ -25,6 +25,7 @@ import com.focus3d.pano.model.PanoProjectPackageType;
 import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.Style;
 import com.focus3d.pano.model.panoSkin;
+import com.focus3d.pano.model.pano_mem_user;
 import com.focus3d.pano.model.pano_order;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
@@ -33,6 +34,8 @@ import com.focus3d.pano.model.pano_user_receive_address;
 import com.focus3d.pano.usersside.service.PersonalService;
 import com.focus3d.pano.usersside.service.UsersSideService;
 import com.focus3d.pano.usersside.utils.SmsSend;
+import com.focus3d.pano.wechat.utils.Constants;
+import com.focus3d.pano.wechat.utils.UserInfo;
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.JsonUtils;
 //     /userside/toindex       /usersSide/toIndex
@@ -45,28 +48,12 @@ public class UsersSideController extends BaseController{
     private PersonalService personalService;
 	@RequestMapping("/toIndex")
 	public String toIndex(Model model,HttpServletRequest request,HttpSession session) throws Exception{
+		//微信用户对象信息
+		UserInfo userInfo = (UserInfo)session.getAttribute(Constants.SESSION_WX_USER);
 		//模拟登陆状态，方便后面代码获取user_sn
 		long user_sn=1;
 		session.setAttribute("user_sn",user_sn);
-		/*long dec1=EncryptUtil.decode("faAKeUyoNwQS");//广告
-		long dec2=EncryptUtil.decode("eEoKUeAyDmkn");//广告
-		long dec3=EncryptUtil.decode("awUyeoAKNSby");//广告
-		long dec4=EncryptUtil.decode("ajoyeKAohmvD");
-		long dec5=EncryptUtil.decode("eIUKAeoyhSRO");//北欧风格
-		long dec6=EncryptUtil.decode("eveoAyUKhIRP");//现代风格
-		long dec7=EncryptUtil.decode("eYUoeyKADwRc");
-		long dec8=EncryptUtil.decode("eNoeUyKAXIlJ");
-		long dec9=EncryptUtil.decode("aRAUyeKoDSIy");
-		long dec10=EncryptUtil.decode("aGoyUKAeDmIp");
-	System.out.println(
-"1:"+dec1+",2:"+dec2+",3:"+dec3+",4:"+dec4+",5:"+dec5+",6:"+dec6+
-",7:"+dec7+",8:"+dec8+",9:"+dec9+",10:"+dec10
-	);
-		model.addAttribute("dec1",dec1);
-		model.addAttribute("dec2",dec2);
-		model.addAttribute("dec3",dec3);
-		model.addAttribute("dec5",dec5);
-		model.addAttribute("dec6",dec6);*/
+		
 		//从广告表取img_sn集合
 		System.out.println("进入/toIndex方法");
 		
@@ -264,12 +251,25 @@ public class UsersSideController extends BaseController{
 	@RequestMapping("/surelogin")
 	public void login(String phoneCode_in,String phone,HttpServletRequest request,HttpServletResponse response,HttpSession session) throws IOException{
 		String phoneCode_out=(String)session.getAttribute("phoneCode");
-		//String phoneCode_in=request.getParameter("phoneCode_in");
 		System.out.println("phoneCode_out:"+phoneCode_out+",phoneCode_in:"+phoneCode_in);
+		//首先判断有没有该用户
+				List<pano_mem_user> muserList_only=usersSideService.get_selectMUserByPhone(phone);
+				int muserListSize=muserList_only.size();
+				System.out.println("用户集合长度："+muserListSize);
+				if(muserListSize==0){
+					//用户不存在，向用户表插入数据
+					usersSideService.insert_UserMsg_Phone(phone);
+					System.out.println("插入用户表信息-手机登陆");
+				}
+				
 		//验证码正确，进入登录后页面
 		String msg="";
 		if(phoneCode_in.equals(phoneCode_out)){
 			msg="success";
+			//验证码正确，查询手机用户信息
+			List<pano_mem_user> muserList_only_login=usersSideService.get_selectMUserByPhone(phone);
+			session.setAttribute("userMsg_phone",muserList_only_login.get(0));
+			
 		}else{
 			msg="error";
 		}

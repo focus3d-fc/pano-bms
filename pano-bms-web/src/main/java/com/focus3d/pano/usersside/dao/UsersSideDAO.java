@@ -51,6 +51,11 @@ public interface UsersSideDAO {
     public List<AddToCar> get_selectAddToCarToConfirm(pano_order order);
     public long get_House_package_snByPackage_sn(long package_sn);
     public List<panoSkin> list_selectPanoSkinList();
+    public void insert_UserMsg_Phone(String MOBILE);
+    
+    
+    
+    
     
 }
 

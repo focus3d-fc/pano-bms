@@ -183,6 +183,11 @@ public class UsersSideServiceImpl implements UsersSideService{
 	public List<panoSkin> list_selectPanoSkinList() {
 		return usersSideDAO.list_selectPanoSkinList();
 	}
+	@Override
+	public void insert_UserMsg_Phone(String MOBILE) {
+		usersSideDAO.insert_UserMsg_Phone(MOBILE);
+		
+	}
 	
 	
 	

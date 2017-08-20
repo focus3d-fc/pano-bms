@@ -237,6 +237,11 @@ public class UsersSideDAOImpl  extends BaseDao implements UsersSideDAO{
 				queryForList("list_selectPanoSkinList");
 		return panoSkinList;
 	}
+
+	@Override
+	public void insert_UserMsg_Phone(String MOBILE) {
+		getSqlMapClientTemplate().insert("insert_UserMsg_Phone",MOBILE);
+	}
 	
 
 

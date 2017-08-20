@@ -389,6 +389,17 @@ FROM
 pano_mem_user
 where pano_mem_user.MOBILE=#phone#
  </select>
+ <!-- 手机号登陆-向用户表插入数据 -->
+ <insert id="insert_UserMsg_Phone" parameterClass="string">
+ insert into pano_mem_user
+(MOBILE) 
+values
+(#MOBILE#)
+ </insert>
+ 
+ 
+ 
+ 
  <!-- 查套餐 -->
  <select id="list_selectPackageTypeListByPackage_Sn" parameterClass="long" 
  resultClass="com.focus3d.pano.model.PanoProjectPackageType">

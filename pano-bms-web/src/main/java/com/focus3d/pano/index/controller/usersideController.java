@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -113,13 +114,17 @@ public class usersideController extends BaseController {
 	}
 
 	@RequestMapping("/tomy")
-	public String tomy(HttpServletRequest request) {
-		Long SN = Long.parseLong(request.getParameter("SN"));
+	public String tomy(HttpServletRequest request,HttpSession session) {
+		System.out.println("进入个人中心----");
+		pano_mem_user userMsg_phone=(pano_mem_user) session.getAttribute("userMsg_phone");
+		Long SN = userMsg_phone.getSN();//Long.parseLong(request.getParameter("SN"));
+		System.out.println("用户sn:"+SN);
 		pano_mem_user memuser = personalService.selUserbySN(SN);
 		request.setAttribute("memuser", memuser);
 		return "/userside/my";
 	}
 
+	
 	// --------------------------------------------收货地址--------------------------------------------
 	Long USER_SN;
 

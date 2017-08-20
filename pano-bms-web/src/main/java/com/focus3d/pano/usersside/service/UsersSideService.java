@@ -56,7 +56,7 @@ public interface UsersSideService {
 			long USER_SN,String order_num);
 	public long get_House_package_snByPackage_sn(long package_sn);
 	public List<panoSkin> list_selectPanoSkinList();
-	
+	public void insert_UserMsg_Phone(String MOBILE);
 	
 	
 	
