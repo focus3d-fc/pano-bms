@@ -53,17 +53,15 @@ public class WeChatPayController extends BaseController {
 
 	        if("SUCCESS".equals(r.get("result_code"))){
 	        	// 二次签名
-	        	SortedMap<Object, Object> paySingMap = new TreeMap<Object, Object>();
-	        	paySingMap.put("appId", wx.getAppId());
-	        	paySingMap.put("noncestr", WxPayUtil.generateNonceStr());
-	        	paySingMap.put("package", "prepay_id="+r.get("prepay_id"));
-	        	paySingMap.put("timeStamp", new Date().getTime()/1000+"");
-	        	paySingMap.put("signType", "MD5");
+//	        	SortedMap<Object, Object> paySingMap = new TreeMap<Object, Object>();
+//	        	paySingMap.put("appId", wx.getAppId());
+//	        	paySingMap.put("noncestr", WxPayUtil.generateNonceStr());
+//	        	paySingMap.put("package", "prepay_id="+r.get("prepay_id"));
+//	        	paySingMap.put("timeStamp", new Date().getTime()/1000+"");
+//	        	paySingMap.put("signType", "MD5");
+//	        	
+//	        	String pay_sing = WxPayUtil.createSign("utf-8", paySingMap, wx.getMchKey());
 	        	
-	        	String pay_sing = WxPayUtil.createSign("utf-8", paySingMap, wx.getMchKey());
-	        	
-	        	r.put("paySign", pay_sing);
-	        	r.put("nonce_str", paySingMap.get("noncestr").toString());
 		        r.put("timeStamp", new Date().getTime()/1000+"");
 		        r.put("openid", "oHSqcw37i18XF01iXDEasSFpbNZY");
 		        
