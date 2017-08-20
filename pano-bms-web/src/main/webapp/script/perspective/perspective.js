@@ -658,6 +658,14 @@ var WebGL = {
             element.position.set(pos.x,pos.y,element.position.z);
         }
     },
+    mirror:function (element) {
+        var map = element.material.map;
+        if(map){
+            var repeatX = parseFloat(map.repeat.x);
+            repeatX = -1 * repeatX;
+            map.repeat.set(repeatX,1);
+        }
+    },
     resetScale:function(element,scale){
         element.scale.set(scale.x,scale.y,1);
     },
@@ -752,8 +760,8 @@ $(function(){
 
 
     $("#view_insert").on("click",function () {
-        $("#view_save").off("click").on("click",function () {
-            if(space_sn){
+        if(space_sn){
+            $("#view_save").off("click").on("click",function () {
                 view_validator = $("#view_form").validate();
                 if($("#view_form").valid()){
                     updateView(function(data){
@@ -763,9 +771,9 @@ $(function(){
                         $("#view_entering").modal("hide");
                     });
                 }
-            }
-        });
-        $("#view_entering").modal("show");
+            });
+            $("#view_entering").modal("show");
+        }
     });
 
     //图元上传插件初始化
