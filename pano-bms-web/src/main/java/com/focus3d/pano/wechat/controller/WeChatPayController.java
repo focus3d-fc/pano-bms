@@ -51,10 +51,31 @@ public class WeChatPayController extends BaseController {
 	        
 	        Map<String, String> r = wp.unifiedOrder(data);
 
-	        r.put("timeStamp", new Date().getTime()/1000+"");
-	        r.put("openid", "oHSqcw37i18XF01iXDEasSFpbNZY");
+	        if("SUCCESS".equals(r.get("result_code"))){
+	        	// 二次签名
+//	        	SortedMap<Object, Object> paySingMap = new TreeMap<Object, Object>();
+//	        	paySingMap.put("appId", wx.getAppId());
+//	        	paySingMap.put("noncestr", WxPayUtil.generateNonceStr());
+//	        	paySingMap.put("package", "prepay_id="+r.get("prepay_id"));
+//	        	paySingMap.put("timeStamp", new Date().getTime()/1000+"");
+//	        	paySingMap.put("signType", "MD5");
+//	        	
+//	        	String pay_sing = WxPayUtil.createSign("utf-8", paySingMap, wx.getMchKey());
+	        	
+	        	
+	        	Map<String, String> payParam = new TreeMap<String, String>();
+	            payParam.put("appId", wx.getAppId());
+	            payParam.put("nonceStr", WxPayUtil.generateNonceStr());
+	            payParam.put("package", "prepay_id="+r.get("prepay_id"));
+	            payParam.put("signType", "MD5");
+	            payParam.put("timeStamp", new Date().getTime()/1000+"");
+	            String secondSign = WxPayUtil.generateSignature(payParam, wx.getMchKey());
+	            
+	            payParam.put("paySign", secondSign);
+		        
+		        request.setAttribute("result", payParam);
+	        }
 	        
-	        request.setAttribute("result", r);
 		}catch(Exception e){
 
 			e.printStackTrace();
