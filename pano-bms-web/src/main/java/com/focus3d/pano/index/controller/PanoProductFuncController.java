@@ -27,6 +27,7 @@ import com.focus3d.pano.model.panoSkin;
 import com.focus3d.pano.model.pano_project_style;
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.JsonUtils;
+import com.opensymphony.oscache.util.StringUtil;
 
 @Controller
 @RequestMapping(value="/basics")
@@ -202,7 +203,10 @@ public class PanoProductFuncController extends BaseController{
 		System.out.println("图片ID:"+img_sn);
 		String sn1 = request.getParameter("id");
 		String name = request.getParameter("name");
-		long sn = Long.valueOf(sn1);
+		if(StringUtil.isEmpty(name)){
+			name = null;
+		}
+		Long sn = Long.valueOf(sn1);
 		PanoProjectPackage p = new PanoProjectPackage();
 		p.setName(name);
 		p.setSn(sn);
@@ -304,21 +308,26 @@ public class PanoProductFuncController extends BaseController{
 	
 	@RequestMapping("/classify3")
 	public String merchant3(HttpServletRequest request){
-		List<pano_project_style> type =null;
+		List<pano_project_style> type =service.getBasics3();
 		
-		try{
-			type = service.getBasics3();
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
 		 request.setAttribute("type3",type );
 		return "/panoadm/baseinfoadm/basic-style";
 	}
 	
 	@RequestMapping("/insert3")
-	public String insert3(HttpServletRequest request,HttpServletResponse response){
+	public String insert3(HttpServletRequest request,HttpServletResponse response,String fullImgSn){
+		Long img_sn = null;
+		try {
+			img_sn = EncryptUtil.decode(fullImgSn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		String name = request.getParameter("name");
+		pano_project_style style = new pano_project_style();
+		System.out.println("获得图片SN："+img_sn+"姓名："+name);
+		style.setImg_sn(img_sn);
+		style.setName(name);
+		
 		String i = null;
 		String ii = null;
 		List<pano_project_style> basics = service.getBasics3();
@@ -332,13 +341,13 @@ public class PanoProductFuncController extends BaseController{
 				ii="/panoadm/baseinfoadm/basic-combo";
 				i = "succeed";
 			}
+			if(i.equals("succeed")){
+				 Long insert = service.getInsert3(style);
+				}
 		}
 	}else{
-		 Long insert = service.getInsert3(name);
+		 Long insert = service.getInsert3(style);
 	}
-		if(i.equals("succeed")){
-		 Long insert = service.getInsert3(name);
-		}
 		return ii;
 			
 	}
@@ -353,13 +362,23 @@ public class PanoProductFuncController extends BaseController{
 	}
 	
 	@RequestMapping("/update3")
-	public String update3(HttpServletRequest request){
+	public String update3(HttpServletRequest request,String fullImgSn){
+		Long img_sn = null;
+		try {
+			img_sn = EncryptUtil.decode(fullImgSn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		String sn1 = request.getParameter("id");
 		String name = request.getParameter("name");
-		long sn = Long.valueOf(sn1);
+		if(StringUtil.isEmpty(name)){
+			name = null;
+		}
+		Long sn = Long.parseLong(sn1);
 		pano_project_style p = new pano_project_style();
 		p.setName(name);
 		p.setSn(sn);
+		p.setImg_sn(img_sn);
 		int update = service.getUpdate3(p);
 		System.out.println("修改"+update);
 		return "redirect:/basics/classify3";

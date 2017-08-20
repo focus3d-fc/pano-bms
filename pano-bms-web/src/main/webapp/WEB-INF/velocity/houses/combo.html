@@ -88,7 +88,7 @@
 						<td>$!{lists.package_price}</td>
 						<td>
                         <div class="img">
-						<img class="img-show" src="$!fs.url($!lists.img_sn)"  width="100" height ="80">
+						<img class="img-sho" src="$!fs.url($!lists.img_sn)"  width="100" height ="80">
 						</div>
                         </td>
 						<td>$!{lists.project_name}</td>
@@ -193,7 +193,7 @@ function addform(sn) {
   $("#submit").click(function() {
 	 var ids = $("#ids").val()
 	 if(ids == ""){
-			alert("请输入价格");
+			alert("请设置价格");
 			return false;
 	 }
    $.ajax({  

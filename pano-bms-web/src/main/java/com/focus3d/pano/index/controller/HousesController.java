@@ -838,13 +838,11 @@ public class HousesController extends BaseController {
 			e.printStackTrace();
 		}
 		PanoProjectHousePackage p = new PanoProjectHousePackage();
-		System.out.println("进入套餐设置" + name + "-" + sn + "-" + img_sn);
 		p.setIMG_SN(img_sn);
-		System.out.println("进入套餐设置1");
 		if (StringUtil.isEmpty(name)) {
+			name = null;
 		}
 		p.setPackage_price(Double.parseDouble(name));
-		System.out.println("进入套餐设置2");
 		p.setSn(Long.parseLong(sn));
 		service.getInsert1(p);
 		return redirect("packageSet2");

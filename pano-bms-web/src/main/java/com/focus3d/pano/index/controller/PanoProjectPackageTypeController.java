@@ -77,6 +77,7 @@ public class PanoProjectPackageTypeController extends BaseController{
 				/**
 				 *  通过 户型套餐主键查询 空间Sn 和 套餐类型Sn
 				 */
+				System.out.println("户型套餐SN:"+sn);
 				List<PanoProjectPackageType> selectType = typeService.getSelectType(sn);
 				
 				/**
@@ -92,11 +93,12 @@ public class PanoProjectPackageTypeController extends BaseController{
 					list.setProject_sn(project_sn);
 					list.setHouse_sn(house_sn);
 					for(PanoProjectPackageType type:selectType){
-						System.out.print("分类SN:"+type.getSn()+"空间SN:"+type.getSpace_sn()+"--");
+						System.out.print("------分类SN:"+type.getSN()+"空间SN:"+type.getSpace_sn()+"--");
 						list.setSpace_sn(type.getSpace_sn());
-						list.setType_sn(type.getSn());
+						list.setType_sn(type.getSN());
 						PackageTypeList selectList = typeService.getSelectList(list);
 						request.setAttribute("listType", selectList);
+						System.out.println("查询到的分类信息为："+selectList.getPackage_name()+selectList.getProject_name());
 						typeList.add(selectList);
 					}
 					request.setAttribute("listsType", typeList);
@@ -162,6 +164,7 @@ public class PanoProjectPackageTypeController extends BaseController{
 		@RequestMapping("/delete")
 		public String delete(HttpServletRequest request){
 			String sn = request.getParameter("sntype");
+			System.out.println("删除ID"+sn);
 			typeService.getDelete(Long.parseLong(sn));
 			return "redirect:/type/selectList";
 			

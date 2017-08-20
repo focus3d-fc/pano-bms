@@ -37,7 +37,7 @@ public interface PanoProductFuncDAO {
 	public int getUpdate2(PanoVender p);
 	
 	public List<pano_project_style>getBasics3(); //风格 查询
-	public Long getInsert3(String name);
+	public Long getInsert3(pano_project_style style);
 	public int getDelete3(int sn);
 	public int getUpdate3(pano_project_style p);
 	

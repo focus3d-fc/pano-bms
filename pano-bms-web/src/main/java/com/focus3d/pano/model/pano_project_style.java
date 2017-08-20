@@ -13,7 +13,7 @@ import com.focus3d.pano.common.model.CommonModel;
 public class pano_project_style implements Serializable, CommonModel{
 	private Long sn; //序号
 	private String name; //名称
-	private Integer img_sn; //效果图
+	private Long img_sn; //效果图
 	private double start_price; //预计最低价格区间
 	private double end_pricep; //预计最高价格区间
 	private Integer adder_sn; // 添加人ID
@@ -25,6 +25,15 @@ public class pano_project_style implements Serializable, CommonModel{
 	
 	
 	
+	public Long getImg_sn() {
+		return img_sn;
+	}
+	public void setImg_sn(Long img_sn) {
+		this.img_sn = img_sn;
+	}
+	public void setAdd_time(Date add_time) {
+		this.add_time = add_time;
+	}
 	public Long getSn() {
 		return sn;
 	}
@@ -37,12 +46,7 @@ public class pano_project_style implements Serializable, CommonModel{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getImg_sn() {
-		return img_sn;
-	}
-	public void setImg_sn(Integer img_sn) {
-		this.img_sn = img_sn;
-	}
+	
 	public double getStart_price() {
 		return start_price;
 	}

@@ -8,8 +8,8 @@ public class PanoProjectHousePackage implements CommonModel{
 	private Long sn;			//序列
 	private Long house_style_sn;	//户型风格sn
 	private Long package_sn;		//套餐SN
-	private double package_price;		// 套餐价格
-	private double DISCOUNT_PRICE;		// 套餐折扣价格
+	private Double  package_price;		// 套餐价格
+	private Double DISCOUNT_PRICE;		// 套餐折扣价格
 	private Long IMG_SN;		//套餐图片
 	private Long adderSn;    //添加人id
 	private String adderName; //添加人姓名

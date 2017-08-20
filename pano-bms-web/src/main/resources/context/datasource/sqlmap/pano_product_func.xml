@@ -46,8 +46,13 @@
 		DELETE FROM pano_project_package WHERE SN = #SN#
 	</delete>
 	
-	<update id="getUpdate1"   >
-		UPDATE pano_project_package set NAME=#name#,IMG_SN=#img_sn# where SN=#sn#
+	<update id="getUpdate1"  >
+		UPDATE pano_project_package 
+					<dynamic prepend="SET">  
+   						 <isNotNull  prepend="," property="name"> NAME=#name#</isNotNull> 
+    					 <isNotNull  prepend="," property="img_sn">IMG_SN =#img_sn#</isNotNull>  
+    			</dynamic>
+    			 where SN=#sn#
 	</update>
 	
 	
@@ -74,19 +79,24 @@
 
 	
 	<select id="getBasics3" resultClass="style">
-		select `NAME`,SN from pano_project_style
+		select `NAME`,SN,img_sn from pano_project_style
 	</select>
 	
 	<insert id="getInsert3">
-		insert into pano_project_style (name,IMG_SN,ADDER_SN,UPDATER_SN
-		) values (#name#,1,1,1)
+		insert into pano_project_style (name,ADDER_SN,UPDATER_SN,IMG_SN
+		) values (#name#,1,1,#img_sn#)
 	</insert>
 	
 	<delete id="getDelete3"> 
 		DELETE FROM pano_project_style WHERE SN = #SN#
 	</delete>
 	<update id="getUpdate3"  >
-		UPDATE pano_project_style set NAME=#name# where SN=#sn#
+		UPDATE pano_project_style 
+		<dynamic prepend="SET">  
+   						 <isNotNull  prepend="," property="name"> NAME=#name#</isNotNull> 
+    					 <isNotNull  prepend=","  property="img_sn">IMG_SN =#img_sn#</isNotNull>  
+    			</dynamic>
+    			 where SN=#sn#
 	</update>
 	
 	

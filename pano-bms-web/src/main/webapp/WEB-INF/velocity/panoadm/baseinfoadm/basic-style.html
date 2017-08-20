@@ -7,6 +7,31 @@
     <title>基础信息管理</title>
     <link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/style/admstatic/css/admin.css">
+    <!-- Generic page styles -->
+<link rel="stylesheet" href="/component/upload/css/style.css">
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+<link rel="stylesheet"
+	href="/component/upload/css/jquery.fileupload.css">
+<script src="/script/jquery-1.11.1.min.js"></script>
+<script src="/script/bootstrap.min-3.3.5.js"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="/component/upload/vendor/jquery.ui.widget.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="/component/upload/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="/component/upload/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="/component/upload/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="/component/upload/js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="/component/upload/js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="/component/upload/js/jquery.fileupload-image.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="/component/upload/js/jquery.fileupload-validate.js"></script>
+<script src="/script/member/user/product.js"></script>
 </head>
 <body>
 <div class="panel panel-default">
@@ -33,6 +58,7 @@
                     <thead>
                     <tr>
                         <th>序号</th>
+                        <th>图片</th>
                         <th>名称</th>
                         <th>操作</th>
                     </tr>
@@ -41,6 +67,11 @@
                      #foreach ($!{types} in $!{type3})
                     <tr>
                         <td>$!{types.sn}</td>
+                        <td>
+                        <div class="img">
+						<img class="img-show" src="$!fs.url($!types.img_sn)"  width="100" height ="80">
+						</div>
+						</td>
                         <td>$!{types.name}</td>
                         <td>
                             <div class="btn-group btn-group-sm" role="group" aria-label="...">
@@ -67,32 +98,42 @@
                 <h4 class="modal-title">添加/修改</h4>
             </div>
             <div class="modal-body clearfix">
-                <form class="form-horizontal" id="formadd" >
+                <form class="form-horizontal" method="post" id="formadd" >
+                <input id="fullimgsn" type="hidden" name="fullImgSn" />
                     <div class="form-group">
                         <label class="col-sm-3 control-label">新增/修改</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="name" />
+                            <input type="text" class="form-control" name="name">
                         </div>
                     </div>
                 </form>
             </div>
+           			 <div class="form-group">
+						<label class="col-sm-3 control-label">上传图片</label>
+						<div class="col-sm-9">
+							<input class="form-control" id="fileupload" type="file"
+								name="files[]" multiple>
+						</div>
+					</div>
+					<div id="files" class="files"></div>
+					<span id="resultInfo"></span>
+            
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button id="submit" type="button" class="btn btn-primary" >确定</button>
+                <button id="submit" type="button"  class="btn btn-primary" >确定</button>
             </div>
         </div>
     </div>
 </div>
-<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
-<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
 <script src="/style/admstatic/js/main.js"></script>
-<script type="text/javascript">
-        function addform(sn) {
-            $("#submit").click(function() {
-             
-        $.ajax({  
+<script>
+
+function addform(sn) {
+  $("#submit").click(function() {
+   $.ajax({  
     type: "POST",  
-    url:'/basics/update3?id='+ sn,  
+    url:'/basics/update3?id='+sn,  
     data:$('#formadd').serialize(),  
     async: false,  
     error: function(request) {  
@@ -107,17 +148,13 @@
         }
 
         
-        function addform1() {
-            $("#submit").click(function() {
-             
-        $.ajax({  
+ function addform1() {
+ $("#submit").click(function() {
+   $.ajax({  
     type: "POST",  
-    url:'/basics/insert3', 
+    url:'/basics/insert3',  
     data:$('#formadd').serialize(),  
     async: false,  
-    error: function(request) {  
-        alert("添加失败");  
-    },  
     success: function(data) {  
     	if(data[1218]==("f")){
     		alert("增加失败名称不可以为空或重复")

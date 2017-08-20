@@ -180,10 +180,10 @@ public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncD
 	}
 
 	@Override
-	public Long getInsert3(String name) {
+	public Long getInsert3(pano_project_style style) {
 		Long sn = null;
 		try{
-		 sn =(Long) getSqlMapClientTemplate().insert("pano_bm_basic.getInsert3",name);
+		 sn =(Long) getSqlMapClientTemplate().insert("pano_bm_basic.getInsert3",style);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
