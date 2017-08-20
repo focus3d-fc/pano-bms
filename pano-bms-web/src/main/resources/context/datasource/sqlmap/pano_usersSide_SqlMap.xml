@@ -2,6 +2,16 @@
 
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">  
 <sqlMap>
+<!-- 查询导航图 -->
+<select id="list_selectPanoSkinList" resultClass="com.focus3d.pano.model.panoSkin">
+SELECT
+pano_skin.SN as SN,
+pano_skin.`NAME`,
+pano_skin.IMG_SN
+FROM
+pano_skin
+</select>
+
 <!-- 通过user_sn查询 -->
 <select id="get_selectAddToCarToConfirm" parameterClass="com.focus3d.pano.model.pano_order" 
 resultClass="com.focus3d.pano.model.AddToCar">

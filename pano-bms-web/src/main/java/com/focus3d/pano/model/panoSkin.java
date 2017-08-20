@@ -11,7 +11,10 @@ import com.focus3d.pano.common.model.CommonModel;
  *
  */
 public class panoSkin implements  CommonModel{
+		
+	private static final long serialVersionUID = 2988752298777022811L;
 		private Long sn;
+		private long SN;
 		private String name;  //名称
 		private Long img_sn;	//图片
 		private String css;
@@ -27,6 +30,12 @@ public class panoSkin implements  CommonModel{
 		}
 		public void setSn(Long sn) {
 			this.sn = sn;
+		}
+		public long getSN() {
+			return SN;
+		}
+		public void setSN(long sN) {
+			SN = sN;
 		}
 		public String getName() {
 			return name;
@@ -158,6 +167,7 @@ public class panoSkin implements  CommonModel{
 			// TODO Auto-generated method stub
 			
 		}
+		
 		
 		
 }

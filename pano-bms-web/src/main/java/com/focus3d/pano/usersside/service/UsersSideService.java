@@ -9,6 +9,7 @@ import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoProjectPackageType;
 import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.Style;
+import com.focus3d.pano.model.panoSkin;
 import com.focus3d.pano.model.pano_mem_user;
 import com.focus3d.pano.model.pano_order;
 import com.focus3d.pano.model.pano_order_item;
@@ -54,7 +55,7 @@ public interface UsersSideService {
 	public List<AddToCar> get_selectAddToCarToConfirm(
 			long USER_SN,String order_num);
 	public long get_House_package_snByPackage_sn(long package_sn);
-	
+	public List<panoSkin> list_selectPanoSkinList();
 	
 	
 	

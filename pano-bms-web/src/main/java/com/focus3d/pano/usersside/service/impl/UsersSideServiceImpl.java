@@ -11,6 +11,7 @@ import com.focus3d.pano.model.PanoProjectPackageType;
 import com.focus3d.pano.model.Pano_Order_Shopcart;
 import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.Style;
+import com.focus3d.pano.model.panoSkin;
 import com.focus3d.pano.model.pano_mem_user;
 import com.focus3d.pano.model.pano_order;
 import com.focus3d.pano.model.pano_order_item;
@@ -177,6 +178,10 @@ public class UsersSideServiceImpl implements UsersSideService{
 	@Override
 	public long get_House_package_snByPackage_sn(long package_sn) {
 		return usersSideDAO.get_House_package_snByPackage_sn(package_sn);
+	}
+	@Override
+	public List<panoSkin> list_selectPanoSkinList() {
+		return usersSideDAO.list_selectPanoSkinList();
 	}
 	
 	

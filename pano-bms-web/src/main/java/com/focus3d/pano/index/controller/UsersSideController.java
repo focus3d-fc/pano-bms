@@ -24,6 +24,7 @@ import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoProjectPackageType;
 import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.Style;
+import com.focus3d.pano.model.panoSkin;
 import com.focus3d.pano.model.pano_order;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
@@ -168,7 +169,39 @@ public class UsersSideController extends BaseController{
 				session.setAttribute("packageList",packageList);
 				session.setAttribute("house_sn",house_sn);
 			}
-			//获取套餐s
+			//获取导航图
+			List<panoSkin> panoSkinList=usersSideService.list_selectPanoSkinList();
+			System.out.println("panoSkinList:"+panoSkinList);
+			String skinName="";
+			long img_tc=0;
+			long img_space=0;
+			long img_house=0;
+			long img_cart=0;
+			for(int i=0;i<panoSkinList.size();i++){
+				skinName=panoSkinList.get(i).getName();
+				System.out.println("导航图"+i+"名："+skinName);
+				if(skinName.equals("套餐")){
+					img_tc=panoSkinList.get(i).getImg_sn();
+				}else if(skinName.equals("房间")){
+					img_space=panoSkinList.get(i).getImg_sn();
+				}else if(skinName.equals("户型")){
+					img_house=panoSkinList.get(i).getImg_sn();
+				}else if(skinName.equals("购物车")){
+					img_cart=panoSkinList.get(i).getImg_sn();
+				}
+			}
+			request.setAttribute("img_tc",img_tc);
+			request.setAttribute("img_space",img_space);
+			request.setAttribute("img_house",img_house);
+			request.setAttribute("img_cart",img_cart);
+			
+			
+			
+			
+			/*List<Long> skinImg_snList=new ArrayList<Long>();
+			skinImg_snList.add();*/
+			
+			
 			
 			return "/usersside/720";
 		}
@@ -213,32 +246,33 @@ public class UsersSideController extends BaseController{
 	}
 	//获取验证码----------------------------------------------------------------
 	@RequestMapping("/getVerifyCode")
-	public void getVerifyCode(String phone,HttpSession session) throws UnsupportedEncodingException{
+	public void getVerifyCode(String phone,HttpServletResponse response,HttpSession session) throws IOException{
 		System.out.println("进入getVerifyCode方法:");
 		System.out.println("手机号："+phone);
 		SmsSend send=new SmsSend();
+		//测试验证码
+		String phoneCode="123456";
 		//不能删下面注释代码！！
-		/*String phoneCode=send.sendPhoneCode(phone);
+		/*String phoneCode=send.sendPhoneCode(phone);*/
 		System.out.println("手机验证码为："+phoneCode);
-		session.setAttribute("phoneCode",phoneCode);*/
+		session.setAttribute("phoneCode",phoneCode);
+		
+		
+		String jsonProject=	JsonUtils.objectToJson(phoneCode);
+		this.ajaxOutput(response,jsonProject);
 	}
 	@RequestMapping("/surelogin")
-	public void login(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws IOException{
+	public void login(String phoneCode_in,String phone,HttpServletRequest request,HttpServletResponse response,HttpSession session) throws IOException{
 		String phoneCode_out=(String)session.getAttribute("phoneCode");
-		String phoneCode_in=request.getParameter("phoneCode_in");
+		//String phoneCode_in=request.getParameter("phoneCode_in");
 		System.out.println("phoneCode_out:"+phoneCode_out+",phoneCode_in:"+phoneCode_in);
-		//首先判断有没有该用户
-		/*String phone=request.getParameter("phone");
-		List<pano_mem_user> muserList_only=usersSideService.get_selectMUserByPhone(phone);
-		int muserListSize=muserList_only.size();
-		if(muserListSize==0){
-			String msg="用户不存在";
-			String jsonProject=	JsonUtils.objectToJson(msg);
-			this.ajaxOutput(response,jsonProject);
-			return "";
-		}*/
 		//验证码正确，进入登录后页面
 		String msg="";
+		if(phoneCode_in.equals("phoneCode_out")){
+			msg="success";
+		}else{
+			msg="error";
+		}
 		String jsonProject=	JsonUtils.objectToJson(msg);
 		this.ajaxOutput(response,jsonProject);
 	}

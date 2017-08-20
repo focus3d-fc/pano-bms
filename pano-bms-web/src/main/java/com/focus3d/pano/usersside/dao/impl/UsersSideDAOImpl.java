@@ -13,6 +13,7 @@ import com.focus3d.pano.model.PanoProjectPackageType;
 import com.focus3d.pano.model.Pano_Order_Shopcart;
 import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.Style;
+import com.focus3d.pano.model.panoSkin;
 import com.focus3d.pano.model.pano_mem_user;
 import com.focus3d.pano.model.pano_order;
 import com.focus3d.pano.model.pano_order_item;
@@ -228,6 +229,13 @@ public class UsersSideDAOImpl  extends BaseDao implements UsersSideDAO{
 		long house_package_sn=(Long) getSqlMapClientTemplate().
 				queryForObject("get_House_package_snByPackage_sn",package_sn);
 		return house_package_sn;
+	}
+
+	@Override
+	public List<panoSkin> list_selectPanoSkinList() {
+		List<panoSkin> panoSkinList=(List<panoSkin>) getSqlMapClientTemplate().
+				queryForList("list_selectPanoSkinList");
+		return panoSkinList;
 	}
 	
 
