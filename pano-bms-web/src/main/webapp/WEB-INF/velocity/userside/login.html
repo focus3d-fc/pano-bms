@@ -68,37 +68,89 @@
 <!--注册弹窗-->
 <div class="wrap">
     <div id="login">
-        <form action="">
+        <form action="/usersSide/login">
             <div class="login-title">
                 登录
                 <i class=" iconfont fr"  onclick="$('.wrap').hide();">&#xe64e;</i>
             </div>
             <div class="row">
                 <i class=" iconfont">&#xe61b;</i>
-                <input type="tel" placeholder="请输入手机号" id="j_phone">
+                <input type="tel" placeholder="请输入手机号" id="j_phone"/>
             </div>
             <div class="row">
                 <i class=" iconfont">&#xe66f;</i>
-                <input type="text" placeholder="验证码">
+                <input type="text" placeholder="验证码" id="phoneCode_in"/>
                 <span id="j_getVerifyCode">获取验证码</span>
             </div>
-            <button type="submit">立即登录</button>
+            <button type="button" id="surelogin">立即登录</button>
             <div class="line">
                 <span>其他方式登录</span>
-                    <a href="#">
+                    <a href="/wechat/oauth">
                         <i class=" iconfont">&#xe81d;</i>
                     </a>
             </div>
         </form>
     </div>
 </div>
+<!-- 登陆提交 -->
+<script>
+$(function(){
+	console.log("2.加载进入测试：");	
+	$('#surelogin').click(surelogin);
+})
+  function surelogin(){
+	var path=window.document.location.href.substring(0,window.document.location.href.indexOf(window.document.location.pathname));
+	console.log("进入surelogin方法");
+	var phone=$("#j_phone").val().trim();
+	var phoneCode=$("#phoneCode_in").val().trim();
+	console.log("手机号："+phone+"，输入的验证码："+phoneCode_in);
+	$.ajax({
+		url:path+"/usersSide/surelogin",	 
+	    type:"post",
+	    data:{"phone":phone,"phoneCode_in":phoneCode},
+	    datatype:"json",
+	    success:function(result){
+	    var msg=JSON.parse(result);
+	    console.log("msg:"+msg);
+	    if(msg=="success"){
+	    	//验证码正确，跳转登录后页面
+	    	//alert("登陆成功，跳转到首页!");
+	    	location.href="/userside/tomy";
+	    }else{
+	    	//验证码不正确，弹框提示
+	    	alert("验证码错误!");
+	    }	
+	    	
+	    }
+	});
+	
+}
+</script>
+
 <!--注册验证-->
 <script>
     //获取手机验证码-登录
     $("#j_getVerifyCode").on("click",getVerifyCode({
         callBack: function (){//按钮点击后的回调函数，-----必须-----
             //在这里你还是可以对你的按钮进行操作
-            alert("验证码发送成功");
+           var phone=$("#j_phone").val().trim();
+				    console.log("phone:"+phone);
+				    //if((phone!=null) && (phone!="")){
+				    var path=window.document.location.href.substring(0,window.document.location.href.indexOf(window.document.location.pathname));
+	                console.log("路径："+path);
+				    	$.ajax({
+							url:path+"/usersSide/getVerifyCode",
+							type:"post",
+							data:{"phone":phone},
+						    datatype:"json",
+						    success:function(result){
+						    var phoneCode=JSON.parse(result);
+						    console.log("phoneCode:"+phoneCode);
+						    alert("验证码发送成功");
+						    }
+							
+						});
+            
         },
         time: 60,//定时时间，以秒为单位，默认60秒
         getCurrentTime: function (time){//获取倒计时当前时间

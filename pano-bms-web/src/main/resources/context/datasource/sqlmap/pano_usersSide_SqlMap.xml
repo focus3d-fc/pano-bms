@@ -2,6 +2,16 @@
 
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">  
 <sqlMap>
+<!-- 查询导航图 -->
+<select id="list_selectPanoSkinList" resultClass="com.focus3d.pano.model.panoSkin">
+SELECT
+pano_skin.SN as SN,
+pano_skin.`NAME`,
+pano_skin.IMG_SN
+FROM
+pano_skin
+</select>
+
 <!-- 通过user_sn查询 -->
 <select id="get_selectAddToCarToConfirm" parameterClass="com.focus3d.pano.model.pano_order" 
 resultClass="com.focus3d.pano.model.AddToCar">
@@ -379,6 +389,17 @@ FROM
 pano_mem_user
 where pano_mem_user.MOBILE=#phone#
  </select>
+ <!-- 手机号登陆-向用户表插入数据 -->
+ <insert id="insert_UserMsg_Phone" parameterClass="string">
+ insert into pano_mem_user
+(MOBILE) 
+values
+(#MOBILE#)
+ </insert>
+ 
+ 
+ 
+ 
  <!-- 查套餐 -->
  <select id="list_selectPackageTypeListByPackage_Sn" parameterClass="long" 
  resultClass="com.focus3d.pano.model.PanoProjectPackageType">

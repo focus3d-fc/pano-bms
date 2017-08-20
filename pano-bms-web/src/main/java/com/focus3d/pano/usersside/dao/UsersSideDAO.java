@@ -9,6 +9,7 @@ import com.focus3d.pano.model.PanoProjectPackageType;
 import com.focus3d.pano.model.Pano_Order_Shopcart;
 import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.Style;
+import com.focus3d.pano.model.panoSkin;
 import com.focus3d.pano.model.pano_mem_user;
 import com.focus3d.pano.model.pano_order;
 import com.focus3d.pano.model.pano_order_item;
@@ -49,6 +50,11 @@ public interface UsersSideDAO {
     public long get_address_snByUser_sn(long user_sn);
     public List<AddToCar> get_selectAddToCarToConfirm(pano_order order);
     public long get_House_package_snByPackage_sn(long package_sn);
+    public List<panoSkin> list_selectPanoSkinList();
+    public void insert_UserMsg_Phone(String MOBILE);
+    
+    
+    
     
     
 }

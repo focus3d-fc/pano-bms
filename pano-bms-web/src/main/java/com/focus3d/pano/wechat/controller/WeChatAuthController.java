@@ -68,7 +68,7 @@ public class WeChatAuthController extends BaseController {
 			 */
 			String openid = userInfo.getOpenid();
 			
-			return "redirect:/wechat/testPay";
+			return "redirect:/userside/tologin";
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
