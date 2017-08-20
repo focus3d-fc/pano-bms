@@ -53,6 +53,7 @@ public class WeChatPayController extends BaseController {
 
 	        r.put("timeStamp", new Date().getTime()/1000+"");
 	        r.put("openid", "oHSqcw37i18XF01iXDEasSFpbNZY");
+	        r.put("nonceStr", WxPayUtil.generateNonceStr());
 	        
 	        request.setAttribute("result", r);
 		}catch(Exception e){
