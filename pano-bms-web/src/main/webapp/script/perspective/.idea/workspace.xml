@@ -28,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="perspective.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="perspective.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/perspective.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2">
-              <caret line="677" column="9" lean-forward="true" selection-start-line="668" selection-start-column="8" selection-end-line="677" selection-end-column="9" />
+            <state relative-caret-position="121">
+              <caret line="1343" column="25" lean-forward="true" selection-start-line="1343" selection-start-column="25" selection-end-line="1343" selection-end-column="25" />
               <folding>
                 <element signature="n#!!block;n#createView#0" expanded="false" />
                 <element signature="n#!!block;n#Layer#0" expanded="false" />
@@ -62,7 +62,6 @@
                 <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
                 <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
                 <element signature="n#!!block;n#initProductResult#0" expanded="false" />
-                <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
                 <element signature="e#40837#41725#0" expanded="false" />
                 <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
                 <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
@@ -87,7 +86,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="H5WebGL.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="H5WebGL.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/H5WebGL.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="362">
@@ -194,8 +193,8 @@
         <option value="$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html" />
         <option value="$PROJECT_DIR$/../../style/perspective/perspective.css" />
         <option value="$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html" />
-        <option value="$PROJECT_DIR$/perspective.js" />
         <option value="$PROJECT_DIR$/H5WebGL.js" />
+        <option value="$PROJECT_DIR$/perspective.js" />
       </list>
     </option>
   </component>
@@ -336,12 +335,12 @@
       <workItem from="1502934406113" duration="17569000" />
       <workItem from="1503031181068" duration="15835000" />
       <workItem from="1503112817993" duration="18496000" />
-      <workItem from="1503233279856" duration="6548000" />
+      <workItem from="1503233279856" duration="7168000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="229508000" />
+    <option name="totallyTimeSpent" value="230128000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -420,7 +419,6 @@
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
-            <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
             <element signature="e#40837#41725#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
@@ -506,7 +504,6 @@
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
-            <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
             <element signature="e#40837#41725#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
@@ -625,7 +622,6 @@
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
-            <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
             <element signature="e#40837#41725#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
@@ -744,7 +740,6 @@
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
-            <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
             <element signature="e#40837#41725#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
@@ -830,7 +825,6 @@
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
-            <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
             <element signature="e#40837#41725#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
@@ -908,7 +902,6 @@
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
-            <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
             <element signature="e#40837#41725#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
@@ -986,7 +979,6 @@
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
-            <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
             <element signature="e#40837#41725#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
@@ -1064,7 +1056,6 @@
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
-            <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
             <element signature="e#40837#41725#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
@@ -1142,7 +1133,6 @@
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
-            <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
             <element signature="e#40837#41725#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
@@ -1220,7 +1210,6 @@
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
-            <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
             <element signature="e#40837#41725#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
@@ -1298,7 +1287,6 @@
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
-            <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
             <element signature="e#40837#41725#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
@@ -1376,7 +1364,6 @@
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
-            <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
             <element signature="e#40837#41725#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
@@ -1465,10 +1452,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/H5WebGL.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="229" column="6" lean-forward="true" selection-start-line="229" selection-start-column="6" selection-end-line="229" selection-end-column="6" />
+          <folding>
+            <element signature="e#331#428#0" expanded="false" />
+            <element signature="e#461#2022#0" expanded="false" />
+            <element signature="e#2055#2963#0" expanded="false" />
+            <element signature="e#2996#3883#0" expanded="false" />
+            <element signature="e#3915#3984#0" expanded="false" />
+            <element signature="e#4016#4106#0" expanded="false" />
+            <element signature="e#4145#4604#0" expanded="false" />
+            <element signature="e#4644#5148#0" expanded="false" />
+            <element signature="e#5191#6685#0" expanded="false" />
+            <element signature="e#6727#7821#0" expanded="false" />
+            <element signature="e#7861#7914#0" expanded="false" />
+            <element signature="e#7941#8162#0" expanded="false" />
+            <element signature="e#8193#8361#0" expanded="false" />
+            <element signature="e#8404#8894#0" expanded="false" />
+            <element signature="e#8935#9339#0" expanded="false" />
+            <element signature="e#9376#9415#0" expanded="false" />
+            <element signature="n#!!block;n#QueryPerspectiveInfoCallback#0" expanded="false" />
+            <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
+            <element signature="n#!!block;n#ExchangeProduct#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/perspective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2">
-          <caret line="677" column="9" lean-forward="true" selection-start-line="668" selection-start-column="8" selection-end-line="677" selection-end-column="9" />
+        <state relative-caret-position="121">
+          <caret line="1343" column="25" lean-forward="true" selection-start-line="1343" selection-start-column="25" selection-end-line="1343" selection-end-column="25" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
@@ -1498,7 +1513,6 @@
             <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
-            <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
             <element signature="e#40837#41725#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
@@ -1518,34 +1532,6 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/H5WebGL.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="229" column="6" lean-forward="true" selection-start-line="229" selection-start-column="6" selection-end-line="229" selection-end-column="6" />
-          <folding>
-            <element signature="e#331#428#0" expanded="false" />
-            <element signature="e#461#2022#0" expanded="false" />
-            <element signature="e#2055#2963#0" expanded="false" />
-            <element signature="e#2996#3883#0" expanded="false" />
-            <element signature="e#3915#3984#0" expanded="false" />
-            <element signature="e#4016#4106#0" expanded="false" />
-            <element signature="e#4145#4604#0" expanded="false" />
-            <element signature="e#4644#5148#0" expanded="false" />
-            <element signature="e#5191#6685#0" expanded="false" />
-            <element signature="e#6727#7821#0" expanded="false" />
-            <element signature="e#7861#7914#0" expanded="false" />
-            <element signature="e#7941#8162#0" expanded="false" />
-            <element signature="e#8193#8361#0" expanded="false" />
-            <element signature="e#8404#8894#0" expanded="false" />
-            <element signature="e#8935#9339#0" expanded="false" />
-            <element signature="e#9376#9415#0" expanded="false" />
-            <element signature="n#!!block;n#QueryPerspectiveInfoCallback#0" expanded="false" />
-            <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
-            <element signature="n#!!block;n#ExchangeProduct#0" expanded="false" />
           </folding>
         </state>
       </provider>

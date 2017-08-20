@@ -728,7 +728,6 @@ public class PerspectiveQuery extends BaseController {
 
 		if (num != 0) {
 			model_map.put("viewlist", map.get("list"));
-
 			List<ProductRelevance> proList = productRelevanceService.selProbySN(Long.parseLong(productSn));
 			request.setAttribute("proList", proList.get(0));
 

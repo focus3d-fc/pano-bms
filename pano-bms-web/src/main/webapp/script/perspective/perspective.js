@@ -1348,7 +1348,6 @@ function updateElementProductCallback(element,product){
                 if(data){
                     $.extend(element.data,data);
                     productInfo = data;
-                    debugger;
                     product.find("input[type='checkbox']").removeAttr("disabled");
                     $("#product_"+data.sn).data("data",data);
                 }
