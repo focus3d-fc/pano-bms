@@ -122,6 +122,14 @@ function View(data){
         class:"float_r mar0pad0"
     });
 
+    var _mirror = $("<span>",{
+        class:"glyphicon glyphicon-trash mar_l5",
+        click:function(){
+            event.stopPropagation();
+            WebGL.mirror(_this.view);
+        }
+    });
+
 	var _delete = $("<span>",{
     	class:"glyphicon glyphicon-trash mar_l5",
         click:function(){
@@ -149,7 +157,7 @@ function View(data){
             $("#view_entering").modal("show");
         }
 	});
-
+    this.control.append(_mirror);
     this.control.append(_delete);
     this.control.append(_edit);
 	this.node.append(this.node_name);
@@ -634,7 +642,7 @@ var WebGL = {
             map.needsUpdate = true;
             if(data.repeating){
                 var vec = string_to_vec(data.repeating);
-                map.repeating.set(vec.x,vec.y);
+                map.repeat.set(vec.x,vec.y);
             }
         }
 
@@ -672,7 +680,7 @@ var WebGL = {
         if(map){
             if(data.repeating){
                 var vec = string_to_vec(data.repeating);
-                map.repeating.set(vec.x,vec.y);
+                map.repeat.set(vec.x,vec.y);
             }
         }
 
@@ -696,9 +704,9 @@ var WebGL = {
     mirror:function (element) {
         var map = element.material.map;
         if(map){
-            var repeatX = parseFloat(map.repeating.x);
+            var repeatX = parseFloat(map.repeat.x);
             repeatX = -1 * repeatX;
-            map.repeating.set(repeatX,1);
+            map.repeat.set(repeatX,1);
         }
     },
     resetScale:function(element,scale){
