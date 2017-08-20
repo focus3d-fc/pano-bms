@@ -277,4 +277,18 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 		return list;
 	}
 
+	@Override
+	public List<pano_project_house_style> selHouseStyles() {
+		List<pano_project_house_style> list = (List<pano_project_house_style>) getSqlMapClientTemplate()
+				.queryForList("pano_project_house_style.selHouseStyles");
+		return list;
+	}
+
+	@Override
+	public void upHouseStyle(pano_project_house_style hs) {
+		// TODO Auto-generated method stub
+		getSqlMapClientTemplate().update(
+				"pano_project_house_style.upHouseStyle", hs);
+	}
+
 }

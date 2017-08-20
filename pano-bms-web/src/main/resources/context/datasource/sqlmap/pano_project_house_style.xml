@@ -97,4 +97,20 @@
 		pano_project_house_style.PROJECT_SN=#PROJECT_SN#
 	</select>
 
+	<select id="selHouseStyles" resultClass="com.focus3d.pano.model.pano_project_house_style">
+		SELECT
+		pano_project_house_style.SN,
+		pano_project_house_style.HOUSE_SN,
+		pano_project_house_style.STYLE_SN,
+		pano_project_house_style.PROJECT_SN
+		FROM
+		pano_project_house_style
+	</select>
+
+	<update id="upHouseStyle" parameterClass="com.focus3d.pano.model.pano_project_house_style">
+		update pano_project_house_style
+		SET
+		pano_project_house_style.STYLE_SN=#STYLE_SN#
+		where SN = #SN#
+	</update>
 </sqlMap>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.focus3d.pano.model.OrderRelevance;
 import com.focus3d.pano.model.pano_mem_user;
+import com.focus3d.pano.model.pano_order;
 import com.focus3d.pano.model.pano_user_receive_address;
 
 public interface PersonalDAO {
@@ -42,6 +43,11 @@ public interface PersonalDAO {
 	public void upMemuser(pano_mem_user memuser);
 
 	// ----------------------------------------------全部订单----------------------------------------------
+	// 查询订单信息
+	public List<pano_order> selOrder();
+
+	// 修改订单信息
+	public void upOrder(pano_order or);
 
 	// 根据用户编号查询所有订单
 	public List<OrderRelevance> selOrderbyUser(Long USER_SN);

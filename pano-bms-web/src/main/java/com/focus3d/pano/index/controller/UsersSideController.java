@@ -290,6 +290,14 @@ public class UsersSideController extends BaseController{
 	@RequestMapping("/addToCar")
 	public void addToCar(String packageSn,HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception{
 		System.out.println("进入/addToCar方法");
+		
+		
+		//判断是否已经登录，如果没登陆就跳到登陆页面
+		/*if(){
+			
+			
+		}*/
+		
 		//这里packageSn是户型套餐表主键,不是套餐表主键
 		long house_package_sn=EncryptUtil.decode(packageSn);
 		System.out.println("house_package_sn套餐sn:"+house_package_sn);

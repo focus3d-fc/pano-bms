@@ -21,7 +21,6 @@ import com.focus3d.pano.usersside.service.PersonalService;
  * 
  * 个人中心方法
  * 
- * @author 熊峰
  * 
  */
 @Controller
@@ -77,6 +76,9 @@ public class PersonalController extends BaseController {
 	public String toaddress2(HttpServletRequest request) {
 		List<pano_user_receive_address> address = personalService
 				.selAddressbyUserSN(USER_SN);
+		if (request.getParameter("he").equals("he")) {
+			personalService.upAddres();
+		}
 		request.setAttribute("address", address);
 		return "/userside/address";
 	}

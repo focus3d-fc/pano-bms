@@ -11,27 +11,35 @@
 		pano_order.TOTAL_PRICE,
 		pano_order_item.PURCHASE_NUM,
 		pano_project_house_package.IMG_SN,
-		pano_order_logtc.PRICE AS LOGTC_PRICE,
+		pano_order_logtc.PRICE AS
+		LOGTC_PRICE,
 		pano_project_style.`NAME` AS STYLE,
 		pano_project_house.`NAME` AS HOUSE,
-		pano_project_package.`NAME` AS PACKAGE,
+		pano_project_package.`NAME` AS
+		PACKAGE,
 		(
 		pano_order.TOTAL_PRICE + pano_order_logtc.PRICE
 		) AS SUM_PRICE
 		FROM
 		pano_order
-		INNER JOIN pano_order_item ON pano_order.SN = pano_order_item.ORDER_SN
+		INNER JOIN pano_order_item ON pano_order.SN =
+		pano_order_item.ORDER_SN
 		INNER JOIN pano_project_house_package ON
 		pano_order_item.HOUSE_PACKAGE_SN = pano_project_house_package.SN
-		INNER JOIN pano_project_house_style ON
+		INNER
+		JOIN pano_project_house_style ON
 		pano_project_house_package.HOUSE_STYLE_SN =
 		pano_project_house_style.SN
-		INNER JOIN pano_order_logtc ON pano_order.SN = pano_order_logtc.ORDER_SN
-		INNER JOIN pano_project_style ON pano_project_house_style.STYLE_SN =
+		INNER JOIN pano_order_logtc ON
+		pano_order.SN = pano_order_logtc.ORDER_SN
+		INNER JOIN pano_project_style
+		ON pano_project_house_style.STYLE_SN =
 		pano_project_style.SN
-		INNER JOIN pano_project_house ON pano_project_house_style.HOUSE_SN =
+		INNER JOIN
+		pano_project_house ON pano_project_house_style.HOUSE_SN =
 		pano_project_house.SN
-		INNER JOIN pano_project_package ON pano_project_house_package.PACKAGE_SN =
+		INNER JOIN pano_project_package ON
+		pano_project_house_package.PACKAGE_SN =
 		pano_project_package.SN
 		WHERE
 		pano_order.USER_SN=#USER_SN#
@@ -46,27 +54,35 @@
 		pano_order.TOTAL_PRICE,
 		pano_order_item.PURCHASE_NUM,
 		pano_project_house_package.IMG_SN,
-		pano_order_logtc.PRICE AS LOGTC_PRICE,
+		pano_order_logtc.PRICE AS
+		LOGTC_PRICE,
 		pano_project_style.`NAME` AS STYLE,
 		pano_project_house.`NAME` AS HOUSE,
-		pano_project_package.`NAME` AS PACKAGE,
+		pano_project_package.`NAME` AS
+		PACKAGE,
 		(
 		pano_order.TOTAL_PRICE + pano_order_logtc.PRICE
 		) AS SUM_PRICE
 		FROM
 		pano_order
-		INNER JOIN pano_order_item ON pano_order.SN = pano_order_item.ORDER_SN
+		INNER JOIN pano_order_item ON pano_order.SN =
+		pano_order_item.ORDER_SN
 		INNER JOIN pano_project_house_package ON
 		pano_order_item.HOUSE_PACKAGE_SN = pano_project_house_package.SN
-		INNER JOIN pano_project_house_style ON
+		INNER
+		JOIN pano_project_house_style ON
 		pano_project_house_package.HOUSE_STYLE_SN =
 		pano_project_house_style.SN
-		INNER JOIN pano_order_logtc ON pano_order.SN = pano_order_logtc.ORDER_SN
-		INNER JOIN pano_project_style ON pano_project_house_style.STYLE_SN =
+		INNER JOIN pano_order_logtc ON
+		pano_order.SN = pano_order_logtc.ORDER_SN
+		INNER JOIN pano_project_style
+		ON pano_project_house_style.STYLE_SN =
 		pano_project_style.SN
-		INNER JOIN pano_project_house ON pano_project_house_style.HOUSE_SN =
+		INNER JOIN
+		pano_project_house ON pano_project_house_style.HOUSE_SN =
 		pano_project_house.SN
-		INNER JOIN pano_project_package ON pano_project_house_package.PACKAGE_SN =
+		INNER JOIN pano_project_package ON
+		pano_project_house_package.PACKAGE_SN =
 		pano_project_package.SN
 		WHERE
 		pano_order.USER_SN=#USER_SN#
@@ -83,27 +99,35 @@
 		pano_order.TOTAL_PRICE,
 		pano_order_item.PURCHASE_NUM,
 		pano_project_house_package.IMG_SN,
-		pano_order_logtc.PRICE AS LOGTC_PRICE,
+		pano_order_logtc.PRICE AS
+		LOGTC_PRICE,
 		pano_project_style.`NAME` AS STYLE,
 		pano_project_house.`NAME` AS HOUSE,
-		pano_project_package.`NAME` AS PACKAGE,
+		pano_project_package.`NAME` AS
+		PACKAGE,
 		(
 		pano_order.TOTAL_PRICE + pano_order_logtc.PRICE
 		) AS SUM_PRICE
 		FROM
 		pano_order
-		INNER JOIN pano_order_item ON pano_order.SN = pano_order_item.ORDER_SN
+		INNER JOIN pano_order_item ON pano_order.SN =
+		pano_order_item.ORDER_SN
 		INNER JOIN pano_project_house_package ON
 		pano_order_item.HOUSE_PACKAGE_SN = pano_project_house_package.SN
-		INNER JOIN pano_project_house_style ON
+		INNER
+		JOIN pano_project_house_style ON
 		pano_project_house_package.HOUSE_STYLE_SN =
 		pano_project_house_style.SN
-		INNER JOIN pano_order_logtc ON pano_order.SN = pano_order_logtc.ORDER_SN
-		INNER JOIN pano_project_style ON pano_project_house_style.STYLE_SN =
+		INNER JOIN pano_order_logtc ON
+		pano_order.SN = pano_order_logtc.ORDER_SN
+		INNER JOIN pano_project_style
+		ON pano_project_house_style.STYLE_SN =
 		pano_project_style.SN
-		INNER JOIN pano_project_house ON pano_project_house_style.HOUSE_SN =
+		INNER JOIN
+		pano_project_house ON pano_project_house_style.HOUSE_SN =
 		pano_project_house.SN
-		INNER JOIN pano_project_package ON pano_project_house_package.PACKAGE_SN =
+		INNER JOIN pano_project_package ON
+		pano_project_house_package.PACKAGE_SN =
 		pano_project_package.SN
 		WHERE
 		pano_order.USER_SN=#USER_SN#
@@ -120,27 +144,35 @@
 		pano_order.TOTAL_PRICE,
 		pano_order_item.PURCHASE_NUM,
 		pano_project_house_package.IMG_SN,
-		pano_order_logtc.PRICE AS LOGTC_PRICE,
+		pano_order_logtc.PRICE AS
+		LOGTC_PRICE,
 		pano_project_style.`NAME` AS STYLE,
 		pano_project_house.`NAME` AS HOUSE,
-		pano_project_package.`NAME` AS PACKAGE,
+		pano_project_package.`NAME` AS
+		PACKAGE,
 		(
 		pano_order.TOTAL_PRICE + pano_order_logtc.PRICE
 		) AS SUM_PRICE
 		FROM
 		pano_order
-		INNER JOIN pano_order_item ON pano_order.SN = pano_order_item.ORDER_SN
+		INNER JOIN pano_order_item ON pano_order.SN =
+		pano_order_item.ORDER_SN
 		INNER JOIN pano_project_house_package ON
 		pano_order_item.HOUSE_PACKAGE_SN = pano_project_house_package.SN
-		INNER JOIN pano_project_house_style ON
+		INNER
+		JOIN pano_project_house_style ON
 		pano_project_house_package.HOUSE_STYLE_SN =
 		pano_project_house_style.SN
-		INNER JOIN pano_order_logtc ON pano_order.SN = pano_order_logtc.ORDER_SN
-		INNER JOIN pano_project_style ON pano_project_house_style.STYLE_SN =
+		INNER JOIN pano_order_logtc ON
+		pano_order.SN = pano_order_logtc.ORDER_SN
+		INNER JOIN pano_project_style
+		ON pano_project_house_style.STYLE_SN =
 		pano_project_style.SN
-		INNER JOIN pano_project_house ON pano_project_house_style.HOUSE_SN =
+		INNER JOIN
+		pano_project_house ON pano_project_house_style.HOUSE_SN =
 		pano_project_house.SN
-		INNER JOIN pano_project_package ON pano_project_house_package.PACKAGE_SN =
+		INNER JOIN pano_project_package ON
+		pano_project_house_package.PACKAGE_SN =
 		pano_project_package.SN
 		WHERE
 		pano_order.SN=#ORDER_SN#
@@ -148,4 +180,22 @@
 		pano_order.ORDER_TIME
 	</select>
 
+	<select id="selOrder" resultClass="com.focus3d.pano.model.pano_order">
+		SELECT
+		pano_order.SN,
+		pano_order.USER_SN,
+		pano_order.ORDER_NUM,
+		pano_order.`STATUS`,
+		pano_order.TOTAL_PRICE
+		FROM
+		pano_order
+	</select>
+
+	<update id="upOrder" parameterClass="com.focus3d.pano.model.pano_order">
+		update
+		pano_order
+		SET
+		USER_SN=#USER_SN#
+		where SN = #SN#
+	</update>
 </sqlMap>

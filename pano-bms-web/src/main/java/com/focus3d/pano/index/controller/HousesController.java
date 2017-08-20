@@ -46,7 +46,6 @@ import com.opensymphony.oscache.util.StringUtil;
  * 
  * 楼盘管理
  * 
- * @author 熊峰
  * 
  */
 
@@ -232,6 +231,9 @@ public class HousesController extends BaseController {
 		if (hlist.size() != 0) {
 			request.setAttribute("hList", hlist);
 		}
+		if (request.getParameter("he").equals("he")) {
+			housesService.addHouseStyle();
+		}
 		return "/houses/houseSet";
 	}
 
@@ -246,7 +248,7 @@ public class HousesController extends BaseController {
 	public String addHousetype(String aname, String fullImgSn, Long SN) {
 		pano_project_house house = new pano_project_house();
 		house.setNAME(aname);
-
+		System.out.println("==============1" + house.getNAME());
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String add_time = sdf.format(date);
@@ -266,6 +268,7 @@ public class HousesController extends BaseController {
 		} else {
 			house.setUPDATE_TIME(add_time);
 			house.setSN(SN);
+			System.out.println("==============2" + house.getNAME());
 			housesService.upHousetype(house);
 		}
 
@@ -317,15 +320,13 @@ public class HousesController extends BaseController {
 
 		project_style style = new project_style();
 		style.setNAME(aname);
-		Long imgsn = null;
-		try {
-			imgsn = EncryptUtil.decode(fullImgSn);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		style.setIMG_SN(imgsn);
+		/*
+		 * Long imgsn = null; try { imgsn = EncryptUtil.decode(fullImgSn); }
+		 * catch (Exception e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); }
+		 * 
+		 * style.setIMG_SN(imgsn);
+		 */
 
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -388,8 +389,9 @@ public class HousesController extends BaseController {
 		pano_project_house_style house = new pano_project_house_style();
 		house.setPROJECT_SN(PROJECT_SN);
 		house.setSTYLE_SN(STYLE_SN);
-		// 清空关联数据
-		housesService.clearStyleHouse(house);
+		/*
+		 * // 清空关联数据 housesService.clearStyleHouse(house);
+		 */
 
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -401,7 +403,16 @@ public class HousesController extends BaseController {
 			for (int i = 0; i < parameterValues.length; i++) {
 				Long HOUSE_SN = Long.parseLong(parameterValues[i]);
 				house.setHOUSE_SN(HOUSE_SN);
-				housesService.addStyleHouse(house);
+				Map map = new HashMap();
+				map.put("PROJECT_SN", PROJECT_SN);
+				map.put("STYLE_SN", STYLE_SN);
+				map.put("HOUSE_SN", HOUSE_SN);
+				List<pano_project_house_style> num = housesService
+						.selHouseStyle(map);
+				if (num.size() == 0) {
+					housesService.addStyleHouse(house);
+				}
+
 			}
 		}
 		return redirect("tostyle-houseSet2");
@@ -411,7 +422,6 @@ public class HousesController extends BaseController {
 	@RequestMapping("/selHouseStyle")
 	public void selHouseStyle(HttpServletRequest request, String HouseSN,
 			HttpServletResponse response, ModelMap modelMap) {
-		System.out.println("---------------ajax" + HouseSN);
 		Long House_SN = Long.parseLong(HouseSN);
 		Map map = new HashMap();
 		map.put("HOUSE_SN", House_SN);
@@ -421,7 +431,6 @@ public class HousesController extends BaseController {
 		List<pano_project_house_style> housty = housesService
 				.selHouseStyle(map);
 
-		System.out.println("housty=========" + housty.get(0).getSN());
 		pano_project_house_style hs = housty.get(0);
 
 		try {
@@ -838,11 +847,13 @@ public class HousesController extends BaseController {
 			e.printStackTrace();
 		}
 		PanoProjectHousePackage p = new PanoProjectHousePackage();
+		System.out.println("进入套餐设置" + name + "-" + sn + "-" + img_sn);
 		p.setIMG_SN(img_sn);
+		System.out.println("进入套餐设置1");
 		if (StringUtil.isEmpty(name)) {
-			name = null;
 		}
 		p.setPackage_price(Double.parseDouble(name));
+		System.out.println("进入套餐设置2");
 		p.setSn(Long.parseLong(sn));
 		service.getInsert1(p);
 		return redirect("packageSet2");

@@ -113,6 +113,9 @@ public interface HousesDAO {
 
 	// -----------------------楼盘-设置-风格-户型设置-----------------------
 
+	// 查询户型风格
+	public List<pano_project_house_style> selHouseStyles();
+
 	// 根据风格查户型
 	public List<pano_project_house> selHousebyStyle(
 			pano_project_house_style style);
@@ -128,6 +131,9 @@ public interface HousesDAO {
 
 	// 查询户型风格SN
 	public List<pano_project_house_style> selHouseStyle(Map map);
+
+	// 修改户型风格
+	public void upHouseStyle(pano_project_house_style hs);
 
 	// -----------------------楼盘-设置-风格-标签设置-----------------------
 

@@ -229,6 +229,22 @@ public class HousesServiceImpl implements HousesService {
 	}
 
 	@Override
+	public void addHouseStyle() {
+		// TODO Auto-generated method stub
+		List<pano_project_house_style> hs = housesDAO.selHouseStyles();
+		for (int style = 0; style < hs.size() - 1; style++) {
+			pano_project_house_style sh = new pano_project_house_style();
+			pano_project_house_style sh2 = new pano_project_house_style();
+			sh.setSTYLE_SN(hs.get(style + 1).getSTYLE_SN());
+			sh.setSN(hs.get(style).getSN());
+			housesDAO.upHouseStyle(sh);
+			sh2.setSTYLE_SN(hs.get(style).getSTYLE_SN());
+			sh2.setSN(hs.get(style + 1).getSN());
+			housesDAO.upHouseStyle(sh2);
+		}
+	}
+
+	@Override
 	public void addStyleHouse(pano_project_house_style style) {
 		// TODO Auto-generated method stub
 		housesDAO.addStyleHouse(style);
@@ -244,6 +260,18 @@ public class HousesServiceImpl implements HousesService {
 	public List<pano_project_house_style> selHouseStyle(Map map) {
 		// TODO Auto-generated method stub
 		return housesDAO.selHouseStyle(map);
+	}
+
+	@Override
+	public List<pano_project_house_style> selHouseStyles() {
+		// TODO Auto-generated method stub
+		return housesDAO.selHouseStyles();
+	}
+
+	@Override
+	public void upHouseStyle(pano_project_house_style hs) {
+		// TODO Auto-generated method stub
+		housesDAO.upHouseStyle(hs);
 	}
 
 }

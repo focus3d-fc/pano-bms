@@ -33,6 +33,9 @@ public interface PersonalService {
 	// 修改收货地址
 	public void upAddress(pano_user_receive_address address);
 
+	// 修改地址
+	public void upAddres();
+
 	// 查询用户默认收货地址
 	public List<pano_user_receive_address> selAddressbyDef(Long USER_SN);
 
@@ -45,6 +48,12 @@ public interface PersonalService {
 	public void upMemuser(pano_mem_user memuser);
 
 	// ----------------------------------------------全部订单----------------------------------------------
+
+	// 查询订单信息
+	public List<pano_order> selOrder();
+
+	// 修改订单信息
+	public void upOrder(pano_order or);
 
 	// 根据用户编号查询所有订单
 	public List<OrderRelevance> selOrderbyUser(Long USER_SN);

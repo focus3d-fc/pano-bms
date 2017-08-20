@@ -113,6 +113,9 @@ public interface HousesService {
 
 	// -----------------------楼盘-设置-风格-户型设置-----------------------
 
+	// 查询户型风格
+	public List<pano_project_house_style> selHouseStyles();
+
 	// 根据风格查户型
 	public List<pano_project_house> selHousebyStyle(
 			pano_project_house_style style);
@@ -120,14 +123,20 @@ public interface HousesService {
 	// 删除风格户型关联
 	public int delstylehouseSet(pano_project_house_style style);
 
-	// 清空关联
+	// 清空户型风格关联
 	public int clearStyleHouse(pano_project_house_style style);
 
-	// 添加关联
+	// 添加户型风格关联
 	public void addStyleHouse(pano_project_house_style style);
+
+	// 添加户型风格关联
+	public void addHouseStyle();
 
 	// 查询户型风格SN
 	public List<pano_project_house_style> selHouseStyle(Map map);
+
+	// 修改户型风格
+	public void upHouseStyle(pano_project_house_style hs);
 
 	// -----------------------楼盘-设置-风格-标签设置-----------------------
 
