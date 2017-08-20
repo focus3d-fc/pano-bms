@@ -3,6 +3,8 @@ package com.focus3d.pano.wechat.controller;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,7 +53,8 @@ public class WeChatPayController extends BaseController {
 
 	        if("SUCCESS".equals(r.get("result_code"))){
 	        	// 二次签名
-	        	HashMap<String, String> paySingMap = new HashMap<String, String>();
+	        	
+	        	SortedMap<Object, Object> paySingMap = new TreeMap<Object, Object>();
 	        	paySingMap.put("appid", wx.getAppId());
 	        	paySingMap.put("noncestr", WxPayUtil.generateNonceStr());
 	        	paySingMap.put("package", "Sign=WXPay");
@@ -59,9 +62,10 @@ public class WeChatPayController extends BaseController {
 	        	paySingMap.put("prepayid", r.get("partner_id"));
 	        	paySingMap.put("timeStamp", new Date().getTime()/1000+"");
 	        	
-	        	String pay_sing = WxPayUtil.generateSignature(data, wx.getMchKey());
+	        	String pay_sing = WxPayUtil.createSign("utf-8", paySingMap, wx.getMchKey());
 	        	r.put("paySign", pay_sing);
 		        r.put("timeStamp", new Date().getTime()/1000+"");
+		        r.put("openid", userInfo.getOpenid());
 		        
 		        request.setAttribute("result", r);
 	        }

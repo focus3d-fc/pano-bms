@@ -2,6 +2,8 @@ package com.focus3d.pano.wechat.utils;
 
 
 import com.focus3d.pano.wechat.utils.WxSignTypeEnum;
+import com.focustech.common.utils.MD5Util;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Node;
@@ -296,5 +298,24 @@ public class WxPayUtil {
     public static String generateUUID() {
         return UUID.randomUUID().toString().replaceAll("-", "").substring(0, 32);
     }
+    
+    
+	public static String createSign(String characterEncoding,SortedMap<Object,Object> parameters, String key){
+		StringBuffer sb = new StringBuffer();
+		Set es = parameters.entrySet();
+		Iterator it = es.iterator();
+		while(it.hasNext()) {
+			Map.Entry entry = (Map.Entry)it.next();
+			String k = (String)entry.getKey();
+			Object v = entry.getValue();
+			if(null != v && !"".equals(v) 
+					&& !"sign".equals(k) && !"key".equals(k)) {
+				sb.append(k + "=" + v + "&");
+			}
+		}
+		sb.append("key=" + key);
+		String sign = MD5Util.MD5Encode(sb.toString(), characterEncoding).toUpperCase();
+		return sign;
+	}
 
 }
