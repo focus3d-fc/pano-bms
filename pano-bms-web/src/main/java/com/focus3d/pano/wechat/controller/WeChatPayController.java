@@ -71,11 +71,9 @@ public class WeChatPayController extends BaseController {
 	            payParam.put("timeStamp", new Date().getTime()/1000+"");
 	            String secondSign = WxPayUtil.generateSignature(payParam, wx.getMchKey());
 	            
-	            r.put("paySign", secondSign);
-		        r.put("timeStamp", new Date().getTime()/1000+"");
-		        r.put("openid", "oHSqcw37i18XF01iXDEasSFpbNZY");
+	            payParam.put("paySign", secondSign);
 		        
-		        request.setAttribute("result", r);
+		        request.setAttribute("result", payParam);
 	        }
 	        
 		}catch(Exception e){
