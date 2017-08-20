@@ -1330,6 +1330,10 @@ function updateElementProductCallback(element,product){
         _data["sn"] = productInfo.elementProductSn;
         _data["position"] = vec_to_string(element.element.position);
         _data["scale"] = (parseFloat($("#product_scale").val())/100.0).toFixed(2).toString();
+        var map = element.element.material.map;
+        if(map){
+            _data["repeat"] = vec_to_string(map.repeat);
+        }
         $.ajax({
             url:"/perspective/elementProductUpdate",
             type: "POST",
