@@ -146,7 +146,6 @@ function View(data){
                     $("#view_entering").modal("hide");
                 });
             });
-
             $("#view_entering").modal("show");
         }
 	});
@@ -412,6 +411,14 @@ function Element(parent,data){
         hide:true
     })
 
+    var _mirror = $("<span></span>",{
+        class:"glyphicon glyphicon-trash mar_l5 mar_r10 mar_t10",
+        click:function(){
+            event.stopPropagation();
+            WebGL.mirror(_this.element);
+        }
+    });
+
     var _delete = $("<span></span>",{
         class:"glyphicon glyphicon-trash mar_l5 mar_r10 mar_t10",
         click:function(){
@@ -451,6 +458,7 @@ function Element(parent,data){
             }
         }
     });
+    this.control.append(_mirror);
     this.control.append(_delete);
     this.control.append(_up);
     this.control.append(_down);
@@ -578,6 +586,14 @@ var WebGL = {
 		var _texture = this.load_texture(url);
 		var _plane = new THREE.PlaneGeometry(1,1,1,1);
 		var _mat = new THREE.MeshLambertMaterial({map:_texture,transparent:true});
+
+        var map = _mat.map;
+        if(map){
+            map.wrapS = THREE.RepeatWrapping;
+            map.wrapT = THREE.RepeatWrapping;
+            map.needsUpdate = true;
+        }
+
 		var mesh = new THREE.Mesh(_plane,_mat);
 		mesh.name = "view_"+id;
 		mesh.scale.set(width,height,1);
@@ -611,6 +627,17 @@ var WebGL = {
             _mat = new THREE.MeshLambertMaterial({transparent:true});
         }
 
+        var map = _mat.map;
+        if(map){
+            map.wrapS = THREE.RepeatWrapping;
+            map.wrapT = THREE.RepeatWrapping;
+            map.needsUpdate = true;
+            if(data.repeat){
+                var vec = string_to_vec(data.repeat);
+                map.repeat.set(vec.x,vec.y);
+            }
+        }
+
         var _plane = new THREE.PlaneGeometry(1,1,1,1);
 
         mesh = new THREE.Mesh(_plane,_mat);
@@ -639,6 +666,14 @@ var WebGL = {
         if(data.url){
            _texture = this.load_texture(data.url);
             element.material.map = _texture;
+        }
+
+        var map = element.material.map;
+        if(map){
+            if(data.repeat){
+                var vec = string_to_vec(data.repeat);
+                map.repeat.set(vec.x,vec.y);
+            }
         }
 
         if(data.width&&data.height){
