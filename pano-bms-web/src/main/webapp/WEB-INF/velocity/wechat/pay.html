@@ -25,16 +25,20 @@
 	                function(res){
 	                    if(res.err_msg == "get_brand_wcpay_request:ok" ) {
 	                        alert('支付成功');
-	                        //这里写支付成功跳转的页面
+	                        //支付成功插入合并订单表数据，修改订单表状态
+	                        location.href="/usersSide/toPayAllorder";
 	                    }else if(res.err_msg == "get_brand_wcpay_request:cancel") {
 	                        alert('支付过程中用户取消');
 	                        //这里写支付取消跳转的页面
+	                        //留在原页面
 	                    }else if(res.err_msg == "get_brand_wcpay_request:fail") {
 	                        alert('支付失败');
 	                        //这里写支付失败跳转的页面
+	                        //留在原页面
 	                    }else {
 	                        alert('未知异常');
 	                        //这里写支付异常跳转的页面
+	                        //留在原页面
 	                    }
 	                }
 	        );

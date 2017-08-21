@@ -124,4 +124,16 @@ public class PersonalServiceImpl implements PersonalService {
 		personalDAO.upOrder(or);
 	}
 
+	@Override
+	public List<pano_order> selOrderbyOrderSN(Long ORDER_SN) {
+		// TODO Auto-generated method stub
+		return personalDAO.selOrderbyOrderSN(ORDER_SN);
+	}
+
+	@Override
+	public void upOrderStatus(pano_order or) {
+		// TODO Auto-generated method stub
+		personalDAO.upOrderStatus(or);
+	}
+
 }

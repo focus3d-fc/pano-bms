@@ -136,9 +136,10 @@
 		</div>
 	</div>
 	<!--提交订单弹窗-->
-	<div class="wrap1">
+	<!-- 	<div class="wrap1">
 		<div id="confirm">
-			<form action="">
+			<form method="post"
+				action="/wechat/testPay?ORDER_SN=$!{orderList.ORDER_SN}">
 				<div class="confirm-title">
 					输入下列验证码意味着您确认合同内容并且签署此合同
 					<div class="confirm-close">
@@ -153,33 +154,133 @@
 					<i class=" iconfont">&#xe66f;</i> <input type="text"
 						placeholder="验证码"> <span id="j_getVerifyCode">获取验证码</span>
 				</div>
-				<button type="submit">立即验证</button>
+				<button id="toSubmit" type="submit">立即验证</button>
+			</form>
+		</div>
+	</div> -->
+	<div class="wrap1">
+		<div id="confirm">
+			<!-- <form action="/usersSide/toVerify" method="post"> -->
+			<form method="post">
+				<div class="confirm-title">
+					输入下列验证码意味着您确认合同内容并且签署此合同
+					<div class="confirm-close">
+						<i class="iconfont">&#xe70c;</i>
+					</div>
+				</div>
+				<div class="row">
+					<i class=" iconfont">&#xe61b;</i> <input type="tel" name="phone"
+						placeholder="请输入手机号" id="j_phone" />
+				</div>
+				<div class="row">
+					<i class=" iconfont">&#xe66f;</i> <input type="text" id="verify"
+						placeholder="验证码" /> <span id="j_getVerifyCode">获取验证码</span> <span
+						id="msg"></span>
+				</div>
+				<button id="toSubmit" type="submit">立即验证</button>
 			</form>
 		</div>
 	</div>
+	<script>
+		$(function() {
+			$("#toSubmit").click(toSubmit);
+		})
+
+		function toSubmit() {
+			var path = window.document.location.href.substring(0,
+					window.document.location.href
+							.indexOf(window.document.location.pathname));
+			var phone = $("#j_phone").val();
+			var verify = $("#verify").val();
+			console.log("手机号：" + phone + "，验证码：" + verify);
+			$
+					.ajax({
+						url : path + "/usersSide/toVerify",
+						type : "post",
+						data : {
+							"phone" : phone,
+							"verify" : verify
+						},
+						datatype : "json",
+						success : function(result) {
+							var msg = JSON.parse(result);
+							var ORDER_SN=$!{orderList.ORDER_SN};
+							console.log("msg:" + msg);
+							if (msg == "success") {
+								$.ajax({
+					    			url:path+"/wechat/perPay",
+					    			type:"post",
+					    		    data:{"ORDER_SN":ORDER_SN},
+					    		    datatype:"json",
+					    		    success:function(result){
+					    		    	var msg_topay=JSON.parse(result);
+					    		    	if(msg_topay=="yeslogin"){
+					    		    		alert("2.进入success方法");
+					    		    		location.href="/wechat/pay";
+					    		    	}else{
+					    		    		alert("尚未微信登陆！");
+					    		    	}
+					    		    }
+					    		});
+/* 								location.href = "/wechat/testPay?ORDER_SN=$!{orderList.ORDER_SN}"; */
+							} else {
+								$("#msg").html("验证码错误");
+							}
+
+							//location.href="/usersSide/toYM";
+						}
+					});
+
+		}
+	</script>
+
 	<!--注册验证-->
 	<script>
+		//toSubmit
 		//获取手机验证码-登录
-		$("#j_getVerifyCode").on("click", getVerifyCode({
-			callBack : function() {//按钮点击后的回调函数，-----必须-----
-				//在这里你还是可以对你的按钮进行操作
-				alert("验证码发送成功");
-			},
-			time : 60,//定时时间，以秒为单位，默认60秒
-			getCurrentTime : function(time) {//获取倒计时当前时间
-			},
-			isPhone : true,//是否为发送手机验证码，如果是则会验证手机号格式，-----必须-----
-			getPhone : function() {//获取手机号，此处一定要return
-				return $("#j_phone").val();
-			},
-			phoneReg : /^1[34578]\d{9}$/,//手机号验证正则
-			phoneCallBack : function() {//当手机号有误时的回调，默认会中止操作
-				alert("您输入的手机号有误");
-			},
-			timeIsUpText : "重新发送",//倒计时时间到了后按钮所显示文字
-			timeRunnigText : "s后重新发送",//倒计时时间正在走的时候按钮所显示文字。默认为"xxs后重新获取"
-			unabledClass : "unlabed"//按钮不能用的样式，即点击按钮后的样式
-		}));
+		$("#j_getVerifyCode")
+				.on(
+						"click",
+						getVerifyCode({
+							callBack : function() {//按钮点击后的回调函数，-----必须-----
+								//在这里你还是可以对你的按钮进行操作
+								//alert("验证码发送成功");
+								var path = window.document.location.href
+										.substring(
+												0,
+												window.document.location.href
+														.indexOf(window.document.location.pathname));
+								var phone = $("#j_phone").val();
+								console.log("手机号：" + phone);
+								$.ajax({
+									url : path
+											+ "/usersSide/getVerifyCode_order",
+									type : "post",
+									data : {
+										"phone" : phone
+									}
+								/* ,
+								    		    datatype:"json",
+								    		    success:function(result){
+								    		    	var projectList=JSON.parse(result);
+								    		    } */
+								});
+							},
+							time : 60,//定时时间，以秒为单位，默认60秒
+							getCurrentTime : function(time) {//获取倒计时当前时间
+							},
+							isPhone : true,//是否为发送手机验证码，如果是则会验证手机号格式，-----必须-----
+							getPhone : function() {//获取手机号，此处一定要return
+								return $("#j_phone").val();
+							},
+							phoneReg : /^1[34578]\d{9}$/,//手机号验证正则
+							phoneCallBack : function() {//当手机号有误时的回调，默认会中止操作
+								alert("您输入的手机号有误");
+							},
+							timeIsUpText : "重新发送",//倒计时时间到了后按钮所显示文字
+							timeRunnigText : "s后重新发送",//倒计时时间正在走的时候按钮所显示文字。默认为"xxs后重新获取"
+							unabledClass : "unlabed"//按钮不能用的样式，即点击按钮后的样式
+						}));
 
 		//    点击确认订单消失
 		$(function() {

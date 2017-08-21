@@ -123,4 +123,17 @@ public class PersonalDAOImpl extends BaseDao implements PersonalDAO {
 		getSqlMapClientTemplate().update("OrderRelevance.upOrder", or);
 	}
 
+	@Override
+	public List<pano_order> selOrderbyOrderSN(Long ORDER_SN) {
+		List<pano_order> list = (List<pano_order>) getSqlMapClientTemplate()
+				.queryForList("OrderRelevance.selOrderbyOrderSN", ORDER_SN);
+		return list;
+	}
+
+	@Override
+	public void upOrderStatus(pano_order or) {
+		// TODO Auto-generated method stub
+		getSqlMapClientTemplate().update("OrderRelevance.upOrderStatus", or);
+	}
+
 }

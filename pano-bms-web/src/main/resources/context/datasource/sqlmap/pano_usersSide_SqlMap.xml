@@ -2,6 +2,50 @@
 
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">  
 <sqlMap>
+<!-- 修改订单表状态 -->
+<update id="update_orderStatus" parameterType="com.focus3d.pano.model.pano_order">
+    update pano_order 
+    set STATUS=#STATUS#
+    where ORDER_NUM=#ORDER_NUM#
+</update>
+<!-- 向合并订单表插入数据 -->
+<insert id="insert_Merge" parameterClass="com.focus3d.pano.model.pano_order_merge">
+insert into pano_order_merge
+(ORDER_NUM,MERGE_ORDER_NUM) 
+values
+(#ORDER_NUM#,#MERGE_ORDER_NUM#)
+</insert>
+
+
+<!-- 插叙订单 -->
+<select id="get_selectOrderByHouse_Pack_Sn" parameterClass="long" 
+                         resultClass="com.focus3d.pano.model.pano_order">
+
+SELECT
+pano_order.ORDER_NUM,
+pano_order.ORDER_TIME,
+pano_order.`STATUS`,
+pano_order.TOTAL_PRICE,
+pano_order.ADDRESS_SN,
+pano_order.USER_SN,
+pano_order.SN
+FROM
+pano_order
+INNER JOIN pano_order_item ON pano_order_item.ORDER_SN = pano_order.SN
+INNER JOIN pano_project_house_package ON pano_order_item.HOUSE_PACKAGE_SN = pano_project_house_package.SN
+where pano_project_house_package.SN=#house_package_sn#
+<!-- SELECT
+pano_order.SN,
+pano_order.ORDER_NUM,
+pano_order.ORDER_TIME,
+pano_order.TOTAL_PRICE
+FROM
+pano_project_house_package
+INNER JOIN pano_order_item ON pano_order_item.HOUSE_PACKAGE_SN = pano_project_house_package.SN
+INNER JOIN pano_order ON pano_order_item.ORDER_SN = pano_order.SN -->
+</select>
+
+
 <!-- 查询导航图 -->
 <select id="list_selectPanoSkinList" resultClass="com.focus3d.pano.model.panoSkin">
 SELECT
@@ -223,8 +267,12 @@ INNER JOIN pano_order_shopcart ON pano_order_shopcart.HOUSE_PACKAGE_SN = pano_pr
 where pano_order_shopcart.USER_SN=#user_sn#;
 </select>
  <!-- <typeAlias alias="style" type="com.focus3d.pano.model.Style" /> -->
- <select id="selectAdImg_sn" resultClass="long">
- select img_sn from pano_ad
+ <select id="selectAdImg_sn" resultClass="com.focus3d.pano.model.pano_ad">
+ SELECT
+pano_ad.IMG_SN,
+pano_ad.LINK
+FROM
+pano_ad
  </select>
  <!-- 查风格img_sn和name -->
  <select id="selectStyleByProject_sn" parameterClass="long" 
@@ -392,9 +440,9 @@ where pano_mem_user.MOBILE=#phone#
  <!-- 手机号登陆-向用户表插入数据 -->
  <insert id="insert_UserMsg_Phone" parameterClass="string">
  insert into pano_mem_user
-(MOBILE) 
+(MOBILE,SEX) 
 values
-(#MOBILE#)
+(#MOBILE#,2)
  </insert>
  
  

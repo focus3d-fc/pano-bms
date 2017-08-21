@@ -25,6 +25,7 @@ import com.focus3d.pano.model.PanoProjectPackageType;
 import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.Style;
 import com.focus3d.pano.model.panoSkin;
+import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_mem_user;
 import com.focus3d.pano.model.pano_order;
 import com.focus3d.pano.model.pano_project;
@@ -38,7 +39,7 @@ import com.focus3d.pano.wechat.utils.Constants;
 import com.focus3d.pano.wechat.utils.UserInfo;
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.JsonUtils;
-//     /userside/toindex       /usersSide/toIndex
+//            /usersSide/toIndex
 @Controller
 @RequestMapping("/usersSide")
 public class UsersSideController extends BaseController{
@@ -57,8 +58,12 @@ public class UsersSideController extends BaseController{
 		//从广告表取img_sn集合
 		System.out.println("进入/toIndex方法");
 		
-		List<Long> adImg_snList=usersSideService.selectAdImg_sn();
-		model.addAttribute("adImg_snList",adImg_snList);
+		List<pano_ad> adList=usersSideService.selectAdImg_sn();
+		for(int i=0;i<adList.size();i++){
+			System.out.println("广告:"+adList);
+		}
+		
+		model.addAttribute("adList",adList);
 		
 		//根据楼盘信息，查询楼盘sn
 		String province=request.getParameter("province");
@@ -277,55 +282,78 @@ public class UsersSideController extends BaseController{
 		String jsonProject=	JsonUtils.objectToJson(msg);
 		this.ajaxOutput(response,jsonProject);
 	}
+	
+	@RequestMapping("/exitLogin")
+	public String exitLogin(HttpSession session){
+		session.removeAttribute("userMsg_phone");
+		System.out.println("退出登录，销毁userMsg_phone");
+		return this.redirect("/userside/tologin");
+	}
+	
+	
 	@RequestMapping("/tocar")
 	public String tocar(HttpServletRequest request,HttpSession session){
 		System.out.println("进入tocar方法:");
-		//查询显示在购物车里的属性信息
-		long user_sn=(Long)session.getAttribute("user_sn");
-		List<AddToCar> addToCarList=usersSideService.get_selectAddToCar2(user_sn);
-		System.out.println("addToCarList:"+addToCarList);
-		request.setAttribute("addToCarList",addToCarList);
-		return "/usersside/car";
+		pano_mem_user userMsg_phone =(pano_mem_user) session.getAttribute("userMsg_phone");
+		if(userMsg_phone==null){
+			return this.redirect("/userside/tologin");
+		}else{
+			//查询显示在购物车里的属性信息
+			long user_sn=userMsg_phone.getSN();
+			List<AddToCar> addToCarList=usersSideService.get_selectAddToCar2(user_sn);
+			System.out.println("addToCarList:"+addToCarList);
+			request.setAttribute("addToCarList",addToCarList);
+			return "/usersSide/car";
+			
+		}
+		
+		
 	}
 	@RequestMapping("/addToCar")
 	public void addToCar(String packageSn,HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception{
 		System.out.println("进入/addToCar方法");
-		
-		
-		//判断是否已经登录，如果没登陆就跳到登陆页面
-		/*if(){
-			
-			
-		}*/
-		
-		//这里packageSn是户型套餐表主键,不是套餐表主键
-		long house_package_sn=EncryptUtil.decode(packageSn);
-		System.out.println("house_package_sn套餐sn:"+house_package_sn);
-		//long package_sn=Long.parseLong(request.getParameter("package_sn"));
-		//查询购物车里是否已经添加该套餐，如果已经添加了那么此次点击就是删掉，如果没有添加就添加进去
-		List<AddToCar> packageList_only=usersSideService.selectCarByPackage_sn(house_package_sn);
-		System.out.println("packageList_only集合长度:"+packageList_only.size());
-		if(packageList_only.size()==0){
-			//此方法仅作为查询pano_project_house_package.SN as house_package_sn
-			List<AddToCar> addToCarList_only=usersSideService.get_selectAddToCar(house_package_sn);
-			System.out.println("addToCarList_only:"+addToCarList_only);
-			//long house_package_sn=addToCarList_only.get(0).getHouse_package_sn();
-			//向购物车表插入数据-------------------------------------------------------------------------		
-			
-		//private long USER_SN;---------------登陆后获得
-		//private long HOUSE_PACKAGE_SN;------上有
-		//private int PURCHASE_NUM;-----------默认1
-			
-			long USER_SN=(Long)session.getAttribute("user_sn");
-			usersSideService.add_ShopCar(USER_SN,house_package_sn);
-		}else{
-			//long house_package_sn=packageList_only.get(0).getHouse_package_sn();
-			//通过house_package_sn删除购物车表记录
-			usersSideService.delete_shopCarByHouse_package_sn(house_package_sn);
-			//System.out.println("删除购物车完成");
-		}
-		System.out.println("操作购物车结束");
+		pano_mem_user userMsg_phone =(pano_mem_user) session.getAttribute("userMsg_phone");
 		String msg="";
+		//判断是否已经登录，如果没登陆就跳到登陆页面
+		if(userMsg_phone==null){
+			//如果用户未登录
+			msg="nologin";
+			
+		}else if(userMsg_phone!=null){
+			//如果已登录
+			//这里packageSn是户型套餐表主键,不是套餐表主键
+			long house_package_sn=EncryptUtil.decode(packageSn);
+			System.out.println("house_package_sn套餐sn:"+house_package_sn);
+			//long package_sn=Long.parseLong(request.getParameter("package_sn"));
+			//查询购物车里是否已经添加该套餐，如果已经添加了那么此次点击就是删掉，如果没有添加就添加进去
+			List<AddToCar> packageList_only=usersSideService.selectCarByPackage_sn(house_package_sn);
+			System.out.println("packageList_only集合长度:"+packageList_only.size());
+			if(packageList_only.size()==0){
+				//此方法仅作为查询pano_project_house_package.SN as house_package_sn
+				List<AddToCar> addToCarList_only=usersSideService.get_selectAddToCar(house_package_sn);
+				System.out.println("addToCarList_only:"+addToCarList_only);
+				//long house_package_sn=addToCarList_only.get(0).getHouse_package_sn();
+				//向购物车表插入数据-------------------------------------------------------------------------		
+				
+			//private long USER_SN;---------------登陆后获得
+			//private long HOUSE_PACKAGE_SN;------上有
+			//private int PURCHASE_NUM;-----------默认1
+				
+				long USER_SN=userMsg_phone.getSN();
+				usersSideService.add_ShopCar(USER_SN,house_package_sn);
+			}else{
+				//long house_package_sn=packageList_only.get(0).getHouse_package_sn();
+				//通过house_package_sn删除购物车表记录
+				usersSideService.delete_shopCarByHouse_package_sn(house_package_sn);
+				//System.out.println("删除购物车完成");
+			}
+			System.out.println("操作购物车结束");
+			
+			msg="yeslogin";
+		}
+		
+		
+		
 		String jsonProject=	JsonUtils.objectToJson(msg);
 		this.ajaxOutput(response,jsonProject);
 		//return "/usersside/720-tc";
@@ -492,11 +520,16 @@ public class UsersSideController extends BaseController{
 		@RequestMapping("/toconfirm_YM")
 		public String toconfirm_YM(HttpSession session,HttpServletRequest request){
 			System.out.println("进入/toconfirm_YM方法:");
-			long USER_SN=(Long) session.getAttribute("user_sn");
+			//userMsg_phone
+			pano_mem_user userMsg_phone =(pano_mem_user) session.getAttribute("userMsg_phone");
+			long USER_SN = userMsg_phone.getSN();
+			//long USER_SN=(Long) session.getAttribute("user_sn");
 			//显示默认地址信息
 			List<pano_user_receive_address> address = personalService
 					.selAddressbyDef(USER_SN);
-			request.setAttribute("address", address.get(0));
+			if(address.size()>0){
+				request.setAttribute("address", address.get(0));
+			}
 			
 			//查询显示
 			//order_numList
@@ -640,14 +673,36 @@ BigDecimal total_price=new BigDecimal(total_price_.substring(1,total_price_.leng
 			//return "/usersside/index";
 			return this.redirect("/usersSide/toIndex");
 		}
-		/*@RequestMapping("/toTest")
-	    public void toYM(String packageSn) throws Exception{
-			System.out.println("进入/toTest方法");
-			//String str="UEUyeKALoATG";
-			long package_sn=EncryptUtil.decode(packageSn);
-			System.out.println("package_sn套餐sn:"+package_sn);
+		/**
+		 * 支付订单--------------------------------------------------
+		 */
+		@RequestMapping("/toPayAllorder")
+	    public String toPayAllorder(HttpSession session) throws Exception{
+			System.out.println("进入/toPayAllorder方法");
+			List<pano_order> order_List =(List<pano_order>) session.getAttribute("order_List_chindren");
+			String All_order_num =(String) session.getAttribute("All_order_num");
+			//向合并订单表插入数据
+			String ORDER_NUM="";
+			//System.out.println("订单集合长度："+order_List);
+			if(order_List!=null){
+				for(int i=0;i<order_List.size();i++){
+                    //for(int i=0;i<5;i++){//测试代码
+                    ORDER_NUM=order_List.get(i).getORDER_NUM();
+                    usersSideService.insert_Merge(ORDER_NUM,All_order_num);
+                    System.out.println("插入合并订单表完成");
+                    //修改订单表状态
+                    int STATUS=3;
+                    usersSideService.update_orderStatus(STATUS,ORDER_NUM);
+                    System.out.println("修改订单状态完成");
+                }
+			}else{
+				System.out.println("订单为空");
+			}
 			
-		}*/
+			
+			return this.redirect("/usersSide/toIndex");
+			
+		}
 	
 	
 	

@@ -61,4 +61,10 @@ public interface PersonalDAO {
 	// 根据订单号查询订单
 	public List<OrderRelevance> selOrderbySN(Long ORDER_SN);
 
+	// 根据订单号查询订单
+	public List<pano_order> selOrderbyOrderSN(Long ORDER_SN);
+
+	// 修改订单状态
+	public void upOrderStatus(pano_order or);
+
 }

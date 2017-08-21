@@ -40,10 +40,10 @@
             </a>
         </div>
         <div class="swiper-container">
-            <div class="swiper-wrapper">
-                #foreach ($!{adImg_sn} in $!{adImg_snList})
-                <a href="about.html" class="swiper-slide">
-                    <img id="dtli" src="$!fs.url($!adImg_sn)">
+            <div class="swiper-wrapper"><!-- http://   about.html-->
+                #foreach ($!{ad} in $!{adList})
+                <a href="$!{ad.LINK}" class="swiper-slide">
+                    <img id="dtli" src="$!fs.url($!ad.IMG_SN)">
                 </a>
                 #end
             </div>

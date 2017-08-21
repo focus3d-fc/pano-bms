@@ -14,10 +14,12 @@ import com.focus3d.pano.model.Pano_Order_Shopcart;
 import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.Style;
 import com.focus3d.pano.model.panoSkin;
+import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_mem_user;
 import com.focus3d.pano.model.pano_order;
 import com.focus3d.pano.model.pano_order_item;
 import com.focus3d.pano.model.pano_order_logtc;
+import com.focus3d.pano.model.pano_order_merge;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
 import com.focus3d.pano.model.pano_project_space;
@@ -26,8 +28,8 @@ import com.focus3d.pano.usersside.dao.UsersSideDAO;
 public class UsersSideDAOImpl  extends BaseDao implements UsersSideDAO{
 //List<User> userList=(List<User>) getSqlMapClientTemplate().queryForList("limit",page);
 	@Override
-	public List<Long> selectAdImg_sn() {
-		List<Long> AdImg_snList=(List<Long>) getSqlMapClientTemplate().
+	public List<pano_ad> selectAdImg_sn() {
+		List<pano_ad> AdImg_snList=(List<pano_ad>) getSqlMapClientTemplate().
 				queryForList("selectAdImg_sn");
 		return AdImg_snList;
 	}
@@ -241,6 +243,24 @@ public class UsersSideDAOImpl  extends BaseDao implements UsersSideDAO{
 	@Override
 	public void insert_UserMsg_Phone(String MOBILE) {
 		getSqlMapClientTemplate().insert("insert_UserMsg_Phone",MOBILE);
+	}
+
+	@Override
+	public List<pano_order> get_selectOrderByHouse_Pack_Sn(long house_pack_sn) {
+		List<pano_order> order_List_only=(List<pano_order>) getSqlMapClientTemplate().
+				queryForList("get_selectOrderByHouse_Pack_Sn",house_pack_sn);
+		return order_List_only;
+	}
+
+	@Override
+	public void insert_Merge(pano_order_merge merge) {
+		getSqlMapClientTemplate().insert("insert_Merge",merge);
+	}
+
+	@Override
+	public void update_orderStatus(pano_order order) {
+		getSqlMapClientTemplate().update("update_orderStatus",order);
+		
 	}
 	
 

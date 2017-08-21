@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.focus3d.pano.common.controller.BaseController;
 import com.focus3d.pano.model.OrderRelevance;
 import com.focus3d.pano.model.pano_mem_user;
+import com.focus3d.pano.model.pano_order;
 import com.focus3d.pano.model.pano_user_receive_address;
 import com.focus3d.pano.usersside.service.PersonalService;
 
@@ -265,6 +267,8 @@ public class PersonalController extends BaseController {
 		return "/userside/paid";
 	}
 
+	Long ORDER_SN_CONFIRM;
+
 	/**
 	 * 进入支付
 	 */
@@ -273,9 +277,54 @@ public class PersonalController extends BaseController {
 		List<pano_user_receive_address> address = personalService
 				.selAddressbyDef(USER_SN);
 		request.setAttribute("address", address.get(0));
-		Long ORDER_SN = Long.parseLong(request.getParameter("ORDER_SN"));
-		List<OrderRelevance> orderList = personalService.selOrderbySN(ORDER_SN);
+		ORDER_SN_CONFIRM = Long.parseLong(request.getParameter("ORDER_SN"));
+		List<OrderRelevance> orderList = personalService
+				.selOrderbySN(ORDER_SN_CONFIRM);
 		request.setAttribute("orderList", orderList.get(0));
 		return "/userside/confirm";
+	}
+
+	/**
+	 * 进入支付2
+	 */
+	@RequestMapping("/toconfirm2")
+	public String toconfirm2(HttpServletRequest request) {
+		List<pano_user_receive_address> address = personalService
+				.selAddressbyDef(USER_SN);
+		request.setAttribute("address", address.get(0));
+		List<OrderRelevance> orderList = personalService
+				.selOrderbySN(ORDER_SN_CONFIRM);
+		request.setAttribute("orderList", orderList.get(0));
+		return "/userside/confirm";
+	}
+
+	// --------------------------------------------支付--------------------------------------------
+
+	/**
+	 * 支付成功
+	 */
+	@RequestMapping("/paysuccess")
+	public String paysuccess(HttpServletRequest request, HttpSession session) {
+		pano_order order = (pano_order) session.getAttribute("order");
+		Long SN = order.getSN();
+		pano_order uporder = new pano_order();
+		uporder.setSN(SN);
+		uporder.setSTATUS(3);
+		personalService.upOrderStatus(uporder);
+		return redirect("toorderAll");
+	}
+
+	/**
+	 * 支付成功
+	 */
+	@RequestMapping("/paycancel")
+	public String paycancel(HttpServletRequest request, HttpSession session) {
+		pano_order order = (pano_order) session.getAttribute("order");
+		Long SN = order.getSN();
+		pano_order uporder = new pano_order();
+		uporder.setSN(SN);
+		uporder.setSTATUS(2);
+		personalService.upOrderStatus(uporder);
+		return redirect("topaying");
 	}
 }

@@ -52,6 +52,8 @@
                   <s class="col"> ￥$!{addToCar.package_discount_price}</s>
                   <p class="col get">×<span class="this_count get"></span></p>
               </div>
+              <input type="hidden" class="house_package_sn_hidden" 
+                                       value="$!{addToCar.house_package_sn}"/>
           </div>
           <div class="row">
            <p>购买数量</p>
@@ -64,6 +66,14 @@
           #end
           <!--  -->
           <div class="row">
+          <input type="text" class="house_package_sn_hidden" 
+                                       value="1.这里因为没有全景看不到效果，仅用于模拟获取订单信息"/>
+          <input type="text" class="house_package_sn_hidden" 
+                                       value="2.这里因为没有全景看不到效果，仅用于模拟获取订单信息"/>
+          <input type="hidden" class="house_package_sn_hidden" 
+                                       value="3.这里因为没有全景看不到效果，仅用于模拟获取订单信息"/>
+          <input type="hidden" class="house_package_sn_hidden" 
+                                       value="4.这里因为没有全景看不到效果，仅用于模拟获取订单信息"/>
               <p>请输入兑换优惠码：</p>
               <p>
                   <span class="square">1</span>
@@ -92,8 +102,6 @@
               </p>
           </div>
           <div class="total">
-              <!--  -->
-              <!-- <input class="hidden_price_this_sum" type="hidden" value="$!{price_sum}"/> -->
               
               共 <span id="package_count"></span>件套餐 合计￥<span class="red price_all"></span>元
               
@@ -229,7 +237,32 @@ function toSubmit(){
 	    	var msg=JSON.parse(result);
 	    	console.log("msg:"+msg);
 	    	if(msg=="success"){
-	    		location.href="/usersSide/toYM";
+	    		//获取所有订单sn,发到后台方法
+	    		var house_packArr = document.getElementsByClassName("house_package_sn_hidden");
+	    		var house_pack_strs="";
+	    		for(var i=0;i<house_packArr.length;i++){
+	    			house_pack_strs=house_pack_strs+"/"+$(house_packArr[i]).val();
+	    		}
+	    		console.log("house_pack_strs:"+house_pack_strs);
+	    		//把户型订单sn发到/wechat/testPay，用户查询订单信息，连接支付
+	    		 var price_all_pay=$(".price_all").html();
+	    		$.ajax({
+	    			url:path+"/wechat/testPay",
+	    			type:"post",
+	    		    data:{"house_pack_strs":house_pack_strs,"price_all_pay":price_all_pay},
+	    		    datatype:"json",
+	    		    success:function(result){
+	    		    	var msg_topay=JSON.parse(result);
+	    		    	if(msg_topay=="yeslogin"){
+	    		    		location.href="/wechat/pay";
+	    		    	}else{
+	    		    		alert("尚未微信登陆！");
+	    		    	}
+	    		    }
+	    		});
+	    		
+	    		
+	    		//location.href="/usersSide/toYM";
 	    	}else{
 	    		$("#msg").html("验证码错误");
 	    	}

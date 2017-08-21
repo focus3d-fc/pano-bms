@@ -82,10 +82,23 @@ public class usersideController extends BaseController {
 	public String toconfirm() {
 		return "/userside/confirm";
 	}
+	
 
 	@RequestMapping("/tologin")
-	public String tologin() {
-		return "/userside/login";
+	public String tologin(HttpSession session) {
+		pano_mem_user userMsg_phone =(pano_mem_user) session.getAttribute("userMsg_phone");
+		if(userMsg_phone==null){
+			System.out.println("未登录");
+			return "/userside/login";
+		}else{
+			System.out.println("已登录");
+			return this.redirect("/userside/tomy");
+		}
+		
+		
+		
+		
+		
 	}
 
 	@RequestMapping("/toorderAll")
@@ -118,8 +131,9 @@ public class usersideController extends BaseController {
 		System.out.println("进入个人中心----");
 		pano_mem_user userMsg_phone=(pano_mem_user) session.getAttribute("userMsg_phone");
 		Long SN = userMsg_phone.getSN();//Long.parseLong(request.getParameter("SN"));
-		System.out.println("用户sn:"+SN);
+		System.out.println("1.用户sn:"+SN);
 		pano_mem_user memuser = personalService.selUserbySN(SN);
+		System.out.println("2.用户sn:"+SN);
 		request.setAttribute("memuser", memuser);
 		return "/userside/my";
 	}

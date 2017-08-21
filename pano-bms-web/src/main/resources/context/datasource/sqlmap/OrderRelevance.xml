@@ -198,4 +198,24 @@
 		USER_SN=#USER_SN#
 		where SN = #SN#
 	</update>
+
+	<select id="selOrderbyOrderSN" resultClass="com.focus3d.pano.model.pano_order"
+		parameterClass="Long">
+		SELECT
+		pano_order.SN,
+		pano_order.USER_SN,
+		pano_order.ORDER_NUM,
+		pano_order.`STATUS`,
+		pano_order.TOTAL_PRICE
+		FROM
+		pano_order
+	</select>
+
+	<update id="upOrderStatus" parameterClass="com.focus3d.pano.model.pano_order">
+		update
+		pano_order
+		SET
+		pano_order.`STATUS`=#STATUS#
+		where SN = #SN#
+	</update>
 </sqlMap>
