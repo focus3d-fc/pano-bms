@@ -262,11 +262,9 @@ public class PerspectiveQuery extends BaseController {
 				if (child.get("elementProductSn") != null) {
 					Long mapid = Long.parseLong(child.get("mapid").toString());
 					Map<String, String> map = client.getFile(mapid);
-					json.put("elementProductSn", child.get("elementProductSn")
-							.toString());
+					json.put("elementProductSn", child.get("elementProductSn").toString());
 					json.put("mapid", EncryptUtil.encode(mapid));
-					json.put("url",
-							map.get(FileAttributeEnum.VISIT_ADDR.name()));
+					json.put("url",map.get(FileAttributeEnum.VISIT_ADDR.name()));
 					json.put("width", map.get(FileAttributeEnum.WIDTH.name()));
 					json.put("height", map.get(FileAttributeEnum.HEIGHT.name()));
 					json.put("position", child.get("position").toString());
@@ -421,7 +419,7 @@ public class PerspectiveQuery extends BaseController {
 				PanoPerspectiveElementProduct product = _service.QueryElementProductInfo(elementProductSn);
 				Map<String, String> map = client.getFile(product
 						.getProductMap());
-				jsonObject.put("sn", product.getSn());
+				jsonObject.put("elementProductSn", product.getSn());
 				jsonObject.put("url",
 						map.get(FileAttributeEnum.VISIT_ADDR.name()));
 				jsonObject
@@ -432,7 +430,7 @@ public class PerspectiveQuery extends BaseController {
 				jsonObject.put("scale", product.getScale());
 				jsonObject.put("repeating", product.getRepeating());
 			} else {
-				jsonObject.put("sn", "");
+				jsonObject.put("elementProductSn", "");
 				jsonObject.put("url", "");
 				jsonObject.put("width", "");
 				jsonObject.put("height", "");

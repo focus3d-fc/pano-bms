@@ -1236,25 +1236,22 @@ function initProductResult(element,data){
         var td_id = $("<td></td>").text(product.id);
         var td_name = $("<td></td>").text(product.name);
 
-        var check_box = $("<input type='checkbox'/>").attr("disabled","disabled").on("click",function (element,product_tr,elementProductSn) {
+        var check_box = $("<input type='checkbox'/>").attr("disabled","disabled").on("change",function (element,product_tr) {
             return function () {
-                event.stopPropagation();
+                //event.stopPropagation();
                 if($(this).is(":checked")){
                     $("#prodcut_container input:checked").prop("checked",false);
                     $(this).prop("checked",true);
                 }
-                var _elementProductSn = "";
-                if($(this).is(":checked")){
-                    _elementProductSn = elementProductSn;
-                }
-                updateElementExhibtionMap(element,product_tr,_elementProductSn);
+
+                updateElementExhibtionMap(element,product_tr,$(this).is(":checked"));
             }
-        }(element,_tr,product.elementProductSn));
+        }(element,_tr));
 
         if(product.elementProductSn){
             check_box.removeAttr("disabled");
         }
-        if(element.data.elementProductSn == product.elementProductSn){
+        if(element.data.elementProductSn!=undefined &&  product.elementProductSn!=undefined && element.data.elementProductSn == product.elementProductSn){
             check_box.prop("checked",true);
         }
         var control =  $("<td></td>").append(check_box);
@@ -1330,6 +1327,7 @@ function updateElementProductCallback(element,product){
         _data["sn"] = productInfo.elementProductSn;
         _data["position"] = vec_to_string(element.element.position);
         _data["scale"] = (parseFloat($("#product_scale").val())/100.0).toFixed(2).toString();
+
         var map = element.element.material.map;
         if(map){
             _data["repeating"] = vec_to_string(map.repeat);
@@ -1420,11 +1418,16 @@ function updateElementProductCallback(element,product){
     });*/
 }
 //更新图元默认显示图片
-function updateElementExhibtionMap(element,product,elementProductSn){
+function updateElementExhibtionMap(element,product,checked){
     event.stopPropagation();
     var _data = new Object();
-    _data["elementProductSn"] = elementProductSn;
-    var nameN = product.data("data");
+
+    var productInfo = product.data("data");
+    if(checked){
+        _data["elementProductSn"] = productInfo.elementProductSn;
+    }else{
+        _data["elementProductSn"] = "";
+    }
     _data["sn"] = element.data.elementId;
     _data["elementName"] = element.data.name;
     $.ajax({
