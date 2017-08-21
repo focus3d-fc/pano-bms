@@ -8,27 +8,16 @@ var layer_control;
 var layer_container;
 var element_control;
 var element_container;
-
 var webgl_control;
-
 var _offset;
-
 var upload_url = "http://file.joy-homeplus.com/pano/fs/upload";
-
 var upload_data;
-
 var house_style_sn;
-
 var space_sn;
-
 var view_sn;
-
 var edit_element;
-
 var edit_layer;
-
 var view_validator;
-
 var layer_validator;
 
 function createView(data){
@@ -139,11 +128,14 @@ function View(data){
             $("#view_mapid").val( _this.data.mapid);
 
             $("#view_save").off("click").on("click",function () {
-                updateView(function(data){
-                    _this.data = data;
-                    _this.reLoad(data);
-                    $("#view_entering").modal("hide");
-                });
+                view_validator = $("#view_form").validate();
+                if($("#view_form").valid()) {
+                    updateView(function (data) {
+                        _this.data = data;
+                        _this.reLoad(data);
+                        $("#view_entering").modal("hide");
+                    });
+                }
             });
             $("#view_entering").modal("show");
         }
