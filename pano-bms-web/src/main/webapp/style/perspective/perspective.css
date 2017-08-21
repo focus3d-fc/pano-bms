@@ -46,7 +46,7 @@ vertical-align: top; letter-spacing: normal; }
 #left-top { width:800px; margin:0;height: 30px;position:absolute;}
 #space_container, #view_container #layer_container #element_container { overflow: hidden; zoom: 1; background: #000; border: 1px solid #000; height: 36px; line-height:36px; }
 #space_container li, #view_container li #layer_container li #element_container li { float: left; color: #fff; height: 30px; cursor: pointer; line-height: 30px; list-style-type: none; padding: 0 20px; }
-#WebGl-Output {width: 800px; height: 580px; background:#9BCCEB; display:block;margin:0px;}
+#WebGl-Output {width: 800px; height: 600px; background:#9BCCEB; display:block;margin:0px;}
 #view {  height:55px;border-bottom:1px solid #e6e6e6;border-right:1px solid #e6e6e6;}
 
 #view ul li{float:left;margin:0px;padding:20px 20px;display:block; border-left:1px solid #e6e6e6;}

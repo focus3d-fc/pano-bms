@@ -411,15 +411,11 @@ function ExchangeProduct(element){
     			var f = jsonobj.MATERIAL_IMG_SN;
     			var myArray=new Array(a,b,c,d,e,f);
 
-
     			for(var i = 0; i < myArray.length; i++){ 
     				var imgsn=parseFloat(myArray[i]);
     				$("#image").attr("src","$!fs.url(imgsn)"); 
     			}
- 
-    			
     		}
-    	
     })
     
 }

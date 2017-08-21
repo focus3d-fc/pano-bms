@@ -473,6 +473,7 @@ function Element(parent,data){
         Element.prototype.delete = function(){
         	WebGL.delete(this.parent,this.element);
 			this.node.remove();
+            ControlElementClear();
         };
         Element._initialized = true;
     }
@@ -494,7 +495,7 @@ var WebGL = {
 	init:function(){
         _offset = WebGL_Container.offset();
 		scene = new THREE.Scene();
-		camera = new THREE.OrthographicCamera(-400,400,290,-290,0,1000);
+		camera = new THREE.OrthographicCamera(-400,400,300,-300,0,1000);
 		//camera = new THREE.PerspectiveCamera(45,WebGL_Container.width()/WebGL_Container.height(),0,1000);
 		camera.position.set(0,0,1000);
 		camera.lookAt(scene.position);

@@ -639,20 +639,13 @@ public class PerspectiveQuery extends BaseController {
 								Long elementMapKey = product.getProductMap();
 								Map<String, String> elementMapFile = client
 										.getFile(elementMapKey);
-								map.put("elementMapUrl", elementMapFile
-										.get(FileAttributeEnum.VISIT_ADDR
-												.name()));
-								map.put("elementMapWidth", elementMapFile
-										.get(FileAttributeEnum.WIDTH.name()));
-								map.put("elementMapHeight", elementMapFile
-										.get(FileAttributeEnum.HEIGHT.name()));
-								map.put("elementMapId",
-										EncryptUtil.encode(elementMapKey));
-
+								map.put("elementMapUrl", elementMapFile.get(FileAttributeEnum.VISIT_ADDR.name()));
+								map.put("elementMapWidth", elementMapFile.get(FileAttributeEnum.WIDTH.name()));
+								map.put("elementMapHeight", elementMapFile.get(FileAttributeEnum.HEIGHT.name()));
+								map.put("elementMapId",EncryptUtil.encode(elementMapKey));
 								map.put("position", product.getPosition());
 								map.put("scale", product.getScale());
 								map.put("repeating", product.getRepeating());
-								System.out.println(product.getScale());
 								break;
 							}
 						}
