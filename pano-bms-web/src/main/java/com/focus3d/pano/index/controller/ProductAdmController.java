@@ -200,7 +200,7 @@ public class ProductAdmController extends BaseController{
 			e1.printStackTrace();
 		}
 	
-		System.out.println(prodt.getId()+prodt.getName()+prodt.getTypeSn());
+		System.out.println(prodt.getSn()+"----"+prodt.getId()+prodt.getName()+prodt.getTypeSn());
 		
 		
 	  String jsonprodt=	JsonUtils.objectToJson(prodt);
@@ -264,7 +264,8 @@ public class ProductAdmController extends BaseController{
 					long fbcimgsn = EncryptUtil.decode(fabricImgSn1);
 					pro.setFabricImgSn(fbcimgsn);
 					}
-			productAdmService.updateProduct(pro);
+			boolean bo=productAdmService.updateProduct(pro);
+			System.out.println("aaaaaaa"+bo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("-------------aaaaaaa");

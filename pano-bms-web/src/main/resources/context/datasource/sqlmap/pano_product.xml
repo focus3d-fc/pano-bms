@@ -92,7 +92,7 @@ LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn
   	</select>
 	
 	<select id="getProductBySn" resultClass="product" parameterClass="java.lang.String">
-	    select SN, ID, NAME, BRAND, PRICE, STATUS, SUMMARY, LEFT_IMG_SN as leftImgSn, DOWN_IMG_SN as downImgSn,
+	    select sn, ID, NAME, BRAND, PRICE, STATUS, SUMMARY, LEFT_IMG_SN as leftImgSn, DOWN_IMG_SN as downImgSn,
   FULL_IMG_SN as fullImgSn, BANNER_IMG_SN as bannerImgSn, TYPE_SN as typeSn, FUNC_SN as funcSn, SPACE_SN as spaceSn,
 	     STYLE_SN as styleSn, LENGTH, WIDE, HEIGHT, MATERIAL_NAME as materialName,
       MATERIAL_IMG_SN as materialImgSn, FABRIC_NAME as fabricName, FABRIC_IMG_SN as fabricImgSn, COLOR, MODEL, 
