@@ -61,11 +61,10 @@
 
 		$(function() {
 			WebGL_Container = $("#WebGl-OutPut");
-			$("#Confirm_Select").on("click", function() {
-				
+			$("#Confirm_Select").on("click", function(){
 				window.loaction.href="/usersSide/carshow2";
 			});
-			var rate = 800 / 580.0;
+			var rate = 4 / 3;
 			var width = WebGL_Container.width();
 			var height = parseInt(width / rate);
 			WebGL_Container.height(height);

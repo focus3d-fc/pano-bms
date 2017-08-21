@@ -15,23 +15,26 @@
            house_style_sn = "";
            var space = $.parseJSON('$!space');
            house_style_sn = '$!house_style_sn';
-           for(var i=0;i<space.length;i++){
-               var li = $("<li></li>",{
-                   text:space[i].NAME
-               }).on("click",function(){
-                   $(this).parent().children().each(function () {
-                       $(this).removeClass("space_selected");
-                   })
+           if(space.length!=0){
+               $("#view_insert").show();
+               for(var i=0;i<space.length;i++){
+                   var li = $("<li></li>",{
+                       text:space[i].NAME
+                   }).on("click",function(){
+                       $(this).parent().children().each(function () {
+                           $(this).removeClass("space_selected");
+                       })
 
-                   if(!$(this).hasClass("space_selected")){
-                       $(this).addClass("space_selected");
-                       query_view($(this).attr("id"));
-                   }
-               }).attr("id",space[i].SN);
-               $("#space_container").append(li);
+                       if(!$(this).hasClass("space_selected")){
+                           $(this).addClass("space_selected");
+                           query_view($(this).attr("id"));
+                       }
+                   }).attr("id",space[i].SN);
+                   $("#space_container").append(li);
+               }
+               $("#space_container").append($("<div class='clr'></div>"));
+               $("#space_container").children().first().trigger("click");
            }
-           $("#space_container").append($("<div class='clr'></div>"));
-           $("#space_container").children().first().trigger("click");
        }
     </script>
 </head>
@@ -47,7 +50,7 @@
     <div id="view">
         <ul id="view_container" class="mar0pad0">
         </ul>
-        <button id="view_insert" class="btn glyphicon glyphicon-plus float_r mar_t10 mar_r10" data-toggle="modal"/>
+        <button id="view_insert" class="btn glyphicon glyphicon-plus float_r mar_t10 mar_r10" data-toggle="modal" style="display: none"/>
             <div class="clr"></div>
     </div>
 
@@ -76,7 +79,7 @@
 </div>
 
 
-<div id="element_upload" style="position: absolute;left:860px;top:500px;display:;background:#e8e8e8;padding:20px;border-radius:4px;">
+<div id="element_upload" style="position: absolute;left:860px;top:500px;display:;background:#e8e8e8;padding:20px;border-radius:4px;display: none;">
     <div style="width:280px;height:300px;border:1px solid #ddd;display:block;margin:0 auto;">
         <img id="element_pic" style="width:auto;height:auto;text-align:center;"/>
     </div>
@@ -164,7 +167,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
-                <button type="button" class="btn btn-primary" id="view_save" style="">保存
+                <button type="button" class="btn btn-primary" id="view_save" style="display: none">保存
                 </button>
             </div>
         </div>

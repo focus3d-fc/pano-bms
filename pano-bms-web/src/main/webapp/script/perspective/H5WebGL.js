@@ -159,6 +159,17 @@ var WebGL = {
             _mat = new THREE.MeshLambertMaterial({transparent:true});
         }
 
+        var map = _mat.map;
+        if(map){
+            map.wrapS = THREE.RepeatWrapping;
+            map.wrapT = THREE.RepeatWrapping;
+            map.needsUpdate = true;
+            if(data.repeating){
+                var vec = string_to_vec(data.repeating);
+                map.repeat.set(vec.x,vec.y);
+            }
+        }
+
         var _plane = new THREE.PlaneGeometry(1,1,1,1);
 
         mesh = new THREE.Mesh(_plane,_mat);
@@ -187,6 +198,17 @@ var WebGL = {
         if(data.url){
             _texture = this.load_texture(data.url);
             element.material.map = _texture;
+        }
+
+        var map = element.material.map;
+        if(map){
+            map.wrapS = THREE.RepeatWrapping;
+            map.wrapT = THREE.RepeatWrapping;
+            map.needsUpdate = true;
+            if(data.repeating){
+                var vec = string_to_vec(data.repeating);
+                map.repeat.set(vec.x,vec.y);
+            }
         }
 
         if(data.width&&data.height){
@@ -346,6 +368,7 @@ function QueryViewAllProductsCallback(data){
                     element_data.elementOrder = layer.render.children.length + 1;
                     element_data.position = _data.position;
                     element_data.scale = _data.scale;
+                    element_data.repeating = _data.repeating;
                     element_data.url = _data.elementMapUrl;
                     element_data.width = _data.elementMapWidth;
                     element_data.height = _data.elementMapHeight;
@@ -388,15 +411,11 @@ function ExchangeProduct(element){
     			var f = jsonobj.MATERIAL_IMG_SN;
     			var myArray=new Array(a,b,c,d,e,f);
 
-
     			for(var i = 0; i < myArray.length; i++){ 
     				var imgsn=parseFloat(myArray[i]);
     				$("#image").attr("src","$!fs.url(imgsn)"); 
     			}
- 
-    			
     		}
-    	
     })
     
 }

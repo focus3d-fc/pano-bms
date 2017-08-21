@@ -8,27 +8,16 @@ var layer_control;
 var layer_container;
 var element_control;
 var element_container;
-
 var webgl_control;
-
 var _offset;
-
 var upload_url = "http://file.joy-homeplus.com/pano/fs/upload";
-
 var upload_data;
-
 var house_style_sn;
-
 var space_sn;
-
 var view_sn;
-
 var edit_element;
-
 var edit_layer;
-
 var view_validator;
-
 var layer_validator;
 
 function createView(data){
@@ -121,7 +110,6 @@ function View(data){
         id:"control",
         class:"float_r mar0pad0"
     });
-
 	var _delete = $("<span>",{
     	class:"glyphicon glyphicon-trash mar_l5",
         click:function(){
@@ -140,17 +128,18 @@ function View(data){
             $("#view_mapid").val( _this.data.mapid);
 
             $("#view_save").off("click").on("click",function () {
-                updateView(function(data){
-                    _this.data = data;
-                    _this.reLoad(data);
-                    $("#view_entering").modal("hide");
-                });
+                view_validator = $("#view_form").validate();
+                if($("#view_form").valid()) {
+                    updateView(function (data) {
+                        _this.data = data;
+                        _this.reLoad(data);
+                        $("#view_entering").modal("hide");
+                    });
+                }
             });
-
             $("#view_entering").modal("show");
         }
 	});
-
     this.control.append(_delete);
     this.control.append(_edit);
 	this.node.append(this.node_name);
@@ -412,6 +401,14 @@ function Element(parent,data){
         hide:true
     })
 
+    var _mirror = $("<span></span>",{
+        class:"glyphicon glyphicon-road mar_l5 mar_r10 mar_t10",
+        click:function(){
+            event.stopPropagation();
+            WebGL.mirror(_this.element);
+        }
+    });
+
     var _delete = $("<span></span>",{
         class:"glyphicon glyphicon-trash mar_l5 mar_r10 mar_t10",
         click:function(){
@@ -451,6 +448,7 @@ function Element(parent,data){
             }
         }
     });
+    this.control.append(_mirror);
     this.control.append(_delete);
     this.control.append(_up);
     this.control.append(_down);
@@ -467,6 +465,7 @@ function Element(parent,data){
         Element.prototype.delete = function(){
         	WebGL.delete(this.parent,this.element);
 			this.node.remove();
+            ControlElementClear();
         };
         Element._initialized = true;
     }
@@ -488,7 +487,7 @@ var WebGL = {
 	init:function(){
         _offset = WebGL_Container.offset();
 		scene = new THREE.Scene();
-		camera = new THREE.OrthographicCamera(-400,400,290,-290,0,1000);
+		camera = new THREE.OrthographicCamera(-400,400,300,-300,0,1000);
 		//camera = new THREE.PerspectiveCamera(45,WebGL_Container.width()/WebGL_Container.height(),0,1000);
 		camera.position.set(0,0,1000);
 		camera.lookAt(scene.position);
@@ -578,6 +577,14 @@ var WebGL = {
 		var _texture = this.load_texture(url);
 		var _plane = new THREE.PlaneGeometry(1,1,1,1);
 		var _mat = new THREE.MeshLambertMaterial({map:_texture,transparent:true});
+
+        var map = _mat.map;
+        if(map){
+            map.wrapS = THREE.RepeatWrapping;
+            map.wrapT = THREE.RepeatWrapping;
+            map.needsUpdate = true;
+        }
+
 		var mesh = new THREE.Mesh(_plane,_mat);
 		mesh.name = "view_"+id;
 		mesh.scale.set(width,height,1);
@@ -611,6 +618,17 @@ var WebGL = {
             _mat = new THREE.MeshLambertMaterial({transparent:true});
         }
 
+        var map = _mat.map;
+        if(map){
+            map.wrapS = THREE.RepeatWrapping;
+            map.wrapT = THREE.RepeatWrapping;
+            map.needsUpdate = true;
+            if(data.repeating){
+                var vec = string_to_vec(data.repeating);
+                map.repeat.set(vec.x,vec.y);
+            }
+        }
+
         var _plane = new THREE.PlaneGeometry(1,1,1,1);
 
         mesh = new THREE.Mesh(_plane,_mat);
@@ -641,6 +659,17 @@ var WebGL = {
             element.material.map = _texture;
         }
 
+        var map = element.material.map;
+        if(map){
+            map.wrapS = THREE.RepeatWrapping;
+            map.wrapT = THREE.RepeatWrapping;
+            map.needsUpdate = true;
+            if(data.repeating){
+                var vec = string_to_vec(data.repeating);
+                map.repeat.set(vec.x,vec.y);
+            }
+        }
+
         if(data.width&&data.height){
             if(data.scale){
                 var scale = new THREE.Vector3(parseFloat(data.width),parseFloat(data.height),1);
@@ -656,6 +685,17 @@ var WebGL = {
         if(data.position){
             var pos = string_to_vec(data.position);
             element.position.set(pos.x,pos.y,element.position.z);
+        }
+    },
+    mirror:function (element) {
+        var map = element.material.map;
+        if(map){
+            var repeatX = parseFloat(map.repeat.x);
+            repeatX = -1 * repeatX;
+            map.wrapS = THREE.RepeatWrapping;
+            map.wrapT = THREE.RepeatWrapping;
+            map.needsUpdate = true;
+            map.repeat.set(repeatX,1);
         }
     },
     resetScale:function(element,scale){
@@ -752,8 +792,8 @@ $(function(){
 
 
     $("#view_insert").on("click",function () {
-        $("#view_save").off("click").on("click",function () {
-            if(space_sn){
+        if(space_sn){
+            $("#view_save").off("click").on("click",function () {
                 view_validator = $("#view_form").validate();
                 if($("#view_form").valid()){
                     updateView(function(data){
@@ -763,9 +803,9 @@ $(function(){
                         $("#view_entering").modal("hide");
                     });
                 }
-            }
-        });
-        $("#view_entering").modal("show");
+            });
+            $("#view_entering").modal("show");
+        }
     });
 
     //图元上传插件初始化
@@ -945,6 +985,7 @@ function query_viewproducts(key){
                             element_data.elementOrder = layer.layer.children.length + 1;
                             element_data.position = _data.position;
                             element_data.scale = _data.scale;
+                            element_data.repeating = _data.repeating;
                             element_data.url = _data.elementMapUrl;
                             element_data.width = _data.elementMapWidth;
                             element_data.height = _data.elementMapHeight;
@@ -961,7 +1002,6 @@ function query_viewproducts(key){
 function query_layer(){
 
 }
-
 //查询图元
 function query_element(layer){
     var _data = {};
@@ -1000,7 +1040,6 @@ function query_element(layer){
         }
     });
 }
-
 //更新或者添加视角
 function updateView(callback){
     var _data = {};
@@ -1032,7 +1071,6 @@ function ClearViewEnterning(){
     $("#view_save").data("data",null);
     $("#")
 }
-
 //更新或者添加层
 function  updateLayer(layer_sn,callback) {
     var _data = {};
@@ -1144,7 +1182,6 @@ function createElementContainer(){
         element_control.append(element_container);
     }
 }
-
 //查询图元即套餐分类下的所有关联产品
 function query_elementProduct(element){
     var _data = {};
@@ -1161,7 +1198,6 @@ function query_elementProduct(element){
         }
     })
 }
-
 //构造图元多产品显示结果集
 function initProductResult(element,data){
     $("#elementProductClose").trigger("click");
@@ -1192,25 +1228,22 @@ function initProductResult(element,data){
         var td_id = $("<td></td>").text(product.id);
         var td_name = $("<td></td>").text(product.name);
 
-        var check_box = $("<input type='checkbox'/>").attr("disabled","disabled").on("click",function (element,product_tr,elementProductSn) {
+        var check_box = $("<input type='checkbox'/>").attr("disabled","disabled").on("change",function (element,product_tr) {
             return function () {
-                event.stopPropagation();
+                //event.stopPropagation();
                 if($(this).is(":checked")){
                     $("#prodcut_container input:checked").prop("checked",false);
                     $(this).prop("checked",true);
                 }
-                var _elementProductSn = "";
-                if($(this).is(":checked")){
-                    _elementProductSn = elementProductSn;
-                }
-                updateElementExhibtionMap(element,product_tr,_elementProductSn);
+
+                updateElementExhibtionMap(element,product_tr,$(this).is(":checked"));
             }
-        }(element,_tr,product.elementProductSn));
+        }(element,_tr));
 
         if(product.elementProductSn){
             check_box.removeAttr("disabled");
         }
-        if(element.data.elementProductSn == product.elementProductSn){
+        if(element.data.elementProductSn!=undefined &&  product.elementProductSn!=undefined && element.data.elementProductSn == product.elementProductSn){
             check_box.prop("checked",true);
         }
         var control =  $("<td></td>").append(check_box);
@@ -1223,7 +1256,6 @@ function initProductResult(element,data){
     }
     ResultExhibtion();
 }
-
 //切换显示图元中关联各产品图片
 function updateElementProductCallback(element,product){
     ElementUploadHide();
@@ -1287,6 +1319,11 @@ function updateElementProductCallback(element,product){
         _data["sn"] = productInfo.elementProductSn;
         _data["position"] = vec_to_string(element.element.position);
         _data["scale"] = (parseFloat($("#product_scale").val())/100.0).toFixed(2).toString();
+
+        var map = element.element.material.map;
+        if(map){
+            _data["repeating"] = vec_to_string(map.repeat);
+        }
         $.ajax({
             url:"/perspective/elementProductUpdate",
             type: "POST",
@@ -1295,6 +1332,7 @@ function updateElementProductCallback(element,product){
             success:function(data){
                 if(data){
                     $.extend(element.data,data);
+                    productInfo = data;
                     product.find("input[type='checkbox']").removeAttr("disabled");
                     $("#product_"+data.sn).data("data",data);
                 }
@@ -1371,13 +1409,17 @@ function updateElementProductCallback(element,product){
         })
     });*/
 }
-
 //更新图元默认显示图片
-function updateElementExhibtionMap(element,product,elementProductSn){
+function updateElementExhibtionMap(element,product,checked){
     event.stopPropagation();
     var _data = new Object();
-    _data["elementProductSn"] = elementProductSn;
-    var nameN = product.data("data");
+
+    var productInfo = product.data("data");
+    if(checked){
+        _data["elementProductSn"] = productInfo.elementProductSn;
+    }else{
+        _data["elementProductSn"] = "";
+    }
     _data["sn"] = element.data.elementId;
     _data["elementName"] = element.data.name;
     $.ajax({
@@ -1422,6 +1464,7 @@ function deleteElement(element){
         success:function(data){
             if(data){
                 element.delete();
+                ControlElementClear();
             }
         }
     });

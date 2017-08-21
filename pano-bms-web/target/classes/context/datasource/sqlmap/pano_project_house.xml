@@ -41,8 +41,17 @@
 	<update id="upHousetype" parameterClass="housestype">
 		update
 		pano_project_house
-		set
-		`NAME`=#NAME#,IMG_SN=#IMG_SN#
+		<dynamic prepend="SET">
+			<isNotEmpty prepend="AND" property="NAME">
+				pano_project_house.`NAME`=#NAME#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="IMG_SN">
+				pano_project_house.IMG_SN=#IMG_SN#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="UPDATE_TIME">
+				pano_project_house.UPDATE_TIME=#UPDATE_TIME#
+			</isNotEmpty>
+		</dynamic>
 		where SN = #SN#
 	</update>
 

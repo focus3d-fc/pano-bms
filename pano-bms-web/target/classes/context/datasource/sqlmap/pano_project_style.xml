@@ -41,8 +41,8 @@
 	<insert id="addHousestyle" parameterClass="styles">
 		insert into
 		pano_project_style
-		(`NAME`,IMG_SN,ADD_TIME,PROJECT_SN)
-		values(#NAME#,#IMG_SN#,#ADD_TIME#,#PROJECT_SN#)
+		(`NAME`,ADD_TIME,PROJECT_SN)
+		values(#NAME#,#ADD_TIME#,#PROJECT_SN#)
 	</insert>
 
 </sqlMap>

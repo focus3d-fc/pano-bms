@@ -227,6 +227,7 @@ public class PerspectiveQuery extends BaseController {
 					json.put("height", map.get(FileAttributeEnum.HEIGHT.name()));
 					json.put("position", child.get("position").toString());
 					json.put("scale", child.get("scale").toString());
+					json.put("repeating", child.get("repeating").toString());
 				}
 
 				array.add(json);
@@ -261,15 +262,14 @@ public class PerspectiveQuery extends BaseController {
 				if (child.get("elementProductSn") != null) {
 					Long mapid = Long.parseLong(child.get("mapid").toString());
 					Map<String, String> map = client.getFile(mapid);
-					json.put("elementProductSn", child.get("elementProductSn")
-							.toString());
+					json.put("elementProductSn", child.get("elementProductSn").toString());
 					json.put("mapid", EncryptUtil.encode(mapid));
-					json.put("url",
-							map.get(FileAttributeEnum.VISIT_ADDR.name()));
+					json.put("url",map.get(FileAttributeEnum.VISIT_ADDR.name()));
 					json.put("width", map.get(FileAttributeEnum.WIDTH.name()));
 					json.put("height", map.get(FileAttributeEnum.HEIGHT.name()));
 					json.put("position", child.get("position").toString());
 					json.put("scale", child.get("scale").toString());
+					json.put("repeating", child.get("repeating").toString());
 				}
 				array.add(json);
 			}
@@ -416,11 +416,10 @@ public class PerspectiveQuery extends BaseController {
 			JSONObject jsonObject = new JSONObject();
 			Long elementProductSn = model.getElementProductSn();
 			if (elementProductSn != null) {
-				PanoPerspectiveElementProduct product = _service
-						.QueryElementProductInfo(elementProductSn);
+				PanoPerspectiveElementProduct product = _service.QueryElementProductInfo(elementProductSn);
 				Map<String, String> map = client.getFile(product
 						.getProductMap());
-				jsonObject.put("sn", product.getSn());
+				jsonObject.put("elementProductSn", product.getSn());
 				jsonObject.put("url",
 						map.get(FileAttributeEnum.VISIT_ADDR.name()));
 				jsonObject
@@ -429,13 +428,15 @@ public class PerspectiveQuery extends BaseController {
 						map.get(FileAttributeEnum.HEIGHT.name()));
 				jsonObject.put("position", product.getPosition());
 				jsonObject.put("scale", product.getScale());
+				jsonObject.put("repeating", product.getRepeating());
 			} else {
-				jsonObject.put("sn", "");
+				jsonObject.put("elementProductSn", "");
 				jsonObject.put("url", "");
 				jsonObject.put("width", "");
 				jsonObject.put("height", "");
 				jsonObject.put("position", "");
 				jsonObject.put("scale", "");
+				jsonObject.put("repeating", "");
 			}
 
 			ajaxOutput(response, jsonObject.toString());
@@ -468,6 +469,7 @@ public class PerspectiveQuery extends BaseController {
 			jsonObject.put("height", map.get(FileAttributeEnum.HEIGHT.name()));
 			jsonObject.put("position", model.getPosition());
 			jsonObject.put("scale", model.getScale());
+			jsonObject.put("repeating", model.getRepeating());
 
 			ajaxOutput(response, jsonObject.toString());
 		} catch (IOException e) {
@@ -635,19 +637,13 @@ public class PerspectiveQuery extends BaseController {
 								Long elementMapKey = product.getProductMap();
 								Map<String, String> elementMapFile = client
 										.getFile(elementMapKey);
-								map.put("elementMapUrl", elementMapFile
-										.get(FileAttributeEnum.VISIT_ADDR
-												.name()));
-								map.put("elementMapWidth", elementMapFile
-										.get(FileAttributeEnum.WIDTH.name()));
-								map.put("elementMapHeight", elementMapFile
-										.get(FileAttributeEnum.HEIGHT.name()));
-								map.put("elementMapId",
-										EncryptUtil.encode(elementMapKey));
-
+								map.put("elementMapUrl", elementMapFile.get(FileAttributeEnum.VISIT_ADDR.name()));
+								map.put("elementMapWidth", elementMapFile.get(FileAttributeEnum.WIDTH.name()));
+								map.put("elementMapHeight", elementMapFile.get(FileAttributeEnum.HEIGHT.name()));
+								map.put("elementMapId",EncryptUtil.encode(elementMapKey));
 								map.put("position", product.getPosition());
 								map.put("scale", product.getScale());
-								System.out.println(product.getScale());
+								map.put("repeating", product.getRepeating());
 								break;
 							}
 						}
@@ -678,15 +674,14 @@ public class PerspectiveQuery extends BaseController {
 				Long mapKey = product.getProductMap();
 				Map<String, String> mapFile = client.getFile(mapKey);
 				info.put("productSn", product.getProductSn());
-				info.put("url",
-						mapFile.get(FileAttributeEnum.VISIT_ADDR.name()));
+				info.put("url",mapFile.get(FileAttributeEnum.VISIT_ADDR.name()));
 				info.put("width", mapFile.get(FileAttributeEnum.WIDTH.name()));
 				info.put("height", mapFile.get(FileAttributeEnum.HEIGHT.name()));
 				info.put("position", product.getPosition());
 				info.put("scale", product.getScale());
+				info.put("repeating", product.getRepeating());
 
-				if (product.getProductSn().longValue() == product_sn
-						.longValue()) {
+				if (product.getProductSn().longValue() == product_sn.longValue()) {
 					product_info.add(0, info);
 				} else {
 					product_info.add(info);
@@ -718,20 +713,16 @@ public class PerspectiveQuery extends BaseController {
 		String packageTypeSn =request.getParameter("packageTypeSn");
 		String productSn =request.getParameter("product_sn");
 		// 验证有没有透视图
-		Map<String, Object> map = QueryPerspectiveByProductSn(houseStyleSn,
-				packageTypeSn, productSn);
+		Map<String, Object> map = QueryPerspectiveByProductSn(houseStyleSn,packageTypeSn,productSn);
 
 		int num = Integer.parseInt(map.get("count").toString());
 
 		if (num != 0) {
 			model_map.put("viewlist", map.get("list"));
-
-			List<ProductRelevance> proList = productRelevanceService
-					.selProbySN(Long.parseLong(productSn));
+			List<ProductRelevance> proList = productRelevanceService.selProbySN(Long.parseLong(productSn));
 			request.setAttribute("proList", proList.get(0));
 
-			List<ProductRelevance> ImgList = productRelevanceService
-					.selImgbySN(Long.parseLong(productSn));
+			List<ProductRelevance> ImgList = productRelevanceService.selImgbySN(Long.parseLong(productSn));
 			List<Long> images = new ArrayList<Long>();
 			for (ProductRelevance productRelevance : ImgList) {
 				images.add(productRelevance.getLEFT_IMG_SN());
@@ -743,7 +734,6 @@ public class PerspectiveQuery extends BaseController {
 			}
 			request.setAttribute("images", images);
 			return "/perspective/pro";
-
 		}
 
 		return this.redirect("/usersSide/carshow2");
