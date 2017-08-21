@@ -2,8 +2,9 @@
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="renderer" content="webkit"> 
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>产品管理</title>
    <link href="/style/bootstrap.min.css" rel="stylesheet">
@@ -16,6 +17,7 @@
 <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
 <link rel="stylesheet" href="/component/upload/css/jquery.fileupload.css">
 <script src="/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/script/jquery.validate.min.js"></script>
 <script src="/script/bootstrap.min-3.3.5.js"></script>
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <script src="/component/upload/vendor/jquery.ui.widget.js"></script>
@@ -36,6 +38,17 @@
 <script src="/component/upload/js/jquery.fileupload-validate.js"></script>
 <script src="/script/member/user/product.js"></script>
 <script src="/script/member/user/product1.js"></script>
+<style type="text/css">
+  .col-sm-2 {
+    width: 6.66666667%;
+}
+.error{
+     color:#e33;
+   }
+   p{
+    word-wrap:break-word;
+  }
+</style>
 <script type="text/javascript">
 function move(pageNum,pageSize){
 	   //var pageSize=document.getElementById("pageSize").value;
@@ -58,10 +71,16 @@ function move(pageNum,pageSize){
 	   location.href=url;
 }
 
-   
+   //原先用跳转页面逻辑添加
     function  addpro(){
     	location.href="/productadm/preaddpro";
     }
+   
+   //返回
+   function goback(){
+	   location.href="/productadm/listproduct";
+   }
+   
     //每次点击添加要清已添加得预览图片的div
     function preaddpro(){
     	$("#files").text("");
@@ -274,11 +293,277 @@ function move(pageNum,pageSize){
 	                    $(this).attr("selected",true);
 	              }
 	         });
-	    	
-	 	
+	  
+	   //表单验证	
+	    	$("#register").validate({
+				rules : {
+					id : {
+						required : true
+					},
+					name:{
+						required:true,
+						checkName:true
+					}, 
+					typeSn:{
+						required:true
+					},
+					styleSn:{
+						required:true
+					},
+					funcSn:{
+						required:true
+					},
+					dimension:{
+						required:true,
+						checkDimension:true
+					},
+					materialName:{
+						required:true,
+						checkMaterialName:true
+					},
+	               materialColor:{
+	            	   required:true,
+	            	   checkMaterialColor:true
+	               },
+				  fabricName:{
+					  required:true,
+					  checkFabricName:true
+				  },
+				  fabricColor:{
+					  required:true,
+					  checkFabricColor:true
+				  },
+				  lr:{
+					  required:true
+				  },
+				  lrRound:{
+					  required:true
+				  },
+				  workManShip:{
+					  required:true,
+					  checkWorkManShip:true
+				  },
+				  price:{
+					  required:true,
+					  checkPrice:true,
+					  checkPrice2:true
+				  },
+				  summary:{
+					  required:true,
+					  checkSummary:true
+				  }
+				},
+				messages : {
+					id : {
+						required:"*必填！"
+					},
+				    name:{
+					    required:"*必填！"
+				    }, 
+				    typeSn:{
+				    	required:"*必填！"
+				    },
+				    styleSn:{
+				    	required:"*必填！"
+				    },
+				    funcSn:{
+				    	required:"*必填！"
+				    },
+				    dimension:{
+					    required:"*必填！"
+				   },
+				   materialName:{
+					   required:"*必填！"
+				   },
+				   materialColor:{
+					   required:"*必填！"
+				   },
+				   fabricName:{
+					   required:"*必填！"
+				   },
+				   fabricColor:{
+					   required:"*必填！" 
+				   },
+				   lr:{
+					   required:"*必填！"  
+				   },
+				   lrRound:{
+					   required:"*必填！" 
+				   },
+				   workManShip:{
+					   required:"*必填！" 
+				   },
+				   price:{
+					   required:"*必填！"  
+				   },
+				   summary:{
+					   required:"*必填！"  
+				   }
+				},
+			//是否在获取焦点时验证  
+			//onfocusout:true,  
+			//是否在敲击键盘时验证  
+			//onkeyup:true,  
+			//提交表单后，（第一个）未通过验证的表单获得焦点  
+			focusInvalid:true,  
+			//当未通过验证的元素获得焦点时，移除错误提示  
+			focusCleanup:true  
+			});
+	    	$("#upprodt").validate({
+				rules : {
+					id : {
+						required : true
+					},
+					name:{
+						required:true,
+						checkName:true
+					}, 
+					typeSn:{
+						required:true
+					},
+					styleSn:{
+						required:true
+					},
+					funcSn:{
+						required:true
+					},
+					dimension:{
+						required:true,
+						checkDimension:true
+					},
+					materialName:{
+						required:true,
+						checkMaterialName:true
+					},
+	               materialColor:{
+	            	   required:true,
+	            	   checkMaterialColor:true
+	               },
+				  fabricName:{
+					  required:true,
+					  checkFabricName:true
+				  },
+				  fabricColor:{
+					  required:true,
+					  checkFabricColor:true
+				  },
+				  lr:{
+					  required:true
+				  },
+				  lrRound:{
+					  required:true
+				  },
+				  workManShip:{
+					  required:true,
+					  checkWorkManShip:true
+				  },
+				  price:{
+					  required:true,
+					  checkPrice:true,
+					  checkPrice2:true
+				  },
+				  summary:{
+					  required:true,
+					  checkSummary:true
+				  }
+				},
+				messages : {
+					id : {
+						required:"*必填！"
+					},
+				    name:{
+					    required:"*必填！"
+				    }, 
+				    typeSn:{
+				    	required:"*必填！"
+				    },
+				    styleSn:{
+				    	required:"*必填！"
+				    },
+				    funcSn:{
+				    	required:"*必填！"
+				    },
+				    dimension:{
+					    required:"*必填！"
+				   },
+				   materialName:{
+					   required:"*必填！"
+				   },
+				   materialColor:{
+					   required:"*必填！"
+				   },
+				   fabricName:{
+					   required:"*必填！"
+				   },
+				   fabricColor:{
+					   required:"*必填！" 
+				   },
+				   lr:{
+					   required:"*必填！"  
+				   },
+				   lrRound:{
+					   required:"*必填！" 
+				   },
+				   workManShip:{
+					   required:"*必填！" 
+				   },
+				   price:{
+					   required:"*必填！"  
+				   },
+				   summary:{
+					   required:"*必填！"  
+				   }
+				},
+			//是否在获取焦点时验证  
+			//onfocusout:true,  
+			//是否在敲击键盘时验证  
+			//onkeyup:true,  
+			//提交表单后，（第一个）未通过验证的表单获得焦点  
+			focusInvalid:true,  
+			//当未通过验证的元素获得焦点时，移除错误提示  
+			focusCleanup:true  
+			});
    });
-       
-
+   $.validator.addMethod("checkName",function(value,element,params){  
+	      var checkName =/^.{1,30}$/;  
+	      return this.optional(element)||(checkName.test(value));  
+	  },"*输入字符超出30字符限制！");  
+	$.validator.addMethod("checkDimension",function(value,element,params){  
+	      var checkDimension =/^[1-9][0-9]{1,5}\*[1-9][0-9]{1,5}\*[1-9][0-9]{1,5}$/;  
+	      return this.optional(element)||(checkDimension.test(value));  
+	  },"*输入参数格式错误，请输入格式如：30*50*80！");  
+	$.validator.addMethod("checkMaterialName", function(value, element) {
+		 var checkMaterialName =/^.{1,40}$/;  
+	      return this.optional(element)||(checkMaterialName.test(value));  
+	  },"*输入字符超出40字符限制！");
+	$.validator.addMethod("checkMaterialColor", function(value, element) {
+		 var checkMaterialColor =/^.{1,30}$/;  
+	      return this.optional(element)||(checkMaterialColor.test(value));  
+	  },"*输入字符超出30字符限制！"); 
+	$.validator.addMethod("checkFabricName", function(value, element) {
+		 var checkFabricName =/^.{1,40}$/;  
+	      return this.optional(element)||(checkFabricName.test(value));  
+	  },"*输入字符超出40字符限制！");
+	$.validator.addMethod("checkFabricColor", function(value, element) {
+		 var checkFabricColor =/^.{1,30}$/;  
+	      return this.optional(element)||(checkFabricColor.test(value));  
+	  },"*输入字符超出30字符限制！"); 
+	$.validator.addMethod("checkWorkManShip", function(value, element) {
+		 var checkWorkManShip =/^.{1,30}$/;  
+	      return this.optional(element)||(checkWorkManShip.test(value));  
+	  },"*输入字符超出30字符限制！"); 
+	$.validator.addMethod("checkPrice", function(value, element) {
+		 var checkPrice =/^[0-9]{1,9}\.[0-9]{1,9}$/;  
+	      return this.optional(element)||(checkPrice.test(value));  
+	  },"*输入格式有误！"); 
+	$.validator.addMethod("checkPrice2", function(value, element) {
+		 var checkPrice2 =/^.{1,10}$/;  
+	      return this.optional(element)||(checkPrice2.test(value));  
+	  },"*输入字符超出10字符限制！"); 
+	$.validator.addMethod("checkSummary", function(value, element) {
+		 var checkSummary =/^.{1,500}$/;  
+	      return this.optional(element)||(checkSummary.test(value));  
+	  },"*输入字符超出500字符限制！"); 
 </script>
 <!-- <script src="/script/member/user/product.js"></script> -->
 </head>
@@ -290,6 +575,9 @@ function move(pageNum,pageSize){
     <div class="panel-body">
         <div class="container">
             <div class="row">
+             <div class="col-sm-2">
+                    <a href="javascript:void(0)" class="btn btn-info"  onclick="goback()">返回</a>
+                </div>
                 <div class="col-sm-8">
                     <form class="form-inline" method="post" action="/productadm/listproduct">
                         <input type="hidden" name="ifscfy" value="true"/>
@@ -376,7 +664,9 @@ function move(pageNum,pageSize){
                 </li>
                <!--  <li class="active"><a href="javascript:void(0)" onclick="move($!page.currentPage,$!page.perPageInt)">$!page.currentPage</a></li> -->
                #foreach ($item in [1..$!{page.totalPage}])
-				<li><a href="/productadm/listproduct?pageNum=$velocityCount">$velocityCount</a></li>
+				<li>
+				<a href="javascript:void(0)"  onclick="move($velocityCount,$!page.perPageInt)">$velocityCount</a>
+				</li>
 				#end
                 <li>
                     <a href="javascript:void(0)" aria-label="Next" onclick="move($!page.currentPage + 1,$!page.perPageInt)">

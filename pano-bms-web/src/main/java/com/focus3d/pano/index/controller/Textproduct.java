@@ -66,7 +66,7 @@ public class Textproduct extends BaseController{
 			String style_name = request.getParameter("style"); 
 			String type_name = request.getParameter("typepr"); 
 			String func_name = request.getParameter("func"); 
-			System.out.println(" /当前页:"+page+" /id："+product_id+" /风格："+style_name+" /类型："+type_name+" /功能："+func_name);
+			System.out.println(" /id："+product_id+" /风格："+style_name+" /类型："+type_name+" /功能："+func_name);
 			if(style_name != null){
 		     if(style_name.equals("不限")){
 		    	 style_name = null;
@@ -82,7 +82,7 @@ public class Textproduct extends BaseController{
 			/**
 			 * 通过分类页面 得到传过来的 楼盘 风格 户型 套餐 分类的Sn
 			 */
-			if(package_sn == null){
+			if(request.getParameter("type") != null){
 			 package_sn = Long.parseLong(request.getParameter("type"));
 			 project_sn = Long.parseLong(request.getParameter("type1"));
 			 house_sn = Long.parseLong(request.getParameter("type2"));
@@ -179,12 +179,13 @@ public class Textproduct extends BaseController{
 			    	System.out.println("产品的SN："+product_sn);
 			    	List<Product> productSn = service.getProductSn(product_sn);
 			    	for(Product pr:productSn){
-			    		System.out.println("sn："+pr.getSn()+" /类型"+pr.getTypeSn()+" /功能："+pr.getFuncSn()+" /风格："+pr.getStyleSn());
+			    		System.out.println("sn："+pr.getSn()+" /////////类型"+pr.getTypeSn()+" /功能："+pr.getFuncSn()+" /风格："+pr.getStyleSn());
 			    		Map map1 = new HashMap();
 			    		map1.put("sn", pr.getSn());
 			    		map1.put("type_sn",pr.getTypeSn());
 			    		map1.put("func_sn", pr.getFuncSn());
 			    		map1.put("style_sn", pr.getStyleSn());
+			    		
 			    		list.add( service.GetMap(map1));
 			    		
 			    		
@@ -193,7 +194,7 @@ public class Textproduct extends BaseController{
 			    request.setAttribute("getMap", list);
 				
 			}else{
-				request.setAttribute("getMap", null);
+				
 			}
 			
 			
