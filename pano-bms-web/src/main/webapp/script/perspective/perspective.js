@@ -1010,7 +1010,6 @@ function query_viewproducts(key){
 function query_layer(){
 
 }
-
 //查询图元
 function query_element(layer){
     var _data = {};
@@ -1049,7 +1048,6 @@ function query_element(layer){
         }
     });
 }
-
 //更新或者添加视角
 function updateView(callback){
     var _data = {};
@@ -1081,7 +1079,6 @@ function ClearViewEnterning(){
     $("#view_save").data("data",null);
     $("#")
 }
-
 //更新或者添加层
 function  updateLayer(layer_sn,callback) {
     var _data = {};
@@ -1193,7 +1190,6 @@ function createElementContainer(){
         element_control.append(element_container);
     }
 }
-
 //查询图元即套餐分类下的所有关联产品
 function query_elementProduct(element){
     var _data = {};
@@ -1210,7 +1206,6 @@ function query_elementProduct(element){
         }
     })
 }
-
 //构造图元多产品显示结果集
 function initProductResult(element,data){
     $("#elementProductClose").trigger("click");
@@ -1272,7 +1267,6 @@ function initProductResult(element,data){
     }
     ResultExhibtion();
 }
-
 //切换显示图元中关联各产品图片
 function updateElementProductCallback(element,product){
     ElementUploadHide();
@@ -1425,7 +1419,6 @@ function updateElementProductCallback(element,product){
         })
     });*/
 }
-
 //更新图元默认显示图片
 function updateElementExhibtionMap(element,product,elementProductSn){
     event.stopPropagation();
@@ -1476,6 +1469,7 @@ function deleteElement(element){
         success:function(data){
             if(data){
                 element.delete();
+                ControlElementClear();
             }
         }
     });

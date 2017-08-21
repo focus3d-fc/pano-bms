@@ -31,12 +31,13 @@
       <file leaf-file-name="perspective.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/perspective.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="473" column="51" lean-forward="true" selection-start-line="473" selection-start-column="51" selection-end-line="473" selection-end-column="51" />
+            <state relative-caret-position="438">
+              <caret line="1471" column="38" lean-forward="true" selection-start-line="1471" selection-start-column="38" selection-end-line="1471" selection-end-column="38" />
               <folding>
                 <element signature="n#!!block;n#createView#0" expanded="false" />
                 <element signature="n#!!block;n#View#0" expanded="false" />
                 <element signature="n#!!block;n#Layer#0" expanded="false" />
+                <element signature="n#!!block;n#Element#0" expanded="false" />
                 <element signature="e#10132#11040#0" expanded="false" />
                 <element signature="e#13519#22794#0" expanded="false" />
                 <element signature="e#13663#13745#0" expanded="false" />
@@ -72,12 +73,11 @@
                 <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
                 <element signature="n#!!block;n#initProductResult#0" expanded="false" />
                 <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
-                <element signature="e#40872#41760#0" expanded="false" />
+                <element signature="e#40866#41754#0" expanded="false" />
                 <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
                 <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
                 <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
                 <element signature="n#!!block;n#ClearView#0" expanded="false" />
-                <element signature="n#!!block;n#deleteElement#0" expanded="false" />
                 <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
                 <element signature="n#!!block;n#deleteView#0" expanded="false" />
                 <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
@@ -366,12 +366,12 @@
       <workItem from="1503031181068" duration="15835000" />
       <workItem from="1503112817993" duration="18496000" />
       <workItem from="1503233279856" duration="7550000" />
-      <workItem from="1503286092475" duration="773000" />
+      <workItem from="1503286092475" duration="1242000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="231283000" />
+    <option name="totallyTimeSpent" value="231752000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -425,6 +425,7 @@
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
+            <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10132#11040#0" expanded="false" />
             <element signature="e#13519#22794#0" expanded="false" />
             <element signature="e#13663#13745#0" expanded="false" />
@@ -460,12 +461,11 @@
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
             <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
-            <element signature="e#40872#41760#0" expanded="false" />
+            <element signature="e#40866#41754#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
             <element signature="n#!!block;n#ClearView#0" expanded="false" />
-            <element signature="n#!!block;n#deleteElement#0" expanded="false" />
             <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
             <element signature="n#!!block;n#deleteView#0" expanded="false" />
             <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
@@ -555,6 +555,7 @@
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
+            <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10132#11040#0" expanded="false" />
             <element signature="e#13519#22794#0" expanded="false" />
             <element signature="e#13663#13745#0" expanded="false" />
@@ -590,12 +591,11 @@
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
             <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
-            <element signature="e#40872#41760#0" expanded="false" />
+            <element signature="e#40866#41754#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
             <element signature="n#!!block;n#ClearView#0" expanded="false" />
-            <element signature="n#!!block;n#deleteElement#0" expanded="false" />
             <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
             <element signature="n#!!block;n#deleteView#0" expanded="false" />
             <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
@@ -652,6 +652,7 @@
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
+            <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10132#11040#0" expanded="false" />
             <element signature="e#13519#22794#0" expanded="false" />
             <element signature="e#13663#13745#0" expanded="false" />
@@ -687,12 +688,11 @@
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
             <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
-            <element signature="e#40872#41760#0" expanded="false" />
+            <element signature="e#40866#41754#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
             <element signature="n#!!block;n#ClearView#0" expanded="false" />
-            <element signature="n#!!block;n#deleteElement#0" expanded="false" />
             <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
             <element signature="n#!!block;n#deleteView#0" expanded="false" />
             <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
@@ -789,6 +789,7 @@
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
+            <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10132#11040#0" expanded="false" />
             <element signature="e#13519#22794#0" expanded="false" />
             <element signature="e#13663#13745#0" expanded="false" />
@@ -824,12 +825,11 @@
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
             <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
-            <element signature="e#40872#41760#0" expanded="false" />
+            <element signature="e#40866#41754#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
             <element signature="n#!!block;n#ClearView#0" expanded="false" />
-            <element signature="n#!!block;n#deleteElement#0" expanded="false" />
             <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
             <element signature="n#!!block;n#deleteView#0" expanded="false" />
             <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
@@ -926,6 +926,7 @@
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
+            <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10132#11040#0" expanded="false" />
             <element signature="e#13519#22794#0" expanded="false" />
             <element signature="e#13663#13745#0" expanded="false" />
@@ -961,12 +962,11 @@
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
             <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
-            <element signature="e#40872#41760#0" expanded="false" />
+            <element signature="e#40866#41754#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
             <element signature="n#!!block;n#ClearView#0" expanded="false" />
-            <element signature="n#!!block;n#deleteElement#0" expanded="false" />
             <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
             <element signature="n#!!block;n#deleteView#0" expanded="false" />
             <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
@@ -1023,6 +1023,7 @@
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
+            <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10132#11040#0" expanded="false" />
             <element signature="e#13519#22794#0" expanded="false" />
             <element signature="e#13663#13745#0" expanded="false" />
@@ -1058,12 +1059,11 @@
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
             <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
-            <element signature="e#40872#41760#0" expanded="false" />
+            <element signature="e#40866#41754#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
             <element signature="n#!!block;n#ClearView#0" expanded="false" />
-            <element signature="n#!!block;n#deleteElement#0" expanded="false" />
             <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
             <element signature="n#!!block;n#deleteView#0" expanded="false" />
             <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
@@ -1110,6 +1110,7 @@
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
+            <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10132#11040#0" expanded="false" />
             <element signature="e#13519#22794#0" expanded="false" />
             <element signature="e#13663#13745#0" expanded="false" />
@@ -1145,12 +1146,11 @@
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
             <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
-            <element signature="e#40872#41760#0" expanded="false" />
+            <element signature="e#40866#41754#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
             <element signature="n#!!block;n#ClearView#0" expanded="false" />
-            <element signature="n#!!block;n#deleteElement#0" expanded="false" />
             <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
             <element signature="n#!!block;n#deleteView#0" expanded="false" />
             <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
@@ -1197,6 +1197,7 @@
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
+            <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10132#11040#0" expanded="false" />
             <element signature="e#13519#22794#0" expanded="false" />
             <element signature="e#13663#13745#0" expanded="false" />
@@ -1232,12 +1233,11 @@
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
             <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
-            <element signature="e#40872#41760#0" expanded="false" />
+            <element signature="e#40866#41754#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
             <element signature="n#!!block;n#ClearView#0" expanded="false" />
-            <element signature="n#!!block;n#deleteElement#0" expanded="false" />
             <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
             <element signature="n#!!block;n#deleteView#0" expanded="false" />
             <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
@@ -1284,6 +1284,7 @@
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
+            <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10132#11040#0" expanded="false" />
             <element signature="e#13519#22794#0" expanded="false" />
             <element signature="e#13663#13745#0" expanded="false" />
@@ -1319,12 +1320,11 @@
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
             <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
-            <element signature="e#40872#41760#0" expanded="false" />
+            <element signature="e#40866#41754#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
             <element signature="n#!!block;n#ClearView#0" expanded="false" />
-            <element signature="n#!!block;n#deleteElement#0" expanded="false" />
             <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
             <element signature="n#!!block;n#deleteView#0" expanded="false" />
             <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
@@ -1371,6 +1371,7 @@
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
+            <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10132#11040#0" expanded="false" />
             <element signature="e#13519#22794#0" expanded="false" />
             <element signature="e#13663#13745#0" expanded="false" />
@@ -1406,12 +1407,11 @@
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
             <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
-            <element signature="e#40872#41760#0" expanded="false" />
+            <element signature="e#40866#41754#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
             <element signature="n#!!block;n#ClearView#0" expanded="false" />
-            <element signature="n#!!block;n#deleteElement#0" expanded="false" />
             <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
             <element signature="n#!!block;n#deleteView#0" expanded="false" />
             <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
@@ -1458,6 +1458,7 @@
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
+            <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10132#11040#0" expanded="false" />
             <element signature="e#13519#22794#0" expanded="false" />
             <element signature="e#13663#13745#0" expanded="false" />
@@ -1493,12 +1494,11 @@
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
             <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
-            <element signature="e#40872#41760#0" expanded="false" />
+            <element signature="e#40866#41754#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
             <element signature="n#!!block;n#ClearView#0" expanded="false" />
-            <element signature="n#!!block;n#deleteElement#0" expanded="false" />
             <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
             <element signature="n#!!block;n#deleteView#0" expanded="false" />
             <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
@@ -1545,6 +1545,7 @@
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
+            <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10132#11040#0" expanded="false" />
             <element signature="e#13519#22794#0" expanded="false" />
             <element signature="e#13663#13745#0" expanded="false" />
@@ -1580,12 +1581,11 @@
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
             <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
-            <element signature="e#40872#41760#0" expanded="false" />
+            <element signature="e#40866#41754#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
             <element signature="n#!!block;n#ClearView#0" expanded="false" />
-            <element signature="n#!!block;n#deleteElement#0" expanded="false" />
             <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
             <element signature="n#!!block;n#deleteView#0" expanded="false" />
             <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
@@ -1632,6 +1632,7 @@
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
+            <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10132#11040#0" expanded="false" />
             <element signature="e#13519#22794#0" expanded="false" />
             <element signature="e#13663#13745#0" expanded="false" />
@@ -1667,12 +1668,11 @@
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
             <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
-            <element signature="e#40872#41760#0" expanded="false" />
+            <element signature="e#40866#41754#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
             <element signature="n#!!block;n#ClearView#0" expanded="false" />
-            <element signature="n#!!block;n#deleteElement#0" expanded="false" />
             <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
             <element signature="n#!!block;n#deleteView#0" expanded="false" />
             <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
@@ -1796,12 +1796,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/perspective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="473" column="51" lean-forward="true" selection-start-line="473" selection-start-column="51" selection-end-line="473" selection-end-column="51" />
+        <state relative-caret-position="438">
+          <caret line="1471" column="38" lean-forward="true" selection-start-line="1471" selection-start-column="38" selection-end-line="1471" selection-end-column="38" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
+            <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10132#11040#0" expanded="false" />
             <element signature="e#13519#22794#0" expanded="false" />
             <element signature="e#13663#13745#0" expanded="false" />
@@ -1837,12 +1838,11 @@
             <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
             <element signature="n#!!block;n#initProductResult#0" expanded="false" />
             <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
-            <element signature="e#40872#41760#0" expanded="false" />
+            <element signature="e#40866#41754#0" expanded="false" />
             <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
             <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
             <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
             <element signature="n#!!block;n#ClearView#0" expanded="false" />
-            <element signature="n#!!block;n#deleteElement#0" expanded="false" />
             <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
             <element signature="n#!!block;n#deleteView#0" expanded="false" />
             <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
