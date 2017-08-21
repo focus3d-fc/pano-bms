@@ -623,72 +623,72 @@ public class Product implements CommonModel{
 		@Override
 		public Long getAdderSn() {
 			// TODO Auto-generated method stub
-			return null;
+			return adderSn;
 		}
 		@Override
 		public void setAdderSn(Long adderSn) {
 			// TODO Auto-generated method stub
-			
+			this.adderSn=adderSn;
 		}
 		@Override
 		public String getAdderName() {
 			// TODO Auto-generated method stub
-			return null;
+			return adderName;
 		}
 		@Override
 		public void setAdderName(String adderName) {
 			// TODO Auto-generated method stub
-			
+			this.adderName=adderName;
 		}
 		@Override
 		public Date getAddTime() {
 			// TODO Auto-generated method stub
-			return null;
+			return addTime;
 		}
 		@Override
 		public void setAddTime(Date addTime) {
 			// TODO Auto-generated method stub
-			
+			this.addTime=addTime;
 		}
 		@Override
 		public Long getUpdaterSn() {
 			// TODO Auto-generated method stub
-			return null;
+			return updaterSn;
 		}
 		@Override
 		public void setUpdaterSn(Long updaterSn) {
 			// TODO Auto-generated method stub
-			
+			this.updaterSn=updaterSn;
 		}
 		@Override
 		public String getUpdaterName() {
 			// TODO Auto-generated method stub
-			return null;
+			return updaterName;
 		}
 		@Override
 		public void setUpdaterName(String updaterName) {
 			// TODO Auto-generated method stub
-			
+			this.updaterName=updaterName;
 		}
 		@Override
 		public Date getUpdateTime() {
 			// TODO Auto-generated method stub
-			return null;
+			return updateTime;
 		}
 		@Override
 		public void setUpdateTime(Date updateTime) {
 			// TODO Auto-generated method stub
-			
+			this.updateTime=updateTime;
 		}
-		@Override
+	
 		public Long getSn() {
 			// TODO Auto-generated method stub
-			return null;
+			return sn;
 		}
-		@Override
+	
 		public void setSn(Long sn) {
 			// TODO Auto-generated method stub
-			
+			this.sn=sn;
 		}
 		@Override
 		public String getEncryptSn() {
