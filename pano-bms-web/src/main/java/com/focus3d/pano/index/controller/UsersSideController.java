@@ -1,7 +1,6 @@
 package com.focus3d.pano.index.controller;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.focus3d.pano.common.controller.BaseController;
 import com.focus3d.pano.model.AddToCar;
 import com.focus3d.pano.model.Lable;
@@ -34,12 +34,10 @@ import com.focus3d.pano.model.pano_project_space;
 import com.focus3d.pano.model.pano_user_receive_address;
 import com.focus3d.pano.usersside.service.PersonalService;
 import com.focus3d.pano.usersside.service.UsersSideService;
-import com.focus3d.pano.usersside.utils.SmsSend;
 import com.focus3d.pano.wechat.utils.Constants;
 import com.focus3d.pano.wechat.utils.UserInfo;
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.JsonUtils;
-//            /usersSide/toIndex
 @Controller
 @RequestMapping("/usersSide")
 public class UsersSideController extends BaseController{
@@ -241,7 +239,7 @@ public class UsersSideController extends BaseController{
 	public void getVerifyCode(String phone,HttpServletResponse response,HttpSession session) throws IOException{
 		System.out.println("进入getVerifyCode方法:");
 		System.out.println("手机号："+phone);
-		SmsSend send=new SmsSend();
+		//SmsSend send=new SmsSend();
 		//测试验证码
 		String phoneCode="123456";
 		//不能删下面注释代码！！
@@ -637,7 +635,7 @@ BigDecimal total_price=new BigDecimal(total_price_.substring(1,total_price_.leng
 		public void getVerifyCode_order(String phone,HttpServletResponse response,HttpSession session) throws IOException{
 			System.out.println("进入getVerifyCode_order方法:");
 			System.out.println("手机号："+phone);
-			SmsSend send=new SmsSend();
+			//SmsSend send=new SmsSend();
 			//不能删下面注释代码！！
 			/*String phoneCode=send.sendPhoneCode(phone);
 			System.out.println("手机验证码为："+phoneCode);*/

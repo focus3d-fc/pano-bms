@@ -2,7 +2,7 @@
  * 全景热点点击回调打开产品详情页
  * 
  */
-//var pano_remote_domain = "http://139.196.103.164:8038"
+//var pano_remote_domain = "http://172.17.13.77:8889";
 var pano_remote_domain = "http://pano.joy-homeplus.com"
 $(function(){
 	//风格id

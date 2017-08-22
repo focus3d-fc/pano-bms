@@ -18,10 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.focus3d.pano.common.controller.BaseController;
-import com.focus3d.pano.constant.SmsSendTypeEnum;
 import com.focus3d.pano.model.PanoValidateModel;
 import com.focus3d.pano.sms.service.SmsService;
-import com.focus3d.pano.validate.service.PanoValidateService;
+import com.focus3d.pano.sms.service.SmsValidateService;
 import com.focustech.common.utils.IPTool;
 import com.focustech.common.utils.StringUtils;
 import com.focustech.common.utils.TCUtil;
@@ -34,13 +33,15 @@ import com.focustech.common.utils.TCUtil;
 @Controller
 @RequestMapping(value = "/sms")
 public class SmsController extends BaseController {
+
 	@Autowired
 	private SmsService smsService;
 	@Autowired
-	private PanoValidateService<PanoValidateModel> validateService;
-	private static final int SMS_SEND_LIMIT_PER_DAY = 20;
+	private SmsValidateService smsValidateService;
+
 	private Lock lock = new ReentrantLock();
 
+	private static final int SMS_SEND_LIMIT_PER_DAY = 20;
 	/**
 	 * 发送短信
 	 * *
@@ -48,33 +49,46 @@ public class SmsController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/send", method = RequestMethod.POST)
-	public void sendSms(String mobilePhone, String type, HttpServletRequest req, HttpServletResponse resp){
-		int status = 0;
+	public void sendSms(String mobilePhone, String validCode, HttpServletRequest req, HttpServletResponse resp){
+		String status = "";
 		try {
-			if(StringUtils.isNotEmpty(mobilePhone)){
-				String millis = TCUtil.sv(System.currentTimeMillis());
-				String smsCode = millis.substring(millis.length() - 6);
-				try {
-					String ipAddr = TCUtil.sv(IPTool.getRealIp(req));
-					try {
-						lock.lock();
-						List<PanoValidateModel> list = validateService.listByPerDay(mobilePhone);
-						if(list.size() <= SMS_SEND_LIMIT_PER_DAY){
-							validateService.save(mobilePhone, smsCode, ipAddr);
-							Map<String, String> parame = new HashMap<String, String>();
-							parame.put("verifyCode", smsCode);
-							status = smsService.send(SmsSendTypeEnum.valueOf(TCUtil.iv(type)), mobilePhone, parame);
-						} else {
-							throw new RuntimeException("发送短信超出每天限制：" + SMS_SEND_LIMIT_PER_DAY);
+			if(StringUtils.isNotEmpty(mobilePhone) && mobilePhone.length() == 11 && StringUtils.isNotEmpty(validCode) && validCode.length() == 4){
+				String sValidCode = TCUtil.sv(req.getSession().getAttribute("captcha"));
+				if(StringUtils.isNotEmpty(sValidCode)){
+					if(sValidCode.equalsIgnoreCase(validCode)){
+						String millis = TCUtil.sv(System.currentTimeMillis());
+						String verifyCode = millis.substring(millis.length() - 6);
+						try {
+							String ipAddr = TCUtil.sv(IPTool.getRealIp(req));
+							try {
+								lock.lock();
+								List<PanoValidateModel> list = smsValidateService.getListByPerDay(mobilePhone);
+								if(list.size() <= SMS_SEND_LIMIT_PER_DAY){
+									smsValidateService.save(mobilePhone, verifyCode, ipAddr);
+									Map<String, String> parame = new HashMap<String, String>();
+									parame.put("verifyCode", verifyCode);
+									status = smsService.send(mobilePhone, parame);
+									if(!"0".equals(status)){
+										smsValidateService.delete(mobilePhone, verifyCode);
+									}
+									req.getSession().removeAttribute("captcha");
+								} else {
+									throw new RuntimeException("发送短信超出每天限制：" + SMS_SEND_LIMIT_PER_DAY);
+								}
+							} catch (Exception e) {
+								e.printStackTrace();
+							} finally {
+								lock.unlock();
+							}
+							
+						} catch (Exception e) {
+							e.printStackTrace();
 						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					} finally {
-						lock.unlock();
+					} else {
+						status = "4";
 					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
+				} else {
+					status = "5";
 				}
 			}
 			JSONObject jo = new JSONObject();
@@ -84,4 +98,5 @@ public class SmsController extends BaseController {
 			e.printStackTrace();
 		}
 	}
+
 }

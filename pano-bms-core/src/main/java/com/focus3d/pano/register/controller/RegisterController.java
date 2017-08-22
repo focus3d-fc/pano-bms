@@ -89,7 +89,7 @@ public class RegisterController extends BaseController{
 							RequestThreadLocal.setLoginInfo(loginInfo);*/
 							Map<String, String> parame = new HashMap<String, String>();
 							parame.put("userMobile", mobilePhone);
-							smsService.send(SmsSendTypeEnum.USER_REGISTER_FEEDBACK, parame);
+							//smsService.send(SmsSendTypeEnum.USER_REGISTER_FEEDBACK, parame);
 							return redirect("/user/register/success");
 						}
 					} else {

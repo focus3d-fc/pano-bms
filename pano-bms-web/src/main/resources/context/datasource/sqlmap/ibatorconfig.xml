@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="GBK" ?>
 <!DOCTYPE ibatorConfiguration PUBLIC "null" "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd" >
 <ibatorConfiguration>
-	<classPathEntry location="E:\maven-2.2.1\mysql-connector-java-5.1.16.jar"/>
+	<classPathEntry location="F:\soft\mysql-connector-java-5.1.16.jar"/>
 	<ibatorContext id="context1">
 		<ibatorPlugin
 			type="org.apache.ibatis.ibator.plugins.RenameExampleClassPlugin">
@@ -10,7 +10,7 @@
 		</ibatorPlugin>
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
 			connectionURL="jdbc:mysql://139.196.103.164:3306/focus3d_pano?useUnicode=true&amp;characterEncoding=UTF-8"
-			userId="root" password="focus3d" />
+			userId="root" password="focus3d6990" />
 		<javaModelGenerator targetPackage="com.focus3d.pano.model.ibator"
 			targetProject="./" />
 		<sqlMapGenerator targetPackage="./"
@@ -19,28 +19,7 @@
 			targetProject="./" type="SPRING" >
 		</daoGenerator>
 
-		<table schema="ibatis" tableName="pano_perspective_view"
-			enableCountByExample="true" enableDeleteByExample="true"
-			enableSelectByExample="true" enableUpdateByExample="true">
-			<generatedKey column="SN" sqlStatement="select last_insert_id()"
-				identity="true" />
-		</table>
-		
-		<table schema="ibatis" tableName="pano_perspective_layer"
-			enableCountByExample="true" enableDeleteByExample="true"
-			enableSelectByExample="true" enableUpdateByExample="true">
-			<generatedKey column="SN" sqlStatement="select last_insert_id()"
-				identity="true" />
-		</table>
-		
-		<table schema="ibatis" tableName="pano_perspective_element"
-			enableCountByExample="true" enableDeleteByExample="true"
-			enableSelectByExample="true" enableUpdateByExample="true">
-			<generatedKey column="SN" sqlStatement="select last_insert_id()"
-				identity="true" />
-		</table>
-		
-		<table schema="ibatis" tableName="pano_perspective_element_product"
+		<table schema="ibatis" tableName="pano_validate"
 			enableCountByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" enableUpdateByExample="true">
 			<generatedKey column="SN" sqlStatement="select last_insert_id()"
