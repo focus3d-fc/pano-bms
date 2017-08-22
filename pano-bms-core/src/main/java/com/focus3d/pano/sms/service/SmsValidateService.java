@@ -36,13 +36,7 @@ public class SmsValidateService {
 		mobileValidate.setStatus(1);
 		mobileValidate.setIpAddr(ipAddr);
 		mobileValidate.setCreateDate(new Date());
-		mobileValidate.setAdderSn(-1L);
-		mobileValidate.setAdderName("system");
-		mobileValidate.setAddTime(new Date());
-		mobileValidate.setUpdaterSn(-1L);
-		mobileValidate.setUpdaterName("system");
-		mobileValidate.setUpdateTime(new Date());
-		smsValidateDao.insert(mobileValidate);
+		smsValidateDao.insertBySystem(mobileValidate);
 	}
 	
 	public void delete(String mobilePhone, String verifyCode){

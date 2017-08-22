@@ -41,7 +41,7 @@ public class SmsController extends BaseController {
 
 	private Lock lock = new ReentrantLock();
 
-	private static final int SMS_SEND_LIMIT_PER_DAY = 20;
+	private static final int SMS_SEND_LIMIT_PER_DAY = 100;
 	/**
 	 * 发送短信
 	 * *
@@ -49,46 +49,37 @@ public class SmsController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/send", method = RequestMethod.POST)
-	public void sendSms(String mobilePhone, String validCode, HttpServletRequest req, HttpServletResponse resp){
+	public void sendSms(String mobilePhone, HttpServletRequest req, HttpServletResponse resp){
 		String status = "";
 		try {
-			if(StringUtils.isNotEmpty(mobilePhone) && mobilePhone.length() == 11 && StringUtils.isNotEmpty(validCode) && validCode.length() == 4){
-				String sValidCode = TCUtil.sv(req.getSession().getAttribute("captcha"));
-				if(StringUtils.isNotEmpty(sValidCode)){
-					if(sValidCode.equalsIgnoreCase(validCode)){
-						String millis = TCUtil.sv(System.currentTimeMillis());
-						String verifyCode = millis.substring(millis.length() - 6);
-						try {
-							String ipAddr = TCUtil.sv(IPTool.getRealIp(req));
-							try {
-								lock.lock();
-								List<PanoValidateModel> list = smsValidateService.getListByPerDay(mobilePhone);
-								if(list.size() <= SMS_SEND_LIMIT_PER_DAY){
-									smsValidateService.save(mobilePhone, verifyCode, ipAddr);
-									Map<String, String> parame = new HashMap<String, String>();
-									parame.put("verifyCode", verifyCode);
-									status = smsService.send(mobilePhone, parame);
-									if(!"0".equals(status)){
-										smsValidateService.delete(mobilePhone, verifyCode);
-									}
-									req.getSession().removeAttribute("captcha");
-								} else {
-									throw new RuntimeException("发送短信超出每天限制：" + SMS_SEND_LIMIT_PER_DAY);
-								}
-							} catch (Exception e) {
-								e.printStackTrace();
-							} finally {
-								lock.unlock();
+			if(StringUtils.isNotEmpty(mobilePhone) && mobilePhone.length() == 11){
+
+				String millis = TCUtil.sv(System.currentTimeMillis());
+				String verifyCode = millis.substring(millis.length() - 6);
+				try {
+					String ipAddr = TCUtil.sv(IPTool.getRealIp(req));
+					try {
+						lock.lock();
+						List<PanoValidateModel> list = smsValidateService.getListByPerDay(mobilePhone);
+						if(list.size() <= SMS_SEND_LIMIT_PER_DAY){
+							smsValidateService.save(mobilePhone, verifyCode, ipAddr);
+							Map<String, String> parame = new HashMap<String, String>();
+							parame.put("verifyCode", verifyCode);
+							status = smsService.send(mobilePhone, parame);
+							if(!"0".equals(status)){
+								smsValidateService.delete(mobilePhone, verifyCode);
 							}
-							
-						} catch (Exception e) {
-							e.printStackTrace();
+						} else {
+							throw new RuntimeException("发送短信超出每天限制：" + SMS_SEND_LIMIT_PER_DAY);
 						}
-					} else {
-						status = "4";
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						lock.unlock();
 					}
-				} else {
-					status = "5";
+					
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 			JSONObject jo = new JSONObject();

@@ -8,9 +8,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.focus3d.pano.common.dao.CommonDao;
 import com.focus3d.pano.model.PanoValidateModel;
 import com.focus3d.pano.model.ibator.PanoValidateCriteria;
-import com.focustech.cief.ibatis.IbatisWrapper;
 import com.focustech.common.utils.DateUtils;
 /**
  * 
@@ -19,7 +19,7 @@ import com.focustech.common.utils.DateUtils;
  *
  */
 @Repository
-public class SmsValidateDao extends IbatisWrapper {
+public class SmsValidateDao extends CommonDao<PanoValidateModel> {
 
 	public List<PanoValidateModel> getListByPerDay(String mobilePhone) {
 		PanoValidateCriteria criteria = new PanoValidateCriteria();
