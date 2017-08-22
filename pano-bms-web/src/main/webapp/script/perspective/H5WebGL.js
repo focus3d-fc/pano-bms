@@ -100,7 +100,6 @@ var WebGL = {
         var layer = WebGL.root.getObjectByName(layerName);
         if(layer){
             var intersects = raycaster.intersectObjects(layer.children);
-            console.log(intersects.length);
             for (var i=0,len = intersects.length;i<len;i++) {
                 if(intersects[i].object.name == elementName){
                     // WebGL.reLoadElement(intersects[i].object,)
@@ -390,6 +389,7 @@ function ExchangeProduct(element){
     var data = productList[i];
     productSn = data.productSn;
     WebGL.reLoadElement(element,data);
+    /*
     $.ajax({
     	url:'/userside/upset',
     	data:{"productSn":productSn},
@@ -416,8 +416,7 @@ function ExchangeProduct(element){
     				$("#image").attr("src","$!fs.url(imgsn)"); 
     			}
     		}
-    })
-    
+    })*/
 }
 
 function ExchangeView(){

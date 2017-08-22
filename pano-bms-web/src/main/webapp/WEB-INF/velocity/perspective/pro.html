@@ -25,8 +25,8 @@
 			<p class="content" id="summary"></p>
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<img src= id="image">
+					<div id="image_container" class="swiper-slide">
+
 					</div>
 				</div>
 				<div class="swiper-button-prev"></div>
@@ -77,21 +77,22 @@
 		});
 		
 		function ProdunctInfoFill(productInfo){
-			debugger;
-            image_array = new Array();
 			$("#name").text(productInfo.name);
 			$("#venderName").text("品牌: "+productInfo.venderName);
             $("#dimension").text("规格参数: "+productInfo.dimension);
             $("#summary").text("简介: "+productInfo.summary);
 
             if(productInfo.leftImgUrl!=""){
-                image_array.push(productInfo.leftImgUrl);
+               var image = $("<img></img>").attr("src",productInfo.leftImgUrl);
+                $("#image_container").append(image);
 			}
             if(productInfo.downImgUrl!=""){
-                image_array.push(productInfo.downImgUrl);
+                var image = $("<img></img>").attr("src",productInfo.downImgUrl);
+                $("#image_container").append(image);
 			}
             if(productInfo.fullImgUrl!=""){
-                image_array.push(productInfo.fullImgUrl);
+                var image = $("<img></img>").attr("src",productInfo.fullImgUrl);
+                $("#image_container").append(image);
             }
 		}
 	</script>

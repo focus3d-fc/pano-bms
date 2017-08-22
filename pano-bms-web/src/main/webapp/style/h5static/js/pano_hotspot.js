@@ -271,7 +271,6 @@ function openHotspotWin(packageSn, packageTypeSn){
 	    	var productAry = data.products;
 	    	for(var i in productAry){
 	    		var product = productAry[i];
-	    		debugger;
 	    		//名称
 	    		var name = product.name;
 	    		//材质
@@ -297,7 +296,7 @@ function openHotspotWin(packageSn, packageTypeSn){
                     }).text("查看详情");
 	    			$("<div/>").addClass("swiper-slide").append(nameP).append(materialNameP).append(materialColorP).append(modelP).append(imgHt).append(aHt).appendTo($("#product-swiper-wrapper"));
 	    			
-	    		}catch (e) {debugger;
+	    		}catch (e) {
 					// TODO: handle exception
 				}
 	    	}
@@ -312,8 +311,7 @@ function openHotspotWin(packageSn, packageTypeSn){
 /**
  * 全景客户端
  */
-function editorKrpano() 
-{
+function editorKrpano() {
 	return document.getElementById("krpanoSWFObject");
 }
 
@@ -330,7 +328,6 @@ function ValidatePerspective(houseStyleSn,packageTypeSn,productSn){
         success:function(data){
             if(data){
                 var num = parseInt(data.num);
-                debugger;
                 if(num!=0){
 					QueryPerspectiveInfo(data.param);
 				}
