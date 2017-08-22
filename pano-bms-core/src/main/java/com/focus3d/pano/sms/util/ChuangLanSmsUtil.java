@@ -10,7 +10,6 @@ import java.net.URL;
 /**
  * 
  * @author tianyh 
- * @Description:HTTP 请求
  */
 public class ChuangLanSmsUtil {
 	
@@ -28,10 +27,10 @@ public class ChuangLanSmsUtil {
 		try {
 			url = new URL(path);
 			HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-			httpURLConnection.setRequestMethod("POST");// 提交模式
-			httpURLConnection.setConnectTimeout(10000);//连接超时 单位毫秒
-			httpURLConnection.setReadTimeout(10000);//读取超时 单位毫秒
-			// 发送POST请求必须设置如下两行
+			httpURLConnection.setRequestMethod("POST");
+			httpURLConnection.setConnectTimeout(10000);
+			httpURLConnection.setReadTimeout(10000);
+
 			httpURLConnection.setDoOutput(true);
 			httpURLConnection.setDoInput(true);
 			httpURLConnection.setRequestProperty("Charset", "UTF-8");
@@ -49,7 +48,6 @@ public class ChuangLanSmsUtil {
 			StringBuilder sb = new StringBuilder();
 			int httpRspCode = httpURLConnection.getResponseCode();
 			if (httpRspCode == HttpURLConnection.HTTP_OK) {
-				// 开始获取数据
 				BufferedReader br = new BufferedReader(
 						new InputStreamReader(httpURLConnection.getInputStream(), "utf-8"));
 				String line = null;
