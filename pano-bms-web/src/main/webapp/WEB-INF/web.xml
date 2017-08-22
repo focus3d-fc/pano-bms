@@ -61,8 +61,8 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	
-	<!-- <filter>
+	<!--
+	<filter>
 		<filter-name>loginFilter</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 		<init-param>
@@ -73,8 +73,8 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<filter-mapping>
 		<filter-name>loginFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping> -->
-	
+	</filter-mapping>
+	  -->
 	<filter>
 		<filter-name>requestMessageCookieFilter</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

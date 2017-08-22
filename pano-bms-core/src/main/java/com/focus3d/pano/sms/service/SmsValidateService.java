@@ -45,7 +45,7 @@ public class SmsValidateService {
 	
 	public void setStatus(PanoValidateModel smsValidateModel, int status){
 		smsValidateModel.setStatus(status);
-		smsValidateDao.updateByKeySelective(smsValidateModel);
+		smsValidateDao.updateBySystem(smsValidateModel);
 	}
 
 	public PanoValidateModel selectByMobilePhone(String mobilePhone, String smsCodeC) {

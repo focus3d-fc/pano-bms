@@ -120,8 +120,7 @@ public class UsersSideController extends BaseController{
 	@RequestMapping("/tomy")
 	public String tomy(){
 		System.out.println("进入tomy方法:");
-		
-		return "/usersside/my";
+ 		return "/usersside/my";
 	}
 	//跳转到登陆页面
 	@RequestMapping("/tologin")

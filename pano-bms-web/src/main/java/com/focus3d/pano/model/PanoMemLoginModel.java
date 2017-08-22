@@ -16,14 +16,24 @@ public class PanoMemLoginModel extends PanoMemLogin<PanoMemLoginModel, PanoMemLo
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String verifyCode;
+	private String smsCode;
+	
+	private PanoMemUserModel user;
 
-	public String getVerifyCode() {
-		return verifyCode;
+	public String getSmsCode() {
+		return smsCode;
 	}
 
-	public void setVerifyCode(String verifyCode) {
-		this.verifyCode = verifyCode;
+	public void setSmsCode(String smsCode) {
+		this.smsCode = smsCode;
+	}
+
+	public PanoMemUserModel getUser() {
+		return user;
+	}
+
+	public void setUser(PanoMemUserModel user) {
+		this.user = user;
 	}
 
 }

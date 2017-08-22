@@ -163,5 +163,29 @@ public class CommonDao<T> extends IbatisWrapper {
 	    		}
 	    	}
 	    }
-
+	    /**
+	     * 
+	     * *
+	     * @param t
+	     */
+	    public void updateBySystem(T t) {
+	    	if(t instanceof BaseEntity){
+	    		BaseEntity baseEntity = (BaseEntity)t;
+	    		baseEntity.setAdderName("system");
+	    		baseEntity.setAdderSn(-1L);
+	    		Date addTime = ((BaseEntity) t).getAddTime();
+	    		if(addTime == null){
+	    			addTime = new Date();
+	    		}
+				baseEntity.setAddTime(addTime);
+	    		baseEntity.setUpdaterName("system");
+	    		baseEntity.setUpdaterSn(-1L);
+	    		baseEntity.setUpdateTime(new Date());
+	    		try {
+	    			getSqlMapClient().update(acquireSqlMapName(baseEntity.getClass()) + UPDATE_BY_PRIMARYKEY_SELECTIVE, baseEntity);
+	    		} catch (SQLException e) {
+	    			e.printStackTrace();
+	    		}
+	    	}
+	    }
 }
