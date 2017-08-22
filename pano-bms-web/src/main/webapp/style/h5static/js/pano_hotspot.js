@@ -271,6 +271,7 @@ function openHotspotWin(packageSn, packageTypeSn){
 	    	var productAry = data.products;
 	    	for(var i in productAry){
 	    		var product = productAry[i];
+	    		debugger;
 	    		//名称
 	    		var name = product.name;
 	    		//材质
@@ -291,7 +292,9 @@ function openHotspotWin(packageSn, packageTypeSn){
 	    			var parameterP = $("<p/>").text("参数：").append($("<span/>").text(parameter));
 	    			var modelP = $("<p/>").text("货号：").append($("<span/>").text(model));
 	    			var imgHt = $("<img/>").attr("src", imgUrl);
-	    			var aHt = $("<a/>").addClass("shopDetail").attr("href", "/perspective/QueryPerspective").text("查看详情");
+	    			var aHt = $("<a/>").addClass("shopDetail").on("click", function () {
+						ValidatePerspective(houseStyleSn,packageTypeSn,product.sn);
+                    }).text("查看详情");
 	    			$("<div/>").addClass("swiper-slide").append(nameP).append(materialNameP).append(materialColorP).append(modelP).append(imgHt).append(aHt).appendTo($("#product-swiper-wrapper"));
 	    			
 	    		}catch (e) {debugger;
@@ -312,4 +315,30 @@ function openHotspotWin(packageSn, packageTypeSn){
 function editorKrpano() 
 {
 	return document.getElementById("krpanoSWFObject");
+}
+
+function ValidatePerspective(houseStyleSn,packageTypeSn,productSn){
+	var param = new Object();
+	param.houseStyleSn = houseStyleSn;
+	param.packageTypeSn = packageTypeSn;
+	param.productSn = productSn;
+    $.ajax({
+        url:"/perspective/ValidatePerspective",
+        type: "POST",
+        data:param,
+        dataType:"json",
+        success:function(data){
+            if(data){
+                var num = parseInt(data.num);
+                debugger;
+                if(num!=0){
+					QueryPerspectiveInfo(data.param);
+				}
+            }
+        }
+    })
+}
+
+function QueryPerspectiveInfo(param) {
+    window.location.href = "/perspective/QueryPerspective?houseStyleSn="+param.houseStyleSn+"&packageTypeSn="+param.packageTypeSn+"&productSn="+param.productSn;
 }

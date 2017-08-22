@@ -2,14 +2,12 @@ package com.focus3d.pano.perspective.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.focus3d.pano.admin.service.IPerspectiveService;
+import com.focus3d.pano.admin.service.IProductAdmService;
 import com.focus3d.pano.common.controller.BaseController;
-import com.focus3d.pano.model.ProductRelevance;
+import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.ibator.PanoPerspectiveElementModel;
 import com.focus3d.pano.model.ibator.PanoPerspectiveElementProduct;
 import com.focus3d.pano.model.ibator.PanoPerspectiveElementProductModel;
@@ -38,6 +37,9 @@ import com.focustech.common.utils.JsonUtils;
 public class PerspectiveQuery extends BaseController {
 	@Autowired
 	IPerspectiveService _service;
+	
+	@Autowired
+	IProductAdmService product_service;
 
 	@Autowired
 	private IFileReadClient client;
@@ -699,17 +701,40 @@ public class PerspectiveQuery extends BaseController {
 		}
 	}
 
-	@RequestMapping("QueryPerspective")
+	@RequestMapping("ValidatePerspective")
 	public void ValidatePerspective(HttpServletResponse response, ModelMap model_map,String houseStyleSn,String packageTypeSn,String productSn) {
 		// 验证有没有透视图
 		try{
-			List<Map<String, Object>> list = QueryPerspectiveByProductSn(houseStyleSn,packageTypeSn,productSn);
+			Long _houseStyleSn = EncryptUtil.decode(houseStyleSn);
+			Long _packageTypeSn = EncryptUtil.decode(packageTypeSn);
+			Long _productSn = EncryptUtil.decode(productSn);
+			
+			List<Map<String, Object>> list = QueryPerspectiveByProductSn(_houseStyleSn.toString(),_packageTypeSn.toString(),_productSn.toString());
 			JSONObject json = new JSONObject();
+			JSONObject param = new JSONObject();
+			param.put("houseStyleSn", _houseStyleSn);
+			param.put("packageTypeSn", _packageTypeSn);
+			param.put("productSn", _productSn);
+			
 			json.put("num", list.size());
+			json.put("param", param);
 			ajaxOutput(response, json.toJSONString());
 		}catch(IOException e){
 			e.printStackTrace();
+		}catch(Exception e){
+			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping("QueryPerspective")
+	public String QueryPerspective(HttpServletResponse response, ModelMap model_map,String houseStyleSn,String packageTypeSn,String productSn,ModelMap map) {
+		// 验证有没有透视图
+		List<Map<String, Object>> list = QueryPerspectiveByProductSn(houseStyleSn,packageTypeSn,productSn);
+		Product product = product_service.getProductBySn(productSn);
+
+		map.put("viewlist",JsonUtils.arrayToJson(list.toArray()));
+		map.put("product", JsonUtils.objectToJson(product));
 		
+		return "perspective/pro";
 	}
 }

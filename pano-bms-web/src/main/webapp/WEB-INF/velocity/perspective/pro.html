@@ -19,19 +19,15 @@
 			<div id="WebGl-OutPut" style="width: 100%"></div>
 
 
-			<p id="pna">$!{proList.PRODUCT_NAME}</p>
-			<p class="content" id="bra">品牌:$!{proList.BRAND}</p>
-			<p class="content" id="lwh">规格参数:$!{proList.LENGTH}*$!{proList.WIDE}*$!{proList.HEIGHT}</p>
-			<p class="content" id="rem">简介:$!{proList.REMARK}</p>
+			<p id="name"></p>
+			<p class="content" id="venderName"></p>
+			<p class="content" id="dimension"></p>
+			<p class="content" id="summary"></p>
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
-
-					#foreach($!img in $!images)
-					<div href="/userside/toabout" class="swiper-slide">
-						<img src="$!fs.url($!img)" id="image">
+					<div class="swiper-slide">
+						<img src= id="image">
 					</div>
-					#end
-
 				</div>
 				<div class="swiper-button-prev"></div>
 				<div class="swiper-button-next"></div>
@@ -52,6 +48,8 @@
 	<script type="text/javascript" src="/script/perspective/H5WebGL.js"></script>
 
 	<script>
+		var image_array;
+
 		var mySwiper = new Swiper('.swiper-container', {
 			//autoplay: 5000,//可选选项，自动滑动
 			loop : true,
@@ -73,8 +71,29 @@
 			scaler = width / 800.0;
 			var value = '$!viewlist';
 			var _list = $.parseJSON('$!viewlist');
+			var productInfo = $.parseJSON('$!product');
 			QueryPerspectiveInfoCallback(_list);
+			ProdunctInfoFill(productInfo);
 		});
+		
+		function ProdunctInfoFill(productInfo){
+			debugger;
+            image_array = new Array();
+			$("#name").text(productInfo.name);
+			$("#venderName").text("品牌: "+productInfo.venderName);
+            $("#dimension").text("规格参数: "+productInfo.dimension);
+            $("#summary").text("简介: "+productInfo.summary);
+
+            if(productInfo.leftImgUrl!=""){
+                image_array.push(productInfo.leftImgUrl);
+			}
+            if(productInfo.downImgUrl!=""){
+                image_array.push(productInfo.downImgUrl);
+			}
+            if(productInfo.fullImgUrl!=""){
+                image_array.push(productInfo.fullImgUrl);
+            }
+		}
 	</script>
 </body>
 </body>

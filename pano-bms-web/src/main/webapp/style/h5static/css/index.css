@@ -957,11 +957,9 @@
 }
 .se720 .re-box .rd-show{
     display: none;
-   padding: .1rem;
-    
+    padding: .1rem;
     background-color: rgba(0,0,0,.4);
     border-radius: .05rem;
-   
 }
 
 .se720 .re-box .rd-show img{
