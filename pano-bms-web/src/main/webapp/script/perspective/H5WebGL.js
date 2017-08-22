@@ -389,39 +389,60 @@ function ExchangeProduct(element){
     var data = productList[i];
     productSn = data.productSn;
     WebGL.reLoadElement(element,data);
-    /*
-    $.ajax({
-    	url:'/userside/upset',
-    	data:{"productSn":productSn},
-    	Type:'Get',
-    		success:function(data){
-    			var jsonobj=JSON.parse(data);
-    			$("#pna").text(jsonobj.PRODUCT_NAME)
-    			$("#bra").text("品牌:"+jsonobj.BRAND);
-    			var length = jsonobj.LENGTH;
-    			var wide = jsonobj.WIDE;
-    			var height = jsonobj.HEIGHT;
-    			$("#lwh").text("规格参数:"+length+"*"+wide+"*"+height)
-    			$("#rem").text("简介:"+jsonobj.REMARK);
-    			var a = jsonobj.LEFT_IMG_SN;
-    			var b = jsonobj.DOWN_IMG_SN;
-    			var c = jsonobj.FULL_IMG_SN;
-    			var d=  jsonobj.BANNER_IMG_SN;
-    			var e = jsonobj.FABRIC_IMG_SN;
-    			var f = jsonobj.MATERIAL_IMG_SN;
-    			var myArray=new Array(a,b,c,d,e,f);
 
-    			for(var i = 0; i < myArray.length; i++){ 
-    				var imgsn=parseFloat(myArray[i]);
-    				$("#image").attr("src","$!fs.url(imgsn)"); 
-    			}
-    		}
-    })*/
+    $.ajax({
+    	url:'/perspective/QueryProduct',
+    	data:{"productSn":productSn},
+        type: "POST",
+        dataType:"json",
+        success:function(data){
+    	    $("#image_container").empty();
+            ProdunctInfoFill(data.product);
+        }
+    })
 }
 
 function ExchangeView(){
     var i = (++view_index)%view_list.length;
     QueryViewAllProducts(view_list[i]);
+}
+
+function ProdunctInfoFill(productInfo){
+    $("#name").text(productInfo.name);
+    $("#venderName").text("品牌: "+productInfo.venderName);
+    $("#dimension").text("规格参数: "+productInfo.dimension);
+    $("#summary").text("简介: "+productInfo.summary);
+
+    if(productInfo.leftImgUrl!=undefined && productInfo.leftImgUrl!=null&&productInfo.leftImgUrl!=""){
+        var image = $("<img></img>").attr("src",productInfo.leftImgUrl);
+        var div = $("<div></div>",{
+            class:"swiper-slide"
+        }).append(image);
+        $(".swiper-wrapper").append(div);
+    }
+
+    if(productInfo.downImgUrl!=undefined && productInfo.downImgUrl!=null&&productInfo.downImgUrl!=""){
+        var image = $("<img></img>").attr("src",productInfo.downImgUrl);
+        var div = $("<div></div>",{
+            class:"swiper-slide"
+        }).append(image);
+        $(".swiper-wrapper").append(div);
+    }
+
+    if(productInfo.fullImgUrl!=undefined && productInfo.fullImgUrl!=null&&productInfo.fullImgUrl!=""){
+        var image = $("<img></img>").attr("src",productInfo.fullImgUrl);
+        var div = $("<div></div>",{
+            class:"swiper-slide"
+        }).append(image);
+        $(".swiper-wrapper").append(div);
+    }
+
+    var mySwiper = new Swiper('.swiper-container', {
+        //autoplay: 5000,//可选选项，自动滑动
+        loop : true,
+        nextButton : '.swiper-button-next',
+        prevButton : '.swiper-button-prev',
+    })
 }
 
 

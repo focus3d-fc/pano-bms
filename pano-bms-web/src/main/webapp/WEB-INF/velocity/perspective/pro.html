@@ -25,9 +25,7 @@
 			<p class="content" id="summary"></p>
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
-					<div id="image_container" class="swiper-slide">
 
-					</div>
 				</div>
 				<div class="swiper-button-prev"></div>
 				<div class="swiper-button-next"></div>
@@ -50,13 +48,6 @@
 	<script>
 		var image_array;
 
-		var mySwiper = new Swiper('.swiper-container', {
-			//autoplay: 5000,//可选选项，自动滑动
-			loop : true,
-			nextButton : '.swiper-button-next',
-			prevButton : '.swiper-button-prev',
-		})
-
 		$(function() {
 			WebGL_Container = $("#WebGl-OutPut");
 			$("#Confirm_Select").on("click", function(){
@@ -75,26 +66,6 @@
 			QueryPerspectiveInfoCallback(_list);
 			ProdunctInfoFill(productInfo);
 		});
-		
-		function ProdunctInfoFill(productInfo){
-			$("#name").text(productInfo.name);
-			$("#venderName").text("品牌: "+productInfo.venderName);
-            $("#dimension").text("规格参数: "+productInfo.dimension);
-            $("#summary").text("简介: "+productInfo.summary);
-
-            if(productInfo.leftImgUrl!=""){
-               var image = $("<img></img>").attr("src",productInfo.leftImgUrl);
-                $("#image_container").append(image);
-			}
-            if(productInfo.downImgUrl!=""){
-                var image = $("<img></img>").attr("src",productInfo.downImgUrl);
-                $("#image_container").append(image);
-			}
-            if(productInfo.fullImgUrl!=""){
-                var image = $("<img></img>").attr("src",productInfo.fullImgUrl);
-                $("#image_container").append(image);
-            }
-		}
 	</script>
 </body>
 </body>

@@ -737,4 +737,16 @@ public class PerspectiveQuery extends BaseController {
 		
 		return "perspective/pro";
 	}
+	
+	@RequestMapping("QueryProduct")
+	public void QueryProduct(HttpServletResponse response, ModelMap model_map,String productSn){
+		try{
+			Product product = product_service.getProductBySn(productSn);
+			JSONObject json = new JSONObject();
+			json.put("product", product);
+			ajaxOutput(response, json.toJSONString());
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
 }
