@@ -271,7 +271,8 @@
 #confirm input[type=text]{
     width: 50%;
 }
-#login .row input{border:none;}
+#login .row input{border:none;line-height:.5rem;outline-style:none;}
+
 #j_getVerifyCode{
     width: 30%;
     color: #6f6f6f;
