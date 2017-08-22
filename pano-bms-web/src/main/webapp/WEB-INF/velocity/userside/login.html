@@ -139,9 +139,9 @@ $(function(){
 				    var path=window.document.location.href.substring(0,window.document.location.href.indexOf(window.document.location.pathname));
 	                console.log("路径："+path);
 				    	$.ajax({
-							url:path+"/usersSide/getVerifyCode",
+							url: "/sms/send",
 							type:"post",
-							data:{"phone":phone},
+							data:{"mobilePhone":phone},
 						    datatype:"json",
 						    success:function(result){
 						    var phoneCode=JSON.parse(result);

@@ -44,4 +44,6 @@
 	<sqlMap resource="context/datasource/sqlmap/pano_perspective_layer_SqlMap.xml" />
 	<sqlMap resource="context/datasource/sqlmap/pano_perspective_view_SqlMap.xml" />
 	<sqlMap resource="context/datasource/sqlmap/ProductRelevance.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_mem_login_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/pano_mem_user_SqlMap.xml" />
 </sqlMapConfig>
