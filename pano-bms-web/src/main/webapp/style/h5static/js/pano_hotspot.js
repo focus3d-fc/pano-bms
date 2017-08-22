@@ -73,6 +73,7 @@ function showHotspot(data){
 		var targetId = data[i].targetId;
 		var targetName = data[i].targetName;
 		var extend = data[i].extend;
+		var imgType = data[i].imgType;
 		editorKrpano().call("addhotspot(" + name + ")");
 		editorKrpano().call("set(hotspot[" + name + "].ath," + ath + ")");
 		editorKrpano().call("set(hotspot[" + name + "].atv," + atv + ")");
@@ -80,11 +81,14 @@ function showHotspot(data){
 		editorKrpano().call("hotspot[" + name + "].loadstyle(" + styleId + ")");
 		if(type === "1"){
 			editorKrpano().call("set(hotspot[" + name + "].linkedscene," + targetId + ")");
-			editorKrpano().call("add_hotspot_headtitle(" + name + "," + targetName + ")");
 		}
 		if(type === "2"){
 			editorKrpano().call("set(hotspot[" + name + "].openwin," + targetId + ")");
 			editorKrpano().call("set(hotspot[" + name + "].extendf1," + extend + ")");
+		}
+		if(imgType === "4"){
+			editorKrpano().call("add_hotspot_headtitle_4(" + name + "," + targetName + ")");
+		} else {
 			editorKrpano().call("add_hotspot_headtitle(" + name + "," + targetName + ")");
 		}
 	}
