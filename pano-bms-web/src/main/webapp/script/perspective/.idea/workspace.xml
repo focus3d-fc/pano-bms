@@ -151,7 +151,7 @@
         <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="251">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -251,8 +251,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="92" />
-    <option name="y" value="64" />
+    <option name="x" value="-205" />
+    <option name="y" value="80" />
     <option name="width" value="1933" />
     <option name="height" value="1056" />
   </component>
@@ -386,12 +386,12 @@
       <workItem from="1503286092475" duration="10912000" />
       <workItem from="1503373172669" duration="287000" />
       <workItem from="1503388201039" duration="4018000" />
-      <workItem from="1503393814848" duration="10381000" />
+      <workItem from="1503393814848" duration="10797000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256108000" />
+    <option name="totallyTimeSpent" value="256524000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -403,7 +403,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="92" y="64" width="1933" height="1056" extended-state="0" />
+    <frame x="-205" y="80" width="1933" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24986959" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -2059,7 +2059,7 @@
     <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
           <folding>
             <element signature="n#style#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
