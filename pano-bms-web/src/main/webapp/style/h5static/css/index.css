@@ -105,8 +105,9 @@
 .content .label .detail span{
     border: .01rem solid #333;
     border-radius: .05rem;
-    padding: 0 .05rem;
+    padding:.05rem;
     margin-right: .05rem;
+    font-weight:normal;
 }
 .content .label .price span{
     color: #d60000;

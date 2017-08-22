@@ -569,27 +569,25 @@ public class PerspectiveQuery extends BaseController {
 	}
 
 	@RequestMapping("QueryPerspectiveByProductSn")
-	public Map<String, Object> QueryPerspectiveByProductSn(String houseStyleSn,
+	public List<Map<String, Object>> QueryPerspectiveByProductSn(String houseStyleSn,
 			String packageTypeSn, String productSn) {
-		HashMap<String, Object> result = new HashMap<String, Object>();
+		List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
 		try {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("houseStyleSn", houseStyleSn);
 			map.put("packageTypeSn", packageTypeSn);
 			map.put("productSn", productSn);
-			List<Map<String, Object>> list = _service.QueryPerspectiveInfo(map);
+			list = _service.QueryPerspectiveInfo(map);
 
-			for (Map<String, Object> child : list) {
+			for (Map<String, Object> child : list){
 				child.put("productSn", productSn);
 			}
-			result.put("count", list.size());
-			result.put("list", JsonUtils.arrayToJson(list.toArray()));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			return result;
+			return list;
 		}
 	}
 
@@ -702,41 +700,16 @@ public class PerspectiveQuery extends BaseController {
 	}
 
 	@RequestMapping("QueryPerspective")
-	public String QueryPro(HttpServletResponse response, ModelMap model_map,
-			HttpServletRequest request) {
-
-		// 查询参数
-/*		String houseStyleSn = "1";
-		String packageTypeSn = "1";
-		String productSn = "100000";*/
-		String houseStyleSn =request.getParameter("house_style_sn");
-		String packageTypeSn =request.getParameter("packageTypeSn");
-		String productSn =request.getParameter("product_sn");
+	public void ValidatePerspective(HttpServletResponse response, ModelMap model_map,String houseStyleSn,String packageTypeSn,String productSn) {
 		// 验证有没有透视图
-		Map<String, Object> map = QueryPerspectiveByProductSn(houseStyleSn,packageTypeSn,productSn);
-
-		int num = Integer.parseInt(map.get("count").toString());
-
-		if (num != 0) {
-			model_map.put("viewlist", map.get("list"));
-			List<ProductRelevance> proList = productRelevanceService.selProbySN(Long.parseLong(productSn));
-			request.setAttribute("proList", proList.get(0));
-
-			List<ProductRelevance> ImgList = productRelevanceService.selImgbySN(Long.parseLong(productSn));
-			List<Long> images = new ArrayList<Long>();
-			for (ProductRelevance productRelevance : ImgList) {
-				images.add(productRelevance.getLEFT_IMG_SN());
-				images.add(productRelevance.getDOWN_IMG_SN());
-				images.add(productRelevance.getFULL_IMG_SN());
-				images.add(productRelevance.getBANNER_IMG_SN());
-				images.add(productRelevance.getMATERIAL_IMG_SN());
-				images.add(productRelevance.getFABRIC_IMG_SN());
-			}
-			request.setAttribute("images", images);
-			return "/perspective/pro";
+		try{
+			List<Map<String, Object>> list = QueryPerspectiveByProductSn(houseStyleSn,packageTypeSn,productSn);
+			JSONObject json = new JSONObject();
+			json.put("num", list.size());
+			ajaxOutput(response, json.toJSONString());
+		}catch(IOException e){
+			e.printStackTrace();
 		}
-
-		return this.redirect("/usersSide/carshow2");
-
+		
 	}
 }
