@@ -28,13 +28,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="perspective.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="perspective.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/perspective.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="137" column="17" lean-forward="false" selection-start-line="137" selection-start-column="17" selection-end-line="137" selection-end-column="17" />
+            <state relative-caret-position="1125">
+              <caret line="1067" column="0" lean-forward="false" selection-start-line="1067" selection-start-column="0" selection-end-line="1067" selection-end-column="0" />
               <folding>
                 <element signature="n#!!block;n#createView#0" expanded="false" />
+                <element signature="n#!!block;n#View#0" expanded="false" />
+                <element signature="e#2801#3609#0" expanded="false" />
                 <element signature="n#!!block;n#Layer#0" expanded="false" />
                 <element signature="n#!!block;n#Element#0" expanded="false" />
                 <element signature="e#10268#11176#0" expanded="false" />
@@ -99,8 +101,8 @@
       <file leaf-file-name="H5WebGL.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/H5WebGL.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="375">
+              <caret line="290" column="1" lean-forward="false" selection-start-line="290" selection-start-column="1" selection-end-line="290" selection-end-column="1" />
               <folding>
                 <element signature="e#172#9417#0" expanded="false" />
                 <element signature="e#331#428#0" expanded="false" />
@@ -134,8 +136,8 @@
       <file leaf-file-name="pro.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="925">
-              <caret line="64" column="59" lean-forward="true" selection-start-line="64" selection-start-column="59" selection-end-line="64" selection-end-column="59" />
+            <state relative-caret-position="1025">
+              <caret line="68" column="48" lean-forward="false" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
               <folding>
                 <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#style#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -147,8 +149,8 @@
       <file leaf-file-name="perspective.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../style/perspective/perspective.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="45" column="66" lean-forward="true" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
+            <state relative-caret-position="1125">
+              <caret line="45" column="66" lean-forward="false" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
               <folding>
                 <marker date="1503286115880" expanded="true" signature="306:330" ph="{...}" />
               </folding>
@@ -156,11 +158,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Perspective.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Perspective.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="169" column="75" lean-forward="false" selection-start-line="169" selection-start-column="66" selection-end-line="169" selection-end-column="75" />
+            <state relative-caret-position="475">
+              <caret line="203" column="0" lean-forward="true" selection-start-line="203" selection-start-column="0" selection-end-line="203" selection-end-column="0" />
               <folding>
                 <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -183,7 +185,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>element_container</find>
       <find>down</find>
       <find>element_upload</find>
       <find>houseStyleSn</find>
@@ -213,6 +214,7 @@
       <find>updateElementExhibtionMap</find>
       <find>debugger</find>
       <find>view_save</find>
+      <find>QueryPerspectiveInfo</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -366,12 +368,13 @@
       <workItem from="1503031181068" duration="15835000" />
       <workItem from="1503112817993" duration="18496000" />
       <workItem from="1503233279856" duration="7550000" />
-      <workItem from="1503286092475" duration="7197000" />
+      <workItem from="1503286092475" duration="10912000" />
+      <workItem from="1503373172669" duration="287000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="237707000" />
+    <option name="totallyTimeSpent" value="241709000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -383,25 +386,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928064" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -419,10 +422,155 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/perspective.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1125">
+          <caret line="1067" column="0" lean-forward="false" selection-start-line="1067" selection-start-column="0" selection-end-line="1067" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#createView#0" expanded="false" />
+            <element signature="n#!!block;n#View#0" expanded="false" />
+            <element signature="e#2801#3609#0" expanded="false" />
+            <element signature="n#!!block;n#Layer#0" expanded="false" />
+            <element signature="n#!!block;n#Element#0" expanded="false" />
+            <element signature="e#10268#11176#0" expanded="false" />
+            <element signature="e#13655#22930#0" expanded="false" />
+            <element signature="e#13799#13881#0" expanded="false" />
+            <element signature="e#13899#15245#0" expanded="false" />
+            <element signature="e#15275#16155#0" expanded="false" />
+            <element signature="e#16185#17056#0" expanded="false" />
+            <element signature="e#17085#17151#0" expanded="false" />
+            <element signature="e#17180#17255#0" expanded="false" />
+            <element signature="e#17312#17857#0" expanded="false" />
+            <element signature="e#17897#18180#0" expanded="false" />
+            <element signature="e#18220#19714#0" expanded="false" />
+            <element signature="e#19756#20849#0" expanded="false" />
+            <element signature="e#20881#21210#0" expanded="false" />
+            <element signature="e#21250#21303#0" expanded="false" />
+            <element signature="e#21330#21551#0" expanded="false" />
+            <element signature="e#21582#21750#0" expanded="false" />
+            <element signature="e#21779#21856#0" expanded="false" />
+            <element signature="e#21899#22389#0" expanded="false" />
+            <element signature="e#22430#22834#0" expanded="false" />
+            <element signature="e#22868#22928#0" expanded="false" />
+            <element signature="e#22955#27288#0" expanded="false" />
+            <element signature="n#!!block;n#getObjectURL#0" expanded="false" />
+            <element signature="n#!!block;n#query_view#0" expanded="false" />
+            <element signature="n#!!block;n#query_viewproducts#0" expanded="false" />
+            <element signature="n#!!block;n#query_layer#0" expanded="false" />
+            <element signature="n#!!block;n#query_element#0" expanded="false" />
+            <element signature="n#!!block;n#updateView#0" expanded="false" />
+            <element signature="n#!!block;n#ClearViewEnterning#0" expanded="false" />
+            <element signature="n#!!block;n#updateLayer#0" expanded="false" />
+            <element signature="n#!!block;n#queryPackageTypeName#0" expanded="false" />
+            <element signature="n#!!block;n#updateElement#0" expanded="false" />
+            <element signature="n#!!block;n#createElementContainer#0" expanded="false" />
+            <element signature="n#!!block;n#query_elementProduct#0" expanded="false" />
+            <element signature="n#!!block;n#initProductResult#0" expanded="false" />
+            <element signature="n#!!block;n#updateElementProductCallback#0" expanded="false" />
+            <element signature="e#40889#41777#0" expanded="false" />
+            <element signature="n#!!block;n#updateElementExhibtionMap#0" expanded="false" />
+            <element signature="n#!!block;n#vec_to_string#0" expanded="false" />
+            <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
+            <element signature="n#!!block;n#ClearView#0" expanded="false" />
+            <element signature="n#!!block;n#deleteElement#0" expanded="false" />
+            <element signature="n#!!block;n#deleteLayer#0" expanded="false" />
+            <element signature="n#!!block;n#deleteView#0" expanded="false" />
+            <element signature="n#!!block;n#updateElementOrder#0" expanded="false" />
+            <element signature="n#!!block;n#updateLayerOrder#0" expanded="false" />
+            <element signature="n#!!block;n#ControlSpaceHtmlClear#0" expanded="false" />
+            <element signature="n#!!block;n#ControlViewHtmlClear#0" expanded="false" />
+            <element signature="n#!!block;n#ControlLayerHtmlClear#0" expanded="false" />
+            <element signature="n#!!block;n#ControlElementClear#0" expanded="false" />
+            <element signature="n#!!block;n#ElementUploadHide#0" expanded="false" />
+            <element signature="n#!!block;n#ElementUploadExhibtion#0" expanded="false" />
+            <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
+            <element signature="n#!!block;n#ResultHide#0" expanded="false" />
+            <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/H5WebGL.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7250">
+          <caret line="290" column="1" lean-forward="true" selection-start-line="290" selection-start-column="1" selection-end-line="290" selection-end-column="1" />
+          <folding>
+            <element signature="e#172#9417#0" expanded="false" />
+            <element signature="e#331#428#0" expanded="false" />
+            <element signature="e#461#2022#0" expanded="false" />
+            <element signature="e#2055#2963#0" expanded="false" />
+            <element signature="e#2996#3883#0" expanded="false" />
+            <element signature="e#3915#3984#0" expanded="false" />
+            <element signature="e#4016#4106#0" expanded="false" />
+            <element signature="e#4145#4604#0" expanded="false" />
+            <element signature="e#4644#5148#0" expanded="false" />
+            <element signature="e#5191#6685#0" expanded="false" />
+            <element signature="e#6727#7821#0" expanded="false" />
+            <element signature="e#7861#7914#0" expanded="false" />
+            <element signature="e#7941#8162#0" expanded="false" />
+            <element signature="e#8193#8361#0" expanded="false" />
+            <element signature="e#8404#8894#0" expanded="false" />
+            <element signature="e#8935#9339#0" expanded="false" />
+            <element signature="e#9376#9415#0" expanded="false" />
+            <element signature="n#!!block;n#QueryPerspectiveInfo#0" expanded="false" />
+            <element signature="n#!!block;n#QueryPerspectiveInfoCallback#0" expanded="false" />
+            <element signature="n#!!block;n#QueryViewAllProducts#0" expanded="false" />
+            <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
+            <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
+            <element signature="n#!!block;n#ExchangeProduct#0" expanded="false" />
+            <element signature="n#!!block;n#ExchangeView#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1700">
+          <caret line="68" column="48" lean-forward="true" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
+          <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../style/perspective/perspective.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1125">
+          <caret line="45" column="66" lean-forward="true" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
+          <folding>
+            <marker date="1503286115880" expanded="true" signature="306:330" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#1;n#div#2;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/perspective.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
+            <element signature="n#!!block;n#View#0" expanded="false" />
+            <element signature="e#2801#3609#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10268#11176#0" expanded="false" />
@@ -553,6 +701,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
+            <element signature="n#!!block;n#View#0" expanded="false" />
+            <element signature="e#2801#3609#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10268#11176#0" expanded="false" />
@@ -650,6 +800,8 @@
           <caret line="679" column="44" lean-forward="false" selection-start-line="679" selection-start-column="44" selection-end-line="679" selection-end-column="44" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
+            <element signature="n#!!block;n#View#0" expanded="false" />
+            <element signature="e#2801#3609#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10268#11176#0" expanded="false" />
@@ -787,6 +939,8 @@
           <caret line="1133" column="41" lean-forward="false" selection-start-line="1133" selection-start-column="41" selection-end-line="1133" selection-end-column="41" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
+            <element signature="n#!!block;n#View#0" expanded="false" />
+            <element signature="e#2801#3609#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10268#11176#0" expanded="false" />
@@ -924,6 +1078,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
+            <element signature="n#!!block;n#View#0" expanded="false" />
+            <element signature="e#2801#3609#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10268#11176#0" expanded="false" />
@@ -1021,6 +1177,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
+            <element signature="n#!!block;n#View#0" expanded="false" />
+            <element signature="e#2801#3609#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10268#11176#0" expanded="false" />
@@ -1108,6 +1266,8 @@
           <caret line="1143" column="31" lean-forward="false" selection-start-line="1143" selection-start-column="31" selection-end-line="1143" selection-end-column="31" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
+            <element signature="n#!!block;n#View#0" expanded="false" />
+            <element signature="e#2801#3609#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10268#11176#0" expanded="false" />
@@ -1195,6 +1355,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
+            <element signature="n#!!block;n#View#0" expanded="false" />
+            <element signature="e#2801#3609#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10268#11176#0" expanded="false" />
@@ -1282,6 +1444,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
+            <element signature="n#!!block;n#View#0" expanded="false" />
+            <element signature="e#2801#3609#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10268#11176#0" expanded="false" />
@@ -1369,6 +1533,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
+            <element signature="n#!!block;n#View#0" expanded="false" />
+            <element signature="e#2801#3609#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10268#11176#0" expanded="false" />
@@ -1456,6 +1622,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
+            <element signature="n#!!block;n#View#0" expanded="false" />
+            <element signature="e#2801#3609#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10268#11176#0" expanded="false" />
@@ -1543,6 +1711,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
+            <element signature="n#!!block;n#View#0" expanded="false" />
+            <element signature="e#2801#3609#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10268#11176#0" expanded="false" />
@@ -1630,6 +1800,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
+            <element signature="n#!!block;n#View#0" expanded="false" />
+            <element signature="e#2801#3609#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10268#11176#0" expanded="false" />
@@ -1719,87 +1891,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="925">
-          <caret line="64" column="59" lean-forward="true" selection-start-line="64" selection-start-column="59" selection-end-line="64" selection-end-column="59" />
-          <folding>
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../style/perspective/perspective.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="45" column="66" lean-forward="true" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
-          <folding>
-            <marker date="1503286115880" expanded="true" signature="306:330" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/H5WebGL.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="e#172#9417#0" expanded="false" />
-            <element signature="e#331#428#0" expanded="false" />
-            <element signature="e#461#2022#0" expanded="false" />
-            <element signature="e#2055#2963#0" expanded="false" />
-            <element signature="e#2996#3883#0" expanded="false" />
-            <element signature="e#3915#3984#0" expanded="false" />
-            <element signature="e#4016#4106#0" expanded="false" />
-            <element signature="e#4145#4604#0" expanded="false" />
-            <element signature="e#4644#5148#0" expanded="false" />
-            <element signature="e#5191#6685#0" expanded="false" />
-            <element signature="e#6727#7821#0" expanded="false" />
-            <element signature="e#7861#7914#0" expanded="false" />
-            <element signature="e#7941#8162#0" expanded="false" />
-            <element signature="e#8193#8361#0" expanded="false" />
-            <element signature="e#8404#8894#0" expanded="false" />
-            <element signature="e#8935#9339#0" expanded="false" />
-            <element signature="e#9376#9415#0" expanded="false" />
-            <element signature="n#!!block;n#QueryPerspectiveInfo#0" expanded="false" />
-            <element signature="n#!!block;n#QueryPerspectiveInfoCallback#0" expanded="false" />
-            <element signature="n#!!block;n#QueryViewAllProducts#0" expanded="false" />
-            <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
-            <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
-            <element signature="n#!!block;n#ExchangeProduct#0" expanded="false" />
-            <element signature="n#!!block;n#ExchangeView#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="169" column="75" lean-forward="false" selection-start-line="169" selection-start-column="66" selection-end-line="169" selection-end-column="75" />
-          <folding>
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#2;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/perspective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="137" column="17" lean-forward="false" selection-start-line="137" selection-start-column="17" selection-end-line="137" selection-end-column="17" />
+        <state relative-caret-position="1125">
+          <caret line="1067" column="0" lean-forward="false" selection-start-line="1067" selection-start-column="0" selection-end-line="1067" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
+            <element signature="n#!!block;n#View#0" expanded="false" />
+            <element signature="e#2801#3609#0" expanded="false" />
             <element signature="n#!!block;n#Layer#0" expanded="false" />
             <element signature="n#!!block;n#Element#0" expanded="false" />
             <element signature="e#10268#11176#0" expanded="false" />
@@ -1856,6 +1955,81 @@
             <element signature="n#!!block;n#ResultExhibtion#0" expanded="false" />
             <element signature="n#!!block;n#ResultHide#0" expanded="false" />
             <element signature="n#!!block;n#CaculatePicContainerWidth#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/H5WebGL.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="290" column="1" lean-forward="false" selection-start-line="290" selection-start-column="1" selection-end-line="290" selection-end-column="1" />
+          <folding>
+            <element signature="e#172#9417#0" expanded="false" />
+            <element signature="e#331#428#0" expanded="false" />
+            <element signature="e#461#2022#0" expanded="false" />
+            <element signature="e#2055#2963#0" expanded="false" />
+            <element signature="e#2996#3883#0" expanded="false" />
+            <element signature="e#3915#3984#0" expanded="false" />
+            <element signature="e#4016#4106#0" expanded="false" />
+            <element signature="e#4145#4604#0" expanded="false" />
+            <element signature="e#4644#5148#0" expanded="false" />
+            <element signature="e#5191#6685#0" expanded="false" />
+            <element signature="e#6727#7821#0" expanded="false" />
+            <element signature="e#7861#7914#0" expanded="false" />
+            <element signature="e#7941#8162#0" expanded="false" />
+            <element signature="e#8193#8361#0" expanded="false" />
+            <element signature="e#8404#8894#0" expanded="false" />
+            <element signature="e#8935#9339#0" expanded="false" />
+            <element signature="e#9376#9415#0" expanded="false" />
+            <element signature="n#!!block;n#QueryPerspectiveInfo#0" expanded="false" />
+            <element signature="n#!!block;n#QueryPerspectiveInfoCallback#0" expanded="false" />
+            <element signature="n#!!block;n#QueryViewAllProducts#0" expanded="false" />
+            <element signature="n#!!block;n#QueryViewAllProductsCallback#0" expanded="false" />
+            <element signature="n#!!block;n#string_to_vec#0" expanded="false" />
+            <element signature="n#!!block;n#ExchangeProduct#0" expanded="false" />
+            <element signature="n#!!block;n#ExchangeView#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1025">
+          <caret line="68" column="48" lean-forward="false" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
+          <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../style/perspective/perspective.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1125">
+          <caret line="45" column="66" lean-forward="false" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
+          <folding>
+            <marker date="1503286115880" expanded="true" signature="306:330" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="203" column="0" lean-forward="true" selection-start-line="203" selection-start-column="0" selection-end-line="203" selection-end-column="0" />
+          <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#span#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#1;n#div#2;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>

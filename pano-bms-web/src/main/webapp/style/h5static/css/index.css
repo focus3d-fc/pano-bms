@@ -3,6 +3,7 @@
 .index{
     position: relative;
     padding-bottom: .6rem;
+    padding:0px !important;
 }
 .banner{
     position: relative;
