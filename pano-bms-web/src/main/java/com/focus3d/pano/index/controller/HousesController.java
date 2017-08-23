@@ -231,9 +231,10 @@ public class HousesController extends BaseController {
 		if (hlist.size() != 0) {
 			request.setAttribute("hList", hlist);
 		}
+		/*
 		if (request.getParameter("he").equals("he")) {
 			housesService.addHouseStyle();
-		}
+		}*/
 		return "/houses/houseSet";
 	}
 
