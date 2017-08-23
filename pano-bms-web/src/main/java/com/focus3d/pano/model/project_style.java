@@ -21,6 +21,8 @@ public class project_style implements Serializable, CommonModel {
 	private Long SN;
 	private String NAME;
 	private Long IMG_SN;
+	private Long STYLE_SN;
+	
 	private BigDecimal START_PRICE;
 	private BigDecimal END_PRICE;
 	private Long ADDER_SN;
@@ -48,6 +50,14 @@ public class project_style implements Serializable, CommonModel {
 	public void setIMG_SN(Long iMG_SN) {
 		IMG_SN = iMG_SN;
 	}
+	
+	public Long getSTYLE_SN() {
+		return STYLE_SN;
+	}
+	public void setSTYLE_SN(Long sTYLE_SN) {
+		STYLE_SN = sTYLE_SN;
+	}
+	
 	public BigDecimal getSTART_PRICE() {
 		return START_PRICE;
 	}

@@ -5,24 +5,24 @@
 	<typeAlias alias="styles" type="com.focus3d.pano.model.project_style" />
 
 	<select id="getHousestyle" resultClass="styles" parameterClass="Long">
-		select
-		SN,`NAME`,IMG_SN
-		from
-		pano_project_style
-		where
-		PROJECT_SN =
-		#PROJECT_SN#
+		SELECT
+		ps.SN AS SN,baseStyle.`NAME` AS NAME, baseStyle.IMG_SN AS IMG_SN
+		FROM
+		pano_project_style ps
+		INNER JOIN pano_project_base_style baseStyle
+		ON ps.style_sn = baseStyle.sn
+		where ps.project_sn = #PROJECT_SN#
 	</select>
 
 	<select id="getHousestylebySN" resultClass="styles"
 		parameterClass="Long">
-		select
-		SN,`NAME`
-		from
-		pano_project_style
-		where
-		SN =
-		#SN#
+		SELECT
+		ps.SN AS SN,baseStyle.`NAME` AS NAME
+		FROM
+		pano_project_style ps
+		INNER JOIN pano_project_base_style baseStyle
+		ON ps.style_sn = baseStyle.sn
+		WHERE ps.SN = #SN#
 	</select>
 
 	<delete id="delHousestyle" parameterClass="Long">
@@ -35,14 +35,14 @@
 		select
 		SN,`NAME`
 		from
-		pano_project_style
+		pano_project_base_style
 	</select>
 
 	<insert id="addHousestyle" parameterClass="styles">
 		insert into
 		pano_project_style
-		(`NAME`,ADD_TIME,PROJECT_SN)
-		values(#NAME#,#ADD_TIME#,#PROJECT_SN#)
+		(`STYLE_SN`,ADD_TIME,PROJECT_SN)
+		values(#STYLE_SN#,#ADD_TIME#,#PROJECT_SN#)
 	</insert>
 
 </sqlMap>

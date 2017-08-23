@@ -121,14 +121,13 @@
 				<div class="modal-body clearfix">
 					<form method="post" class="form-horizontal" id="formadd"
 						action="/houses/addstyleSet">
-						<input id="fullimgsn" type="hidden" name="fullImgSn" />
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">新增/修改</label>
 							<div class="col-sm-9">
 								<select class="form-control" name="aname"> #foreach
 									($!{allsty} in $!{allsty})
-									<option value="$!{allsty.NAME}">$!{allsty.NAME}</option> #end
+									<option value="$!{allsty.SN}">$!{allsty.NAME}</option> #end
 								</select>
 							</div>
 						</div>

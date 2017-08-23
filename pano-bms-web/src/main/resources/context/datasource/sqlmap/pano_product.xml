@@ -59,7 +59,7 @@
       p.workManShip,p.LR,p.lr_round as lrRound, p.material_color as materialColor,p.fabric_color as fabricColor
     ,pt.NAME as typeName,pf.NAME as funcName,ps.NAME as styleName
     from pano_product p left JOIN pano_product_type pt on p.type_sn=pt.sn left join pano_product_func pf on p.FUNC_SN=pf.SN
-LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn   
+LEFT JOIN pano_project_base_style ps on p.STYLE_SN=ps.sn   
  <dynamic prepend="WHERE ">      
     <isNotEmpty prepend="AND" property="id"> p.id like concat('%',#id#,'%')</isNotEmpty>  
     <isNotEmpty prepend="AND" property="styleSn"> p.style_sn = #styleSn#</isNotEmpty>  
@@ -115,7 +115,7 @@ LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn
    p.venderName
     ,pt.NAME as typeName,pf.NAME as funcName,ps.NAME as styleName
     from pano_product p left JOIN pano_product_type pt on p.type_sn=pt.sn left join pano_product_func pf on p.FUNC_SN=pf.SN
-LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn
+LEFT JOIN pano_project_base_style ps on p.STYLE_SN=ps.sn
 	   where p.SN = #sn:BIGINT#
 	</select>
 	
@@ -127,7 +127,7 @@ LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn
 	
 	<!-- 风格-->
 	<select id="getAllProStyle" resultClass="com.focus3d.pano.model.pano_project_style" >
-	  select sn,name from pano_project_style
+	  select sn,name from pano_project_base_style
 	</select>
 	
 	<!-- 分类 -->

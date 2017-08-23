@@ -366,7 +366,6 @@ public class PanoProductFuncController extends BaseController{
 	@RequestMapping("/classify3")
 	public String merchant3(HttpServletRequest request){
 		List<pano_project_style> type =service.getBasics3();
-		
 		 request.setAttribute("type3",type );
 		return "/panoadm/baseinfoadm/basic-style";
 	}

@@ -301,9 +301,6 @@ public class HousesController extends BaseController {
 			request.setAttribute("stylist", stylist);
 		}
 		List<project_style> allsty = housesService.getAllHousestyle();
-		for (int i = 0; i < allsty.size(); i++) {
-			System.out.println(allsty.get(i).getNAME());
-		}
 		request.setAttribute("allsty", allsty);
 
 		return "/houses/styleSet";
@@ -320,7 +317,8 @@ public class HousesController extends BaseController {
 	public String addstyleSet(String aname, String fullImgSn) {
 
 		project_style style = new project_style();
-		style.setNAME(aname);
+		Long style_sn = Long.parseLong(aname);
+		style.setSTYLE_SN(style_sn);
 		/*
 		 * Long imgsn = null; try { imgsn = EncryptUtil.decode(fullImgSn); }
 		 * catch (Exception e) { // TODO Auto-generated catch block
