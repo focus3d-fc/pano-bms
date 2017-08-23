@@ -37,6 +37,7 @@
 					<tr>
 						<th>序号</th>
 						<th>户型名称</th>
+						<th>图片</th>
 						<th>操作</th>
 					</tr>
 				</thead>
@@ -45,6 +46,13 @@
 					<tr>
 						<td>$!{velocityCount}</td>
 						<td>$!{houList.NAME}</td>
+						
+						<td>
+                        <div class="img">
+						<img class="img-show" src="$!fs.url($!houList.IMG_SN)"  width="100" height ="80">
+						</div>
+						</td>
+						
 						<td>
 							<div class="btn-group btn-group-sm" role="group">
 								<a href="" onclick="topage($!{houList.SN})"
@@ -75,8 +83,8 @@
 					<h4 class="modal-title">添加/修改</h4>
 				</div>
 				<div class="modal-body clearfix">
-					<form method="post" class="form-horizontal" id="formadd"
-						action="/houses/upstyle-houseSet">
+					<form method="post" class="form-horizontal" id="formadd" action="/houses/upstyle-houseSet">
+					 	<input id="fullimgsn" type="hidden" name="fullImgSn" />
 						<div class="form-group">
 							<label class="col-sm-3 control-label">新增</label>
 							<div class="col-sm-9">
@@ -89,6 +97,17 @@
 						</div>
 					</form>
 				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-3 control-label">上传图片</label>
+					<div class="col-sm-9">
+						<input class="form-control" id="fileupload" type="file"
+							name="files[]" multiple>
+					</div>
+				</div>
+				<div id="files" class="files"></div>
+				<span id="resultInfo"></span>
+				
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button type="submit" class="btn btn-primary" form="formadd">确定</button>
@@ -116,5 +135,23 @@
 	<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
 	<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
 	<script src="/style/admstatic/js/main.js"></script>
+	<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+	<script src="/component/upload/vendor/jquery.ui.widget.js"></script>
+	<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+	<script src="/component/upload/js/load-image.all.min.js"></script>
+	<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+	<script src="/component/upload/js/canvas-to-blob.min.js"></script>
+	<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+	<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+	<script src="/component/upload/js/jquery.iframe-transport.js"></script>
+	<!-- The basic File Upload plugin -->
+	<script src="/component/upload/js/jquery.fileupload.js"></script>
+	<!-- The File Upload processing plugin -->
+	<script src="/component/upload/js/jquery.fileupload-process.js"></script>
+	<!-- The File Upload image preview & resize plugin -->
+	<script src="/component/upload/js/jquery.fileupload-image.js"></script>
+	<!-- The File Upload validation plugin -->
+	<script src="/component/upload/js/jquery.fileupload-validate.js"></script>
+	<script src="/script/member/user/product.js"></script>
 </body>
 </html>

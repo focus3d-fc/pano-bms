@@ -12,6 +12,7 @@
 		<result column="HOUSE_SN" property="HOUSE_SN" jdbcType="BIGINT" />
 		<result column="STYLE_SN" property="STYLE_SN" jdbcType="BIGINT" />
 		<result column="PANO_ID" property="PANO_ID" jdbcType="BIGINT" />
+		<result column="IMG_SN" property="IMG_SN" jdbcType="VARCHAR" />
 		<result column="PROJECT_SN" property="PROJECT_SN" jdbcType="BIGINT" />
 		<result column="ADDER_SN" property="ADDER_SN" jdbcType="BIGINT" />
 		<result column="ADDER_NAME" property="ADDER_NAME" jdbcType="VARCHAR" />
@@ -26,7 +27,6 @@
 			<result property="ID" column="ID" />
 			<result property="NAME" column="NAME" />
 			<result property="AREA" column="AREA" />
-			<result property="IMG_SN" column="IMG_SN" />
 			<result property="ROOM_NUM" column="ROOM_NUM" />
 			<result property="HALL_NUM" column="HALL_NUM" />
 			<result property="PROJECT_SN" column="PROJECT_SN" />
@@ -45,7 +45,8 @@
 		parameterClass="com.focus3d.pano.model.pano_project_house_style">
 		SELECT
 		pano_project_house.SN,
-		pano_project_house.`NAME`
+		pano_project_house.`NAME`,
+		pano_project_house_style.IMG_SN
 		FROM
 		pano_project_house
 		INNER JOIN pano_project_house_style ON
@@ -79,8 +80,8 @@
 	<insert id="addStyleHouse" parameterClass="com.focus3d.pano.model.pano_project_house_style">
 		insert into
 		pano_project_house_style
-		(PROJECT_SN,STYLE_SN,HOUSE_SN,ADD_TIME)
-		values(#PROJECT_SN#,#STYLE_SN#,#HOUSE_SN#,#ADD_TIME#)
+		(PROJECT_SN,STYLE_SN,HOUSE_SN,IMG_SN,ADD_TIME)
+		values(#PROJECT_SN#,#STYLE_SN#,#HOUSE_SN#,#IMG_SN#,#ADD_TIME#)
 	</insert>
 
 	<select id="selHouseStyle" resultClass="com.focus3d.pano.model.pano_project_house_style"

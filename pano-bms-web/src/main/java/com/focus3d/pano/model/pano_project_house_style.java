@@ -20,6 +20,7 @@ public class pano_project_house_style implements Serializable, CommonModel {
 	private Long HOUSE_SN;
 	private Long STYLE_SN;
 	private Long PANO_ID;
+	private Long IMG_SN;
 	private Long PROJECT_SN;
 	private Long ADDER_SN;
 	private String ADDER_NAME;
@@ -77,6 +78,14 @@ public class pano_project_house_style implements Serializable, CommonModel {
 
 	public void setPANO_ID(Long pANO_ID) {
 		PANO_ID = pANO_ID;
+	}
+	
+	public Long getIMG_SN() {
+		return IMG_SN;
+	}
+
+	public void setIMG_SN(Long iMG_SN) {
+		IMG_SN = iMG_SN;
 	}
 
 	public Long getPROJECT_SN() {

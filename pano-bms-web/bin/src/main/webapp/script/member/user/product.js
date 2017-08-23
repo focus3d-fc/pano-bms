@@ -83,7 +83,6 @@
 	            $.each(data.result, function (index, file) {
 	            	//alert(index + "," + file);
 	            	var txt = $("#resultInfo").text();
-	            	//alert(txt);
 	            	$("#fullimgsn").val(txt.substr(1));
 	            	$("#resultInfo").text(txt + "," + file);
 	            	

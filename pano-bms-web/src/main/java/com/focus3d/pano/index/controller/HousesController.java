@@ -27,7 +27,6 @@ import com.focus3d.pano.model.PanoProjectHousePackage;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoProjectPackageStyle;
 import com.focus3d.pano.model.ProductInfo;
-import com.focus3d.pano.model.ProductRelevance;
 import com.focus3d.pano.model.getListPano;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
@@ -345,8 +344,8 @@ public class HousesController extends BaseController {
 		pano_project_house_style house = new pano_project_house_style();
 		house.setPROJECT_SN(PROJECT_SN);
 		house.setSTYLE_SN(STYLE_SN);
-		List<pano_project_house> housename = housesService
-				.selHousebyStyle(house);
+		List<pano_project_house> housename = housesService.selHousebyStyle(house);
+		
 		request.setAttribute("houList", housename);
 		List<project_style> stylist = housesService.getHousestylebySN(STYLE_SN);
 		request.setAttribute("styname", stylist.get(0).getNAME());
@@ -385,36 +384,44 @@ public class HousesController extends BaseController {
 
 	@RequestMapping("/upstyle-houseSet")
 	public String upstylehouseSet(HttpServletRequest request) {
-		pano_project_house_style house = new pano_project_house_style();
-		house.setPROJECT_SN(PROJECT_SN);
-		house.setSTYLE_SN(STYLE_SN);
-		/*
-		 * // 清空关联数据 housesService.clearStyleHouse(house);
-		 */
+		try{
+			pano_project_house_style house = new pano_project_house_style();
+			house.setPROJECT_SN(PROJECT_SN);
+			house.setSTYLE_SN(STYLE_SN);
+			/*
+			 * // 清空关联数据 housesService.clearStyleHouse(house);
+			 */
 
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String add_time = sdf.format(date);
-		house.setADD_TIME(add_time);
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String add_time = sdf.format(date);
+			house.setADD_TIME(add_time);
 
-		String[] parameterValues = request.getParameterValues("uname");
-		if (parameterValues != null && parameterValues.length > 0) {
-			for (int i = 0; i < parameterValues.length; i++) {
-				Long HOUSE_SN = Long.parseLong(parameterValues[i]);
-				house.setHOUSE_SN(HOUSE_SN);
-				Map map = new HashMap();
-				map.put("PROJECT_SN", PROJECT_SN);
-				map.put("STYLE_SN", STYLE_SN);
-				map.put("HOUSE_SN", HOUSE_SN);
-				List<pano_project_house_style> num = housesService
-						.selHouseStyle(map);
-				if (num.size() == 0) {
-					housesService.addStyleHouse(house);
+			String[] parameterValues = request.getParameterValues("uname");
+			String image_sn =  request.getParameter("fullImgSn");
+			
+			Long map_key = EncryptUtil.decode(image_sn);
+			if (parameterValues != null && parameterValues.length > 0) {
+				for (int i = 0; i < parameterValues.length; i++) {
+					Long HOUSE_SN = Long.parseLong(parameterValues[i]);
+					house.setHOUSE_SN(HOUSE_SN);
+					house.setIMG_SN(map_key);
+					Map map = new HashMap();
+					map.put("PROJECT_SN", PROJECT_SN);
+					map.put("STYLE_SN", STYLE_SN);
+					map.put("HOUSE_SN", HOUSE_SN);
+					List<pano_project_house_style> num = housesService
+							.selHouseStyle(map);
+					if (num.size() == 0) {
+						housesService.addStyleHouse(house);
+					}
 				}
-
 			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			return redirect("tostyle-houseSet2");
 		}
-		return redirect("tostyle-houseSet2");
 	}
 
 	@ResponseBody
