@@ -72,9 +72,9 @@ public class HousesServiceImpl implements HousesService {
 	}
 
 	@Override
-	public List<pano_ad> getHousead() {
+	public List<pano_ad> getHousead(Long PROJECT_SN) {
 		// TODO Auto-generated method stub
-		return housesDAO.getHousead();
+		return housesDAO.getHousead(PROJECT_SN);
 	}
 
 	@Override

@@ -28,9 +28,9 @@ import com.focus3d.pano.usersside.dao.UsersSideDAO;
 public class UsersSideDAOImpl  extends BaseDao implements UsersSideDAO{
 //List<User> userList=(List<User>) getSqlMapClientTemplate().queryForList("limit",page);
 	@Override
-	public List<pano_ad> selectAdImg_sn() {
+	public List<pano_ad> selectAdImg_sn(Long PROJECT_SN) {
 		List<pano_ad> AdImg_snList=(List<pano_ad>) getSqlMapClientTemplate().
-				queryForList("selectAdImg_sn");
+				queryForList("selectAdImg_sn",PROJECT_SN);
 		return AdImg_snList;
 	}
 

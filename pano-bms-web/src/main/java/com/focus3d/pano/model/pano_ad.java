@@ -20,6 +20,7 @@ public class pano_ad implements Serializable, CommonModel {
 	private String NAME;
 	private int TYPE;
 	private Long IMG_SN;
+	private Long PROJECT_SN;
 	private String LINK;
 	private int STATUS;
 	private Long ADDER_SN;
@@ -67,6 +68,14 @@ public class pano_ad implements Serializable, CommonModel {
 
 	public void setLINK(String lINK) {
 		LINK = lINK;
+	}
+	
+	public Long getPROJECT_SN() {
+		return PROJECT_SN;
+	}
+
+	public void setPROJECT_SN(Long pROJECT_SN) {
+		PROJECT_SN = pROJECT_SN;
 	}
 
 	public int getSTATUS() {

@@ -267,12 +267,13 @@ INNER JOIN pano_order_shopcart ON pano_order_shopcart.HOUSE_PACKAGE_SN = pano_pr
 where pano_order_shopcart.USER_SN=#user_sn#;
 </select>
  <!-- <typeAlias alias="style" type="com.focus3d.pano.model.Style" /> -->
- <select id="selectAdImg_sn" resultClass="com.focus3d.pano.model.pano_ad">
+ <select id="selectAdImg_sn" resultClass="com.focus3d.pano.model.pano_ad" parameterClass="long">
  SELECT
 pano_ad.IMG_SN,
 pano_ad.LINK
 FROM
 pano_ad
+where project_sn = #PROJECT_SN#
  </select>
  <!-- 查风格img_sn和name -->
  <select id="selectStyleByProject_sn" parameterClass="long" 

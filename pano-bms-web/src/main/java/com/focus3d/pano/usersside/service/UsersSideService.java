@@ -21,7 +21,7 @@ import com.focus3d.pano.model.pano_project_house;
 import com.focus3d.pano.model.pano_project_space;
 
 public interface UsersSideService {
-	public List<pano_ad> selectAdImg_sn();
+	public List<pano_ad> selectAdImg_sn(Long PROJECT_SN);
 	public List<Style> selectStyleByProject_sn(long project_sn);
 	public List<Lable> selectLableByStyle_sn(Long style_sn);
 	public List<pano_project> list_SelectprojectList(

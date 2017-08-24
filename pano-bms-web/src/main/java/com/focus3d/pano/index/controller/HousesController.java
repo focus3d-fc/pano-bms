@@ -494,7 +494,7 @@ public class HousesController extends BaseController {
 
 	@RequestMapping("/toaddSet")
 	public String toaddSet(HttpServletRequest request) {
-		List<pano_ad> list = housesService.getHousead();
+		List<pano_ad> list = housesService.getHousead(PROJECT_SN);
 		request.setAttribute("aList", list);
 		return "/houses/addSet";
 	}
@@ -509,6 +509,7 @@ public class HousesController extends BaseController {
 	@RequestMapping("/addHousead")
 	public String addHousead(String alink, String fullImgSn, Long SN) {
 		pano_ad ad = new pano_ad();
+		ad.setPROJECT_SN(PROJECT_SN);
 		ad.setLINK(alink);
 		Long imgsn = null;
 		try {

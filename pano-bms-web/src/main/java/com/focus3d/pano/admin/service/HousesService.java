@@ -77,7 +77,7 @@ public interface HousesService {
 	// ----------------------------------------------楼盘-广告----------------------------------------------
 
 	// 广告查询
-	public List<pano_ad> getHousead();
+	public List<pano_ad> getHousead(Long PROJECT_SN);
 
 	// 广告删除
 	public int delHousead(Long SN);

@@ -6,7 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -53,16 +55,6 @@ public class UsersSideController extends BaseController{
 		long user_sn=1;
 		session.setAttribute("user_sn",user_sn);
 		
-		//从广告表取img_sn集合
-		System.out.println("进入/toIndex方法");
-		
-		List<pano_ad> adList=usersSideService.selectAdImg_sn();
-		for(int i=0;i<adList.size();i++){
-			System.out.println("广告:"+adList);
-		}
-		
-		model.addAttribute("adList",adList);
-		
 		//根据楼盘信息，查询楼盘sn
 		String province=request.getParameter("province");
 		String city=request.getParameter("city");
@@ -72,27 +64,37 @@ public class UsersSideController extends BaseController{
 		List<pano_project> pano_projectList=usersSideService.get_projectList();
 
 		pano_project pano_project=pano_projectList.get(0);
+		
 		long project_sn=pano_project.getSN();
 
 		if((province!=null)&&(city!=null)&&(area!=null)&&(project_name!=null)){
-			
-			pano_projectList=usersSideService.list_SelectprojectList2(
-					province, city, area, project_name);
+			pano_projectList=usersSideService.list_SelectprojectList2(province, city, area, project_name);
 			project_sn=pano_projectList.get(0).getSN();
 		}
 		model.addAttribute("pano_projectList",pano_projectList);
-
+		
+		List<pano_ad> adList=usersSideService.selectAdImg_sn(project_sn);
+		
+		model.addAttribute("adList",adList);
+		
 		List<Style> styleList=usersSideService.selectStyleByProject_sn(project_sn);
 		
 		model.addAttribute("styleList",styleList);
 		
+		Set<String>  set=new HashSet<String>();
 		//根据每个风格-查询对应的-标签集合
 		for(int i=0;i<styleList.size();i++){
-			Long style_sn=styleList.get(i).getId();
-			
-			List<Lable> lableList=usersSideService.selectLableByStyle_sn(style_sn);
+			Style style = styleList.get(i);
+			Long style_sn=style.getId();
+			if(set.contains(style.getName())){
+				styleList.remove(style);
+				continue;
+			}else{
+				set.add(style.getName());
+				List<Lable> lableList=usersSideService.selectLableByStyle_sn(style_sn);
+				style.setLableList(lableList);
+			}
 		}
-		
 		return "/usersside/index";
 	}
 	

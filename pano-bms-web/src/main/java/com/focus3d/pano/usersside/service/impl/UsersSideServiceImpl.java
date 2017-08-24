@@ -28,8 +28,8 @@ public class UsersSideServiceImpl implements UsersSideService{
 	@Resource
 	private UsersSideDAO usersSideDAO;
 	@Override
-	public List<pano_ad> selectAdImg_sn() {
-		return usersSideDAO.selectAdImg_sn();
+	public List<pano_ad> selectAdImg_sn(Long PROJECT_SN) {
+		return usersSideDAO.selectAdImg_sn(PROJECT_SN);
 	}
 	@Override
 	public List<Style> selectStyleByProject_sn(long project_sn) {

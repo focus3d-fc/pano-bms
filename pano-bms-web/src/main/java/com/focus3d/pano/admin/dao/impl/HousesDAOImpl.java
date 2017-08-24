@@ -76,9 +76,9 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 	}
 
 	@Override
-	public List<pano_ad> getHousead() {
+	public List<pano_ad> getHousead(Long PROJECT_SN) {
 		List<pano_ad> list = (List<pano_ad>) getSqlMapClientTemplate()
-				.queryForList("pano_ad.getHousead");
+				.queryForList("pano_ad.getHousead",PROJECT_SN);
 		return list;
 	}
 
