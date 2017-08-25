@@ -63,7 +63,7 @@
 						退款成功 #end</td>
 					<td>#if($!{orderList.SEND}==0) 未发货
 						#end#if($!{orderList.SEND}==1) 发货 #end</td>
-					<td>$!{orderList.TOTAL_PRICE}</td>
+					<td>$!{orderList.PAY_MONEY}</td>
 					<td><a
 						href="/order/toorder-details?ORDER_SN=$!{orderList.ORDER_SN}"
 						class="btn btn-success">查看</a></td>

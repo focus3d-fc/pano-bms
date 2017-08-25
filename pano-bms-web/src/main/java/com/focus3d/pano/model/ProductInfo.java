@@ -32,7 +32,11 @@ public class ProductInfo implements CommonModel{
 	    private Long funcSn;
 	    private Long spaceSn;
 	    private Long styleSn;
-	    private Integer length;
+	    private Long venderSn;
+	   
+
+
+		private Integer length;
 	    private Integer wide;
 	    private Integer height;
 	    private String materialName;
@@ -229,7 +233,14 @@ public class ProductInfo implements CommonModel{
 		public void setStyleSn(Long styleSn) {
 			this.styleSn = styleSn;
 		}
+		
+		public Long getVenderSn() {
+			return venderSn;
+		}
 
+		public void setVenderSn(Long venderSn) {
+			this.venderSn = venderSn;
+		}
 
 		public Integer getLength() {
 			return length;

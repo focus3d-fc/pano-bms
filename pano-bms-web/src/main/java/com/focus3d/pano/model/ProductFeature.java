@@ -5,7 +5,7 @@ import java.util.Date;
 
 import com.focus3d.pano.common.model.CommonModel;
 
-public class PanoProductFunc implements Serializable, CommonModel{
+public class ProductFeature implements Serializable, CommonModel{
 	private Long sn;         //序列号
 	private String name;     //名称
 	private Integer status;  //状态
@@ -34,7 +34,7 @@ public class PanoProductFunc implements Serializable, CommonModel{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PanoProductFunc other = (PanoProductFunc) obj;
+		ProductFeature other = (ProductFeature) obj;
 		if (sn == null) {
 			if (other.sn != null)
 				return false;
@@ -42,11 +42,11 @@ public class PanoProductFunc implements Serializable, CommonModel{
 			return false;
 		return true;
 	}
-	public PanoProductFunc() {
+	public ProductFeature() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PanoProductFunc(Long sn, String name, Integer status, Long adderSn,
+	public ProductFeature(Long sn, String name, Integer status, Long adderSn,
 			String adderName, Date addTime, Long updaterSn, String updaterName,
 			Date updateTime) {
 		super();

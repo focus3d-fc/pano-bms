@@ -3,9 +3,11 @@ package com.focus3d.pano.index.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,10 +35,7 @@ public class OrderController extends BaseController {
 	 * 进入订单管理
 	 */
 	@RequestMapping("/toOrder")
-	public String toOrder(HttpServletRequest request) {
-
-		String page = request.getParameter("page");
-
+	public String toOrder(String page,HttpServletResponse response,ModelMap map) {
 		// 总记录数
 		int count = 0;
 		int currentPage = 0;
@@ -64,8 +63,8 @@ public class OrderController extends BaseController {
 
 		// 拼接分页语句
 		OrderAdmin = orderService.selOrder(pages);
-		request.setAttribute("orderList", OrderAdmin);
-		request.setAttribute("pages", pages);
+		map.put("orderList", OrderAdmin);
+		map.put("pages", pages);
 		int totalPages = pages.getTotalPages();
 
 		if (currentPage == totalPages) {
@@ -76,14 +75,14 @@ public class OrderController extends BaseController {
 			nextPage = currentPage + 1;
 		}
 
-		request.setAttribute("upPage", upPage);
-		request.setAttribute("nextPage", nextPage);
+		map.put("upPage", upPage);
+		map.put("nextPage", nextPage);
 		int index = (currentPage - 1) * pages.getPagesize();
-		request.setAttribute("index", index);
-		request.setAttribute("currentPage", currentPage);
+		map.put("index", index);
+		map.put("currentPage", currentPage);
 
 		List<pano_project> houseList = orderService.selHouse();
-		request.setAttribute("houseList", houseList);
+		map.put("houseList", houseList);
 
 		return "/order/order";
 	}

@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
-import com.focus3d.pano.admin.service.PanoProductFuncService;
+import com.focus3d.pano.admin.service.IProductService;
 import com.focus3d.pano.common.controller.BaseController;
-import com.focus3d.pano.model.PanoProductFunc;
-import com.focus3d.pano.model.PanoProductType;
+import com.focus3d.pano.model.ProductFeature;
+import com.focus3d.pano.model.ProductClassify;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoUserLongin;
 import com.focus3d.pano.model.PanoVender;
@@ -36,7 +36,7 @@ public class PanoProductFuncController extends BaseController{
 
 	
 	@Autowired 
-	private PanoProductFuncService service;
+	private IProductService service;
 	
 	/**
 	 * 分类
@@ -45,10 +45,10 @@ public class PanoProductFuncController extends BaseController{
 	 */
 	@RequestMapping("/classify")
 	public String merchant(HttpServletRequest request){
-		List<PanoProductType> type =null;
+		List<ProductClassify> type =null;
 		
 		try{
-			type = service.getBasics();
+			type = service.QueryClassify();
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -63,10 +63,10 @@ public class PanoProductFuncController extends BaseController{
 		System.out.println("获得值为L:"+name);
 		String i =null;
 		ResultVO rv = new ResultVO();
-		List<PanoProductType> basics = service.getBasics();
+		List<ProductClassify> basics = service.QueryClassify();
 		if(basics.size()>0){
 			System.out.println("111");
-		for(PanoProductType p:basics){
+		for(ProductClassify p:basics){
 			System.out.println(p.getName());
 			if(p.getName().equals(name)||StringUtil.isEmpty(name)){
 				rv.setResult("errorr");
@@ -82,10 +82,10 @@ public class PanoProductFuncController extends BaseController{
 			}
 		}
 		if(i.equals("succeed")){
-			 Long insert = service.getInsert(name);
+			 Long insert = service.InsertClassify(name);
 			}
 	}else{
-		 Long insert = service.getInsert(name);
+		 Long insert = service.InsertClassify(name);
 	}
 		try {
 			this.ajaxOutput(response, JsonUtils.objectToJson(rv));
@@ -114,7 +114,7 @@ public class PanoProductFuncController extends BaseController{
 		String sn1 = request.getParameter("id");
 		String name = request.getParameter("name");
 		long sn = Long.valueOf(sn1);
-		PanoProductType p = new PanoProductType();
+		ProductClassify p = new ProductClassify();
 		p.setName(name);
 		p.setSn(sn);
 		int update = service.getUpdate(p);
@@ -126,7 +126,7 @@ public class PanoProductFuncController extends BaseController{
 	@RequestMapping("select")
 	public void select(String sn,HttpServletResponse response){
 		System.out.println("功能主键"+sn);
-		PanoProductType getselect2 = service.getselect(Integer.parseInt(sn));
+		ProductClassify getselect2 = service.getselect(Integer.parseInt(sn));
 		String objectToJson = JsonUtils.objectToJson(getselect2);
 		try {
 			this.ajaxOutput(response, objectToJson);
@@ -469,7 +469,7 @@ public class PanoProductFuncController extends BaseController{
 	
 	@RequestMapping("/classify4")
 	public String merchant4(HttpServletRequest request){
-		List<PanoProductFunc> type =null;
+		List<ProductFeature> type =null;
 		
 		try{
 			type = service.getBasics4();
@@ -487,9 +487,9 @@ public class PanoProductFuncController extends BaseController{
 		String name = request.getParameter("name");
 		ResultVO rv = new ResultVO();
 		String i =null;
-		List<PanoProductFunc> basics = service.getBasics4();
+		List<ProductFeature> basics = service.getBasics4();
 		if(basics.size()>0){
-		for(PanoProductFunc p:basics){
+		for(ProductFeature p:basics){
 			if(p.getName().equals(name)||name.equals("")){
 				rv.setResult("errorr");
 				rv.setResCode("登录失败");
@@ -531,7 +531,7 @@ public class PanoProductFuncController extends BaseController{
 		String sn1 = request.getParameter("id");
 		String name = request.getParameter("name");
 		long sn = Long.valueOf(sn1);
-		PanoProductFunc p = new PanoProductFunc();
+		ProductFeature p = new ProductFeature();
 		p.setName(name);
 		p.setSn(sn);
 		System.out.println(sn1+name);
@@ -544,7 +544,7 @@ public class PanoProductFuncController extends BaseController{
 	@RequestMapping("select4")
 	public void select4(String sn,HttpServletResponse response){
 		System.out.println("功能主键"+sn);
-		PanoProductFunc getselect4 = service.getselect4(Integer.parseInt(sn));
+		ProductFeature getselect4 = service.getselect4(Integer.parseInt(sn));
 		String objectToJson = JsonUtils.objectToJson(getselect4);
 		System.out.println(objectToJson+"+++++++==");
 		try {

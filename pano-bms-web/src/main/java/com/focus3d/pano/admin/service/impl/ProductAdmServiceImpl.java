@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.focus3d.pano.admin.dao.IProductAdmDAO;
-
+import com.focus3d.pano.admin.dao.IProductDAO;
 import com.focus3d.pano.admin.service.IProductAdmService;
-import com.focus3d.pano.model.PanoProduct;
-import com.focus3d.pano.model.PanoProductFunc;
-import com.focus3d.pano.model.PanoProductType;
+import com.focus3d.pano.model.ProductFeature;
+import com.focus3d.pano.model.ProductClassify;
+import com.focus3d.pano.model.PanoVender;
 import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.ProductInfo;
 import com.focus3d.pano.model.pano_project_style;
@@ -21,6 +21,9 @@ public class ProductAdmServiceImpl implements IProductAdmService{
 	
 	@Autowired
 	private IProductAdmDAO productAdmDAO;
+	
+	@Autowired
+	private IProductDAO panoProductFuncDAO;
 
 	@Override
 	public void addProduct(Product pro) {
@@ -72,13 +75,13 @@ public class ProductAdmServiceImpl implements IProductAdmService{
 	}
 
 	@Override
-	public List<PanoProductType> listAllProType() {
+	public List<ProductClassify> listAllProType() {
 		// TODO Auto-generated method stub
 		return productAdmDAO.listAllProType();
 	}
 
 	@Override
-	public List<PanoProductFunc> listAllProFunc() {
+	public List<ProductFeature> listAllProFunc() {
 		// TODO Auto-generated method stub
 		return productAdmDAO.listAllProFunc();
 	}
@@ -88,8 +91,10 @@ public class ProductAdmServiceImpl implements IProductAdmService{
 		// TODO Auto-generated method stub
 		return productAdmDAO.listAllProStyle();
 	}
-	
-	
-   
-	 
+
+
+	@Override
+	public List<PanoVender> listAllVender() {
+		return panoProductFuncDAO.getBasics2();
+	} 
 }

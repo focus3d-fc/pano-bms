@@ -14,50 +14,43 @@ public class OrderDAOImpl extends BaseDao implements OrderDAO {
 
 	@Override
 	public List<OrderAdmin> selOrder(Page page) {
-		List<OrderAdmin> list = (List<OrderAdmin>) getSqlMapClientTemplate()
-				.queryForList("OrderAdmin.selOrder", page);
+		List<OrderAdmin> list = (List<OrderAdmin>) getSqlMapClientTemplate().queryForList("OrderAdmin.selOrder", page);
 		return list;
 	}
 
 	@Override
 	public int selOrderCount() {
-		int count = (Integer) getSqlMapClientTemplate().queryForObject(
-				"OrderAdmin.selOrderCount");
+		int count = (Integer) getSqlMapClientTemplate().queryForObject("OrderAdmin.selOrderCount");
 		return count;
 	}
 
 	@Override
 	public List<OrderAdmin> selOrderbySN(Long ORDER_SN) {
-		List<OrderAdmin> list = (List<OrderAdmin>) getSqlMapClientTemplate()
-				.queryForList("OrderAdmin.selOrderbySN", ORDER_SN);
+		List<OrderAdmin> list = (List<OrderAdmin>) getSqlMapClientTemplate().queryForList("OrderAdmin.selOrderbySN", ORDER_SN);
 		return list;
 	}
 
 	@Override
 	public List<pano_project> selHouse() {
-		List<pano_project> list = (List<pano_project>) getSqlMapClientTemplate()
-				.queryForList("OrderAdmin.selHouse");
+		List<pano_project> list = (List<pano_project>) getSqlMapClientTemplate().queryForList("OrderAdmin.selHouse");
 		return list;
 	}
 
 	@Override
 	public List<OrderAdmin> selOrderbyAll(OrderAdmin order) {
-		List<OrderAdmin> list = (List<OrderAdmin>) getSqlMapClientTemplate()
-				.queryForList("OrderAdmin.selOrderbyAll", order);
+		List<OrderAdmin> list = (List<OrderAdmin>) getSqlMapClientTemplate().queryForList("OrderAdmin.selOrderbyAll", order);
 		return list;
 	}
 
 	@Override
 	public List<OrderAdmin> selOrderbyHouse(OrderAdmin order) {
-		List<OrderAdmin> list = (List<OrderAdmin>) getSqlMapClientTemplate()
-				.queryForList("OrderAdmin.selOrderbyHouse", order);
+		List<OrderAdmin> list = (List<OrderAdmin>) getSqlMapClientTemplate().queryForList("OrderAdmin.selOrderbyHouse", order);
 		return list;
 	}
 
 	@Override
 	public List<OrderAdmin> selOrderbyNickname(OrderAdmin order) {
-		List<OrderAdmin> list = (List<OrderAdmin>) getSqlMapClientTemplate()
-				.queryForList("OrderAdmin.selOrderbyNickname", order);
+		List<OrderAdmin> list = (List<OrderAdmin>) getSqlMapClientTemplate().queryForList("OrderAdmin.selOrderbyNickname", order);
 		return list;
 	}
 

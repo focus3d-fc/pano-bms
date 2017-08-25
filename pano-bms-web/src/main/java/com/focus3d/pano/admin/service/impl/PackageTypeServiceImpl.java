@@ -191,7 +191,10 @@ public class PackageTypeServiceImpl implements PackageTypeService{
 	public List<Package_Product> getSelectProduct(Long package_type_sn) {
 		return typeDao.getSelectProduct(package_type_sn);
 	}
-
-
+	
+	@Override
+	public List<Map<String, Object>> getTypeProducts(Long packageTypeSn) {
+		return typeDao.getTypeProducts(packageTypeSn);
+	}
 
 }

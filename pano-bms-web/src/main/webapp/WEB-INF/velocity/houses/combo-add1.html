@@ -48,21 +48,22 @@
 
         </div>
     </div>
+    
     <div class="combo-title"><span class="glyphicon glyphicon-th-large"></span>产品筛选：</div>
     <div class="panel-body">
         <div class="container">
-            <form class="form-inline">
+           <div class="form-inline">
                 <div class="form-group">
                     <label class="sr-only"></label>
-                    <input type="text" class="form-control" placeholder="产品编号" name ="productid" >
+                    <input type="text" class="form-control" placeholder="产品编号" id ="productid" >
                 </div>
                 <div class="form-group">
                     <label class="sr-only">风格</label>
                     <div class="col-sm-8">
-                        <select class="form-control" name="style">
-                        <option>不限</option>
+                        <select class="form-control" id="style">
+                        <option value="">不限</option>
                          #foreach ($!{styles} in $!{style})
-                            <option>$!{styles.style_name}</option>
+                            <option value="">$!{styles.style_name}</option>
                             #end
                         </select>
                     </div>
@@ -70,10 +71,10 @@
                 <div class="form-group">
                     <label class="sr-only">类型</label>
                     <div class="col-sm-8">
-                        <select class="form-control" name="typepr" >
-                         <option>不限</option>
+                        <select class="form-control" id="typepr" >
+                         <option value="">不限</option>
                              #foreach ($!{types} in $!{type})
-                            <option>$!{types.type_name}</option>
+                            <option value="">$!{types.type_name}</option>
                             #end
                         </select>
                     </div>
@@ -81,18 +82,19 @@
                 <div class="form-group">
                     <label class="sr-only">功能</label>
                     <div class="col-sm-8">
-                        <select class="form-control" name="func">
-                         <option>不限</option>
+                        <select class="form-control" id="func">
+                         <option value="">不限</option>
                              #foreach ($!{funcs} in $!{func})
-                            <option>$!{funcs.func_name}</option>
+                            <option value="">$!{funcs.func_name}</option>
                             #end
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">搜索</button>
-            </form>
+                <button class="btn btn-primary" onclick="QueryProduct()">搜索</button>
+           </div>
         </div>
     </div>
+    
     <div class="panel-body">
         <form action="/typeproduct/insert"  id="formadd">
             <table class="table table-hover">
@@ -106,28 +108,8 @@
                     <th width="10%">操作</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="product_tbody">
                
-                 #foreach ($!{Lists} in $!{product})
-                <tr>
-                    <td>
-                        <div>
-                            <label>
-                                <input type="checkbox"  value="$!{Lists.product_SN}" name="name">
-                            </label>
-                        </div>
-                    </td>
-                    <td>$!{Lists.product_id}</td>
-                    <td>$!{Lists.product_type_name}</td>
-                    <td>$!{Lists.project_style_name}</td>
-                    <td>$!{Lists.product_func_name}</td>
-                    <td>
-                        <div class="btn-group btn-group-sm" role="group">
-                            <a href="/typeproduct/getprodtinpgdetail?prodtsn=$!{Lists.product_SN}" class="btn btn-success">查看</a>
-                        </div>
-                    </td>
-                </tr>
-                #end
                 </tbody>
             </table>
         </form>
@@ -136,7 +118,7 @@
     <div class="panel-bodya">
         <nav class="nav-divider clearfix">
            <div class="pull-left cof" >
-                <button class="btn btn-info" type="submit"  form="formadd">确认</button>
+                <button class="btn btn-info" onclick="insertTypeProduct()">确认</button>
             </div>
         <ul class="pagination pull-right">
             <li>
@@ -172,17 +154,18 @@
 
             </tr>
             </thead>
-            <tbody>
-             #foreach ($!{Lists} in $!{getMap})
-            <tr>
+            <tbody id="typeproduct_tbody">
+             #foreach ($!{product} in $!{list})
+            <tr id="$!{product.packageProductSn}">
+               <input type='hidden' value='$!{product.productSn}'/>
                <td>$!{velocityCount}</td>
-               <td>$!{Lists.product_id}</td>
-               <td>$!{Lists.ptype_name}</td>
+               <td>$!{product.productName}</td>
+               <td>$!{product.productPrice}</td>
                <td>$!{Lists.pstyle_name}</td>
                <td>$!{Lists.func_name}</td>
                 <td>
                     <div class="btn-group btn-group-sm" role="group">
-                        <a href="/typeproduct/delete?sn=$!{Lists.SN}" class="btn btn-danger" onClick="del()">删除</a>
+                        <a class="btn btn-danger" onclick="del($!{product.packageProductSn},$!{product.productSn})">删除</a>
                     </div>
                 </td>
             </tr>
@@ -190,8 +173,6 @@
             </tbody>
         </table>
     </div>
-
-
     </div>
 
 <script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
@@ -200,6 +181,148 @@
 <script src="/style/admstatic/js/format.js"></script>
 <script src="/style/admstatic/js/jquery-1.8.3.min.js"></script>
 
+<script>
+	var pageSize = 5;
+	var packageTypeSn = '$packageTypeSn';
+	
+	function QueryProduct(){
+		var data = new Object();
+		data.id = $("#productid").val();
+		data.styleSn = $("#style").val();
+		data.typepr = $("#typepr").val();
+		data.funcSn = $("#func").val();
+		data.startNum = 0;
+		data.pageSize = pageSize;
+		
+		$.ajax({url:"/houses/queryAllProducts",
+	        type: "POST",
+	        data:data,
+	        dataType:"json",
+	        success:function(data){
+	            if(data){
+	            	initProductResult(data);
+	            }
+	        }
+	    });
+	}
+	
+	function initProductResult(data){
+		var tbody = $("#product_tbody");
+		tbody.empty();
+		for(var i=0,len=data.length;i<len;i++){
+			var _data = data[i];
+			var tr = $("<tr></tr>").attr("id",_data.sn);
+			
+			var checkbox = $("<input type='checkbox' name='name'/>").val(_data.sn);
+			
+			$("#typeproduct_tbody input[type=hidden]").each(function(){
+				if($(this).val() == _data.sn){
+					checkbox.attr("disabled","disabled").prop("checked", true);
+				}
+			});
+			
+			var check = $("<td></td>").append($("<div></div>",{class:"checkbox"}).append($("<label></label>").append(checkbox)));
+            var name = $("<td></td>").text(_data.name);
+            var typeName = $("<td></td>").text(_data.typeName);
+            
+            tr.append(check).append(name).append(typeName);
+            
+            tbody.append(tr);
+            
+			/*
+            <td>
+                <div class="btn-group btn-group-sm" role="group">
+                    <a href="/typeproduct/getprodtinpgdetail?prodtsn=$!{Lists.product_SN}" class="btn btn-success">查看</a>
+                </div>
+            </td>*/
+		}
+	}
+	
+	function QueryTypeProducts(){
+		var data = new Object();
+		data.packagetypesn = packageTypeSn;
+		$.ajax({url:"/houses/ajaxQueryTypeProducts",
+	        type: "POST",
+	        data:data,
+	        dataType:"json",
+	        success:function(data){
+	            if(data){
+	            	initTypeProductResult(data);
+	            }
+	        }
+	    });
+	}
+	
+	function initTypeProductResult(data){
+		var tbody = $("#typeproduct_tbody");
+		tbody.empty();
+		for(var i=0,len=data.length;i<len;i++){
+			var _data = data[i];
+			var tr = $("<tr></tr>").attr("id",_data.packageProductSn);
+			var productSn = $("<input type='hidden'/>").val(_data.productSn);
+			var name = $("<td></td>").text(_data.productName);
+			var price = $("<td></td>").text(_data.productPrice);
+			
+			var control = $("<td></td>").append($("<div class='btn-group btn-group-sm' role='group'></div>").append($("<a class='btn btn-danger'/>").on("click",function(){
+				del(_data.packageProductSn,_data.productSn)
+			})));
+			
+			
+			tr.append(productSn).append(name).append(price).append(control);;
+			tbody.append(tr);
+		}
+	}
+	
+	function insertTypeProduct(){
+		var data = new Object();
+		var value = "";
+		
+		$("#product_tbody input[type=checkbox]:enabled:checked").each(function(){
+			value += $(this).val() + ",";
+		})
+		
+		if(value == ""){
+			return;
+		}
+		
+		value = value.substring(0,value.length - 1 );
+		
+		
+		data.checked = value;
+		data.packageTypeSn = packageTypeSn;
+		
+		$.ajax({url:"/houses/insertTypeProduct",
+	        type: "POST",
+	        data:data,
+	        dataType:"json",
+	        success:function(data){
+	            if(data){
+	            	QueryTypeProducts();
+	            	var param = value.split(",");
+	            	for(var i=0,len=param.length;i<len;i++){
+	            		$("#"+param[i] + " input[type=checkbox]").attr("disabled","disabled");
+	            	}
+	            }
+	        }
+	    });
+	}
+	
+	function del(packageProductSn,productSn){
+		var data = new Object();
+		data.packageproductsn = packageProductSn;
+		$.ajax({url:"/houses/deleteTypeProduct",
+	        type: "POST",
+	        data:data,
+	        dataType:"json",
+	        success:function(data){
+	            if(data){
+	            	$("#"+productSn+" input[type=checkbox]").removeAttr("disabled").prop("checked", false);
+	            	QueryTypeProducts();
+	            }
+	        }
+	    });
+	}
+</script>
 
 </body>
 </html>

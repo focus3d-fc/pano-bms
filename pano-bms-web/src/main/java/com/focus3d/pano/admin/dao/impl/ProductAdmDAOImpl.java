@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 import com.focus3d.pano.admin.dao.IProductAdmDAO;
 import com.focus3d.pano.common.dao.CommonDao;
 import com.focus3d.pano.model.PanoProduct;
-import com.focus3d.pano.model.PanoProductFunc;
-import com.focus3d.pano.model.PanoProductType;
+import com.focus3d.pano.model.ProductFeature;
+import com.focus3d.pano.model.ProductClassify;
 import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.ProductInfo;
 import com.focus3d.pano.model.ProductModel;
@@ -92,17 +92,17 @@ public class ProductAdmDAOImpl extends BaseDao implements IProductAdmDAO{
 
 
 	@Override
-	public List<PanoProductType> listAllProType() {
+	public List<ProductClassify> listAllProType() {
 		// TODO Auto-generated method stub
-		List<PanoProductType> proTypeList=(List<PanoProductType>)getSqlMapClientTemplate().queryForList("pano_product.getAllProType");
+		List<ProductClassify> proTypeList=(List<ProductClassify>)getSqlMapClientTemplate().queryForList("pano_product.getAllProType");
 		return proTypeList;
 	}
 
 
 	@Override
-	public List<PanoProductFunc> listAllProFunc() {
+	public List<ProductFeature> listAllProFunc() {
 		// TODO Auto-generated method stub
-		 List<PanoProductFunc> proFuncList=(List<PanoProductFunc>)getSqlMapClientTemplate().queryForList("pano_product.getAllProFunc");
+		 List<ProductFeature> proFuncList=(List<ProductFeature>)getSqlMapClientTemplate().queryForList("pano_product.getAllProFunc");
 		return proFuncList;
 	}
 

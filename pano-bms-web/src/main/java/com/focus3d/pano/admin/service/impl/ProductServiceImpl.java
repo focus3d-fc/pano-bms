@@ -6,47 +6,46 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.focus3d.pano.admin.dao.PanoProductFuncDAO;
-import com.focus3d.pano.admin.service.PanoProductFuncService;
-import com.focus3d.pano.model.PanoProductFunc;
-import com.focus3d.pano.model.PanoProductType;
+import com.focus3d.pano.admin.dao.IProductDAO;
+import com.focus3d.pano.admin.service.IProductService;
+import com.focus3d.pano.model.ProductFeature;
+import com.focus3d.pano.model.ProductClassify;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoVender;
 import com.focus3d.pano.model.panoSkin;
 import com.focus3d.pano.model.pano_project_style;
 @Service
-public class PanoProductFuncServiceImpl implements PanoProductFuncService{
+public class ProductServiceImpl implements IProductService{
 
 
 	@Autowired
-	private PanoProductFuncDAO productAdmDAO;
+	private IProductDAO productAdmDAO;
 
 	
 	/**
 	 * 分类
 	 */
-	public List<PanoProductType> getBasics() {
-		return productAdmDAO.getBasics();
+	public List<ProductClassify> QueryClassify() {
+		return productAdmDAO.QueryClassify();
 	
 	}
 
-	public Long getInsert(String name) {
-		return productAdmDAO.getInsert(name);
+	public Long InsertClassify(String name) {
+		return productAdmDAO.InsertClassify(name);
 	}
  
-
 	public int getDelete(int sn) {
 
 		return	productAdmDAO.getDelete(sn);
 	}
 	
 	
-	public int getUpdate(PanoProductType p){
+	public int getUpdate(ProductClassify p){
 		return productAdmDAO.getUpdate(p);
 	}
-	public PanoProductType getselect(int sn){
-		PanoProductType panoSkin = null;
-		 List<PanoProductType> getselect4 = productAdmDAO.getselect(sn);
+	public ProductClassify getselect(int sn){
+		ProductClassify panoSkin = null;
+		 List<ProductClassify> getselect4 = productAdmDAO.getselect(sn);
 		 if(getselect4.size() >0 ){
 			 panoSkin = getselect4.get(0);
 		 }
@@ -169,7 +168,7 @@ public class PanoProductFuncServiceImpl implements PanoProductFuncService{
 	 * 功能
 	 */
 	@Override
-	public List<PanoProductFunc> getBasics4() {
+	public List<ProductFeature> getBasics4() {
 		return productAdmDAO.getBasics4();
 	}
 
@@ -181,12 +180,12 @@ public class PanoProductFuncServiceImpl implements PanoProductFuncService{
 	public int getDelete4(int sn) {
 		return	productAdmDAO.getDelete4(sn);
 	}
-	public int getUpdate4(PanoProductFunc p){
+	public int getUpdate4(ProductFeature p){
 		return productAdmDAO.getUpdate4(p);
 	}
-	public PanoProductFunc getselect4(int sn){
-		PanoProductFunc panoSkin = null;
-		 List<PanoProductFunc> getselect4 = productAdmDAO.getselect4(sn);
+	public ProductFeature getselect4(int sn){
+		ProductFeature panoSkin = null;
+		 List<ProductFeature> getselect4 = productAdmDAO.getselect4(sn);
 		 if(getselect4.size() >0 ){
 			 panoSkin = getselect4.get(0);
 		 }

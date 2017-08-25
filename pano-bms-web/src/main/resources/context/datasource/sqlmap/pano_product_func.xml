@@ -4,9 +4,9 @@
 
  <typeAlias alias="style" type="com.focus3d.pano.model.pano_project_style" />
  <typeAlias alias="PanoVender" type="com.focus3d.pano.model.PanoVender" />
- <typeAlias alias="PanoProductType" type="com.focus3d.pano.model.PanoProductType" />
+ <typeAlias alias="PanoProductType" type="com.focus3d.pano.model.ProductClassify" />
  <typeAlias alias="PanoProjectPackage" type="com.focus3d.pano.model.PanoProjectPackage" />
- <typeAlias alias="PanoProductFunc" type="com.focus3d.pano.model.PanoProductFunc" />
+ <typeAlias alias="PanoProductFunc" type="com.focus3d.pano.model.ProductFeature" />
   <typeAlias alias="panoSkin" type="com.focus3d.pano.model.panoSkin" />
 
 

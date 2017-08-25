@@ -47,31 +47,21 @@
             <thead>
             <tr>
                 <th>序号</th>
-                <th>套餐ID</th>
-                <th>项目</th>
-                <th>户型</th>
-                <th>风格</th>
-                <th>套餐种类</th>
-                <th>分类</th>
+                <th>分类名称</th>
                 <th>空间</th>
                 <th width="15%">操作</th>
             </tr>
             </thead>
             <tbody>
-          	#foreach ($!{listss} in $!{listsType})
+          	#foreach ($!{lists} in $!{list})
             <tr>
                 <td>$!{velocityCount}</td>
-                <td>$!{listss.package_id}</td>
-                <td>$!{listss.project_name}</td>
-                <td>$!{listss.house_name}</td>
-                <td>$!{listss.style_name}</td>
-                <td>$!{listss.package_name}</td>
-                <td>$!{listss.type_name}</td>
-                <td>$!{listss.space_name}</td>
+                <td>$!{lists.name}</td>
+                <td>$!{lists.spaceName}</td>
                 <td>
                     <div class="btn-group btn-group-sm" role="group">
-                        <a class="btn btn-info" href="/typeproduct/select?type=$!{listss.package_sn}&type1=$!{listss.project_sn}&type2=$!{listss.house_sn}&type3=$!{listss.style_sn}&type4=$!{listss.type_id}">选择产品</a>
-                        <a href="/type/delete?sntype=$!{listss.type_id}" class="btn btn-danger" onClick="del()">删除</a>
+                        <a class="btn btn-info" href="/houses/queryTypeProducts?packagetypesn=$!{lists.sn}">选择产品</a>
+                        <a href="/type/delete?sntype=$!{lists.sn}&houseSn=$!{houseSn}&housePackageSn=$!{housePackageSn}" class="btn btn-danger" onClick="del()">删除</a>
                     </div>
                 </td>
             </tr>
@@ -103,10 +93,10 @@
                         <div class="col-sm-9">
                             <select class="form-control" name="options" >
                             #foreach ($!{spaces} in $!{space})
-                                <option value="$!{spaces.SN}" id="optionss">$!{spaces.NAME}</option>
+                                <option value="$!{spaces.spaceSn}" id="optionss">$!{spaces.spaceName}</option>
                                #end
                             </select>
-								<input type='hidden' value="$!{sn}" name="sn" >
+							<input type='hidden' value="$!{housePackageSn}" name="sn" >
                         </div>
                     </div>
                 </form>
@@ -124,6 +114,8 @@
 <script src="/style/admstatic/js/main.js"></script>
 </body>
 		<script>
+		var houseSn = '$houseSn';
+		var	housePackageSn = '$housePackageSn';
 			
 		$(document).ready(function(){
 				$("#submit").click(function(){
@@ -144,7 +136,7 @@
 						async: false, 
 						success:function(data){
 							console.info(data)
-							window.location.href = "/type/selectList";
+							window.location.href = "/type/selectList?house_sn="+houseSn+"&housepackagesn="+housePackageSn;
 						 }
 					})
 				})

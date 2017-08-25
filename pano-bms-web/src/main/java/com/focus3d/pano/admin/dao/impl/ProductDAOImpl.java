@@ -5,34 +5,31 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import com.focus3d.pano.admin.dao.PanoProductFuncDAO;
-import com.focus3d.pano.model.PanoProductFunc;
-import com.focus3d.pano.model.PanoProductType;
+import com.focus3d.pano.admin.dao.IProductDAO;
+import com.focus3d.pano.model.ProductFeature;
+import com.focus3d.pano.model.ProductClassify;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoVender;
 import com.focus3d.pano.model.panoSkin;
 import com.focus3d.pano.model.pano_project_style;
 
 @Repository
-public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncDAO{
+public class ProductDAOImpl  extends BaseDao implements IProductDAO{
 
 	/**
 	 * 分类查询
 	 */
-	public List<PanoProductType> getBasics() {
-		List<PanoProductType> productList = null;
+	public List<ProductClassify> QueryClassify() {
+		List<ProductClassify> productList = null;
 		try{
-			productList=(List<PanoProductType>)getSqlMapClientTemplate().queryForList("pano_bm_basic.getBasics");
-			for(PanoProductType t:productList){
-			}
+			productList=(List<ProductClassify>)getSqlMapClientTemplate().queryForList("pano_bm_basic.getBasics");
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return productList;
 	}
 
-
-	public Long getInsert(String name) {
+	public Long InsertClassify(String name) {
 		Long sn = null;
 		try{
 		 sn =(Long) getSqlMapClientTemplate().insert("pano_bm_basic.getInsert",name);
@@ -48,7 +45,7 @@ public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncD
 		return sm;
 	}
 
-	public int getUpdate(PanoProductType p){
+	public int getUpdate(ProductClassify p){
 		
 		int sm = 0;
 		try{
@@ -59,8 +56,8 @@ public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncD
 		return sm;
 		
 	}
-	public List<PanoProductType> getselect(int sn){
-		return (List<PanoProductType>)getSqlMapClientTemplate().queryForList("pano_bm_basic.select",sn);
+	public List<ProductClassify> getselect(int sn){
+		return (List<ProductClassify>)getSqlMapClientTemplate().queryForList("pano_bm_basic.select",sn);
 	}
 	
 	
@@ -235,10 +232,10 @@ public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncD
 	 */
 
 	@Override
-	public List<PanoProductFunc> getBasics4() {
-		List<PanoProductFunc> productList = null;
+	public List<ProductFeature> getBasics4() {
+		List<ProductFeature> productList = null;
 		try{
-			productList=(List<PanoProductFunc>)getSqlMapClientTemplate().queryForList("pano_bm_basic.getBasics4");
+			productList=(List<ProductFeature>)getSqlMapClientTemplate().queryForList("pano_bm_basic.getBasics4");
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -263,7 +260,7 @@ public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncD
 		return sm;
 	}
 	
-	public int getUpdate4(PanoProductFunc p){
+	public int getUpdate4(ProductFeature p){
 		
 		int sm = 0;
 		try{
@@ -275,8 +272,8 @@ public class PanoProductFuncDAOImpl  extends BaseDao implements PanoProductFuncD
 		
 	}
 	
-	public List<PanoProductFunc> getselect4(int sn){
-			return(List<PanoProductFunc>)getSqlMapClientTemplate().queryForList("pano_bm_basic.select4",sn);
+	public List<ProductFeature> getselect4(int sn){
+			return(List<ProductFeature>)getSqlMapClientTemplate().queryForList("pano_bm_basic.select4",sn);
 		
 	}
 	

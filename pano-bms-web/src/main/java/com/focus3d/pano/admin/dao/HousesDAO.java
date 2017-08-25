@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.focus3d.pano.admin.utils.Page;
+import com.focus3d.pano.model.PanoProjectPackage;
+import com.focus3d.pano.model.PanoProjectPackageStyle;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
@@ -145,5 +147,22 @@ public interface HousesDAO {
 
 	// 标签添加
 	public void addLable(pano_project_label lable);
-
+	
+	
+	// -----------------------特定风格 户型-套餐-----------------------
+	//查询户型下所有套餐
+	public List<Map<String,Object>>  QueryHouseStylePackage(PanoProjectPackageStyle panoProjectPackageStyle);
+	
+	//查询特定户型套餐的分类
+	public List<Map<String,Object>> QueryHouseStylePacakgeType(Long housePackageSn);
+	
+	//查询户型所有空间
+	public List<Map<String,Object>> QueryTypeSurplusSpace(Long houseSn);
+	
+	//查询特定分类的所有产品
+	public List<Map<String,Object>> GetTypeProducts(Long packageTypeSn);
+	
+	public void insertTypeProduct(Map<String,Object> map);
+	
+	public void deleteTypeProduct(Long packageProductSn);
 }

@@ -3,12 +3,11 @@ package com.focus3d.pano.admin.service;
 import java.util.List;
 import java.util.Map;
 
-import com.focus3d.pano.model.PanoProduct;
-import com.focus3d.pano.model.PanoProductFunc;
-import com.focus3d.pano.model.PanoProductType;
+import com.focus3d.pano.model.ProductFeature;
+import com.focus3d.pano.model.ProductClassify;
+import com.focus3d.pano.model.PanoVender;
 import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.ProductInfo;
-import com.focus3d.pano.model.ProductModel;
 import com.focus3d.pano.model.pano_project_style;
 
 public interface IProductAdmService {
@@ -21,7 +20,8 @@ public interface IProductAdmService {
 	public ProductInfo getProductDetail(String psn);
 	public Boolean deleteProduct(String sn);
 	public boolean updateProduct(Product pro);
-	public List<PanoProductType> listAllProType();
-	public List<PanoProductFunc> listAllProFunc();
+	public List<ProductClassify> listAllProType();
+	public List<ProductFeature> listAllProFunc();
 	public List<pano_project_style> listAllProStyle();
+	public List<PanoVender> listAllVender();
 }

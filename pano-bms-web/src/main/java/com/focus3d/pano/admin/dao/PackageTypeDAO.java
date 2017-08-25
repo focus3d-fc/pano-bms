@@ -51,4 +51,6 @@ public interface PackageTypeDAO {
 		
 		public List<Package_Product> getSelectProduct(Long package_type_sn);   //先查询 分类产品里面的是否有重复的
 		
+		public List<Map<String,Object>> getTypeProducts(Long packageTypeSn);
+		
 }	

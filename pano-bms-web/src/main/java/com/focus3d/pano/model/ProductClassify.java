@@ -5,7 +5,7 @@ import java.util.Date;
 
 import com.focus3d.pano.common.model.CommonModel;
 
-public class PanoProductType implements Serializable, CommonModel{
+public class ProductClassify implements Serializable, CommonModel{
 	
 	private Long sn;         //序列号
 	private String name;     //名称
@@ -16,9 +16,6 @@ public class PanoProductType implements Serializable, CommonModel{
 	private Long updaterSn;   //修改人id
 	private String updaterName; //修改人姓名
 	private Date  updateTime;   //修改时间
-	
-	
-	
 	
 	@Override
 	public int hashCode() {
@@ -35,7 +32,7 @@ public class PanoProductType implements Serializable, CommonModel{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PanoProductType other = (PanoProductType) obj;
+		ProductClassify other = (ProductClassify) obj;
 		if (sn == null) {
 			if (other.sn != null)
 				return false;
@@ -43,11 +40,11 @@ public class PanoProductType implements Serializable, CommonModel{
 			return false;
 		return true;
 	}
-	public PanoProductType() {
+	public ProductClassify() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PanoProductType(Long sn, String name, Integer status, Long adderSn,
+	public ProductClassify(Long sn, String name, Integer status, Long adderSn,
 			String adderName, Date addTime, Long updaterSn, String updaterName,
 			Date updateTime) {
 		super();

@@ -4,18 +4,22 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.focus3d.pano.admin.service.IProductAdmService;
 import com.focus3d.pano.admin.utils.PageInfo;
 import com.focus3d.pano.common.controller.BaseController;
-import com.focus3d.pano.model.PanoProductFunc;
-import com.focus3d.pano.model.PanoProductType;
+import com.focus3d.pano.model.ProductFeature;
+import com.focus3d.pano.model.ProductClassify;
+import com.focus3d.pano.model.PanoVender;
 import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.ProductInfo;
 import com.focus3d.pano.model.pano_project_style;
@@ -53,12 +57,8 @@ public class ProductAdmController extends BaseController{
 		 model.addAttribute("scStyleSn", styleSn);
 		 model.addAttribute("scFuncSn",funcSn);
 		 model.addAttribute("ifscfy", ifscfy);
-		/*if(pageNum==null){
-				pageNum=1;
-			}if(pageSize==null){
-				pageSize=5;
-			}*/
-		 PageInfo page=new PageInfo();
+		
+		  PageInfo page=new PageInfo();
 		  int allPageSize = productAdmService.countProductInfo(paramMap);
 		    page.setTotalRecords(allPageSize);
 		    page.setPerPageInt(pageSize);
@@ -72,45 +72,45 @@ public class ProductAdmController extends BaseController{
 		    paramMap.put("pageSize", page.getPerPageInt());
 		 
 		    session.setAttribute("page", page);
-		 List<ProductInfo> productInfoList=null;
-		 List<pano_project_style> proStyleList=null;
-		 List<PanoProductFunc>  proFuncList=null;
-		 List<PanoProductType> proTypeList=null;
-		 
-		 
-		try {
-			productInfoList = productAdmService.listProductInfo(paramMap);
-			proStyleList=productAdmService.listAllProStyle();
-			proFuncList=productAdmService.listAllProFunc();
-			proTypeList=productAdmService.listAllProType();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		   
+		    List<ProductInfo> productInfoList=null;
+		    List<pano_project_style> proStyleList=null;
+		    List<ProductFeature>  proFuncList=null;
+		    List<ProductClassify> proTypeList=null;
+		    List<PanoVender> proVenderList=null;
+		    
+		    
+			try {
+				productInfoList = productAdmService.listProductInfo(paramMap);
+				proStyleList=productAdmService.listAllProStyle();
+				proFuncList=productAdmService.listAllProFunc();
+				proTypeList=productAdmService.listAllProType();
+				proVenderList = productAdmService.listAllVender();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		   //产品详情显示首个
 		   session.setAttribute("productInfoList", productInfoList);
-		   if(productInfoList!=null&&productInfoList.size()>0){
-		   session.setAttribute("prodtInfo1", productInfoList.get(0));
+			   if(productInfoList!=null&&productInfoList.size()>0){
+			   session.setAttribute("prodtInfo1", productInfoList.get(0));
 		   }
 		   session.setAttribute("proStyleList", proStyleList);
 		   session.setAttribute("proFuncList", proFuncList);
 		   session.setAttribute("proTypeList", proTypeList);
-		return "/panoadm/productadm/product";
+		   session.setAttribute("proVenderList", proVenderList);
+		   return "/panoadm/productadm/product";
 	}
 	
 	
 	
 	@RequestMapping("/preaddpro")
 	public String preaddpro(){
-		System.out.println("*******88");
 		return "/panoadm/productadm/addproduct";
 	}
 	
 	//添加
 	@RequestMapping("/addproduct")
-	public String addproduct(Product pro,HttpSession session,HttpServletRequest request,HttpServletResponse response
-			){
-		System.out.println("进入添加");
+	public String addproduct(Product pro,HttpSession session,HttpServletRequest request,HttpServletResponse response){
 		pro.setStatus(1);
 		/*PanoLoginModel login=(PanoLoginModel)session.getAttribute("login");
 		long usn=login.getSn();
@@ -161,11 +161,7 @@ public class ProductAdmController extends BaseController{
 	//预修改
 	@RequestMapping("/preupdateproduct")
 	public void preupdateproduct(HttpSession session,HttpServletResponse response,Model model,String productsn){
-//		Product prodt=productAdmService.getProductBySn(productsn);
-//		  model.addAttribute("prodt", prodt);
-		System.out.println("-----zzzzzzzzzz"+productsn);
 		
-		//Product prodt=null;
 		Product prodt=null;
 		try {
 			prodt = productAdmService.getProductBySn(productsn);

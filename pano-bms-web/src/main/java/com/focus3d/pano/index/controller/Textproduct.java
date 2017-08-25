@@ -1,33 +1,24 @@
 package com.focus3d.pano.index.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tools.ant.taskdefs.condition.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.focus3d.pano.admin.service.IProductAdmService;
 import com.focus3d.pano.admin.service.PackageTypeService;
 import com.focus3d.pano.common.controller.BaseController;
-import com.focus3d.pano.model.GetproductList;
 import com.focus3d.pano.model.Package_Product;
-import com.focus3d.pano.model.Paging;
-import com.focus3d.pano.model.Product;
 import com.focus3d.pano.model.ProductInfo;
-import com.focus3d.pano.model.ProductList;
 import com.focustech.cief.filemanage.client.api.IFileReadClient;
 import com.focustech.cief.filemanage.client.constant.FileAttributeEnum;
-import com.focustech.common.utils.JsonUtils;
-import com.opensymphony.oscache.util.StringUtil;
 
 @Controller
 @RequestMapping("/typeproduct")
@@ -54,13 +45,18 @@ public class Textproduct extends BaseController{
 	 * @param type_name
 	 * @return
 	 */
+	
+	
+	
 	@RequestMapping("/select")
-	public String selectProduct(HttpServletRequest request, HttpServletResponse response){
-		
-			/**
-			 * 获得当前页数
-			 * pagenum 当前页数
-			 */
+	public String selectProduct(HttpServletResponse response,String packagetypesn,ModelMap map){
+		    
+			Long packageTypeSn = Long.parseLong(packagetypesn);
+			
+			List<Map<String,Object>> list = service.getTypeProducts(packageTypeSn);
+			map.put("list", list);
+			
+		    /*
 			String page = request.getParameter("pagenum"); 
 			String product_id = request.getParameter("productid"); 
 			String style_name = request.getParameter("style"); 
@@ -79,9 +75,7 @@ public class Textproduct extends BaseController{
 		     }
 			}	 
 			
-			/**
-			 * 通过分类页面 得到传过来的 楼盘 风格 户型 套餐 分类的Sn
-			 */
+		
 			if(request.getParameter("type") != null){
 			 package_sn = Long.parseLong(request.getParameter("type"));
 			 project_sn = Long.parseLong(request.getParameter("type1"));
@@ -90,9 +84,7 @@ public class Textproduct extends BaseController{
 			 type_sn = Long.parseLong(request.getParameter("type4"));
 			 System.out.println("楼盘SN："+project_sn+" /户型SN："+house_sn+" /风格SN："+style_sn+" /套餐SN："+package_sn+" /分类SN："+type_sn);
 			}
-			/**
-			 * 通过前台的SN 获得当前固定的值
-			 */
+			
 			GetproductList lists = new GetproductList();
 			lists.setHouse_sn(house_sn);
 			lists.setStyle_sn(style_sn);
@@ -102,16 +94,12 @@ public class Textproduct extends BaseController{
 			GetproductList listProduct = service.getListProduct(lists);
 			request.setAttribute("getListProduct", listProduct);
 			
-			/**
-			 * 模糊查询若为空咋 为%查询所有
-			 */
+			
 			if(StringUtil.isEmpty(product_id)){
 				product_id ="%";
 			}
-			System.out.println("模糊查询proName："+product_id);
-			/**
-			 * 当前页若为空则设置为1
-			 */
+			
+		
 			int upPage=0;
 			int nextPage=0;
 			int pageNum = 1;
@@ -122,17 +110,13 @@ public class Textproduct extends BaseController{
 				nextPage=2;
 			}
 			
-			/**
-			 * 将模糊查询 下拉框的值 放在Map里面 在发送后台
-			 */
+			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("product_id", product_id);
 			map.put("style_name", style_name);
 			map.put("func_name", func_name);
 			map.put("type_name", type_name);
-			/**
-			 *   产品页面进来显示所有的  pano_product(产品表)的值 分页查询模糊查询
-			 */
+			
 			System.out.println("开始执行SQL语句");
 			Paging productLists = service.getProductList(map, pageNum);
 			request.setAttribute("prList", productLists);
@@ -148,28 +132,19 @@ public class Textproduct extends BaseController{
 			request.setAttribute("upPage", upPage);
 			request.setAttribute("nextPage",nextPage);
 			
-			/**
-			 * 将产品值从page类里面的产品List提取出来 转发出去
-			 */
+			
 			List<ProductList> productList =	(List<ProductList>)productLists.getList();
 			request.setAttribute("product",productList );
-			/**
-			 * 将 风格 功能 类型查询提取出来 转发出去
-			 */
+			
 			List<ProductList> type = service.getType();
 			List<ProductList> func = service.getFunc();
 			List<ProductList> style = service.getStyle();
 			request.setAttribute("type", type);
 			request.setAttribute("func", func);	
 			request.setAttribute("style", style);
-			/**
-			 *  第一次进页面时 无数据 显示固定数值    有数值 则在产品列表显示对应的产品
-			 */
+			
 			List<Package_Product> product = service.getProduct(type_sn);
-			/**
-			 * 	判断 pano_project_package_product（套餐分类下的产品）
-			 * 		是否有对应的分类的数据
-			 */
+		
 			System.out.println("是否有无数据："+product.size());
 			if(product.size()>0){
 				List list = new ArrayList();
@@ -195,7 +170,7 @@ public class Textproduct extends BaseController{
 				
 			}else{
 				
-			}
+			}*/
 			
 			
 		return "/houses/combo-add1";

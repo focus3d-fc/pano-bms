@@ -47,19 +47,19 @@
 				<div class="form-group col-sm-4">
 					<label class="col-sm-4 control-label">楼盘名称</label>
 					<div class="col-sm-6">
-						<p class="form-control-static">$!{listss.project_name}</p>
+						<p class="form-control-static">$!{info.projectName}</p>
 					</div>
 				</div>
 				<div class="form-group col-sm-3">
 					<label class="col-sm-4 control-label">户型</label>
 					<div class="col-sm-8">
-						<p class="form-control-static">$!{listss.house_name}</p>
+						<p class="form-control-static">$!{info.houseName}</p>
 					</div>
 				</div>
 				<div class="form-group col-sm-3">
 					<label class="col-sm-4 control-label">风格</label>
 					<div class="col-sm-8">
-						<p class="form-control-static">$!{listss.style_name}</p>
+						<p class="form-control-static">$!{info.styleName}</p>
 					</div>
 				</div>
 				<div class="form-group col-sm-2">
@@ -70,7 +70,6 @@
 				<thead>
 					<tr>
 						<th>序号</th>
-						<th>套餐ID</th>
 						<th>套餐价格</th>
 						<th>套餐图片</th>
 						<th>项目</th>
@@ -84,21 +83,20 @@
 					#foreach ($!{lists} in $!{lists})
 					<tr>
 						<td>$!{lists.sn}</td>
-						<td>$!{lists.id}</td>
-						<td>$!{lists.package_price}</td>
+						<td>$!{lists.packagePrice}</td>
 						<td>
                         <div class="img">
-						<img class="img-sho" src="$!fs.url($!lists.img_sn)"  width="100" height ="80">
+						<img class="img-sho" src="$!fs.url($!lists.imgSn)"  width="100" height ="80">
 						</div>
                         </td>
-						<td>$!{lists.project_name}</td>
-						<td>$!{lists.house_name}</td>
-						<td>$!{lists.style_name}</td>
-						<td>$!{lists.package_name}</td>
+						<td>$!{lists.projectName}</td>
+						<td>$!{lists.houseName}</td>
+						<td>$!{lists.styleName}</td>
+						<td>$!{lists.packageName}</td>
 						<td>
 							<div class="btn-group btn-group-sm" role="group">
 							<button class="btn btn-info" data-toggle="modal" data-target="#app" onclick="addform('$!{lists.sn}')">套餐设置</button>
-								 <a class="btn btn-info" href="/type/selectList?ids=$!{lists.project_sn}&ids1=$!{lists.house_sn}&ids2=$!{lists.style_sn}&ids4=$!{lists.package_sn}&ids5=$!{lists.sn}" >设置分类</a> 
+								 <a class="btn btn-info" href="/type/selectList?housepackagesn=$!{lists.sn}&house_sn=$!{lists.houseSn}" >设置分类</a> 
 								 <a href="/houses/delete?id2=$!{lists.sn}" class="btn btn-danger" onClick="del()">删除</a>
 							</div>
 						</td>
@@ -190,24 +188,23 @@
 <script>
 
 function addform(sn) {
-  $("#submit").click(function() {
-	 var ids = $("#ids").val()
-	 if(ids == ""){
+	$("#submit").click(function(){
+		var ids = $("#ids").val()
+		if(ids == ""){
 			alert("请设置价格");
 			return false;
-	 }
-   $.ajax({  
-    type: "POST",  
-    url:'/houses/insert1?sn=' + sn,  
-    data:$('#formad').serialize(),  
-    async: false,  
-    success: function(data) {  
-    	window.location.href="/houses/packageSet2";
-    }  
-  });
-
-            });
-        }
+		}
+	 	$.ajax({
+    		type: "POST",
+    		url:'/houses/insert1?sn=' + sn,  
+    		data:$('#formad').serialize(),  
+    		async: false,  
+    		success: function(data) {  
+    			window.location.href="/houses/packageSet2";
+    		}  
+  		});
+	});
+}
         
 </script>
 

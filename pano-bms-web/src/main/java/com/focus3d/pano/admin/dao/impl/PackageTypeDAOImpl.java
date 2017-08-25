@@ -213,6 +213,14 @@ public  class PackageTypeDAOImpl extends BaseDao implements PackageTypeDAO{
 	@Override
 	public List<Package_Product> getSelectProduct(Long package_type_sn) {
 		return (List<Package_Product>)getSqlMapClientTemplate().queryForList("pano_project_package_type.getSelectProduct",package_type_sn); 
+	}
+
+
+
+	@Override
+	public List<Map<String, Object>> getTypeProducts(Long packageTypeSn) {
+		List<Map<String, Object>> list = getSqlMapClientTemplate().queryForList("pano_project_package_type.queryTypeProduct",packageTypeSn); 
+		return list;
 	} 
 
 }

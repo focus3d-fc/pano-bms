@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.focus3d.pano.admin.dao.HousesDAO;
 import com.focus3d.pano.admin.utils.Page;
+import com.focus3d.pano.model.PanoProjectPackage;
+import com.focus3d.pano.model.PanoProjectPackageStyle;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
@@ -291,4 +293,37 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 				"pano_project_house_style.upHouseStyle", hs);
 	}
 
+	@Override
+	public List<Map<String,Object>> QueryHouseStylePackage(PanoProjectPackageStyle panoProjectPackageStyle) {
+		List<Map<String,Object>> list = getSqlMapClientTemplate().queryForList("pano_project_house_style.queryHouseStylePackage",panoProjectPackageStyle);
+		return list;
+	}
+	
+	@Override
+	public List<Map<String,Object>> QueryHouseStylePacakgeType(Long housePackageSn){
+		List<Map<String,Object>> list = getSqlMapClientTemplate().queryForList("pano_project_house_style.queryHouseStylePackageType",housePackageSn);
+		return list;
+	}
+	
+	@Override
+	public List<Map<String,Object>> QueryTypeSurplusSpace(Long houseSn){
+		List<Map<String,Object>> list = getSqlMapClientTemplate().queryForList("pano_project_house_style.queryTypeSurplusSpace",houseSn);
+		return list;
+	}
+
+	@Override
+	public List<Map<String,Object>> GetTypeProducts(Long packageTypeSn) {
+		List<Map<String,Object>> list = getSqlMapClientTemplate().queryForList("pano_project_house_style.queryTypeProducts",packageTypeSn); 
+		return list;
+	}
+
+	@Override
+	public void insertTypeProduct(Map<String, Object> map) {
+		getSqlMapClientTemplate().insert("pano_project_house_style.insertTypeProduct",map);
+	}
+
+	@Override
+	public void deleteTypeProduct(Long packageProductSn) {
+		getSqlMapClientTemplate().insert("pano_project_house_style.deleteTypeProduct",packageProductSn);
+	}
 }

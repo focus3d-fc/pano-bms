@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.focus3d.pano.admin.dao.PanoUserLongInDAO;
-import com.focus3d.pano.model.PanoProductType;
+import com.focus3d.pano.model.ProductClassify;
 import com.focus3d.pano.model.PanoProjectHousePackage;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoProjectPackageStyle;

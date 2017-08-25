@@ -18,8 +18,8 @@ import com.focus3d.pano.admin.service.IPackageSetService;
 import com.focus3d.pano.admin.service.IProductAdmService;
 import com.focus3d.pano.admin.utils.PageInfo;
 import com.focus3d.pano.common.controller.BaseController;
-import com.focus3d.pano.model.PanoProductFunc;
-import com.focus3d.pano.model.PanoProductType;
+import com.focus3d.pano.model.ProductFeature;
+import com.focus3d.pano.model.ProductClassify;
 import com.focus3d.pano.model.PanoUserLongin;
 import com.focus3d.pano.model.PjPackageItem;
 import com.focus3d.pano.model.ProdtcateInPackage;
@@ -82,8 +82,8 @@ public class PackageSetController extends BaseController{
 		    session.setAttribute("page", page);
 		 List<ProductInfo> productInfoList=null;
 		 List<pano_project_style> proStyleList=null;
-		 List<PanoProductFunc>  proFuncList=null;
-		 List<PanoProductType> proTypeList=null;
+		 List<ProductFeature>  proFuncList=null;
+		 List<ProductClassify> proTypeList=null;
 		 
 		 List<ProdtcateInPackage> prodtcateInpgList=null;
 		try {

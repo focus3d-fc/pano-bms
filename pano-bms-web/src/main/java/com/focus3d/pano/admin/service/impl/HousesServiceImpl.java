@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.focus3d.pano.admin.dao.HousesDAO;
+import com.focus3d.pano.admin.dao.IProductAdmDAO;
 import com.focus3d.pano.admin.service.HousesService;
 import com.focus3d.pano.admin.utils.Page;
+import com.focus3d.pano.model.PanoProjectPackageStyle;
+import com.focus3d.pano.model.ProductInfo;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
@@ -22,6 +25,9 @@ public class HousesServiceImpl implements HousesService {
 
 	@Autowired
 	private HousesDAO housesDAO;
+	
+	@Autowired
+	private IProductAdmDAO productDAO;
 
 	@Override
 	public List<pano_project> getHouses(Page page) {
@@ -274,4 +280,49 @@ public class HousesServiceImpl implements HousesService {
 		housesDAO.upHouseStyle(hs);
 	}
 
+	@Override
+	public void QueryAllPackage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Map<String,Object>> QueryHouseStylePackage(PanoProjectPackageStyle panoProjectPackageStyle) {
+		// TODO Auto-generated method stub
+			return housesDAO.QueryHouseStylePackage(panoProjectPackageStyle);
+	}
+	
+	@Override
+	public List<Map<String,Object>> QueryHouseStylePacakgeType(Long housePackageSn){
+		return housesDAO.QueryHouseStylePacakgeType(housePackageSn);
+	}
+	
+	@Override
+	public List<Map<String,Object>> QueryTypeSurplusSpace(Long houseSn){
+		List<Map<String,Object>> list = housesDAO.QueryTypeSurplusSpace(houseSn);
+		return list;
+	}
+
+	@Override
+	public List<Map<String, Object>> getTypeProducts(Long packageTypeSn) {
+		List<Map<String, Object>> list  = housesDAO.GetTypeProducts(packageTypeSn);
+		return list;
+	}
+	
+	@Override
+	public List<ProductInfo> QueryProducts(Map<String,Object> map){
+		List<ProductInfo> list = productDAO.listProductInfo(map);
+		return list;
+	}
+	
+	@Override
+	public void insertTypeProduct(Map<String, Object> map){
+		housesDAO.insertTypeProduct(map);
+	}
+
+	@Override
+	public void deleteTypeProduct(Long packageProductSn) {
+		// TODO Auto-generated method stub
+		housesDAO.deleteTypeProduct(packageProductSn);
+	}
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="GBK" ?>
 <!DOCTYPE ibatorConfiguration PUBLIC "null" "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd" >
 <ibatorConfiguration>
-	<classPathEntry location="F:\soft\mysql-connector-java-5.1.16.jar"/>
+	<classPathEntry location="E:\maven-2.2.1\mysql-connector-java-5.1.16.jar"/>
 	<ibatorContext id="context1">
 		<ibatorPlugin
 			type="org.apache.ibatis.ibator.plugins.RenameExampleClassPlugin">
