@@ -49,9 +49,8 @@
 		pano_project_house_style.IMG_SN
 		FROM
 		pano_project_house
-		INNER JOIN pano_project_house_style ON
-		pano_project_house_style.HOUSE_SN =
-		pano_project_house.SN
+		INNER JOIN pano_project_house_style 
+		ON pano_project_house_style.HOUSE_SN = pano_project_house.SN
 		WHERE
 		pano_project_house_style.PROJECT_SN=#PROJECT_SN#
 		AND

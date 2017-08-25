@@ -357,6 +357,19 @@ public class HousesController extends BaseController {
 		request.setAttribute("PROJECT_SN", PROJECT_SN);
 		return "/houses/style-houseSet";
 	}
+	
+	@RequestMapping("/queryProjectHouse")
+	public void QueryProjectHouse(HttpServletResponse response,String projectSn) {
+		try{
+			Long PROJECT_SN = Long.parseLong(projectSn);
+			List<pano_project_house> list = housesService.getHousetype(PROJECT_SN);
+			ajaxOutput(response,JsonUtils.arrayToJson(list.toArray()));
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
+	}
+	
 
 	@RequestMapping("/tostyle-houseSet2")
 	public String tostylehouseSet2(HttpServletRequest request) {
@@ -370,6 +383,8 @@ public class HousesController extends BaseController {
 		request.setAttribute("styname", stylist.get(0).getNAME());
 		List<pano_project_house> hlist = housesService.getHousetype(PROJECT_SN);
 		request.setAttribute("hlist", hlist);
+		request.setAttribute("STYLE_SN", STYLE_SN);
+		request.setAttribute("PROJECT_SN", PROJECT_SN);
 		return "/houses/style-houseSet";
 	}
 
@@ -385,7 +400,7 @@ public class HousesController extends BaseController {
 	}
 
 	@RequestMapping("/upstyle-houseSet")
-	public String upstylehouseSet(HttpServletRequest request) {
+	public void upstylehouseSet(HttpServletResponse response,String uname,String fullImgSn) {
 		try{
 			pano_project_house_style house = new pano_project_house_style();
 			house.setPROJECT_SN(PROJECT_SN);
@@ -393,36 +408,20 @@ public class HousesController extends BaseController {
 			/*
 			 * // 清空关联数据 housesService.clearStyleHouse(house);
 			 */
-
 			Date date = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String add_time = sdf.format(date);
 			house.setADD_TIME(add_time);
-
-			String[] parameterValues = request.getParameterValues("uname");
-			String image_sn =  request.getParameter("fullImgSn");
-			
-			Long map_key = EncryptUtil.decode(image_sn);
-			if (parameterValues != null && parameterValues.length > 0) {
-				for (int i = 0; i < parameterValues.length; i++) {
-					Long HOUSE_SN = Long.parseLong(parameterValues[i]);
-					house.setHOUSE_SN(HOUSE_SN);
-					house.setIMG_SN(map_key);
-					Map map = new HashMap();
-					map.put("PROJECT_SN", PROJECT_SN);
-					map.put("STYLE_SN", STYLE_SN);
-					map.put("HOUSE_SN", HOUSE_SN);
-					List<pano_project_house_style> num = housesService
-							.selHouseStyle(map);
-					if (num.size() == 0) {
-						housesService.addStyleHouse(house);
-					}
-				}
-			}
+			Long map_key = EncryptUtil.decode(fullImgSn);
+			Long HOUSE_SN = Long.parseLong(uname);
+			house.setHOUSE_SN(HOUSE_SN);
+			house.setIMG_SN(map_key);
+			housesService.addStyleHouse(house);
+			JSONObject json = new JSONObject();
+			json.put("info", "succeed");
+			ajaxOutput(response, json.toString());
 		}catch(Exception e){
 			e.printStackTrace();
-		}finally{
-			return redirect("tostyle-houseSet2");
 		}
 	}
 
@@ -661,6 +660,12 @@ public class HousesController extends BaseController {
 		}
 		
 		map.put("lists", list);
+		List<PanoProjectPackage> getselect = service.getselect();
+		map.put("getselect", getselect);
+		
+		map.put("PROJECT_SN",PROJECT_SN);
+		map.put("STYLE_SN",STYLE_SN);
+		map.put("HOUSE_SN",house_sn);
 		
 		return "/houses/combo";
 	}
@@ -741,10 +746,20 @@ public class HousesController extends BaseController {
 			request.setAttribute("listss", get);
 
 		}
-		List<PanoProjectPackage> getselect = service.getselect();
-		request.setAttribute("getselect", getselect);
+		
 		return "/houses/combo";
 
+	}
+	
+	
+	@RequestMapping("/queryAllPackage")
+	public void QueryAllPackage(HttpServletResponse response){
+		try{
+			List<PanoProjectPackage> list = service.getselect();
+			ajaxOutput(response,JsonUtils.arrayToJson(list.toArray()));
+		}catch(IOException e){
+			e.printStackTrace();
+		}
 	}
 
 	@RequestMapping("/delete")
@@ -753,18 +768,11 @@ public class HousesController extends BaseController {
 		PanoProjectHousePackage ppp = new PanoProjectHousePackage();
 		ppp.setSn(Long.parseLong(package_sn));
 		int getdelete = service.getdelete(ppp);
-		return redirect("packageSet2");
-
+		return redirect("packageSet?SN="+house_sn);
 	}
 
 	@RequestMapping("/insert")
-	public String insert(HttpServletRequest request) {
-		String[] package_ = request.getParameterValues("name");
-
-		/**
-		 * 通过前台得到户型 风格 楼盘的SN
-		 */
-		String names = request.getParameter("names");
+	public void insert(HttpServletResponse response,String package_sn,String names) {
 		String[] split = names.split(",");
 		String style_sn = split[0];
 		String house_sn = split[1];
@@ -777,19 +785,26 @@ public class HousesController extends BaseController {
 		pano.setHouse_sn(Long.parseLong(house_sn));
 		pano.setProject_sn(Long.parseLong(project_sn));
 		pano.setStyle_sn(Long.parseLong(style_sn));
+		
 		PanoProjectPackageStyle getpackage1 = service.getpackage1(pano);
 		PanoProjectHousePackage pphp = new PanoProjectHousePackage();
 		pphp.setHouse_style_sn(getpackage1.getSn());
-		for (String package_sn : package_) {
-			pphp.setPackage_sn(Long.parseLong(package_sn));
-			System.out.println("套餐ID" + package_sn + "主键ID"
-					+ getpackage1.getSn());
-			service.getinserts(pphp);
-			System.out.println("添加成功");
+		
+		pphp.setPackage_sn(Long.parseLong(package_sn));
+		service.getinserts(pphp);
+		
+		try{
+			JSONObject json = new JSONObject();
+			json.put("info", "succeed");
+			ajaxOutput(response,json.toString());
+		}catch(IOException e){
+			e.printStackTrace();
 		}
-
-		return redirect("packageSet2");
-
+		
+		
+		
+		//return redirect("packageSet?SN="+house_sn);
+		
 	}
 
 	@RequestMapping("/insert1")

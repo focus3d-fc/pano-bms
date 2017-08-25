@@ -567,7 +567,7 @@ function move(pageNum,pageSize){
 	      return this.optional(element)||(checkPrice2.test(value));  
 	  },"*输入字符超出10字符限制！"); 
 	$.validator.addMethod("checkSummary", function(value, element) {
-		 var checkSummary =/^.{1,500}$/;  
+		 var checkSummary =/[\s\S]{1,500}$/;  
 	      return this.optional(element)||(checkSummary.test(value));  
 	  },"*输入字符超出500字符限制！"); 
 </script>

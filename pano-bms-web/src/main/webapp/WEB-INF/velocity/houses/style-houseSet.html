@@ -29,7 +29,7 @@
 					</div>
 				</div>
 				<div class="form-group col-sm-2">
-					<button class="btn btn-info" data-toggle="modal" data-target="#add">增加户型</button>
+					<button class="btn btn-info" data-toggle="modal" onclick="insertHouse($!{PROJECT_SN})">增加户型</button>
 				</div>
 			</div>
 			<table class="table table-hover noMarB">
@@ -41,9 +41,10 @@
 						<th>操作</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="house_tbody">
 					#foreach ($!{houList} in $!{houList})
 					<tr>
+						<input type="hidden" value="$!{houList.SN}"/>
 						<td>$!{velocityCount}</td>
 						<td>$!{houList.NAME}</td>
 						
@@ -71,7 +72,7 @@
 		</div>
 	</div>
 	<!--增加户型-->
-	<div class="modal fade " id="add" tabindex="-1" role="dialog"
+	<div class="modal fade " id="add" tabindex="-1" role="dialog" aria-hidden="true"
 		aria-labelledby="添加/修改">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content modal-width">
@@ -83,11 +84,11 @@
 					<h4 class="modal-title">添加/修改</h4>
 				</div>
 				<div class="modal-body clearfix">
-					<form method="post" class="form-horizontal" id="formadd" action="/houses/upstyle-houseSet">
+					<div class="form-horizontal" id="formadd">
 					 	<input id="fullimgsn" type="hidden" name="fullImgSn" />
 						<div class="form-group">
 							<label class="col-sm-3 control-label">新增</label>
-							<div class="col-sm-9">
+							<div class="col-sm-9" id="house">
 								#foreach ($!{hlist} in $!{hlist}) <label class="checkbox-inline"
 									style="margin-left: 10px;"> <input type="checkbox"
 									value="$!{hlist.SN}" name="uname">$!{hlist.NAME}
@@ -95,7 +96,7 @@
 							</div>
 
 						</div>
-					</form>
+					</div>
 				</div>
 				
 				<div class="form-group">
@@ -110,13 +111,72 @@
 				
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="submit" class="btn btn-primary" form="formadd">确定</button>
+					<button class="btn btn-primary" onclick="insert()">确定</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
-
+		var styleSn = "$!STYLE_SN"
+		function insert(){
+			var data = new Object();
+			data.uname = $("#house input:checked:enabled").val();
+			data.fullImgSn = $("#fullimgsn").val();
+			$.ajax({
+				url:'/houses/upstyle-houseSet',
+				data:data,
+				Type:'POST',
+				datatype:"json",
+				success:function(data){
+					window.location.href = "/houses/tostyle-houseSet?SN="+styleSn;
+				}
+			});
+		}
+		
+		function QueryStyleHouse(){
+			
+		}
+	
+		function insertHouse(projectSn){
+			$("#add").modal("show");
+			var _data = new Object();
+			_data.projectSn = projectSn;
+			$.ajax({
+				url:'/houses/queryProjectHouse',
+				data:_data,
+				Type:'POST',
+				datatype:"json",
+				success:function(data){
+					var container = $("#house")
+					data = $.parseJSON(data);
+					container.empty();
+					for(var i=0,len=data.length;i<len;i++){
+						var child = data[i];
+						var label = $("<label class='checkbox-inline' style='margin-left: 10px;'/>");
+						var check = $("<input type='checkbox' name='uname'/>").val(child.SN);
+						
+						check.on("change",function(){
+							 if($(this).is(":checked")){
+			                    $("#house input:checked:enabled").prop("checked",false);
+			                    $(this).prop("checked",true);
+			                }   
+						})
+						
+						$("#house_tbody input[type=hidden]").each(function(){
+							if($(this).val() == child.SN){
+								check.prop("checked",true).attr("disabled","disabled");
+							}
+						})
+						
+						label.append(check);
+						label.append($("<text></text>").text(child.NAME));
+						
+						container.append(label);
+					}
+				}
+			 }); 
+		}
+	
 		function topage(HouseSN) {
 			 $.ajax({
 				url:'/houses/selHouseStyle',

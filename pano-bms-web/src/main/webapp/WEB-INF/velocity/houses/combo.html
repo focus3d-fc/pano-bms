@@ -63,7 +63,7 @@
 					</div>
 				</div>
 				<div class="form-group col-sm-2">
-					<button class="btn btn-info" data-toggle="modal" data-target="#add">增加套餐</button>
+					<button class="btn btn-info" data-toggle="modal" onclick="QueryAllPackage()">增加套餐</button>
 				</div>
 			</div>
 			<table class="table table-hover">
@@ -79,25 +79,26 @@
 						<th width="20%">操作</th>
 					</tr>
 				</thead>
-				<tbody>
-					#foreach ($!{lists} in $!{lists})
+				<tbody id="package_tbody">
+					#foreach ($!{list} in $!{lists})
 					<tr>
-						<td>$!{lists.sn}</td>
-						<td>$!{lists.packagePrice}</td>
+						<input type="hidden" value="$!{list.packageSn}"/>
+						<td>$!{list.sn}</td>
+						<td>$!{list.packagePrice}</td>
 						<td>
                         <div class="img">
-						<img class="img-sho" src="$!fs.url($!lists.imgSn)"  width="100" height ="80">
+						<img class="img-sho" src="$!fs.url($!list.imgSn)"  width="100" height ="80">
 						</div>
                         </td>
-						<td>$!{lists.projectName}</td>
-						<td>$!{lists.houseName}</td>
-						<td>$!{lists.styleName}</td>
-						<td>$!{lists.packageName}</td>
+						<td>$!{list.projectName}</td>
+						<td>$!{list.houseName}</td>
+						<td>$!{list.styleName}</td>
+						<td>$!{list.packageName}</td>
 						<td>
 							<div class="btn-group btn-group-sm" role="group">
-							<button class="btn btn-info" data-toggle="modal" data-target="#app" onclick="addform('$!{lists.sn}')">套餐设置</button>
-								 <a class="btn btn-info" href="/type/selectList?housepackagesn=$!{lists.sn}&house_sn=$!{lists.houseSn}" >设置分类</a> 
-								 <a href="/houses/delete?id2=$!{lists.sn}" class="btn btn-danger" onClick="del()">删除</a>
+							<button class="btn btn-info" data-toggle="modal" data-target="#app" onclick="addform('$!{list.sn}')">套餐设置</button>
+								 <a class="btn btn-info" href="/type/selectList?housepackagesn=$!{list.sn}&house_sn=$!{list.houseSn}" >设置分类</a> 
+								 <a href="/houses/delete?id2=$!{list.sn}" class="btn btn-danger" onClick="del()">删除</a>
 							</div>
 						</td>
 					</tr>
@@ -124,24 +125,22 @@
 					<h4 class="modal-title">添加套餐</h4>
 				</div>
 				<div class="modal-body clearfix">
-					<form class="form-horizontal" id="formadd" action="/houses/insert">
+					<div class="form-horizontal" id="formadd" >
 						<div class="form-group">
 							<label class="col-sm-3 control-label">新增套餐</label>
 							<div class="col-sm-9"></div>
-							#foreach ($!{getselects} in $!{getselect}) <label
-								class='checkbox-inline' style='margin-left: 10px;'> <input
-								type='checkbox' value="$!{getselects.sn}" name="name">$!{getselects.name}
-								<input type='hidden'
-								value="$!{listss.style_sn},$!{listss.house_sn},$!{listss.project_sn}"
-								name="names">
-							</label> #end
+							<div id="package">
+							
+							</div>
+							<input type='hidden' value="$!{STYLE_SN},$!{HOUSE_SN},$!{PROJECT_SN}" id="param">
+
 						</div>
-					</form>
+					</div>
 				</div>
 				
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="submit" class="btn btn-primary" form="formadd">确定</button>
+					<button  class="btn btn-primary" onclick="insert()">确定</button>
 				</div>
 			</div>
 		</div>
@@ -186,6 +185,63 @@
 
 </body>
 <script>
+
+function insert(){
+	
+	var data = new Object();
+	data.package_sn = $("#package input:checked:enabled").val();
+	data.names = $("#param").val();
+	$.ajax({
+		url:'/houses/insert',
+		data:data,
+		Type:'POST',
+		datatype:"json",
+		success:function(data){
+			window.location.href="/houses/packageSet?SN="+"$!{HOUSE_SN}";
+		}
+	});
+}
+
+function QueryAllPackage(){
+	$("#add").modal("show");
+	var data = new Object();
+	data.package_sn = $("#package input:checked:enabled").val();
+	data.names = $("#param").val();
+	$.ajax({
+		url:'/houses/queryAllPackage',
+		data:data,
+		Type:'POST',
+		datatype:"json",
+		success:function(data){
+			var container = $("#package");
+			data = $.parseJSON(data);
+			container.empty();
+			for(var i=0,len=data.length;i<len;i++){
+				var child = data[i];
+				var label = $("<label class='checkbox-inline' style='margin-left: 10px;'/>");
+				var check = $("<input type='checkbox'/>").val(child.sn);
+				
+				check.on("change",function(){
+					 if($(this).is(":checked")){
+	                    $("#package input:checked:enabled").prop("checked",false);
+	                    $(this).prop("checked",true);
+	                }   
+				})
+				
+				$("#package_tbody input[type=hidden]").each(function(){
+					if($(this).val() == child.sn){
+						check.prop("checked",true).attr("disabled","disabled");
+					}
+				})
+				
+				label.append(check);
+				label.append($("<text></text>").text(child.name));
+				
+				container.append(label);
+			}
+		}
+	 }); 
+}
 
 function addform(sn) {
 	$("#submit").click(function(){
