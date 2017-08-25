@@ -10,10 +10,32 @@ public class ProductList implements CommonModel{
 		private String product_func_name;
 		private String product_type_name;
 		private String project_style_name;
+		private String func_sn;
+		private String type_sn;
+		private String style_sn;
 		private String func_name;
 		private String type_name;
 		private String style_name;
 		
+		
+		public String getFunc_sn() {
+			return func_sn;
+		}
+		public void setFunc_sn(String func_sn) {
+			this.func_sn = func_sn;
+		}
+		public String getType_sn() {
+			return type_sn;
+		}
+		public void setType_sn(String type_sn) {
+			this.type_sn = type_sn;
+		}
+		public String getStyle_sn() {
+			return style_sn;
+		}
+		public void setStyle_sn(String style_sn) {
+			this.style_sn = style_sn;
+		}
 		
 		public String getFunc_name() {
 			return func_name;

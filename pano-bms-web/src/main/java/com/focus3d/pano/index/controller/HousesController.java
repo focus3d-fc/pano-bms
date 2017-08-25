@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.focus3d.pano.admin.service.HousesService;
+import com.focus3d.pano.admin.service.PackageTypeService;
 import com.focus3d.pano.admin.service.PanoUserLongInService;
 import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.common.controller.BaseController;
@@ -29,6 +30,7 @@ import com.focus3d.pano.model.PanoProjectHousePackage;
 import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoProjectPackageStyle;
 import com.focus3d.pano.model.ProductInfo;
+import com.focus3d.pano.model.ProductList;
 import com.focus3d.pano.model.getListPano;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
@@ -53,7 +55,10 @@ import com.opensymphony.oscache.util.StringUtil;
 @Controller
 @RequestMapping("/houses")
 public class HousesController extends BaseController {
-
+	
+	@Autowired
+	private PackageTypeService packageTypeService;
+	
 	@Autowired
 	private HousesService housesService;
 
@@ -841,6 +846,13 @@ public class HousesController extends BaseController {
 			map.put("list", list);
 			map.put("packageTypeSn",packagetypesn);
 			
+			List<ProductList> type = packageTypeService.getType();
+			List<ProductList> func = packageTypeService.getFunc();
+			List<ProductList> style = packageTypeService.getStyle();
+			map.put("type", type);
+			map.put("func", func);	
+			map.put("style", style);
+			
 			return "/houses/combo-add1";
 	}
 	
@@ -856,13 +868,13 @@ public class HousesController extends BaseController {
 	}
 	
 	@RequestMapping("/queryAllProducts")
-	public void QueryAllProducts(HttpServletResponse response,String id,String styleSn,String funcSn,String typepr,String startNum,String pageSize){
+	public void QueryAllProducts(HttpServletResponse response,String id,String styleSn,String funcSn,String typeSn,String startNum,String pageSize){
 		try{
 			  Map<String,Object> map = new HashMap<String,Object>();
 			    map.put("id", id);
 			    map.put("styleSn",styleSn);
 			    map.put("funcSn",funcSn);
-			    map.put("typepr",typepr);
+			    map.put("typeSn",typeSn);
 			    map.put("startNum",startNum);
 			    map.put("pageSize",pageSize);
 				List<ProductInfo> list = housesService.QueryProducts(map);

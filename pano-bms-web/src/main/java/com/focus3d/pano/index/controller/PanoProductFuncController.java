@@ -565,7 +565,6 @@ public class PanoProductFuncController extends BaseController{
 	@RequestMapping("/classify5")
 	public String merchant5(HttpServletRequest request){
 		List<panoSkin> type =null;
-		
 		try{
 			type = service.getBasics5();
 		}
@@ -670,7 +669,6 @@ public class PanoProductFuncController extends BaseController{
 	@ResponseBody
 	@RequestMapping("select5")
 	public void select5(String sn,HttpServletResponse response){
-		System.out.println("功能主键"+sn);
 		panoSkin getselect5 = service.getselect5(Integer.parseInt(sn));
 		String objectToJson = JsonUtils.objectToJson(getselect5);
 		try {

@@ -135,10 +135,19 @@
 			packageProduct.sn AS packageProductSn,
 			product.sn AS productSn,
 			product.name AS productName,
-			product.price AS productPrice
+			product.price AS productPrice,
+			pt.name AS typeName,
+			pf.name AS funcName,
+			ps.name AS styleName
 		FROM pano_project_package_product packageProduct
 			INNER JOIN pano_product product
 			ON product.sn = packageProduct.product_sn
+			LEFT JOIN pano_product_type pt 
+			ON product.type_sn = pt.sn 
+			LEFT JOIN pano_product_func pf 
+			ON product.FUNC_SN = pf.SN 
+			LEFT JOIN pano_project_base_style ps 
+			ON product.STYLE_SN = ps.sn 
 		WHERE packageProduct.package_type_sn = #packageTypeSn#
   	</select>
   	

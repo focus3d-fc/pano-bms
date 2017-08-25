@@ -107,7 +107,8 @@
  <dynamic prepend="WHERE ">      
     <isNotEmpty prepend="AND" property="id"> p.id like concat('%',#id#,'%')</isNotEmpty>  
     <isNotEmpty prepend="AND" property="styleSn"> p.style_sn = #styleSn#</isNotEmpty>  
-    <isNotEmpty prepend="AND" property="funcSn"> p.func_sn = #funcSn#</isNotEmpty>  
+    <isNotEmpty prepend="AND" property="funcSn"> p.func_sn = #funcSn#</isNotEmpty> 
+    <isNotEmpty prepend="AND" property="typeSn"> p.type_sn = #typeSn#</isNotEmpty>  
   </dynamic>  
   <dynamic prepend="ORDER BY">  
         <isNotEmpty property="orderSql">     

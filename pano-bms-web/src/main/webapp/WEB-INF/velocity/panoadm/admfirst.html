@@ -34,11 +34,13 @@
 		<ul class="menu">
 			#if($!{pbrr.role_user}>0)
 			<li><a href="/useradm/listUser" target="right" class="page">用户管理</a></li>
-			#end #if($!{pbrr.role_product}>0)
-			<li><a href="/productadm/listproduct" target="right"
-				class="page">产品管理</a></li> #end #if($!{pbrr.role_basics}>0)
+			#end #if($!{pbrr.role_basics}>0)
 			<li><a href="/basics/classify" target="right" class="page">基础信息管理</a></li>
-			#end #if($!{pbrr.role_houses}>0)
+			#end 
+			#if($!{pbrr.role_product}>0)
+			<li><a href="/productadm/listproduct" target="right"
+				class="page">产品管理</a></li> #end
+			#if($!{pbrr.role_houses}>0)
 			<li><a href="/houses/tohouse" target="right" class="page">楼盘管理</a></li>
 			#end #if($!{pbrr.role_order}>0)
 			<li><a href="/order/toOrder?page=1&pageSize=10" target="right" class="page">订单管理</a></li>

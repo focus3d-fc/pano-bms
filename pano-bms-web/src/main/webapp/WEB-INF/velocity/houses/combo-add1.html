@@ -13,7 +13,7 @@
     <div class="panel-heading">
         <span class="glyphicon glyphicon-pencil"></span> 套餐设置
     </div>
-    <div class="panel-body">
+    <!--div class="panel-body">
         <div class="form-horizontal">
             <div class="form-group col-sm-6">
                 <label class="col-sm-4 control-label">楼盘名称</label>
@@ -47,7 +47,7 @@
             </div>
 
         </div>
-    </div>
+    </div-->
     
     <div class="combo-title"><span class="glyphicon glyphicon-th-large"></span>产品筛选：</div>
     <div class="panel-body">
@@ -63,7 +63,7 @@
                         <select class="form-control" id="style">
                         <option value="">不限</option>
                          #foreach ($!{styles} in $!{style})
-                            <option value="">$!{styles.style_name}</option>
+                            <option value="$!{styles.style_sn}">$!{styles.style_name}</option>
                             #end
                         </select>
                     </div>
@@ -74,7 +74,7 @@
                         <select class="form-control" id="typepr" >
                          <option value="">不限</option>
                              #foreach ($!{types} in $!{type})
-                            <option value="">$!{types.type_name}</option>
+                            <option value="$!{types.type_sn}">$!{types.type_name}</option>
                             #end
                         </select>
                     </div>
@@ -85,7 +85,7 @@
                         <select class="form-control" id="func">
                          <option value="">不限</option>
                              #foreach ($!{funcs} in $!{func})
-                            <option value="">$!{funcs.func_name}</option>
+                            <option value="$!{funcs.func_sn}">$!{funcs.func_name}</option>
                             #end
                         </select>
                     </div>
@@ -101,11 +101,11 @@
                 <thead>
                 <tr>
                     <th>请选择</th>
-                    <th>产品编码</th>
-                    <th>分类</th>
-                    <th>风格</th>
+                    <th>产品名称</th>
+                    <th>价格</th>
                     <th>功能</th>
-                    <th width="10%">操作</th>
+                    <th>类别</th>
+                    <th>风格</th>
                 </tr>
                 </thead>
                 <tbody id="product_tbody">
@@ -133,9 +133,6 @@
             </li>
         </ul>
     </nav>
-            
-	 
-       
     </div>
 
 
@@ -146,12 +143,12 @@
             <thead>
             <tr>
                 <th>序号</th>
-                <th>产品编码</th>
-                <th>分类</th>
-                <th>风格</th>
+                <th>产品名称</th>
+                <th>价格</th>
                 <th>功能</th>
-                <th>操作</th>
-
+                <th>类别</th>
+                <th>风格</th>
+                <th width=30%>操作</th>
             </tr>
             </thead>
             <tbody id="typeproduct_tbody">
@@ -161,8 +158,9 @@
                <td>$!{velocityCount}</td>
                <td>$!{product.productName}</td>
                <td>$!{product.productPrice}</td>
-               <td>$!{Lists.pstyle_name}</td>
-               <td>$!{Lists.func_name}</td>
+               <td>$!{product.funcName}</td>
+               <td>$!{product.typeName}</td>
+               <td>$!{product.styleName}</td>
                 <td>
                     <div class="btn-group btn-group-sm" role="group">
                         <a class="btn btn-danger" onclick="del($!{product.packageProductSn},$!{product.productSn})">删除</a>
@@ -189,7 +187,7 @@
 		var data = new Object();
 		data.id = $("#productid").val();
 		data.styleSn = $("#style").val();
-		data.typepr = $("#typepr").val();
+		data.typeSn = $("#typepr").val();
 		data.funcSn = $("#func").val();
 		data.startNum = 0;
 		data.pageSize = pageSize;
@@ -223,9 +221,12 @@
 			
 			var check = $("<td></td>").append($("<div></div>",{class:"checkbox"}).append($("<label></label>").append(checkbox)));
             var name = $("<td></td>").text(_data.name);
+            var price = $("<td></td>").text(_data.price);
+            var funcName = $("<td></td>").text(_data.funcName);
             var typeName = $("<td></td>").text(_data.typeName);
+            var styleName = $("<td></td>").text(_data.styleName);
             
-            tr.append(check).append(name).append(typeName);
+            tr.append(check).append(name).append(price).append(funcName).append(typeName).append(styleName);
             
             tbody.append(tr);
             
@@ -260,15 +261,18 @@
 			var _data = data[i];
 			var tr = $("<tr></tr>").attr("id",_data.packageProductSn);
 			var productSn = $("<input type='hidden'/>").val(_data.productSn);
+			var num = $("<td></td>").text(i);
 			var name = $("<td></td>").text(_data.productName);
 			var price = $("<td></td>").text(_data.productPrice);
+			var funcName = $("<td></td>").text(_data.funcName);
+			var typeName = $("<td></td>").text(_data.typeName);
+			var styleName = $("<td></td>").text(_data.styleName);
 			
-			var control = $("<td></td>").append($("<div class='btn-group btn-group-sm' role='group'></div>").append($("<a class='btn btn-danger'/>").on("click",function(){
-				del(_data.packageProductSn,_data.productSn)
+			var control = $("<td></td>").append($("<div class='btn-group btn-group-sm' role='group'></div>").append($("<a class='btn btn-danger'/>").text("删除").on("click",function(){
+				del(_data.packageProductSn,_data.productSn);
 			})));
 			
-			
-			tr.append(productSn).append(name).append(price).append(control);;
+			tr.append(productSn).append(num).append(name).append(price).append(funcName).append(typeName).append(styleName).append(control);
 			tbody.append(tr);
 		}
 	}
