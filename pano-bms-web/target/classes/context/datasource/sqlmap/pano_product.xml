@@ -50,20 +50,65 @@
   </resultMap>
 	
 	<sql id="proBaseSql">
-	   select p.SN, p.ID, p.NAME, p.BRAND, p.PRICE, p.STATUS, p.SUMMARY, p.LEFT_IMG_SN as leftImgSn, p.DOWN_IMG_SN as downImgSn,
-  p.FULL_IMG_SN as fullImgSn, p.BANNER_IMG_SN as bannerImgSn, p.TYPE_SN as typeSn, p.FUNC_SN as funcSn, p.SPACE_SN as spaceSn,
-	     p.STYLE_SN as styleSn, p.LENGTH, p.WIDE, p.HEIGHT, p.MATERIAL_NAME as materialName,
-      p.MATERIAL_IMG_SN as materialImgSn, p.FABRIC_NAME as fabricName, p.FABRIC_IMG_SN as fabricImgSn, p.COLOR, p.MODEL, 
-      p.CAPACITY, p.REMARK, p.ADDER_SN as adderSn, p.ADDER_NAME as adderName,p.ADD_TIME as addTime1, p.UPDATER_SN as updaterSn, 
-      p.UPDATER_NAME as updaterName, p.UPDATE_TIME as updateTime1,p.dimension,p.venderName,
-      p.workManShip,p.LR,p.lr_round as lrRound, p.material_color as materialColor,p.fabric_color as fabricColor
-    ,pt.NAME as typeName,pf.NAME as funcName,ps.NAME as styleName
-    from pano_product p left JOIN pano_product_type pt on p.type_sn=pt.sn left join pano_product_func pf on p.FUNC_SN=pf.SN
-LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn   
+	   SELECT 
+       p.SN,
+       p.ID,
+       p.NAME,
+       p.BRAND,
+       p.PRICE,
+       p.STATUS,
+       p.SUMMARY,
+       p.LEFT_IMG_SN AS leftImgSn,
+       p.DOWN_IMG_SN AS downImgSn,
+       p.FULL_IMG_SN AS fullImgSn,
+       p.BANNER_IMG_SN AS bannerImgSn,
+       p.TYPE_SN AS typeSn,
+       p.FUNC_SN AS funcSn,
+       p.SPACE_SN AS spaceSn,
+       p.STYLE_SN AS styleSn,
+       p.VENDERNAME AS venderSn,
+       p.LENGTH,
+       p.WIDE,
+       p.HEIGHT,
+       p.MATERIAL_NAME AS materialName,
+       p.MATERIAL_IMG_SN AS materialImgSn,
+       p.FABRIC_NAME AS fabricName,
+       p.FABRIC_IMG_SN AS fabricImgSn,
+       p.COLOR,
+       p.MODEL,
+       p.CAPACITY,
+       p.REMARK,
+       p.ADDER_SN AS adderSn,
+       p.ADDER_NAME AS adderName,
+       p.ADD_TIME AS addTime1,
+       p.UPDATER_SN AS updaterSn,
+       p.UPDATER_NAME AS updaterName,
+       p.UPDATE_TIME AS updateTime1,
+       p.dimension,
+       p.workManShip,
+       p.LR,
+       p.lr_round AS lrRound,
+       p.material_color AS materialColor,
+       p.fabric_color AS fabricColor,
+       pt.NAME AS typeName,
+       pf.NAME AS funcName,
+       ps.NAME AS styleName,
+       vender.NAME AS venderName
+     FROM
+       pano_product p 
+       LEFT JOIN pano_product_type pt 
+         ON p.type_sn = pt.sn 
+       LEFT JOIN pano_product_func pf 
+         ON p.FUNC_SN = pf.SN 
+       LEFT JOIN pano_project_base_style ps 
+         ON p.STYLE_SN = ps.sn 
+       LEFT JOIN pano_project_vender vender 
+         ON vender.sn = p.vendername 
  <dynamic prepend="WHERE ">      
     <isNotEmpty prepend="AND" property="id"> p.id like concat('%',#id#,'%')</isNotEmpty>  
     <isNotEmpty prepend="AND" property="styleSn"> p.style_sn = #styleSn#</isNotEmpty>  
-    <isNotEmpty prepend="AND" property="funcSn"> p.func_sn = #funcSn#</isNotEmpty>  
+    <isNotEmpty prepend="AND" property="funcSn"> p.func_sn = #funcSn#</isNotEmpty> 
+    <isNotEmpty prepend="AND" property="typeSn"> p.type_sn = #typeSn#</isNotEmpty>  
   </dynamic>  
   <dynamic prepend="ORDER BY">  
         <isNotEmpty property="orderSql">     
@@ -84,10 +129,10 @@ LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn
         <isNotEmpty property="startNum">  
             #startNum#  
         </isNotEmpty>  
-        <isNotEmpty  property="pageSize">  
+        <isNotEmpty  property="pageSize">
             ,#pageSize#  
         </isNotEmpty>  
-   </dynamic>  
+   	</dynamic>  
 
   	</select>
 	
@@ -107,31 +152,31 @@ LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn
 	<select id="getProductDetailBySn" resultClass="productInfo" parameterClass="java.lang.String"> 
 	 select p.SN, p.ID, p.NAME, p.BRAND, p.PRICE, p.STATUS, p.SUMMARY, p.LEFT_IMG_SN as leftImgSn, p.DOWN_IMG_SN as downImgSn,
   p.FULL_IMG_SN as fullImgSn, p.BANNER_IMG_SN as bannerImgSn, p.TYPE_SN as typeSn, p.FUNC_SN as funcSn, p.SPACE_SN as spaceSn,
-	     p.STYLE_SN as styleSn, p.LENGTH, p.WIDE, p.HEIGHT, p.MATERIAL_NAME as materialName,
+	     p.STYLE_SN as styleSn,p.VENDERNAME as venderSn, p.LENGTH, p.WIDE, p.HEIGHT, p.MATERIAL_NAME as materialName,
       p.MATERIAL_IMG_SN as materialImgSn, p.FABRIC_NAME as fabricName, p.FABRIC_IMG_SN as fabricImgSn, p.COLOR, p.MODEL, 
       p.CAPACITY, p.REMARK, p.ADDER_SN as adderSn, p.ADDER_NAME as adderName,p.ADD_TIME as addTime1, p.UPDATER_SN as updaterSn, 
-      p.UPDATER_NAME as updaterName, p.UPDATE_TIME as updateTime1,p.dimension,p.venderName,
+      p.UPDATER_NAME as updaterName, p.UPDATE_TIME as updateTime1,p.dimension,vender.NAME as venderName,
       p.workManShip,p.LR,p.lr_round as lrRound, p.material_color as materialColor,p.fabric_color as fabricColor,
    p.venderName
     ,pt.NAME as typeName,pf.NAME as funcName,ps.NAME as styleName
     from pano_product p left JOIN pano_product_type pt on p.type_sn=pt.sn left join pano_product_func pf on p.FUNC_SN=pf.SN
-LEFT JOIN pano_project_style ps on p.STYLE_SN=ps.sn
+LEFT JOIN pano_project_base_style ps on p.STYLE_SN=ps.sn LEFT JOIN pano_project_vender vender ON vender.sn = p.vendername 
 	   where p.SN = #sn:BIGINT#
 	</select>
 	
 	<!-- 功能 -->
 	
-	<select id="getAllProFunc" resultClass="com.focus3d.pano.model.PanoProductFunc" >
+	<select id="getAllProFunc" resultClass="com.focus3d.pano.model.ProductFeature" >
 	   select  sn,name from pano_product_func
 	</select>
 	
 	<!-- 风格-->
 	<select id="getAllProStyle" resultClass="com.focus3d.pano.model.pano_project_style" >
-	  select sn,name from pano_project_style
+	  select sn,name from pano_project_base_style
 	</select>
 	
 	<!-- 分类 -->
-      <select id="getAllProType" resultClass="com.focus3d.pano.model.PanoProductType" >
+      <select id="getAllProType" resultClass="com.focus3d.pano.model.ProductClassify" >
        select sn,name from pano_product_type
       </select>
 	

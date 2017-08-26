@@ -6,7 +6,7 @@
 
 	<select id="getHousestyle" resultClass="styles" parameterClass="Long">
 		SELECT
-		ps.SN AS SN,baseStyle.`NAME` AS NAME, baseStyle.IMG_SN AS IMG_SN
+		ps.SN AS SN,ps.STYLE_SN as STYLE_SN,baseStyle.`NAME` AS NAME, baseStyle.IMG_SN AS IMG_SN
 		FROM
 		pano_project_style ps
 		INNER JOIN pano_project_base_style baseStyle

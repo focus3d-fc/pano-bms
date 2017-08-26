@@ -42,13 +42,13 @@
 		update
 		pano_project_house
 		<dynamic prepend="SET">
-			<isNotEmpty prepend="AND" property="NAME">
+			<isNotEmpty prepend="," property="NAME">
 				pano_project_house.`NAME`=#NAME#
 			</isNotEmpty>
-			<isNotEmpty prepend="AND" property="IMG_SN">
+			<isNotEmpty prepend="," property="IMG_SN">
 				pano_project_house.IMG_SN=#IMG_SN#
 			</isNotEmpty>
-			<isNotEmpty prepend="AND" property="UPDATE_TIME">
+			<isNotEmpty prepend="," property="UPDATE_TIME">
 				pano_project_house.UPDATE_TIME=#UPDATE_TIME#
 			</isNotEmpty>
 		</dynamic>

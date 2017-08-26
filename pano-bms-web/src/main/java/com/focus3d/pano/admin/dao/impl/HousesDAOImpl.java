@@ -326,4 +326,16 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 	public void deleteTypeProduct(Long packageProductSn) {
 		getSqlMapClientTemplate().insert("pano_project_house_style.deleteTypeProduct",packageProductSn);
 	}
+
+	@Override
+	public void upHouseStyleImg(pano_project_house_style hs) {
+		getSqlMapClientTemplate().update("pano_project_house_style.upHouseStyleImg",hs);
+	}
+
+	@Override
+	public pano_project_house_style QueryHouseStyleBySn(Map<String,Object> map) {
+		// TODO Auto-generated method stub
+		pano_project_house_style houseStyle = (pano_project_house_style)getSqlMapClientTemplate().queryForObject("pano_project_house_style.queryHouseStyleBySn",map);
+		return houseStyle;
+	}
 }

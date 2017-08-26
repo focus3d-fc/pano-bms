@@ -306,10 +306,19 @@ public class HousesController extends BaseController {
 		if (stylist.size() != 0) {
 			request.setAttribute("stylist", stylist);
 		}
-		List<project_style> allsty = housesService.getAllHousestyle();
-		request.setAttribute("allsty", allsty);
-
+		
 		return "/houses/styleSet";
+	}
+	
+	@RequestMapping("/QueryStyle")
+	public void QueryStyle(HttpServletResponse response,ModelMap map) {
+		try{
+			List<project_style> list = housesService.getAllHousestyle();
+			ajaxOutput(response,JsonUtils.arrayToJson(list.toArray()));
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
 	}
 
 	@RequestMapping("/delstyleSet")
@@ -346,20 +355,20 @@ public class HousesController extends BaseController {
 	Long STYLE_SN;
 
 	@RequestMapping("/tostyle-houseSet")
-	public String tostylehouseSet(HttpServletRequest request) {
-		STYLE_SN = Long.parseLong(request.getParameter("SN"));
+	public String tostylehouseSet(String SN,ModelMap map) {
+		STYLE_SN = Long.parseLong(SN);
 		pano_project_house_style house = new pano_project_house_style();
 		house.setPROJECT_SN(PROJECT_SN);
 		house.setSTYLE_SN(STYLE_SN);
 		List<pano_project_house> housename = housesService.selHousebyStyle(house);
 		
-		request.setAttribute("houList", housename);
+		map.put("houList", housename);
 		List<project_style> stylist = housesService.getHousestylebySN(STYLE_SN);
-		request.setAttribute("styname", stylist.get(0).getNAME());
+		map.put("styname", stylist.get(0).getNAME());
 		List<pano_project_house> hlist = housesService.getHousetype(PROJECT_SN);
-		request.setAttribute("hlist", hlist);
-		request.setAttribute("STYLE_SN", STYLE_SN);
-		request.setAttribute("PROJECT_SN", PROJECT_SN);
+		map.put("hlist", hlist);
+		map.put("STYLE_SN", STYLE_SN);
+		map.put("PROJECT_SN", PROJECT_SN);
 		return "/houses/style-houseSet";
 	}
 	
@@ -428,6 +437,55 @@ public class HousesController extends BaseController {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+	
+	@RequestMapping("/queryStyleHouse")
+	public void QueryStyleHouse(HttpServletResponse response,String houseSn) {
+		try{
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("houseSn",houseSn);
+			map.put("projectSn",PROJECT_SN);
+			map.put("styleSn",STYLE_SN);
+			pano_project_house_style houseStyle = housesService.QueryHouseStyleBySn(map);
+			
+			JSONObject json = new JSONObject();
+			json.put("houseStyleSn", houseStyle.getSN());
+			if(houseStyle.getIMG_SN()!=null){
+				json.put("mapKey", EncryptUtil.encode(houseStyle.getIMG_SN()));
+			}
+			
+			ajaxOutput(response,json.toString());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	
+	@RequestMapping("/modifyStyleHouse")
+	public void ModifyStyleHouse(HttpServletResponse response,String housestylesn,String fullImgSn) {
+		try{
+			Long mapKey = EncryptUtil.decode(fullImgSn);
+			Long SN = Long.parseLong(housestylesn);
+			pano_project_house_style house = new pano_project_house_style();
+			house.setIMG_SN(mapKey);
+			house.setSN(SN);
+			/*
+			 * // 清空关联数据 housesService.clearStyleHouse(house);
+			 */
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String add_time = sdf.format(date);
+			house.setADD_TIME(add_time);
+			housesService.upHouseStyleImg(house);
+			
+			JSONObject json = new JSONObject();
+			json.put("info","succeed");
+			ajaxOutput(response, json.toString());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 
 	@ResponseBody

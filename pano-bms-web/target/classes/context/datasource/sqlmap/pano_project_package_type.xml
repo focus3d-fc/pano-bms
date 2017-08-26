@@ -132,15 +132,15 @@
 	 		
 	 		<!-- 查询产品下的风格 类型 功能名称用于下拉框查询-->				
 	  	<select id="getType" resultClass="ProductList">
-	  	     SELECT `NAME` AS type_name  FROM pano_product_type 
+	  	     SELECT `NAME` AS type_name,sn as type_sn  FROM pano_product_type 
 	  	</select>
 	  
 	  	<select id="getFunc" resultClass="ProductList">
-	  	     SELECT `NAME` AS func_name  FROM pano_product_func
+	  	     SELECT `NAME` AS func_name,sn as func_sn  FROM pano_product_func
 	  	</select>	
 	  	
 	  	<select id="getStyle" resultClass="ProductList">
-	  	     SELECT `NAME` AS style_name  FROM pano_project_style
+	  	     SELECT `NAME` AS style_name,sn as style_sn  FROM pano_project_base_style
 	  	</select>
 	  	
 	  	<!-- 通过传过来的ID 展示户型 风格 分类 楼盘 等固定值 -->

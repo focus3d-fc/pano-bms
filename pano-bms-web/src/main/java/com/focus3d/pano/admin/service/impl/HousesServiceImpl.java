@@ -325,4 +325,15 @@ public class HousesServiceImpl implements HousesService {
 		// TODO Auto-generated method stub
 		housesDAO.deleteTypeProduct(packageProductSn);
 	}
+
+	@Override
+	public void upHouseStyleImg(pano_project_house_style hs) {
+		// TODO Auto-generated method stub
+		housesDAO.upHouseStyleImg(hs);
+	}
+	
+	@Override
+	public pano_project_house_style QueryHouseStyleBySn(Map<String,Object> map){
+		return housesDAO.QueryHouseStyleBySn(map);
+	}
 }

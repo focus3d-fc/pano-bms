@@ -267,30 +267,33 @@ INNER JOIN pano_order_shopcart ON pano_order_shopcart.HOUSE_PACKAGE_SN = pano_pr
 where pano_order_shopcart.USER_SN=#user_sn#;
 </select>
  <!-- <typeAlias alias="style" type="com.focus3d.pano.model.Style" /> -->
- <select id="selectAdImg_sn" resultClass="com.focus3d.pano.model.pano_ad">
+ <select id="selectAdImg_sn" resultClass="com.focus3d.pano.model.pano_ad" parameterClass="long">
  SELECT
 pano_ad.IMG_SN,
 pano_ad.LINK
 FROM
 pano_ad
+where project_sn = #PROJECT_SN#
  </select>
  <!-- 查风格img_sn和name -->
  <select id="selectStyleByProject_sn" parameterClass="long" 
  resultClass="com.focus3d.pano.model.Style">
-SELECT
-pano_project.`NAME` as project_name,
-pano_project_style.`NAME`,
-pano_project_style.IMG_SN,
-pano_project_style.PROJECT_SN as project_sn,
-pano_project_style.SN as id,
-pano_project_style.START_PRICE,
-pano_project_style.END_PRICE
-FROM
-pano_project_house_style
-INNER JOIN pano_project_style ON pano_project_style.SN = pano_project_house_style.STYLE_SN
-INNER JOIN pano_project_house ON pano_project_house_style.HOUSE_SN = pano_project_house.SN
-INNER JOIN pano_project ON pano_project_house.PROJECT_SN = pano_project.SN
-where pano_project.SN=#project_sn#
+SELECT 
+project.`NAME` AS project_name,
+baseStyle.`NAME`,
+baseStyle.IMG_SN,
+projectStyle.PROJECT_SN AS project_sn,
+projectStyle.SN AS id,
+projectStyle.START_PRICE,
+projectStyle.END_PRICE
+FROM pano_project_style projectStyle
+INNER JOIN pano_project_base_style baseStyle
+ON baseStyle.sn = projectStyle.style_sn
+INNER JOIN pano_project_house_style houseStyle
+ON houseStyle.style_sn = projectStyle.sn
+INNER JOIN pano_project project
+ON project.sn = houseStyle.project_sn
+where project.SN=#project_sn#
  </select>
  <!-- 根据style_sn查询lable集合 -->
  <select id="selectLableByStyle_sn" parameterClass="com.focus3d.pano.model.Lable"

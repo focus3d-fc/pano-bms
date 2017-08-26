@@ -139,6 +139,10 @@ public interface HousesService {
 
 	// 修改户型风格
 	public void upHouseStyle(pano_project_house_style hs);
+	
+	public void upHouseStyleImg(pano_project_house_style hs);
+	
+	public pano_project_house_style QueryHouseStyleBySn(Map<String,Object> map);
 
 	// -----------------------楼盘-设置-风格-标签设置-----------------------
 

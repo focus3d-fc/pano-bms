@@ -174,7 +174,7 @@
 		    package.NAME AS packageName,
 		    project.name AS projectName,
 		    house.name AS houseName,
-		    style.name AS styleName
+		    baseStyle.name AS styleName
 	    FROM pano_project_house_package housePackage 
 	    INNER JOIN pano_project_package package
 	    	ON package.sn = housePackage.package_sn
@@ -182,8 +182,10 @@
 	    	ON housePackage.house_style_sn = houseStyle.sn
 	    INNER JOIN pano_project_house house
 	    	ON house.sn = houseStyle.house_sn
-	    INNER JOIN pano_project_base_style style
+	    INNER JOIN pano_project_style style
 	    	ON style.sn = houseStyle.style_sn
+	    INNER JOIN pano_project_base_style baseStyle
+	    	ON baseStyle.sn = style.style_sn
 	    INNER JOIN pano_project project
 	    	ON project.sn = houseStyle.project_sn
 	    WHERE houseStyle.project_sn = #project_sn# 
@@ -191,14 +193,27 @@
 	    	AND houseStyle.style_sn = #style_sn# 
 	</select>
 	
-	<select id="queryHouseStyleInfo" resultClass="java.util.HashMap" parameterClass="com.focus3d.pano.model.PanoProjectPackageStyle">
-		
+	<select id="queryHouseStyleBySn" resultClass="com.focus3d.pano.model.pano_project_house_style" parameterClass="java.util.HashMap">
+		SELECT 
+			houseStyle.`SN` AS SN,
+			houseStyle.IMG_SN AS IMG_SN 
+		FROM pano_project_house_style houseStyle 
+		WHERE houseStyle.`HOUSE_SN` = #houseSn#
+		AND houseStyle.`STYLE_SN` = #styleSn#
+		AND houseStyle.`PROJECT_SN` = #projectSn#
 	</select>
 
 	<update id="upHouseStyle" parameterClass="com.focus3d.pano.model.pano_project_house_style">
 		update pano_project_house_style
 		SET
 		pano_project_house_style.STYLE_SN=#STYLE_SN#
+		where SN = #SN#
+	</update>
+	
+	<update id="upHouseStyleImg" parameterClass="com.focus3d.pano.model.pano_project_house_style">
+		update pano_project_house_style
+		SET
+		pano_project_house_style.IMG_SN=#IMG_SN#
 		where SN = #SN#
 	</update>
 </sqlMap>

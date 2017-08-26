@@ -63,7 +63,7 @@
 				<li><a href="/houses/tohouseSet2">户型</a></li>
 				<li class="active"><a href="">风格</a></li>
 				<li><a href="/houses/toaddSet">广告</a></li>
-				<button class="btn btn-info" data-toggle="modal" data-target="#add"
+				<button class="btn btn-info" onclick="insert_style()"
 					style="margin-left: 60px">增加</button>
 			</ul>
 			<!--tab内容-->
@@ -80,9 +80,10 @@
 								<th>操作</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="style_tbody">
 							#foreach ($!{stylist} in $!{stylist})
 							<tr>
+								<input type="hidden" value="$!{stylist.STYLE_SN}"/>
 								<td>$!{velocityCount}</td>
 								<td>$!{stylist.NAME}</td>
 								
@@ -125,9 +126,8 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">新增/修改</label>
 							<div class="col-sm-9">
-								<select class="form-control" name="aname"> #foreach
-									($!{allsty} in $!{allsty})
-									<option value="$!{allsty.SN}">$!{allsty.NAME}</option> #end
+								<select class="form-control" name="aname" id="style_select"> 
+									
 								</select>
 							</div>
 						</div>
@@ -152,6 +152,35 @@
 		</div>
 	</div>
 	<script src="/style/admstatic/js/main.js"></script>
-
+	<script>
+		function insert_style(){
+			
+			$.ajax({
+				url : "/houses/QueryStyle",
+				type : "post",
+				data : {},
+				datatype : "json",
+				success : function(data) {
+					var jsonobj = JSON.parse(data);
+					var container = $("#style_select");
+					container.empty();
+					for(var i=0,len=jsonobj.length;i<len;i++){
+						var child = jsonobj[i];
+						var option = $("<option></option>").val(child.SN).text(child.NAME);
+						
+						$("#style_tbody input[type='hidden']").each(function(){
+							if($(this).val() == child.SN){
+								option.attr("disabled","disabled");
+							}
+						})
+						
+						container.append(option);
+					}
+					
+					$("#add").modal("show");
+				}
+			});
+		}
+	</script>
 </body>
 </html>

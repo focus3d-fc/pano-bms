@@ -12,6 +12,7 @@
 		<result column="HOUSE_SN" property="HOUSE_SN" jdbcType="BIGINT" />
 		<result column="STYLE_SN" property="STYLE_SN" jdbcType="BIGINT" />
 		<result column="PANO_ID" property="PANO_ID" jdbcType="BIGINT" />
+		<result column="IMG_SN" property="IMG_SN" jdbcType="VARCHAR" />
 		<result column="PROJECT_SN" property="PROJECT_SN" jdbcType="BIGINT" />
 		<result column="ADDER_SN" property="ADDER_SN" jdbcType="BIGINT" />
 		<result column="ADDER_NAME" property="ADDER_NAME" jdbcType="VARCHAR" />
@@ -26,7 +27,6 @@
 			<result property="ID" column="ID" />
 			<result property="NAME" column="NAME" />
 			<result property="AREA" column="AREA" />
-			<result property="IMG_SN" column="IMG_SN" />
 			<result property="ROOM_NUM" column="ROOM_NUM" />
 			<result property="HALL_NUM" column="HALL_NUM" />
 			<result property="PROJECT_SN" column="PROJECT_SN" />
@@ -45,12 +45,12 @@
 		parameterClass="com.focus3d.pano.model.pano_project_house_style">
 		SELECT
 		pano_project_house.SN,
-		pano_project_house.`NAME`
+		pano_project_house.`NAME`,
+		pano_project_house_style.IMG_SN
 		FROM
 		pano_project_house
-		INNER JOIN pano_project_house_style ON
-		pano_project_house_style.HOUSE_SN =
-		pano_project_house.SN
+		INNER JOIN pano_project_house_style 
+		ON pano_project_house_style.HOUSE_SN = pano_project_house.SN
 		WHERE
 		pano_project_house_style.PROJECT_SN=#PROJECT_SN#
 		AND
@@ -79,8 +79,8 @@
 	<insert id="addStyleHouse" parameterClass="com.focus3d.pano.model.pano_project_house_style">
 		insert into
 		pano_project_house_style
-		(PROJECT_SN,STYLE_SN,HOUSE_SN,ADD_TIME)
-		values(#PROJECT_SN#,#STYLE_SN#,#HOUSE_SN#,#ADD_TIME#)
+		(PROJECT_SN,STYLE_SN,HOUSE_SN,IMG_SN,ADD_TIME)
+		values(#PROJECT_SN#,#STYLE_SN#,#HOUSE_SN#,#IMG_SN#,#ADD_TIME#)
 	</insert>
 
 	<select id="selHouseStyle" resultClass="com.focus3d.pano.model.pano_project_house_style"
@@ -106,11 +106,114 @@
 		FROM
 		pano_project_house_style
 	</select>
+	
+	<select id="queryTypeSurplusSpace" resultClass="java.util.HashMap" parameterClass="java.lang.Long">
+		SELECT 
+	      space.sn AS spaceSn,
+	      space.name AS spaceName 
+	    FROM
+	      pano_project_space SPACE
+	    WHERE space.house_sn = #houseSn# 
+	</select>
+	
+	<select id="queryHouseStylePackageType" resultClass="java.util.HashMap" parameterClass="java.lang.Long">
+		SELECT 
+	        packageType.sn AS sn,
+	        packageType.name AS name,
+	        space.name AS spaceName,
+	        packageType.space_sn AS spaceSn,
+	        packageType.house_package_sn AS housePackageSn 
+     	FROM
+        	pano_project_package_type packageType 
+        INNER JOIN pano_project_space SPACE 
+          ON space.sn = packageType.space_sn 
+        WHERE packageType.house_package_sn = #housePackageSn#; 
+	</select>
+	
+	<select id="queryTypeProducts" resultClass="java.util.HashMap" parameterClass="java.lang.Long">
+  		SELECT
+			packageProduct.sn AS packageProductSn,
+			product.sn AS productSn,
+			product.name AS productName,
+			product.price AS productPrice,
+			pt.name AS typeName,
+			pf.name AS funcName,
+			ps.name AS styleName
+		FROM pano_project_package_product packageProduct
+			INNER JOIN pano_product product
+			ON product.sn = packageProduct.product_sn
+			LEFT JOIN pano_product_type pt 
+			ON product.type_sn = pt.sn 
+			LEFT JOIN pano_product_func pf 
+			ON product.FUNC_SN = pf.SN 
+			LEFT JOIN pano_project_base_style ps 
+			ON product.STYLE_SN = ps.sn 
+		WHERE packageProduct.package_type_sn = #packageTypeSn#
+  	</select>
+  	
+  	<insert id="insertTypeProduct" parameterClass="java.util.HashMap">
+  		insert into
+		pano_project_package_product
+		(package_type_sn,product_sn)
+		values(#packageTypeSn#,#productSn#)
+  	</insert>
+	
+	<delete id="deleteTypeProduct" parameterClass="java.lang.Long">
+		DELETE FROM pano_project_package_product WHERE sn =#packageProductSn#
+    </delete>
+	
+	<select id="queryHouseStylePackage" resultClass="java.util.HashMap" parameterClass="com.focus3d.pano.model.PanoProjectPackageStyle">
+		SELECT 
+		   	housePackage.sn AS sn,
+		   	project.sn AS projectSn,
+    		house.sn AS houseSn,
+    		style.sn AS styleSn,
+    		package.sn AS packageSn,
+    		housePackage.PACKAGE_PRICE AS packagePrice,
+    		housePackage.IMG_SN AS imgSn,
+		    package.NAME AS packageName,
+		    project.name AS projectName,
+		    house.name AS houseName,
+		    baseStyle.name AS styleName
+	    FROM pano_project_house_package housePackage 
+	    INNER JOIN pano_project_package package
+	    	ON package.sn = housePackage.package_sn
+	    INNER JOIN pano_project_house_style houseStyle
+	    	ON housePackage.house_style_sn = houseStyle.sn
+	    INNER JOIN pano_project_house house
+	    	ON house.sn = houseStyle.house_sn
+	    INNER JOIN pano_project_style style
+	    	ON style.sn = houseStyle.style_sn
+	    INNER JOIN pano_project_base_style baseStyle
+	    	ON baseStyle.sn = style.style_sn
+	    INNER JOIN pano_project project
+	    	ON project.sn = houseStyle.project_sn
+	    WHERE houseStyle.project_sn = #project_sn# 
+	    	AND houseStyle.house_sn = #house_sn#
+	    	AND houseStyle.style_sn = #style_sn# 
+	</select>
+	
+	<select id="queryHouseStyleBySn" resultClass="com.focus3d.pano.model.pano_project_house_style" parameterClass="java.util.HashMap">
+		SELECT 
+			houseStyle.`SN` AS SN,
+			houseStyle.IMG_SN AS IMG_SN 
+		FROM pano_project_house_style houseStyle 
+		WHERE houseStyle.`HOUSE_SN` = #houseSn#
+		AND houseStyle.`STYLE_SN` = #styleSn#
+		AND houseStyle.`PROJECT_SN` = #projectSn#
+	</select>
 
 	<update id="upHouseStyle" parameterClass="com.focus3d.pano.model.pano_project_house_style">
 		update pano_project_house_style
 		SET
 		pano_project_house_style.STYLE_SN=#STYLE_SN#
+		where SN = #SN#
+	</update>
+	
+	<update id="upHouseStyleImg" parameterClass="com.focus3d.pano.model.pano_project_house_style">
+		update pano_project_house_style
+		SET
+		pano_project_house_style.IMG_SN=#IMG_SN#
 		where SN = #SN#
 	</update>
 </sqlMap>

@@ -4,9 +4,9 @@
 
  <typeAlias alias="style" type="com.focus3d.pano.model.pano_project_style" />
  <typeAlias alias="PanoVender" type="com.focus3d.pano.model.PanoVender" />
- <typeAlias alias="PanoProductType" type="com.focus3d.pano.model.PanoProductType" />
+ <typeAlias alias="PanoProductType" type="com.focus3d.pano.model.ProductClassify" />
  <typeAlias alias="PanoProjectPackage" type="com.focus3d.pano.model.PanoProjectPackage" />
- <typeAlias alias="PanoProductFunc" type="com.focus3d.pano.model.PanoProductFunc" />
+ <typeAlias alias="PanoProductFunc" type="com.focus3d.pano.model.ProductFeature" />
   <typeAlias alias="panoSkin" type="com.focus3d.pano.model.panoSkin" />
 
 
@@ -100,19 +100,19 @@
 
 	
 	<select id="getBasics3" resultClass="style">
-		select `NAME`,SN,img_sn from pano_project_style
+		select `NAME`,SN,img_sn from pano_project_base_style
 	</select>
 	
 	<insert id="getInsert3">
-		insert into pano_project_style (name,ADDER_SN,UPDATER_SN,IMG_SN
+		insert into pano_project_base_style (name,ADDER_SN,UPDATER_SN,IMG_SN
 		) values (#name#,1,1,#img_sn#)
 	</insert>
 	
 	<delete id="getDelete3"> 
-		DELETE FROM pano_project_style WHERE SN = #SN#
+		DELETE FROM pano_project_base_style WHERE SN = #SN#
 	</delete>
 	<update id="getUpdate3"  >
-		UPDATE pano_project_style 
+		UPDATE pano_project_base_style
 		<dynamic prepend="SET">  
    						 <isNotNull  prepend="," property="name"> NAME=#name#</isNotNull> 
     					 <isNotNull  prepend=","  property="img_sn">IMG_SN =#img_sn#</isNotNull>  
@@ -120,7 +120,7 @@
     			 where SN=#sn#
 	</update>
 	<select id="select3" resultClass="style">
-		select `NAME`,SN from pano_project_style where sn=#sn#
+		select `NAME`,SN from pano_project_base_style where sn=#sn#
 	</select>
 	
 	
