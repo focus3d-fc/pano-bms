@@ -124,9 +124,15 @@
 		
 		
 		function insert(){
+			var fullimgVal = $("#fullimgsn").val();
+			if(fullimgVal == undefined || fullimgVal == null || fullimgVal == ""){
+				alert("风格户型图片不能为空");
+				return;
+			}
+			
 			var data = new Object();
 			data.uname = $("#house input:checked:enabled").val();
-			data.fullImgSn = $("#fullimgsn").val();
+			data.fullImgSn = fullimgVal;
 			$.ajax({
 				url:'/houses/upstyle-houseSet',
 				data:data,
