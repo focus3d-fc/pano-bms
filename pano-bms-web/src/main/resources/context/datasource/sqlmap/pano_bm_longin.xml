@@ -80,7 +80,7 @@
 			where p.sn =#house_sn#  and p1.SN =#project_sn#  and p2.SN = #style_sn#
 		</select>
 		
-		 <update id="getInsert5">
+		 <update id="getInsert5" parameterClass="PanoProjectHousePackage">
 				UPDATE pano_project_house_package 
 				 <dynamic prepend="SET">  
    						 <isNotNull  prepend="," property="package_price"> PACKAGE_PRICE=#package_price#</isNotNull> 

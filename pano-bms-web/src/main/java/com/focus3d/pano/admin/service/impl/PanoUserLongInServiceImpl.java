@@ -91,8 +91,8 @@ public class PanoUserLongInServiceImpl implements PanoUserLongInService{
 		return userlongin.getinserts(pano);
 	}
 	@Override
-	public int getInsert1(PanoProjectHousePackage sn) {
-		return userlongin.getInsert1(sn);
+	public void getInsert1(PanoProjectHousePackage sn) {
+		userlongin.getInsert1(sn);
 	}
 	
 

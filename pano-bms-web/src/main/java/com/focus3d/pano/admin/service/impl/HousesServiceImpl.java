@@ -316,6 +316,12 @@ public class HousesServiceImpl implements HousesService {
 	}
 	
 	@Override
+	public Integer QueryProductsCount(Map<String,Object> map){
+		int count = productDAO.countProductInfo(map);
+		return count;
+	}
+	
+	@Override
 	public void insertTypeProduct(Map<String, Object> map){
 		housesDAO.insertTypeProduct(map);
 	}

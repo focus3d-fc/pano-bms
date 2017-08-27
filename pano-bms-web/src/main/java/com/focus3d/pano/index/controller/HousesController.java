@@ -871,10 +871,7 @@ public class HousesController extends BaseController {
 	}
 
 	@RequestMapping("/insert1")
-	public String insert1(HttpServletRequest request, HttpSession session,
-			String fullImgSn) {
-		String name = request.getParameter("names");
-		String sn = request.getParameter("sn");
+	public void insert1(HttpServletResponse response,HttpSession session,String names,String sn,String fullImgSn) {
 		Long img_sn = null;
 		try {
 			img_sn = EncryptUtil.decode(fullImgSn);
@@ -882,17 +879,22 @@ public class HousesController extends BaseController {
 			e.printStackTrace();
 		}
 		PanoProjectHousePackage p = new PanoProjectHousePackage();
-		System.out.println("进入套餐设置" + name + "-" + sn + "-" + img_sn);
 		p.setIMG_SN(img_sn);
-		System.out.println("进入套餐设置1");
-		if (StringUtil.isEmpty(name)) {
+		
+		if (!StringUtil.isEmpty(names)) {
+			p.setPackage_price(Double.parseDouble(names));
 		}
-		p.setPackage_price(Double.parseDouble(name));
-		System.out.println("进入套餐设置2");
+		
 		p.setSn(Long.parseLong(sn));
 		service.getInsert1(p);
-		return redirect("packageSet2");
-
+		
+		try{
+			JSONObject json = new JSONObject();
+			json.put("info", "success");
+			ajaxOutput(response, json.toString());
+		}catch(IOException e){
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping("/queryTypeProducts")
@@ -926,7 +928,7 @@ public class HousesController extends BaseController {
 	}
 	
 	@RequestMapping("/queryAllProducts")
-	public void QueryAllProducts(HttpServletResponse response,String id,String styleSn,String funcSn,String typeSn,String startNum,String pageSize){
+	public void QueryAllProducts(HttpServletResponse response,String id,String styleSn,String funcSn,String typeSn,String startNum,String pageSize,String total){
 		try{
 			  Map<String,Object> map = new HashMap<String,Object>();
 			    map.put("id", id);
@@ -936,7 +938,16 @@ public class HousesController extends BaseController {
 			    map.put("startNum",startNum);
 			    map.put("pageSize",pageSize);
 				List<ProductInfo> list = housesService.QueryProducts(map);
-				ajaxOutput(response, JsonUtils.arrayToJson(list.toArray()));
+				
+				JSONObject json = new JSONObject();
+				json.put("list",list);
+				
+				if(total.isEmpty()){
+					int count = housesService.QueryProductsCount(map);
+					json.put("total",count);
+				}
+				
+				ajaxOutput(response, json.toString());
 		}catch(IOException e){
 				e.printStackTrace();
 		}

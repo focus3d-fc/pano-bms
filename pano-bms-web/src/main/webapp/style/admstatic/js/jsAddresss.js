@@ -54,7 +54,7 @@ var addressInit = function(_cmbProvince, _cmbCity, _cmbArea, defaultProvince,
 }
 
 var provinceList = [
-		{
+       {
 			name : '北京',
 			cityList : [
 					{

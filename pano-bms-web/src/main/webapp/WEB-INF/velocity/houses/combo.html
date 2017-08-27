@@ -255,7 +255,8 @@ function addform(sn) {
     		data:$('#formad').serialize(),  
     		async: false,  
     		success: function(data) {  
-    			window.location.href="/houses/packageSet2";
+    			debugger;
+    			window.location.href="/houses/packageSet?SN="+"$!{HOUSE_SN}";
     		}  
   		});
 	});

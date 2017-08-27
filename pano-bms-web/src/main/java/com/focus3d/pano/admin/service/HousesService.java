@@ -170,6 +170,8 @@ public interface HousesService {
 	
 	public List<ProductInfo> QueryProducts(Map<String,Object> map);
 	
+	public Integer QueryProductsCount(Map<String,Object> map);
+	
 	public void insertTypeProduct(Map<String, Object> map);
 	
 	public void deleteTypeProduct(Long packageProductSn);

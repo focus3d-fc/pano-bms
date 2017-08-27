@@ -25,5 +25,5 @@ public interface PanoUserLongInService {
 	public List<PanoProjectHousePackage> getpackage2(Long house_style_sn);
 	public PanoProjectPackageStyle getpackage1(PanoProjectPackageStyle sn);
 	
-	public int getInsert1(PanoProjectHousePackage sn);
+	public void getInsert1(PanoProjectHousePackage sn);
 }

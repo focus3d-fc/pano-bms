@@ -90,7 +90,7 @@
                         </select>
                     </div>
                 </div>
-                <button class="btn btn-primary" onclick="QueryProduct()">搜索</button>
+                <button class="btn btn-primary" onclick="QueryProduct(0)">搜索</button>
            </div>
         </div>
     </div>
@@ -122,13 +122,12 @@
             </div>
         <ul class="pagination pull-right">
             <li>
-                <a href="/typeproduct/select?pagenum=$!{upPage}" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
+                <a onclick="QueryPrePage()" aria-label="Previous">
+                    <span aria-hidden="true">上一页</span>
                 </a></li>
-			#foreach ($item in [1..$!{prList.totalPages}])<li><a href="/typeproduct/select?pagenum=$velocityCount">$velocityCount</a></li> #end
             <li>
-                <a href="/typeproduct/select?pagenum=$!{nextPage}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
+                <a onclick="QueryNextPage()" aria-label="Next">
+                    <span aria-hidden="true">下一页</span>
                 </a>
             </li>
         </ul>
@@ -182,14 +181,70 @@
 <script>
 	var pageSize = 5;
 	var packageTypeSn = '$packageTypeSn';
+	var index;
+	var style;
+	var typepr;
+	var func;
+	var productid;
 	
-	function QueryProduct(){
-		var data = new Object();
+	var data;
+	var total = "";
+	function QueryNextPage(){
+		if(total == ""){
+			return;
+		}
+		index++;
+		if(index>total){
+			--index;
+			return;
+		}
+		data.startNum =  index * pageSize;
+		
+		$.ajax({url:"/houses/queryAllProducts",
+	        type: "POST",
+	        data:data,
+	        dataType:"json",
+	        success:function(data){
+	            if(data){
+	            	initProductResult(data.list);
+	            }
+	        }
+	    });
+	}
+	
+	function QueryPrePage(){
+		if(total == ""){
+			return;
+		}
+		index--;
+		if(index<0){
+			++index;
+			return;
+		}
+		data.startNum =  index * pageSize;
+		
+		$.ajax({url:"/houses/queryAllProducts",
+	        type: "POST",
+	        data:data,
+	        dataType:"json",
+	        success:function(data){
+	            if(data){
+	            	initProductResult(data.list);
+	            }
+	        }
+	    });
+	}
+	
+	function QueryProduct(num){
+		index = 0;
+		total = "";
+		data = new Object();
 		data.id = $("#productid").val();
 		data.styleSn = $("#style").val();
 		data.typeSn = $("#typepr").val();
 		data.funcSn = $("#func").val();
-		data.startNum = 0;
+		data.total = total;
+		data.startNum = num * pageSize;
 		data.pageSize = pageSize;
 		
 		$.ajax({url:"/houses/queryAllProducts",
@@ -198,7 +253,8 @@
 	        dataType:"json",
 	        success:function(data){
 	            if(data){
-	            	initProductResult(data);
+	         		total =  Math.ceil(parseInt(data.total)/parseInt(pageSize))-1;
+	            	initProductResult(data.list);
 	            }
 	        }
 	    });
