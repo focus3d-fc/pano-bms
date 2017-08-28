@@ -32,7 +32,6 @@ public class ProductAdmDAOImpl extends BaseDao implements IProductAdmDAO{
 		return productList;
 	}*/
 	 public ProductAdmDAOImpl(){
-	    	System.out.println("-------------mvcIbatisDaoImpl----------------");
 	    }
 		
 	

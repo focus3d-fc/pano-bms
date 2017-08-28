@@ -40,8 +40,6 @@ public class PanoBmRoleController extends BaseController{
 		String id = request.getParameter("id");
 		Long prDelete = role.getPRDelete(Long.parseLong(id));
 		Long pbrrDelete = role.getPBRRDelete(Long.parseLong(id));
-		System.out.println(pbrrDelete);
-		System.out.println(id);
 		return "redirect:/role/select";
 		
 	}
@@ -227,11 +225,9 @@ public class PanoBmRoleController extends BaseController{
 	
 	@RequestMapping("update1")
 	public void update1(HttpServletRequest request,HttpServletResponse response,String sn){
-		System.out.println("---"+sn);
 		BackUpdate back = role.getupdateBack(Integer.parseInt(sn));
 		
 		String objectToJson = JsonUtils.objectToJson(back);
-		System.out.println(objectToJson+"返回值-----");
 		try {
 			this.ajaxOutput(response, objectToJson);
 		} catch (IOException e) {

@@ -48,7 +48,6 @@ public class WeChatPayController extends BaseController {
 	public void pay(String price_all_pay, String house_pack_strs,
 			HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) throws Exception {
-		System.out.println("进入/testPay方法");
 		String msg = "nologin";
 
 		try {
@@ -57,7 +56,6 @@ public class WeChatPayController extends BaseController {
 					.getAttribute(Constants.SESSION_WX_USER);
 			// 如果已经微信登录
 			if (userInfo != null) {
-				System.out.println("house_pack_strs:" + house_pack_strs);
 
 				List<String> house_pack_snList_str = Arrays
 						.asList(house_pack_strs.split("/"));
@@ -66,8 +64,6 @@ public class WeChatPayController extends BaseController {
 					house_pack_snList_long.add(Long
 							.parseLong(house_pack_snList_str.get(i)));
 				}
-				System.out.println("house_pack_snList_long(户型套餐sn集合):"
-						+ house_pack_snList_long);
 				// 查询订单信息
 				long house_pack_sn = 0;
 				// 单个订单对象
@@ -85,7 +81,6 @@ public class WeChatPayController extends BaseController {
 						order_List.add(order_List_only.get(0));
 					}
 				}
-				System.out.println("order_List(订单集合):" + order_List);
 				String All_order_num = "ALL";
 				StringBuffer builder = new StringBuffer(All_order_num);
 				for (int i = 0; i < 10; i++) {
@@ -251,7 +246,6 @@ public class WeChatPayController extends BaseController {
 			e.printStackTrace();
 
 		}
-		System.out.println("msg:" + msg);
 		String jsonProject = JsonUtils.objectToJson(msg);
 		this.ajaxOutput(response, jsonProject);
 

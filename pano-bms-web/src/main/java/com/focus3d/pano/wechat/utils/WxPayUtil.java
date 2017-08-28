@@ -95,7 +95,6 @@ public class WxPayUtil {
         StreamResult result = new StreamResult(writer);
         transformer.transform(source, result);
         String output = writer.getBuffer().toString(); //.replaceAll("\n|\r", "");
-        System.out.println("微信XML--->" + output);
         try {
             writer.close();
         }

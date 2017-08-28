@@ -41,27 +41,19 @@ public class PanoUserlonginController extends BaseController{
 		ResultVO rv = new ResultVO();
 		longIn.setNick_name(userName);
 		longIn.setPassword(passWord);
-		System.out.println("shang");
 		PanoUserLongin userLongin = user.getUserLongin(longIn);
-		System.out.println("xia");
-		System.out.println(userLongin);
 		if(userLongin != null){
 			rv.setResult("success");
 			rv.setResCode(null);
 			rv.setObjData(userLongin);
 			doSSO(userName, passWord, request, response);
-			System.out.println("succedd");
-			System.out.println("进入正确");
 			session.setAttribute("user",userLongin );
 		}else{
-			System.out.println("orrrr");
 			rv.setResult("errorr");
 			rv.setResCode("登录失败");
-			System.out.println("进入错误");
 		}
 
 		String objectToJson = JsonUtils.objectToJson(rv);
-		System.out.println("登录查看："+objectToJson);
 		try {
 			this.ajaxOutput(response,objectToJson);
 		} catch (IOException e) {

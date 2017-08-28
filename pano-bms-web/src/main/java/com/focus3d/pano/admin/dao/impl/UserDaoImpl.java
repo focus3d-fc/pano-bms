@@ -62,9 +62,7 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 
 	@Override
 	public void saveLogin(Login login) {
-		System.out.println("A.DAOImpl:");
 		getSqlMapClientTemplate().insert("saveLogin",login);
-		System.out.println("B.DAOImpl:");
 	}
 
 	@Override

@@ -48,7 +48,6 @@ public class OAuthUtil {
 		}
 		String uri = String.format(Constants.WXMP_OAUTH_URI, Constants.WXMP_APPID, redirect);
 		//httpsRequest(uri, "GET");
-		System.out.println("网页授权地址："+uri);
 		StringBuffer buffer = new StringBuffer();
 		try {
 			Security.addProvider(new BouncyCastleProvider());
@@ -100,7 +99,6 @@ public class OAuthUtil {
 	public static Token redirect(String code){
 		String uri = String.format(Constants.WXMP_OAUTH_ACCESS_TOKEN_URI, Constants.WXMP_APPID, Constants.WXMP_APPSECRET, code);
 		//String json = httpsRequest(uri, "GET");
-		System.out.println("重定向地址："+uri);
 		StringBuffer buffer = new StringBuffer();
 		try {
 			URL url = new URL(uri);
@@ -139,7 +137,6 @@ public class OAuthUtil {
 		JSONObject jsonObject=JSONObject.fromObject(buffer.toString());
 		Token token=(Token)JSONObject.toBean(jsonObject, Token.class);
 		
-		System.out.println("REDIRECT Token >>> "+token.toString());
 		return token;
 	}
 	
@@ -151,7 +148,6 @@ public class OAuthUtil {
 	 */
 	public static UserInfo userinfo(String accessToken, String openid, String lang){
 		String uri = String.format(Constants.WXMP_OAUTH_USERINFO, accessToken, openid, lang);
-		System.out.println("拉取用户信息地址： "+uri);
 		
 		StringBuffer buffer = new StringBuffer();
 		try {
@@ -188,13 +184,11 @@ public class OAuthUtil {
 			e.printStackTrace();
 		}
 		
-		System.out.println("UserInfo Result JSON >>> "+buffer.toString());
 		
 
 		JSONObject jsonObject=JSONObject.fromObject(buffer.toString());
 		UserInfo userInfo=(UserInfo)JSONObject.toBean(jsonObject, UserInfo.class);
 		
-		System.out.println("UserInfo >>> "+userInfo.toString());
 		return userInfo;
 	}
 	
@@ -238,7 +232,6 @@ public class OAuthUtil {
             httpUrlConn.disconnect();
             return buffer.toString();
         } catch (ConnectException ce) {
-            System.out.println("Weixin server connection timed out.");
         } catch (Exception e) {
         	e.printStackTrace();
         }

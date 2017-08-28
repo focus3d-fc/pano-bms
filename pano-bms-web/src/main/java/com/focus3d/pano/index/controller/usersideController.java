@@ -88,10 +88,8 @@ public class usersideController extends BaseController {
 	public String tologin(HttpSession session) {
 		pano_mem_user userMsg_phone =(pano_mem_user) session.getAttribute("userMsg_phone");
 		if(userMsg_phone==null){
-			System.out.println("未登录");
 			return "/userside/login";
 		}else{
-			System.out.println("已登录");
 			return this.redirect("/userside/tomy");
 		}
 		
@@ -128,12 +126,9 @@ public class usersideController extends BaseController {
 
 	@RequestMapping("/tomy")
 	public String tomy(HttpServletRequest request,HttpSession session) {
-		System.out.println("进入个人中心----");
 		pano_mem_user userMsg_phone=(pano_mem_user) session.getAttribute("userMsg_phone");
 		Long SN = userMsg_phone.getSN();//Long.parseLong(request.getParameter("SN"));
-		System.out.println("1.用户sn:"+SN);
 		pano_mem_user memuser = personalService.selUserbySN(SN);
-		System.out.println("2.用户sn:"+SN);
 		request.setAttribute("memuser", memuser);
 		return "/userside/my";
 	}
@@ -196,18 +191,11 @@ public class usersideController extends BaseController {
 	@RequestMapping("/upset")
 	public void upset(HttpServletRequest request, String productSn,
 			HttpServletResponse response, ModelMap modelMap) {
-		System.out.println("---------------ajax" + productSn);
 		Long PRODUCT_SN = Long.parseLong(productSn);
 		List<ProductRelevance> proList = productRelevanceService
 				.selProbySN(PRODUCT_SN);
 		ProductRelevance pro = proList.get(0);
 
-		System.out.println("111111111111111==" + pro.getLEFT_IMG_SN());
-		System.out.println("222222222222222==" + pro.getDOWN_IMG_SN());
-		System.out.println("333333333333333==" + pro.getFULL_IMG_SN());
-		System.out.println("444444444444444==" + pro.getBANNER_IMG_SN());
-		System.out.println("555555555555555==" + pro.getFABRIC_IMG_SN());
-		System.out.println("666666666666666==" + pro.getMATERIAL_IMG_SN());
 		try {
 			this.ajaxOutput(response, JsonUtils.objectToJson(pro));
 		} catch (IOException e) {

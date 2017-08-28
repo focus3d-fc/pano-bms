@@ -70,7 +70,6 @@ public class PanoUserLongInServiceImpl implements PanoUserLongInService{
 	public PanoProjectPackageStyle getselects(PanoProjectPackageStyle pano){
 		PanoProjectPackageStyle getList = null;
 		List<PanoProjectPackageStyle> getselects = userlongin.getselects(pano);
-		System.out.println("service长度："+getselects.size());
 		if(getselects.size()>0){
 			getList = getselects.get(0);
 		}

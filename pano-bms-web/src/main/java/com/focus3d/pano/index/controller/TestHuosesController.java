@@ -71,7 +71,6 @@ public class TestHuosesController extends BaseController{
 		List<PanoProjectPackageStyle> ppps = service.getPPPSSelect(getpackage1.getSn());
 		getListPano lp = new getListPano();
 		if(ppps.size()>0){
-			System.out.println("进入有值判断");
 			/**
 			 * 通过 套餐 户型 风格 楼盘 的主键获得name 和id 
 			 */
@@ -90,12 +89,10 @@ public class TestHuosesController extends BaseController{
 			  request.setAttribute("lists",list);
 		
 	  }else{
-		  System.out.println("进入空值判断");
 		  lp.setProject_sn(project_sn);
 		  lp.setHouse_sn(house_sn);
 		  lp.setStyle_sn(style_sn);
 		  getListPano get = service.getselect1(lp);
-		  System.out.println(get.getProject_name()+get.getHouse_name()+get.getStyle_name());
 		  request.setAttribute("listss",get);
 		 
 	  }
@@ -128,7 +125,6 @@ public class TestHuosesController extends BaseController{
 			String style_sn = split[0];
 			String house_sn = split[1];
 			String project_sn = split[2];
-			System.out.println(style_sn+house_sn+project_sn);
 			/**
 			 * 在根据户型 户型 楼盘 风格Sn 得到添加了的字段的SN 添加的户型的套餐表 
 			 */

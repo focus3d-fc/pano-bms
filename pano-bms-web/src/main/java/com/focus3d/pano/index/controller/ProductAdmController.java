@@ -116,10 +116,6 @@ public class ProductAdmController extends BaseController{
 		long usn=login.getSn();
 		pro.setAdderSn(usn);
 		pro.setUpdaterSn(usn);*/
-		
-		
-		System.out.println("----"+"******"+pro.getFullImgSn1()+pro.getDimension()+pro.getTypeSn());
-		System.out.println(pro.getId()+pro.getName());
 		String fullImgSn1=pro.getFullImgSn1();
 		String leftImgSn1=pro.getLeftImgSn1();
 		String downImgSn1=pro.getDownImgSn1();
@@ -151,7 +147,6 @@ public class ProductAdmController extends BaseController{
 			productAdmService.addProduct(pro);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("-------------aaaaaaa");
 			e.printStackTrace();
 		}
 		
@@ -195,12 +190,7 @@ public class ProductAdmController extends BaseController{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	
-		System.out.println(prodt.getSn()+"----"+prodt.getId()+prodt.getName()+prodt.getTypeSn());
-		
-		
 	  String jsonprodt=	JsonUtils.objectToJson(prodt);
-	  System.out.println(jsonprodt);
 	  try {
 		this.ajaxOutput(response, jsonprodt);
 	} catch (IOException e) {
@@ -215,8 +205,6 @@ public class ProductAdmController extends BaseController{
 	@RequestMapping("/updateproduct")
 	public String updateproduct(Product pro,HttpSession session,HttpServletRequest request,HttpServletResponse response
 			){
-		System.out.println("进入执行修改product");
-		
 		/*Product pro=new Product();
 		BigDecimal price=new BigDecimal("843.5");
 		pro.setPrice(price);*/
@@ -225,12 +213,7 @@ public class ProductAdmController extends BaseController{
 		long usn=login.getSn();
 		pro.setAdderSn(usn);
 		pro.setUpdaterSn(usn);*/
-		
-		System.out.println("******"+pro.getDimension()+pro.getTypeSn());
-		System.out.println(pro.getId()+pro.getName());
-		
 		String fullImgSn1=pro.getFullImgSn1();
-		System.out.println(fullImgSn1);
 		String leftImgSn1=pro.getLeftImgSn1();
 		String downImgSn1=pro.getDownImgSn1();
 		String materialImgSn1=pro.getMaterialImgSn1();
@@ -239,7 +222,6 @@ public class ProductAdmController extends BaseController{
 		try {
 			if(fullImgSn1!=null&&!"".equals(fullImgSn1)){
 				long fimgsn = EncryptUtil.decode(fullImgSn1);
-				System.out.println(fimgsn);
 				pro.setFullImgSn(fimgsn);
 				}
 				
@@ -261,10 +243,8 @@ public class ProductAdmController extends BaseController{
 					pro.setFabricImgSn(fbcimgsn);
 					}
 			boolean bo=productAdmService.updateProduct(pro);
-			System.out.println("aaaaaaa"+bo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("-------------aaaaaaa");
 			e.printStackTrace();
 		}
 		
@@ -276,7 +256,6 @@ public class ProductAdmController extends BaseController{
 	@RequestMapping("/deleteproduct")
 	public String deleteproduct(String productsn){
 		try {
-			System.out.println(productsn);
 			productAdmService.deleteProduct(productsn);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -325,7 +304,6 @@ public class ProductAdmController extends BaseController{
 		}
 		
 		 String jsonprodt=	JsonUtils.objectToJson(prodtInfo);
-		  System.out.println(jsonprodt);
 		  try {
 			this.ajaxOutput(response, jsonprodt);
 		} catch (IOException e) {

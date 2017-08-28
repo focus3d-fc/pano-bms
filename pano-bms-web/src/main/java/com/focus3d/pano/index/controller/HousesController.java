@@ -99,7 +99,6 @@ public class HousesController extends BaseController {
 
 		// 通过Page这个类可以获取分页的起始下标和条数
 		pages = new Page(count, currentPage);
-		System.out.println("currentPage：" + currentPage);
 		// 拼接分页语句
 		pano_project = housesService.getHouses(pages);
 		request.setAttribute("HousesList", pano_project);
@@ -255,7 +254,6 @@ public class HousesController extends BaseController {
 	public String addHousetype(String aname, String fullImgSn, Long SN) {
 		pano_project_house house = new pano_project_house();
 		house.setNAME(aname);
-		System.out.println("==============1" + house.getNAME());
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String add_time = sdf.format(date);
@@ -275,7 +273,6 @@ public class HousesController extends BaseController {
 		} else {
 			house.setUPDATE_TIME(add_time);
 			house.setSN(SN);
-			System.out.println("==============2" + house.getNAME());
 			housesService.upHousetype(house);
 		}
 
@@ -773,7 +770,6 @@ public class HousesController extends BaseController {
 				.getSn());
 		getListPano lp = new getListPano();
 		if (ppps.size() > 0) {
-			System.out.println("进入有值判断");
 			/**
 			 * 通过 套餐 户型 风格 楼盘 的主键获得name 和id
 			 */
@@ -799,13 +795,10 @@ public class HousesController extends BaseController {
 			request.setAttribute("lists", list);
 
 		} else {
-			System.out.println("进入空值判断");
 			lp.setProject_sn(project_sn);
 			lp.setHouse_sn(house_sn);
 			lp.setStyle_sn(style_sn);
 			getListPano get = service.getselect1(lp);
-			System.out.println(get.getProject_name() + get.getHouse_name()
-					+ get.getStyle_name());
 			request.setAttribute("listss", get);
 
 		}
@@ -840,7 +833,6 @@ public class HousesController extends BaseController {
 		String style_sn = split[0];
 		String house_sn = split[1];
 		String project_sn = split[2];
-		System.out.println(style_sn + house_sn + project_sn);
 		/**
 		 * 在根据户型 户型 楼盘 风格Sn 得到添加了的字段的SN 添加的户型的套餐表
 		 */

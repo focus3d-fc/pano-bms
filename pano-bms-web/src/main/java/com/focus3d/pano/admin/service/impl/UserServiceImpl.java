@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService{
 			String city,String mobile,String email,
 			String cert_no,int sex,long adder_sn,long role_sn,
 			String password,String adder_name,int status,String add_time) {
-		System.out.println("进入：ServiceImpl");
 		User user=new User();
 		user.setNick_name(nick_name);
 		user.setName(name);

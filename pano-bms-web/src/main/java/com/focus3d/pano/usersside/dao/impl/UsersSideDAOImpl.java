@@ -184,9 +184,7 @@ public class UsersSideDAOImpl  extends BaseDao implements UsersSideDAO{
 
 	@Override
 	public void insert_item(pano_order_item item) {
-		System.out.println("1.DAOImpl:item");
 		getSqlMapClientTemplate().insert("insert_item",item);
-		System.out.println("2.DAOImpl:item");
 	}
 
 	@Override

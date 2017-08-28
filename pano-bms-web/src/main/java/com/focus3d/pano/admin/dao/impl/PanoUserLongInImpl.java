@@ -72,7 +72,6 @@ public class PanoUserLongInImpl extends BaseDao implements PanoUserLongInDAO{
 		Long i = null ;
 		try{
 		 i = (Long)getSqlMapClientTemplate().insert("pano_bm_longin.getinserts",pano);
-		 System.out.println("套餐是否成功+="+i);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -90,7 +89,6 @@ public class PanoUserLongInImpl extends BaseDao implements PanoUserLongInDAO{
 	public List<getListPano> getselect1(getListPano pano) {
 		List<getListPano> list = null;
 		list	=(List<getListPano>)getSqlMapClientTemplate().queryForList("pano_bm_longin.getselect1",pano);
-		System.out.println(list.size());
 		return list;
 	}
 

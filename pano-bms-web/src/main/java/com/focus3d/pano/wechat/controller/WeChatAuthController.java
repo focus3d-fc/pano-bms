@@ -30,7 +30,6 @@ public class WeChatAuthController extends BaseController {
 	
 	@RequestMapping(value="/oauth")
 	public void oauth(HttpServletRequest request, HttpServletResponse response){
-		System.out.println("进入网页授权...");
 		String redirect = "";
 		try{
 			redirect = URLEncoder.encode(Constants.WXMP_OAUTH_REDIRECT, "utf-8");
@@ -53,7 +52,6 @@ public class WeChatAuthController extends BaseController {
 			String state) throws Exception{
 		
 		try{
-			System.out.println("进入重定向...Code:"+code+"|State:"+state);
 			Token token = OAuthUtil.redirect(code);
 			UserInfo userInfo = OAuthUtil.userinfo(token.getAccess_token(), token.getOpenid(), Constants.WXMP_OAUTH_USERINFO_LANG);
 			//model.addAttribute("userInfo", userInfo);

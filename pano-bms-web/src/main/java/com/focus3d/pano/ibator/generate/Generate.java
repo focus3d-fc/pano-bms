@@ -36,11 +36,9 @@ public class Generate {
 	}
 	
 	public static void generate(String projectPath) throws IOException, XMLParserException, InvalidConfigurationException, SQLException, InterruptedException {
-		System.out.println("project:" + projectPath);
 		List<String> warnings = new ArrayList<String>();
 		String configFilePath = projectPath + "\\ibatorconfig.xml";
 		File configFile = new File(configFilePath);
-		System.out.println("ibatorconfig.xml:" + configFilePath);
 		IbatorConfigurationParser cp = new IbatorConfigurationParser(warnings);
 		IbatorConfiguration config = cp.parseIbatorConfiguration(configFile);
 		ShellCallback callback = new Focus3dShellCallback(

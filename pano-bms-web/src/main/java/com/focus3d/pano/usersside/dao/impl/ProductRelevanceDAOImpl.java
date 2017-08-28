@@ -38,10 +38,8 @@ public class ProductRelevanceDAOImpl extends BaseDao implements
 	public List<ProductRelevance> selImgbySN(Long PRODUCT_SN) {
 		List<ProductRelevance> list = null;
 		try{
-			 System.out.println("DAO");
 		 list = (List<ProductRelevance>) getSqlMapClientTemplate()
 				.queryForList("ProductRelevance.selImgbySN", PRODUCT_SN);
-		 System.out.println("DAO1");
 		}catch(Exception e){
 			e.printStackTrace();
 		}

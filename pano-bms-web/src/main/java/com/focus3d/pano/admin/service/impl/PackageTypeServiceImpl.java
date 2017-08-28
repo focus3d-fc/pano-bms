@@ -118,16 +118,11 @@ public class PackageTypeServiceImpl implements PackageTypeService{
 
 	
 	public Paging getProductList(Map<String,Object> map,int pageNum) {
-		System.out.println("Service层执行查询总记录数数据开始");
 		Integer totalRecord = typeDao.getTotalRecord(map);
-		System.out.println("Service层执行查询总记录数数据结束总记录数是："+totalRecord);
 		Paging page = new Paging(totalRecord,pageNum);
-		System.out.println("当前的索引位置"+page.getStartIndex()+" /每行显示页数："+page.getPageSize()+"当前页数："+page.getPageNum());
 		map.put("startIndex",page.getStartIndex() );
 		map.put("pageSize", page.getPageSize());
-		System.out.println("Service层执行查询List数据开始");
 		List<ProductList> productList = typeDao.getProductList(map);
-		System.out.println("Service层执行查询List数据结束查询出长度为："+productList.size());
 		page.setList(productList);
 		return page;
 	}

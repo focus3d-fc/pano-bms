@@ -56,7 +56,6 @@ public class PackageSetController extends BaseController{
 		
 		
 		Map<String,Object> paramMap=new HashMap<String,Object>();
-		System.out.println("产品列表分类获得类型SN："+pgsn);
 		session.setAttribute("pgsn", pgsn);
 		 paramMap.put("id", proid);
 		
@@ -70,7 +69,6 @@ public class PackageSetController extends BaseController{
 		
 		 PageInfo page=new PageInfo();
 		  int allPageSize = productAdmService.countProductInfo(paramMap);
-		    System.out.println("zzzzzzzzzzz"+allPageSize);
 		    page.setTotalRecords(allPageSize);
 		    page.setPerPageInt(pageSize);
 		    page.setCurrentPage(pageNum);
@@ -121,7 +119,6 @@ public class PackageSetController extends BaseController{
 	
 	@RequestMapping("/getprodtinpgdetail")
     public String getprodtinpgdetail(String prodtsn,Model model){
-    	  System.out.println("ppppppppp"+prodtsn);
     	  
     	  ProductInfo prodtInfo=null;
   		try {
@@ -166,12 +163,10 @@ public class PackageSetController extends BaseController{
     public void getselectedprodt(HttpServletResponse response,HttpServletRequest request,String[] selsns){
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		
-	//System.out.println("sssssssssssssss"+selsns.length);
 		if(selsns!=null&&selsns.length>0){
 		paramMap.put("selsns", selsns);
 		List<ProductInfo> seledProdtList=packageSetService.getSelectedProdt(paramMap);
 		String jsonprodt=	JsonUtils.objectToJson(seledProdtList);
-		  System.out.println(jsonprodt);
 		  try {
 				this.ajaxOutput(response, jsonprodt);
 			} catch (IOException e) {
@@ -186,9 +181,7 @@ public class PackageSetController extends BaseController{
     public String addpgrelitem(HttpSession session,Long[] productSn,Long[] itemTypeSn){
 		  PanoUserLongin userLongin = (PanoUserLongin)session.getAttribute("user");
 		   long lsn=userLongin.getSn();
-		   System.out.println("lllllllll"+lsn);
 		   Long packageSn=(Long)session.getAttribute("pgsn");
-		   System.out.println("ppppppp"+packageSn);
 		   if(productSn!=null&&productSn.length>0){
 		   for(int i = 0; i <productSn.length; i++ ){
 		   PjPackageItem pgitem=new PjPackageItem(); 

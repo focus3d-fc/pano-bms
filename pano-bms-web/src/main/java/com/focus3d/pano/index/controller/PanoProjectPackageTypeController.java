@@ -74,7 +74,6 @@ public class PanoProjectPackageTypeController extends BaseController{
 			String sn = request.getParameter("sn");
 			String sqace = request.getParameter("options");
 			String text = request.getParameter("texts");
-			System.out.println("得到户型套餐主键SN:"+sn+" 得到输入框的值："+text+" 得到空间的SN:"+sqace);
 			/**
 			 *  将得到的数值  添加到 套餐类型表中
 			 */

@@ -184,7 +184,6 @@ public class Textproduct extends BaseController{
 	@RequestMapping("/delete")
 	public String delete(HttpServletRequest request){
 		String sn = request.getParameter("sn");
-		System.out.println("产品SN:"+sn+" /分类SN:"+type_sn);
 		Package_Product product = new Package_Product();
 		product.setPackage_type_sn(type_sn);
 		product.setProduct_sn(Long.parseLong(sn));

@@ -81,7 +81,6 @@ public class ProductServiceImpl implements IProductService{
 		PanoProjectPackage panoProjectPackage = null;
 		List<PanoProjectPackage> getupdatas1 = productAdmDAO.getupdatas1(sn);
 		if(getupdatas1.size()>0){
-			System.out.println("service");
 		 panoProjectPackage = getupdatas1.get(0);
 		}
 		return panoProjectPackage;
@@ -117,7 +116,6 @@ public class ProductServiceImpl implements IProductService{
 		return	productAdmDAO.getDelete2(sn);
 	}
 	public int getUpdate2(PanoVender p){
-		System.out.println("1");
 		return productAdmDAO.getUpdate2(p);
 	}
 	
@@ -148,7 +146,6 @@ public class ProductServiceImpl implements IProductService{
 		return	productAdmDAO.getDelete3(sn);
 	}
 	public int getUpdate3(pano_project_style p){
-		System.out.println("1");
 		return productAdmDAO.getUpdate3(p);
 	}
 	
@@ -219,7 +216,6 @@ public class ProductServiceImpl implements IProductService{
 		panoSkin panoProjectPackage = null;
 		List<panoSkin> getupdatas1 = productAdmDAO.getupdatas5(sn);
 		if(getupdatas1.size()>0){
-			System.out.println("service");
 		 panoProjectPackage = getupdatas1.get(0);
 		}
 		return panoProjectPackage;
