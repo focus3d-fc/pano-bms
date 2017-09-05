@@ -165,6 +165,43 @@
 		product_num = #productNum#
 		where SN = #packageProductSn#
   	</update>
+  	
+  	<select id="queryProductDetail" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+	    SELECT
+			product.sn AS productSn,
+			product.`ID` AS productId,
+			product.name AS productName,
+			pt.name AS typeName,
+			ps.name AS styleName,
+			pf.name AS funcName,
+			product.`dimension` AS productDimension,
+			product.`MATERIAL_NAME` AS productMaterialName,
+			product.`MATERIAL_COLOR` AS productMaterialColor,
+			product.`FABRIC_NAME` AS productFabricName,
+			product.`FABRIC_COLOR` AS productFabricColor,
+			product.`lr` AS productLR,
+			product.`lr_round` AS productLRRound,
+			vender.`NAME` AS venderName,
+			product.`workmanship` AS productWorkmanShip,
+			product.`PRICE` AS productPrice,
+			product.`SUMMARY` AS productSummary,
+			product.`FULL_IMG_SN` AS fullImgSn,
+			product.`LEFT_IMG_SN` AS leftImgSn,
+			product.`DOWN_IMG_SN` AS downImgSn,
+			product.`BANNER_IMG_SN` AS bannerImgSn,
+			product.`MATERIAL_IMG_SN` AS materialImgSn,
+			product.`FABRIC_IMG_SN` AS fabricImgSn
+		FROM  pano_product product
+			LEFT JOIN pano_product_type pt
+			ON product.type_sn = pt.sn
+			LEFT JOIN pano_product_func pf 
+			ON product.FUNC_SN = pf.SN
+			LEFT JOIN pano_project_base_style ps 
+			ON product.STYLE_SN = ps.sn
+			LEFT JOIN pano_project_vender vender
+			ON product.`vendername` = vender.sn
+    	where product.sn = #productSn#
+	</select>
 	
 	<delete id="deleteTypeProduct" parameterClass="java.lang.Long">
 		DELETE FROM pano_project_package_product WHERE sn =#packageProductSn#

@@ -1,5 +1,6 @@
 package com.focus3d.pano.admin.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -329,6 +330,11 @@ public class HousesServiceImpl implements HousesService {
 	@Override
 	public void setProductNum(Map<String, Object> map){
 		housesDAO.setProductNum(map);
+	}
+	
+	@Override
+	public HashMap<String,Object> queryProductDetail(Map<String,Object> map){
+		 return housesDAO.queryProductDetail(map);
 	}
 
 	@Override

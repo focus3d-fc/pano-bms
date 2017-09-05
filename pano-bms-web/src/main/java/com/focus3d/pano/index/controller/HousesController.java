@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.focus3d.pano.admin.service.HousesService;
+import com.focus3d.pano.admin.service.IProductAdmService;
 import com.focus3d.pano.admin.service.PackageTypeService;
 import com.focus3d.pano.admin.service.PanoUserLongInService;
 import com.focus3d.pano.admin.utils.Page;
@@ -64,6 +65,9 @@ public class HousesController extends BaseController {
 
 	@Autowired
 	private PanoUserLongInService service;
+	
+	@Autowired
+	private IProductAdmService productService;
 
 	@Autowired
 	private IFileReadClient fileReadClient;// 读取文件接口
@@ -303,7 +307,6 @@ public class HousesController extends BaseController {
 		if (stylist.size() != 0) {
 			request.setAttribute("stylist", stylist);
 		}
-		
 		return "/houses/styleSet";
 	}
 	
@@ -315,7 +318,6 @@ public class HousesController extends BaseController {
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-		
 	}
 
 	@RequestMapping("/delstyleSet")
@@ -378,17 +380,14 @@ public class HousesController extends BaseController {
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-		
 	}
 	
-
 	@RequestMapping("/tostyle-houseSet2")
 	public String tostylehouseSet2(HttpServletRequest request) {
 		pano_project_house_style house = new pano_project_house_style();
 		house.setPROJECT_SN(PROJECT_SN);
 		house.setSTYLE_SN(STYLE_SN);
-		List<pano_project_house> housename = housesService
-				.selHousebyStyle(house);
+		List<pano_project_house> housename = housesService.selHousebyStyle(house);
 		request.setAttribute("houList", housename);
 		List<project_style> stylist = housesService.getHousestylebySN(STYLE_SN);
 		request.setAttribute("styname", stylist.get(0).getNAME());
@@ -940,6 +939,55 @@ public class HousesController extends BaseController {
 				}
 				
 				ajaxOutput(response, json.toString());
+		}catch(IOException e){
+				e.printStackTrace();
+		}
+	}
+	
+	
+	@RequestMapping("/queryProductDetail")
+	public void QueryProductDetail(HttpServletResponse response,String productSn){
+		try{
+			  	Map<String,Object> map = new HashMap<String,Object>();
+			    map.put("productSn", productSn);
+			    HashMap<String,Object> product= housesService.queryProductDetail(map);
+			    
+			    if(product.get("fullImgSn")!=null){
+			    	Long key = Long.parseLong(product.get("fullImgSn").toString());
+			    	String url = fileReadClient.getFile(key, FileAttributeEnum.VISIT_ADDR);
+			    	product.put("fullImgUrl", url);
+			    }
+			    
+			    if(product.get("leftImgSn")!=null){
+			    	Long key = Long.parseLong(product.get("leftImgSn").toString());
+			    	String url = fileReadClient.getFile(key, FileAttributeEnum.VISIT_ADDR);
+			    	product.put("leftImgUrl", url);
+			    }
+			    
+			    if(product.get("downImgSn")!=null){
+			    	Long key = Long.parseLong(product.get("downImgSn").toString());
+			    	String url = fileReadClient.getFile(key, FileAttributeEnum.VISIT_ADDR);
+			    	product.put("downImgUrl", url);
+			    }
+			    
+			    if(product.get("bannerImgSn")!=null){
+			    	Long key = Long.parseLong(product.get("bannerImgSn").toString());
+			    	String url = fileReadClient.getFile(key, FileAttributeEnum.VISIT_ADDR);
+			    	product.put("bannerImgUrl", url);
+			    }
+			    
+			    if(product.get("materialImgSn")!=null){
+			    	Long key = Long.parseLong(product.get("materialImgSn").toString());
+			    	String url = fileReadClient.getFile(key, FileAttributeEnum.VISIT_ADDR);
+			    	product.put("materialImgUrl", url);
+			    }
+			    
+			    if(product.get("fabricImgSn")!=null){
+			    	Long key = Long.parseLong(product.get("fabricImgSn").toString());
+			    	String url = fileReadClient.getFile(key, FileAttributeEnum.VISIT_ADDR);
+			    	product.put("fabricImgUrl", url);
+			    }
+				ajaxOutput(response, JsonUtils.mapToJson(product));
 		}catch(IOException e){
 				e.printStackTrace();
 		}

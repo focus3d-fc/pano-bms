@@ -1,5 +1,6 @@
 package com.focus3d.pano.admin.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -175,6 +176,8 @@ public interface HousesService {
 	public void insertTypeProduct(Map<String, Object> map);
 	
 	public void setProductNum(Map<String, Object> map);
+	
+	public HashMap<String,Object> queryProductDetail(Map<String,Object> map);
 	
 	public void deleteTypeProduct(Long packageProductSn);
 }

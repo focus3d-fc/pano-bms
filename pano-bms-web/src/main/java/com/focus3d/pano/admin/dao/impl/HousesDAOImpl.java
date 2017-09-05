@@ -1,5 +1,6 @@
 package com.focus3d.pano.admin.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,8 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.focus3d.pano.admin.dao.HousesDAO;
 import com.focus3d.pano.admin.utils.Page;
-import com.focus3d.pano.model.PanoProjectPackage;
 import com.focus3d.pano.model.PanoProjectPackageStyle;
+import com.focus3d.pano.model.ProductInfo;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
@@ -325,6 +326,12 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 	@Override
 	public void setProductNum(Map<String,Object> map){
 		getSqlMapClientTemplate().insert("pano_project_house_style.setProductNum",map);
+	}
+	
+	@Override
+	public HashMap<String,Object> queryProductDetail(Map<String,Object> map){
+		HashMap<String,Object> info = (HashMap<String,Object>)getSqlMapClientTemplate().queryForObject("pano_project_house_style.queryProductDetail",map);
+		return info;
 	}
 
 	@Override
