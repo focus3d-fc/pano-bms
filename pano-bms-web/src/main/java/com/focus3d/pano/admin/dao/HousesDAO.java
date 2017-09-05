@@ -168,5 +168,7 @@ public interface HousesDAO {
 	
 	public void insertTypeProduct(Map<String,Object> map);
 	
+	public void setProductNum(Map<String,Object> map);
+	
 	public void deleteTypeProduct(Long packageProductSn);
 }

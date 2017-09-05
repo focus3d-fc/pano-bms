@@ -953,6 +953,7 @@ public class HousesController extends BaseController {
 					HashMap<String,Object> map = new HashMap<String,Object>();
 					map.put("packageTypeSn",packageTypeSn);
 					map.put("productSn", param[i]);
+					map.put("productNum",1);
 					housesService.insertTypeProduct(map);
 				}
 				JSONObject json = new JSONObject();
@@ -970,6 +971,22 @@ public class HousesController extends BaseController {
 			JSONObject json = new JSONObject();
 			json.put("packageProductSn", packageProductSn);
 			ajaxOutput(response,json.toString());
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping("/setProductNum")
+	public void setProductNum(HttpServletResponse response,String packageproductsn,String productNum){
+		try{
+			HashMap map = new HashMap<String,Object>();
+			map.put("packageProductSn",packageproductsn);
+			map.put("productNum",productNum);
+			housesService.setProductNum(map);
+			
+			JSONObject json = new JSONObject();
+			json.put("info", "succeed");
+			ajaxOutput(response, json.toString());
 		}catch(IOException e){
 			e.printStackTrace();
 		}

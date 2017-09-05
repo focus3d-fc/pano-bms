@@ -325,6 +325,11 @@ public class HousesServiceImpl implements HousesService {
 	public void insertTypeProduct(Map<String, Object> map){
 		housesDAO.insertTypeProduct(map);
 	}
+	
+	@Override
+	public void setProductNum(Map<String, Object> map){
+		housesDAO.setProductNum(map);
+	}
 
 	@Override
 	public void deleteTypeProduct(Long packageProductSn) {

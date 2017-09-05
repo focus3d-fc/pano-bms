@@ -133,6 +133,7 @@
 	<select id="queryTypeProducts" resultClass="java.util.HashMap" parameterClass="java.lang.Long">
   		SELECT
 			packageProduct.sn AS packageProductSn,
+			packageProduct.`PRODUCT_NUM` AS productNum,
 			product.sn AS productSn,
 			product.name AS productName,
 			product.price AS productPrice,
@@ -154,9 +155,16 @@
   	<insert id="insertTypeProduct" parameterClass="java.util.HashMap">
   		insert into
 		pano_project_package_product
-		(package_type_sn,product_sn)
-		values(#packageTypeSn#,#productSn#)
+		(package_type_sn,product_sn,product_num)
+		values(#packageTypeSn#,#productSn#,#productNum#)
   	</insert>
+  	
+  	<update id="setProductNum" parameterClass="java.util.HashMap">
+  		update pano_project_package_product
+  		SET 
+		product_num = #productNum#
+		where SN = #packageProductSn#
+  	</update>
 	
 	<delete id="deleteTypeProduct" parameterClass="java.lang.Long">
 		DELETE FROM pano_project_package_product WHERE sn =#packageProductSn#

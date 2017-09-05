@@ -136,7 +136,36 @@
 
 
     <div class="combo-title"><span class="glyphicon glyphicon glyphicon-list"></span>产品列表：</div>
-
+	
+	<div class="modal fade " id="add" tabindex="-1" role="dialog" aria-labelledby="产品数量">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content modal-width">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">产品数量</h4>
+				</div>
+				<div class="modal-body clearfix">
+					<div class="form-horizontal">
+						<div class="form-group">
+							<input type="hidden" id="packageProductSn"/>
+							<label class="col-sm-3 control-label">产品数量</label>
+							<div class="col-sm-9">
+								<input id="productnum" name="productnum" type="text" class="form-control">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button class="btn btn-primary" onclick="saveProductNum()">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
     <div class="panel-body">
         <table class="table table-hover">
             <thead>
@@ -147,6 +176,7 @@
                 <th>功能</th>
                 <th>类别</th>
                 <th>风格</th>
+                <th>数量</th>
                 <th width=30%>操作</th>
             </tr>
             </thead>
@@ -160,9 +190,11 @@
                <td>$!{product.funcName}</td>
                <td>$!{product.typeName}</td>
                <td>$!{product.styleName}</td>
+               <td>$!{product.productNum}</td>
                 <td>
                     <div class="btn-group btn-group-sm" role="group">
                         <a class="btn btn-danger" onclick="del($!{product.packageProductSn},$!{product.productSn})">删除</a>
+                        <a class="btn btn-info" onclick="setNum($!{product.packageProductSn},$!{product.productNum})">设置数量</a>
                     </div>
                 </td>
             </tr>
@@ -323,12 +355,19 @@
 			var funcName = $("<td></td>").text(_data.funcName);
 			var typeName = $("<td></td>").text(_data.typeName);
 			var styleName = $("<td></td>").text(_data.styleName);
+			var productNum = $("<td></td>").text(_data.productNum);
 			
-			var control = $("<td></td>").append($("<div class='btn-group btn-group-sm' role='group'></div>").append($("<a class='btn btn-danger'/>").text("删除").on("click",function(){
-				del(_data.packageProductSn,_data.productSn);
-			})));
+			var control = $("<td></td>").append($("<div class='btn-group btn-group-sm' role='group'></div>").append($("<a class='btn btn-danger'/>").text("删除").on("click",function(packageProductSn,productSn){
+				return function(){
+					del(packageProductSn,productSn);
+				}
+			}(_data.packageProductSn,_data.productSn))).append($("<a class='btn btn-info'/>").text("设置数量").on('click',function(packageProductSn,productNum){
+				return function(){
+					setNum(packageProductSn,productNum);
+				}
+			}(_data.packageProductSn,_data.productNum))));
 			
-			tr.append(productSn).append(num).append(name).append(price).append(funcName).append(typeName).append(styleName).append(control);
+			tr.append(productSn).append(num).append(name).append(price).append(funcName).append(typeName).append(styleName).append(productNum).append(control);
 			tbody.append(tr);
 		}
 	}
@@ -381,6 +420,30 @@
 	            }
 	        }
 	    });
+	}
+	
+	function setNum(packageProductSn,productNum){
+		$("#add").modal("show");
+		$("#packageProductSn").val(packageProductSn);
+		$("#productnum").val(productNum);
+	}
+	
+	function saveProductNum(){
+		var data = new Object();
+		data.packageproductsn = $("#packageProductSn").val();
+		data.productNum = $("#productnum").val();
+		$.ajax({url:"/houses/setProductNum",
+	        type: "POST",
+	        data:data,
+	        dataType:"json",
+	        success:function(data){
+	            if(data){
+	            	$("#add").modal("hide");
+	            	QueryTypeProducts();
+	            }
+	        }
+	    });
+		
 	}
 </script>
 

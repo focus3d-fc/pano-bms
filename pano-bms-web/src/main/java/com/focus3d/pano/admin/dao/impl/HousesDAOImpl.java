@@ -321,6 +321,11 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 	public void insertTypeProduct(Map<String, Object> map) {
 		getSqlMapClientTemplate().insert("pano_project_house_style.insertTypeProduct",map);
 	}
+	
+	@Override
+	public void setProductNum(Map<String,Object> map){
+		getSqlMapClientTemplate().insert("pano_project_house_style.setProductNum",map);
+	}
 
 	@Override
 	public void deleteTypeProduct(Long packageProductSn) {
