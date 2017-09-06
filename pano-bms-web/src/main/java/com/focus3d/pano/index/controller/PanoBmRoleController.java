@@ -54,6 +54,8 @@ public class PanoBmRoleController extends BaseController{
 		int product1 = 0;
 		int roles1 = 0;
 		int order1 = 0;
+		int panorama = 0;
+		int promotioncode = 0;
 		String roles = request.getParameter("role");
 		String order = request.getParameter("order");
 		String role_name = request.getParameter("name");
@@ -61,6 +63,8 @@ public class PanoBmRoleController extends BaseController{
 		String basics = request.getParameter("basics");
 		String houses = request.getParameter("houses");
 		String product = request.getParameter("product");
+		String role_promotioncode = request.getParameter("promotioncode");
+		String role_panorama = request.getParameter("panorama");
 		if(user!=null){
 			user1 = 1;
 		}if(basics!=null){
@@ -73,6 +77,10 @@ public class PanoBmRoleController extends BaseController{
 			order1=1;
 		}if(roles!=null){
 			roles1=1;
+		}if(role_promotioncode!=null){
+			promotioncode = 1;
+		}if(role_panorama!=null){
+			panorama = 1;
 		}
 		
 		
@@ -98,6 +106,8 @@ public class PanoBmRoleController extends BaseController{
 			pbrr.setRole_product(product1);
 			pbrr.setRole_order(order1);
 			pbrr.setRole_role(roles1);
+			pbrr.setRole_panorama(panorama);
+			pbrr.setRole_promotioncode(promotioncode);
 			role.getResource(pbrr);
 		}
 		
@@ -112,6 +122,8 @@ public class PanoBmRoleController extends BaseController{
 			pbrr.setRole_product(product1);
 			pbrr.setRole_order(order1);
 			pbrr.setRole_role(roles1);
+			pbrr.setRole_panorama(panorama);
+			pbrr.setRole_promotioncode(promotioncode);
 			role.getResource(pbrr);
 		}
 		
@@ -121,12 +133,8 @@ public class PanoBmRoleController extends BaseController{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
 	}
 	
-
 	@RequestMapping("/update")
 	public String getUpdateRole(HttpServletRequest request){
 		
@@ -137,6 +145,8 @@ public class PanoBmRoleController extends BaseController{
 		int product1 = 0;
 		int order1 = 0;
 		int roles1 = 0;
+		int panorama = 0;
+		int promotioncode = 0;
 		String sn = request.getParameter("sn");
 		String roles = request.getParameter("role");
 		String order = request.getParameter("order");
@@ -145,6 +155,8 @@ public class PanoBmRoleController extends BaseController{
 		String role_basics = request.getParameter("basics");
 		String role_houses = request.getParameter("houses");
 		String role_product = request.getParameter("product");
+		String role_promotioncode = request.getParameter("promotioncode");
+		String role_panorama = request.getParameter("panorama");
 		/**
 		 * 角色权限设置
 		 */
@@ -160,8 +172,11 @@ public class PanoBmRoleController extends BaseController{
 			roles1 = 1;
 		}if(order != null){
 			order1 = 1;
+		}if(role_promotioncode!=null){
+			promotioncode = 1;
+		}if(role_panorama!=null){
+			panorama = 1;
 		}
-		
 		
 		List<PanoRole> panoRole = role.getPanoRole();
 		if(panoRole.size()>0){
@@ -193,6 +208,8 @@ public class PanoBmRoleController extends BaseController{
 			pbrr.setRole_sn(Long.parseLong(sn));
 			pbrr.setRole_order(order1);
 			pbrr.setRole_role(roles1);
+			pbrr.setRole_panorama(panorama);
+			pbrr.setRole_promotioncode(promotioncode);
 			role.getPBRRUpdate(pbrr);
 		}
 		if(ur.equals("succedd")){
@@ -214,12 +231,11 @@ public class PanoBmRoleController extends BaseController{
 			pbrr.setRole_sn(Long.parseLong(sn));
 			pbrr.setRole_order(order1);
 			pbrr.setRole_role(roles1);
+			pbrr.setRole_panorama(panorama);
+			pbrr.setRole_promotioncode(promotioncode);
 			role.getPBRRUpdate(pbrr);
 		}
 		return "redirect:/role/select";
-		
-		
-		
 	}
 
 	

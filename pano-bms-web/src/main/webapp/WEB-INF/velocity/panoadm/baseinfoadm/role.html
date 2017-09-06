@@ -78,6 +78,12 @@
                             <label class="checkbox-inline">
                                 <input type="checkbox" value="权限管理" name="role" >权限管理
                             </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="优惠码管理" name="promotioncode">优惠码管理
+                            </label>
+                             <label class="checkbox-inline">
+                                <input type="checkbox" value="全景管理" name="panorama">全景管理
+                            </label>
                         </div>
 
                     </div>
@@ -134,6 +140,12 @@
                             <label class="checkbox-inline">
                                 <input type="checkbox" value="权限管理" name="role" id="roles">权限管理
                             </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="优惠码管理" name="promotioncode" id="promotioncode">优惠码管理
+                            </label>
+                             <label class="checkbox-inline">
+                                <input type="checkbox" value="全景管理" name="panorama" id="panorama">全景管理
+                            </label>
 
                         </div>
 
@@ -168,9 +180,8 @@
 						if(jsonobj=="errorr"){
 							alert("添加失败,名称为空或期重复") 
 						}
-					window.location.href="/role/select";
-					    }				
-					})
+						window.location.href="/role/select";
+					}})
 			    })
 			}
 
@@ -216,6 +227,16 @@
 					$("#orders").attr("checked","checked");
 				} else {
 					$("#orders").removeAttr("checked");
+				}
+				if(jsonobj.role_promotioncode != 0){
+					$("#promotioncode").attr("checked","checked");
+				} else {
+					$("#promotioncode").removeAttr("checked");
+				}
+				if(jsonobj.role_panorama != 0){
+					$("#panorama").attr("checked","checked");
+				} else {
+					$("#panorama").removeAttr("checked");
 				}
     		}  
     })

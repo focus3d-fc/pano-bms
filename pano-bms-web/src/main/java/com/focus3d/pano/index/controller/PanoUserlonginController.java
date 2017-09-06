@@ -43,14 +43,21 @@ public class PanoUserlonginController extends BaseController{
 		longIn.setPassword(passWord);
 		PanoUserLongin userLongin = user.getUserLongin(longIn);
 		if(userLongin != null){
-			rv.setResult("success");
-			rv.setResCode(null);
+			
 			rv.setObjData(userLongin);
 			doSSO(userName, passWord, request, response);
 			session.setAttribute("user",userLongin );
+			
+			if(userLongin.getStatus() == 2){
+				rv.setResult("error");
+				rv.setResCode("用户已被锁定");
+			}else{
+				rv.setResult("success");
+				rv.setResCode(null);
+			}
 		}else{
-			rv.setResult("errorr");
-			rv.setResCode("登录失败");
+			rv.setResult("error");
+			rv.setResCode("用户名或者密码错误");
 		}
 
 		String objectToJson = JsonUtils.objectToJson(rv);
@@ -59,7 +66,6 @@ public class PanoUserlonginController extends BaseController{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	
@@ -93,6 +99,8 @@ public class PanoUserlonginController extends BaseController{
 		pbrr.setRole_product(longins.getRole_product());
 		pbrr.setRole_user(longins.getRole_user());
 		pbrr.setRole_role(longins.getRole_role());
+		pbrr.setRole_promotioncode(longins.getRole_promotioncode());
+		pbrr.setRole_panorama(longins.getRole_panorama());
 		request.setAttribute("pbrr", pbrr);
 		return "/panoadm/admfirst";
 		

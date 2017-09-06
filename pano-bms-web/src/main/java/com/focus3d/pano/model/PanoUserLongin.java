@@ -32,6 +32,9 @@ public class PanoUserLongin implements CommonModel{
 	private int role_houses;		//楼盘
 	private int role_role;			//权限
 	private int role_order;		//订单
+	private int role_panorama;
+	private int role_promotioncode;
+	
 	public PanoUserLongin() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -331,6 +334,17 @@ public class PanoUserLongin implements CommonModel{
 		
 	}
 	
-	
+	public int getRole_panorama() {
+		return role_panorama;
+	}
+	public void setRole_panorama(int role_panorama) {
+		this.role_panorama = role_panorama;
+	}
+	public int getRole_promotioncode() {
+		return role_promotioncode;
+	}
+	public void setRole_promotioncode(int role_promotioncode) {
+		this.role_promotioncode = role_promotioncode;
+	}
 	
 }
