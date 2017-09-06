@@ -1,5 +1,6 @@
 package com.focus3d.pano.admin.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
@@ -42,16 +43,14 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 	}
 
 	@Override
-	public User selectUserByCert_no(String cert_no) {
-		
-		User user=(User)getSqlMapClientTemplate().queryForObject("selectUserByCert_no",cert_no);
+	public User selectUserByCert_no(Long user_sn) {
+		User user=(User)getSqlMapClientTemplate().queryForObject("selectUserByCert_no",user_sn);
 		return user;
 	}
 
 	@Override
 	public void updateUserByCert_no(User user) {
 		getSqlMapClientTemplate().update("updateUserByCert_no",user);
-		
 	}
 
 	@Override
@@ -94,8 +93,8 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 	}
 
 	@Override
-	public List<String> selectRole_name() {
-		List<String> role_nameList=(List<String>) getSqlMapClientTemplate().queryForList("selectRole_name");
+	public List<HashMap<String,Object>> selectRole_name() {
+		List<HashMap<String,Object>> role_nameList=(List<HashMap<String,Object>>) getSqlMapClientTemplate().queryForList("selectRole_name");
 		return role_nameList;
 	}
 
@@ -108,6 +107,12 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 	@Override
 	public void updateAllocateSpace(User user) {
 		getSqlMapClientTemplate().update("update_allocateSpace", user);
+	}
+
+	@Override
+	public void deleteUser(Long UserSn) {
+		// TODO Auto-generated method stub
+		getSqlMapClientTemplate().delete("deleteUser",UserSn);
 	}
 }
 

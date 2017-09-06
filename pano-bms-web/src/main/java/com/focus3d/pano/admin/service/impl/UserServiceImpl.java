@@ -1,5 +1,6 @@
 package com.focus3d.pano.admin.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -20,14 +21,12 @@ public class UserServiceImpl implements UserService{
 	
 	
 	@Override
-	public void saveUser(String nick_name,String name,
-			String city,String mobile,String email,
+	public void saveUser(String nick_name,String name,String mobile,String email,
 			String cert_no,int sex,long adder_sn,long role_sn,
 			String password,String adder_name,int status,String add_time) {
 		User user=new User();
 		user.setNick_name(nick_name);
 		user.setName(name);
-		user.setCity(city);
 		user.setMobile(mobile);
 		user.setEmail(email);
 		user.setCert_no(cert_no);
@@ -39,7 +38,6 @@ public class UserServiceImpl implements UserService{
 		user.setStatus(status);
 		user.setAdd_time(add_time);
 		userDao.saveUser(user);
-		
 	}
 
 
@@ -74,23 +72,23 @@ public class UserServiceImpl implements UserService{
 
 
 	@Override
-	public User selectUserByCert_no(String cert_no) {
-		
-		return userDao.selectUserByCert_no(cert_no);
+	public User selectUserByCert_no(Long user_sn) {
+		return userDao.selectUserByCert_no(user_sn);
 	}
 
 
 	@Override
-	public void updateUserByCert_no(String nick_name,String city,
-			String mobile,String email,String cert_no,long role_sn) {
+	public void updateUserByCert_no(Long userSn,String password,String nick_name,String name,String mobile,String email,String cert_no,long role_sn,int sex) {
 		User user=new User();
+		user.setId(userSn);
+		user.setPassword(password);
 		user.setNick_name(nick_name);
-		user.setCity(city);
+		user.setName(name);
 		user.setMobile(mobile);
-		user.setEmail(email);
 		user.setEmail(email);
 		user.setCert_no(cert_no);
 		user.setRole_sn(role_sn);
+		user.setSex(sex);
 		userDao.updateUserByCert_no(user);
 	}
 
@@ -158,7 +156,7 @@ public class UserServiceImpl implements UserService{
 
 
 	@Override
-	public List<String> selectRole_name() {
+	public List<HashMap<String,Object>> selectRole_name() {
 		return userDao.selectRole_name();
 	}
 
@@ -172,6 +170,13 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void updateAllocateSpace(User user) {
 		userDao.updateAllocateSpace(user);
+	}
+
+
+	@Override
+	public void deleteUser(Long UserSn) {
+		// TODO Auto-generated method stub
+		userDao.deleteUser(UserSn);
 	}
 
 

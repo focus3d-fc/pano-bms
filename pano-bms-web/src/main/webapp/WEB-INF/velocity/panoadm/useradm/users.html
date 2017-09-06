@@ -60,8 +60,8 @@
                         <td>$!{user.status_str}</td>
                         <td>
                             <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                            <a href="/useradm/getUser?cert_no=$!{user.cert_no}" class="btn btn-success">查看</a>
-                            <a href="/useradm/updateUser?cert_no=$!{user.cert_no}" class="btn btn-info">修改</a>                      
+                            <a href="/useradm/getUser?user_sn=$!{user.id}" class="btn btn-success">查看</a>
+                            <a href="/useradm/updateUser?user_sn=$!{user.id}" class="btn btn-info">修改</a>                      
                             <!-- <button class="btn btn-danger">锁定</button> -->
                           
                             #if ($!{user.status}==1)
@@ -72,8 +72,8 @@
                              <a href="/useradm/updateStatus?cert_no=$!{user.cert_no}&&status=$!{user.status}"class="btn btn-danger">
                            			-解锁-
                              </a>
-                               #end
-                            </a>
+                             #end
+                             <a href="/useradm/deleteUser?userSn=$!{user.id}" class="btn btn-danger">删除</a>
                             </div>
                         </td>
                     </tr>

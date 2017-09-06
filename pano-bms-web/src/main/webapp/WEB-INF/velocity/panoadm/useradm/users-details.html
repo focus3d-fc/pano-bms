@@ -18,55 +18,62 @@
             <div class="form-group col-sm-6">
                 <label  class="col-sm-4 control-label">用户ID</label>
                 <div class="col-sm-8">
-                    <p class="form-control-static">$!{user.id}</p>
+                    <input type="text" class="form-control" value="$!user.id" disabled="disabled"/>
                 </div>
             </div>
             <div class="form-group col-sm-6" >
                 <label class="col-sm-4 control-label">昵称</label>
                 <div class="col-sm-8">
-                    <p class="form-control-static">$!{user.nick_name}</p>
+                    <input type="text" class="form-control" value="$!user.nick_name" disabled="disabled"/>
                 </div>
             </div>
             <div class="form-group col-sm-6" >
                 <label class="col-sm-4 control-label">姓名</label>
                 <div class="col-sm-8">
-                    <p class="form-control-static">$!{user.name}</p>
-                </div>
-            </div>
-            <div class="form-group col-sm-6" >
-                <label class="col-sm-4 control-label">城市</label>
-                <div class="col-sm-8">
-                    <p class="form-control-static">$!{user.city}</p>
+                    <input type="text" class="form-control" value="$!user.name" disabled="disabled"/>
                 </div>
             </div>
             <div class="form-group col-sm-6" >
                 <label class="col-sm-4 control-label">手机</label>
                 <div class="col-sm-8">
-                    <p class="form-control-static">$!{user.mobile}</p>
+                    <input type="text" class="form-control" value="$!user.mobile" disabled="disabled"/>
                 </div>
             </div>
             <div class="form-group col-sm-6" >
                 <label class="col-sm-4 control-label">邮箱</label>
                 <div class="col-sm-8">
-                    <p class="form-control-static">$!{user.email}</p>
+                	<input type="text" class="form-control" value="$!user.email" disabled="disabled"/>
                 </div>
             </div>
             <div class="form-group col-sm-6" >
                 <label class="col-sm-4 control-label">身份证</label>
                 <div class="col-sm-8">
-                    <p class="form-control-static">$!{user.cert_no}</p>
+                    <input type="text" class="form-control" value="$!user.cert_no" disabled="disabled"/>
                 </div>
             </div>
             <div class="form-group col-sm-6" >
                 <label class="col-sm-4 control-label">性别</label>
                 <div class="col-sm-8 field">
-                    <p class="form-control-static">$!{user.sex_str}</p>
+                      <label class="radio-inline">
+                    	#if($!user.sex == 2)
+                        <input type="radio" name="sex"  value="2" checked disabled="disabled">
+                        #else
+                        <input type="radio" name="sex"  value="2" disabled="disabled">
+                        #end男     
+                    </label>
+                   <label class="radio-inline">
+                   		#if($!user.sex == 1)
+                        <input type="radio" name="sex" value="1" checked disabled="disabled">
+                        #else
+                         <input type="radio" name="sex" value="1" disabled="disabled">
+                        #end女
+                   </label>
                 </div>
             </div>
             <div class="form-group col-sm-6" >
                 <label class="col-sm-4 control-label">角色</label>
                 <div class="col-sm-8 field">
-                    <p class="form-control-static">$!{user.role_name}</p>
+                    <input type="text" class="form-control" value="$!user.role_name" disabled="disabled"/>
                 </div>
             </div>
             <div class="col-sm-12 text-center">
