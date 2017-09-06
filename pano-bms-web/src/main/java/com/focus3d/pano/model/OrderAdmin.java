@@ -15,7 +15,8 @@ public class OrderAdmin implements Serializable, CommonModel {
 	private String NICK_NAME;// 用户昵称
 	private int STATUS;// 订单状态
 	private int SEND;// 是否发货 0-未发货 1-发货
-	private String TOTAL_PRICE;// 订单总价
+	private String SUM_MONEY;// 订单总价
+	private String PAY_MONEY;//已支付金额
 	private String MOBILE;// 手机
 	private String BACKUP_MOBILE;// 备用手机
 	private String LOGTC_ID;// 物流编号
@@ -26,6 +27,9 @@ public class OrderAdmin implements Serializable, CommonModel {
 	private String STREET;// 街道
 	private Long PROJECT_SN;// 楼盘SN
 	private String PROJECT_NAME;// 楼盘名称
+	private String STYLE_NAME;
+	private String HOUSE_NAME;
+	private String PACKAGE_NAME;
 
 	public Long getSN() {
 		return SN;
@@ -75,12 +79,20 @@ public class OrderAdmin implements Serializable, CommonModel {
 		SEND = sEND;
 	}
 
-	public String getTOTAL_PRICE() {
-		return TOTAL_PRICE;
+	public String getSUM_MONEY() {
+		return SUM_MONEY;
 	}
 
-	public void setTOTAL_PRICE(String tOTAL_PRICE) {
-		TOTAL_PRICE = tOTAL_PRICE;
+	public void setSUM_MONEY(String tOTAL_PRICE) {
+		SUM_MONEY = tOTAL_PRICE;
+	}
+	
+	public String getPAY_MONEY() {
+		return PAY_MONEY;
+	}
+
+	public void setPAY_MONEY(String pAY_MONEY) {
+		PAY_MONEY = pAY_MONEY;
 	}
 
 	public static long getSerialversionuid() {
@@ -262,5 +274,28 @@ public class OrderAdmin implements Serializable, CommonModel {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public String getSTYLE_NAME() {
+		return STYLE_NAME;
+	}
 
+	public void setSTYLE_NAME(String sTYLE_NAME) {
+		STYLE_NAME = sTYLE_NAME;
+	}
+
+	public String getHOUSE_NAME() {
+		return HOUSE_NAME;
+	}
+
+	public void setHOUSE_NAME(String hOUSE_NAME) {
+		HOUSE_NAME = hOUSE_NAME;
+	}
+	
+	public String getPACKAGE_NAME() {
+		return PACKAGE_NAME;
+	}
+
+	public void setPACKAGE_NAME(String pACKAGE_NAME) {
+		PACKAGE_NAME = pACKAGE_NAME;
+	}
 }

@@ -32,13 +32,9 @@
 					<label class="col-sm-4 control-label">订单状态</label>
 					<div class="col-sm-8">
 						<p class="form-control-static">#if($!{orderList.STATUS}==1)
-							待付款 #end #if($!{orderList.STATUS}==2) 取消付款 #end
-							#if($!{orderList.STATUS}==3) 已支付 #end
-							#if($!{orderList.STATUS}==4) 待发货 #end
-							#if($!{orderList.STATUS}==5) 已收货 #end
-							#if($!{orderList.STATUS}==6) 取消购买 #end
-							#if($!{orderList.STATUS}==7) 售后 #end #if($!{orderList.STATUS}==8)
-							退款成功 #end</p>
+							待付款 #end #if($!{orderList.STATUS}==2) 已付款 #end
+							#if($!{orderList.STATUS}==3) 取消付款 #end
+						</p>
 					</div>
 				</div>
 				<div class="form-group col-sm-6">

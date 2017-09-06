@@ -40,32 +40,30 @@
 				<tr>
 					<th>序号</th>
 					<th>姓名</th>
-					<th>用户ID</th>
 					<th>订单状态</th>
 					<th>物流状态</th>
 					<th>订单金额</th>
+					<th>套餐名称</th>
 					<th width="20%">操作</th>
 				</tr>
 			</thead>
 			<tbody>
 
-				#foreach ($!{orderList} in $!{orderList})
+				#foreach ($!{order} in $!{orderList})
 				<tr>
 					<td>$!{velocityCount}</td>
-					<td>$!{orderList.NICK_NAME}</td>
-					<td>$!{orderList.USER_SN}</td>
-					<td>#if($!{orderList.STATUS}==1) 待付款 #end
-						#if($!{orderList.STATUS}==2) 取消付款 #end
-						#if($!{orderList.STATUS}==3) 已支付 #end #if($!{orderList.STATUS}==4)
-						待发货 #end #if($!{orderList.STATUS}==5) 已收货 #end
-						#if($!{orderList.STATUS}==6) 取消购买 #end
-						#if($!{orderList.STATUS}==7) 售后 #end #if($!{orderList.STATUS}==8)
-						退款成功 #end</td>
-					<td>#if($!{orderList.SEND}==0) 未发货
-						#end#if($!{orderList.SEND}==1) 发货 #end</td>
-					<td>$!{orderList.PAY_MONEY}</td>
+					<td>$!{order.NICK_NAME}</td>
+					<td>#if($!{order.STATUS}==1) 待付款 #end
+						#if($!{order.STATUS}==2) 已付款 #end
+						#if($!{order.STATUS}==3) 取消付款 #end
+					</td>
+					<td>#if($!{order.SEND}==0) 未发货
+						#end#if($!{order.SEND}==1) 发货 #end</td>
+					<td>$!{order.PAY_MONEY}</td>
+					#set($name = $!{order.PROJECT_NAME}+"-"+$!{order.STYLE_NAME}+"-"+$!{order.HOUSE_NAME}+"-"+ $!{order.PACKAGE_NAME})
+					<td>$name</td>
 					<td><a
-						href="/order/toorder-details?ORDER_SN=$!{orderList.ORDER_SN}"
+						href="/order/toorder-details?ORDER_SN=$!{order.ORDER_SN}"
 						class="btn btn-success">查看</a></td>
 				</tr>
 				#end

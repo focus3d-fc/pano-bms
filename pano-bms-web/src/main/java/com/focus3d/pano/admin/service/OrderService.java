@@ -1,5 +1,6 @@
 package com.focus3d.pano.admin.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.focus3d.pano.admin.utils.Page;
@@ -21,7 +22,7 @@ public interface OrderService {
 	public List<pano_project> selHouse();
 
 	// 搜索
-	public List<OrderAdmin> selOrderbyAll(OrderAdmin order);
+	public List<OrderAdmin> selOrderbyAll(HashMap<String,Object> order);
 
 	// 搜索-根据楼盘
 	public List<OrderAdmin> selOrderbyHouse(OrderAdmin order);

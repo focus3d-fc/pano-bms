@@ -1,5 +1,6 @@
 package com.focus3d.pano.admin.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderAdmin> selOrderbyAll(OrderAdmin order) {
+	public List<OrderAdmin> selOrderbyAll(HashMap<String,Object> order) {
 		// TODO Auto-generated method stub
 		return orderDAO.selOrderbyAll(order);
 	}

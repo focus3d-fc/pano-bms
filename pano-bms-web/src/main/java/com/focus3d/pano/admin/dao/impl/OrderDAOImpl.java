@@ -1,5 +1,6 @@
 package com.focus3d.pano.admin.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -37,7 +38,7 @@ public class OrderDAOImpl extends BaseDao implements OrderDAO {
 	}
 
 	@Override
-	public List<OrderAdmin> selOrderbyAll(OrderAdmin order) {
+	public List<OrderAdmin> selOrderbyAll(HashMap<String,Object> order) {
 		List<OrderAdmin> list = (List<OrderAdmin>) getSqlMapClientTemplate().queryForList("OrderAdmin.selOrderbyAll", order);
 		return list;
 	}
