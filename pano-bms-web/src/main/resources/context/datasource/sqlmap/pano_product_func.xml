@@ -60,15 +60,8 @@
     			 where SN=#sn#
 	</update>
 	<select id="select1" resultClass="PanoProjectPackage">
-		select `NAME`,SN from pano_project_package where sn=#sn#
+		select `NAME`,SN,IMG_SN from pano_project_package where sn=#sn#
 	</select>
-	
-	
-	
-	
-	
-	
-	
 	
 	<select id="getBasics2" resultClass="PanoVender">
 		select `NAME`,SN from pano_project_vender
@@ -120,18 +113,9 @@
     			 where SN=#sn#
 	</update>
 	<select id="select3" resultClass="style">
-		select `NAME`,SN from pano_project_base_style where sn=#sn#
+		select `NAME`,SN,IMG_SN from pano_project_base_style where sn=#sn#
 	</select>
 	
-	
-	
-	
-	
-	
-	
-	
-	
- 	
 	<select id="getBasics4" resultClass="PanoProductFunc">
 		select `NAME`,SN from pano_product_func
 	</select>
@@ -180,7 +164,7 @@
 	</update>
 	
 	<select id="select5" resultClass="panoSkin">
-		select `NAME`,SN from pano_skin where sn=#sn#
+		select `NAME`,SN,IMG_SN from pano_skin where sn=#sn#
 	</select>
 	
 </sqlMap>

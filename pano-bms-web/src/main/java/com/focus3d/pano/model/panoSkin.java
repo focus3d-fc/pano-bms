@@ -25,6 +25,14 @@ public class panoSkin implements  CommonModel{
 		private Long updater_sn; //修改人Id
 		private String updater_name; //修改人姓名
 		private String update_time;  //修改时间
+		private String img_url;
+		
+		public String getImg_url() {
+			return img_url;
+		}
+		public void setImg_url(String img_url) {
+			this.img_url = img_url;
+		}
 		public Long getSn() {
 			return sn;
 		}

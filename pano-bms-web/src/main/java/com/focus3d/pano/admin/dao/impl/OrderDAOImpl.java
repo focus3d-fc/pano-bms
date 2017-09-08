@@ -20,8 +20,8 @@ public class OrderDAOImpl extends BaseDao implements OrderDAO {
 	}
 
 	@Override
-	public int selOrderCount() {
-		int count = (Integer) getSqlMapClientTemplate().queryForObject("OrderAdmin.selOrderCount");
+	public int selOrderCount(HashMap<String,Object> map) {
+		int count = (Integer) getSqlMapClientTemplate().queryForObject("OrderAdmin.selOrderCount",map);
 		return count;
 	}
 

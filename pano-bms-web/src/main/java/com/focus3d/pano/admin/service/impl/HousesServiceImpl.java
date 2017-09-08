@@ -353,4 +353,10 @@ public class HousesServiceImpl implements HousesService {
 	public pano_project_house_style QueryHouseStyleBySn(Map<String,Object> map){
 		return housesDAO.QueryHouseStyleBySn(map);
 	}
+
+	@Override
+	public void publishHouse(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		housesDAO.publishHouse(map);
+	}
 }

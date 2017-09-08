@@ -96,7 +96,7 @@
 						<td>$!{list.packageName}</td>
 						<td>
 							<div class="btn-group btn-group-sm" role="group">
-							<button class="btn btn-info" data-toggle="modal" data-target="#app" onclick="addform('$!{list.sn}')">套餐设置</button>
+							<button class="btn btn-info" data-toggle="modal" data-target="#app" onclick="addform('$!{list.sn}','$!{list.packagePrice}','$!fs.url($!list.imgSn)','$!{list.imgSn}')">套餐设置</button>
 								 <a class="btn btn-info" href="/type/selectList?housepackagesn=$!{list.sn}&house_sn=$!{list.houseSn}" >设置分类</a> 
 								 <a href="/houses/delete?id2=$!{list.sn}" class="btn btn-danger" onClick="del()">删除</a>
 							</div>
@@ -156,24 +156,45 @@
             </div>
             <div class="modal-body clearfix">
                 <form class="form-horizontal" method="post" id="formad" >
-               			<input id="fullimgsn" type="hidden" name="fullImgSn" />
                     <div class="form-group">
                         <label class="col-sm-3 control-label">设置套餐价格</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="names" id="ids">
                         </div>
                     </div>
+                    
+                    <div class="input-group">
+                    	<input id="fullimgsn" type="hidden" name="fullImgSn" />
+		                <img id="view_pic" style="width:460px;height:300px;border:1px solid #ddd;display:block;margin:0 auto;"/>
+		                <div class="clearfix"></div>
+		
+		                <div style="margin-top:-190px;margin-left:200px;display:block;position:relative;">
+		                    <span class="btn btn-success fileinput-button" >
+		                        <i class="glyphicon glyphicon-plus"></i>
+		                        <span>Add files...</span>
+		                        <!-- The file input field used as target for the file upload widget -->
+		                        <input id="fileupload" type="file" multiple>
+		                    </span>
+		                </div>
+		
+		                <div class="input-group">
+		                    <div id="progress" class="progress" style="width:460px;height:20px;margin-top:135px;">
+		                        <div class="progress-bar progress-bar-success"></div>
+		                    </div>
+		
+		                    <div id="files" class="files">
+		                    
+		                    </div>
+		                </div>
+		
+		                <div class="clearfix"></div>
+		
+		                <span style="margin:0 auto;display:block;text-align: center; margin-top:-158px;position:relative">
+		                    <input id="viewpic_upload" class="btn btn-default" type="button" style="display: none" value="上传"/>
+		                </span>
+		            </div>
                 </form>
             </div>
-           			  <div class="form-group">
-						<label class="col-sm-3 control-label">上传图片</label>
-						<div class="col-sm-9">
-							<input class="form-control" id="fileupload" type="file"
-								name="files[]" multiple>
-						</div>
-					</div>
-					<div id="files" class="files"></div>
-					<span id="resultInfo"></span>
             
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -242,20 +263,30 @@ function QueryAllPackage(){
 	 }); 
 }
 
-function addform(sn) {
+function addform(sn,price,url,imgSn) {
+	 $("#ids").val(price);
+	 $("#fullimgsn").val(imgSn);
+	 $("#view_pic").attr("src",url);
+	
 	$("#submit").click(function(){
 		var ids = $("#ids").val()
 		if(ids == ""){
 			alert("请设置价格");
 			return false;
 		}
+		
+		var file = $("#fullimgsn").val();
+		if(file == ""){
+		 	alert("套餐图片不可以为空")
+		 	return;
+		}
+		
 	 	$.ajax({
     		type: "POST",
     		url:'/houses/insert1?sn=' + sn,  
     		data:$('#formad').serialize(),  
     		async: false,  
     		success: function(data) {  
-    			debugger;
     			window.location.href="/houses/packageSet?SN="+"$!{HOUSE_SN}";
     		}  
   		});

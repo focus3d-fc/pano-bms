@@ -13,7 +13,7 @@ public interface OrderDAO {
 	public List<OrderAdmin> selOrder(Page page);
 
 	// 查询记录数
-	public int selOrderCount();
+	public int selOrderCount(HashMap<String,Object> map);
 
 	// 查看订单详情
 	public List<OrderAdmin> selOrderbySN(Long ORDER_SN);

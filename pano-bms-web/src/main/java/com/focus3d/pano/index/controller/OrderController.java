@@ -57,7 +57,7 @@ public class OrderController extends BaseController {
 		}
 
 		// 获取查询总记录数
-		count = orderService.selOrderCount();
+		count = orderService.selOrderCount(new HashMap<String,Object>());
 
 		// 通过Page这个类可以获取分页的起始下标和条数
 		pages = new Page(count, currentPage);
@@ -103,7 +103,7 @@ public class OrderController extends BaseController {
 	 * 订单管理-搜索
 	 */
 	@RequestMapping("/selOrder")
-	public String selOrder(String PROJECT_SN, String NICK_NAME,String ORDER_TIME,String page,ModelMap result) {
+	public String selOrder(String PROJECT_SN, String NICK_NAME,String ORDER_TIME,String page,String ORDER_NUM,ModelMap result) {
 	   HashMap<String,Object> map = new HashMap<String,Object>();
 		if (!ORDER_TIME.equals("日期")) {
 			map.put("ORDER_TIME",ORDER_TIME);
@@ -112,6 +112,7 @@ public class OrderController extends BaseController {
 			map.put("PROJECT_SN",PROJECT_SN);
 		}
 		map.put("NICK_NAME",NICK_NAME);
+		map.put("ORDER_NUM", ORDER_NUM);
 		
 		int count = 0;
 		int currentPage = 0;
@@ -131,7 +132,13 @@ public class OrderController extends BaseController {
 		}
 
 		// 获取查询总记录数
-		count = orderService.selOrderCount();
+		
+		try {
+			count = orderService.selOrderCount(map);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		// 通过Page这个类可以获取分页的起始下标和条数
 		pages = new Page(count, currentPage);

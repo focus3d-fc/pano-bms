@@ -94,6 +94,16 @@
 								data-target="#up" onclick="uphouse($!Houses.SN)">修改</button>
 							<a href="/houses/delhouses?SN=$!{Houses.SN}"
 								class="btn btn-danger"">删除</a>
+								
+							#if ($!{Houses.PUBLISH}==1)
+                           	 <a href="/houses/publicHouses?SN=$!{Houses.SN}&&PUBLISH=0"class="btn btn-info">
+                           			 -下架-
+                             </a>
+                             #else
+                             <a href="/houses/publicHouses?SN=$!{Houses.SN}&&PUBLISH=1"class="btn btn-info">
+                           			发布
+                             </a>
+                             #end
 						</div>
 					</td>
 				</tr>

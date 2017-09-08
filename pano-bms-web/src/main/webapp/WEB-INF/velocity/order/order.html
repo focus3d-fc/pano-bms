@@ -21,14 +21,15 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<form class="form-inline" action="/order/selOrder">
-							<input type="text" class="form-control" value="日期"
-								id="datetimepicker" name="ORDER_TIME"> <select
-								class="form-control" name="PROJECT_SN">
-								<option>楼盘名称</option> #foreach ($!{houseList} in $!{houseList})
+							<input type="text" class="form-control" value="日期" id="datetimepicker" name="ORDER_TIME"> 
+							<select class="form-control" name="PROJECT_SN">
+								<option>楼盘名称</option> 
+								#foreach ($!{houseList} in $!{houseList})
 								<option id="$!{houseList.SN}" value="$!{houseList.SN}">$!{houseList.NAME}</option>
 								#end
-							</select> <input type="text" class="form-control" placeholder="用户姓名"
-								name="NICK_NAME">
+							</select>
+							<input type="text" class="form-control" placeholder="用户姓名" name="NICK_NAME">
+							<input type="text" class="form-control" placeholder="订单编号" name="ORDER_NUM">
 							<button type="submit" class="btn btn-primary">搜索</button>
 						</form>
 					</div>

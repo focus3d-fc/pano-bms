@@ -42,6 +42,8 @@ public interface HousesService {
 
 	// 根据名称查楼盘
 	public List<pano_project> selHousesbyName(String NAME);
+	
+	public void publishHouse(HashMap<String,Object> map);
 
 	// ----------------------------------------------楼盘-户型----------------------------------------------
 

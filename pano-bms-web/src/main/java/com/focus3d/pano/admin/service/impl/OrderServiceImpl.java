@@ -25,9 +25,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public int selOrderCount() {
+	public int selOrderCount(HashMap<String,Object> map) {
 		// TODO Auto-generated method stub
-		return orderDAO.selOrderCount();
+		return orderDAO.selOrderCount(map);
 	}
 
 	@Override

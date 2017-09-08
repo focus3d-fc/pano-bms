@@ -58,7 +58,7 @@
 	<select id="getHousetypebySN" resultClass="housestype"
 		parameterClass="Long">
 		select
-		SN,`NAME`
+		SN,`NAME`,IMG_SN
 		from pano_project_house
 		where
 		SN

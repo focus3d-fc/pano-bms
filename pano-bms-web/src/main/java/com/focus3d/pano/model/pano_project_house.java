@@ -31,6 +31,15 @@ public class pano_project_house implements Serializable, CommonModel {
 	private Long UPDATER_SN;
 	private String UPDATER_NAME;
 	private String UPDATE_TIME;
+	private String IMG_URL;
+
+	public String getIMG_URL() {
+		return IMG_URL;
+	}
+
+	public void setIMG_URL(String iMG_URL) {
+		IMG_URL = iMG_URL;
+	}
 
 	public Long getSN() {
 		return SN;

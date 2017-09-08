@@ -21,12 +21,21 @@ public class pano_project implements Serializable, CommonModel {
 	private String PROVINCE;
 	private String CITY;
 	private String AREA;
+	private int PUBLISH;
 	private Long ADDER_SN;
 	private String ADDER_NAME;
 	private String ADD_TIME;
 	private Long UPDATER_SN;
 	private String UPDATER_NAME;
 	private String UPDATE_TIME;
+	
+	public int getPUBLISH() {
+		return PUBLISH;
+	}
+
+	public void setPUBLISH(int pUBLISH) {
+		PUBLISH = pUBLISH;
+	}
 
 	public Long getSN() {
 		return SN;

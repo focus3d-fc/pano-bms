@@ -26,6 +26,8 @@ import com.focus3d.pano.model.PanoVender;
 import com.focus3d.pano.model.ResultVO;
 import com.focus3d.pano.model.panoSkin;
 import com.focus3d.pano.model.pano_project_style;
+import com.focustech.cief.filemanage.client.api.IFileReadClient;
+import com.focustech.cief.filemanage.client.constant.FileAttributeEnum;
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.JsonUtils;
 import com.opensymphony.oscache.util.StringUtil;
@@ -37,6 +39,9 @@ public class PanoProductFuncController extends BaseController{
 	
 	@Autowired 
 	private IProductService service;
+	
+	@Autowired
+	private IFileReadClient client;
 	
 	/**
 	 * 分类
@@ -244,7 +249,8 @@ public class PanoProductFuncController extends BaseController{
 	@ResponseBody
 	@RequestMapping("select1")
 	public void select1(String sn,HttpServletResponse response){
-		 PanoProjectPackage getselect1 = service.getselect1(Integer.parseInt(sn));
+		PanoProjectPackage getselect1 = service.getselect1(Integer.parseInt(sn));
+		getselect1.setImg_url(client.getFile(getselect1.getImg_sn(),FileAttributeEnum.VISIT_ADDR));
 		String objectToJson = JsonUtils.objectToJson(getselect1);
 		try {
 			this.ajaxOutput(response, objectToJson);
@@ -436,6 +442,7 @@ public class PanoProductFuncController extends BaseController{
 	@RequestMapping("select3")
 	public void select3(String sn,HttpServletResponse response){
 		pano_project_style getselect3 = service.getselect3(Integer.parseInt(sn));
+		getselect3.setImg_url(client.getFile(getselect3.getImg_sn(),FileAttributeEnum.VISIT_ADDR));
 		String objectToJson = JsonUtils.objectToJson(getselect3);
 		try {
 			this.ajaxOutput(response, objectToJson);
@@ -653,6 +660,7 @@ public class PanoProductFuncController extends BaseController{
 	@RequestMapping("select5")
 	public void select5(String sn,HttpServletResponse response){
 		panoSkin getselect5 = service.getselect5(Integer.parseInt(sn));
+		getselect5.setImg_url(client.getFile(getselect5.getImg_sn(),FileAttributeEnum.VISIT_ADDR));
 		String objectToJson = JsonUtils.objectToJson(getselect5);
 		try {
 			this.ajaxOutput(response, objectToJson);

@@ -250,8 +250,4 @@ public class PanoBmRoleController extends BaseController{
 			e.printStackTrace();
 		}
 	}
-
-	
-		
-	
 }

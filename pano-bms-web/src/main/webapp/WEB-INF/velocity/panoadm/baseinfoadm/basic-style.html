@@ -31,7 +31,7 @@
 <script src="/component/upload/js/jquery.fileupload-image.js"></script>
 <!-- The File Upload validation plugin -->
 <script src="/component/upload/js/jquery.fileupload-validate.js"></script>
-<script src="/script/member/user/product.js"></script>
+<script src="/script/common/fileupload.js"></script>
 </head>
 <body>
 <div class="panel panel-default">
@@ -41,11 +41,11 @@
     <div class="panel-body">
         <!--tab栏标题-->
         <ul class="nav nav-tabs basic-tab">
-            <li><a href="/basics/classify"   >分类</a></li>
-            <li><a href="/basics/classify4"   >功能</a></li>
-            <li><a href="/basics/classify2"   >厂家</a></li>
+            <li><a href="/basics/classify">分类</a></li>
+            <li><a href="/basics/classify4">功能</a></li>
+            <li><a href="/basics/classify2">厂家</a></li>
             <li class="active"><a href="basic-style.html">风格</a></li>
-            <li><a href="/basics/classify1"   >套餐种类</a></li>
+            <li><a href="/basics/classify1">套餐种类</a></li>
              <li><a href="/basics/classify5">导航图标管理</a></li>
             <button class="btn btn-info" data-toggle="modal" data-target="#add" style="margin-left: 60px" onclick="addform1()">增加</button>
         </ul>
@@ -88,6 +88,7 @@
         </div>
     </div>
 </div>
+
 <!--增加修改弹窗-->
 <div class="modal fade " id="add" tabindex="-1" role="dialog" aria-labelledby="添加/修改">
     <div class="modal-dialog" role="document">
@@ -99,25 +100,45 @@
             </div>
             <div class="modal-body clearfix">
                 <form class="form-horizontal" method="post" id="formadd" >
-                <input id="fullimgsn" type="hidden" name="fullImgSn" />
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">新增/修改</label>
+                        <label class="col-sm-3 control-label">风格名称</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="name" id="fun">
+                            <input type="text" class="form-control" name="name" id="styleName">
                         </div>
                     </div>
+                    
+                    <div class="input-group">
+                    	<input id="fullimgsn" type="hidden" name="fullImgSn" />
+		                <img id="view_pic" style="width:460px;height:300px;border:1px solid #ddd;display:block;margin:0 auto;"/>
+		                <div class="clearfix"></div>
+		
+		                <div style="margin-top:-190px;margin-left:200px;display:block;position:relative;">
+		                    <span class="btn btn-success fileinput-button" >
+		                        <i class="glyphicon glyphicon-plus"></i>
+		                        <span>Add files...</span>
+		                        <!-- The file input field used as target for the file upload widget -->
+		                        <input id="fileupload" type="file" multiple>
+		                    </span>
+		                </div>
+		
+		                <div class="input-group">
+		                    <div id="progress" class="progress" style="width:460px;height:20px;margin-top:135px;">
+		                        <div class="progress-bar progress-bar-success"></div>
+		                    </div>
+		
+		                    <div id="files" class="files">
+		                    
+		                    </div>
+		                </div>
+		
+		                <div class="clearfix"></div>
+		
+		                <span style="margin:0 auto;display:block;text-align: center; margin-top:-158px;position:relative">
+		                    <input id="viewpic_upload" class="btn btn-default" type="button" style="display: none" value="上传"/>
+		                </span>
+		            </div>
                 </form>
             </div>
-           			 <div class="form-group">
-						<label class="col-sm-3 control-label">上传图片</label>
-						<div class="col-sm-9">
-							<input class="form-control" id="fileupload" type="file"
-								name="files[]" multiple>
-						</div>
-					</div>
-					<div id="files" class="files"></div>
-					<span id="resultInfo"></span>
-            
             
             <div class="modal-footer">
                 <button id="submits" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -131,11 +152,9 @@
 <script>
 
 function addform(sn) {
-	
 	$("#submit2").hide();
-	 $("#submit").show();
+	$("#submit").show();
 	
-
 	$.ajax({
 		url : '/basics/select3',
 		type : "post",
@@ -143,57 +162,55 @@ function addform(sn) {
 		datatype : "json",
 		success : function(data) {
 			var jsonobj = JSON.parse(data);
-			$("#fun").val(jsonobj.name);
+			$("#styleName").val(jsonobj.name);
+			$("#view_pic").attr("src",jsonobj.img_url);
 		}
 	});
 	
-	 $("#submits").click(function(){
-      	$("#fun").val("");
-      })
+	$("#submits").click(function(){
+		$("#fun").val("");
+    })
 	
-  $("#submit").click(function() {
-   $.ajax({  
-    type: "POST",  
-    url:'/basics/update3?id='+sn,  
-    data:$('#formadd').serialize(),  
-    async: false,  
-    success: function(data) {  
-    	window.location.href="/basics/classify3";
-    }  
-  });
+  	$("#submit").click(function() {
+   		$.ajax({  
+		    type: "POST",  
+		    url:'/basics/update3?id='+sn,  
+		    data:$('#formadd').serialize(),  
+		    async: false,  
+		    success: function(data) {  
+		    	window.location.href="/basics/classify3";
+		    }  
+  		});
+   	});
+}
 
-            });
-        }
-
-
-
-        
- function addform1() {
-	 $("#submit").hide();
-	 $("#submit2").show();
+function addform1() {
+	$("#submit").hide();
+	$("#submit2").show();
 	 
- $("#submit2").click(function() {
-	 var file = $("#fullimgsn").val();
-	 if(file == ""){
-		 alert("套餐图片不可以为空")
-		 return false;
-	 }
-   $.ajax({  
-    type: "POST",  
-    url:'/basics/insert3',  
-    data:$('#formadd').serialize(),  
-    async: false,  
-    success: function(data) {  
-    	var jsonobj=JSON.parse(data);
-    	if(jsonobj.result =="errorr"){
-    		alert("用户名不能为空或重复")
-    	}
-    	window.location.href="/basics/classify3";
-    }  
-  });
-
-            });
-        }
+ 	$("#submit2").click(function() {
+ 		var file = $("#fullimgsn").val();
+		if(file == ""){
+		 	alert("套餐图片不可以为空")
+		 	return false;
+		}
+		
+		var name = $("#styleName").val();
+		if(name == ""){
+			alert("风格名称不可以为空")
+		 	return false;
+		}
+	   	$.ajax({  
+		    type: "POST",  
+		    url:'/basics/insert3',  
+		    data:$('#formadd').serialize(),
+		    async: false,  
+		    success: function(data) {  
+		    	window.location.href="/basics/classify3";
+		    }  
+  		});
+	});
+}
 </script>
 </body>
 </html>

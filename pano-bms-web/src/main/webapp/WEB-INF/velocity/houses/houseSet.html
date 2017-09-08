@@ -36,7 +36,7 @@
 <script src="/component/upload/js/jquery.fileupload-image.js"></script>
 <!-- The File Upload validation plugin -->
 <script src="/component/upload/js/jquery.fileupload-validate.js"></script>
-<script src="/script/member/user/product.js"></script>
+<script src="/script/common/fileupload.js"></script>
 
 
 <script type="text/javascript">
@@ -52,6 +52,7 @@
 				var jsonobj = JSON.parse(data);
 				$("#SN").val(jsonobj.SN);
 				$("#aname").val(jsonobj.NAME);
+				$("#view_pic").attr("src",jsonobj.IMG_URL);
 			}
 		});
 	}
@@ -128,7 +129,7 @@
 			</div>
 		</div>
 	</div>
-	<!--增加弹窗-->
+	
 	<div class="modal fade " id="add" tabindex="-1" role="dialog"
 		aria-labelledby="添加/修改">
 		<div class="modal-dialog" role="document">
@@ -144,26 +145,46 @@
 
 					<form method="post" class="form-horizontal" id="formadd"
 						action="/houses/addHousetype">
-
-						<input id="fullimgsn" type="hidden" name="fullImgSn" /> <input
-							id="SN" name="SN" type="hidden">
+						
+						<input id="SN" name="SN" type="hidden">
 						<div class="form-group">
 							<label class="col-sm-3 control-label">名称</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="aname" name="aname">
 							</div>
 						</div>
+						
+						<div class="input-group">
+	                    	<input id="fullimgsn" type="hidden" name="fullImgSn" />
+			                <img id="view_pic" style="width:460px;height:300px;border:1px solid #ddd;display:block;margin:0 auto;"/>
+			                <div class="clearfix"></div>
+			
+			                <div style="margin-top:-190px;margin-left:200px;display:block;position:relative;">
+			                    <span class="btn btn-success fileinput-button" >
+			                        <i class="glyphicon glyphicon-plus"></i>
+			                        <span>Add files...</span>
+			                        <!-- The file input field used as target for the file upload widget -->
+			                        <input id="fileupload" type="file" multiple>
+			                    </span>
+			                </div>
+			
+			                <div class="input-group">
+			                    <div id="progress" class="progress" style="width:460px;height:20px;margin-top:135px;">
+			                        <div class="progress-bar progress-bar-success"></div>
+			                    </div>
+			
+			                    <div id="files" class="files">
+			                    
+			                    </div>
+			                </div>
+			
+			                <div class="clearfix"></div>
+			
+			                <span style="margin:0 auto;display:block;text-align: center; margin-top:-158px;position:relative">
+			                    <input id="viewpic_upload" class="btn btn-default" type="button" style="display: none" value="上传"/>
+			                </span>
+			            </div>
 					</form>
-
-					<div class="form-group">
-						<label class="col-sm-3 control-label">上传图片</label>
-						<div class="col-sm-9">
-							<input class="form-control" id="fileupload" type="file"
-								name="files[]" multiple>
-						</div>
-					</div>
-					<div id="files" class="files"></div>
-					<span id="resultInfo"></span>
 
 				</div>
 				<div class="modal-footer">

@@ -350,4 +350,10 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 		pano_project_house_style houseStyle = (pano_project_house_style)getSqlMapClientTemplate().queryForObject("pano_project_house_style.queryHouseStyleBySn",map);
 		return houseStyle;
 	}
+
+	@Override
+	public void publishHouse(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		getSqlMapClientTemplate().update("pano_project.publishHouse",map);
+	}
 }

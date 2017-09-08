@@ -197,7 +197,6 @@ public class Textproduct extends BaseController{
 	 */
 	@RequestMapping("/insert")
 	public String insert(HttpServletRequest request){
-		System.out.println("进入添加用户界面");
 			String[] parameterValues = request.getParameterValues("name");
 			for(String product_sn:parameterValues){
 				List<Package_Product> selectProduct = service.getSelectProduct(type_sn);
@@ -214,16 +213,13 @@ public class Textproduct extends BaseController{
 					product.setProduct_sn(Long.parseLong(product_sn));
 					service.getinsert(product);
 				}
-				System.out.println("循环结束");
 				}else{
-							System.out.println("空");
 							Package_Product product = new Package_Product();
 							product.setPackage_type_sn(type_sn);
 							product.setProduct_sn(Long.parseLong(product_sn));
 							 service.getinsert(product);
 				}
 			}
-		     System.out.println("执行完毕");
 			return "redirect:/typeproduct/select";
 		
 	}
@@ -231,9 +227,7 @@ public class Textproduct extends BaseController{
 	@RequestMapping("/getprodtinpgdetail")
     public String getprodtinpgdetail(HttpServletRequest request,Model model){
 		String prodtsn = request.getParameter("prodtsn");
-    	  System.out.println("ppppppppp"+prodtsn);
-    	  
-    	  ProductInfo prodtInfo=null;
+    	ProductInfo prodtInfo=null;
   		try {
   			prodtInfo = productAdmService.getProductDetail(prodtsn);
   			Long fullImgSn=prodtInfo.getFullImgSn();

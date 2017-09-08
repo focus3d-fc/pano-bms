@@ -149,6 +149,15 @@ public class HousesController extends BaseController {
 		housesService.addHouses(houses);
 		return redirect("tohouse");
 	}
+	
+	@RequestMapping("/publicHouses")
+	public String publishHouse(HttpServletResponse response,String SN,String PUBLISH){
+		HashMap map = new HashMap<String,Object>();
+		map.put("SN",SN);
+		map.put("PUBLISH",PUBLISH);
+		housesService.publishHouse(map);
+		return redirect("tohouse");
+	}
 
 	/*
 	 * @RequestMapping("/selhouses") public String selhouses(HttpServletRequest
@@ -288,6 +297,7 @@ public class HousesController extends BaseController {
 		pano_project_house space = null;
 		try {
 			space = housesService.getHousetypebySN(SN);
+			space.setIMG_URL(fileReadClient.getFile(space.getIMG_SN(), FileAttributeEnum.VISIT_ADDR));
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -448,6 +458,7 @@ public class HousesController extends BaseController {
 			JSONObject json = new JSONObject();
 			json.put("houseStyleSn", houseStyle.getSN());
 			if(houseStyle.getIMG_SN()!=null){
+				json.put("img_url",fileReadClient.getFile(houseStyle.getIMG_SN(), FileAttributeEnum.VISIT_ADDR));
 				json.put("mapKey", EncryptUtil.encode(houseStyle.getIMG_SN()));
 			}
 			
@@ -567,7 +578,7 @@ public class HousesController extends BaseController {
 	}
 
 	@RequestMapping("/addHousead")
-	public String addHousead(String alink, String fullImgSn, Long SN) {
+	public void addHousead(HttpServletResponse response,String alink, String fullImgSn, Long SN) {
 		pano_ad ad = new pano_ad();
 		ad.setPROJECT_SN(PROJECT_SN);
 		ad.setLINK(alink);
@@ -593,7 +604,14 @@ public class HousesController extends BaseController {
 			ad.setUPDATE_TIME(add_time);
 			housesService.upHousead(ad);
 		}
-		return redirect("toaddSet");
+		
+		try{
+			JSONObject result = new JSONObject();
+			result.put("info", "succeed");
+			ajaxOutput(response, result.toString());
+		}catch(IOException e){
+			e.printStackTrace();
+		}
 	}
 
 	@RequestMapping("/upAdVerify")
@@ -601,6 +619,7 @@ public class HousesController extends BaseController {
 		pano_ad ad = null;
 		try {
 			ad = housesService.getHouseadbySN(SN);
+			ad.setIMG_URL(fileReadClient.getFile(ad.getIMG_SN(),FileAttributeEnum.VISIT_ADDR));
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -1039,4 +1058,5 @@ public class HousesController extends BaseController {
 			e.printStackTrace();
 		}
 	}
+	
 }

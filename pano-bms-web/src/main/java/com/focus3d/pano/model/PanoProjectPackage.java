@@ -21,10 +21,17 @@ public class PanoProjectPackage implements Serializable, CommonModel{
 	private Long updater_sn;   //修改人id
 	private String updater_name; //修改人姓名
 	private Date  update_time;   //修改时间
+	private String img_url;
 	
 	
 	
 	
+	public String getImg_url() {
+		return img_url;
+	}
+	public void setImg_url(String img_url) {
+		this.img_url = img_url;
+	}
 	public PanoProjectPackage() {
 		super();
 	}

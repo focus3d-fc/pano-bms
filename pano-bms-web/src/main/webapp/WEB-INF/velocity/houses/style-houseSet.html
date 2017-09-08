@@ -5,9 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>户型设置</title>
-<link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/style/admstatic/css/admin.css">
+<link rel="stylesheet" href="/component/upload/css/style.css">
+<link rel="stylesheet" href="/component/upload/css/jquery.fileupload.css">
 </head>
 <body>
 	<div class="panel panel-default">
@@ -87,29 +88,48 @@
 				<div class="modal-body clearfix">
 					<div class="form-horizontal" id="formadd">
 						<input id="housestylesn" type="hidden" name="housestylesn"/>
-					 	<input id="fullimgsn" type="hidden" name="fullImgSn" />
 						<div class="form-group" id="house_set">
-							<label class="col-sm-3 control-label">新增</label>
+							<label class="col-sm-3 control-label">户型</label>
 							<div class="col-sm-9" id="house">
 								#foreach ($!{hlist} in $!{hlist}) <label class="checkbox-inline"
 									style="margin-left: 10px;"> <input type="checkbox"
 									value="$!{hlist.SN}" name="uname">$!{hlist.NAME}
 								</label> #end
 							</div>
-
 						</div>
+						
+						<div class="input-group">
+	                    	<input id="fullimgsn" type="hidden" name="fullImgSn" />
+			                <img id="view_pic" style="width:460px;height:300px;border:1px solid #ddd;display:block;margin:0 auto;"/>
+			                <div class="clearfix"></div>
+			
+			                <div style="margin-top:-190px;margin-left:200px;display:block;position:relative;">
+			                    <span class="btn btn-success fileinput-button" >
+			                        <i class="glyphicon glyphicon-plus"></i>
+			                        <span>Add files...</span>
+			                        <!-- The file input field used as target for the file upload widget -->
+			                        <input id="fileupload" type="file" multiple>
+			                    </span>
+			                </div>
+			
+			                <div class="input-group">
+			                    <div id="progress" class="progress" style="width:460px;height:20px;margin-top:135px;">
+			                        <div class="progress-bar progress-bar-success"></div>
+			                    </div>
+			
+			                    <div id="files" class="files">
+			                    
+			                    </div>
+			                </div>
+			
+			                <div class="clearfix"></div>
+			
+			                <span style="margin:0 auto;display:block;text-align: center; margin-top:-158px;position:relative">
+			                    <input id="viewpic_upload" class="btn btn-default" type="button" style="display: none" value="上传"/>
+			                </span>
+			            </div>
 					</div>
 				</div>
-				
-				<div class="form-group">
-					<label class="col-sm-3 control-label">上传图片</label>
-					<div class="col-sm-9">
-						<input class="form-control" id="fileupload" type="file"
-							name="files[]" multiple>
-					</div>
-				</div>
-				<div id="files" class="files"></div>
-				<span id="resultInfo"></span>
 				
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -125,13 +145,20 @@
 		
 		function insert(){
 			var fullimgVal = $("#fullimgsn").val();
+			var uname = $("#house input:checked:enabled").val();
+			
+			if(uname == undefined || uname == null || uname == ""){
+				alert("请选择户型");
+				return;
+			}
+			
 			if(fullimgVal == undefined || fullimgVal == null || fullimgVal == ""){
 				alert("风格户型图片不能为空");
 				return;
 			}
 			
 			var data = new Object();
-			data.uname = $("#house input:checked:enabled").val();
+			data.uname = uname;
 			data.fullImgSn = fullimgVal;
 			$.ajax({
 				url:'/houses/upstyle-houseSet',
@@ -149,6 +176,10 @@
 		}
 	
 		function insertHouse(projectSn){
+			$("#housestylesn").val("");
+			$("#fullimgsn").val("");
+			$("#view_pic").attr("src","");
+			
 			$("#house_set").show();
 			$("#add").modal("show");
 			$("#update_house").off("click").on("click",function(){
@@ -205,6 +236,7 @@
 					var jsonobj = JSON.parse(data);
 					$("#housestylesn").val(jsonobj.houseStyleSn);
 					$("#fullimgsn").val(jsonobj.mapKey);
+					$("#view_pic").attr("src",jsonobj.img_url);
 					
 					$("#house_set").hide();
 					$("#add").modal("show");
@@ -265,6 +297,6 @@
 	<script src="/component/upload/js/jquery.fileupload-image.js"></script>
 	<!-- The File Upload validation plugin -->
 	<script src="/component/upload/js/jquery.fileupload-validate.js"></script>
-	<script src="/script/member/user/product.js"></script>
+	<script src="/script/common/fileupload.js"></script>
 </body>
 </html>
