@@ -38,6 +38,7 @@
 <script src="/component/upload/js/jquery.fileupload-validate.js"></script>
 <script src="/script/member/user/product.js"></script>
 <script src="/script/member/user/product1.js"></script>
+<script src="/script/tabs.js"></script>
 <style type="text/css">
   .col-sm-2 {
     width: 6.66666667%;
@@ -53,26 +54,44 @@
 </style>
 </style>
 <script type="text/javascript">
-function move(pageNum,pageSize){
-	   //var pageSize=document.getElementById("pageSize").value;
-	   
-	   var url="/productadm/listproduct?pageNum="+pageNum;
-	   if(pageSize!=undefined){
-		   url+="&pageSize="+pageSize;
-	   }
-	  var scfy='${ifscfy}';
-	  var scfg='${scStyleSn}';
-	  var scgn='${scFuncSn}';
-	  var proid='${proid}';
-	  if(scfy=='true'){
-		  url+="&ifscfy="+scfy;
-		  url+="&styleSn="+scfg;
-		  url+="&funcSn="+scgn;
-		  url+="&proid="+proid;
-	  }
-	   
-	   location.href=url;
-}
+
+	$(function(){
+		var total = '$!total';
+		var current_index = '$!current_index';
+		//var page = $.parseJSON(value);
+		var tab = new Tab();
+		tab.setExhibtionNum(5);
+		
+		tab.create($("#product-tabs"),{
+			total:total,
+			autoskip:false,
+			method:function(){
+				var index = tab.getIndex();
+				move(index,10);
+			}
+		});
+		
+		tab.setIndex(current_index);
+	})
+
+	function move(pageNum,pageSize){
+		   //var pageSize=document.getElementById("pageSize").value;
+		   var url="/productadm/listproduct?pageNum="+pageNum;
+		   if(pageSize!=undefined){
+			   url+="&pageSize="+pageSize;
+		   }
+		  var scfy='${ifscfy}';
+		  var scfg='${scStyleSn}';
+		  var scgn='${scFuncSn}';
+		  var proid='${proid}';
+		  if(scfy=='true'){
+			  url+="&ifscfy="+scfy;
+			  url+="&styleSn="+scfg;
+			  url+="&funcSn="+scgn;
+			  url+="&proid="+proid;
+		  } 
+		  location.href=url;
+	}
 
    //原先用跳转页面逻辑添加
     function  addpro(){
@@ -150,9 +169,10 @@ function move(pageNum,pageSize){
     	$("#profabi").attr("src","");
     }
     
-    function uplongimgclear(){
+    function uplongciclear(){
     	$("#files5").text("");
-    	$("#longimgsn").val("");
+    	$("#longimgsn01").val("");
+    	$("#prolong").attr("src","");
     }
     
     function updatepro(productsn){
@@ -169,16 +189,15 @@ function move(pageNum,pageSize){
     	$("#mtimgsn01").val("");
     	$("#files04").text("");
     	$("#fbcimgsn01").val("");
+    	$("#files05").text("");
+    	$("#longimgsn01").val("");
     	
-    	
-    	
-    	  $.ajax({
-    		url:"/productadm/getproductdetail",	 
+    	$.ajax({
+    		url:"/productadm/getproductdetail",
     	    type:"post",
     	    data:{productsn:productsn},
     	    datatype:"json",
     	    success:function(data){
-    	    	
     	    	var jsonobj=JSON.parse(data);
     	    	//alert(jsonobj.updateTime1);
     	    	//alert(jsonobj.typeSn);
@@ -198,7 +217,7 @@ function move(pageNum,pageSize){
  	              if(temp_value == st){
  	                    $(this).attr("selected",true);
  	              }
- 	         });
+ 	         	});
     	    	$("#sfc").children("option").each(function(){
  	               var temp_value = $(this).val();
  	              if(temp_value == fc){
@@ -233,12 +252,9 @@ function move(pageNum,pageSize){
        	    	$("#prodi").attr("src",jsonobj.downImgUrl);
        	    	$("#promi").attr("src",jsonobj.materialImgUrl);
        	    	$("#profabi").attr("src",jsonobj.fabricImgUrl);
+       	    	$("#prolong").attr("src",jsonobj.longImgUrl);
     		}
-
-    	    
-    	  });  
-    	 
-    	 
+    	  });
     	// location.href="/productadm/preupdateproduct";
      }
    
@@ -287,6 +303,7 @@ function move(pageNum,pageSize){
       	    	$("#dtdi").attr("src",jsonobj.downImgUrl);
       	    	$("#dtmi").attr("src",jsonobj.materialImgUrl);
       	    	$("#dtfabi").attr("src",jsonobj.fabricImgUrl);
+      	    	$("#dtlong").attr("src",jsonobj.longImgUrl);
       	    }
       	    
       	  }); 
@@ -327,9 +344,9 @@ function move(pageNum,pageSize){
 							},
 			                dataFilter: function (data, type){
 			                     if (data.info == "0") {
-			                         return true;   
+			                         return false;   
 			                     }else{
-			                         return false;
+			                         return true;
 			                     }
 			                }
 						}
@@ -619,40 +636,23 @@ function move(pageNum,pageSize){
     <div class="panel-body">
         <div class="container">
             <div class="row">
-             	
                 <div class="col-sm-8">
                     <form class="form-inline" method="post" action="/productadm/listproduct">
                         <input type="hidden" name="ifscfy" value="true"/>
-                         <div class="form-group">
-                            <label class="sr-only"></label>
-                            <input id="productName" type="text" class="form-control" placeholder="产品名称" name="productName">
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only"></label>
-                            <input id="scproid" type="text" class="form-control" placeholder="产品编号" name="proid">
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only">风格</label>
-                            <div class="col-sm-8">
-                                <select id="scsty" name="styleSn" class="form-control">
-                                   <option value="">--选择风格--</option>
-                                    #foreach( $!prost in $!proStyleList)
-                                    <option value="$!prost.sn">$!prost.name</option>
-                                     #end 
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only">功能</label>
-                            <div class="col-sm-8">
-                                <select id="scfc" name="funcSn" class="form-control">
-                                      <option value="">--选择功能--</option>
-                                     #foreach( $!profc in $!proFuncList)
-                                    <option value="$!profc.sn">$!profc.name</option>
-                                    #end 
-                                </select>
-                            </div>
-                        </div>
+                        <input id="productName" type="text" class="form-control" placeholder="产品名称" name="productName">
+                        <input id="scproid" type="text" class="form-control" placeholder="产品编号" name="proid">
+                        <select id="scsty" name="styleSn" class="form-control">
+                           <option value="">--选择风格--</option>
+                            #foreach( $!prost in $!proStyleList)
+                            <option value="$!prost.sn">$!prost.name</option>
+                             #end 
+                        </select>
+                        <select id="scfc" name="funcSn" class="form-control">
+                             <option value="">--选择功能--</option>
+                              #foreach( $!profc in $!proFuncList)
+                             <option value="$!profc.sn">$!profc.name</option>
+                             #end 
+                        </select>
                         <button type="submit" class="btn btn-primary">搜索</button>
                     </form>
                 </div>
@@ -664,32 +664,32 @@ function move(pageNum,pageSize){
     </div>
     <table class="table table-hover">
         <thead>
-        <tr>
-            <th>序号</th>
-            <th>编号</th>
-            <th>名称</th>
-            <th>分类</th>
-            <th>风格</th>
-            <th>功能</th>
-            <th width="20%">操作</th>
-        </tr>
+	        <tr>
+	            <th>序号</th>
+	            <th>编号</th>
+	            <th>名称</th>
+	            <th>分类</th>
+	            <th>风格</th>
+	            <th>功能</th>
+	            <th>缩略图</th>
+	            <th width="20%">操作</th>
+	        </tr>
         </thead>
         <tbody>
-         #foreach( $!prodt in $!productInfoList)
-        <tr onmouseover="Exhibtion(event,'$!fs.url($!prodt.fullImgSn)')" onmouseout="Hide()">
-            <td>#set($epgcount=$!page.perPageInt)
-        		#set($p1=$!page.currentPage - 1)
-		        #set($no=$velocityCount)
-		        #set($num=$p1 * $epgcount + $no)
-		       ${num}
+        #foreach( $!prodt in $!productInfoList)
+        <tr>
+            <td style="vertical-align:middle">$!{velocityCount}</td>
+            <td style="vertical-align:middle">$!prodt.id</td>
+            <!--  td  onmouseover="Exhibtion(event,'$!fs.url($!prodt.fullImgSn)')" onmouseout="Hide()">$!prodt.name</td-->
+            <td style="vertical-align:middle">$!prodt.name</td>
+            <td style="vertical-align:middle">$!prodt.typeName</td>
+            <td style="vertical-align:middle">$!prodt.styleName</td>
+            <td style="vertical-align:middle">$!prodt.funcName</td>
+            <td style="vertical-align:middle">
+            	<img src="$!fs.url($!prodt.fullImgSn)"  width="100" height ="80">
             </td>
-            <td>$!prodt.id</td>
-            <td>$!prodt.name</td>
-            <td>$!prodt.typeName</td>
-            <td>$!prodt.styleName</td>
-            <td>$!prodt.funcName</td>
            
-            <td>
+            <td style="vertical-align:middle">
                 <div class="btn-group btn-group-sm" role="group">
                     <a href="#detail" class="btn btn-success" data-toggle="tab" onclick="getdetail($!prodt.sn)">查看</a>
                     <a href="#mod1" class="btn btn-info" data-toggle="tab" onclick="updatepro($!prodt.sn)">修改</a>
@@ -700,9 +700,9 @@ function move(pageNum,pageSize){
         #end 
         </tbody>
     </table>
-    <!--分页-->
-    <div class="panel-bodya">
-        <nav class="nav-divider clearfix">
+    <div class="clearfix"/>
+    <div class="nav-divider clearfix" id="product-tabs" style="float:right;height:60px;margin-right:12px">
+        <!--  nav class="nav-divider clearfix">
             <ul class="pagination pull-right">
              <li><a href="javascript:void(0)" onclick="move(1,$!page.perPageInt)">首页</a></li>
                 <li>
@@ -710,7 +710,6 @@ function move(pageNum,pageSize){
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-               <!--  <li class="active"><a href="javascript:void(0)" onclick="move($!page.currentPage,$!page.perPageInt)">$!page.currentPage</a></li> -->
                #foreach ($item in [1..$!{page.totalPage}])
 				<li>
 				<a href="javascript:void(0)"  onclick="move($velocityCount,$!page.perPageInt)">$velocityCount</a>
@@ -727,7 +726,7 @@ function move(pageNum,pageSize){
                     </a>
                 </li>
             </ul>
-        </nav>
+        </nav-->
     </div>
 </div>
     
@@ -860,6 +859,10 @@ function move(pageNum,pageSize){
                         <div class="col-md-4 img-box">
                             <p class="title">面料图片</p>
                             <img id="dtfabi" src="$!fs.url($!prodtInfo1.fabricImgSn)" alt="" class="img-rounded img-responsive">
+                        </div>
+                        <div class="col-md-4 img-box">
+                            <p class="title">长图</p>
+                            <img id="dtlong" src="$!fs.url($!prodtInfo1.longImgSn)" alt="" class="img-rounded img-responsive">
                         </div>
                     </div>
                 </div>
@@ -996,7 +999,7 @@ function move(pageNum,pageSize){
                 <input id="downimgsn" type="hidden" name="downImgSn1"/>
                 <input id="mtimgsn" type="hidden" name="materialImgSn1"/>
                 <input id="fbcimgsn" type="hidden" name="fabricImgSn1"/>
-                <input id="longimgsn" type="hidden" name="longimgsn"/>
+                <input id="longimgsn" type="hidden" name="longImgSn1"/>
             </form>
             <div class="form-group col-sm-12">
             	<label class="col-sm-2 control-label">图片展示</label>
@@ -1199,9 +1202,8 @@ function move(pageNum,pageSize){
                 <input id="downimgsn01" type="hidden" name="downImgSn1"/>
                 <input id="mtimgsn01" type="hidden" name="materialImgSn1"/>
                 <input id="fbcimgsn01" type="hidden" name="fabricImgSn1"/>
-                
+                <input id="longimgsn01" type="hidden" name="longImgSn1"/>
                  
-               
             </form>
              <div class="form-group col-sm-12">
                     <label class="col-sm-2 control-label">图片展示</label>
@@ -1209,61 +1211,73 @@ function move(pageNum,pageSize){
                         <div class="col-md-4 img-box">
                             <p class="title">整体图片（正）</p>
                             <img id="profulli" src="" alt="" class="img-rounded img-responsive" >
-                             <span class="btn btn-success fileinput-button" onclick="upfulliclear()">
-        <i class="glyphicon glyphicon-plus"></i>
-        <span>选择图片</span>
-        <input id="fileupload0" type="file" name="files[]" multiple>
-    </span>
-    <div id="files0" class="files"></div>
-	<span id="resultInfo0"></span>
+                            <span class="btn btn-success fileinput-button" onclick="upfulliclear()">
+	        					<i class="glyphicon glyphicon-plus"></i>
+	        					<span>选择图片</span>
+	        					<input id="fileupload0" type="file" name="files[]" multiple>
+    						</span>
+						    <div id="files0" class="files"></div>
+							<span id="resultInfo0"></span>
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">整体图片（左）</p>
                             <img id="proli" src="" alt="" class="img-rounded img-responsive" >
                             <span class="btn btn-success fileinput-button" onclick="uplefticlear()">
-        <i class="glyphicon glyphicon-plus"></i>
-        <span>选择图片</span>
-        <input id="fileupload01" type="file" name="files[]" multiple>
-    </span>
-    <div id="files01" class="files"></div>
-	<span id="resultInfo01"></span> 
+						        <i class="glyphicon glyphicon-plus"></i>
+						        <span>选择图片</span>
+						        <input id="fileupload01" type="file" name="files[]" multiple>
+						    </span>
+						    <div id="files01" class="files"></div>
+							<span id="resultInfo01"></span> 
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">整体图片（俯）</p>
                              <img id="prodi" src="" alt="" class="img-rounded img-responsive">
                             <span class="btn btn-success fileinput-button" onclick="updowniclear()">
-        <i class="glyphicon glyphicon-plus"></i>
-        <span>选择图片</span>
-        <input id="fileupload02" type="file" name="files[]" multiple>
-    </span>
-    <div id="files02" class="files"></div>
-	<span id="resultInfo02"></span>
+						        <i class="glyphicon glyphicon-plus"></i>
+						        <span>选择图片</span>
+						        <input id="fileupload02" type="file" name="files[]" multiple>
+						    </span>
+						    <div id="files02" class="files"></div>
+							<span id="resultInfo02"></span>
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">材质图片</p>
                             <img id="promi" src="" alt="" class="img-rounded img-responsive">
                             <span class="btn btn-success fileinput-button" onclick="upmatericlear()">
-        <i class="glyphicon glyphicon-plus"></i>
-        <span>选择图片</span>
-        <input id="fileupload03" type="file" name="files[]" multiple>
-    </span>
-    <div id="files03" class="files"></div>
-	<span id="resultInfo03"></span>
+						        <i class="glyphicon glyphicon-plus"></i>
+						        <span>选择图片</span>
+						        <input id="fileupload03" type="file" name="files[]" multiple>
+						    </span>
+						    <div id="files03" class="files"></div>
+							<span id="resultInfo03"></span>
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">面料图片</p>
                              <img id="profabi" src="" alt="" class="img-rounded img-responsive">
                             <span class="btn btn-success fileinput-button" onclick="upfabriciclear()">
-        <i class="glyphicon glyphicon-plus"></i>
-        <span>选择图片</span>
-        <input id="fileupload04" type="file" name="files[]" multiple>
-    </span>
-    <div id="files04" class="files"></div>
-	<span id="resultInfo04"></span>
+						        <i class="glyphicon glyphicon-plus"></i>
+						        <span>选择图片</span>
+						        <input id="fileupload04" type="file" name="files[]" multiple>
+						    </span>
+						    <div id="files04" class="files"></div>
+							<span id="resultInfo04"></span>
+                        </div>
+                        
+                        <div class="col-md-4 img-box">
+                            <p class="title">长图</p>
+                             <img id="prolong" src="" alt="" class="img-rounded img-responsive">
+                            <span class="btn btn-success fileinput-button" onclick="uplongciclear()">
+						        <i class="glyphicon glyphicon-plus"></i>
+						        <span>选择图片</span>
+						        <input id="fileupload05" type="file" name="files[]" multiple>
+						    </span>
+						    <div id="files05" class="files"></div>
+							<span id="resultInfo05"></span>
                         </div>
                     </div>
                 </div>
-                 <div class="form-group col-sm-12 text-center">
+                <div class="form-group col-sm-12 text-center">
                     <button type="submit" class="btn btn-primary" form="upprodt">确定</button>
                 </div>
         </div>

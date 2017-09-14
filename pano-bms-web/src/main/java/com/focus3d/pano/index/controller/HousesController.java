@@ -949,6 +949,13 @@ public class HousesController extends BaseController {
 			    map.put("pageSize",pageSize);
 				List<ProductInfo> list = housesService.QueryProducts(map);
 				
+				for(ProductInfo product : list){
+					Long fullImgSn = product.getFullImgSn();
+					if(fullImgSn!=null){
+						product.setFullImgUrl(fileReadClient.getFile(fullImgSn, FileAttributeEnum.VISIT_ADDR));
+					}
+				}
+				
 				JSONObject json = new JSONObject();
 				json.put("list",list);
 				

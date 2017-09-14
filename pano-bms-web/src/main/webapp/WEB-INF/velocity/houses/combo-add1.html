@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>套餐添加</title>
-    <link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/style/admstatic/css/admin.css">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>套餐添加</title>
+<link href="/style/admstatic/lib/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="/style/admstatic/css/admin.css">
+<script src="/script/tabs.js"></script>
 </head>
 <body>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <span class="glyphicon glyphicon-pencil"></span> 套餐设置
-    </div>
-    <!--div class="panel-body">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-pencil"></span> 套餐设置
+		</div>
+		<!--div class="panel-body">
         <div class="form-horizontal">
             <div class="form-group col-sm-6">
                 <label class="col-sm-4 control-label">楼盘名称</label>
@@ -48,322 +50,337 @@
 
         </div>
     </div-->
-    
-    <div class="combo-title"><span class="glyphicon glyphicon-th-large"></span>产品筛选：</div>
-    <div class="panel-body">
-        <div class="container">
-           <div class="form-inline">
-                <div class="form-group">
-                    <label class="sr-only"></label>
-                    <input type="text" class="form-control" placeholder="产品编号" id ="productid" >
-                </div>
-                <div class="form-group">
-                    <label class="sr-only">风格</label>
-                    <div class="col-sm-8">
-                        <select class="form-control" id="style">
-                        <option value="">不限</option>
-                         #foreach ($!{styles} in $!{style})
-                            <option value="$!{styles.style_sn}">$!{styles.style_name}</option>
-                            #end
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="sr-only">类型</label>
-                    <div class="col-sm-8">
-                        <select class="form-control" id="typepr" >
-                         <option value="">不限</option>
-                             #foreach ($!{types} in $!{type})
-                            <option value="$!{types.type_sn}">$!{types.type_name}</option>
-                            #end
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="sr-only">功能</label>
-                    <div class="col-sm-8">
-                        <select class="form-control" id="func">
-                         <option value="">不限</option>
-                             #foreach ($!{funcs} in $!{func})
-                            <option value="$!{funcs.func_sn}">$!{funcs.func_name}</option>
-                            #end
-                        </select>
-                    </div>
-                </div>
-                <button class="btn btn-primary" onclick="QueryProduct(0)">搜索</button>
-           </div>
-        </div>
-    </div>
-    
-    <div class="panel-body">
-        <form action="/typeproduct/insert"  id="formadd">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>请选择</th>
-                    <th>产品名称</th>
-                    <th>价格</th>
-                    <th>功能</th>
-                    <th>类别</th>
-                    <th>风格</th>
-                    <th width=30%>操作</th>
-                </tr>
-                </thead>
-                <tbody id="product_tbody">
-               
-                </tbody>
-            </table>
-        </form>
-    </div>
 
-    <div class="panel-bodya">
-        <nav class="nav-divider clearfix">
-           <div class="pull-left cof" >
-                <button class="btn btn-info" onclick="insertTypeProduct()">确认</button>
-            </div>
-        <ul class="pagination pull-right">
-            <li>
-                <a onclick="QueryPrePage()" aria-label="Previous">
-                    <span aria-hidden="true">上一页</span>
-                </a></li>
-            <li>
-                <a onclick="QueryNextPage()" aria-label="Next">
-                    <span aria-hidden="true">下一页</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    </div>
-
-
-    <div class="combo-title"><span class="glyphicon glyphicon glyphicon-list"></span>产品列表：</div>
-	
-	<div class="modal fade " id="add" tabindex="-1" role="dialog" aria-labelledby="产品数量">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content modal-width">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title">产品数量</h4>
+		<div class="combo-title">
+			<span class="glyphicon glyphicon-th-large"></span>产品筛选：
+		</div>
+		<div class="panel-body">
+			<div class="container">
+				<div class="form-inline">
+					<div class="form-group">
+						<label class="sr-only"></label> <input type="text"
+							class="form-control" placeholder="产品编号" id="productid">
+					</div>
+					<div class="form-group">
+						<label class="sr-only">风格</label>
+						<div class="col-sm-8">
+							<select class="form-control" id="style">
+								<option value="">不限</option> #foreach ($!{styles} in $!{style})
+								<option value="$!{styles.style_sn}">$!{styles.style_name}</option>
+								#end
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="sr-only">类型</label>
+						<div class="col-sm-8">
+							<select class="form-control" id="typepr">
+								<option value="">不限</option> #foreach ($!{types} in $!{type})
+								<option value="$!{types.type_sn}">$!{types.type_name}</option>
+								#end
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="sr-only">功能</label>
+						<div class="col-sm-8">
+							<select class="form-control" id="func">
+								<option value="">不限</option> #foreach ($!{funcs} in $!{func})
+								<option value="$!{funcs.func_sn}">$!{funcs.func_name}</option>
+								#end
+							</select>
+						</div>
+					</div>
+					<button class="btn btn-primary" onclick="QueryProduct(0)">搜索</button>
 				</div>
-				<div class="modal-body clearfix">
-					<div class="form-horizontal">
-						<div class="form-group">
-							<input type="hidden" id="packageProductSn"/>
-							<label class="col-sm-3 control-label">产品数量</label>
-							<div class="col-sm-9">
-								<input id="productnum" name="productnum" type="text" class="form-control">
+			</div>
+		</div>
+
+		<div class="panel-body">
+			<form action="/typeproduct/insert" id="formadd">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>请选择</th>
+							<th>产品名称</th>
+							<th>价格</th>
+							<th>功能</th>
+							<th>类别</th>
+							<th>风格</th>
+							<th>缩略图</th>
+							<th width=30%>操作</th>
+						</tr>
+					</thead>
+					<tbody id="product_tbody">
+
+					</tbody>
+				</table>
+			</form>
+		</div>
+
+		<div class="panel-bodya">
+			<nav class="nav-divider clearfix">
+				<div class="pull-left cof">
+					<button class="btn btn-info" onclick="insertTypeProduct()">确认</button>
+				</div>
+				<!--  ul class="pagination pull-right">
+					<li><a onclick="QueryPrePage()" aria-label="Previous"> <span
+							aria-hidden="true">上一页</span>
+					</a></li>
+					<li><a onclick="QueryNextPage()" aria-label="Next"> <span
+							aria-hidden="true">下一页</span>
+					</a></li>
+				</ul-->
+				<div id="tab_container" style="float:right;margin-top:18px">
+					
+				</div>
+			</nav>
+		</div>
+
+
+		<div class="combo-title">
+			<span class="glyphicon glyphicon glyphicon-list"></span>产品列表：
+		</div>
+
+		<div class="modal fade " id="add" tabindex="-1" role="dialog"
+			aria-labelledby="产品数量">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content modal-width">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title">产品数量</h4>
+					</div>
+					<div class="modal-body clearfix">
+						<div class="form-horizontal">
+							<div class="form-group">
+								<input type="hidden" id="packageProductSn" /> <label
+									class="col-sm-3 control-label">产品数量</label>
+								<div class="col-sm-9">
+									<input id="productnum" name="productnum" type="text"
+										class="form-control">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button class="btn btn-primary" onclick="saveProductNum()">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade " id="detail" tabindex="-1" role="dialog"
+			aria-labelledby="产品详情">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content modal-width"
+					style="width: 1200px; left: -300px">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title">产品详情</h4>
+					</div>
+					<div class="modal-body clearfix">
+						<div class="form-horizontal">
+							<div class="form-group col-sm-6">
+								<label class="col-sm-4 control-label">产品编号</label>
+								<div class="col-sm-8">
+									<p id="productId" class="form-control-static"></p>
+								</div>
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label class="col-sm-4 control-label">产品名称</label>
+								<div class="col-sm-8">
+									<p id="productName" class="form-control-static"></p>
+								</div>
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label class="col-sm-4 control-label">分类</label>
+								<div class="col-sm-8">
+									<p id="typeName" class="form-control-static"></p>
+								</div>
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label class="col-sm-4 control-label">风格</label>
+								<div class="col-sm-8">
+									<p id="styleName" class="form-control-static"></p>
+								</div>
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label class="col-sm-4 control-label">功能</label>
+								<div class="col-sm-8">
+									<p id="funcName" class="form-control-static"></p>
+								</div>
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label class="col-sm-4 control-label">规格参数</label>
+								<div class="col-sm-8">
+									<p id="productDimension" class="form-control-static"></p>
+								</div>
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label class="col-sm-4 control-label">材质</label>
+								<div class="col-sm-8">
+									<p id="productMaterialName" class="form-control-static"></p>
+								</div>
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label class="col-sm-4 control-label">材质颜色</label>
+								<div class="col-sm-8">
+									<p id="productMaterialColor" class="form-control-static"></p>
+								</div>
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label class="col-sm-4 control-label">面料</label>
+								<div class="col-sm-8">
+									<p id="productFabricName" class="form-control-static"></p>
+								</div>
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label class="col-sm-4 control-label">面料颜色</label>
+								<div class="col-sm-8">
+									<p id="productFabricColor" class="form-control-static"></p>
+								</div>
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label class="col-sm-4 control-label">L/R</label>
+								<div class="col-sm-8">
+									<p id="productLR" class="form-control-static"></p>
+								</div>
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label class="col-sm-4 control-label">L/R圆角</label>
+								<div class="col-sm-8">
+									<p id="productLRRound" class="form-control-static"></p>
+								</div>
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label class="col-sm-4 control-label">厂家</label>
+								<div class="col-sm-8">
+									<p id="venderName" class="form-control-static"></p>
+								</div>
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label class="col-sm-4 control-label">工艺工法</label>
+								<div class="col-sm-8">
+									<p id="productWorkmanShip" class="form-control-static"></p>
+								</div>
+							</div>
+							<div class="form-group col-sm-6">
+								<label class="col-sm-4 control-label">采购价</label>
+								<div class="col-sm-8">
+									<p id="productPrice" class="form-control-static"></p>
+								</div>
+							</div>
+							<div class="form-group col-sm-12">
+								<label class="col-sm-2 control-label">简介</label>
+								<div class="col-sm-10">
+									<p id="productSummary" class="form-control-static"></p>
+								</div>
+							</div>
+							<div class="form-group col-sm-12">
+								<label class="col-sm-2 control-label">图片展示</label>
+								<div class="col-sm-10">
+									<div class="col-md-4 img-box">
+										<p class="title">整体图片（正）</p>
+										<img id="fullImgUrl" src="" alt=""
+											class="img-rounded img-responsive">
+									</div>
+
+									<div class="col-md-4 img-box">
+										<p class="title">整体图片（左）</p>
+										<img id="leftImgUrl" src="" alt=""
+											class="img-rounded img-responsive">
+									</div>
+									<div class="col-md-4 img-box">
+										<p class="title">整体图片（俯）</p>
+										<img id="downImgUrl" src="" alt=""
+											class="img-rounded img-responsive">
+									</div>
+									<div class="col-md-4 img-box">
+										<p class="title">材质图片</p>
+										<img id="materialImgUrl" src="" alt=""
+											class="img-rounded img-responsive">
+									</div>
+									<div class="col-md-4 img-box">
+										<p class="title">面料图片</p>
+										<img id="fabricImgUrl" src="" alt=""
+											class="img-rounded img-responsive">
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button class="btn btn-primary" onclick="saveProductNum()">确定</button>
-				</div>
 			</div>
 		</div>
-	</div>
-	
-	<div class="modal fade " id="detail" tabindex="-1" role="dialog" aria-labelledby="产品详情">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content modal-width" style="width:1200px;left:-300px">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title">产品详情</h4>
-				</div>
-				<div class="modal-body clearfix">
-					<div class="form-horizontal">
-						<div class="form-group col-sm-6">
-		                    <label class="col-sm-4 control-label">产品编号</label>
-		                    <div class="col-sm-8">
-		                        <p id="productId" class="form-control-static"></p>
-		                    </div>
-                		</div>
-                		
-		                <div class="form-group col-sm-6">
-		                    <label class="col-sm-4 control-label">产品名称</label>
-		                    <div class="col-sm-8">
-		                        <p id="productName" class="form-control-static"></p>
-		                    </div>
-		                </div>
-		                
-		                <div class="form-group col-sm-6">
-		                    <label class="col-sm-4 control-label">分类</label>
-		                    <div class="col-sm-8">
-		                        <p id="typeName" class="form-control-static"></p>
-		                    </div>
-		                </div>
-		                
-		                <div class="form-group col-sm-6">
-		                    <label class="col-sm-4 control-label">风格</label>
-		                    <div class="col-sm-8">
-		                        <p id="styleName" class="form-control-static"></p>
-		                    </div>
-		                </div>
-		                
-		                <div class="form-group col-sm-6">
-		                    <label class="col-sm-4 control-label">功能</label>
-		                    <div class="col-sm-8">
-		                        <p id="funcName" class="form-control-static"></p>
-		                    </div>
-		                </div>
-		                
-		                <div class="form-group col-sm-6">
-		                    <label class="col-sm-4 control-label">规格参数</label>
-		                    <div class="col-sm-8">
-		                        <p id="productDimension" class="form-control-static"></p>
-		                    </div>
-		                </div>
-		                
-		                <div class="form-group col-sm-6">
-		                    <label class="col-sm-4 control-label">材质</label>
-		                    <div class="col-sm-8">
-		                        <p id="productMaterialName" class="form-control-static"></p>
-		                    </div>
-		                </div>
-		                
-		                <div class="form-group col-sm-6">
-		                    <label class="col-sm-4 control-label">材质颜色</label>
-		                    <div class="col-sm-8">
-		                        <p id="productMaterialColor" class="form-control-static"></p>
-		                    </div>
-		                </div>
-		                
-		                <div class="form-group col-sm-6">
-		                    <label class="col-sm-4 control-label">面料</label>
-		                    <div class="col-sm-8">
-		                        <p id="productFabricName" class="form-control-static"></p>
-		                    </div>
-		                </div>
-		                
-		                <div class="form-group col-sm-6">
-		                    <label class="col-sm-4 control-label">面料颜色</label>
-		                    <div class="col-sm-8">
-		                        <p id="productFabricColor" class="form-control-static"></p>
-		                    </div>
-		                </div>
-		                
-		                <div class="form-group col-sm-6">
-		                    <label class="col-sm-4 control-label">L/R</label>
-		                    <div class="col-sm-8">
-		                        <p id="productLR" class="form-control-static"></p>
-		                    </div>
-		                </div>
-		                
-		                <div class="form-group col-sm-6">
-		                    <label class="col-sm-4 control-label">L/R圆角</label>
-		                    <div class="col-sm-8">
-		                        <p id="productLRRound" class="form-control-static"></p>
-		                    </div>
-		                </div>
-		                
-						<div class="form-group col-sm-6">
-						   <label class="col-sm-4 control-label">厂家</label>
-						   <div class="col-sm-8">
-						       <p id="venderName" class="form-control-static"></p>
-						   </div>
-						</div>
-              
-						<div class="form-group col-sm-6">
-						   <label class="col-sm-4 control-label">工艺工法</label>
-						   <div class="col-sm-8">
-						       <p id="productWorkmanShip" class="form-control-static"></p>
-						   </div>
-						</div>
-						<div class="form-group col-sm-6">
-						   <label class="col-sm-4 control-label">采购价</label>
-						   <div class="col-sm-8">
-						       <p id="productPrice" class="form-control-static"></p>
-						   </div>
-						</div>
-						<div class="form-group col-sm-12">
-						   <label class="col-sm-2 control-label">简介</label>
-						   <div class="col-sm-10">
-						       <p id="productSummary" class="form-control-static"></p>
-						   </div>
-						</div>
-						<div class="form-group col-sm-12">
-						   	<label class="col-sm-2 control-label">图片展示</label>
-						   	<div class="col-sm-10">
-						       <div class="col-md-4 img-box">
-						           <p class="title">整体图片（正）</p>
-						           <img id="fullImgUrl" src="" alt="" class="img-rounded img-responsive">
-						       </div>
-						       
-						       <div class="col-md-4 img-box">
-						           <p class="title">整体图片（左）</p>
-						           <img id="leftImgUrl" src="" alt="" class="img-rounded img-responsive">
-						       </div>
-						       <div class="col-md-4 img-box">
-						           <p class="title">整体图片（俯）</p>
-						           <img id="downImgUrl" src="" alt="" class="img-rounded img-responsive">
-						       </div>
-						       <div class="col-md-4 img-box">
-						           <p class="title">材质图片</p>
-						           <img id="materialImgUrl" src="" alt="" class="img-rounded img-responsive">
-						       </div>
-						       <div class="col-md-4 img-box">
-						           <p class="title">面料图片</p>
-						           <img id="fabricImgUrl" src="" alt="" class="img-rounded img-responsive">
-						       </div>
-						   </div>
-						</div>
-					</div>
-				</div>
-			</div>
+
+		<div class="panel-body">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>产品名称</th>
+						<th>价格</th>
+						<th>功能</th>
+						<th>类别</th>
+						<th>风格</th>
+						<th>数量</th>
+						<th width=30%>操作</th>
+					</tr>
+				</thead>
+				<tbody id="typeproduct_tbody">
+					#foreach ($!{product} in $!{list})
+					<tr id="$!{product.packageProductSn}">
+						<input type='hidden' value='$!{product.productSn}' />
+						<td>$!{velocityCount}</td>
+						<td>$!{product.productName}</td>
+						<td>$!{product.productPrice}</td>
+						<td>$!{product.funcName}</td>
+						<td>$!{product.typeName}</td>
+						<td>$!{product.styleName}</td>
+						<td>$!{product.productNum}</td>
+						<td>
+							<div class="btn-group btn-group-sm" role="group">
+								<a class="btn btn-danger"
+									onclick="del($!{product.packageProductSn},$!{product.productSn})">删除</a>
+								<a class="btn btn-info"
+									onclick="setNum($!{product.packageProductSn},$!{product.productNum})">设置数量</a>
+							</div>
+						</td>
+					</tr>
+					#end
+				</tbody>
+			</table>
 		</div>
 	</div>
-	
-    <div class="panel-body">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>序号</th>
-                <th>产品名称</th>
-                <th>价格</th>
-                <th>功能</th>
-                <th>类别</th>
-                <th>风格</th>
-                <th>数量</th>
-                <th width=30%>操作</th>
-            </tr>
-            </thead>
-            <tbody id="typeproduct_tbody">
-             #foreach ($!{product} in $!{list})
-            <tr id="$!{product.packageProductSn}">
-               <input type='hidden' value='$!{product.productSn}'/>
-               <td>$!{velocityCount}</td>
-               <td>$!{product.productName}</td>
-               <td>$!{product.productPrice}</td>
-               <td>$!{product.funcName}</td>
-               <td>$!{product.typeName}</td>
-               <td>$!{product.styleName}</td>
-               <td>$!{product.productNum}</td>
-                <td>
-                    <div class="btn-group btn-group-sm" role="group">
-                        <a class="btn btn-danger" onclick="del($!{product.packageProductSn},$!{product.productSn})">删除</a>
-                        <a class="btn btn-info" onclick="setNum($!{product.packageProductSn},$!{product.productNum})">设置数量</a>
-                    </div>
-                </td>
-            </tr>
-            #end
-            </tbody>
-        </table>
-    </div>
-    </div>
 
-<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
-<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
-<script src="/style/admstatic/js/main.js"></script>
-<script src="/style/admstatic/js/format.js"></script>
-<script src="/style/admstatic/js/jquery-1.8.3.min.js"></script>
+	<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
+	<script src="/style/admstatic/js/main.js"></script>
+	<script src="/style/admstatic/js/format.js"></script>
+	<script src="/style/admstatic/js/jquery-1.8.3.min.js"></script>
 
-<script>
+	<script>
+	var tab;
 	var pageSize = 5;
 	var packageTypeSn = '$packageTypeSn';
 	var index;
@@ -420,6 +437,20 @@
 	    });
 	}
 	
+	function QueryPage(index){
+		data.startNum = index*pageSize;
+		$.ajax({url:"/houses/queryAllProducts",
+	        type: "POST",
+	        data:data,
+	        dataType:"json",
+	        success:function(data){
+	            if(data){
+	            	initProductResult(data.list);
+	            }
+	        }
+	    });
+	}
+	
 	function QueryProduct(num){
 		index = 0;
 		total = "";
@@ -439,6 +470,20 @@
 	        success:function(data){
 	            if(data){
 	         		total =  Math.ceil(parseInt(data.total)/parseInt(pageSize))-1;
+	         		
+	         		tab = new Tab();
+	        		tab.setExhibtionNum(5);
+	        		$("#tab_container").empty();
+	        		tab.create($("#tab_container"),{
+	        			total:total,
+	        			autoskip:false,
+	        			method:function(){
+	        				var index = tab.getIndex();
+	        				QueryPage(index);
+	        			}
+	        		});
+	        		tab.setIndex(1);
+	         		
 	            	initProductResult(data.list);
 	            }
 	        }
@@ -466,6 +511,7 @@
             var funcName = $("<td></td>").text(_data.funcName);
             var typeName = $("<td></td>").text(_data.typeName);
             var styleName = $("<td></td>").text(_data.styleName);
+            var thumbnail  = $("<td></td>").append($("<img width='100' height='80'/>").attr("src",_data.fullImgUrl));
             
             var control = $("<td></td>").append($("<div class='btn-group btn-group-sm' role='group'></div>").append($("<a class='btn btn-info'/>").text("查看详情").on("click",function(productSn){
 				return function(){
@@ -473,7 +519,7 @@
 				}
 			}(_data.sn))));
             
-            tr.append(check).append(name).append(price).append(funcName).append(typeName).append(styleName).append(control);
+            tr.append(check).append(name).append(price).append(funcName).append(typeName).append(styleName).append(thumbnail).append(control);
             
             tbody.append(tr);
             

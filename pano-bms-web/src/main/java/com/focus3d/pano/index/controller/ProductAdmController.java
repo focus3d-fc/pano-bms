@@ -14,15 +14,16 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.focus3d.pano.admin.service.IProductAdmService;
 import com.focus3d.pano.admin.utils.PageInfo;
 import com.focus3d.pano.common.controller.BaseController;
-import com.focus3d.pano.model.ProductFeature;
-import com.focus3d.pano.model.ProductClassify;
 import com.focus3d.pano.model.PanoVender;
 import com.focus3d.pano.model.Product;
+import com.focus3d.pano.model.ProductClassify;
+import com.focus3d.pano.model.ProductFeature;
 import com.focus3d.pano.model.ProductInfo;
 import com.focus3d.pano.model.pano_project_style;
 import com.focustech.cief.filemanage.client.api.IFileReadClient;
@@ -47,7 +48,7 @@ public class ProductAdmController extends BaseController{
 
 	//查询列表
 	@RequestMapping("/listproduct")
-	public String listproduct(HttpSession session,Model model,String proid,String productName,String styleSn,String funcSn
+	public String listproduct(HttpSession session, ModelMap model,String proid,String productName,String styleSn,String funcSn
 			,Integer pageNum,Integer pageSize,String ifscfy){
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		
@@ -56,10 +57,10 @@ public class ProductAdmController extends BaseController{
 		 paramMap.put("funcSn", funcSn);
 		 paramMap.put("productName", productName);
 		
-		 model.addAttribute("proid", proid);
-		 model.addAttribute("scStyleSn", styleSn);
-		 model.addAttribute("scFuncSn",funcSn);
-		 model.addAttribute("ifscfy", ifscfy);
+		 model.put("proid", proid);
+		 model.put("scStyleSn", styleSn);
+		 model.put("scFuncSn",funcSn);
+		 model.put("ifscfy", ifscfy);
 		
 		  PageInfo page=new PageInfo();
 		  int allPageSize = productAdmService.countProductInfo(paramMap);
@@ -73,8 +74,9 @@ public class ProductAdmController extends BaseController{
 		   
 		    paramMap.put("startNum", page.getStartRecord());
 		    paramMap.put("pageSize", page.getPerPageInt());
-		 
-		    session.setAttribute("page", page);
+		    
+		    model.put("total", page.getTotalPage());
+		    model.put("current_index",page.getCurrentPage());
 		    List<ProductInfo> productInfoList=null;
 		    List<pano_project_style> proStyleList=null;
 		    List<ProductFeature>  proFuncList=null;
@@ -137,6 +139,7 @@ public class ProductAdmController extends BaseController{
 		String downImgSn1=pro.getDownImgSn1();
 		String materialImgSn1=pro.getMaterialImgSn1();
 		String fabricImgSn1=pro.getFabricImgSn1();
+		String longImgSn1 = pro.getLongImgSn1();
 		try {
 			if(fullImgSn1!=null&&!"".equals(fullImgSn1)){
 			long fimgsn = EncryptUtil.decode(fullImgSn1);
@@ -159,7 +162,12 @@ public class ProductAdmController extends BaseController{
 			if(fabricImgSn1!=null&&!"".equals(fabricImgSn1)){
 				long fbcimgsn = EncryptUtil.decode(fabricImgSn1);
 				pro.setFabricImgSn(fbcimgsn);
-				}
+			}
+			
+			if(longImgSn1!=null&&!"".equals(longImgSn1)){
+				long longimgsn = EncryptUtil.decode(longImgSn1);
+				pro.setLongImgSn(longimgsn);
+			}
 			productAdmService.addProduct(pro);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -234,6 +242,7 @@ public class ProductAdmController extends BaseController{
 		String downImgSn1=pro.getDownImgSn1();
 		String materialImgSn1=pro.getMaterialImgSn1();
 		String fabricImgSn1=pro.getFabricImgSn1();
+		String longImgSn1 = pro.getLongImgSn1();
 		
 		try {
 			if(fullImgSn1!=null&&!"".equals(fullImgSn1)){
@@ -257,13 +266,16 @@ public class ProductAdmController extends BaseController{
 				if(fabricImgSn1!=null&&!"".equals(fabricImgSn1)){
 					long fbcimgsn = EncryptUtil.decode(fabricImgSn1);
 					pro.setFabricImgSn(fbcimgsn);
-					}
+				}
+				if(longImgSn1!=null&&!"".equals(longImgSn1)){
+					long longimgsn = EncryptUtil.decode(longImgSn1);
+					pro.setLongImgSn(longimgsn);
+				}
 			boolean bo=productAdmService.updateProduct(pro);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 		return redirect("/productadm/listproduct");
 		
@@ -292,6 +304,12 @@ public class ProductAdmController extends BaseController{
 			Long downImgSn=prodtInfo.getDownImgSn();
 			Long materialImgSn=prodtInfo.getMaterialImgSn();
 			Long fabricImgSn=prodtInfo.getFabricImgSn();
+			Long longImgSn = prodtInfo.getLongImgSn();
+			
+			if(longImgSn!=null){
+				 String longImgUrl=fileReadClient.getFile(longImgSn, FileAttributeEnum.VISIT_ADDR);
+				 prodtInfo.setLongImgUrl(longImgUrl);
+			}
 			if(fullImgSn!=null){
 			 String fullImgUrl=fileReadClient.getFile(fullImgSn, FileAttributeEnum.VISIT_ADDR);
 			 prodtInfo.setFullImgUrl(fullImgUrl);

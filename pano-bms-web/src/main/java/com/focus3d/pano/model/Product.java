@@ -41,7 +41,8 @@ public class Product implements CommonModel{
 	    private Long materialImgSn;
 	    private String fabricName;
 	    private Long fabricImgSn;
-	    private String color;
+	    private Long longImgSn;
+		private String color;
 	    private String model;
 	    private String capacity;
 	    private String remark;
@@ -68,6 +69,7 @@ public class Product implements CommonModel{
 	    private String addTime1;
 	    private String fullImgSn1;
 	    private String leftImgSn1;
+	    private String longImgSn1;
 	    private String downImgSn1;
 	    private String materialImgSn1;
 	    private String fabricImgSn1;
@@ -253,7 +255,15 @@ public class Product implements CommonModel{
 		public void setSummary(String summary) {
 			this.summary = summary;
 		}
+		
+		public Long getLongImgSn() {
+			return longImgSn;
+		}
 
+		public void setLongImgSn(Long longImgSn) {
+			this.longImgSn = longImgSn;
+		}
+		
 		public Long getLeftImgSn() {
 			return leftImgSn;
 		}
@@ -520,6 +530,14 @@ public class Product implements CommonModel{
 
 		public String getDownImgSn1() {
 			return downImgSn1;
+		}
+
+		public String getLongImgSn1() {
+			return longImgSn1;
+		}
+
+		public void setLongImgSn1(String longImgSn1) {
+			this.longImgSn1 = longImgSn1;
 		}
 
 		public void setDownImgSn1(String downImgSn1) {

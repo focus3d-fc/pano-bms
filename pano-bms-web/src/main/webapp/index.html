@@ -3,14 +3,81 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>后台管理</title>
+<link rel="stylesheet" href="/style/bootstrap.min.css" >
+<link rel="stylesheet" href="/style/admstatic/css/admin.css">
+<link rel="stylesheet" href="/style/bootstrap.min-3.3.5.css">
+<script src="/script/jquery-1.11.1.min.js"></script>
+<script src="/script/bootstrap.min-3.3.5.js"></script>
+<script src="/script/tabs.js"></script>
+
+<style>
+	.tab_container{
+		width:auto;	
+	}
+	.ul_div{float:left;}
+	.ul_div ul{margin:0px;padding:0px;}
+	  
+	.tab_container .pre{
+		height:34px;
+		line-height:34px;
+		text-align:center;
+		width:34px;		
+		float:left;
+		border:1px solid #ddd;
+		border-right:0px;
+		border-radius:4px;
+	}
+	
+	.tab_container .next{
+	    height:34px;
+		line-height:34px;
+		text-align:center;
+		width:34px;		
+		float:left;
+		border:1px solid #ddd;
+		border-left:0px;
+		border-radius:4px;
+	}
+	
+	.tab_container input[type="text"]
+    {
+    	border:1px solid #ddd;
+    	border-radius:4px;
+    	text-align:center;
+    	width:40px;
+    	height:34px;	    
+		line-height:34px;
+		margin-left:10px;
+		margin-right:10px;
+    }
+    
+    .tab_container input[type="button"]
+    {
+    	
+    }
+  
+</style>
+
 <script type="text/javascript">
 	//window.location.href = "/perspective/query?houseStyleSn=1";
 	window.location.href = "/users/lonins";
 	
 	//window.location.href = "/perspective/QueryPerspective?houseStyleSn=1&packageTypeSn=1&productSn=100000";
+	$(function(){
+		var tab = new Tab();
+		tab.setExhibtionNum(5);
+		tab.create($("#container"),{
+			total:2,
+			method:function(){
+				
+			}
+		});
+	})
+	
+	
 </script>
 </head>
-<body>
+<body id="container">
 
 </body>
 </html>

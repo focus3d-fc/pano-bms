@@ -27,6 +27,7 @@ public class ProductInfo implements CommonModel{
 	    private Long leftImgSn;
 	    private Long downImgSn;
 	    private Long fullImgSn;
+	    private Long longImgSn;
 	    private Long bannerImgSn;
 	    private Long typeSn;
 	    private Long funcSn;
@@ -73,6 +74,7 @@ public class ProductInfo implements CommonModel{
 	    private String downImgUrl;
 	    private String materialImgUrl;
 	    private String fabricImgUrl;
+	    private String longImgUrl;
 	    
 	    
 	    private String typeName;
@@ -102,6 +104,26 @@ public class ProductInfo implements CommonModel{
 
 		public void setId(String id) {
 			this.id = id;
+		}
+
+		
+		public Long getLongImgSn() {
+			return longImgSn;
+		}
+
+
+		public void setLongImgSn(Long longImgSn) {
+			this.longImgSn = longImgSn;
+		}
+
+
+		public String getLongImgUrl() {
+			return longImgUrl;
+		}
+
+
+		public void setLongImgUrl(String longImgUrl) {
+			this.longImgUrl = longImgUrl;
 		}
 
 

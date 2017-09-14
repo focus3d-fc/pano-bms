@@ -58,7 +58,7 @@ public class PageInfo implements Serializable {
 		if (currentPage == null) {
 			currentPage = 1;
 		}
-		this.currentPage = currentPage < 1 ? 1 : currentPage;
+		this.currentPage = currentPage <=1 ? 1 : currentPage;
 		calcSplitPage();
 		return this;
 	}
