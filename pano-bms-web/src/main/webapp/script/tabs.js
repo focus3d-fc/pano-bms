@@ -138,9 +138,8 @@ Tab.prototype={
 			//this.body.find("a").first().trigger("click");
 			this.reload(navigation,this.index);
 			this.execute();
-		}else{
-			this.skip_value.val("");
 		}
+		this.skip_value.val("");
 	},
 	execute:function(){
 		$("#"+this.index+">a").trigger("click");
