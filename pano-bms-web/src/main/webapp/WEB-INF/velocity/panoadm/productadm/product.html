@@ -61,7 +61,7 @@
 		//var page = $.parseJSON(value);
 		var tab = new Tab();
 		tab.setExhibtionNum(5);
-		
+		tab.setIndex(current_index);
 		tab.create($("#product-tabs"),{
 			total:total,
 			autoskip:false,
@@ -71,7 +71,7 @@
 			}
 		});
 		
-		tab.setIndex(current_index);
+		
 	})
 
 	function move(pageNum,pageSize){
