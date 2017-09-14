@@ -93,6 +93,10 @@
 			and
 			pano_order.ORDER_NUM=#ORDER_NUM#
 		</isNotEmpty>
+		<isNotEmpty property="PHONE_NUM">
+			and
+			address.MOBILE=#PHONE_NUM#
+		</isNotEmpty>
 	  </dynamic>
 	</select>
 
@@ -192,6 +196,10 @@
 			<isNotEmpty property="ORDER_NUM">
 				and
 				pano_order.ORDER_NUM=#ORDER_NUM#
+			</isNotEmpty>
+			<isNotEmpty property="PHONE_NUM">
+				and
+				address.MOBILE=#PHONE_NUM#
 			</isNotEmpty>
 		  </dynamic>
 		  ORDER BY pano_order.ORDER_TIME DESC

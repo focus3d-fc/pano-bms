@@ -339,14 +339,16 @@
 						remote:{
 							url:"/productadm/validateProductId",
 							type:"post",
+							datatype:"json",
 							data: {
 								productId: function(){return $("#productId").val()}
 							},
-			                dataFilter: function (data, type){
-			                     if (data.info == "0") {
-			                         return false;   
+			                dataFilter:function (data, type){
+			                	var _data = $.parseJSON(data);
+			                     if (_data.info == "0") {
+			                         return true;   
 			                     }else{
-			                         return true;
+			                         return false;
 			                     }
 			                }
 						}
@@ -701,7 +703,7 @@
         </tbody>
     </table>
     <div class="clearfix"/>
-    <div class="nav-divider clearfix" id="product-tabs" style="float:right;height:60px;margin-right:12px">
+    <div class="nav-divider clearfix" id="product-tabs" style="float:right;height:60px;margin-right:12px;">
         <!--  nav class="nav-divider clearfix">
             <ul class="pagination pull-right">
              <li><a href="javascript:void(0)" onclick="move(1,$!page.perPageInt)">首页</a></li>

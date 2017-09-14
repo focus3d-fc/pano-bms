@@ -2,8 +2,8 @@ function Tab(){
 	this.nav;
 	this.body;
 	this.skip_value;
-	this.index;
-	this.navigation;
+	this.index = 1;
+	this.navigation = -1;
 	this.autoskip = true;
 	this.exhibitionNum = 5;
 	this.total = 0;
@@ -15,8 +15,6 @@ Tab.prototype={
 	create:function(container,param){
 		var _this = this;
 		$.extend(this,param);
-		this.navigation = -1;
-		this.index = 1;
 		this.total_navigation = parseInt((this.total - 1)/this.exhibitionNum);
 		this.nav = $("<div></div>").css({
 			"width":"auto"
@@ -74,13 +72,20 @@ Tab.prototype={
 		
 		this.nav.append(pre);
 		this.nav.append($("<div></div>").css({"float":"left"}).append(this.body));
-		this.reload(0);
+		var navigation = parseInt((this.index-1)/this.exhibitionNum);
+		this.reload(navigation,this.index);
 		this.nav.append(next);
 		this.nav.append(this.skip_value).append(skip);
 	},
-	reload:function(navigation){
+	reload:function(navigation,index){
 		if(navigation!=this.navigation){
 			this.navigation = navigation;
+			if(index!=null&&index!=undefined&&index!=""){
+				this.index = index;
+			}else{
+				this.index = this.navigation * this.exhibitionNum + 1;
+			}
+			
 			var _this = this;
 			this.body.empty();
 			var start = this.navigation * this.exhibitionNum + 1;
@@ -91,7 +96,7 @@ Tab.prototype={
 						_this.body.children().each(function(){
 							$(this).removeClass("active");
 						})
-					    $(this).parent().addClass("active");
+						$(this).parent().addClass("active");
 						if(_this.method!=undefined&&_this.method!=null){
 							_this.method();
 						}
@@ -99,6 +104,7 @@ Tab.prototype={
 				}(i));
 				this.body.append($("<li></li>").attr("id",i).append(element));
 			}
+			this.body.find("#"+_this.index).addClass("active");
 		}
 		//this.body.find("a").first().trigger("click");
 	},
@@ -107,17 +113,15 @@ Tab.prototype={
 	},
 	pre:function(){
 		if(this.navigation > 0){
-			--this.navigation;
-			this.index = this.navigation * this.exhibitionNum + 1;
-			this.reload(this.navigation);
+			var navigation = this.navigation - 1;
+			this.reload(navigation,"");
 			this.execute();
 		}
 	},
 	next:function(){
 		if(this.navigation < this.total_navigation){
-			++this.navigation;
-			this.index = this.navigation * this.exhibitionNum + 1;
-			this.reload(this.navigation);
+			var navigation = this.navigation + 1;
+			this.reload(navigation,"");
 			this.execute();
 		}
 	},
@@ -126,22 +130,21 @@ Tab.prototype={
 	},
 	setIndex:function(index){
 		this.index = index;
-		this.body.find("#"+index).addClass("active");
 	},
 	skip:function(index){
-		if(!isNaN(index)&&index<=this.total){
+		if(!isNaN(index)&&parseInt(index)<=this.total){
 			this.index = index;
 			var navigation = parseInt((this.index-1)/this.exhibitionNum);
 			//this.body.find("a").first().trigger("click");
-			this.reload(navigation);
+			this.reload(navigation,this.index);
 			this.execute();
-			//
 		}else{
 			this.skip_value.val("");
 		}
 	},
 	execute:function(){
 		$("#"+this.index+">a").trigger("click");
+		this.body.find("#"+this.index).addClass("active");
 	},
 	setStyle:function(param){
 		this.nav;

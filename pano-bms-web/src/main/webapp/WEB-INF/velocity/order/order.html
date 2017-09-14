@@ -10,6 +10,7 @@
 <link rel="stylesheet"
 	href="/style/admstatic/lib/datetimepicker/bootstrap-datetimepicker.min.css">
 <link rel="stylesheet" href="/style/admstatic/css/admin.css">
+<script src="/script/tabs.js"></script>
 </head>
 <body>
 	<div class="panel panel-default">
@@ -29,6 +30,7 @@
 								#end
 							</select>
 							<input type="text" class="form-control" placeholder="用户姓名" name="NICK_NAME">
+							<input type="text" class="form-control" placeholder="用户手机" name="PHONE_NUM">
 							<input type="text" class="form-control" placeholder="订单编号" name="ORDER_NUM">
 							<button type="submit" class="btn btn-primary">搜索</button>
 						</form>
@@ -71,18 +73,10 @@
 
 			</tbody>
 		</table>
-		<nav aria-label="Page navigation" class="nav-divider">
-			<ul class="pagination pull-right">
-				<li><a href="/order/toOrder?page=$!{upPage}"
-					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-				</a></li> #foreach ($item in [1..$!{pages.totalPages}])
-				<li><a href="/order/toOrder?page=$velocityCount">$velocityCount</a></li>
-				#end
-				<li><a href="/order/toOrder?page=$!{nextPage}"
-					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-				</a></li>
-			</ul>
-		</nav>
+		<div class="clearfix"/>
+    	<div class="nav-divider clearfix" id="tab_container" style="float:right;height:60px;margin-right:12px;margin-top:12px">
+			
+		</div>
 	</div>
 	<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
 	<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
@@ -91,6 +85,40 @@
 	<script
 		src="/style/admstatic/lib/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
 	<script>
+		var ORDER_TIME="";
+		var PROJECT_SN="";
+		var NICK_NAME="";
+		var ORDER_NUM="";
+		var PHONE_NUM="";
+		$(function(){
+			var total = '$!total';
+			var current_index = '$!current_index';
+			ORDER_TIME = '$!ORDER_TIME';
+			PROJECT_SN = '$!PROJECT_SN';
+			NICK_NAME = '$!NICK_NAME';
+			ORDER_NUM = '$!ORDER_NUM';
+			PHONE_NUM = '$!PHONE_NUM';
+			//var page = $.parseJSON(value);
+			if(total!=0){
+				var tab = new Tab();
+				tab.setExhibtionNum(5);
+				
+				tab.setIndex(current_index);
+				tab.create($("#tab_container"),{
+					total:total,
+					autoskip:false,
+					method:function(){
+						var index = tab.getIndex();
+						query(index);
+					}
+				});
+			}
+		})
+	
+		function query(pageNum){
+			  location.href="/order/selOrder?page="+pageNum+"&PROJECT_SN="+PROJECT_SN+"&ORDER_TIME="+ORDER_TIME+"&NICK_NAME="+NICK_NAME+"&ORDER_NUM="+ORDER_NUM+"&PHONE_NUM="+PHONE_NUM;
+		}
+	
 		$('#datetimepicker').datetimepicker({
 			format : "yyyy-mm-dd",
 			autoclose : true,

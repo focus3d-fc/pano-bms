@@ -75,12 +75,9 @@ public class OrderController extends BaseController {
 			upPage = currentPage - 1;
 			nextPage = currentPage + 1;
 		}
-
-		map.put("upPage", upPage);
-		map.put("nextPage", nextPage);
 		int index = (currentPage - 1) * pages.getPagesize();
-		map.put("index", index);
-		map.put("currentPage", currentPage);
+		map.put("total", pages.getTotalPages());
+		map.put("current_index", currentPage);
 
 		List<pano_project> houseList = orderService.selHouse();
 		map.put("houseList", houseList);
@@ -103,7 +100,7 @@ public class OrderController extends BaseController {
 	 * 订单管理-搜索
 	 */
 	@RequestMapping("/selOrder")
-	public String selOrder(String PROJECT_SN, String NICK_NAME,String ORDER_TIME,String page,String ORDER_NUM,ModelMap result) {
+	public String selOrder(String PROJECT_SN, String NICK_NAME,String ORDER_TIME,String page,String ORDER_NUM,String PHONE_NUM,ModelMap result) {
 	   HashMap<String,Object> map = new HashMap<String,Object>();
 		if (!ORDER_TIME.equals("日期")) {
 			map.put("ORDER_TIME",ORDER_TIME);
@@ -113,6 +110,7 @@ public class OrderController extends BaseController {
 		}
 		map.put("NICK_NAME",NICK_NAME);
 		map.put("ORDER_NUM", ORDER_NUM);
+		map.put("PHONE_NUM",PHONE_NUM);
 		
 		int count = 0;
 		int currentPage = 0;
@@ -146,7 +144,14 @@ public class OrderController extends BaseController {
 		map.put("pagesize", pages.getPagesize());
 		List<OrderAdmin> orderList = orderService.selOrderbyAll(map);
 		result.put("orderList", orderList);
-		result.put("pages", pages);
+		result.put("total", pages.getTotalPages());
+		result.put("current_index", currentPage);
+		
+		result.put("ORDER_TIME",ORDER_TIME);
+		result.put("PROJECT_SN",PROJECT_SN);
+		result.put("NICK_NAME",NICK_NAME);
+		result.put("ORDER_NUM", ORDER_NUM);
+		result.put("PHONE_NUM",PHONE_NUM);
 
 		List<pano_project> houseList = orderService.selHouse();
 		result.put("houseList", houseList);
