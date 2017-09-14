@@ -10,6 +10,7 @@
 		<result column="PROVINCE" property="PROVINCE" jdbcType="VARCHAR" />
 		<result column="CITY" property="CITY" jdbcType="VARCHAR" />
 		<result column="AREA" property="AREA" jdbcType="VARCHAR" />
+		<result column="PUBLISH" property="PUBLISH" jdbcType="INT" />
 		<result column="ADDER_SN" property="ADDER_SN" jdbcType="BIGINT" />
 		<result column="ADDER_NAME" property="ADDER_NAME" jdbcType="VARCHAR" />
 		<result column="ADD_TIME" property="ADD_TIME" jdbcType="DATE" />
@@ -21,11 +22,19 @@
 	<select id="getHouses" resultClass="houses"
 		parameterClass="com.focus3d.pano.admin.utils.Page">
 		select
-		SN,`NAME`,PROVINCE,CITY,AREA
+		SN,`NAME`,PROVINCE,CITY,AREA,PUBLISH
 		from pano_project
 		order by ADD_TIME desc
 		limit #startIndex#,#pagesize#
 	</select>
+	
+	<update id="publishHouse" parameterClass="java.util.HashMap">
+		update pano_project
+		set
+		`PUBLISH`=#PUBLISH#
+		where SN =
+		#SN#
+	</update>
 
 	<delete id="delHousesbySN" parameterClass="Long">
 		delete from

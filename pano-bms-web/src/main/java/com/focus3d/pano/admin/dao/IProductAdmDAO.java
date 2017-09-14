@@ -20,4 +20,5 @@ public interface IProductAdmDAO {
 	public List<ProductClassify> listAllProType();
 	public List<ProductFeature> listAllProFunc();
 	public List<pano_project_style> listAllProStyle();
+	public int ValidateProductId(String productId);
 }

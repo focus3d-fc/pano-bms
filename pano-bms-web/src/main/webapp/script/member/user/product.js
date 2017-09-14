@@ -476,4 +476,96 @@ $(data.context.children()[index])
 }).prop('disabled', !$.support.fileInput)
 .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
-    }); 
+ //第六张图上传
+ var uploadButton5 = $('<button/>')
+ .addClass('btn btn-primary')
+ .prop('disabled', true)
+ .text('Processing...')
+ .on('click', function () {
+     var $this = $(this);
+     var data = $this.data();
+     $this.off('click')
+ 		.text('Abort')
+         .on('click', function () {
+             $this.remove();
+             data.abort();
+         });
+     data.submit().always(function () {
+         $this.remove();
+     });
+ });
+ $('#fileupload5').fileupload({
+ url: url,
+ dataType: 'json',
+ autoUpload: false,
+ acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+ maxFileSize: 10485760,
+ // Enable image resizing, except for Android and Opera,
+ // which actually support image resizing, but fail to
+ // send Blob objects via XHR requests:
+ disableImageResize: /Android(?!.*Chrome)|Opera/
+ .test(window.navigator.userAgent),
+ previewMaxWidth: 100,
+ previewMaxHeight: 100,
+ previewCrop: true
+ }).on('fileuploadadd', function (e, data) {
+ $("#files5").children().remove();
+ $('#progress5 .progress-bar').css(
+     'width',
+     0 + '%'
+ );
+
+ data.context = $('<div/>').appendTo('#files5');
+ $.each(data.files, function (index, file) {
+ var node = $('<p/>')
+         .append($('<span/>').text(file.name));
+ if (!index) {
+    /* node.append('<br>')
+         .append(uploadButton.clone(true).data(data));*/
+ }
+ node.appendTo(data.context);
+ });
+ data.submit();
+ }).on('fileuploadprocessalways', function (e, data) {
+ var index = data.index;
+ var file = data.files[index];
+ var node = $(data.context.children()[index]);
+ if (file.preview) {
+ node.prepend('<br>')
+     .prepend(file.preview);
+ }
+ if (file.error) {
+ node.append('<br>')
+     .append($('<span class="text-danger"/>').text(file.error));
+ }
+ /*if (index + 1 === data.files.length) {
+ data.context.find('button')
+     .text('Upload')
+     .prop('disabled', !!data.files.error);
+ }*/
+ }).on('fileuploadprogressall', function (e, data) {
+ var progress = parseInt(data.loaded / data.total * 100, 10);
+ $('#progress5 .progress-bar').css(
+ 'width',
+ progress + '%'
+ );
+ }).on('fileuploaddone', function (e, data) {
+ $("#resultInfo5").text("");
+ var returnJsonAry = data.result;
+ $.each(data.result, function (index, file) {
+ //alert(index + "," + file);
+ var txt = $("#resultInfo5").text();
+    $("#longimgsn").val(txt.substr(1));
+ $("#resultInfo5").text(txt + "," + file);
+ });
+   $("#resultInfo5").text("");
+ }).on('fileuploadfail', function (e, data) {
+ $.each(data.files, function (index) {
+ var error = $('<span class="text-danger"/>').text('File upload failed.');
+ $(data.context.children()[index])
+     .append('<br>')
+     .append(error);
+ });
+ }).prop('disabled', !$.support.fileInput)
+ .parent().addClass($.support.fileInput ? undefined : 'disabled');
+}); 

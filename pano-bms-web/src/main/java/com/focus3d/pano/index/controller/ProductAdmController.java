@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.sf.json.JSONObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,13 +47,14 @@ public class ProductAdmController extends BaseController{
 
 	//查询列表
 	@RequestMapping("/listproduct")
-	public String listproduct(HttpSession session,Model model,String proid,String styleSn,String funcSn
+	public String listproduct(HttpSession session,Model model,String proid,String productName,String styleSn,String funcSn
 			,Integer pageNum,Integer pageSize,String ifscfy){
 		Map<String,Object> paramMap=new HashMap<String,Object>();
 		
 		 paramMap.put("id", proid);
 		 paramMap.put("styleSn", styleSn);
 		 paramMap.put("funcSn", funcSn);
+		 paramMap.put("productName", productName);
 		
 		 model.addAttribute("proid", proid);
 		 model.addAttribute("scStyleSn", styleSn);
@@ -101,7 +104,20 @@ public class ProductAdmController extends BaseController{
 		   return "/panoadm/productadm/product";
 	}
 	
-	
+	@RequestMapping("/validateProductId")
+	public void ValidateProductId(HttpServletResponse response,String productId){
+		try{
+			
+			int value = productAdmService.ValidateProductId(productId);
+			
+			JSONObject json = new JSONObject();
+			json.put("info", value);
+			ajaxOutput(response, json.toString());
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
+	}
 	
 	@RequestMapping("/preaddpro")
 	public String preaddpro(){

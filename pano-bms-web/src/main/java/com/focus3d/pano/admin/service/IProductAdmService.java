@@ -24,4 +24,5 @@ public interface IProductAdmService {
 	public List<ProductFeature> listAllProFunc();
 	public List<pano_project_style> listAllProStyle();
 	public List<PanoVender> listAllVender();
+	public int ValidateProductId(String productId);
 }

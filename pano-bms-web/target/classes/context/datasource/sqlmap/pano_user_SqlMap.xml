@@ -9,8 +9,11 @@
  </select>
  <!--  -->
  <!-- 查询角色start -->
- <select id="selectRole_name" resultClass="string">
- select role_name from pano_bm_role
+ <select id="selectRole_name" resultClass="java.util.HashMap">
+ 	SELECT 
+		pano_bm_role.sn AS roleSn,
+		pano_bm_role.`ROLE_NAME` AS roleName
+    FROM pano_bm_role
  </select>
  <!-- 查询角色end -->
  <!-- 分页部分 -->
@@ -47,7 +50,7 @@ limit #startIndex#,#pagesize# -->
  
  <!-- 分页部分end -->
  <!-- 根据身份证查询是否已注册 -->
- <select id="selectUserByCert_no" parameterClass="string" resultClass="com.focus3d.pano.model.User">
+ <select id="selectUserByCert_no" parameterClass="java.lang.Long" resultClass="com.focus3d.pano.model.User">
 SELECT
 pano_bm_user.SN as id,
 pano_bm_user.NICK_NAME,
@@ -58,11 +61,12 @@ pano_bm_user.EMAIL,
 pano_bm_user.cert_no,
 pano_bm_user.sex,
 pano_bm_user.ROLE_SN,
+pano_bm_user.PASSWORD,
 pano_bm_role.ROLE_NAME
 FROM
 pano_bm_role
 INNER JOIN pano_bm_user ON pano_bm_user.ROLE_SN = pano_bm_role.SN
-where cert_no=#cert_no#
+where pano_bm_user.sn=#user_sn#
  </select>
 <select id="selectUserByCert_no_EB" parameterClass="string" resultClass="com.focus3d.pano.model.User">
 select cert_no from where cert_no=#cert_no#
@@ -127,13 +131,16 @@ INNER JOIN pano_bm_user ON pano_bm_user.cert_no = pano_bm_login.CERT_NO
  </select>
  <!-- 修改用户表信息 -->
  <update id="updateUserByCert_no" parameterClass="user">
- update pano_bm_user set 
+ update pano_bm_user set
+ password=#password#,
  nick_name=#nick_name#,
- city=#city#,
+ name=#name#,
  mobile=#mobile#,
  email=#email#,
- role_sn=#role_sn#
- where cert_no=#cert_no#
+ role_sn=#role_sn#,
+ cert_no=#cert_no#,
+ sex=#sex#
+ where pano_bm_user.sn=#id#
  </update>
  <!-- 根据user_sn修改用户角色表role_sn -->
  <update id="updateRole_snByUser_sn" parameterClass="com.focus3d.pano.model.User_Role">
@@ -192,6 +199,10 @@ pano_bm_user
  <update id="update_allocateSpace" parameterClass="user">
  	UPDATE `pano_bm_user` SET IS_ALLOCATE_SPACE = 1 WHERE sn = #id#
  </update>
+ 
+ <delete id="deleteUser" parameterClass="java.lang.Long">
+ 	DELETE FROM pano_bm_user WHERE pano_bm_user.`SN` = #UserSn#
+ </delete>
  
 </sqlMap>
 

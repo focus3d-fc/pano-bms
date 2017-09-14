@@ -96,5 +96,10 @@ public class ProductAdmServiceImpl implements IProductAdmService{
 	@Override
 	public List<PanoVender> listAllVender() {
 		return panoProductFuncDAO.getBasics2();
-	} 
+	}
+	
+	@Override
+	public int ValidateProductId(String productId){
+		return productAdmDAO.ValidateProductId(productId);
+	}
 }

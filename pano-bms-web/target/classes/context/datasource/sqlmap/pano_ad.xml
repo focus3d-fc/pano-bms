@@ -29,7 +29,7 @@
 
 	<select id="getHouseadbySN" resultClass="ads" parameterClass="Long">
 		select
-		SN,`NAME`,LINK
+		SN,`NAME`,LINK,IMG_SN
 		from
 		pano_ad
 		where SN = #SN#

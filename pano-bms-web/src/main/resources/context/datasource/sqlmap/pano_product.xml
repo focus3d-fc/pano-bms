@@ -104,7 +104,8 @@
          ON p.STYLE_SN = ps.sn 
        LEFT JOIN pano_project_vender vender 
          ON vender.sn = p.vendername 
- <dynamic prepend="WHERE ">      
+ <dynamic prepend="WHERE ">
+    <isNotEmpty prepend="AND" property="productName"> p.name like concat('%',#productName#,'%')</isNotEmpty>    
     <isNotEmpty prepend="AND" property="id"> p.id like concat('%',#id#,'%')</isNotEmpty>  
     <isNotEmpty prepend="AND" property="styleSn"> p.style_sn = #styleSn#</isNotEmpty>  
     <isNotEmpty prepend="AND" property="funcSn"> p.func_sn = #funcSn#</isNotEmpty> 
@@ -121,6 +122,11 @@
 	<select id="countProductInfo" resultClass="java.lang.Integer">
 	  select count(*) cn from  (<include refid="proBaseSql"/>) p
 	
+	</select>
+	
+	<select id="validate" parameterClass="java.lang.String" resultClass="java.lang.Integer">
+		select count(*) from pano_product
+		where pano_product.ID = #productId#
 	</select>
 	
 	<select id="getAllProductInfo"  resultClass="productInfo" parameterClass="java.util.Map">

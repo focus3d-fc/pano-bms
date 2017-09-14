@@ -113,5 +113,11 @@ public class ProductAdmDAOImpl extends BaseDao implements IProductAdmDAO{
 		return prosTyleList;
 	}
 	
+	@Override
+	public int ValidateProductId(String productId){
+		Integer value = (Integer)getSqlMapClientTemplate().queryForObject("pano_product.validate",productId);
+		return value.intValue();
+	}
+	
 	
 }

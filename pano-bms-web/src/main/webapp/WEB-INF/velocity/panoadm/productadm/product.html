@@ -48,6 +48,9 @@
    p{
     word-wrap:break-word;
   }
+  
+#preview{position:absolute;border:1px solid #ccc;background:#333;padding:5px;display:none;color:#fff;}
+</style>
 </style>
 <script type="text/javascript">
 function move(pageNum,pageSize){
@@ -115,6 +118,11 @@ function move(pageNum,pageSize){
     	$("#files4").text("");
     	$("#fbcimgsn").val("");
     }
+    
+    function longimgclear(){
+    	$("#files5").text("");
+    	$("#longimgsn").val("");
+    }
 
     function upfulliclear(){
     	$("#files0").text("");
@@ -141,9 +149,13 @@ function move(pageNum,pageSize){
     	$("#fbcimgsn01").val("");
     	$("#profabi").attr("src","");
     }
-
     
-     function updatepro(productsn){
+    function uplongimgclear(){
+    	$("#files5").text("");
+    	$("#longimgsn").val("");
+    }
+    
+    function updatepro(productsn){
     	// $('form').attr('action','/productadm/updateproduct');
     //切换修改对象，清掉之前的选择
    // alert(productsn);
@@ -285,7 +297,7 @@ function move(pageNum,pageSize){
 	 //搜索回显
   	 var p='$!proid';
    	
-   	$("#scproid").val(p);  
+   	$("#scproid").val(p);
 	  
    	var st='$!scStyleSn';
 	    	var fc='$!scFuncSn';
@@ -306,7 +318,21 @@ function move(pageNum,pageSize){
 	    	$("#register").validate({
 				rules : {
 					id : {
-						required : true
+						required : true,
+						remote:{
+							url:"/productadm/validateProductId",
+							type:"post",
+							data: {
+								productId: function(){return $("#productId").val()}
+							},
+			                dataFilter: function (data, type){
+			                     if (data.info == "0") {
+			                         return true;   
+			                     }else{
+			                         return false;
+			                     }
+			                }
+						}
 					},
 					name:{
 						required:true,
@@ -362,7 +388,8 @@ function move(pageNum,pageSize){
 				},
 				messages : {
 					id : {
-						required:"*必填！"
+						required:"*必填！",
+						remote:"编号已存在"
 					},
 				    name:{
 					    required:"*必填！"
@@ -568,7 +595,19 @@ function move(pageNum,pageSize){
 	$.validator.addMethod("checkSummary", function(value, element) {
 		 var checkSummary =/[\s\S]{1,500}$/;  
 	      return this.optional(element)||(checkSummary.test(value));  
-	  },"*输入字符超出500字符限制！"); 
+	  },"*输入字符超出500字符限制！");
+	
+	var thumbnail;
+	xOffset = 10;
+	yOffset = 30;
+	function Exhibtion(e,url){
+		$("body").append("<div id='preview'><img src='"+ url +"' /></div>");								 
+		$("#preview").css("top",(e.clientY + document.body.scrollTop - xOffset) + "px").css("left",(e.clientX + yOffset) + "px").fadeIn("fast");						
+	}
+	
+	function Hide(){
+		$("#preview").remove();
+	}
 </script>
 <!-- <script src="/script/member/user/product.js"></script> -->
 </head>
@@ -584,6 +623,10 @@ function move(pageNum,pageSize){
                 <div class="col-sm-8">
                     <form class="form-inline" method="post" action="/productadm/listproduct">
                         <input type="hidden" name="ifscfy" value="true"/>
+                         <div class="form-group">
+                            <label class="sr-only"></label>
+                            <input id="productName" type="text" class="form-control" placeholder="产品名称" name="productName">
+                        </div>
                         <div class="form-group">
                             <label class="sr-only"></label>
                             <input id="scproid" type="text" class="form-control" placeholder="产品编号" name="proid">
@@ -623,7 +666,8 @@ function move(pageNum,pageSize){
         <thead>
         <tr>
             <th>序号</th>
-            <th>产品编号</th>
+            <th>编号</th>
+            <th>名称</th>
             <th>分类</th>
             <th>风格</th>
             <th>功能</th>
@@ -632,8 +676,7 @@ function move(pageNum,pageSize){
         </thead>
         <tbody>
          #foreach( $!prodt in $!productInfoList)
-        <tr>
-           
+        <tr onmouseover="Exhibtion(event,'$!fs.url($!prodt.fullImgSn)')" onmouseout="Hide()">
             <td>#set($epgcount=$!page.perPageInt)
         		#set($p1=$!page.currentPage - 1)
 		        #set($no=$velocityCount)
@@ -641,9 +684,11 @@ function move(pageNum,pageSize){
 		       ${num}
             </td>
             <td>$!prodt.id</td>
+            <td>$!prodt.name</td>
             <td>$!prodt.typeName</td>
             <td>$!prodt.styleName</td>
             <td>$!prodt.funcName</td>
+           
             <td>
                 <div class="btn-group btn-group-sm" role="group">
                     <a href="#detail" class="btn btn-success" data-toggle="tab" onclick="getdetail($!prodt.sn)">查看</a>
@@ -833,7 +878,7 @@ function move(pageNum,pageSize){
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">产品编号</label>
                     <div class="col-sm-8">
-                        <input  type="text" class="form-control" name="id" placeholder="产品编号">
+                        <input  id="productId" type="text" class="form-control" name="id" placeholder="产品编号">
                     </div>
                 </div>
                
@@ -951,61 +996,74 @@ function move(pageNum,pageSize){
                 <input id="downimgsn" type="hidden" name="downImgSn1"/>
                 <input id="mtimgsn" type="hidden" name="materialImgSn1"/>
                 <input id="fbcimgsn" type="hidden" name="fabricImgSn1"/>
+                <input id="longimgsn" type="hidden" name="longimgsn"/>
             </form>
             <div class="form-group col-sm-12">
-                    <label class="col-sm-2 control-label">图片展示</label>
+            	<label class="col-sm-2 control-label">图片展示</label>
                     <div class="col-sm-10">
-                    
                         <div class="col-md-4 img-box">
                             <p class="title">整体图片（正）</p>
-                          <span class="btn btn-success fileinput-button" onclick="fulliclear()">
-        <i class="glyphicon glyphicon-plus"></i>
-        <span>选择图片</span>
-        <input id="fileupload" type="file" name="files[]" multiple>
-    </span>
-    <div id="files" class="files"></div>
-	<span id="resultInfo"></span> 
+                          	<span class="btn btn-success fileinput-button" onclick="fulliclear()">
+	        					<i class="glyphicon glyphicon-plus"></i>
+	        					<span>选择图片</span>
+	        					<input id="fileupload" type="file" name="files[]" multiple>
+    						</span>
+    						<div id="files" class="files"></div>
+							<span id="resultInfo"></span> 
                         </div>
                            
                         <div class="col-md-4 img-box">
                             <p class="title">整体图片（左）</p>
-                           <span class="btn btn-success fileinput-button" onclick="lefticlear()">
-        <i class="glyphicon glyphicon-plus"></i>
-        <span>选择图片</span>
-        <input id="fileupload1" type="file" name="files[]" multiple>
-    </span>
-    <div id="files1" class="files"></div>
-	<span id="resultInfo1"></span> 
+                           	<span class="btn btn-success fileinput-button" onclick="lefticlear()">
+						        <i class="glyphicon glyphicon-plus"></i>
+						        <span>选择图片</span>
+						        <input id="fileupload1" type="file" name="files[]" multiple>
+						    </span>
+						    <div id="files1" class="files"></div>
+							<span id="resultInfo1"></span> 
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">整体图片（俯）</p>
-                             <span class="btn btn-success fileinput-button" onclick="downiclear()">
-        <i class="glyphicon glyphicon-plus"></i>
-        <span>选择图片</span>
-        <input id="fileupload2" type="file" name="files[]" multiple>
-    </span>
-    <div id="files2" class="files"></div>
-	<span id="resultInfo2"></span>
+                            <span class="btn btn-success fileinput-button" onclick="downiclear()">
+						        <i class="glyphicon glyphicon-plus"></i>
+						        <span>选择图片</span>
+						        <input id="fileupload2" type="file" name="files[]" multiple>
+						    </span>
+						    <div id="files2" class="files"></div>
+							<span id="resultInfo2"></span>
                         </div>
+                        
                         <div class="col-md-4 img-box">
                             <p class="title">材质图片</p>
-                           <span class="btn btn-success fileinput-button" onclick="matericlear()">
-        <i class="glyphicon glyphicon-plus"></i>
-        <span>选择图片</span>
-        <input id="fileupload3" type="file" name="files[]" multiple>
-    </span>
-    <div id="files3" class="files"></div>
-	<span id="resultInfo3"></span>
+                           	<span class="btn btn-success fileinput-button" onclick="matericlear()">
+						        <i class="glyphicon glyphicon-plus"></i>
+						        <span>选择图片</span>
+						        <input id="fileupload3" type="file" name="files[]" multiple>
+						    </span>
+						    <div id="files3" class="files"></div>
+							<span id="resultInfo3"></span>
                         </div>
+                        
                         <div class="col-md-4 img-box">
                             <p class="title">面料图片</p>
                             <span class="btn btn-success fileinput-button" onclick="fabriciclear()">
-        <i class="glyphicon glyphicon-plus"></i>
-        <span>选择图片</span>
-        <input id="fileupload4" type="file" name="files[]" multiple>
-    </span>
-    <div id="files4" class="files"></div>
-	<span id="resultInfo4"></span>
+						        <i class="glyphicon glyphicon-plus"></i>
+						        <span>选择图片</span>
+						        <input id="fileupload4" type="file" name="files[]" multiple>
+						    </span>
+						    <div id="files4" class="files"></div>
+							<span id="resultInfo4"></span>
+                        </div>
+                        
+                        <div class="col-md-4 img-box">
+                            <p class="title">长图</p>
+                            <span class="btn btn-success fileinput-button" onclick="longimgclear()">
+						        <i class="glyphicon glyphicon-plus"></i>
+						        <span>选择图片</span>
+						        <input id="fileupload5" type="file" name="files[]" multiple>
+						    </span>
+						    <div id="files5" class="files"></div>
+							<span id="resultInfo5"></span>
                         </div>
                     </div>
                       
