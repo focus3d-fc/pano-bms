@@ -219,6 +219,28 @@ LEFT JOIN pano_project_base_style ps on p.STYLE_SN=ps.sn LEFT JOIN pano_project_
       This element was generated on Tue Jul 25 11:02:32 CST 2017.
     -->
     update pano_product
+    set
+    ID = #id:VARCHAR#,
+    NAME=#name:VARCHAR#
+    BRAND=#brand:VARCHAR#
+    PRICE=#price:VARCHAR#
+    STATUS=#status:INTEGER#
+    SUMMARY = #summary:VARCHAR#
+    LEFT_IMG_SN = #leftImgSn:BIGINT#
+    DOWN_IMG_SN = #downImgSn:BIGINT# 
+    FULL_IMG_SN = #fullImgSn:BIGINT#
+    BANNER_IMG_SN = #bannerImgSn:BIGINT# 
+    TYPE_SN = #typeSn:BIGINT# 
+    FUNC_SN = #funcSn:BIGINT#
+    SPACE_SN = #spaceSn:BIGINT#
+    STYLE_SN = #styleSn:BIGINT# 
+    LENGTH = #length:INTEGER#
+    WIDE = #wide:INTEGER#
+    HEIGHT = #height:INTEGER#
+    MATERIAL_NAME = #materialName:VARCHAR# 
+    MATERIAL_IMG_SN = #materialImgSn:BIGINT# 
+    
+    
     <dynamic prepend="SET "> 
     <isNotEmpty property="id" prepend=","><![CDATA[ ID = #id:VARCHAR# ]]></isNotEmpty>
     <isNotEmpty property="name" prepend=","><![CDATA[ NAME=#name:VARCHAR# ]]></isNotEmpty>    
@@ -241,7 +263,7 @@ LEFT JOIN pano_project_base_style ps on p.STYLE_SN=ps.sn LEFT JOIN pano_project_
     <isNotEmpty property="materialImgSn" prepend=","><![CDATA[ MATERIAL_IMG_SN = #materialImgSn:BIGINT# ]]></isNotEmpty>   
     <isNotEmpty property="fabricName" prepend=","><![CDATA[ FABRIC_NAME = #fabricName:VARCHAR# ]]></isNotEmpty> 
     <isNotEmpty property="fabricImgSn" prepend=","><![CDATA[ FABRIC_IMG_SN = #fabricImgSn:BIGINT# ]]></isNotEmpty> 
-     <isNotEmpty property="longImgSn" prepend=","><![CDATA[ LONG_IMG_SN = #longImgSn:BIGINT# ]]></isNotEmpty> 
+    <isNotEmpty property="longImgSn" prepend=","><![CDATA[ LONG_IMG_SN = #longImgSn:BIGINT# ]]></isNotEmpty> 
     <isNotEmpty property="color" prepend=","><![CDATA[ COLOR = #color:VARCHAR# ]]></isNotEmpty> 
     <isNotEmpty property="model" prepend=","><![CDATA[ MODEL = #model:VARCHAR# ]]></isNotEmpty> 
     <isNotEmpty property="capacity" prepend=","><![CDATA[ CAPACITY = #capacity:VARCHAR# ]]></isNotEmpty> 

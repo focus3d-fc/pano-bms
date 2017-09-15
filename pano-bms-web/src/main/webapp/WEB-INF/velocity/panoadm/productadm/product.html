@@ -180,17 +180,12 @@
     //切换修改对象，清掉之前的选择
    // alert(productsn);
     	$("#files0").text("");
-    	$("#fullimgsn01").val("");
     	$("#files01").text("");
-    	$("#leftimgsn01").val("");
     	$("#files02").text("");
-    	$("#downimgsn01").val("");
     	$("#files03").text("");
-    	$("#mtimgsn01").val("");
     	$("#files04").text("");
-    	$("#fbcimgsn01").val("");
     	$("#files05").text("");
-    	$("#longimgsn01").val("");
+    	
     	
     	$.ajax({
     		url:"/productadm/getproductdetail",
@@ -199,9 +194,14 @@
     	    datatype:"json",
     	    success:function(data){
     	    	var jsonobj=JSON.parse(data);
-    	    	//alert(jsonobj.updateTime1);
-    	    	//alert(jsonobj.typeSn);
-    	    	//alert(jsonobj.venderName);
+    	    	
+    	    	$("#fullimgsn01").val(jsonobj.fullImg);
+    	    	$("#leftimgsn01").val(jsonobj.leftImg);
+    	    	$("#downimgsn01").val(jsonobj.downImg);
+    	    	$("#mtimgsn01").val(jsonobj.materialImg);
+    	    	$("#fbcimgsn01").val(jsonobj.fabricImg);
+    	    	$("#longimgsn01").val(jsonobj.longImg);
+    	    	
     	    	var tpsn=jsonobj.typeSn;
     	    	var st=jsonobj.styleSn;
     	    	var fc=jsonobj.funcSn;
