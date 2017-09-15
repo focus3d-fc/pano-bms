@@ -163,6 +163,9 @@ public interface HousesService {
 	
 	public void QueryAllPackage();
 	
+	//查询套餐细节
+	public List<HashMap<String,Object>>  QueryPackageDetail(String packageSn);
+	
 	public List<Map<String,Object>> QueryHouseStylePackage(PanoProjectPackageStyle panoProjectPackageStyle);
 	
 	public List<Map<String,Object>> QueryHouseStylePacakgeType(Long housePackageSn);

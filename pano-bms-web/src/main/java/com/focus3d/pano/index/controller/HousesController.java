@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONArray;
 import com.focus3d.pano.admin.service.HousesService;
 import com.focus3d.pano.admin.service.IProductAdmService;
 import com.focus3d.pano.admin.service.PackageTypeService;
@@ -883,11 +884,31 @@ public class HousesController extends BaseController {
 	
 	@RequestMapping("/queryPackageDetail")
 	public void queryPackageDetail(HttpServletResponse response,String sn) {
-		
 		try{
-			JSONObject json = new JSONObject();
-			json.put("info", "success");
-			ajaxOutput(response, json.toString());
+			JSONObject result = new JSONObject();
+			List<HashMap<String,Object>> list = housesService.QueryPackageDetail(sn);
+			
+			for(HashMap<String,Object> map:list){
+					String type_key = map.get("typeSn").toString();
+					JSONObject child;
+					if(result.containsKey(type_key)){
+						child = result.getJSONObject(type_key);
+						if(child.containsKey("alternative")){
+							String value = child.getString("alternative");
+							value += ","+map.get("productName").toString()+"*"+map.get("productNum").toString();
+							child.put("alternative", value);
+						}else{
+							child.put("alternative", map.get("productName").toString()+"*"+map.get("productNum").toString());
+						}
+					}else{
+						child = new JSONObject();
+						child.put("typeName", map.get("typeName"));
+						child.put("first", map.get("productName").toString()+"*"+map.get("productNum").toString());
+						result.put(type_key,child);
+					}
+			}
+			
+			ajaxOutput(response, result.toString());
 		}catch(IOException e){
 			e.printStackTrace();
 		}

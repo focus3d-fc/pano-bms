@@ -160,10 +160,10 @@ public interface HousesDAO {
 	public List<Map<String,Object>>  QueryHouseStylePackage(PanoProjectPackageStyle panoProjectPackageStyle);
 	
 	//查询套餐细节
-	public List<Map<String,Object>>  QueryPackageDetail(Long packageSn);
+	public List<HashMap<String,Object>>  QueryPackageDetail(String packageSn);
 	
 	//查询特定户型套餐的分类
-	//public List<Map<String,Object>> QueryHouseStylePacakgeType(Long housePackageSn);
+	public List<Map<String,Object>> QueryHouseStylePacakgeType(Long housePackageSn);
 	
 	//查询户型所有空间
 	public List<Map<String,Object>> QueryTypeSurplusSpace(Long houseSn);

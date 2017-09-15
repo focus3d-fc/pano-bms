@@ -356,4 +356,10 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 		// TODO Auto-generated method stub
 		getSqlMapClientTemplate().update("pano_project.publishHouse",map);
 	}
+
+	@Override
+	public List<HashMap<String, Object>> QueryPackageDetail(String packageSn) {
+		List<HashMap<String, Object>> list = getSqlMapClientTemplate().queryForList("pano_project_package.queryPckageDetail",packageSn);
+		return list;
+	}
 }

@@ -63,7 +63,8 @@
 					</div>
 				</div>
 				<div class="form-group col-sm-2">
-					<button class="btn btn-info" data-toggle="modal" onclick="QueryAllPackage()">增加套餐</button>
+					<button class="btn btn-info" data-toggle="modal"
+						onclick="QueryAllPackage()">增加套餐</button>
 				</div>
 			</div>
 			<table class="table table-hover">
@@ -82,24 +83,30 @@
 				<tbody id="package_tbody">
 					#foreach ($!{list} in $!{lists})
 					<tr>
-						<input type="hidden" value="$!{list.packageSn}"/>
+						<input type="hidden" value="$!{list.packageSn}" />
 						<td>$!{list.sn}</td>
 						<td>$!{list.packagePrice}</td>
 						<td>
-                        <div class="img">
-						<img class="img-sho" src="$!fs.url($!list.imgSn)"  width="100" height ="80">
-						</div>
-                        </td>
+							<div class="img">
+								<img class="img-sho" src="$!fs.url($!list.imgSn)" width="100"
+									height="80">
+							</div>
+						</td>
 						<td>$!{list.projectName}</td>
 						<td>$!{list.houseName}</td>
 						<td>$!{list.styleName}</td>
 						<td>$!{list.packageName}</td>
 						<td>
 							<div class="btn-group btn-group-sm" role="group">
-							<button class="btn btn-info" data-toggle="modal" data-target="#app" onclick="queryDetail('$!{list.sn}')">套餐详情</button>
-							<button class="btn btn-info" data-toggle="modal" data-target="#app" onclick="addform('$!{list.sn}','$!{list.packagePrice}','$!{list.discountPrice}','$!fs.url($!list.imgSn)','$!{list.imgSn}')">套餐设置</button>
-							<a class="btn btn-info" href="/type/selectList?housepackagesn=$!{list.sn}&house_sn=$!{list.houseSn}" >设置分类</a> 
-							<a href="/houses/delete?id2=$!{list.sn}" class="btn btn-danger" onClick="del()">删除</a>
+								<button class="btn btn-info" data-toggle="modal"
+									data-target="#detail" onclick="queryDetail('$!{list.sn}')">套餐详情</button>
+								<button class="btn btn-info" data-toggle="modal"
+									data-target="#app"
+									onclick="addform('$!{list.sn}','$!{list.packagePrice}','$!{list.discountPrice}','$!fs.url($!list.imgSn)','$!{list.imgSn}')">套餐设置</button>
+								<a class="btn btn-info"
+									href="/type/selectList?housepackagesn=$!{list.sn}&house_sn=$!{list.houseSn}">设置分类</a>
+								<a href="/houses/delete?id2=$!{list.sn}" class="btn btn-danger"
+									onClick="del()">删除</a>
 							</div>
 						</td>
 					</tr>
@@ -126,200 +133,263 @@
 					<h4 class="modal-title">添加套餐</h4>
 				</div>
 				<div class="modal-body clearfix">
-					<div class="form-horizontal" id="formadd" >
+					<div class="form-horizontal" id="formadd">
 						<div class="form-group">
 							<label class="col-sm-3 control-label">新增套餐</label>
 							<div class="col-sm-9"></div>
-							<div id="package">
-							
-							</div>
-							<input type='hidden' value="$!{STYLE_SN},$!{HOUSE_SN},$!{PROJECT_SN}" id="param">
+							<div id="package"></div>
+							<input type='hidden'
+								value="$!{STYLE_SN},$!{HOUSE_SN},$!{PROJECT_SN}" id="param">
 
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button  class="btn btn-primary" onclick="insert()">确定</button>
+					<button class="btn btn-primary" onclick="insert()">确定</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-<div class="modal fade " id="app" tabindex="-1" role="dialog" aria-labelledby="添加/修改">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content modal-width">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">添加/修改</h4>
-            </div>
-            <div class="modal-body clearfix">
-                <form class="form-horizontal" method="post" id="formad" >
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">套餐价格</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="discount_price" id="discount_price">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">折扣价格</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="price" id="price">
-                        </div>
-                    </div>
-                    
-                    <div class="input-group">
-                    	<input id="fullimgsn" type="hidden" name="fullImgSn" />
-		                <img id="view_pic" style="width:460px;height:300px;border:1px solid #ddd;display:block;margin:0 auto;"/>
-		                <div class="clearfix"></div>
-		
-		                <div style="margin-top:-190px;margin-left:200px;display:block;position:relative;">
-		                    <span class="btn btn-success fileinput-button" >
-		                        <i class="glyphicon glyphicon-plus"></i>
-		                        <span>Add files...</span>
-		                        <!-- The file input field used as target for the file upload widget -->
-		                        <input id="fileupload" type="file" multiple>
-		                    </span>
-		                </div>
-		
-		                <div class="input-group">
-		                    <div id="progress" class="progress" style="width:460px;height:20px;margin-top:135px;">
-		                        <div class="progress-bar progress-bar-success"></div>
-		                    </div>
-		
-		                    <div id="files" class="files">
-		                    
-		                    </div>
-		                </div>
-		
-		                <div class="clearfix"></div>
-		
-		                <span style="margin:0 auto;display:block;text-align: center; margin-top:-158px;position:relative">
-		                    <input id="viewpic_upload" class="btn btn-default" type="button" style="display: none" value="上传"/>
-		                </span>
-		            </div>
-                </form>
-            </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button id="submit" type="button"  class="btn btn-primary" >确定</button>
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="modal fade " id="app" tabindex="-1" role="dialog"
+		aria-labelledby="添加/修改">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content modal-width">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">添加/修改</h4>
+				</div>
+				<div class="modal-body clearfix">
+					<form class="form-horizontal" method="post" id="formad">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">套餐价格</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" name="discount_price"
+									id="discount_price">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">折扣价格</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" name="price" id="price">
+							</div>
+						</div>
+
+						<div class="input-group">
+							<input id="fullimgsn" type="hidden" name="fullImgSn" /> <img
+								id="view_pic"
+								style="width: 460px; height: 300px; border: 1px solid #ddd; display: block; margin: 0 auto;" />
+							<div class="clearfix"></div>
+
+							<div
+								style="margin-top: -190px; margin-left: 200px; display: block; position: relative;">
+								<span class="btn btn-success fileinput-button"> <i
+									class="glyphicon glyphicon-plus"></i> <span>Add files...</span>
+									<!-- The file input field used as target for the file upload widget -->
+									<input id="fileupload" type="file" multiple>
+								</span>
+							</div>
+
+							<div class="input-group">
+								<div id="progress" class="progress"
+									style="width: 460px; height: 20px; margin-top: 135px;">
+									<div class="progress-bar progress-bar-success"></div>
+								</div>
+
+								<div id="files" class="files"></div>
+							</div>
+
+							<div class="clearfix"></div>
+
+							<span
+								style="margin: 0 auto; display: block; text-align: center; margin-top: -158px; position: relative">
+								<input id="viewpic_upload" class="btn btn-default" type="button"
+								style="display: none" value="上传" />
+							</span>
+						</div>
+					</form>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button id="submit" type="button" class="btn btn-primary">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade " id="detail" tabindex="-1" role="dialog"
+		aria-labelledby="套餐详情">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content modal-width">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">套餐详情</h4>
+				</div>
+				<div class="modal-body clearfix">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>分类</th>
+								<th>首选产品</th>
+								<th>备选产品</th>
+							</tr>
+						</thead>
+						<tbody id="detail_tbody">
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 <script>
+	function insert() {
+		var data = new Object();
+		data.package_sn = $("#package input:checked:enabled").val();
+		data.names = $("#param").val();
+		$.ajax({
+			url : '/houses/insert',
+			data : data,
+			Type : 'POST',
+			datatype : "json",
+			success : function(data) {
+				window.location.href = "/houses/packageSet?SN="
+						+ "$!{HOUSE_SN}";
+			}
+		});
+	}
 
-function insert(){
-	var data = new Object();
-	data.package_sn = $("#package input:checked:enabled").val();
-	data.names = $("#param").val();
-	$.ajax({
-		url:'/houses/insert',
-		data:data,
-		Type:'POST',
-		datatype:"json",
-		success:function(data){
-			window.location.href="/houses/packageSet?SN="+"$!{HOUSE_SN}";
-		}
-	});
-}
+	function QueryAllPackage() {
+		$("#add").modal("show");
+		var data = new Object();
+		data.package_sn = $("#package input:checked:enabled").val();
+		data.names = $("#param").val();
+		$
+				.ajax({
+					url : '/houses/queryAllPackage',
+					data : data,
+					Type : 'POST',
+					datatype : "json",
+					success : function(data) {
+						var container = $("#package");
+						data = $.parseJSON(data);
+						container.empty();
+						for ( var i = 0, len = data.length; i < len; i++) {
+							var child = data[i];
+							var label = $("<label class='checkbox-inline' style='margin-left: 10px;'/>");
+							var check = $("<input type='checkbox'/>").val(
+									child.sn);
 
-function QueryAllPackage(){
-	$("#add").modal("show");
-	var data = new Object();
-	data.package_sn = $("#package input:checked:enabled").val();
-	data.names = $("#param").val();
-	$.ajax({
-		url:'/houses/queryAllPackage',
-		data:data,
-		Type:'POST',
-		datatype:"json",
-		success:function(data){
-			var container = $("#package");
-			data = $.parseJSON(data);
-			container.empty();
-			for(var i=0,len=data.length;i<len;i++){
-				var child = data[i];
-				var label = $("<label class='checkbox-inline' style='margin-left: 10px;'/>");
-				var check = $("<input type='checkbox'/>").val(child.sn);
-				
-				check.on("change",function(){
-					 if($(this).is(":checked")){
-	                    $("#package input:checked:enabled").prop("checked",false);
-	                    $(this).prop("checked",true);
-	                }   
-				})
-				
-				$("#package_tbody input[type=hidden]").each(function(){
-					if($(this).val() == child.sn){
-						check.prop("checked",true).attr("disabled","disabled");
+							check.on("change", function() {
+								if ($(this).is(":checked")) {
+									$("#package input:checked:enabled").prop(
+											"checked", false);
+									$(this).prop("checked", true);
+								}
+							})
+
+							$("#package_tbody input[type=hidden]").each(
+									function() {
+										if ($(this).val() == child.sn) {
+											check.prop("checked", true).attr(
+													"disabled", "disabled");
+										}
+									})
+
+							label.append(check);
+							label.append($("<text></text>").text(child.name));
+
+							container.append(label);
+						}
 					}
-				})
-				
-				label.append(check);
-				label.append($("<text></text>").text(child.name));
-				
-				container.append(label);
+				});
+	}
+
+	function addform(sn, price, discount_price, url, imgSn) {
+		$("#price").val(price);
+		$("#discount_price").val(discount_price);
+		$("#fullimgsn").val(imgSn);
+		$("#view_pic").attr("src", url);
+
+		$("#submit").click(
+				function() {
+					var price = $("#price").val()
+					if (price == "") {
+						alert("请设置价格");
+						return false;
+					}
+
+					var discount_price = $("#discount_price").val()
+					if (discount_price == "") {
+						alert("请设置折扣价格");
+						return false;
+					}
+
+					var file = $("#fullimgsn").val();
+					if (file == "") {
+						alert("套餐图片不可以为空")
+						return;
+					}
+
+					$.ajax({
+						type : "POST",
+						url : '/houses/insert1?sn=' + sn,
+						data : $('#formad').serialize(),
+						async : false,
+						success : function(data) {
+							window.location.href = "/houses/packageSet?SN="
+									+ "$!{HOUSE_SN}";
+						}
+					});
+				});
+	}
+
+	function queryDetail(sn) {
+		$.ajax({
+			type : "POST",
+			url : '/houses/queryPackageDetail',
+			data : {
+				"sn" : sn
+			},
+			datatype : "json",
+			success : function(data) {
+				CreateDetail(data);
+			}
+		});
+	}
+
+	function CreateDetail(data) {
+		if (data) {
+			var _data = $.parseJSON(data);
+			var body = $("#detail_tbody");
+			body.empty();
+			var index = 0;
+			for ( var key in _data) {
+				var child = _data[key];
+				var tr = $("<tr></tr>");
+				var num = $("<td></td>").text(++index);
+				var typeName = $("<td></td>").text(child.typeName);
+				var first = $("<td></td>").text(child.first);
+				var alternative = $("<td></td>").text(child.alternative);
+				body.append(tr.append(num).append(typeName).append(first)
+						.append(alternative));
 			}
 		}
-	 }); 
-}
-
-function addform(sn,price,discount_price,url,imgSn) {
-	 $("#price").val(price);
-	 $("#discount_price").val(discount_price);
-	 $("#fullimgsn").val(imgSn);
-	 $("#view_pic").attr("src",url);
-	
-	$("#submit").click(function(){
-		var price = $("#price").val()
-		if(price == ""){
-			alert("请设置价格");
-			return false;
-		}
-		
-		var discount_price = $("#discount_price").val()
-		if(discount_price == ""){
-			alert("请设置折扣价格");
-			return false;
-		}
-		
-		var file = $("#fullimgsn").val();
-		if(file == ""){
-		 	alert("套餐图片不可以为空")
-		 	return;
-		}
-		
-	 	$.ajax({
-    		type: "POST",
-    		url:'/houses/insert1?sn=' + sn,  
-    		data:$('#formad').serialize(),  
-    		async: false,  
-    		success: function(data) {  
-    			window.location.href="/houses/packageSet?SN="+"$!{HOUSE_SN}";
-    		}  
-  		});
-	});
-}
-
-function queryDetail(sn){
-	$.ajax({
-		type: "POST",
-		url:'/houses/queryPackageDetail',  
-		data:{"sn":sn},  
-		async: true,  
-		success: function(data){  
-			
-		}  
-	});
-}
-        
+	}
 </script>
 
 </html>

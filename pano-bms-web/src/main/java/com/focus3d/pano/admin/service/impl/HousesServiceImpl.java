@@ -286,6 +286,11 @@ public class HousesServiceImpl implements HousesService {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public List<HashMap<String,Object>>  QueryPackageDetail(String packageSn){
+		return housesDAO.QueryPackageDetail(packageSn);
+	}
 
 	@Override
 	public List<Map<String,Object>> QueryHouseStylePackage(PanoProjectPackageStyle panoProjectPackageStyle) {

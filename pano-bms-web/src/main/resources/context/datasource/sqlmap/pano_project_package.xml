@@ -6,4 +6,23 @@
 	<select id="getProductPackage" resultClass="productPackage">
 		SELECT SN,NAME FROM pano_project_package
 	</select>
+	
+	<select id="queryPckageDetail" parameterClass="java.lang.String"  resultClass="java.util.HashMap">
+		SELECT 
+	      package_type.sn AS typeSn,
+	      package_product.sn AS packageProductSn,
+	      package_type.name AS typeName,
+	      product.name AS productName,
+      	  package_product.product_num as productNum
+	    FROM
+	      pano_project_house_package package 
+	      INNER JOIN pano_project_package_type package_type 
+	        ON package.sn = package_type.house_package_sn 
+	      INNER JOIN pano_project_package_product package_product 
+	        ON package_type.sn = package_product.package_type_sn 
+	      INNER JOIN pano_product product 
+	        ON product.sn = package_product.product_sn 
+	    WHERE package.sn = #packageSn# 
+	    ORDER BY package_type.sn,package_product.sn 
+	</select>
 </sqlMap>
