@@ -31,8 +31,8 @@
       <file leaf-file-name="perspective.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/perspective.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="1194" column="21" lean-forward="true" selection-start-line="1194" selection-start-column="21" selection-end-line="1194" selection-end-column="21" />
+            <state relative-caret-position="1650">
+              <caret line="1194" column="21" lean-forward="false" selection-start-line="1194" selection-start-column="21" selection-end-line="1194" selection-end-column="21" />
               <folding>
                 <element signature="n#!!block;n#createView#0" expanded="false" />
                 <element signature="n#!!block;n#View#0" expanded="false" />
@@ -100,8 +100,8 @@
       <file leaf-file-name="pano_hotspot.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../style/h5static/js/pano_hotspot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1393">
-              <caret line="329" column="45" lean-forward="true" selection-start-line="329" selection-start-column="45" selection-end-line="329" selection-end-column="45" />
+            <state relative-caret-position="2450">
+              <caret line="329" column="45" lean-forward="false" selection-start-line="329" selection-start-column="45" selection-end-line="329" selection-end-column="45" />
               <folding>
                 <element signature="e#154#2042#0" expanded="false" />
                 <element signature="n#!!block;n#showHotspot#0" expanded="false" />
@@ -118,8 +118,8 @@
       <file leaf-file-name="H5WebGL.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/H5WebGL.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="420" column="41" lean-forward="true" selection-start-line="420" selection-start-column="41" selection-end-line="420" selection-end-column="41" />
+            <state relative-caret-position="1625">
+              <caret line="420" column="41" lean-forward="false" selection-start-line="420" selection-start-column="41" selection-end-line="420" selection-end-column="41" />
               <folding>
                 <element signature="e#172#9373#0" expanded="false" />
                 <element signature="e#331#428#0" expanded="false" />
@@ -150,11 +150,9 @@
       <file leaf-file-name="pro.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="175">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -162,11 +160,9 @@
       <file leaf-file-name="perspective.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../style/perspective/perspective.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
+            <state relative-caret-position="1125">
               <caret line="45" column="66" lean-forward="false" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
-              <folding>
-                <marker date="1503286115880" expanded="true" signature="306:330" ph="{...}" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -174,8 +170,8 @@
       <file leaf-file-name="Perspective.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="81" column="81" lean-forward="true" selection-start-line="81" selection-start-column="81" selection-end-line="81" selection-end-column="81" />
+            <state relative-caret-position="1175">
+              <caret line="81" column="81" lean-forward="false" selection-start-line="81" selection-start-column="81" selection-end-line="81" selection-end-column="81" />
               <folding>
                 <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -251,9 +247,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-205" />
-    <option name="y" value="80" />
-    <option name="width" value="1933" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
@@ -271,6 +267,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -286,7 +283,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -387,11 +383,12 @@
       <workItem from="1503373172669" duration="287000" />
       <workItem from="1503388201039" duration="4018000" />
       <workItem from="1503393814848" duration="10797000" />
+      <workItem from="1505445691309" duration="7000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256524000" />
+    <option name="totallyTimeSpent" value="256531000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -403,25 +400,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-205" y="80" width="1933" height="1056" extended-state="1" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24986959" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928064" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928064" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -441,9 +438,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1125">
           <caret line="45" column="66" lean-forward="false" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
-          <folding>
-            <marker date="1503286115880" expanded="true" signature="306:330" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -569,9 +564,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1700">
           <caret line="68" column="48" lean-forward="true" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -579,9 +572,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1125">
           <caret line="45" column="66" lean-forward="true" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
-          <folding>
-            <marker date="1503286115880" expanded="true" signature="306:330" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -707,9 +698,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1225">
           <caret line="49" column="85" lean-forward="false" selection-start-line="49" selection-start-column="85" selection-end-line="49" selection-end-column="85" />
-          <folding>
-            <marker date="1503286115880" expanded="true" signature="306:330" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -805,9 +794,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1225">
           <caret line="49" column="85" lean-forward="true" selection-start-line="49" selection-start-column="85" selection-end-line="49" selection-end-column="85" />
-          <folding>
-            <marker date="1503286115880" expanded="true" signature="306:330" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -903,9 +890,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1875">
           <caret line="75" column="15" lean-forward="false" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="15" />
-          <folding>
-            <marker date="1503286115880" expanded="true" signature="306:330" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1038,9 +1023,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1900">
           <caret line="76" column="3" lean-forward="false" selection-start-line="76" selection-start-column="3" selection-end-line="76" selection-end-column="3" />
-          <folding>
-            <marker date="1503286115880" expanded="true" signature="306:330" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1173,9 +1156,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1900">
           <caret line="76" column="3" lean-forward="false" selection-start-line="76" selection-start-column="3" selection-end-line="76" selection-end-column="3" />
-          <folding>
-            <marker date="1503286115880" expanded="true" signature="306:330" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1914,8 +1895,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/Perspective.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="81" column="81" lean-forward="true" selection-start-line="81" selection-start-column="81" selection-end-line="81" selection-end-column="81" />
+        <state relative-caret-position="1175">
+          <caret line="81" column="81" lean-forward="false" selection-start-line="81" selection-start-column="81" selection-end-line="81" selection-end-column="81" />
           <folding>
             <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1935,18 +1916,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../style/perspective/perspective.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
+        <state relative-caret-position="1125">
           <caret line="45" column="66" lean-forward="false" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
-          <folding>
-            <marker date="1503286115880" expanded="true" signature="306:330" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/perspective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="1194" column="21" lean-forward="true" selection-start-line="1194" selection-start-column="21" selection-end-line="1194" selection-end-column="21" />
+        <state relative-caret-position="1650">
+          <caret line="1194" column="21" lean-forward="false" selection-start-line="1194" selection-start-column="21" selection-end-line="1194" selection-end-column="21" />
           <folding>
             <element signature="n#!!block;n#createView#0" expanded="false" />
             <element signature="n#!!block;n#View#0" expanded="false" />
@@ -2012,8 +1991,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../style/h5static/js/pano_hotspot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1393">
-          <caret line="329" column="45" lean-forward="true" selection-start-line="329" selection-start-column="45" selection-end-line="329" selection-end-column="45" />
+        <state relative-caret-position="2450">
+          <caret line="329" column="45" lean-forward="false" selection-start-line="329" selection-start-column="45" selection-end-line="329" selection-end-column="45" />
           <folding>
             <element signature="e#154#2042#0" expanded="false" />
             <element signature="n#!!block;n#showHotspot#0" expanded="false" />
@@ -2028,8 +2007,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/H5WebGL.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="420" column="41" lean-forward="true" selection-start-line="420" selection-start-column="41" selection-end-line="420" selection-end-column="41" />
+        <state relative-caret-position="1625">
+          <caret line="420" column="41" lean-forward="false" selection-start-line="420" selection-start-column="41" selection-end-line="420" selection-end-column="41" />
           <folding>
             <element signature="e#172#9373#0" expanded="false" />
             <element signature="e#331#428#0" expanded="false" />
@@ -2058,11 +2037,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../WEB-INF/velocity/perspective/pro.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="175">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -191,7 +191,7 @@
 			</isNotEmpty>
 			<isNotEmpty property="NICK_NAME">
 				and
-				pano_mem_user.NICK_NAME=#NICK_NAME#
+				address.USER_NAME=#NICK_NAME#
 			</isNotEmpty>
 			<isNotEmpty property="ORDER_NUM">
 				and

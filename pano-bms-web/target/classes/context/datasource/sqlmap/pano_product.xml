@@ -61,6 +61,7 @@
        p.LEFT_IMG_SN AS leftImgSn,
        p.DOWN_IMG_SN AS downImgSn,
        p.FULL_IMG_SN AS fullImgSn,
+       p.LONG_IMG_SN AS longImgSn,
        p.BANNER_IMG_SN AS bannerImgSn,
        p.TYPE_SN AS typeSn,
        p.FUNC_SN AS funcSn,
@@ -157,7 +158,7 @@
 	<!-- 查产品 -->
 	<select id="getProductDetailBySn" resultClass="productInfo" parameterClass="java.lang.String"> 
 	 select p.SN, p.ID, p.NAME, p.BRAND, p.PRICE, p.STATUS, p.SUMMARY, p.LEFT_IMG_SN as leftImgSn, p.DOWN_IMG_SN as downImgSn,
-  p.FULL_IMG_SN as fullImgSn, p.BANNER_IMG_SN as bannerImgSn, p.TYPE_SN as typeSn, p.FUNC_SN as funcSn, p.SPACE_SN as spaceSn,
+  p.FULL_IMG_SN as fullImgSn,p.LONG_IMG_SN as longImgSn, p.BANNER_IMG_SN as bannerImgSn, p.TYPE_SN as typeSn, p.FUNC_SN as funcSn, p.SPACE_SN as spaceSn,
 	     p.STYLE_SN as styleSn,p.VENDERNAME as venderSn, p.LENGTH, p.WIDE, p.HEIGHT, p.MATERIAL_NAME as materialName,
       p.MATERIAL_IMG_SN as materialImgSn, p.FABRIC_NAME as fabricName, p.FABRIC_IMG_SN as fabricImgSn, p.COLOR, p.MODEL, 
       p.CAPACITY, p.REMARK, p.ADDER_SN as adderSn, p.ADDER_NAME as adderName,p.ADD_TIME as addTime1, p.UPDATER_SN as updaterSn, 
@@ -194,13 +195,13 @@ LEFT JOIN pano_project_base_style ps on p.STYLE_SN=ps.sn LEFT JOIN pano_project_
 	   id,
 	   name,
 	   brand,price,status,summary,length,wide,height,workmanship,lr,lr_round,material_name,material_color,
-	   fabric_name,fabric_color,LEFT_IMG_SN, DOWN_IMG_SN,FULL_IMG_SN,TYPE_SN, FUNC_SN, SPACE_SN, STYLE_SN, ADDER_SN,UPDATER_SN,
+	   fabric_name,fabric_color,LEFT_IMG_SN, DOWN_IMG_SN,FULL_IMG_SN,LONG_IMG_SN,TYPE_SN, FUNC_SN, SPACE_SN, STYLE_SN, ADDER_SN,UPDATER_SN,
 	   MATERIAL_IMG_SN, FABRIC_IMG_SN,
       dimension,vendername
       ) values(
 	 #id#,#name#,#brand#,#price#,#status#,#summary#,#length#,#wide#,#height#,#workManShip#,#lr#,#lrRound#,
 	 #materialName#,#materialColor#,#fabricName#,#fabricColor#,
-	 #leftImgSn:BIGINT#, #downImgSn:BIGINT#, #fullImgSn:BIGINT#, 
+	 #leftImgSn:BIGINT#, #downImgSn:BIGINT#, #fullImgSn:BIGINT#,#longImgSn:BIGINT#,
 	 #typeSn:BIGINT#, #funcSn:BIGINT#, #spaceSn:BIGINT#, #styleSn:BIGINT#,#adderSn:BIGINT#,#updaterSn:BIGINT#
 	 ,#materialImgSn:BIGINT#, #fabricImgSn:BIGINT#,#dimension#,#venderName#
 	   )
@@ -240,6 +241,7 @@ LEFT JOIN pano_project_base_style ps on p.STYLE_SN=ps.sn LEFT JOIN pano_project_
     <isNotEmpty property="materialImgSn" prepend=","><![CDATA[ MATERIAL_IMG_SN = #materialImgSn:BIGINT# ]]></isNotEmpty>   
     <isNotEmpty property="fabricName" prepend=","><![CDATA[ FABRIC_NAME = #fabricName:VARCHAR# ]]></isNotEmpty> 
     <isNotEmpty property="fabricImgSn" prepend=","><![CDATA[ FABRIC_IMG_SN = #fabricImgSn:BIGINT# ]]></isNotEmpty> 
+     <isNotEmpty property="longImgSn" prepend=","><![CDATA[ LONG_IMG_SN = #longImgSn:BIGINT# ]]></isNotEmpty> 
     <isNotEmpty property="color" prepend=","><![CDATA[ COLOR = #color:VARCHAR# ]]></isNotEmpty> 
     <isNotEmpty property="model" prepend=","><![CDATA[ MODEL = #model:VARCHAR# ]]></isNotEmpty> 
     <isNotEmpty property="capacity" prepend=","><![CDATA[ CAPACITY = #capacity:VARCHAR# ]]></isNotEmpty> 

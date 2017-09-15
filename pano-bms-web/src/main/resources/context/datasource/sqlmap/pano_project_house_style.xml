@@ -215,6 +215,7 @@
     		style.sn AS styleSn,
     		package.sn AS packageSn,
     		housePackage.PACKAGE_PRICE AS packagePrice,
+    		housePackage.DISCOUNT_PRICE AS discountPrice,
     		housePackage.IMG_SN AS imgSn,
 		    package.NAME AS packageName,
 		    project.name AS projectName,

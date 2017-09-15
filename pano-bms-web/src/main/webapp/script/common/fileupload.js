@@ -3,6 +3,7 @@ $(function(){
 	$('#fileupload').fileupload({
         url: upload_url,
         dataType: 'json',
+        maxNumberOfFiles:1,
         autoUpload: false,
         acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
         maxFileSize: 10485760,
@@ -28,11 +29,20 @@ $(function(){
         );
     }).on('fileuploaddone', function (e, data) {
         var returnJsonAry = data.result;
-        $.each(data.result, function (index, file){
-            $("#fullimgsn").val(file.fileId);
-            $("#viewpic_upload").hide();
-            $("#view_save").show();
-        });
+        if($.isArray( returnJsonAry )){
+        	 $.each(returnJsonAry, function (index, file){
+                 $("#fullimgsn").val(file.fileId);
+                 
+                 $("#viewpic_upload").hide();
+                 $("#view_save").show();
+             });
+        }else{
+        	 $("#fullimgsn").val(returnJsonAry.fileId);
+             
+             $("#viewpic_upload").hide();
+             $("#view_save").show();
+        }
+       
     }).on('fileuploadfail', function (e, data) {
         $.each(data.files, function (index) {
             var error = $('<span class="text-danger"/>').text('File upload failed.');
@@ -40,6 +50,16 @@ $(function(){
                 .append('<br>')
                 .append(error);
         });
+    }).on("change",function(e, data) { 
+        if(data.files.length > 1){ 
+            alert("Max 1 files are allowed") 
+            return false; 
+        } 
+    }).on("drop",function(e, data){ 
+        if(data.files.length > 1){ 
+            alert("Max 1 files are allowed") 
+            return false;
+        } 
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 

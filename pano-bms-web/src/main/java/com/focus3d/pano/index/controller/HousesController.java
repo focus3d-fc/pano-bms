@@ -879,9 +879,22 @@ public class HousesController extends BaseController {
 		//return redirect("packageSet?SN="+house_sn);
 		
 	}
+	
+	
+	@RequestMapping("/queryPackageDetail")
+	public void queryPackageDetail(HttpServletResponse response,String sn) {
+		
+		try{
+			JSONObject json = new JSONObject();
+			json.put("info", "success");
+			ajaxOutput(response, json.toString());
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
 
 	@RequestMapping("/insert1")
-	public void insert1(HttpServletResponse response,HttpSession session,String names,String sn,String fullImgSn) {
+	public void insert1(HttpServletResponse response,HttpSession session,String discount_price,String price,String sn,String fullImgSn) {
 		Long img_sn = null;
 		try {
 			img_sn = EncryptUtil.decode(fullImgSn);
@@ -891,8 +904,12 @@ public class HousesController extends BaseController {
 		PanoProjectHousePackage p = new PanoProjectHousePackage();
 		p.setIMG_SN(img_sn);
 		
-		if (!StringUtil.isEmpty(names)) {
-			p.setPackage_price(Double.parseDouble(names));
+		if (!StringUtil.isEmpty(price)) {
+			p.setPackage_price(Double.parseDouble(price));
+		}
+		
+		if (!StringUtil.isEmpty(discount_price)) {
+			p.setDISCOUNT_PRICE(Double.parseDouble(discount_price));
 		}
 		
 		p.setSn(Long.parseLong(sn));

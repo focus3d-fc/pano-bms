@@ -84,6 +84,7 @@
 				UPDATE pano_project_house_package 
 				 <dynamic prepend="SET">  
    						 <isNotNull  prepend="," property="package_price"> PACKAGE_PRICE=#package_price#</isNotNull> 
+   						 <isNotNull  prepend="," property="DISCOUNT_PRICE"> DISCOUNT_PRICE=#DISCOUNT_PRICE#</isNotNull> 
     					 <isNotNull  prepend=","  property="IMG_SN">IMG_SN =#IMG_SN#</isNotNull>  
     			</dynamic> 
     			  where sn=#sn# 		  

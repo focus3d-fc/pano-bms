@@ -96,9 +96,10 @@
 						<td>$!{list.packageName}</td>
 						<td>
 							<div class="btn-group btn-group-sm" role="group">
-							<button class="btn btn-info" data-toggle="modal" data-target="#app" onclick="addform('$!{list.sn}','$!{list.packagePrice}','$!fs.url($!list.imgSn)','$!{list.imgSn}')">套餐设置</button>
-								 <a class="btn btn-info" href="/type/selectList?housepackagesn=$!{list.sn}&house_sn=$!{list.houseSn}" >设置分类</a> 
-								 <a href="/houses/delete?id2=$!{list.sn}" class="btn btn-danger" onClick="del()">删除</a>
+							<button class="btn btn-info" data-toggle="modal" data-target="#app" onclick="queryDetail('$!{list.sn}')">套餐详情</button>
+							<button class="btn btn-info" data-toggle="modal" data-target="#app" onclick="addform('$!{list.sn}','$!{list.packagePrice}','$!{list.discountPrice}','$!fs.url($!list.imgSn)','$!{list.imgSn}')">套餐设置</button>
+							<a class="btn btn-info" href="/type/selectList?housepackagesn=$!{list.sn}&house_sn=$!{list.houseSn}" >设置分类</a> 
+							<a href="/houses/delete?id2=$!{list.sn}" class="btn btn-danger" onClick="del()">删除</a>
 							</div>
 						</td>
 					</tr>
@@ -157,9 +158,16 @@
             <div class="modal-body clearfix">
                 <form class="form-horizontal" method="post" id="formad" >
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">设置套餐价格</label>
+                        <label class="col-sm-3 control-label">套餐价格</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="names" id="ids">
+                            <input type="text" class="form-control" name="discount_price" id="discount_price">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">折扣价格</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="price" id="price">
                         </div>
                     </div>
                     
@@ -263,15 +271,22 @@ function QueryAllPackage(){
 	 }); 
 }
 
-function addform(sn,price,url,imgSn) {
-	 $("#ids").val(price);
+function addform(sn,price,discount_price,url,imgSn) {
+	 $("#price").val(price);
+	 $("#discount_price").val(discount_price);
 	 $("#fullimgsn").val(imgSn);
 	 $("#view_pic").attr("src",url);
 	
 	$("#submit").click(function(){
-		var ids = $("#ids").val()
-		if(ids == ""){
+		var price = $("#price").val()
+		if(price == ""){
 			alert("请设置价格");
+			return false;
+		}
+		
+		var discount_price = $("#discount_price").val()
+		if(discount_price == ""){
+			alert("请设置折扣价格");
 			return false;
 		}
 		
@@ -290,6 +305,18 @@ function addform(sn,price,url,imgSn) {
     			window.location.href="/houses/packageSet?SN="+"$!{HOUSE_SN}";
     		}  
   		});
+	});
+}
+
+function queryDetail(sn){
+	$.ajax({
+		type: "POST",
+		url:'/houses/queryPackageDetail',  
+		data:{"sn":sn},  
+		async: true,  
+		success: function(data){  
+			
+		}  
 	});
 }
         
