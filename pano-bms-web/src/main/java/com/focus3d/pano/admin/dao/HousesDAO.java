@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.model.PanoProjectPackageStyle;
+import com.focus3d.pano.model.PanoProjectPackageType;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
@@ -178,4 +179,6 @@ public interface HousesDAO {
 	public HashMap<String,Object> queryProductDetail(Map<String,Object> map);
 	
 	public void deleteTypeProduct(Long packageProductSn);
+	
+	public void updateTypeInfo(PanoProjectPackageType map);
 }

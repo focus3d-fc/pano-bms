@@ -72,6 +72,7 @@ public class PanoProjectPackageTypeController extends BaseController{
 			 *  前台得到 户型套餐Sn  类别名称  空间Sn
 			 */
 			String sn = request.getParameter("sn");
+			String typeSn =  request.getParameter("typeSn");
 			String sqace = request.getParameter("options");
 			String text = request.getParameter("texts");
 			/**
@@ -81,7 +82,12 @@ public class PanoProjectPackageTypeController extends BaseController{
 			types.setSpace_sn(Long.parseLong(sqace));
 			types.setHouse_package_sn(Long.parseLong(sn));
 			types.setName(text);
-			typeService.getAddType(types);
+			if(typeSn!=null&&!typeSn.equals("")){
+				types.setSN(Long.parseLong(typeSn));
+				housesService.updateTypeInfo(types);
+			}else{
+				typeService.getAddType(types);
+			}
 			try {
 				this.ajaxOutput(response,"完毕");
 			} catch (IOException e) {

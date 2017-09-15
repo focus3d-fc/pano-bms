@@ -12,6 +12,7 @@ import com.focus3d.pano.admin.dao.IProductAdmDAO;
 import com.focus3d.pano.admin.service.HousesService;
 import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.model.PanoProjectPackageStyle;
+import com.focus3d.pano.model.PanoProjectPackageType;
 import com.focus3d.pano.model.ProductInfo;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
@@ -363,5 +364,11 @@ public class HousesServiceImpl implements HousesService {
 	public void publishHouse(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		housesDAO.publishHouse(map);
+	}
+
+	@Override
+	public void updateTypeInfo(PanoProjectPackageType map) {
+		// TODO Auto-generated method stub
+		housesDAO.updateTypeInfo(map);
 	}
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.focus3d.pano.admin.dao.HousesDAO;
 import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.model.PanoProjectPackageStyle;
-import com.focus3d.pano.model.ProductInfo;
+import com.focus3d.pano.model.PanoProjectPackageType;
 import com.focus3d.pano.model.pano_ad;
 import com.focus3d.pano.model.pano_project;
 import com.focus3d.pano.model.pano_project_house;
@@ -361,5 +361,11 @@ public class HousesDAOImpl extends BaseDao implements HousesDAO {
 	public List<HashMap<String, Object>> QueryPackageDetail(String packageSn) {
 		List<HashMap<String, Object>> list = getSqlMapClientTemplate().queryForList("pano_project_package.queryPckageDetail",packageSn);
 		return list;
+	}
+
+	@Override
+	public void updateTypeInfo(PanoProjectPackageType map) {
+		// TODO Auto-generated method stub
+		getSqlMapClientTemplate().update("pano_project_package_type.updateTypeInfo",map);
 	}
 }

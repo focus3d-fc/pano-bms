@@ -44,20 +44,24 @@
 	
 	  <!-- 添加套餐类型  添加类型的Name 户型套餐SN  和空间SN -->
 	  <insert id="getAddType">
-	  
 	  	 INSERT INTO pano_project_package_type 
 	  		 (`NAME`,SPACE_SN,HOUSE_PACKAGE_SN) VALUES (#name#,#space_sn#,#house_package_sn#)
-	  
 	  </insert>
+	  
+	  <update id="updateTypeInfo" parameterClass="PanoProjectPackageType">
+	  	 update pano_project_package_type
+	  	 set
+	  	 	`NAME`=#name#,
+	  	 	SPACE_SN=#space_sn#
+	  	 where SN=#SN#
+	  </update>
 	  
 	  
 	  <!-- 通过户型套餐表主键 查询套餐类型Sn 和 空间SN -->
 	  	<select id="getSelectType" resultClass="PanoProjectPackageType" >
-	  		
 	  			SELECT SN,SPACE_SN
 					FROM pano_project_package_type 
 						WHERE HOUSE_PACKAGE_SN = #sn#
-	  	
 	  	</select>
 	  
 	  

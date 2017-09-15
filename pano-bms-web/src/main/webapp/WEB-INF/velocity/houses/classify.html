@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="form-group col-sm-4">
-                <button class="btn btn-info" data-toggle="modal" data-target="#add"  onclick="addfrom()">增加分类</button>
+                <button class="btn btn-info" data-toggle="modal" data-target="#add" onclick="addform()">增加分类</button>
             </div>
         </div>
         <table class="table table-hover">
@@ -60,8 +60,9 @@
                 <td>$!{lists.spaceName}</td>
                 <td>
                     <div class="btn-group btn-group-sm" role="group">
+                     	<button class="btn btn-primary" data-toggle="modal" data-target="#add" onclick="update('$!{lists.sn}','$!{lists.name}','$!{lists.spaceSn}')">修改</button>
                         <a class="btn btn-info" href="/houses/queryTypeProducts?packagetypesn=$!{lists.sn}">选择产品</a>
-                        <a href="/type/delete?sntype=$!{lists.sn}&houseSn=$!{houseSn}&housePackageSn=$!{housePackageSn}" class="btn btn-danger" onClick="del()">删除</a>
+                        <a href="/type/delete?sntype=$!{lists.sn}&houseSn=$!{houseSn}&housePackageSn=$!{housePackageSn}" class="btn btn-danger">删除</a>
                     </div>
                 </td>
             </tr>
@@ -71,7 +72,7 @@
         
     </div>
 </div>
-<!--增加套餐-->
+<!--增加分类-->
 <div class="modal fade " id="add" tabindex="-1" role="dialog" aria-labelledby="添加/修改">
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-width">
@@ -83,7 +84,8 @@
             <div class="modal-body clearfix">
                 <form class="form-horizontal" id="formadd" >
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">新增</label>
+                    	<input type="hidden" id="typeSn" name="typeSn"/>
+                        <label class="col-sm-3 control-label">名称</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="texts" id="textss">
                         </div>
@@ -91,9 +93,9 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">空间</label>
                         <div class="col-sm-9">
-                            <select class="form-control" name="options" >
-                            #foreach ($!{spaces} in $!{space})
-                                <option value="$!{spaces.spaceSn}" id="optionss">$!{spaces.spaceName}</option>
+                            <select class="form-control" name="options" id="space_option">
+                               #foreach ($!{spaces} in $!{space})
+                                <option value="$!{spaces.spaceSn}">$!{spaces.spaceName}</option>
                                #end
                             </select>
 							<input type='hidden' value="$!{housePackageSn}" name="sn" >
@@ -120,7 +122,7 @@
 		$(document).ready(function(){
 				$("#submit").click(function(){
 					var text =$("#textss").val();
-					var option = $("#optionss").val();
+					var option = $("#space_option").val();
 					if(text == ""){
 						alert("请选择类型名称");
 						return false;
@@ -142,7 +144,17 @@
 				})
 		})		
 		
+		function update(sn,name,space){
+			$("#typeSn").val(sn);
+			$("#textss").val(name);
+			$("#space_option").val(space);
+		}
 		
+		function addform(){
+			$("#typeSn").val("");
+			$("#textss").val("");
+			$("#space_option").children().first().attr("selected", true);   
+		}
 		
 		</script>
 
