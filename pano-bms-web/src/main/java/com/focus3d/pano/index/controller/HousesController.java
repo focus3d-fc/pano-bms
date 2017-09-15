@@ -902,7 +902,7 @@ public class HousesController extends BaseController {
 						}
 					}else{
 						child = new JSONObject();
-						child.put("typeName", map.get("typeName"));
+						child.put("spaceName", map.get("spaceName"));
 						child.put("first", map.get("productName").toString()+"*"+map.get("productNum").toString());
 						result.put(type_key,child);
 					}

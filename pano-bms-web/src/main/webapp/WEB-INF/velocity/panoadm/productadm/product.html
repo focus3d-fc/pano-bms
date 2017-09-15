@@ -151,28 +151,28 @@
     function uplefticlear(){
     	$("#files01").text("");
     	$("#leftimgsn01").val("");
-    	$("#proli").attr("src","");
+    	$("#prolefti").attr("src","");
     }
     function updowniclear(){
     	$("#files02").text("");
     	$("#downimgsn01").val("");
-    	$("#prodi").attr("src","");
+    	$("#prodowni").attr("src","");
     }
     function upmatericlear(){
     	$("#files03").text("");
     	$("#mtimgsn01").val("");
-    	$("#promi").attr("src","");
+    	$("#promti").attr("src","");
     }
     function upfabriciclear(){
     	$("#files04").text("");
     	$("#fbcimgsn01").val("");
-    	$("#profabi").attr("src","");
+    	$("#profbci").attr("src","");
     }
     
     function uplongciclear(){
     	$("#files5").text("");
     	$("#longimgsn01").val("");
-    	$("#prolong").attr("src","");
+    	$("#prolongi").attr("src","");
     }
     
     function updatepro(productsn){
@@ -247,14 +247,38 @@
       	    	$("#provder").val(jsonobj.venderName);
       	    	$("#prodims").val(jsonobj.dimension);
       	    	
-      	    	$("#profulli").attr("src",jsonobj.fullImgUrl);
-       	    	$("#proli").attr("src",jsonobj.leftImgUrl);
-       	    	$("#prodi").attr("src",jsonobj.downImgUrl);
-       	    	$("#promi").attr("src",jsonobj.materialImgUrl);
-       	    	$("#profabi").attr("src",jsonobj.fabricImgUrl);
-       	    	$("#prolong").attr("src",jsonobj.longImgUrl);
+       	    	if(jsonobj.fullImgUrl!=undefined&&jsonobj.fullImgUrl!=null&&jsonobj.fullImgUrl!=""){
+       	    		$("#profulli").attr("src",jsonobj.fullImgUrl);
+      	    		$("#delete_0").show();
+      	    	}
+      	    	
+      	    	
+      	    	if(jsonobj.leftImgUrl!=undefined&&jsonobj.leftImgUrl!=null&&jsonobj.leftImgUrl!=""){
+      	    		$("#prolefti").attr("src",jsonobj.leftImgUrl);
+      	    		$("#delete_1").show();
+      	    	}
+               	
+      	    	if(jsonobj.downImgUrl!=undefined&&jsonobj.downImgUrl!=null&&jsonobj.downImgUrl!=""){
+      	    		$("#prodowni").attr("src",jsonobj.downImgUrl);
+      	    		$("#delete_2").show();
+      	    	}
+      	    	
+      	    	if(jsonobj.materialImgUrl!=undefined&&jsonobj.materialImgUrl!=null&&jsonobj.materialImgUrl!=""){
+      	    		$("#promti").attr("src",jsonobj.materialImgUrl);
+      	    		$("#delete_3").show();
+      	    	}
+      	    	
+      	    	if(jsonobj.fabricImgUrl!=undefined&&jsonobj.fabricImgUrl!=null&&jsonobj.fabricImgUrl!=""){
+      	    		$("#profbci").attr("src",jsonobj.fabricImgUrl);
+      	    		$("#delete_4").show();
+      	    	}
+      	    	
+      	    	if(jsonobj.longImgUrl!=undefined&&jsonobj.longImgUrl!=null&&jsonobj.longImgUrl!=""){
+      	    		$("#prolongi").attr("src",jsonobj.longImgUrl);
+      	    		$("#delete_5").show();
+      	    	}
     		}
-    	  });
+    	 });
     	// location.href="/productadm/preupdateproduct";
      }
    
@@ -298,7 +322,7 @@
       	    	
       	    	//alert(jsonobj.fullImgSn);
       	    	//alert(jsonobj.fullImgUrl);
-               $("#dtfulli").attr("src",jsonobj.fullImgUrl);
+      	    	$("#dtfulli").attr("src",jsonobj.fullImgUrl);
       	    	$("#dtli").attr("src",jsonobj.leftImgUrl);
       	    	$("#dtdi").attr("src",jsonobj.downImgUrl);
       	    	$("#dtmi").attr("src",jsonobj.materialImgUrl);
@@ -308,6 +332,40 @@
       	    
       	  }); 
     	// location.href="/productadm/preupdateproduct"; 
+    }
+    
+    function delete_img(value){
+    	alert("Hello");
+    	switch(value){
+    		case 0:
+    			$("#profulli").attr("src","");
+    			$("#fullimgsn01").val("");
+    			break;
+    		case 1:
+    			$("#prolefti").attr("src","");
+    			$("#fullleftsn01").val("");
+    			break;
+    		case 2:
+    			$("#prodowni").attr("src","");
+    			$("#fulldownsn01").val("");
+    			break;
+    		case 3:
+    			$("#promti").attr("src","");
+    			$("#fullmtsn01").val("");
+    			break;
+    		case 4:
+    			$("#profbci").attr("src","");
+    			$("#fullfbcsn01").val("");
+    			break;
+    		case 5:
+    			$("#prolongi").attr("src","");
+    			$("#fulllongsn01").val("");
+    			break;
+    	}
+    	$("#delete_"+value).hide();
+   		$("#files"+value).empty();
+   		$("#resultInfo"+value).empty();
+    	
     }
     
    $(function(){
@@ -1218,62 +1276,68 @@
 	        					<span>选择图片</span>
 	        					<input id="fileupload0" type="file" name="files[]" multiple>
     						</span>
+    						<span  id="delete_0" style="display:none" class="btn btn-danger fileinput-button" onclick="delete_img(0)">删除图片</span>
 						    <div id="files0" class="files"></div>
 							<span id="resultInfo0"></span>
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">整体图片（左）</p>
-                            <img id="proli" src="" alt="" class="img-rounded img-responsive" >
+                            <img id="prolefti" src="" alt="" class="img-rounded img-responsive" >
                             <span class="btn btn-success fileinput-button" onclick="uplefticlear()">
 						        <i class="glyphicon glyphicon-plus"></i>
 						        <span>选择图片</span>
 						        <input id="fileupload01" type="file" name="files[]" multiple>
 						    </span>
+						    <span  id="delete_1" style="display:none" class="btn btn-danger fileinput-button" onclick="delete_img(1)">删除图片</span>
 						    <div id="files01" class="files"></div>
 							<span id="resultInfo01"></span> 
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">整体图片（俯）</p>
-                             <img id="prodi" src="" alt="" class="img-rounded img-responsive">
+                             <img id="prodowni" src="" alt="" class="img-rounded img-responsive">
                             <span class="btn btn-success fileinput-button" onclick="updowniclear()">
 						        <i class="glyphicon glyphicon-plus"></i>
 						        <span>选择图片</span>
 						        <input id="fileupload02" type="file" name="files[]" multiple>
 						    </span>
+						    <span  id="delete_2" style="display:none" class="btn btn-danger fileinput-button" onclick="delete_img(2)">删除图片</span>
 						    <div id="files02" class="files"></div>
 							<span id="resultInfo02"></span>
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">材质图片</p>
-                            <img id="promi" src="" alt="" class="img-rounded img-responsive">
+                            <img id="promti" src="" alt="" class="img-rounded img-responsive">
                             <span class="btn btn-success fileinput-button" onclick="upmatericlear()">
 						        <i class="glyphicon glyphicon-plus"></i>
 						        <span>选择图片</span>
 						        <input id="fileupload03" type="file" name="files[]" multiple>
 						    </span>
+						    <span  id="delete_3" style="display:none" class="btn btn-danger fileinput-button" onclick="delete_img(3)">删除图片</span>
 						    <div id="files03" class="files"></div>
 							<span id="resultInfo03"></span>
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">面料图片</p>
-                             <img id="profabi" src="" alt="" class="img-rounded img-responsive">
+                             <img id="profbci" src="" alt="" class="img-rounded img-responsive">
                             <span class="btn btn-success fileinput-button" onclick="upfabriciclear()">
 						        <i class="glyphicon glyphicon-plus"></i>
 						        <span>选择图片</span>
 						        <input id="fileupload04" type="file" name="files[]" multiple>
 						    </span>
+						    <span  id="delete_4" style="display:none" class="btn btn-danger fileinput-button" onclick="delete_img(4)">删除图片</span>
 						    <div id="files04" class="files"></div>
 							<span id="resultInfo04"></span>
                         </div>
                         
                         <div class="col-md-4 img-box">
                             <p class="title">长图</p>
-                             <img id="prolong" src="" alt="" class="img-rounded img-responsive">
+                            <img id="prolongi" src="" alt="" class="img-rounded img-responsive">
                             <span class="btn btn-success fileinput-button" onclick="uplongciclear()">
 						        <i class="glyphicon glyphicon-plus"></i>
 						        <span>选择图片</span>
 						        <input id="fileupload05" type="file" name="files[]" multiple>
 						    </span>
+						    <span  id="delete_5" class="btn btn-danger fileinput-button" style="display:none" onclick="delete_img(5)">删除图片</span>
 						    <div id="files05" class="files"></div>
 							<span id="resultInfo05"></span>
                         </div>

@@ -57,6 +57,7 @@
 		<div class="panel-body">
 			<div class="container">
 				<div class="form-inline">
+					<button class="btn btn-primary" onclick="backPre()">返回</button>
 					<div class="form-group">
 						<label class="sr-only"></label> <input type="text"
 							class="form-control" placeholder="产品编号" id="productid">
@@ -391,50 +392,9 @@
 	
 	var data;
 	var total = "";
-	function QueryNextPage(){
-		if(total == ""){
-			return;
-		}
-		index++;
-		if(index>total){
-			--index;
-			return;
-		}
-		data.startNum =  index * pageSize;
-		
-		$.ajax({url:"/houses/queryAllProducts",
-	        type: "POST",
-	        data:data,
-	        dataType:"json",
-	        success:function(data){
-	            if(data){
-	            	initProductResult(data.list);
-	            }
-	        }
-	    });
-	}
 	
-	function QueryPrePage(){
-		if(total == ""){
-			return;
-		}
-		index--;
-		if(index<0){
-			++index;
-			return;
-		}
-		data.startNum =  index * pageSize;
-		
-		$.ajax({url:"/houses/queryAllProducts",
-	        type: "POST",
-	        data:data,
-	        dataType:"json",
-	        success:function(data){
-	            if(data){
-	            	initProductResult(data.list);
-	            }
-	        }
-	    });
+	function backPre(){
+		window.history.back();
 	}
 	
 	function QueryPage(index){

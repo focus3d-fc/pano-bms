@@ -11,13 +11,15 @@
 		SELECT 
 	      package_type.sn AS typeSn,
 	      package_product.sn AS packageProductSn,
-	      package_type.name AS typeName,
+	      SPACE.name AS spaceName,
 	      product.name AS productName,
-      	  package_product.product_num as productNum
+	      package_product.product_num AS productNum
 	    FROM
 	      pano_project_house_package package 
 	      INNER JOIN pano_project_package_type package_type 
-	        ON package.sn = package_type.house_package_sn 
+	        ON package.sn = package_type.house_package_sn
+	       INNER JOIN pano_project_space SPACE
+	       ON space.sn = package_type.space_sn
 	      INNER JOIN pano_project_package_product package_product 
 	        ON package_type.sn = package_product.package_type_sn 
 	      INNER JOIN pano_product product 

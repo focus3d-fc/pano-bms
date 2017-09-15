@@ -309,14 +309,17 @@ public class ProductAdmController extends BaseController{
 			if(longImgSn!=null){
 				 String longImgUrl=fileReadClient.getFile(longImgSn, FileAttributeEnum.VISIT_ADDR);
 				 prodtInfo.setLongImgUrl(longImgUrl);
+				 prodtInfo.setLongImg(EncryptUtil.encode(longImgSn));
 			}
 			if(fullImgSn!=null){
 			 String fullImgUrl=fileReadClient.getFile(fullImgSn, FileAttributeEnum.VISIT_ADDR);
 			 prodtInfo.setFullImgUrl(fullImgUrl);
+			 prodtInfo.setFullImg(EncryptUtil.encode(fullImgSn));
 			}
 		     if(leftImgSn!=null){ 
 			  String leftImgUrl=fileReadClient.getFile(prodtInfo.getLeftImgSn(), FileAttributeEnum.VISIT_ADDR);
 			  prodtInfo.setLeftImgUrl(leftImgUrl);
+			  prodtInfo.setLeftImg(EncryptUtil.encode(leftImgSn));
 		      }
 		     if(downImgSn!=null){
 			  String downImgUrl=fileReadClient.getFile(prodtInfo.getDownImgSn(),FileAttributeEnum.VISIT_ADDR);

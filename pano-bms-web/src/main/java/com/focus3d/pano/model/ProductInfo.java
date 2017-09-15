@@ -67,7 +67,10 @@ public class ProductInfo implements CommonModel{
 	    private String downImg;
 	    private String materialImg;
 	    private String fabricImg;
-	    private String updateTime1;
+	    private String longImg;
+
+
+		private String updateTime1;
 	    private String addTime1;
 	    private String fullImgUrl;
 	    private String leftImgUrl;
@@ -476,6 +479,14 @@ public class ProductInfo implements CommonModel{
 
 		public void setFabricImg(String fabricImg) {
 			this.fabricImg = fabricImg;
+		}
+		
+		public String getLongImg() {
+			return longImg;
+		}
+		
+		public void setLongImg(String longImg) {
+			this.longImg = longImg;
 		}
 
 
