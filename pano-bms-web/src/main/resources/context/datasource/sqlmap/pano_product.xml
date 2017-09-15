@@ -220,68 +220,45 @@ LEFT JOIN pano_project_base_style ps on p.STYLE_SN=ps.sn LEFT JOIN pano_project_
     -->
     update pano_product
     set
-    ID = #id:VARCHAR#,
-    NAME=#name:VARCHAR#
-    BRAND=#brand:VARCHAR#
-    PRICE=#price:VARCHAR#
-    STATUS=#status:INTEGER#
-    SUMMARY = #summary:VARCHAR#
-    LEFT_IMG_SN = #leftImgSn:BIGINT#
-    DOWN_IMG_SN = #downImgSn:BIGINT# 
-    FULL_IMG_SN = #fullImgSn:BIGINT#
-    BANNER_IMG_SN = #bannerImgSn:BIGINT# 
-    TYPE_SN = #typeSn:BIGINT# 
-    FUNC_SN = #funcSn:BIGINT#
-    SPACE_SN = #spaceSn:BIGINT#
-    STYLE_SN = #styleSn:BIGINT# 
-    LENGTH = #length:INTEGER#
-    WIDE = #wide:INTEGER#
-    HEIGHT = #height:INTEGER#
-    MATERIAL_NAME = #materialName:VARCHAR# 
-    MATERIAL_IMG_SN = #materialImgSn:BIGINT# 
-    
-    
-    <dynamic prepend="SET "> 
-    <isNotEmpty property="id" prepend=","><![CDATA[ ID = #id:VARCHAR# ]]></isNotEmpty>
-    <isNotEmpty property="name" prepend=","><![CDATA[ NAME=#name:VARCHAR# ]]></isNotEmpty>    
-    <isNotEmpty property="brand" prepend=","><![CDATA[ BRAND=#brand:VARCHAR# ]]></isNotEmpty>
-    <isNotEmpty property="price" prepend=","><![CDATA[ PRICE=#price:VARCHAR# ]]></isNotEmpty>  
-    <isNotEmpty property="status" prepend=","><![CDATA[ STATUS=#status:INTEGER# ]]></isNotEmpty> 
-    <isNotEmpty property="summary" prepend=","><![CDATA[ SUMMARY = #summary:VARCHAR# ]]></isNotEmpty>   
-    <isNotEmpty property="leftImgSn" prepend=","><![CDATA[ LEFT_IMG_SN = #leftImgSn:BIGINT# ]]></isNotEmpty>   
-    <isNotEmpty property="downImgSn" prepend=","><![CDATA[ DOWN_IMG_SN = #downImgSn:BIGINT# ]]></isNotEmpty>   
-    <isNotEmpty property="fullImgSn" prepend=","><![CDATA[ FULL_IMG_SN = #fullImgSn:BIGINT# ]]></isNotEmpty>    
-    <isNotEmpty property="bannerImgSn" prepend=","><![CDATA[ BANNER_IMG_SN = #bannerImgSn:BIGINT# ]]></isNotEmpty>  
-    <isNotEmpty property="typeSn" prepend=","><![CDATA[ TYPE_SN = #typeSn:BIGINT# ]]></isNotEmpty>
-    <isNotEmpty property="funcSn" prepend=","><![CDATA[ FUNC_SN = #funcSn:BIGINT# ]]></isNotEmpty>
-    <isNotEmpty property="spaceSn" prepend=","><![CDATA[ SPACE_SN = #spaceSn:BIGINT# ]]></isNotEmpty>
-    <isNotEmpty property="styleSn" prepend=","><![CDATA[ STYLE_SN = #styleSn:BIGINT# ]]></isNotEmpty>
-    <isNotEmpty property="length" prepend=","><![CDATA[ LENGTH = #length:INTEGER# ]]></isNotEmpty>
-    <isNotEmpty property="wide" prepend=","><![CDATA[ WIDE = #wide:INTEGER# ]]></isNotEmpty>
-    <isNotEmpty property="height" prepend=","><![CDATA[ HEIGHT = #height:INTEGER# ]]></isNotEmpty>
-    <isNotEmpty property="materialName" prepend=","><![CDATA[ MATERIAL_NAME = #materialName:VARCHAR# ]]></isNotEmpty>
-    <isNotEmpty property="materialImgSn" prepend=","><![CDATA[ MATERIAL_IMG_SN = #materialImgSn:BIGINT# ]]></isNotEmpty>   
-    <isNotEmpty property="fabricName" prepend=","><![CDATA[ FABRIC_NAME = #fabricName:VARCHAR# ]]></isNotEmpty> 
-    <isNotEmpty property="fabricImgSn" prepend=","><![CDATA[ FABRIC_IMG_SN = #fabricImgSn:BIGINT# ]]></isNotEmpty> 
-    <isNotEmpty property="longImgSn" prepend=","><![CDATA[ LONG_IMG_SN = #longImgSn:BIGINT# ]]></isNotEmpty> 
-    <isNotEmpty property="color" prepend=","><![CDATA[ COLOR = #color:VARCHAR# ]]></isNotEmpty> 
-    <isNotEmpty property="model" prepend=","><![CDATA[ MODEL = #model:VARCHAR# ]]></isNotEmpty> 
-    <isNotEmpty property="capacity" prepend=","><![CDATA[ CAPACITY = #capacity:VARCHAR# ]]></isNotEmpty> 
-    <isNotEmpty property="remark" prepend=","><![CDATA[ REMARK = #remark:VARCHAR# ]]></isNotEmpty> 
-    <isNotEmpty property="adderSn" prepend=","><![CDATA[ ADDER_SN = #adderSn:BIGINT# ]]></isNotEmpty> 
-    <isNotEmpty property="adderName" prepend=","><![CDATA[ ADDER_NAME = #adderName:VARCHAR# ]]></isNotEmpty> 
-    <isNotEmpty property="addTime" prepend=","><![CDATA[ ADD_TIME = #addTime:TIMESTAMP# ]]></isNotEmpty> 
-    <isNotEmpty property="updaterSn" prepend=","><![CDATA[ UPDATER_SN = #updaterSn:BIGINT# ]]></isNotEmpty> 
-    <isNotEmpty property="updaterName" prepend=","><![CDATA[ UPDATER_NAME = #updaterName:VARCHAR# ]]></isNotEmpty> 
-    <isNotEmpty property="updateTime" prepend=","><![CDATA[ UPDATE_TIME = #updateTime:TIMESTAMP# ]]></isNotEmpty> 
-    <isNotEmpty property="materialColor" prepend=","><![CDATA[ material_color=#materialColor# ]]></isNotEmpty> 
-    <isNotEmpty property="fabricColor" prepend=","><![CDATA[ fabric_color=#fabricColor# ]]></isNotEmpty> 
-    <isNotEmpty property="lr" prepend=","><![CDATA[ lr=#lr# ]]></isNotEmpty> 
-    <isNotEmpty property="lrRound" prepend=","><![CDATA[ lr_round=#lrRound# ]]></isNotEmpty> 
-    <isNotEmpty property="workManShip" prepend=","><![CDATA[ workmanship=#workManShip# ]]></isNotEmpty> 
-    <isNotEmpty property="dimension" prepend=","><![CDATA[ dimension=#dimension# ]]></isNotEmpty>  
-    <isNotEmpty property="venderName" prepend=","><![CDATA[ vendername=#venderName# ]]></isNotEmpty>   
-       </dynamic> 
+	    ID = #id:VARCHAR#,
+	    NAME=#name:VARCHAR#,
+	    BRAND=#brand:VARCHAR#,
+	    PRICE=#price:VARCHAR#,
+	    STATUS=#status:INTEGER#,
+	    SUMMARY = #summary:VARCHAR#,
+	    LEFT_IMG_SN = #leftImgSn:BIGINT#,
+	    DOWN_IMG_SN = #downImgSn:BIGINT#,
+	    FULL_IMG_SN = #fullImgSn:BIGINT#,
+	    BANNER_IMG_SN = #bannerImgSn:BIGINT#, 
+	    TYPE_SN = #typeSn:BIGINT#, 
+	    FUNC_SN = #funcSn:BIGINT#,
+	    SPACE_SN = #spaceSn:BIGINT#,
+	    STYLE_SN = #styleSn:BIGINT#, 
+	    LENGTH = #length:INTEGER#,
+	    WIDE = #wide:INTEGER#,
+	    HEIGHT = #height:INTEGER#,
+	    MATERIAL_NAME = #materialName:VARCHAR#, 
+	    MATERIAL_IMG_SN = #materialImgSn:BIGINT#,
+	    FABRIC_NAME = #fabricName:VARCHAR#,
+	    FABRIC_IMG_SN = #fabricImgSn:BIGINT#, 
+	    LONG_IMG_SN = #longImgSn:BIGINT#,
+	   	COLOR = #color:VARCHAR#,
+	   	MODEL = #model:VARCHAR#,
+	   	CAPACITY = #capacity:VARCHAR#,
+	    REMARK = #remark:VARCHAR#,
+	  	ADDER_SN = #adderSn:BIGINT#, 
+	    ADDER_NAME = #adderName:VARCHAR#, 
+	    ADD_TIME = #addTime:TIMESTAMP#, 
+	    UPDATER_SN = #updaterSn:BIGINT#, 
+	    UPDATER_NAME = #updaterName:VARCHAR#, 
+	    UPDATE_TIME = #updateTime:TIMESTAMP#, 
+	    material_color=#materialColor#, 
+	    fabric_color=#fabricColor#, 
+	    lr=#lr#, 
+	    lr_round=#lrRound#, 
+	    workmanship=#workManShip#, 
+	    dimension=#dimension#,  
+	    vendername=#venderName#
     where SN = #sn:BIGINT#
   </update>
 	

@@ -135,6 +135,7 @@
 			packageProduct.sn AS packageProductSn,
 			packageProduct.`PRODUCT_NUM` AS productNum,
 			product.sn AS productSn,
+			product.FULL_IMG_SN AS productImgSn,
 			product.name AS productName,
 			product.price AS productPrice,
 			pt.name AS typeName,

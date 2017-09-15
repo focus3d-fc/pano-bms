@@ -969,6 +969,13 @@ public class HousesController extends BaseController {
 		try{
 			Long packageTypeSn = Long.parseLong(packagetypesn);
 			List<Map<String,Object>> list = housesService.getTypeProducts(packageTypeSn);
+			for(Map<String,Object> child:list){
+				if(child.get("productImgSn")!=null){
+					String mapKey = child.get("productImgSn").toString();
+					Long key = Long.parseLong(mapKey);
+					child.put("productImgSn", fileReadClient.getFile(key, FileAttributeEnum.VISIT_ADDR));
+				}
+			}
 			ajaxOutput(response, JsonUtils.arrayToJson(list.toArray()));
 		}catch(IOException e){
 			e.printStackTrace();

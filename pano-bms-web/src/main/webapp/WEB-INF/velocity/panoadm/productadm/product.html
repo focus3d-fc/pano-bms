@@ -144,7 +144,7 @@
     }
 
     function upfulliclear(){
-    	$("#files0").text("");
+    	$("#files00").text("");
     	$("#fullimgsn01").val("");
     	$("#profulli").attr("src","");
     }
@@ -179,7 +179,7 @@
     	// $('form').attr('action','/productadm/updateproduct');
     //切换修改对象，清掉之前的选择
    // alert(productsn);
-    	$("#files0").text("");
+    	$("#files00").text("");
     	$("#files01").text("");
     	$("#files02").text("");
     	$("#files03").text("");
@@ -335,7 +335,6 @@
     }
     
     function delete_img(value){
-    	alert("Hello");
     	switch(value){
     		case 0:
     			$("#profulli").attr("src","");
@@ -343,28 +342,28 @@
     			break;
     		case 1:
     			$("#prolefti").attr("src","");
-    			$("#fullleftsn01").val("");
+    			$("#leftimgsn01").val("");
     			break;
     		case 2:
     			$("#prodowni").attr("src","");
-    			$("#fulldownsn01").val("");
+    			$("#downimgsn01").val("");
     			break;
     		case 3:
     			$("#promti").attr("src","");
-    			$("#fullmtsn01").val("");
+    			$("#mtimgsn01").val("");
     			break;
     		case 4:
     			$("#profbci").attr("src","");
-    			$("#fullfbcsn01").val("");
+    			$("#fbcimgsn01").val("");
     			break;
     		case 5:
     			$("#prolongi").attr("src","");
-    			$("#fulllongsn01").val("");
+    			$("#longimgsn01").val("");
     			break;
     	}
     	$("#delete_"+value).hide();
-   		$("#files"+value).empty();
-   		$("#resultInfo"+value).empty();
+   		$("#files0"+value).empty();
+   		$("#resultInfo0"+value).empty();
     	
     }
     
@@ -1277,8 +1276,8 @@
 	        					<input id="fileupload0" type="file" name="files[]" multiple>
     						</span>
     						<span  id="delete_0" style="display:none" class="btn btn-danger fileinput-button" onclick="delete_img(0)">删除图片</span>
-						    <div id="files0" class="files"></div>
-							<span id="resultInfo0"></span>
+						    <div id="files00" class="files"></div>
+							<span id="resultInfo00"></span>
                         </div>
                         <div class="col-md-4 img-box">
                             <p class="title">整体图片（左）</p>
