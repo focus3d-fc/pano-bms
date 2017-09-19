@@ -291,46 +291,52 @@
     }
 
     function getdetail(productsn){
+    	$("#dtfulli").attr("src","");
+	    $("#dtli").attr("src","");
+	    $("#dtdi").attr("src","");
+	    $("#dtmi").attr("src","");
+	    $("#dtfabi").attr("src","");
+	    $("#dtlong").attr("src","");  
     	
-    	  $.ajax({
-      		url:"/productadm/getproductdetail",	 
-      	    type:"post",
-      	    data:{productsn:productsn},
-      	    datatype:"json",
-      	    success:function(data){
-      	    	
-      	    	var jsonobj=JSON.parse(data);
-      	    	//alert(jsonobj.name);
-      	    	//alert(jsonobj.fullImg);
-      	    	//alert(jsonobj.dimension);
-      	    	$("#dtproid").text(jsonobj.id);
-      	    	$("#dtpron").text(jsonobj.name);
-      	    	$("#dtpromtn").text(jsonobj.materialName);
-      	    	$("#dtpromtc").text(jsonobj.materialColor);
-      	    	$("#dtprofabn").text(jsonobj.fabricName);
-      	    	$("#dtprofabc").text(jsonobj.fabricColor);
-      	    	$("#dtprolr").text(jsonobj.lr);
-      	    	$("#dtprolrrd").text(jsonobj.lrRound);
-      	    	$("#dtprowmsp").text(jsonobj.workManShip);
-      	    	$("#dtproprice").text(jsonobj.price);
-      	    	$("#dtprosumy").text(jsonobj.summary);
-      	    	$("#dtprotp").text(jsonobj.typeName);
-      	    	$("#dtprosty").text(jsonobj.styleName);
-      	    	$("#dtprofc").text(jsonobj.funcName);
-      	    	$("#dtprovder").text(jsonobj.venderName);
-      	    	$("#dtprodims").text(jsonobj.dimension);
-      	    	
-      	    	//alert(jsonobj.fullImgSn);
-      	    	//alert(jsonobj.fullImgUrl);
-      	    	$("#dtfulli").attr("src",jsonobj.fullImgUrl);
-      	    	$("#dtli").attr("src",jsonobj.leftImgUrl);
-      	    	$("#dtdi").attr("src",jsonobj.downImgUrl);
-      	    	$("#dtmi").attr("src",jsonobj.materialImgUrl);
-      	    	$("#dtfabi").attr("src",jsonobj.fabricImgUrl);
-      	    	$("#dtlong").attr("src",jsonobj.longImgUrl);
-      	    }
-      	    
-      	  }); 
+  	  	$.ajax({
+    		url:"/productadm/getproductdetail",	 
+    	    type:"post",
+    	    data:{productsn:productsn},
+    	    datatype:"json",
+    	    success:function(data){
+    	    	
+    	    	var jsonobj=JSON.parse(data);
+    	    	//alert(jsonobj.name);
+    	    	//alert(jsonobj.fullImg);
+    	    	//alert(jsonobj.dimension);
+    	    	$("#dtproid").text(jsonobj.id);
+    	    	$("#dtpron").text(jsonobj.name);
+    	    	$("#dtpromtn").text(jsonobj.materialName);
+    	    	$("#dtpromtc").text(jsonobj.materialColor);
+    	    	$("#dtprofabn").text(jsonobj.fabricName);
+    	    	$("#dtprofabc").text(jsonobj.fabricColor);
+    	    	$("#dtprolr").text(jsonobj.lr);
+    	    	$("#dtprolrrd").text(jsonobj.lrRound);
+    	    	$("#dtprowmsp").text(jsonobj.workManShip);
+    	    	$("#dtproprice").text(jsonobj.price);
+    	    	$("#dtprosumy").text(jsonobj.summary);
+    	    	$("#dtprotp").text(jsonobj.typeName);
+    	    	$("#dtprosty").text(jsonobj.styleName);
+    	    	$("#dtprofc").text(jsonobj.funcName);
+    	    	$("#dtprovder").text(jsonobj.venderName);
+    	    	$("#dtprodims").text(jsonobj.dimension);
+    	    	
+    	    	//alert(jsonobj.fullImgSn);
+    	    	//alert(jsonobj.fullImgUrl);
+    	    	$("#dtfulli").attr("src",jsonobj.fullImgUrl);
+    	    	$("#dtli").attr("src",jsonobj.leftImgUrl);
+    	    	$("#dtdi").attr("src",jsonobj.downImgUrl);
+    	    	$("#dtmi").attr("src",jsonobj.materialImgUrl);
+    	    	$("#dtfabi").attr("src",jsonobj.fabricImgUrl);
+    	    	$("#dtlong").attr("src",jsonobj.longImgUrl);
+    	    }
+    	    
+    	  }); 
     	// location.href="/productadm/preupdateproduct"; 
     }
     
