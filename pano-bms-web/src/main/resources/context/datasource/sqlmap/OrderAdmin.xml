@@ -9,39 +9,23 @@
 		parameterClass="com.focus3d.pano.admin.utils.Page">
 		SELECT
 		  pano_order.SN AS ORDER_SN,
+		  pano_order.ORDER_NUM AS ORDER_NUM,
 		  pano_order.ORDER_TIME,
 		  pano_order.`STATUS`,
+		  pano_order_logtc.SEND,
+		  pano_order_logtc.SEND AS SEND,
 		  pano_order.USER_SN,
-		  pano_order.PAY_MONEY,
 		  address.USER_NAME AS NICK_NAME,
-		  pano_project.`NAME` AS PROJECT_NAME,
-		  base_style.`NAME` AS STYLE_NAME,
-		  house.`NAME` AS HOUSE_NAME,
-		  package.`NAME` AS PACKAGE_NAME
+		  address.`MOBILE` AS MOBILE
 		FROM
 		  pano_order
-		  LEFT JOIN pano_order_logtc
+		  INNER JOIN pano_order_logtc
 		    ON pano_order.SN = pano_order_logtc.ORDER_SN
-		  LEFT JOIN pano_mem_user 
+		  INNER JOIN pano_mem_user 
 		    ON pano_order.USER_SN = pano_mem_user.SN
-		  LEFT JOIN pano_user_receive_address address
+		  INNER JOIN pano_user_receive_address address
 		    ON pano_order.`ADDRESS_SN` = address.sn
-		  INNER JOIN pano_order_package order_package 
-		    ON order_package.`ORDER_SN` = pano_order.`SN` 
-		  INNER JOIN pano_project_house_package housePackage 
-		    ON housePackage.sn = order_package.`HOUSE_PACKAGE_SN` 
-		  INNER JOIN pano_project_package package 
-		    ON package.`SN` = housePackage.`PACKAGE_SN` 
-		  INNER JOIN pano_project_house_style houseStyle 
-		    ON houseStyle.sn = housePackage.`HOUSE_STYLE_SN`
-		  INNER JOIN pano_project 
-		    ON pano_project.sn = houseStyle.`PROJECT_SN` 
-		  INNER JOIN pano_project_house house 
-		    ON house.`SN` = houseStyle.`HOUSE_SN` 
-		  INNER JOIN pano_project_style projectStyle 
-		    ON projectStyle.sn = houseStyle.`STYLE_SN` 
-		  INNER JOIN pano_project_base_style base_style 
-		    ON base_style.sn = projectStyle.style_sn  
+		WHERE pano_order.`PARENT_ORDER_SN` = -1
 		ORDER BY pano_order.ORDER_TIME DESC
 		LIMIT #startIndex#,#pagesize#
 	</select>
@@ -58,24 +42,17 @@
 	    ON pano_order.USER_SN = pano_mem_user.SN
       LEFT JOIN pano_user_receive_address address
 	    ON pano_order.`ADDRESS_SN` = address.sn
-	  INNER JOIN pano_order_package order_package 
-	    ON order_package.`ORDER_SN` = pano_order.`SN` 
-	  INNER JOIN pano_project_house_package housePackage 
-	    ON housePackage.sn = order_package.`HOUSE_PACKAGE_SN` 
-	  INNER JOIN pano_project_package package 
-	    ON package.`SN` = housePackage.`PACKAGE_SN` 
-	  INNER JOIN pano_project_house_style houseStyle 
-	    ON houseStyle.sn = housePackage.`HOUSE_STYLE_SN` 
-	  INNER JOIN pano_project
-	    ON pano_project.sn = houseStyle.`PROJECT_SN`
-	  INNER JOIN pano_project_house house
-	    ON house.`SN` = houseStyle.`HOUSE_SN`
-	  INNER JOIN pano_project_style projectStyle 
-	    ON projectStyle.sn = houseStyle.`STYLE_SN` 
-	  INNER JOIN pano_project_base_style base_style 
-	    ON base_style.sn = projectStyle.style_sn
+	  INNER JOIN (SELECT DISTINCT(order_package.`ORDER_SN`),houseStyle.`PROJECT_SN` FROM 	
+			pano_order_package order_package 
+			INNER JOIN pano_project_house_package housePackage 
+			ON housePackage.sn = order_package.`HOUSE_PACKAGE_SN` 
+			INNER JOIN pano_project_package package 
+			ON package.`SN` = housePackage.`PACKAGE_SN` 
+			INNER JOIN pano_project_house_style houseStyle 
+			ON houseStyle.sn = housePackage.`HOUSE_STYLE_SN`)  AS order_package
+     	ON order_package.ORDER_SN = pano_order.sn 
      <dynamic prepend="WHERE ">
-		1=1
+		pano_order.`PARENT_ORDER_SN` = -1
 		<isNotEmpty property="ORDER_TIME">
 			and
 			<![CDATA[
@@ -83,7 +60,7 @@
 			]]>
 		</isNotEmpty>
 		<isNotEmpty property="PROJECT_SN">
-			and pano_project.sn=#PROJECT_SN#
+			and order_package.PROJECT_SN=#PROJECT_SN#
 		</isNotEmpty>
 		<isNotEmpty property="NICK_NAME">
 			and
@@ -101,37 +78,91 @@
 	</select>
 
 
-	<select id="selOrderbySN" resultClass="OrderAdmin"
+	<select id="selOrderbySN" resultClass="java.util.HashMap"
 		parameterClass="java.lang.Long">
 		SELECT
-		pano_order.SN AS ORDER_SN,
-		pano_order.ORDER_TIME,
-		pano_order.`STATUS`,
-		pano_order.USER_SN,
-		pano_order.PAY_MONEY,
-		pano_user_receive_address.PROVINCE,
-		pano_user_receive_address.CITY,
-		pano_user_receive_address.AREA,
-		pano_user_receive_address.STREET,
-		pano_user_receive_address.MOBILE,
-		address.USER_SN AS　NICK_NAME
+		   pano_order.sn AS SN, 
+		   pano_order.ORDER_NUM AS ORDER_NUM, 
+		   pano_order.ORDER_TIME AS ORDER_TIME, 
+		   pano_order.DISCOUNT as DISCOUNT,
+		   pano_order.DISCOUNT_MONEY AS DISCOUNT_MONEY, 
+		   pano_order.STATUS AS STATUS, 
+		   pano_order.`SUM_MONEY` AS SUM_MONEY,
+		   pano_order.`PAY_MONEY` as PAY_MONEY,
+		   (pano_order.LEFT_PAY+pano_order.`PAY_MONEY`) AS ActuallyMoney, 
+		   logtc.SN AS LOGTC_SN,
+		   logtc.ID AS LOGTC_ID, 
+		   logtc.SEND AS LOGTC_SEND, 
+		   logtc.USER_ADDRESS AS RECEIVER_ADDRESS, 
+		   logtc.USER_PHONE AS RECEIVER_PHONE, 
+		   logtc.USER_NAME AS RECEIVER_NAME,
+		   logtc.REMARK AS REMARK,
+		   user.CERT_NO AS RECEIVER_CERTNO, 
+		   pano_order.USER_SN AS USER_SN,
+		   pano_order_trans.`TRANS_PLATFORM_TYPE` as TRANS_TYPE
 		FROM
-		pano_order
-		LEFT JOIN pano_order_logtc ON pano_order_logtc.ORDER_SN =
-		pano_order.SN
-		INNER JOIN pano_mem_user ON pano_mem_user.SN =
-		pano_order.USER_SN
-		LEFT JOIN pano_user_receive_address address
-	    	ON pano_order.`ADDRESS_SN` = address.sn
-		INNER JOIN pano_user_receive_address ON
-		pano_user_receive_address.USER_SN = pano_mem_user.SN
+		  pano_order
+		  LEFT JOIN pano_order_logtc logtc
+		    ON pano_order.SN = logtc.ORDER_SN
+		  LEFT JOIN pano_mem_user USER
+		    ON pano_order.USER_SN = USER.SN
+		  LEFT JOIN pano_order_trans
+            ON pano_order_trans.`ORDER_ID` = pano_order.`ORDER_NUM`
 		WHERE
 		pano_order.SN = #ORDER_SN#
-		AND
-		pano_user_receive_address.`DEFAULT_FIRST` = 1
 	</select>
-
-
+	
+	<select id="query_order_package_detail" resultClass="java.util.HashMap" parameterClass="java.lang.Long">
+		SELECT
+		    housePackage.sn AS packageSn,
+			pano_project.`NAME` AS projectName,
+			baseStyle.NAME AS baseStyle,
+			house.`NAME` AS houseName,
+			package.`NAME` AS packageName,
+			product.name AS productName,
+			product.id AS productID,
+			packageProduct.product_num AS productNum
+		FROM pano_order_package orderPackage
+		INNER JOIN pano_project_house_package housePackage
+			ON housePackage.sn = orderPackage.`HOUSE_PACKAGE_SN`
+	    INNER JOIN pano_project_package package 
+	    	ON package.`SN` = housePackage.`PACKAGE_SN` 
+	    INNER JOIN pano_project_house_style houseStyle 
+	    	ON houseStyle.sn = housePackage.`HOUSE_STYLE_SN` 
+	    INNER JOIN pano_project 
+	    	ON pano_project.sn = houseStyle.`PROJECT_SN` 
+	    INNER JOIN pano_project_house house 
+	    	ON house.`SN` = houseStyle.`HOUSE_SN` 
+	    INNER JOIN pano_project_style projectStyle 
+	    	ON projectStyle.sn = houseStyle.`STYLE_SN` 
+	    INNER JOIN pano_project_base_style baseStyle 
+	    	ON baseStyle.sn = projectStyle.style_sn 
+	    INNER JOIN pano_order_package_detail orderPackageDetail
+	    	ON orderPackageDetail.order_package_sn = orderPackage.sn
+	    INNER JOIN pano_project_package_product packageProduct
+	    	ON packageProduct.package_type_sn = orderPackageDetail.package_type_sn  AND packageProduct.product_sn = orderPackageDetail.package_product_sn
+	    INNER JOIN pano_product product
+	    	ON product.sn = orderPackageDetail.package_product_sn
+	    WHERE orderPackage.`ORDER_SN` = #ORDER_SN#
+	</select>
+	
+	<select id="query_order_pay" resultClass="java.util.HashMap" parameterClass="java.lang.Long">
+		SELECT
+			COUNT(*) num, 
+            (parent.PAY_MONEY + parent.LEFT_MONEY + child.PAY_MONEY + child.LEFT_MONEY) AS ActuallyMoney,
+            (parent.PAY_MONEY +child.PAY_MONEY) AS PAY_MONEY,
+            parent.STATUS AS first_status,
+	    	child.status AS final_status,
+            parent.TRANS_PLATFORM_TYPE AS first_trans_type,
+            child.TRANS_PLATFORM_TYPE AS final_trans_type
+        FROM
+        	(SELECT pano_order.sn,pano_order.`STATUS`,pano_order.`PAY_MONEY`,pano_order.`LEFT_MONEY`,pano_order_trans.TRANS_PLATFORM_TYPE FROM pano_order  LEFT JOIN pano_order_trans ON pano_order_trans.`ORDER_ID` = pano_order.`ORDER_NUM`) AS parent
+        INNER JOIN
+        	(SELECT pano_order.parent_order_sn,pano_order.`STATUS`,pano_order.`PAY_MONEY`,pano_order.`LEFT_MONEY`,pano_order_trans.TRANS_PLATFORM_TYPE FROM pano_order  LEFT JOIN pano_order_trans ON pano_order_trans.`ORDER_ID` = pano_order.`ORDER_NUM`) AS child
+        	ON parent.sn = child.parent_order_sn 
+        WHERE parent.sn = #ORDER_SN# 
+	</select>
+	
 	<select id="selHouse" resultClass="houses">
 		select
 		SN,`NAME`
@@ -140,46 +171,36 @@
 		order by ADD_TIME desc
 	</select>
 
-
 	<select id="selOrderbyAll" resultClass="OrderAdmin"
 		parameterClass="java.util.HashMap">
 		SELECT 
 		  pano_order.SN AS ORDER_SN,
+		  pano_order.ORDER_NUM AS ORDER_NUM,
 		  pano_order.ORDER_TIME,
 		  pano_order.`STATUS`,
+		  pano_order_logtc.SEND,
 		  pano_order.USER_SN,
-		  pano_order.PAY_MONEY,
 		  address.USER_NAME AS NICK_NAME,
-		  pano_project.`NAME` AS PROJECT_NAME,
-		  base_style.`NAME` AS STYLE_NAME,
-		  house.`NAME` AS HOUSE_NAME,
-		  package.`NAME` AS PACKAGE_NAME
+		  address.`MOBILE` AS MOBILE
 		FROM
 		  pano_order 
 		  LEFT JOIN pano_order_logtc 
-		    ON pano_order.SN = pano_order_logtc.ORDER_SN 
+		    ON pano_order.SN = pano_order_logtc.ORDER_SN
 		  LEFT JOIN pano_mem_user 
 		    ON pano_order.USER_SN = pano_mem_user.SN 
 		  LEFT JOIN pano_user_receive_address address
 			ON pano_order.`ADDRESS_SN` = address.sn
-		  INNER JOIN pano_order_package order_package 
-		    ON order_package.`ORDER_SN` = pano_order.`SN` 
-		  INNER JOIN pano_project_house_package housePackage 
-		    ON housePackage.sn = order_package.`HOUSE_PACKAGE_SN` 
-		  INNER JOIN pano_project_package package 
-		    ON package.`SN` = housePackage.`PACKAGE_SN` 
-		  INNER JOIN pano_project_house_style houseStyle 
-		    ON houseStyle.sn = housePackage.`HOUSE_STYLE_SN` 
-		  INNER JOIN pano_project 
-		    ON pano_project.sn = houseStyle.`PROJECT_SN` 
-		  INNER JOIN pano_project_house house 
-		    ON house.`SN` = houseStyle.`HOUSE_SN` 
-		  INNER JOIN pano_project_style projectStyle 
-		    ON projectStyle.sn = houseStyle.`STYLE_SN` 
-		  INNER JOIN pano_project_base_style base_style 
-		    ON base_style.sn = projectStyle.style_sn 
+		  INNER JOIN (SELECT DISTINCT(order_package.`ORDER_SN`),houseStyle.`PROJECT_SN` FROM 	
+				pano_order_package order_package 
+				INNER JOIN pano_project_house_package housePackage 
+				ON housePackage.sn = order_package.`HOUSE_PACKAGE_SN` 
+				INNER JOIN pano_project_package package 
+				ON package.`SN` = housePackage.`PACKAGE_SN` 
+				INNER JOIN pano_project_house_style houseStyle 
+				ON houseStyle.sn = housePackage.`HOUSE_STYLE_SN`)  AS order_package
+	     	ON order_package.ORDER_SN = pano_order.sn 
 		  <dynamic prepend="WHERE ">
-			1=1
+			pano_order.`PARENT_ORDER_SN` = -1
 			<isNotEmpty property="ORDER_TIME">
 				and
 				<![CDATA[
@@ -187,7 +208,7 @@
 				]]>
 			</isNotEmpty>
 			<isNotEmpty property="PROJECT_SN">
-				and pano_project.sn=#PROJECT_SN#
+				and order_package.PROJECT_SN=#PROJECT_SN#
 			</isNotEmpty>
 			<isNotEmpty property="NICK_NAME">
 				and
@@ -271,5 +292,16 @@
 		WHERE
 		pano_mem_user.NICK_NAME=#NICK_NAME#
 	</select>
+	
+	<update id="update_logtc" parameterClass="java.util.HashMap">
+		update pano_order_logtc
+		set 
+		ID = #LOGTC_ID#,
+		SEND = #LOGTC_SEND#,
+		USER_PHONE = #RECEIVER_PHONE#,
+		USER_ADDRESS = #RECEIVER_ADDRESS#,
+		REMARK = #REMARK#
+		WHERE SN = #LOGTC_SN#
+	</update>
 
 </sqlMap>

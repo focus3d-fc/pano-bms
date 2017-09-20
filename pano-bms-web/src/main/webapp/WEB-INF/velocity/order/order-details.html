@@ -16,75 +16,185 @@
 		</div>
 		<div class="panel-body">
 			<div class="form-horizontal">
+			
 				<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label">姓名</label>
+					<label class="col-sm-4 control-label">订单编号</label>
 					<div class="col-sm-8">
-						<p class="form-control-static">$!{orderList.NICK_NAME}</p>
+						<p class="form-control-static">$!{orderList.ORDER_NUM}</p>
 					</div>
 				</div>
+				
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">订单日期</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">$!{orderList.ORDER_TIME}</p>
+					</div>
+				</div>
+				
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">订单金额</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">$!{orderList.SUM_MONEY}</p>
+					</div>
+				</div>
+				
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">实付金额</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">$!{orderList.ActuallyMoney}</p>
+					</div>
+				</div>
+				
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">已经支付金额</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">$!{orderList.PAY_MONEY}</p>
+					</div>
+				</div>
+				
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">全款支付方式</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">
+						#if($!{orderList.total_trans_type}==1) 微信支付 #end
+						#if($!{orderList.total_trans_type}==2) 连连认证支付 #end
+						#if($!{orderList.total_trans_type}==3) 信用卡支付 #end
+						</p>
+					</div>
+				</div>
+				
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">预付款支付方式</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">
+						#if($!{orderList.first_trans_type}==1) 微信支付 #end
+						#if($!{orderList.first_trans_type}==2) 连连认证支付 #end
+						#if($!{orderList.first_trans_type}==3) 信用卡支付 #end
+						</p>
+					</div>
+				</div>
+				
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">尾款支付方式</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">
+						#if($!{orderList.final_trans_type}==1) 微信支付 #end
+						#if($!{orderList.final_trans_type}==2) 连连认证支付 #end
+						#if($!{orderList.final_trans_type}==3) 信用卡支付 #end
+						</p>
+					</div>
+				</div>
+				
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">优惠折扣</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">$!{orderList.DISCOUNT}</p>
+					</div>
+				</div>
+				
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">优惠券</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">$!{orderList.DISCOUNT_MONEY}</p>
+					</div>
+				</div>
+				
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">订单状态</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">
+							#if($!{orderList.STATUS}==1) 待付款 #end
+							#if($!{orderList.STATUS}==2) 已付款 #end
+							#if($!{orderList.STATUS}==3) 待付尾款 #end
+						</p>
+					</div>
+				</div>
+				
 				<div class="form-group col-sm-6">
 					<label class="col-sm-4 control-label">用户ID</label>
 					<div class="col-sm-8">
 						<p class="form-control-static">$!{orderList.USER_SN}</p>
 					</div>
 				</div>
-				<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label">订单状态</label>
-					<div class="col-sm-8">
-						<p class="form-control-static">#if($!{orderList.STATUS}==1)
-							待付款 #end #if($!{orderList.STATUS}==2) 已付款 #end
-							#if($!{orderList.STATUS}==3) 取消付款 #end
-						</p>
-					</div>
-				</div>
-				<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label">物流状态</label>
-					<div class="col-sm-8">
-						<p class="form-control-static">#if($!{orderList.SEND}==0) 未发货
-							#end#if($!{orderList.SEND}==1) 发货 #end</p>
-					</div>
-				</div>
+				
 				<div class="form-group col-sm-6">
 					<label class="col-sm-4 control-label">物流单号</label>
 					<div class="col-sm-8">
 						<p class="form-control-static">$!{orderList.LOGTC_ID}</p>
 					</div>
 				</div>
+				
 				<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label">订单金额</label>
+					<label class="col-sm-4 control-label">物流状态</label>
 					<div class="col-sm-8">
-						<p class="form-control-static">$!{orderList.TOTAL_PRICE}</p>
+						<p class="form-control-static">
+						#if($!{orderList.LOGTC_SEND}==0) 未发货#end
+						#if($!{orderList.LOGTC_SEND}==1) 已发货 #end
+						</p>
 					</div>
 				</div>
+			
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">姓名</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">$!{orderList.RECEIVER_NAME}</p>
+					</div>
+				</div>
+				
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">身份证号码</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">$!{orderList.RECEIVER_CERTNO}</p>
+					</div>
+				</div>
+				
+				<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label">收货地址</label>
+					<div class="col-sm-8">
+						<p class="form-control-static">$!{orderList.RECEIVER_ADDRESS}</p>
+					</div>
+				</div>
+				
 				<div class="form-group col-sm-6">
 					<label class="col-sm-4 control-label">联系电话</label>
 					<div class="col-sm-8">
-						<p class="form-control-static">$!{orderList.MOBILE}</p>
+						<p class="form-control-static">$!{orderList.RECEIVER_PHONE}</p>
 					</div>
 				</div>
+				
 				<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label">备用电话</label>
+					<label class="col-sm-4 control-label">后台备注</label>
 					<div class="col-sm-8">
-						<p class="form-control-static">$!{orderList.BACKUP_MOBILE}</p>
+						<p class="form-control-static">$!{orderList.NICK_NAME}</p>
 					</div>
 				</div>
+				
 				<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label">订单日期</label>
-					<div class="col-sm-8 field">
-						<p class="form-control-static">$!{orderList.ORDER_TIME}</p>
+					<label class="col-sm-4 control-label">套餐明细</label>
+					#foreach($member in $orderList.detail.entrySet())
+					<div>
+						<span>$member.value.name</span>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>产品名称</th>
+									<th>产品编号</th>
+									<th>件数</th>
+								</tr>
+							</thead>
+							<tbody>
+								#foreach($product in $member.value.child)
+								<tr>
+									<td>$!{product.productName}</td>
+									<td>$!{product.productID}</td>
+									<td>$!{product.productNum}</td>
+								</tr>
+								#end
+							</tbody>
+						</table>
 					</div>
+					#end
 				</div>
-				<div class="form-group col-sm-12">
-					<label class="col-sm-2 control-label">收货地址</label>
-					<div class="col-sm-8 field">
-						<p class="form-control-static">$!{orderList.PROVINCE}$!{orderList.CITY}$!{orderList.AREA}$!{orderList.STREET}</p>
-					</div>
-				</div>
-				<div class="col-sm-12 text-center">
-					<a href="/order/toOrder" class="btn btn-default">返回</a>
-				</div>
-
-
 			</div>
 		</div>
 </body>

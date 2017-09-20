@@ -11,6 +11,7 @@ public class OrderAdmin implements Serializable, CommonModel {
 
 	private Long SN;
 	private Long ORDER_SN;// 订单SN
+	private Long ORDER_NUM;//订单号
 	private Long USER_SN;// 用户SN
 	private String NICK_NAME;// 用户昵称
 	private int STATUS;// 订单状态
@@ -45,6 +46,14 @@ public class OrderAdmin implements Serializable, CommonModel {
 
 	public void setORDER_SN(Long oRDER_SN) {
 		ORDER_SN = oRDER_SN;
+	}
+	
+	public Long getORDER_NUM() {
+		return ORDER_NUM;
+	}
+
+	public void setORDER_NUM(Long oRDER_NUM) {
+		ORDER_NUM = oRDER_NUM;
 	}
 
 	public Long getUSER_SN() {

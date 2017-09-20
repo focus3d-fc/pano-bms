@@ -26,8 +26,8 @@ public class OrderDAOImpl extends BaseDao implements OrderDAO {
 	}
 
 	@Override
-	public List<OrderAdmin> selOrderbySN(Long ORDER_SN) {
-		List<OrderAdmin> list = (List<OrderAdmin>) getSqlMapClientTemplate().queryForList("OrderAdmin.selOrderbySN", ORDER_SN);
+	public HashMap<String,Object> selOrderbySN(Long ORDER_SN) {
+		HashMap<String,Object> list = (HashMap<String,Object>)getSqlMapClientTemplate().queryForObject("OrderAdmin.selOrderbySN", ORDER_SN);
 		return list;
 	}
 
@@ -54,5 +54,21 @@ public class OrderDAOImpl extends BaseDao implements OrderDAO {
 		List<OrderAdmin> list = (List<OrderAdmin>) getSqlMapClientTemplate().queryForList("OrderAdmin.selOrderbyNickname", order);
 		return list;
 	}
-
+	
+	@Override
+	public List<HashMap<String,Object>> QueryOrderPackageDetail(Long ORDER_SN){
+		 List<HashMap<String,Object>> list = getSqlMapClientTemplate().queryForList("OrderAdmin.query_order_package_detail", ORDER_SN);
+		return list;
+	}
+	
+	@Override
+	public HashMap<String,Object> QueryOrderPay(Long ORDER_SN){
+		 HashMap<String,Object> list = ( HashMap<String,Object>)getSqlMapClientTemplate().queryForObject("OrderAdmin.query_order_pay", ORDER_SN);
+		 return list;
+	}
+	
+	@Override
+	public void UpdateLogtc(HashMap<String,Object> map){
+		getSqlMapClientTemplate().update("OrderAdmin.update_logtc", map);
+	}
 }

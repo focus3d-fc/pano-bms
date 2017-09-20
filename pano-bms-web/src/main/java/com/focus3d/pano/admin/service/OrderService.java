@@ -16,7 +16,7 @@ public interface OrderService {
 	public int selOrderCount(HashMap<String,Object> map);
 
 	// 查看订单详情
-	public List<OrderAdmin> selOrderbySN(Long ORDER_SN);
+	public HashMap<String,Object> selOrderbySN(Long ORDER_SN);
 
 	// 查询所有楼盘
 	public List<pano_project> selHouse();
@@ -29,4 +29,10 @@ public interface OrderService {
 
 	// 搜索-根据姓名
 	public List<OrderAdmin> selOrderbyNickname(OrderAdmin order);
+	
+	public List<HashMap<String,Object>> QueryOrderPackageDetail(Long ORDER_SN);
+	
+	public HashMap<String,Object> QueryOrderPay(Long ORDER_SN);
+	
+	public void UpdateLogtc(HashMap<String,Object> map);
 }

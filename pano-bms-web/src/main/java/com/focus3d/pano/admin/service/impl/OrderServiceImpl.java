@@ -31,7 +31,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderAdmin> selOrderbySN(Long ORDER_SN) {
+	public HashMap<String,Object> selOrderbySN(Long ORDER_SN) {
 		// TODO Auto-generated method stub
 		return orderDAO.selOrderbySN(ORDER_SN);
 	}
@@ -58,5 +58,20 @@ public class OrderServiceImpl implements OrderService {
 	public List<OrderAdmin> selOrderbyNickname(OrderAdmin order) {
 		// TODO Auto-generated method stub
 		return orderDAO.selOrderbyNickname(order);
+	}
+	
+	@Override
+	public List<HashMap<String,Object>> QueryOrderPackageDetail(Long ORDER_SN){
+		return orderDAO.QueryOrderPackageDetail(ORDER_SN);
+	}
+	
+	@Override
+	public HashMap<String,Object> QueryOrderPay(Long ORDER_SN){
+		return orderDAO.QueryOrderPay(ORDER_SN);
+	}
+	
+	@Override
+	public void UpdateLogtc(HashMap<String,Object> map){
+		orderDAO.UpdateLogtc(map);
 	}
 }
