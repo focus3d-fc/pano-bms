@@ -61,7 +61,7 @@
 		//var page = $.parseJSON(value);
 		var tab = new Tab();
 		tab.setExhibtionNum(5);
-		tab.setIndex(current_index);
+		tab.setIndex(parseInt(current_index));
 		tab.create($("#product-tabs"),{
 			total:total,
 			autoskip:false,
@@ -70,8 +70,6 @@
 				move(index,10);
 			}
 		});
-		
-		
 	})
 
 	function move(pageNum,pageSize){
@@ -102,9 +100,8 @@
    function goback(){
 	   location.href="/productadm/listproduct";
    }
-   
     //每次点击添加要清已添加得预览图片的div
-    function preaddpro(){
+   function preaddpro(){
     	$("#files").text("");
     	$("#fullimgsn").val("");
     	$("#files1").text("");
@@ -115,7 +112,7 @@
     	$("#mtimgsn").val("");
     	$("#files4").text("");
     	$("#fbcimgsn").val("");
-    }
+   }
      //点击后可清掉该项之前的选择
     function fulliclear(){
     	$("#files").text("");

@@ -38,8 +38,8 @@
 						</div>
 						
 						<div class="form-group">
-							<label class="col-sm-3 control-label">物流单号</label>
-							<select name="LOGTC_SEND" id="LOGTC_SEND">
+							<label class="col-sm-3 control-label" style="margin-right:16px;">物流单号</label>
+							<select name="LOGTC_SEND" id="LOGTC_SEND" style="height: 33px;line-height:28px;border-radius:4px;border:1px solid #ccc;width:326px;text-indent: 10px;">
 							  <option value ="0">未发货</option>
 							  <option value ="1">已发货</option>
 							</select>
@@ -165,7 +165,6 @@
 			if(total!=0){
 				var tab = new Tab();
 				tab.setExhibtionNum(5);
-				
 				tab.setIndex(current_index);
 				tab.create($("#tab_container"),{
 					total:total,

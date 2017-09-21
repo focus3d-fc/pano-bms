@@ -2,7 +2,7 @@ function Tab(){
 	this.nav;
 	this.body;
 	this.skip_value;
-	this.index = 1;
+	this.index = 0;
 	this.navigation = -1;
 	this.autoskip = true;
 	this.exhibitionNum = 5;
@@ -88,7 +88,7 @@ Tab.prototype={
 			
 			var _this = this;
 			this.body.empty();
-			var start = this.navigation * this.exhibitionNum + 1;
+			var start = this.navigation*this.exhibitionNum + 1;
 			for(var i=start;i<(start+this.exhibitionNum)&&i<=this.total;i++){
 				var element = $("<a></a>").text(i).on("click",function(index){
 					return function(){
@@ -147,8 +147,6 @@ Tab.prototype={
 	},
 	setStyle:function(param){
 		this.nav;
-		debugger;
 		this.nav.css(param);
-		
 	}
 }

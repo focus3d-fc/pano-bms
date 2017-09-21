@@ -1015,7 +1015,6 @@ public class HousesController extends BaseController {
 		}
 	}
 	
-	
 	@RequestMapping("/queryProductDetail")
 	public void QueryProductDetail(HttpServletResponse response,String productSn){
 		try{

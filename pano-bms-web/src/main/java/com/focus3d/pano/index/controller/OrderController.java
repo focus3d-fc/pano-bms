@@ -1,12 +1,22 @@
 package com.focus3d.pano.index.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,7 +28,9 @@ import com.focus3d.pano.admin.utils.Page;
 import com.focus3d.pano.common.controller.BaseController;
 import com.focus3d.pano.model.OrderAdmin;
 import com.focus3d.pano.model.pano_project;
+import com.focustech.common.utils.DownloadUtils;
 import com.focustech.common.utils.JsonUtils;
+import com.focustech.common.utils.StringUtils;
 
 /**
  * 
@@ -33,6 +45,38 @@ public class OrderController extends BaseController {
 
 	@Autowired
 	private OrderService orderService;
+	private int colum_width = 5120;
+	private short colum_height = 256;
+	private static final LinkedHashMap<String,String> Colum_Name = new LinkedHashMap<String,String>() {{  
+			put("ORDER_NUM","订单编号");
+			put("ORDER_TIME","订单日期");
+			put("SUM_MONEY","订单金额");
+			put("ActuallyMoney","实付金额");
+			put("PAY_MONEY","已支付金额");
+			put("total_trans_type","全款支付方式");
+			put("first_trans_type","预付款支付方式");
+			put("final_trans_type","尾款支付方式");
+			put("DISCOUNT","优惠折扣");
+			put("DISCOUNT_MONEY","优惠券");
+			put("STATUS","订单状态");
+			put("USER_SN","用户ID");
+			put("LOGTC_ID","物流单号");
+			put("LOGTC_SEND","物流状态");
+			put("RECEIVER_NAME","姓名");
+			put("RECEIVER_CERTNO","身份证号码");
+			
+			put("RECEIVER_ADDRESS","收货地址");
+			put("RECEIVER_PHONE","联系电话");
+			put("REMARK","后台备注");
+			put("detail","套餐明细");
+	}};   
+	
+	private static final LinkedHashMap<String,String> Product_Colum = new LinkedHashMap<String,String>() {{  
+		put("productName","产品名称");
+		put("productID","产品编号");
+		put("productNum","件数");
+	}};
+	
 
 	/**
 	 * 进入订单管理
@@ -106,6 +150,12 @@ public class OrderController extends BaseController {
 	@RequestMapping("/toorder-details")
 	public String toorder_details(ModelMap map,String ORDER_SN) {
 		Long order_sn = Long.parseLong(ORDER_SN);
+		HashMap<String,Object> order = GetDetail(order_sn);
+		map.put("orderList", order);
+		return "/order/order-details";
+	}
+	
+	private HashMap<String,Object> GetDetail(Long order_sn){
 		HashMap<String,Object> order = orderService.selOrderbySN(order_sn);
 		
 		List<HashMap<String,Object>> products = orderService.QueryOrderPackageDetail(order_sn);
@@ -162,9 +212,9 @@ public class OrderController extends BaseController {
 				order.put("STATUS",2);
 			}
 		}
-		map.put("orderList", order);
-		return "/order/order-details";
+		return order;
 	}
+	
 	/**
 	 * 订单管理-搜索
 	 */
@@ -273,4 +323,146 @@ public class OrderController extends BaseController {
 		}
 	}
 	
+	@RequestMapping("/export")
+	public void export(String ORDER_SN, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		if(StringUtils.isNotEmpty(ORDER_SN)){
+			Long order_sn = Long.parseLong(ORDER_SN);
+			
+			HashMap<String,Object> order = GetDetail(order_sn);
+			byte[] resultSetToExcel = new byte[0];
+			String xlsFileName = "订单详情_" + order.get("ORDER_NUM").toString() + ".xls";
+			resultSetToExcel = resultSetToExcel(xlsFileName, order);
+			DownloadUtils.setDownloadHeader(xlsFileName, request, response);
+			response.getOutputStream().write(resultSetToExcel);
+		}
+	}
+	
+	/**
+	 *
+	 * *
+	 * @param filePath
+	 * @param sheetName
+	 * @param list
+	 * @throws Exception
+	 */
+	private byte[] resultSetToExcel(String sheetName, HashMap<String,Object> map) throws Exception {
+		HSSFWorkbook workbook = new HSSFWorkbook();
+		HSSFSheet sheet = workbook.createSheet();
+		sheet.setColumnWidth(0,colum_width);
+		sheet.setColumnWidth(1,colum_width);
+		sheet.setColumnWidth(2,colum_width);
+		workbook.setSheetName(0, sheetName);
+		
+		HSSFRow row;
+		HSSFCell cell = null;
+		HSSFCellStyle cellStyle = null;
+		/*HSSFFont font = workbook.createFont();
+		font.setColor(HSSFFont.COLOR_NORMAL);
+		font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD); */
+		int index = -1;
+		for (Map.Entry<String, String> entry : Colum_Name.entrySet()) {
+			// 写入各条记录，每条记录对应Excel中的一行
+			
+			String key = entry.getKey();
+			//1
+			row = sheet.createRow((short) ++index);
+			row.setHeight(colum_height);
+			cell = row.createCell((short) 0);
+			cellStyle = cell.getCellStyle();
+			cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+			//cell.setEncoding(HSSFCell.ENCODING_UTF_16);
+			cell.setCellValue(entry.getValue());
+			
+			if(!key.equals("detail")){
+				//2
+				cell = row.createCell((short) 1);
+				cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+				//cell.setEncoding(HSSFCell.ENCODING_UTF_16);
+				Object value = map.get(key);
+				if(value!=null){
+					String _value = value.toString();
+					if(key.equals("STATUS")){
+						if(_value.equals("1")){
+							_value = "待付款";
+						}else if(_value.equals("2")){
+							_value = "已付款";
+						}else if(_value.equals("3")){
+							_value = "待付尾款";
+						}
+					}else if(key.equals("LOGTC_SEND")){
+						if(_value.equals("0")){
+							_value = "未发货";
+						}else if(_value.equals("1")){
+							_value = "已发货";
+						}
+					}else if(key.equals("total_trans_type")||key.equals("first_trans_type")||key.equals("final_trans_type")){
+						if(_value.equals("1")){
+							_value = "微信支付";
+						}else if(_value.equals("2")){
+							_value = "连连认证支付";
+						}else if(_value.equals("2")){
+							_value = "信用卡支付";
+						}
+					}
+					cell.setCellValue(_value);
+				}
+			}else{
+				HashMap<String,Object> detail_map = (HashMap<String,Object>)map.get(key);
+				for(Map.Entry<String, Object> detail : detail_map.entrySet()){
+					HashMap<String,Object> _package = (HashMap<String,Object>)detail.getValue();
+					String name = _package.get("name").toString();
+					List<HashMap<String,Object>> product_list = (List<HashMap<String,Object>>)_package.get("child");
+					
+					row = sheet.createRow((short) ++index);
+					row.setHeight(colum_height);
+					sheet.addMergedRegion(new CellRangeAddress(index, index, 0, 3));
+					cell = row.createCell((short) 0);
+					cellStyle = cell.getCellStyle();
+					cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+					//cell.setEncoding(HSSFCell.ENCODING_UTF_16);
+					cell.setCellValue(name);
+					
+					row = sheet.createRow((short) ++index);
+					row.setHeight(colum_height);
+					cell = row.createCell((short) 0);
+					cellStyle = cell.getCellStyle();
+					cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+					//cell.setEncoding(HSSFCell.ENCODING_UTF_16);
+					cell.setCellValue("产品名称");
+					
+					cell = row.createCell((short) 1);
+					cellStyle = cell.getCellStyle();
+					cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+					//cell.setEncoding(HSSFCell.ENCODING_UTF_16);
+					cell.setCellValue("产品编号");
+					
+					cell = row.createCell((short) 2);
+					cellStyle = cell.getCellStyle();
+					cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+					//cell.setEncoding(HSSFCell.ENCODING_UTF_16);
+					cell.setCellValue("件数");
+					
+					for(HashMap<String,Object> product : product_list){
+						row = sheet.createRow((short) ++ index);
+						row.setHeight(colum_height);
+						int _index = -1;
+						for(Map.Entry<String, String> product_entry : Product_Colum.entrySet()){
+							String product_key = product_entry.getKey();
+							
+							cell = row.createCell((short) ++_index);
+							cellStyle = cell.getCellStyle();
+							cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+							//cell.setEncoding(HSSFCell.ENCODING_UTF_16);
+							cell.setCellValue(product.get(product_key).toString());
+						}
+					}
+				}
+			}
+		}
+		ByteArrayOutputStream fOut = new ByteArrayOutputStream();
+		workbook.write(fOut);
+		fOut.flush();
+		fOut.close();
+		return fOut.toByteArray();
+	}
 }

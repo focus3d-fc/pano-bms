@@ -402,7 +402,7 @@
 	}
 	
 	function QueryPage(index){
-		data.startNum = index*pageSize;
+		data.startNum = (index-1)*pageSize;
 		$.ajax({url:"/houses/queryAllProducts",
 	        type: "POST",
 	        data:data,
@@ -433,10 +433,11 @@
 	        dataType:"json",
 	        success:function(data){
 	            if(data){
-	         		total =  Math.ceil(parseInt(data.total)/parseInt(pageSize))-1;
+	         		total =  Math.ceil(parseInt(data.total)/parseInt(pageSize));
 	         		
 	         		tab = new Tab();
 	        		tab.setExhibtionNum(5);
+	        		tab.setIndex(1);
 	        		$("#tab_container").empty();
 	        		tab.create($("#tab_container"),{
 	        			total:total,
@@ -446,7 +447,7 @@
 	        				QueryPage(index);
 	        			}
 	        		});
-	        		tab.setIndex(1);
+	        		
 	         		
 	            	initProductResult(data.list);
 	            }
