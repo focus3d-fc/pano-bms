@@ -39,6 +39,7 @@
 	 	       				
 				$("#SN").val(jsonobj.SN);
 				$("#usname").val(jsonobj.NAME);
+				$("#discount").val(jsonobj.DISCOUNT);
 			}
 		});
 	}
@@ -163,8 +164,13 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">楼盘名称</label>
 							<div class="col-sm-9">
-								<input id="asname" name="asname" type="text"
-									class="form-control" placeholder="楼盘名称">
+								<input id="asname" name="asname" type="text" class="form-control" placeholder="楼盘名称" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">全款折扣</label>
+							<div class="col-sm-9">
+								<input name="discount" type="minValue" class="form-control" placeholder="全款折扣">
 							</div>
 						</div>
 					</form>
@@ -215,7 +221,13 @@
 							<label class="col-sm-3 control-label">楼盘名称</label>
 							<div class="col-sm-9">
 								<input id="usname" name="usname" type="text"
-									class="form-control" placeholder="楼盘名称">
+									class="form-control" placeholder="楼盘名称" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">全款折扣</label>
+							<div class="col-sm-9">
+								<input id="discount" name="discount" type="text" class="form-control" placeholder="全款折扣">
 							</div>
 						</div>
 					</form>
@@ -227,7 +239,9 @@
 			</div>
 		</div>
 	</div>
+	
 	<script src="/style/admstatic/lib/jQuery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/script/jquery.validate.min.js"></script>
 	<script src="/style/admstatic/lib/bootstrap/js/bootstrap.js"></script>
 	<script src="/style/admstatic/js/main.js"></script>
 
@@ -235,6 +249,31 @@
 		addressInit('cmbProvince', 'cmbCity', 'cmbArea');
 		addressInit('acmbProvince', 'acmbCity', 'acmbArea');
 		addressInit('ucmbProvince', 'ucmbCity', 'ucmbArea');
+		
+		jQuery.validator.addMethod("minValue", //验证方法名称
+			function(value, element, param) {
+				var reg = /^0(\.\d{1,2})?$|^1(\.0{1,2})?$/;
+				var reslut = reg.test(value);
+				return reslut;
+			}, '请输入正确数值(示例0.00~1.00)');
+		
+	 	$("#formadd").validate({
+		    rules: {
+		    	discount:{
+		    		required:true,
+		    		minValue:true
+		    	}
+		    }
+	 	});
+	 	
+	 	$("#formup").validate({
+		    rules: {
+		    	discount:{
+		    		required:true,
+		    		minValue:true
+		    	}
+		    }
+	 	});
 	</script>
 </body>
 </html>

@@ -137,12 +137,13 @@ public class HousesController extends BaseController {
 	@RequestMapping("/addhouses")
 	public String addhouses(HttpServletRequest request,
 			@RequestParam String acmbProvince, @RequestParam String acmbCity,
-			@RequestParam String acmbArea, @RequestParam String asname) {
+			@RequestParam String acmbArea, @RequestParam String asname,@RequestParam String discount) {
 		pano_project houses = new pano_project();
 		houses.setPROVINCE(acmbProvince);
 		houses.setCITY(acmbCity);
 		houses.setAREA(acmbArea);
 		houses.setNAME(asname);
+		houses.setDISCOUNT(Float.parseFloat(discount));
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String add_time = sdf.format(date);
@@ -216,13 +217,14 @@ public class HousesController extends BaseController {
 	@RequestMapping("/upHouse")
 	public String upHouse(@RequestParam String usname, @RequestParam Long SN,
 			@RequestParam String ucmbProvince, @RequestParam String ucmbCity,
-			@RequestParam String ucmbArea) {
+			@RequestParam String ucmbArea,String discount) {
 		pano_project house = new pano_project();
 		house.setSN(SN);
 		house.setNAME(usname);
 		house.setPROVINCE(ucmbProvince);
 		house.setCITY(ucmbCity);
 		house.setAREA(ucmbArea);
+		house.setDISCOUNT(Float.parseFloat(discount));
 		housesService.upHouse(house);
 		return redirect("tohouse");
 	}

@@ -853,7 +853,7 @@ $(function(){
             var url = getObjectURL(file);
             $("#view_pic").attr("src",url);
             $("#viewpic_upload").show();
-            $("#viewpic_upload").click(function(){
+            $("#viewpic_upload").off("click").click(function(){
                 data.submit();
             })
         })
@@ -1069,7 +1069,6 @@ function updateView(callback){
 function ClearViewEnterning(){
     $("#view_entering").modal("hide");
     $("#view_save").data("data",null);
-    $("#")
 }
 //更新或者添加层
 function  updateLayer(layer_sn,callback) {
@@ -1141,7 +1140,7 @@ function queryPackageTypeName(layer){
                 }
 
                 $("#element_entering").modal("show");
-                $("#element_save").off("click").on("click",function() {
+                $("#element_save").off("click").on("click",function(){
                      _data = {};
                      $("#element_check_container input:enabled:checked").each(function(){
                          _data["packageTypeSn"] = $(this).attr("id");

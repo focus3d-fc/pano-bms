@@ -44,8 +44,8 @@
 
 	<insert id="addHouses" parameterClass="houses">
 		insert into pano_project
-		(`NAME`,PROVINCE,CITY,AREA,ADD_TIME)
-		values(#NAME#,#PROVINCE#,#CITY#,#AREA#,#ADD_TIME#)
+		(`NAME`,PROVINCE,CITY,AREA,ADD_TIME,DISCOUNT)
+		values(#NAME#,#PROVINCE#,#CITY#,#AREA#,#ADD_TIME#,#DISCOUNT#)
 	</insert>
 
 	<select id="selHouses" resultClass="houses" parameterClass="houses">
@@ -62,7 +62,7 @@
 
 	<select id="selHousesbySN" resultClass="houses" parameterClass="Long">
 		select
-		SN,`NAME`,PROVINCE,CITY,AREA
+		SN,`NAME`,PROVINCE,CITY,AREA,DISCOUNT
 		from pano_project
 		where SN = #SN#
 	</select>
@@ -75,7 +75,7 @@
 	<update id="upHouse" parameterClass="houses">
 		update pano_project
 		set
-		`NAME`=#NAME#,PROVINCE=#PROVINCE#,CITY=#CITY#,AREA=#AREA#
+		`NAME`=#NAME#,PROVINCE=#PROVINCE#,CITY=#CITY#,AREA=#AREA#,DISCOUNT=#DISCOUNT#
 		where SN =
 		#SN#
 	</update>

@@ -17,7 +17,7 @@ $(function(){
             var url = getObjectURL(file);
             $("#view_pic").attr("src",url);
             $("#viewpic_upload").show();
-            $("#viewpic_upload").click(function(){
+            $("#viewpic_upload").off("click").click(function(){
                 data.submit();
             })
         })
