@@ -23,6 +23,8 @@ public class pano_project implements Serializable, CommonModel {
 	private String AREA;
 	private int PUBLISH;
 	private float DISCOUNT;
+	private float PERCENT;
+
 	private Long ADDER_SN;
 	private String ADDER_NAME;
 	private String ADD_TIME;
@@ -44,6 +46,14 @@ public class pano_project implements Serializable, CommonModel {
 
 	public void setDISCOUNT(float dISCOUNT) {
 		DISCOUNT = dISCOUNT;
+	}
+	
+	public float getPERCENT() {
+		return PERCENT;
+	}
+
+	public void setPERCENT(float pERCENT) {
+		PERCENT = pERCENT;
 	}
 
 	public Long getSN() {

@@ -22,7 +22,7 @@
 	<select id="getHouses" resultClass="houses"
 		parameterClass="com.focus3d.pano.admin.utils.Page">
 		select
-		SN,`NAME`,PROVINCE,CITY,AREA,PUBLISH
+		SN,`NAME`,PROVINCE,CITY,AREA,PUBLISH,PERCENT
 		from pano_project
 		order by ADD_TIME desc
 		limit #startIndex#,#pagesize#
@@ -44,8 +44,8 @@
 
 	<insert id="addHouses" parameterClass="houses">
 		insert into pano_project
-		(`NAME`,PROVINCE,CITY,AREA,ADD_TIME,DISCOUNT)
-		values(#NAME#,#PROVINCE#,#CITY#,#AREA#,#ADD_TIME#,#DISCOUNT#)
+		(`NAME`,PROVINCE,CITY,AREA,ADD_TIME,DISCOUNT,PERCENT)
+		values(#NAME#,#PROVINCE#,#CITY#,#AREA#,#ADD_TIME#,#DISCOUNT#,#PERCENT#)
 	</insert>
 
 	<select id="selHouses" resultClass="houses" parameterClass="houses">
@@ -62,7 +62,7 @@
 
 	<select id="selHousesbySN" resultClass="houses" parameterClass="Long">
 		select
-		SN,`NAME`,PROVINCE,CITY,AREA,DISCOUNT
+		SN,`NAME`,PROVINCE,CITY,AREA,DISCOUNT,PERCENT
 		from pano_project
 		where SN = #SN#
 	</select>
@@ -75,7 +75,7 @@
 	<update id="upHouse" parameterClass="houses">
 		update pano_project
 		set
-		`NAME`=#NAME#,PROVINCE=#PROVINCE#,CITY=#CITY#,AREA=#AREA#,DISCOUNT=#DISCOUNT#
+		`NAME`=#NAME#,PROVINCE=#PROVINCE#,CITY=#CITY#,AREA=#AREA#,DISCOUNT=#DISCOUNT#,PERCENT=#PERCENT#
 		where SN =
 		#SN#
 	</update>
