@@ -88,8 +88,8 @@
 		   pano_order.DISCOUNT_MONEY AS DISCOUNT_MONEY, 
 		   pano_order.STATUS AS STATUS, 
 		   pano_order.`SUM_MONEY` AS SUM_MONEY,
-		   pano_order.`PAY_MONEY` as PAY_MONEY,
-		   (pano_order.LEFT_PAY+pano_order.`PAY_MONEY`) AS ActuallyMoney, 
+		   pano_order.`PAY_MONEY`*(pano_order.`STATUS`-1) AS PAY_MONEY,
+		   (pano_order.LEFT_MONEY+pano_order.`PAY_MONEY`) AS ActuallyMoney, 
 		   logtc.SN AS LOGTC_SN,
 		   logtc.ID AS LOGTC_ID, 
 		   logtc.SEND AS LOGTC_SEND, 
@@ -149,8 +149,8 @@
 	<select id="query_order_pay" resultClass="java.util.HashMap" parameterClass="java.lang.Long">
 		SELECT
 			COUNT(*) num, 
-            (parent.PAY_MONEY + parent.LEFT_MONEY + child.PAY_MONEY + child.LEFT_MONEY) AS ActuallyMoney,
-            (parent.PAY_MONEY +child.PAY_MONEY) AS PAY_MONEY,
+            (parent.PAY_MONEY + child.PAY_MONEY) AS ActuallyMoney,
+            (parent.PAY_MONEY*(parent.`STATUS`-1) + child.PAY_MONEY*(child.`STATUS`-1)) AS PAY_MONEY,
             parent.STATUS AS first_status,
 	    	child.status AS final_status,
             parent.TRANS_PLATFORM_TYPE AS first_trans_type,

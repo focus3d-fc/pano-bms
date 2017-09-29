@@ -114,11 +114,15 @@ public class OrderController extends BaseController {
 		for(OrderAdmin order:OrderAdmin){
 			HashMap<String,Object> info = orderService.QueryOrderPay(order.getORDER_SN());
 			if(!(info.get("num").toString().equals("0"))){
-				String status = info.get("final_status").toString();
-				if(status.equals("1")){
-					order.setSTATUS(3);
+				String final_status = info.get("final_status").toString();
+				String first_status = info.get("first_status").toString();
+				if(first_status.equals("1")){
+					order.setSTATUS(1);
 				}else{
-					order.setSTATUS(2);
+					if(final_status.equals("1"))
+						order.setSTATUS(3);
+					else
+						order.setSTATUS(2);
 				}
 			}
 		}
@@ -157,6 +161,7 @@ public class OrderController extends BaseController {
 	
 	private HashMap<String,Object> GetDetail(Long order_sn){
 		HashMap<String,Object> order = orderService.selOrderbySN(order_sn);
+		
 		
 		List<HashMap<String,Object>> products = orderService.QueryOrderPackageDetail(order_sn);
 	    HashMap<String,HashMap<String,Object>> detail = new HashMap<String,HashMap<String,Object>>();
@@ -201,7 +206,10 @@ public class OrderController extends BaseController {
 		}else{
 			order.put("ActuallyMoney", pay_detail.get("ActuallyMoney").toString());
 			order.put("PAY_MONEY", pay_detail.get("PAY_MONEY").toString());
-			order.put("first_trans_type", pay_detail.get("first_trans_type").toString());
+			if(pay_detail.get("first_trans_type")!=null){
+				order.put("first_trans_type", pay_detail.get("first_trans_type").toString());
+			}
+			
 			if(pay_detail.get("final_trans_type")!=null){
 				order.put("final_trans_type", pay_detail.get("final_trans_type").toString());
 			}
